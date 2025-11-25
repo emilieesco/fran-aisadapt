@@ -283,6 +283,12 @@ export class MemStorage implements IStorage {
     const reading7Id = randomUUID();
     const reading8Id = randomUUID();
 
+    // New writing courses (pratical writing)
+    const writing1Id = randomUUID();
+    const writing2Id = randomUUID();
+    const writing3Id = randomUUID();
+    const writing4Id = randomUUID();
+
     const course4: Course = {
       id: course4Id,
       title: "Texte descriptif",
@@ -641,6 +647,42 @@ export class MemStorage implements IStorage {
       order: 41,
     };
 
+    const writing1: Course = {
+      id: writing1Id,
+      title: "Écrire une description vivante",
+      description: "Techniques pour écrire des descriptions enrichies avec détails sensoriels",
+      category: "écriture",
+      content: "<h2>Écrire une Description Vivante</h2><p>Une bonne description fait VOIR, SENTIR et VIVRE les choses au lecteur. Elle n'est pas juste une liste de faits, mais une expérience sensorielle!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ CLÉS:</strong><br>Utiliser les 5 sens: vue, son, odeur, goût, toucher<br>Ajouter des comparaisons et métaphores<br>Utiliser des adjectifs précis et expressifs</div><h3>1. LES CINQ SENS</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Vue:</strong> couleurs, formes, lumière, ombres<br>\"Le soleil orange s'enfonce dans l'horizon rose\"<br><strong>Son:</strong> bruits, musiques, silence<br>\"On entendait le doux murmure des vagues\"<br><strong>Odeur:</strong> parfums, senteurs<br>\"Une odeur délicieuse de pain frais sortait du four\"<br><strong>Goût:</strong> saveurs<br>\"Le gâteau avait un goût sucré et vanillé\"<br><strong>Toucher:</strong> textures, températures<br>\"La fourrure du chat était douce et chaude\"</div><h3>2. COMPARAISONS ET MÉTAPHORES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Comparaison:</strong> \"comme\", \"semblable à\"<br>\"Ses cheveux étaient blonds comme du blé mûr\"<br><strong>Métaphore:</strong> dire que c'EST, sans \"comme\"<br>\"Ses yeux étaient des diamants qui brillaient\"<br>\"Le soleil était une boule de feu\"</div><h3>3. ADJECTIFS PRÉCIS vs VAGUES</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Vague:</strong> \"La maison était belle\"<br><strong>Vivant:</strong> \"La maison blanche aux volets bleu ciel était majestueuse avec son jardin débordant de roses\"<br><strong>Vague:</strong> \"L'enfant était heureux\"<br><strong>Vivant:</strong> \"L'enfant rayonnait de joie, son sourire illuminait tout son visage\"</div><h3>4. EXEMPLE COMPLET</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Mauvais:</strong> \"C'était un beau jardin avec des fleurs\"<br><strong>Excellent:</strong> \"Le jardin était un paradis miniature. Des roses rouges, cramoisies et écarlates grimpaient sur les murs de pierre. Des papillons aux ailes dorées volaient de fleur en fleur. On sentait le parfum sucré des roses mélangé à celui du jasmin. Le sol était doux et frais sous les pieds nus.\"</div>",
+      order: 42,
+    };
+
+    const writing2: Course = {
+      id: writing2Id,
+      title: "Écrire un dialogue",
+      description: "Format correct et techniques pour écrire des dialogues naturels et réalistes",
+      category: "écriture",
+      content: "<h2>Écrire un Dialogue - Format et Techniques</h2><p>Un dialogue bien écrit rend une histoire vivante! Il faut respecter le format ET faire parler les personnages de manière réaliste et naturelle.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLES FORMAT FRANÇAIS:</strong><br>Tiret (—) au début de chaque réplique<br>Chaque changement de personne = nouvelle ligne<br>Point, virgule AVANT les guillemets fermants</div><h3>1. FORMAT FRANÇAIS DU DIALOGUE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Correct en français:</strong><br>— Bonjour Marie, comment vas-tu?<br>— Très bien, merci! Et toi?<br>— Je vais très bien aussi. Tu viens au parc?<br><strong>Avec verbes de parole:</strong><br>— Pourquoi ne viens-tu pas? demanda Jean.<br>— Je suis trop occupée, répondit Marie tristement.<br>— C'est dommage, soupira Jean.</div><h3>2. LES VERBES DE PAROLE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Varié:</strong> dit, répond, demande, cria, chuchota, expliqua, déclara, s'exclama, soupira, murmura, avoua, confessa<br><strong>Au lieu de toujours \"dit\":</strong><br>\"La mère cria: — Venez manger!\"<br>\"Il chuchota: — J'ai peur\"<br>\"Elle expliqua: — Voilà comment faire\"</div><h3>3. FAIRE PARLER NATURELLEMENT</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Chaque personnage a une voix:</strong><br>Enfant: \"C'est cool! J'aime bien!\"<br>Adulte cultiver: \"C'est une situation intéressante\"<br>Personnage triste: \"Ah... j'ai perdu mon courage\"<br><strong>Montrer les émotions par le parole:</strong><br>\"— Je t'aime! cria-t-elle joyeusement\"><br>\"— J'ai échoué, murmura-t-il, la voix brisée\"</div><h3>4. EXEMPLE COMPLET DE DIALOGUE</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>— Tu veux aller au cinéma ce soir? demanda Lucas.<br>— Oui! Quel film veux-tu voir? s'exclama Sarah.<br>— Je ne sais pas. Peut-être un film de super-héros?<br>— Bof! C'est trop violent. Et si on regardait une comédie?<br>— D'accord, soupira Lucas. À quelle heure?<br>— À 20h?<br>— Parfait! À ce soir!<br></strong></div>",
+      order: 43,
+    };
+
+    const writing3: Course = {
+      id: writing3Id,
+      title: "Écrire une histoire courte",
+      description: "Structure d'une histoire courte avec début, milieu et fin satisfaisants",
+      category: "écriture",
+      content: "<h2>Écrire une Histoire Courte</h2><p>Une histoire courte bien structurée entraîne le lecteur du début à la fin. Elle a besoin d'une structure claire pour captiver l'audience!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong><br>Situation initiale → Problème/Conflit → Climax → Résolution</div><h3>1. SITUATION INITIALE (LE DÉBUT)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Présente:</strong> personnage principal, lieu, temps, situation normale<br><strong>Exemple:</strong> \"Léa était une fillette de 10 ans qui vivait près d'une grande forêt. Elle aimait explorer la nature après l'école. Un jour, en sortant de classe, elle découvrit quelque chose d'extraordinaire...\"</div><h3>2. LE PROBLÈME OU CONFLIT (LE MILIEU)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Crée la tension:</strong> obstacle, danger, mystère, question<br><strong>Exemple:</strong> \"Près du grand chêne, Léa trouva une petite porte verte qu'elle n'avait jamais vue avant. Elle était intriguée. Devrait-elle l'ouvrir? Que se passerait-il?\"<br><strong>Types de conflits:</strong> personnage vs nature, personnage vs autre, personnage vs lui-même</div><h3>3. LE CLIMAX (LE MOMENT CRUCIAL)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le moment le plus intense:</strong> où l'action principale se produit<br><strong>Exemple:</strong> \"Léa prit une profonde respiration et ouvrit la petite porte. Ce qu'elle vit la stupéfia! C'était un monde magique rempli de créatures lumineuses et de fleurs qui chantaient!\"</div><h3>4. LA RÉSOLUTION (LA FIN)</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Comment se termine l'histoire?</strong> Problème résolu, leçon apprise<br><strong>Exemple:</strong> \"Léa découvrit que ce monde magique existait pour aider les enfants courageux. Elle y retourna chaque jour et devint la gardienne de ce monde secret. Et jamais elle n'oublia sa première adventure extraordinaire.\"</div>",
+      order: 44,
+    };
+
+    const writing4: Course = {
+      id: writing4Id,
+      title: "Résumer efficacement",
+      description: "Techniques pour extraire l'essentiel et écrire un bon résumé",
+      category: "écriture",
+      content: "<h2>Résumer Efficacement</h2><p>Résumer n'est pas recopier! C'est EXTRAIRE l'essentiel et le présenter de manière concise et claire.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ FORMULE:</strong><br>Identifiez les idées PRINCIPALES (pas les détails)<br>Écrivez en vos PROPRES mots<br>Respectez l'ordre original du texte</div><h3>1. TROUVER L'ESSENTIEL</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Posez-vous ces questions:</strong><br>Qui sont les personnages IMPORTANTS?<br>Quels sont les FAITS CLÉS?<br>Quel est le DÉBUT, le PROBLÈME et la FIN?<br><strong>IGNOREZ les DÉTAILS:</strong> descriptions longues, anecdotes secondaires, dialogues longs</div><h3>2. RÉDUIRE LE TEXTE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Original (50 mots):</strong> \"Jean était un garçon de 12 ans qui vivait dans une petite maison au bord de la mer. Il adorait regarder les vagues. Un jour, il trouva une bouteille sur la plage. À l'intérieur, il y avait un message ancien.\"<br><strong>Résumé (15 mots):</strong> \"Jean, 12 ans, trouve une bouteille avec un message ancien sur la plage.\"</div><h3>3. UTILISER SES PROPRES MOTS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Pas bon:</strong> \"Recopier exactement le texte\"<br><strong>Bon:</strong> \"Reformuler avec vos propres mots\"<br><strong>Exemple:</strong><br>Texte: \"L'école était fermée à cause de la neige.\"<br>Résumé: \"La neige a forcé la fermeture de l'école.\"</div><h3>4. STRUCTURE D'UN RÉSUMÉ</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>1. Introduction:</strong> \"Ce texte parle de...\"<br><strong>2. Développement:</strong> 3-4 phrases avec les idées principales<br><strong>3. Conclusion:</strong> \"En conclusion... ou Finalement...\"<br><strong>Astuce:</strong> Un bon résumé fait 1/3 ou 1/4 de la longueur du texte original</div>",
+      order: 45,
+    };
+
     this.courses.set(course4Id, course4);
     this.courses.set(course5Id, course5);
     this.courses.set(course6Id, course6);
@@ -680,6 +722,10 @@ export class MemStorage implements IStorage {
     this.courses.set(reading6Id, reading6);
     this.courses.set(reading7Id, reading7);
     this.courses.set(reading8Id, reading8);
+    this.courses.set(writing1Id, writing1);
+    this.courses.set(writing2Id, writing2);
+    this.courses.set(writing3Id, writing3);
+    this.courses.set(writing4Id, writing4);
 
     const question5: Question = {
       id: randomUUID(),
@@ -752,6 +798,52 @@ export class MemStorage implements IStorage {
     this.exercises.set(readingExercise3Id, readingExercise3);
     this.exercises.set(readingExercise4Id, readingExercise4);
     this.exercises.set(readingExercise5Id, readingExercise5);
+
+    // Writing exercises
+    const writingExercise1Id = randomUUID();
+    const writingExercise1: Exercise = {
+      id: writingExercise1Id,
+      courseId: writing1Id,
+      title: "Pratiquer: Description vivante",
+      description: "Écrivez une description avec les 5 sens",
+      type: "writing",
+      order: 1,
+    };
+
+    const writingExercise2Id = randomUUID();
+    const writingExercise2: Exercise = {
+      id: writingExercise2Id,
+      courseId: writing2Id,
+      title: "Pratiquer: Dialogue",
+      description: "Écrivez un dialogue entre deux personnages",
+      type: "writing",
+      order: 1,
+    };
+
+    const writingExercise3Id = randomUUID();
+    const writingExercise3: Exercise = {
+      id: writingExercise3Id,
+      courseId: writing3Id,
+      title: "Pratiquer: Histoire courte",
+      description: "Écrivez une histoire courte avec début, milieu et fin",
+      type: "writing",
+      order: 1,
+    };
+
+    const writingExercise4Id = randomUUID();
+    const writingExercise4: Exercise = {
+      id: writingExercise4Id,
+      courseId: writing4Id,
+      title: "Pratiquer: Résumé",
+      description: "Résumez un texte en 5-7 phrases",
+      type: "writing",
+      order: 1,
+    };
+
+    this.exercises.set(writingExercise1Id, writingExercise1);
+    this.exercises.set(writingExercise2Id, writingExercise2);
+    this.exercises.set(writingExercise3Id, writingExercise3);
+    this.exercises.set(writingExercise4Id, writingExercise4);
 
     // Reading questions
     // Narratif
@@ -869,6 +961,47 @@ export class MemStorage implements IStorage {
       order: 2,
     };
 
+    // Writing questions
+    const writQ1: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise1Id,
+      title: "Exercice: Description vivante",
+      text: "Écrivez une description vivante (8-10 phrases) d'un lieu que vous aimez. Utilisez les 5 sens: vue, son, odeur, goût, toucher. Exemple: la salle de classe, votre chambre, un parc, etc.",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 1,
+    };
+
+    const writQ2: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise2Id,
+      title: "Exercice: Dialogue",
+      text: "Écrivez un dialogue (10-15 lignes) entre deux personnages. Utilisez le format français avec les tirets (—), variez les verbes de parole (dit, cria, chuchota, etc.), et montrez les émotions.",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 1,
+    };
+
+    const writQ3: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise3Id,
+      title: "Exercice: Histoire courte",
+      text: "Écrivez une histoire courte (15-20 phrases) avec: 1) Situation initiale, 2) Problème/Conflit, 3) Climax, 4) Résolution. Invente une histoire originale!",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 1,
+    };
+
+    const writQ4: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise4Id,
+      title: "Exercice: Résumé",
+      text: "Lisez ce texte et résumez-le en 5-7 phrases:\\n\\nAUTEUR: Jean est un enfant de 12 ans qui vivait dans un petit village montagneux. Un jour, il découvrit une vieille carte dans le grenier de sa grand-mère. La carte montrait un chemin menant à une grotte cachée. Avec ses deux meilleurs amis, Pierre et Marie, Jean décida d'explorer cette grotte mystérieuse. Après une longue marche, ils trouvèrent l'entrée de la grotte. À l'intérieur, ils découvrirent des cristaux brillants et des minéraux magnifiques. C'était une découverte extraordinaire et les trois enfants devinrent célèbres dans le village.",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 1,
+    };
+
     this.questions.set(question4.id, question4);
     this.questions.set(question5.id, question5);
     this.questions.set(readQ1.id, readQ1);
@@ -881,6 +1014,10 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ8.id, readQ8);
     this.questions.set(readQ9.id, readQ9);
     this.questions.set(readQ10.id, readQ10);
+    this.questions.set(writQ1.id, writQ1);
+    this.questions.set(writQ2.id, writQ2);
+    this.questions.set(writQ3.id, writQ3);
+    this.questions.set(writQ4.id, writQ4);
 
     // Create assignment
     const assignment: Assignment = {
