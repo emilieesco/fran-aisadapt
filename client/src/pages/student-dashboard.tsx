@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, PenTool, FileText, Award, TrendingUp, LogOut } from "lucide-react";
+import { BookOpen, PenTool, Play, TrendingUp, LogOut, FileText } from "lucide-react";
 
 interface Course {
   id: string;
@@ -11,6 +11,15 @@ interface Course {
   description: string;
   category: string;
   progressPercentage: number;
+}
+
+interface Exercise {
+  id: string;
+  title: string;
+  description: string;
+  type: string;
+  courseId: string;
+  courseName?: string;
 }
 
 interface Badge {
@@ -22,6 +31,7 @@ interface Badge {
 export default function StudentDashboard() {
   const [, setLocation] = useLocation();
   const [courses, setCourses] = useState<Course[]>([]);
+  const [exercises, setExercises] = useState<Exercise[]>([]);
   const [badges, setBadges] = useState<Badge[]>([]);
   const [loading, setLoading] = useState(true);
   const [studentName, setStudentName] = useState("");
@@ -41,7 +51,29 @@ export default function StudentDashboard() {
           fetch(`/api/users/${userId}`, { credentials: "include" }),
         ]);
 
-        if (coursesRes.ok) setCourses(await coursesRes.json());
+        if (coursesRes.ok) {
+          const courseList = await coursesRes.json();
+          setCourses(courseList);
+
+          // Fetch all exercises for all courses
+          const allExercises: Exercise[] = [];
+          for (const course of courseList) {
+            const exRes = await fetch(`/api/courses/${course.id}/exercises`, {
+              credentials: "include",
+            });
+            if (exRes.ok) {
+              const exList = await exRes.json();
+              allExercises.push(
+                ...exList.map((ex: any) => ({
+                  ...ex,
+                  courseName: course.title,
+                }))
+              );
+            }
+          }
+          setExercises(allExercises);
+        }
+
         if (badgesRes.ok) setBadges(await badgesRes.json());
         if (userRes.ok) {
           const user = await userRes.json();
@@ -67,6 +99,23 @@ export default function StudentDashboard() {
     setLocation(`/course/${courseId}`);
   };
 
+  const handleStartExercise = (exerciseId: string) => {
+    setLocation(`/exercise/${exerciseId}`);
+  };
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case "classes_de_mots":
+        return "text-blue-500";
+      case "textes_narratifs":
+        return "text-green-500";
+      case "ecriture":
+        return "text-purple-500";
+      default:
+        return "text-gray-500";
+    }
+  };
+
   const getCategoryLabel = (category: string) => {
     const labels: { [key: string]: string } = {
       classes_de_mots: "Classes de mots",
@@ -76,19 +125,6 @@ export default function StudentDashboard() {
     return labels[category] || category;
   };
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "classes_de_mots":
-        return <BookOpen className="w-5 h-5" />;
-      case "textes_narratifs":
-        return <FileText className="w-5 h-5" />;
-      case "ecriture":
-        return <PenTool className="w-5 h-5" />;
-      default:
-        return <BookOpen className="w-5 h-5" />;
-    }
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -96,6 +132,8 @@ export default function StudentDashboard() {
       </div>
     );
   }
+
+  const writingExercises = exercises.filter((ex) => ex.type === "text");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-slate-900">
@@ -123,83 +161,131 @@ export default function StudentDashboard() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <Tabs defaultValue="classes-de-mots" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
-            <TabsTrigger value="classes-de-mots" data-testid="tab-classes-de-mots">
+        <Tabs defaultValue="cours" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
+            <TabsTrigger value="cours" data-testid="tab-cours">
               <BookOpen className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">Classes de mots</span>
-              <span className="sm:hidden">Mots</span>
+              <span className="hidden sm:inline">Cours</span>
             </TabsTrigger>
-            <TabsTrigger value="textes-narratifs" data-testid="tab-textes-narratifs">
+            <TabsTrigger value="exercices" data-testid="tab-exercices">
+              <Play className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">Exercices</span>
+            </TabsTrigger>
+            <TabsTrigger value="lecture" data-testid="tab-lecture">
               <FileText className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">Textes narratifs</span>
-              <span className="sm:hidden">Textes</span>
+              <span className="hidden sm:inline">Lecture</span>
             </TabsTrigger>
             <TabsTrigger value="ecriture" data-testid="tab-ecriture">
               <PenTool className="w-4 h-4 mr-2" />
-              Écriture
+              <span className="hidden sm:inline">Écriture</span>
             </TabsTrigger>
-            <TabsTrigger value="mon-proges" data-testid="tab-mon-progres">
+            <TabsTrigger value="progres" data-testid="tab-progres">
               <TrendingUp className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">Mon Progrès</span>
-              <span className="sm:hidden">Progrès</span>
+              <span className="hidden sm:inline">Progrès</span>
             </TabsTrigger>
           </TabsList>
 
-          {/* Classes de mots Tab */}
-          <TabsContent value="classes-de-mots">
+          {/* Cours Tab */}
+          <TabsContent value="cours">
             <div className="space-y-4">
               <div>
-                <h2 className="text-2xl font-bold mb-4">Classes de mots</h2>
+                <h2 className="text-2xl font-bold mb-2">Mes Cours</h2>
                 <p className="text-muted-foreground mb-6">
-                  Apprenez à identifier et classifier les différents types de mots
+                  Sélectionnez un cours pour accéder aux contenus et exercices
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses
-                  .filter((c) => c.category === "classes_de_mots")
-                  .map((course) => (
-                    <Card
-                      key={course.id}
-                      className="p-6 hover-elevate cursor-pointer transition-all"
-                      data-testid={`card-course-${course.id}`}
-                    >
-                      <div className="space-y-4">
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <h3 className="text-lg font-bold text-foreground">
-                              {course.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground mt-2">
-                              {course.description}
-                            </p>
-                          </div>
-                          <BookOpen className="w-5 h-5 text-blue-500 flex-shrink-0" />
-                        </div>
-
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-xs">
-                            <span className="font-semibold">Progression</span>
-                            <span className="text-muted-foreground">
-                              {course.progressPercentage}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-secondary rounded-full h-2">
-                            <div
-                              className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                              style={{
-                                width: `${course.progressPercentage}%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-
-                        <Button
-                          onClick={() => handleStartCourse(course.id)}
-                          className="w-full"
-                          data-testid={`button-start-${course.id}`}
+                {courses.map((course) => (
+                  <Card
+                    key={course.id}
+                    className="p-6 hover-elevate cursor-pointer transition-all"
+                    data-testid={`card-course-${course.id}`}
+                  >
+                    <div className="space-y-4">
+                      <div>
+                        <span
+                          className={`inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 text-xs font-semibold rounded-full mb-2 ${getCategoryColor(
+                            course.category
+                          )}`}
                         >
-                          {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                          {getCategoryLabel(course.category)}
+                        </span>
+                        <h3 className="text-lg font-bold text-foreground mt-2">
+                          {course.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {course.description}
+                        </p>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-xs">
+                          <span className="font-semibold">Progression</span>
+                          <span className="text-muted-foreground">
+                            {course.progressPercentage}%
+                          </span>
+                        </div>
+                        <div className="w-full bg-secondary rounded-full h-2">
+                          <div
+                            className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                            style={{
+                              width: `${course.progressPercentage}%`,
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <Button
+                        onClick={() => handleStartCourse(course.id)}
+                        className="w-full"
+                        data-testid={`button-start-${course.id}`}
+                      >
+                        {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* Exercices Tab */}
+          <TabsContent value="exercices">
+            <div className="space-y-4">
+              <div>
+                <h2 className="text-2xl font-bold mb-2">Tous les Exercices</h2>
+                <p className="text-muted-foreground mb-6">
+                  Pratiquez avec les exercices interactifs
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {exercises
+                  .filter((ex) => ex.type !== "text")
+                  .map((exercise) => (
+                    <Card
+                      key={exercise.id}
+                      className="p-6 hover-elevate"
+                      data-testid={`card-exercise-${exercise.id}`}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <span className="text-xs font-semibold text-muted-foreground">
+                            {exercise.courseName}
+                          </span>
+                          <h3 className="text-lg font-bold text-foreground mt-1">
+                            {exercise.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {exercise.description}
+                          </p>
+                        </div>
+                        <Button
+                          onClick={() => handleStartExercise(exercise.id)}
+                          className="w-full"
+                          data-testid={`button-start-exercise-${exercise.id}`}
+                        >
+                          <Play className="w-3 h-3 mr-2" />
+                          Démarrer
                         </Button>
                       </div>
                     </Card>
@@ -208,13 +294,13 @@ export default function StudentDashboard() {
             </div>
           </TabsContent>
 
-          {/* Textes narratifs Tab */}
-          <TabsContent value="textes-narratifs">
+          {/* Lecture Tab */}
+          <TabsContent value="lecture">
             <div className="space-y-4">
               <div>
-                <h2 className="text-2xl font-bold mb-4">Textes narratifs</h2>
+                <h2 className="text-2xl font-bold mb-2">Activités de Lecture</h2>
                 <p className="text-muted-foreground mb-6">
-                  Comprenez la structure et les éléments des textes narratifs
+                  Améliorez votre compréhension de la lecture avec des textes et questions
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -223,22 +309,24 @@ export default function StudentDashboard() {
                   .map((course) => (
                     <Card
                       key={course.id}
-                      className="p-6 hover-elevate cursor-pointer transition-all"
-                      data-testid={`card-course-${course.id}`}
+                      className="p-6 hover-elevate border-2 border-green-200 dark:border-green-800"
+                      data-testid={`card-lecture-${course.id}`}
                     >
                       <div className="space-y-4">
                         <div className="flex items-start justify-between">
                           <div>
-                            <h3 className="text-lg font-bold text-foreground">
+                            <span className="text-xs font-semibold text-green-600 dark:text-green-300">
+                              Textes narratifs
+                            </span>
+                            <h3 className="text-lg font-bold text-foreground mt-1">
                               {course.title}
                             </h3>
-                            <p className="text-sm text-muted-foreground mt-2">
-                              {course.description}
-                            </p>
                           </div>
                           <FileText className="w-5 h-5 text-green-500 flex-shrink-0" />
                         </div>
-
+                        <p className="text-sm text-muted-foreground">
+                          {course.description}
+                        </p>
                         <div className="space-y-2">
                           <div className="flex justify-between text-xs">
                             <span className="font-semibold">Progression</span>
@@ -255,11 +343,10 @@ export default function StudentDashboard() {
                             />
                           </div>
                         </div>
-
                         <Button
                           onClick={() => handleStartCourse(course.id)}
                           className="w-full"
-                          data-testid={`button-start-${course.id}`}
+                          data-testid={`button-start-lecture-${course.id}`}
                         >
                           {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
                         </Button>
@@ -274,73 +361,66 @@ export default function StudentDashboard() {
           <TabsContent value="ecriture">
             <div className="space-y-4">
               <div>
-                <h2 className="text-2xl font-bold mb-4">Écriture</h2>
+                <h2 className="text-2xl font-bold mb-2">Activités d'Écriture</h2>
                 <p className="text-muted-foreground mb-6">
-                  Pratiquez l'écriture avec des activités guidées et créatives
+                  Pratiquez l'écriture avec des activités créatives et guidées
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses
-                  .filter((c) => c.category === "ecriture")
-                  .map((course) => (
+              {writingExercises.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {writingExercises.map((exercise) => (
                     <Card
-                      key={course.id}
-                      className="p-6 hover-elevate cursor-pointer transition-all"
-                      data-testid={`card-course-${course.id}`}
+                      key={exercise.id}
+                      className="p-6 hover-elevate border-2 border-purple-200 dark:border-purple-800"
+                      data-testid={`card-writing-${exercise.id}`}
                     >
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         <div className="flex items-start justify-between">
                           <div>
-                            <h3 className="text-lg font-bold text-foreground">
-                              {course.title}
+                            <span className="text-xs font-semibold text-purple-600 dark:text-purple-300">
+                              {exercise.courseName}
+                            </span>
+                            <h3 className="text-lg font-bold text-foreground mt-1">
+                              {exercise.title}
                             </h3>
-                            <p className="text-sm text-muted-foreground mt-2">
-                              {course.description}
-                            </p>
                           </div>
                           <PenTool className="w-5 h-5 text-purple-500 flex-shrink-0" />
                         </div>
-
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-xs">
-                            <span className="font-semibold">Progression</span>
-                            <span className="text-muted-foreground">
-                              {course.progressPercentage}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-secondary rounded-full h-2">
-                            <div
-                              className="bg-purple-500 h-2 rounded-full transition-all duration-300"
-                              style={{
-                                width: `${course.progressPercentage}%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-
+                        <p className="text-sm text-muted-foreground">
+                          {exercise.description}
+                        </p>
                         <Button
-                          onClick={() => handleStartCourse(course.id)}
+                          onClick={() => handleStartExercise(exercise.id)}
                           className="w-full"
-                          data-testid={`button-start-${course.id}`}
+                          data-testid={`button-start-writing-${exercise.id}`}
                         >
-                          {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                          <PenTool className="w-3 h-3 mr-2" />
+                          Commencer l'écriture
                         </Button>
                       </div>
                     </Card>
                   ))}
-              </div>
+                </div>
+              ) : (
+                <Card className="p-8 text-center">
+                  <p className="text-muted-foreground">
+                    Aucune activité d'écriture disponible pour le moment
+                  </p>
+                </Card>
+              )}
             </div>
           </TabsContent>
 
-          {/* Mon Progrès Tab */}
-          <TabsContent value="mon-proges">
+          {/* Progrès Tab */}
+          <TabsContent value="progres">
             <div className="space-y-8">
               {/* Statistics Overview */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Card className="p-6 bg-blue-50 dark:bg-blue-900">
                   <p className="text-sm text-muted-foreground mb-2">Cours en cours</p>
                   <p className="text-3xl font-bold text-blue-600 dark:text-blue-300">
-                    {courses.filter((c) => c.progressPercentage > 0 && c.progressPercentage < 100).length}
+                    {courses.filter((c) => c.progressPercentage > 0 && c.progressPercentage < 100)
+                      .length}
                   </p>
                 </Card>
                 <Card className="p-6 bg-green-50 dark:bg-green-900">
@@ -357,42 +437,26 @@ export default function StudentDashboard() {
                 </Card>
               </div>
 
-              {/* Progress by Category */}
+              {/* Progress by Course */}
               <Card className="p-6">
-                <h3 className="text-xl font-bold mb-6">Progression détaillée</h3>
-                <div className="space-y-6">
-                  {["classes_de_mots", "textes_narratifs", "ecriture"].map((category) => {
-                    const categoryCourses = courses.filter((c) => c.category === category);
-                    const avgProgress =
-                      categoryCourses.length > 0
-                        ? Math.round(
-                            categoryCourses.reduce((sum, c) => sum + c.progressPercentage, 0) /
-                              categoryCourses.length
-                          )
-                        : 0;
-
-                    return (
-                      <div key={category}>
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            {getCategoryIcon(category)}
-                            <span className="font-semibold">
-                              {getCategoryLabel(category)}
-                            </span>
-                          </div>
-                          <span className="text-sm font-semibold text-muted-foreground">
-                            {avgProgress}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-secondary rounded-full h-3">
-                          <div
-                            className="bg-gradient-to-r from-blue-500 to-indigo-500 h-3 rounded-full transition-all duration-300"
-                            style={{ width: `${avgProgress}%` }}
-                          />
-                        </div>
+                <h3 className="text-xl font-bold mb-6">Progression par cours</h3>
+                <div className="space-y-4">
+                  {courses.map((course) => (
+                    <div key={course.id}>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-semibold">{course.title}</span>
+                        <span className="text-sm font-semibold text-muted-foreground">
+                          {course.progressPercentage}%
+                        </span>
                       </div>
-                    );
-                  })}
+                      <div className="w-full bg-secondary rounded-full h-2">
+                        <div
+                          className="bg-blue-500 h-2 rounded-full transition-all"
+                          style={{ width: `${course.progressPercentage}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </Card>
 
