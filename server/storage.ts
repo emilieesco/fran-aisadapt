@@ -1686,7 +1686,7 @@ export class MemStorage implements IStorage {
     const allExercises = Array.from(this.exercises.values());
     const readingExercises = allExercises.filter((ex) => {
       const course = this.courses.get(ex.courseId);
-      return course && course.category === "Lecture & Compréhension" && ex.type === "text";
+      return course && course.category === "lecture_reading" && ex.type === "text";
     });
     return readingExercises.slice(0, 5); // Return first 5 reading exercises
   }
