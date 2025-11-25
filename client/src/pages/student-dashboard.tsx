@@ -28,10 +28,22 @@ interface Badge {
   earnedAt: string;
 }
 
+interface Question {
+  id: string;
+  exerciseId: string;
+  title: string;
+  text: string;
+  type: string;
+  options?: string;
+  correctAnswer: string;
+  order: number;
+}
+
 export default function StudentDashboard() {
   const [, setLocation] = useLocation();
   const [courses, setCourses] = useState<Course[]>([]);
   const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [badges, setBadges] = useState<Badge[]>([]);
   const [loading, setLoading] = useState(true);
   const [studentName, setStudentName] = useState("");
@@ -57,6 +69,8 @@ export default function StudentDashboard() {
 
           // Fetch all exercises for all courses
           const allExercises: Exercise[] = [];
+          const allQuestions: Question[] = [];
+          
           for (const course of courseList) {
             const exRes = await fetch(`/api/courses/${course.id}/exercises`, {
               credentials: "include",
@@ -69,9 +83,21 @@ export default function StudentDashboard() {
                   courseName: course.title,
                 }))
               );
+
+              // Fetch questions for each exercise
+              for (const exercise of exList) {
+                const qRes = await fetch(`/api/exercises/${exercise.id}/questions`, {
+                  credentials: "include",
+                });
+                if (qRes.ok) {
+                  const qList = await qRes.json();
+                  allQuestions.push(...qList);
+                }
+              }
             }
           }
           setExercises(allExercises);
+          setQuestions(allQuestions);
         }
 
         if (badgesRes.ok) setBadges(await badgesRes.json());
