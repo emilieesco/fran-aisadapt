@@ -1026,48 +1026,48 @@ export class MemStorage implements IStorage {
       order: 3,
     };
 
-    // Descriptif
+    // Narratif - Histoire 2
     const readingExercise2Id = randomUUID();
     const readingExercise2: Exercise = {
       id: readingExercise2Id,
-      courseId: course4Id,
-      title: "Lecture: La vieille maison",
-      description: "Lisez la description et répondez aux questions",
+      courseId: course3Id,
+      title: "Lecture: Le Jour de l'Accident",
+      description: "Lisez le texte narratif et répondez aux questions",
       type: "text",
-      order: 1,
+      order: 2,
     };
 
-    // Explicatif
+    // Narratif - Histoire 3
     const readingExercise3Id = randomUUID();
     const readingExercise3: Exercise = {
       id: readingExercise3Id,
-      courseId: course5Id,
-      title: "Lecture: Comment pousse une plante?",
-      description: "Lisez le texte explicatif et répondez aux questions",
+      courseId: course3Id,
+      title: "Lecture: La Fille qui Rêvait de Danser",
+      description: "Lisez le texte narratif et répondez aux questions",
       type: "text",
-      order: 1,
+      order: 3,
     };
 
-    // Argumentatif
+    // Narratif - Histoire 4
     const readingExercise4Id = randomUUID();
     const readingExercise4: Exercise = {
       id: readingExercise4Id,
-      courseId: course6Id,
-      title: "Lecture: Pourquoi il faut lire chaque jour",
-      description: "Lisez l'argument et répondez aux questions",
+      courseId: course3Id,
+      title: "Lecture: Le Cœur Partage",
+      description: "Lisez le texte narratif et répondez aux questions",
       type: "text",
-      order: 1,
+      order: 4,
     };
 
-    // Informatif
+    // Narratif - Histoire 5
     const readingExercise5Id = randomUUID();
     const readingExercise5: Exercise = {
       id: readingExercise5Id,
-      courseId: course7Id,
-      title: "Lecture: Les animaux de la forêt",
-      description: "Lisez l'article informatif et répondez aux questions",
+      courseId: course3Id,
+      title: "Lecture: La Découverte Scientifique",
+      description: "Lisez le texte narratif et répondez aux questions",
       type: "text",
-      order: 1,
+      order: 5,
     };
 
     // 6 à 20 - Nouvelles histoires narratives
