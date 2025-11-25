@@ -325,52 +325,78 @@ export default function StudentDashboard() {
 
                 {/* Narratif */}
                 <TabsContent value="narratif" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {courses
-                      .filter((c) => c.category === "textes_narratifs" && c.title.includes("Texte") === false)
-                      .map((course) => (
+                  <div className="grid grid-cols-1 gap-6">
+                    {exercises
+                      .filter(
+                        (e) =>
+                          courses.find((c) => c.id === e.courseId)?.title ===
+                            "Structure du texte narratif" && e.type === "text"
+                      )
+                      .map((exercise) => (
                         <Card
-                          key={course.id}
-                          className="p-6 hover-elevate border-2 border-green-200 dark:border-green-800"
-                          data-testid={`card-lecture-${course.id}`}
+                          key={exercise.id}
+                          className="p-8 hover-elevate border-2 border-green-200 dark:border-green-800"
+                          data-testid={`card-reading-${exercise.id}`}
                         >
-                          <div className="space-y-4">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <span className="text-xs font-semibold text-green-600 dark:text-green-300">
-                                  Textes narratifs
-                                </span>
-                                <h3 className="text-lg font-bold text-foreground mt-1">
-                                  {course.title}
-                                </h3>
-                              </div>
-                              <FileText className="w-5 h-5 text-green-500 flex-shrink-0" />
+                          <div className="space-y-6">
+                            <div>
+                              <span className="text-xs font-semibold text-green-600 dark:text-green-300">
+                                Texte narratif
+                              </span>
+                              <h3 className="text-2xl font-bold text-foreground mt-2">
+                                {exercise.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {exercise.description}
+                              </p>
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                              {course.description}
-                            </p>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs">
-                                <span className="font-semibold">Progression</span>
-                                <span className="text-muted-foreground">
-                                  {course.progressPercentage}%
-                                </span>
-                              </div>
-                              <div className="w-full bg-secondary rounded-full h-2">
-                                <div
-                                  className="bg-green-500 h-2 rounded-full transition-all duration-300"
-                                  style={{
-                                    width: `${course.progressPercentage}%`,
-                                  }}
-                                />
-                              </div>
+
+                            <div className="bg-secondary/50 p-6 rounded-lg space-y-4">
+                              {questions
+                                .filter((q) => q.exerciseId === exercise.id)
+                                .map((question, idx) => (
+                                  <div key={question.id} className="space-y-3 border-b pb-4 last:border-b-0">
+                                    {idx === 0 ? (
+                                      <div className="bg-background p-4 rounded border border-muted">
+                                        <p className="text-sm whitespace-pre-wrap text-foreground">
+                                          {question.text.split("Question")[0]}
+                                        </p>
+                                      </div>
+                                    ) : null}
+                                    {idx > 0 && (
+                                      <div className="space-y-3 mt-4">
+                                        <p className="font-semibold text-foreground">
+                                          {question.text.includes("?")
+                                            ? question.text.split("?")[0] + "?"
+                                            : question.text}
+                                        </p>
+                                        <div className="space-y-2">
+                                          {question.options &&
+                                            JSON.parse(question.options).map(
+                                              (option: string) => (
+                                                <Button
+                                                  key={option}
+                                                  variant="outline"
+                                                  className="w-full justify-start text-left"
+                                                  data-testid={`button-answer-${question.id}-${option}`}
+                                                >
+                                                  {option}
+                                                </Button>
+                                              )
+                                            )}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
                             </div>
+
                             <Button
-                              onClick={() => handleStartCourse(course.id)}
+                              onClick={() => handleStartExercise(exercise.id)}
                               className="w-full"
-                              data-testid={`button-start-lecture-${course.id}`}
+                              data-testid={`button-submit-reading-${exercise.id}`}
                             >
-                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                              Soumettre mes réponses
                             </Button>
                           </div>
                         </Card>
@@ -380,52 +406,78 @@ export default function StudentDashboard() {
 
                 {/* Descriptif */}
                 <TabsContent value="descriptif" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {courses
-                      .filter((c) => c.title === "Texte descriptif")
-                      .map((course) => (
+                  <div className="grid grid-cols-1 gap-6">
+                    {exercises
+                      .filter(
+                        (e) =>
+                          courses.find((c) => c.id === e.courseId)?.title ===
+                            "Texte descriptif" && e.type === "text"
+                      )
+                      .map((exercise) => (
                         <Card
-                          key={course.id}
-                          className="p-6 hover-elevate border-2 border-blue-200 dark:border-blue-800"
-                          data-testid={`card-lecture-${course.id}`}
+                          key={exercise.id}
+                          className="p-8 hover-elevate border-2 border-blue-200 dark:border-blue-800"
+                          data-testid={`card-reading-${exercise.id}`}
                         >
-                          <div className="space-y-4">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <span className="text-xs font-semibold text-blue-600 dark:text-blue-300">
-                                  Textes descriptifs
-                                </span>
-                                <h3 className="text-lg font-bold text-foreground mt-1">
-                                  {course.title}
-                                </h3>
-                              </div>
-                              <FileText className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                          <div className="space-y-6">
+                            <div>
+                              <span className="text-xs font-semibold text-blue-600 dark:text-blue-300">
+                                Texte descriptif
+                              </span>
+                              <h3 className="text-2xl font-bold text-foreground mt-2">
+                                {exercise.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {exercise.description}
+                              </p>
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                              {course.description}
-                            </p>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs">
-                                <span className="font-semibold">Progression</span>
-                                <span className="text-muted-foreground">
-                                  {course.progressPercentage}%
-                                </span>
-                              </div>
-                              <div className="w-full bg-secondary rounded-full h-2">
-                                <div
-                                  className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                                  style={{
-                                    width: `${course.progressPercentage}%`,
-                                  }}
-                                />
-                              </div>
+
+                            <div className="bg-secondary/50 p-6 rounded-lg space-y-4">
+                              {questions
+                                .filter((q) => q.exerciseId === exercise.id)
+                                .map((question, idx) => (
+                                  <div key={question.id} className="space-y-3 border-b pb-4 last:border-b-0">
+                                    {idx === 0 ? (
+                                      <div className="bg-background p-4 rounded border border-muted">
+                                        <p className="text-sm whitespace-pre-wrap text-foreground">
+                                          {question.text.split("Question")[0]}
+                                        </p>
+                                      </div>
+                                    ) : null}
+                                    {idx > 0 && (
+                                      <div className="space-y-3 mt-4">
+                                        <p className="font-semibold text-foreground">
+                                          {question.text.includes("?")
+                                            ? question.text.split("?")[0] + "?"
+                                            : question.text}
+                                        </p>
+                                        <div className="space-y-2">
+                                          {question.options &&
+                                            JSON.parse(question.options).map(
+                                              (option: string) => (
+                                                <Button
+                                                  key={option}
+                                                  variant="outline"
+                                                  className="w-full justify-start text-left"
+                                                  data-testid={`button-answer-${question.id}-${option}`}
+                                                >
+                                                  {option}
+                                                </Button>
+                                              )
+                                            )}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
                             </div>
+
                             <Button
-                              onClick={() => handleStartCourse(course.id)}
+                              onClick={() => handleStartExercise(exercise.id)}
                               className="w-full"
-                              data-testid={`button-start-lecture-${course.id}`}
+                              data-testid={`button-submit-reading-${exercise.id}`}
                             >
-                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                              Soumettre mes réponses
                             </Button>
                           </div>
                         </Card>
@@ -435,52 +487,78 @@ export default function StudentDashboard() {
 
                 {/* Explicatif */}
                 <TabsContent value="explicatif" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {courses
-                      .filter((c) => c.title === "Texte explicatif")
-                      .map((course) => (
+                  <div className="grid grid-cols-1 gap-6">
+                    {exercises
+                      .filter(
+                        (e) =>
+                          courses.find((c) => c.id === e.courseId)?.title ===
+                            "Texte explicatif" && e.type === "text"
+                      )
+                      .map((exercise) => (
                         <Card
-                          key={course.id}
-                          className="p-6 hover-elevate border-2 border-yellow-200 dark:border-yellow-800"
-                          data-testid={`card-lecture-${course.id}`}
+                          key={exercise.id}
+                          className="p-8 hover-elevate border-2 border-yellow-200 dark:border-yellow-800"
+                          data-testid={`card-reading-${exercise.id}`}
                         >
-                          <div className="space-y-4">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <span className="text-xs font-semibold text-yellow-600 dark:text-yellow-300">
-                                  Textes explicatifs
-                                </span>
-                                <h3 className="text-lg font-bold text-foreground mt-1">
-                                  {course.title}
-                                </h3>
-                              </div>
-                              <FileText className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+                          <div className="space-y-6">
+                            <div>
+                              <span className="text-xs font-semibold text-yellow-600 dark:text-yellow-300">
+                                Texte explicatif
+                              </span>
+                              <h3 className="text-2xl font-bold text-foreground mt-2">
+                                {exercise.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {exercise.description}
+                              </p>
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                              {course.description}
-                            </p>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs">
-                                <span className="font-semibold">Progression</span>
-                                <span className="text-muted-foreground">
-                                  {course.progressPercentage}%
-                                </span>
-                              </div>
-                              <div className="w-full bg-secondary rounded-full h-2">
-                                <div
-                                  className="bg-yellow-500 h-2 rounded-full transition-all duration-300"
-                                  style={{
-                                    width: `${course.progressPercentage}%`,
-                                  }}
-                                />
-                              </div>
+
+                            <div className="bg-secondary/50 p-6 rounded-lg space-y-4">
+                              {questions
+                                .filter((q) => q.exerciseId === exercise.id)
+                                .map((question, idx) => (
+                                  <div key={question.id} className="space-y-3 border-b pb-4 last:border-b-0">
+                                    {idx === 0 ? (
+                                      <div className="bg-background p-4 rounded border border-muted">
+                                        <p className="text-sm whitespace-pre-wrap text-foreground">
+                                          {question.text.split("Question")[0]}
+                                        </p>
+                                      </div>
+                                    ) : null}
+                                    {idx > 0 && (
+                                      <div className="space-y-3 mt-4">
+                                        <p className="font-semibold text-foreground">
+                                          {question.text.includes("?")
+                                            ? question.text.split("?")[0] + "?"
+                                            : question.text}
+                                        </p>
+                                        <div className="space-y-2">
+                                          {question.options &&
+                                            JSON.parse(question.options).map(
+                                              (option: string) => (
+                                                <Button
+                                                  key={option}
+                                                  variant="outline"
+                                                  className="w-full justify-start text-left"
+                                                  data-testid={`button-answer-${question.id}-${option}`}
+                                                >
+                                                  {option}
+                                                </Button>
+                                              )
+                                            )}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
                             </div>
+
                             <Button
-                              onClick={() => handleStartCourse(course.id)}
+                              onClick={() => handleStartExercise(exercise.id)}
                               className="w-full"
-                              data-testid={`button-start-lecture-${course.id}`}
+                              data-testid={`button-submit-reading-${exercise.id}`}
                             >
-                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                              Soumettre mes réponses
                             </Button>
                           </div>
                         </Card>
@@ -490,52 +568,78 @@ export default function StudentDashboard() {
 
                 {/* Argumentatif */}
                 <TabsContent value="argumentatif" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {courses
-                      .filter((c) => c.title === "Texte argumentatif")
-                      .map((course) => (
+                  <div className="grid grid-cols-1 gap-6">
+                    {exercises
+                      .filter(
+                        (e) =>
+                          courses.find((c) => c.id === e.courseId)?.title ===
+                            "Texte argumentatif" && e.type === "text"
+                      )
+                      .map((exercise) => (
                         <Card
-                          key={course.id}
-                          className="p-6 hover-elevate border-2 border-red-200 dark:border-red-800"
-                          data-testid={`card-lecture-${course.id}`}
+                          key={exercise.id}
+                          className="p-8 hover-elevate border-2 border-red-200 dark:border-red-800"
+                          data-testid={`card-reading-${exercise.id}`}
                         >
-                          <div className="space-y-4">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <span className="text-xs font-semibold text-red-600 dark:text-red-300">
-                                  Textes argumentatifs
-                                </span>
-                                <h3 className="text-lg font-bold text-foreground mt-1">
-                                  {course.title}
-                                </h3>
-                              </div>
-                              <FileText className="w-5 h-5 text-red-500 flex-shrink-0" />
+                          <div className="space-y-6">
+                            <div>
+                              <span className="text-xs font-semibold text-red-600 dark:text-red-300">
+                                Texte argumentatif
+                              </span>
+                              <h3 className="text-2xl font-bold text-foreground mt-2">
+                                {exercise.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {exercise.description}
+                              </p>
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                              {course.description}
-                            </p>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs">
-                                <span className="font-semibold">Progression</span>
-                                <span className="text-muted-foreground">
-                                  {course.progressPercentage}%
-                                </span>
-                              </div>
-                              <div className="w-full bg-secondary rounded-full h-2">
-                                <div
-                                  className="bg-red-500 h-2 rounded-full transition-all duration-300"
-                                  style={{
-                                    width: `${course.progressPercentage}%`,
-                                  }}
-                                />
-                              </div>
+
+                            <div className="bg-secondary/50 p-6 rounded-lg space-y-4">
+                              {questions
+                                .filter((q) => q.exerciseId === exercise.id)
+                                .map((question, idx) => (
+                                  <div key={question.id} className="space-y-3 border-b pb-4 last:border-b-0">
+                                    {idx === 0 ? (
+                                      <div className="bg-background p-4 rounded border border-muted">
+                                        <p className="text-sm whitespace-pre-wrap text-foreground">
+                                          {question.text.split("Question")[0]}
+                                        </p>
+                                      </div>
+                                    ) : null}
+                                    {idx > 0 && (
+                                      <div className="space-y-3 mt-4">
+                                        <p className="font-semibold text-foreground">
+                                          {question.text.includes("?")
+                                            ? question.text.split("?")[0] + "?"
+                                            : question.text}
+                                        </p>
+                                        <div className="space-y-2">
+                                          {question.options &&
+                                            JSON.parse(question.options).map(
+                                              (option: string) => (
+                                                <Button
+                                                  key={option}
+                                                  variant="outline"
+                                                  className="w-full justify-start text-left"
+                                                  data-testid={`button-answer-${question.id}-${option}`}
+                                                >
+                                                  {option}
+                                                </Button>
+                                              )
+                                            )}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
                             </div>
+
                             <Button
-                              onClick={() => handleStartCourse(course.id)}
+                              onClick={() => handleStartExercise(exercise.id)}
                               className="w-full"
-                              data-testid={`button-start-lecture-${course.id}`}
+                              data-testid={`button-submit-reading-${exercise.id}`}
                             >
-                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                              Soumettre mes réponses
                             </Button>
                           </div>
                         </Card>
@@ -545,52 +649,78 @@ export default function StudentDashboard() {
 
                 {/* Informatif */}
                 <TabsContent value="informatif" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {courses
-                      .filter((c) => c.title === "Texte informatif")
-                      .map((course) => (
+                  <div className="grid grid-cols-1 gap-6">
+                    {exercises
+                      .filter(
+                        (e) =>
+                          courses.find((c) => c.id === e.courseId)?.title ===
+                            "Texte informatif" && e.type === "text"
+                      )
+                      .map((exercise) => (
                         <Card
-                          key={course.id}
-                          className="p-6 hover-elevate border-2 border-purple-200 dark:border-purple-800"
-                          data-testid={`card-lecture-${course.id}`}
+                          key={exercise.id}
+                          className="p-8 hover-elevate border-2 border-purple-200 dark:border-purple-800"
+                          data-testid={`card-reading-${exercise.id}`}
                         >
-                          <div className="space-y-4">
-                            <div className="flex items-start justify-between">
-                              <div>
-                                <span className="text-xs font-semibold text-purple-600 dark:text-purple-300">
-                                  Textes informatifs
-                                </span>
-                                <h3 className="text-lg font-bold text-foreground mt-1">
-                                  {course.title}
-                                </h3>
-                              </div>
-                              <FileText className="w-5 h-5 text-purple-500 flex-shrink-0" />
+                          <div className="space-y-6">
+                            <div>
+                              <span className="text-xs font-semibold text-purple-600 dark:text-purple-300">
+                                Texte informatif
+                              </span>
+                              <h3 className="text-2xl font-bold text-foreground mt-2">
+                                {exercise.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {exercise.description}
+                              </p>
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                              {course.description}
-                            </p>
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs">
-                                <span className="font-semibold">Progression</span>
-                                <span className="text-muted-foreground">
-                                  {course.progressPercentage}%
-                                </span>
-                              </div>
-                              <div className="w-full bg-secondary rounded-full h-2">
-                                <div
-                                  className="bg-purple-500 h-2 rounded-full transition-all duration-300"
-                                  style={{
-                                    width: `${course.progressPercentage}%`,
-                                  }}
-                                />
-                              </div>
+
+                            <div className="bg-secondary/50 p-6 rounded-lg space-y-4">
+                              {questions
+                                .filter((q) => q.exerciseId === exercise.id)
+                                .map((question, idx) => (
+                                  <div key={question.id} className="space-y-3 border-b pb-4 last:border-b-0">
+                                    {idx === 0 ? (
+                                      <div className="bg-background p-4 rounded border border-muted">
+                                        <p className="text-sm whitespace-pre-wrap text-foreground">
+                                          {question.text.split("Question")[0]}
+                                        </p>
+                                      </div>
+                                    ) : null}
+                                    {idx > 0 && (
+                                      <div className="space-y-3 mt-4">
+                                        <p className="font-semibold text-foreground">
+                                          {question.text.includes("?")
+                                            ? question.text.split("?")[0] + "?"
+                                            : question.text}
+                                        </p>
+                                        <div className="space-y-2">
+                                          {question.options &&
+                                            JSON.parse(question.options).map(
+                                              (option: string) => (
+                                                <Button
+                                                  key={option}
+                                                  variant="outline"
+                                                  className="w-full justify-start text-left"
+                                                  data-testid={`button-answer-${question.id}-${option}`}
+                                                >
+                                                  {option}
+                                                </Button>
+                                              )
+                                            )}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
                             </div>
+
                             <Button
-                              onClick={() => handleStartCourse(course.id)}
+                              onClick={() => handleStartExercise(exercise.id)}
                               className="w-full"
-                              data-testid={`button-start-lecture-${course.id}`}
+                              data-testid={`button-submit-reading-${exercise.id}`}
                             >
-                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                              Soumettre mes réponses
                             </Button>
                           </div>
                         </Card>

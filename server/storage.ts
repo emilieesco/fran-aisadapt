@@ -308,11 +308,199 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
+    // Reading exercises for different text types
+    // Narratif
+    const readingExercise1Id = randomUUID();
+    const readingExercise1: Exercise = {
+      id: readingExercise1Id,
+      courseId: course3Id,
+      title: "Lecture: Une journée à la plage",
+      description: "Lisez le texte narratif et répondez aux questions",
+      type: "text",
+      order: 3,
+    };
+
+    // Descriptif
+    const readingExercise2Id = randomUUID();
+    const readingExercise2: Exercise = {
+      id: readingExercise2Id,
+      courseId: course4Id,
+      title: "Lecture: La vieille maison",
+      description: "Lisez la description et répondez aux questions",
+      type: "text",
+      order: 1,
+    };
+
+    // Explicatif
+    const readingExercise3Id = randomUUID();
+    const readingExercise3: Exercise = {
+      id: readingExercise3Id,
+      courseId: course5Id,
+      title: "Lecture: Comment pousse une plante?",
+      description: "Lisez le texte explicatif et répondez aux questions",
+      type: "text",
+      order: 1,
+    };
+
+    // Argumentatif
+    const readingExercise4Id = randomUUID();
+    const readingExercise4: Exercise = {
+      id: readingExercise4Id,
+      courseId: course6Id,
+      title: "Lecture: Pourquoi il faut lire chaque jour",
+      description: "Lisez l'argument et répondez aux questions",
+      type: "text",
+      order: 1,
+    };
+
+    // Informatif
+    const readingExercise5Id = randomUUID();
+    const readingExercise5: Exercise = {
+      id: readingExercise5Id,
+      courseId: course7Id,
+      title: "Lecture: Les animaux de la forêt",
+      description: "Lisez l'article informatif et répondez aux questions",
+      type: "text",
+      order: 1,
+    };
+
+    this.exercises.set(readingExercise1Id, readingExercise1);
+    this.exercises.set(readingExercise2Id, readingExercise2);
+    this.exercises.set(readingExercise3Id, readingExercise3);
+    this.exercises.set(readingExercise4Id, readingExercise4);
+    this.exercises.set(readingExercise5Id, readingExercise5);
+
+    // Reading questions
+    // Narratif
+    const readQ1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Texte: Une journée à la plage",
+      text: "Ce matin, Marie et son frère Thomas se sont réveillés tôt avec excitation. Leurs parents les emmenaient à la plage! En arrivant, ils ont vu les vagues se crasher sur le sable doré. Thomas a couru vers l'eau tandis que Marie a commencé à construire un château de sable. Après quelques heures, ils sont rentrés à la maison, épuisés mais très heureux de cette belle journée.\n\nQuestion 1: Qui est allé à la plage?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Marie et Thomas", "Seulement Marie", "Seulement Thomas", "Les parents seuls"]),
+      correctAnswer: "Marie et Thomas",
+      order: 1,
+    };
+
+    const readQ2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 2",
+      text: "Que faisait Thomas à la plage?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il nageait", "Il courrait vers l'eau", "Il dormait", "Il lisait"]),
+      correctAnswer: "Il courrait vers l'eau",
+      order: 2,
+    };
+
+    // Descriptif
+    const readQ3: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Texte: La vieille maison",
+      text: "La maison était vieille et isolée, perchée au sommet de la colline. Son toit pointu était couvert de tuiles rouges usées par le temps. Les murs de pierre grise, couverts de lierre, racontaient des histoires de plusieurs siècles. Les fenêtres à petits carreaux brillaient faiblement dans la lumière du coucher de soleil. Autour, un jardin sauvage s'étendait avec des fleurs blanches et jaunes.\n\nQuestion 1: De quelle couleur était le toit de la maison?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Gris", "Rouges", "Blanc", "Jaune"]),
+      correctAnswer: "Rouges",
+      order: 1,
+    };
+
+    const readQ4: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 2",
+      text: "Quel était l'état du toit?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Neuf et brillant", "Usé par le temps", "Peint récemment", "Couvert de neige"]),
+      correctAnswer: "Usé par le temps",
+      order: 2,
+    };
+
+    // Explicatif
+    const readQ5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Texte: Comment pousse une plante?",
+      text: "Une plante a besoin de trois choses essentielles pour pousser: la lumière du soleil, l'eau et un sol riche en nutriments. Tout d'abord, les racines de la plante absorbent l'eau et les minéraux du sol. Ensuite, la plante utilise la lumière du soleil pour créer son propre nourriture par photosynthèse. Finalement, la tige et les feuilles poussent, et la plante grandit. Ce processus peut durer plusieurs semaines ou plusieurs mois selon le type de plante.\n\nQuestion 1: Combien de choses essentielles une plante a-t-elle besoin?",
+      type: "multiple_choice",
+      options: JSON.stringify(["1", "2", "3", "4"]),
+      correctAnswer: "3",
+      order: 1,
+    };
+
+    const readQ6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 2",
+      text: "Quel est le nom du processus par lequel la plante crée sa nourriture?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'absorption", "La photosynthèse", "L'évaporation", "La croissance"]),
+      correctAnswer: "La photosynthèse",
+      order: 2,
+    };
+
+    // Argumentatif
+    const readQ7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Texte: Pourquoi il faut lire chaque jour",
+      text: "Il est très important de lire chaque jour. D'abord, la lecture enrichit notre vocabulaire et améliore notre façon de communiquer. Ensuite, lire stimule notre cerveau et nous aide à mieux comprendre le monde. De plus, la lecture est une excellent moyen de se détendre après une journée stressante. Enfin, les livres nous permettent de voyager dans des mondes imaginaires et de découvrir de nouvelles idées. Pour toutes ces raisons, nous devrions tous faire de la lecture une partie importante de notre routine quotidienne.\n\nQuestion 1: Quel est le premier argument présenté?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La lecture enrichit notre vocabulaire", "La lecture nous détend", "La lecture stimule le cerveau", "La lecture coûte cher"]),
+      correctAnswer: "La lecture enrichit notre vocabulaire",
+      order: 1,
+    };
+
+    const readQ8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 2",
+      text: "Pourquoi la lecture est-elle un bon moyen de se détendre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'est amusant", "C'est gratuit", "Cela nous aide à oublier le stress", "C'est rapide"]),
+      correctAnswer: "Cela nous aide à oublier le stress",
+      order: 2,
+    };
+
+    // Informatif
+    const readQ9: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Texte: Les animaux de la forêt",
+      text: "La forêt est l'habitat de nombreux animaux fascinants. Les cerfs sont des herbivores élégants qui se nourrissent de feuilles et d'herbe. Les renards, quant à eux, sont des carnivores intelligents qui chassent les petits animaux. Les écureuils grimpent dans les arbres et collectent des noisettes. Les loups vivent en meutes et sont des prédateurs puissants. Les oiseaux de différentes espèces font leurs nids dans les arbres et chantent pour communiquer. Tous ces animaux jouent un rôle important dans l'équilibre de l'écosystème forestier.\n\nQuestion 1: Que mangent les cerfs?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Des petits animaux", "Des feuilles et de l'herbe", "Des poissons", "Des insectes"]),
+      correctAnswer: "Des feuilles et de l'herbe",
+      order: 1,
+    };
+
+    const readQ10: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 2",
+      text: "Comment vivent les loups?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Seuls", "En paires", "En meutes", "En colonies"]),
+      correctAnswer: "En meutes",
+      order: 2,
+    };
+
     this.questions.set(question1.id, question1);
     this.questions.set(question2.id, question2);
     this.questions.set(question3.id, question3);
     this.questions.set(question4.id, question4);
     this.questions.set(question5.id, question5);
+    this.questions.set(readQ1.id, readQ1);
+    this.questions.set(readQ2.id, readQ2);
+    this.questions.set(readQ3.id, readQ3);
+    this.questions.set(readQ4.id, readQ4);
+    this.questions.set(readQ5.id, readQ5);
+    this.questions.set(readQ6.id, readQ6);
+    this.questions.set(readQ7.id, readQ7);
+    this.questions.set(readQ8.id, readQ8);
+    this.questions.set(readQ9.id, readQ9);
+    this.questions.set(readQ10.id, readQ10);
 
     // Create assignment
     const assignment: Assignment = {
