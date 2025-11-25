@@ -186,8 +186,8 @@ export default function Exercise() {
                 <h2 className="text-3xl font-bold mb-6 text-amber-900 dark:text-amber-200">
                   {currentQuestion.title}
                 </h2>
-                <div className="prose dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-12 rounded-lg border-l-4 border-amber-500 max-h-96 overflow-y-auto">
-                  <p className="text-xl leading-relaxed whitespace-pre-wrap text-foreground mb-8 font-normal">
+                <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-8 rounded-lg border-l-4 border-amber-500">
+                  <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground mb-6">
                     {currentQuestion.text}
                   </p>
                 </div>
