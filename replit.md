@@ -183,6 +183,10 @@ Application web éducative complète pour l'enseignement du français aux élèv
 ✅ **Phase 3 - Complétée**: Database PostgreSQL + Rapports + Données de test
 ✅ **MVP Features** - TERMINÉ
 ✅ **50 Leçons Focalisées** - AJOUTÉES (Janvier 2025)
+✅ **73+ Leçons Complètes** - AJOUTÉES 12 LEÇONS CRITIQUES (November 25, 2025):
+   - 7 Grammaire: Déterminants, Conjonctions, Interjections, GN, GV, Sujet/Compléments, Types phrases
+   - 1 Orthographe: Homophones grammaticaux essentiels
+   - 4 Ponctuation: Point/?, Virgule, Deux-points/tirets, Guillemets
 
 ## Fonctionnalités Future (Non MVP)
 

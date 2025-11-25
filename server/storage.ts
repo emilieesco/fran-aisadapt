@@ -307,6 +307,20 @@ export class MemStorage implements IStorage {
     const conjugation12Id = randomUUID();
     const conjugation13Id = randomUUID();
 
+    // 12 Missing critical courses
+    const grammar17Id = randomUUID();
+    const grammar18Id = randomUUID();
+    const grammar19Id = randomUUID();
+    const grammar20Id = randomUUID();
+    const grammar21Id = randomUUID();
+    const grammar22Id = randomUUID();
+    const grammar23Id = randomUUID();
+    const orthography15Id = randomUUID();
+    const punctuation6Id = randomUUID();
+    const punctuation7Id = randomUUID();
+    const punctuation8Id = randomUUID();
+    const punctuation9Id = randomUUID();
+
     // Additional grammar courses
     const grammar13: Course = {
       id: grammar13Id,
@@ -342,6 +356,114 @@ export class MemStorage implements IStorage {
       category: "grammaire",
       content: "<h2>Négation et Double Négation - Nuances Importantes</h2><p>La négation en français peut être simple ou double. Il faut connaître les différentes formes!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ FORMES NÉGATIVES:</strong><br>Ne...pas, ne...jamais, ne...plus, ne...rien, ne...personne</div><h3>1. NÉGATION SIMPLE (NE...PAS)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>La plus courante:</strong><br>\"Je ne vais pas à l'école\" (pas = négation)<br>\"Elle ne parle pas français\" (pas = négation)<br>\"Ils ne jouent pas au football\" (pas = négation)</div><h3>2. AUTRES NÉGATIONS</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ne...jamais:</strong> \"Je ne suis jamais allé en France\"<br><strong>Ne...plus:</strong> \"Je ne joue plus au parc\"<br><strong>Ne...rien:</strong> \"Je ne vois rien\"<br><strong>Ne...personne:</strong> \"Je ne vois personne\"</div><h3>3. DOUBLE NÉGATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Deux négations = affirmation:</strong><br>\"Je ne pense pas qu'il ne viendra pas\" = \"Je pense qu'il viendra\"<br><strong>Pièges:</strong> \"Je ne doute pas que tu es intelligent\" = \"Je suis sûr que tu es intelligent\"</div>",
       order: 49,
+    };
+
+    const grammar17: Course = {
+      id: grammar17Id,
+      title: "Les Déterminants",
+      description: "Articles, possessifs, démonstratifs, numéraux - Les mots qui accompagnent les noms",
+      category: "grammaire",
+      content: "<h2>Les Déterminants - Guides Essentiels du Nom</h2><p>Les déterminants sont des mots qui accompagnent TOUJOURS le nom. Ils précisent de quel nom on parle et en quelle quantité!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLE:</strong><br>Déterminant + Nom = obligatoire en français<br>Exemples: UNE maison, LE chat, CE livre, TROIS enfants</div><h3>1. LES ARTICLES</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Articles définis:</strong> le, la, les (désignent quelque chose de précis)<br>\"LE chat est noir\" (je connais ce chat)<br><strong>Articles indéfinis:</strong> un, une, des (désignent quelque chose de non-spécifique)<br>\"UN chat est noir\" (un chat quelconque)<br><strong>Articles partitifs:</strong> du, de la, des (pour l'indénombrable)<br>\"Je bois DU lait\" (pas \"Je bois le lait\")</div><h3>2. DÉTERMINANTS POSSESSIFS</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Montrent qui possède:</strong> mon, ma, mes, ton, ta, tes, son, sa, ses, notre, nos, votre, vos, leur, leurs<br>\"MON livre\" (c'est mon livre)<br>\"LEURS amis\" (c'est leurs amis)<br>\"SA maison\" (c'est sa maison)</div><h3>3. DÉTERMINANTS DÉMONSTRATIFS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Pointent ou indiquent:</strong> ce, cet, cette, ces<br>\"CE livre\" (pointe un livre spécifique)<br>\"CETTE fille\" (pointe une fille spécifique)<br>\"CES enfants\" (pointe plusieurs enfants)</div><h3>4. DÉTERMINANTS NUMÉRAUX</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Indiquent la quantité:</strong> un, deux, trois, quatre, cinq, dix, cent, mille<br>\"TROIS enfants\" (3 enfants)<br>\"DIX pommes\" (10 pommes)<br>\"CENT personnes\" (100 personnes)</div>",
+      order: 50,
+    };
+
+    const grammar18: Course = {
+      id: grammar18Id,
+      title: "Les Conjonctions de coordination",
+      description: "Et, ou, mais, car, donc, ni, or - Les connecteurs entre idées",
+      category: "grammaire",
+      content: "<h2>Les Conjonctions de Coordination - Relier les Idées</h2><p>Les conjonctions relient deux mots, deux groupes ou deux phrases de même niveau d'importance. C'est fondamental pour écrire des textes cohérents!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ LES 7 CONJONCTIONS PRINCIPALES:</strong><br>Et, Ou, Mais, Car, Donc, Ni, Or</div><h3>1. ET - L'ADDITION</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ajoute deux idées:</strong><br>\"Marie aime les livres ET Jean aime les films.\"<br>\"Je veux du pain ET du beurre.\"<br>\"Il est intelligent ET travailleur.\"</div><h3>2. OU - L'ALTERNATIVE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne le choix:</strong><br>\"Tu préfères le thé OU le café?\"<br>\"On peut aller au parc OU à la piscine.\"<br>\"C'est blanc OU noir.\"</div><h3>3. MAIS - L'OPPOSITION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Montre un contraste:</strong><br>\"Il est pauvre MAIS heureux.\"<br>\"Elle voulait sortir MAIS il pleuvait.\"<br>\"C'est facile MAIS il faut pratiquer.\"</div><h3>4. CAR - LA CAUSE</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne la raison:</strong><br>\"Je suis fatigué CAR j'ai travaillé toute la journée.\"<br>\"Elle n'est pas venue CAR elle était malade.\"<br>\"Je reste à la maison CAR il pleut.\"</div><h3>5. DONC - LA CONSÉQUENCE</h3><div style='background: #fef3c7; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Montre le résultat:</strong><br>\"Il a mangé tout le gâteau DONC il est malade.\"<br>\"Je dois étudier DONC je n'irai pas jouer.\"<br>\"Il pleut DONC on ne sort pas.\"</div>",
+      order: 51,
+    };
+
+    const grammar19: Course = {
+      id: grammar19Id,
+      title: "Les Interjections",
+      description: "Oh, Ah, Bravo, Zut, Ouch, Hé - Les exclamations expression des émotions",
+      category: "grammaire",
+      content: "<h2>Les Interjections - Exprimer les Émotions et Réactions</h2><p>Les interjections sont des mots invariables qui expriment une émotion, une sensation, un appel ou une réaction immédiate. Elles sont très utiles pour rendre la langue plus vivante!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ CARACTÉRISTIQUES:</strong><br>Invariables (ne changent jamais)<br>Suivis souvent d'un point d'exclamation (!)<br>Expriment une émotion instantanée</div><h3>1. INTERJECTIONS DE SURPRISE/ADMIRATION</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Oh! Ah! Wow! Ouah!</strong><br>\"OH! Quel beau coucher de soleil!\"<br>\"AH! Je l'ai trouvé!\"<br>\"WOW! C'est incroyable!\"</div><h3>2. INTERJECTIONS DE REGRET/FRUSTRATION</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Zut! Bah! Bof! Pfut!</strong><br>\"ZUT! J'ai perdu mes clés!\"<br>\"BAH! Ce n'est pas grave.\"<br>\"BOF! Ce n'est pas si intéressant.\"</div><h3>3. INTERJECTIONS DE DOULEUR/GÊNE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ouch! Aïe! Ow!</strong><br>\"OUCH! Je me suis fait mal!\"<br>\"AÏE! Le feu est chaud!\"<br>\"OW! Tu m'as marché sur le pied!\"</div><h3>4. INTERJECTIONS D'APPEL/SALUTATION</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Hé! Yo! Salut! Coucou!</strong><br>\"HÉ! Attends-moi!\"<br>\"YO! Ça va?\"<br>\"COUCOU! Tu es là?\"</div>",
+      order: 52,
+    };
+
+    const grammar20: Course = {
+      id: grammar20Id,
+      title: "Le groupe du nom (GN)",
+      description: "Structure d'un groupe nominal: déterminant, nom, adjectif, complément du nom",
+      category: "grammaire",
+      content: "<h2>Le Groupe du Nom (GN) - Sa Structure Complète</h2><p>Un groupe du nom est un ensemble de mots qui \"tournent autour\" d'un nom central. Le nom est le NOYAU et d'autres mots l'entourent!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong><br>Déterminant + Nom(noyau) + Adjectif(s) + Complément du nom</div><h3>1. STRUCTURE SIMPLE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Minimum:</strong> Déterminant + Nom<br>\"Un chat\" (le plus simple)<br>\"La maison\" (juste le minimum)<br><strong>Avec adjectif:</strong> Déterminant + Adjectif + Nom + Adjectif<br>\"Un PETIT chat NOIR\" (nom au centre, adjectifs autour)</div><h3>2. AVEC COMPLÉMENT DU NOM</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ajoute une information sur le nom:</strong><br>\"La maison DE MARIE\" (complément du nom = \"de Marie\")<br>\"Un enfant DE DIX ANS\" (complément du nom = \"de dix ans\")<br>\"La table EN BOIS\" (complément du nom = \"en bois\")</div><h3>3. EXEMPLE COMPLET</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"LA PETITE maison BLANCHE DE MARIE\"</strong><br>→ LA = déterminant<br>→ PETITE = adjectif (avant le nom)<br>→ maison = NOM (le noyau)<br>→ BLANCHE = adjectif (après le nom)<br>→ DE MARIE = complément du nom</div><h3>4. ACCORDS DANS LE GN</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Tous les mots s'accordent avec le nom:</strong><br>Nom féminin singulier = tous les mots s'accordent aussi<br>\"UNE petite maison blanche\" (tout est féminin singulier)<br>Nom masculin pluriel = tous s'accordent aussi<br>\"DES petits enfants blonds\" (tout est masculin pluriel)</div>",
+      order: 53,
+    };
+
+    const grammar21: Course = {
+      id: grammar21Id,
+      title: "Le groupe du verbe (GV)",
+      description: "Structure d'un groupe verbal: verbe + compléments du verbe et circonstanciels",
+      category: "grammaire",
+      content: "<h2>Le Groupe du Verbe (GV) - Sa Structure Complète</h2><p>Un groupe du verbe est construit autour d'un verbe NOYAU. Le verbe peut être accompagné de compléments directs, indirects, et circonstanciels!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong><br>Verbe(noyau) + COD + COI + Compléments circonstanciels</div><h3>1. LE VERBE NOYAU</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Au minimum, juste le verbe:</strong><br>\"Je DORS\" (groupe du verbe = \"dors\")<br>\"Elle COURS\" (groupe du verbe = \"cours\")<br>\"Nous MANGEONS\" (groupe du verbe = \"mangeons\")</div><h3>2. AVEC COMPLÉMENT D'OBJET DIRECT (COD)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Répond à: Quoi? Qui?</strong><br>\"Je MANGE UNE POMME\" (manger = quoi? une pomme)<br>\"Elle AIME SON AMI\" (aime = qui? son ami)<br>\"Il VOIT UN OISEAU\" (voit = quoi? un oiseau)</div><h3>3. AVEC COMPLÉMENT CIRCONSTANCIEL</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Lieu, Temps, Manière:</strong><br>\"Je DORS À LA MAISON\" (où?)<br>\"Elle COURT VITE\" (comment?)<br>\"Il JOUE LE MATIN\" (quand?)</div><h3>4. EXEMPLE COMPLET</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"ELLE MANGE UNE POMME RAPIDEMENT DANS LE PARC CHAQUE JOUR\"</strong><br>→ ELLE = sujet (pas du GV)<br>→ MANGE = verbe noyau<br>→ UNE POMME = COD<br>→ RAPIDEMENT = complément circonstanciel (comment?)<br>→ DANS LE PARC = complément circonstanciel (où?)<br>→ CHAQUE JOUR = complément circonstanciel (quand?)</div>",
+      order: 54,
+    };
+
+    const grammar22: Course = {
+      id: grammar22Id,
+      title: "Sujet et Compléments du verbe",
+      description: "COD, COI, Compléments circonstanciels (lieu, temps, manière) - Les différentes fonctions",
+      category: "grammaire",
+      content: "<h2>Sujet et Compléments du Verbe - Les Rôles dans la Phrase</h2><p>Dans une phrase, chaque mot ou groupe a une fonction. Le sujet FAIT l'action. Les compléments du verbe REÇOIVENT ou PRÉCISENT l'action.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong><br>Sujet + Verbe + Complément(s) du verbe</div><h3>1. LE SUJET</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Celui qui FAIT l'action. Répond à: Qui? Quoi?</strong><br>\"JEAN mange une pomme.\" (Jean = sujet)<br>\"LA PLUIE tombe\" (la pluie = sujet)<br>\"LES ENFANTS jouent\" (les enfants = sujet)</div><h3>2. COMPLÉMENT D'OBJET DIRECT (COD)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Reçoit l'action DIRECTEMENT. Répond à: Quoi? Qui?</strong><br>\"Jean MANGE UNE POMME\" (mange = quoi? une pomme = COD)<br>\"Elle AIME MARIE\" (aime = qui? Marie = COD)<br>\"Je VOIS UN OISEAU\" (vois = quoi? un oiseau = COD)</div><h3>3. COMPLÉMENT CIRCONSTANCIEL</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Précise OÙ, QUAND, COMMENT se passe l'action:</strong><br>\"Je joue AU PARC\" (où? = au parc)<br>\"Elle revient LE SOIR\" (quand? = le soir)<br>\"Il MARCHE VITE\" (comment? = vite)</div><h3>4. EXEMPLE COMPLET D'ANALYSE</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Jean mange une pomme rouge au parc le matin\"</strong><br>Sujet = Jean<br>Verbe = mange<br>COD = une pomme rouge (manger quoi?)<br>CC de lieu = au parc (où?)<br>CC de temps = le matin (quand?)</div>",
+      order: 55,
+    };
+
+    const grammar23: Course = {
+      id: grammar23Id,
+      title: "Types et formes de phrases",
+      description: "Déclarative, interrogative, exclamative, impérative - Les quatre types fondamentaux",
+      category: "grammaire",
+      content: "<h2>Types et Formes de Phrases - Les Quatre Catégories</h2><p>Chaque phrase a un TYPE qui détermine son ton, son but et sa ponctuation. Maîtriser les types est essentiel pour bien communiquer!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ LES 4 TYPES:</strong><br>Déclarative (.),  Interrogative (?), Exclamative (!), Impérative (!)</div><h3>1. LA PHRASE DÉCLARATIVE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Énonce une information. Finit par un POINT (.)</strong><br>\"Je suis heureux.\" (information simple)<br>\"Marie aime les livres.\" (énonce un fait)<br>\"Il pleut aujourd'hui.\" (communique une réalité)</div><h3>2. LA PHRASE INTERROGATIVE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Pose une question. Finit par un POINT D'INTERROGATION (?)</strong><br>\"Où allez-vous?\" (cherche une information)<br>\"Quel est ton nom?\" (pose une question)<br>\"Est-ce que tu aimes les films?\" (demande une réponse)</div><h3>3. LA PHRASE EXCLAMATIVE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Exprime une émotion ou une exclamation forte. Finit par un POINT D'EXCLAMATION (!)</strong><br>\"Quel beau jour!\" (exprime l'admiration)<br>\"Je suis tellement heureux!\" (montre l'émotion)<br>\"Attention! Le feu!\" (exprime l'urgence)</div><h3>4. LA PHRASE IMPÉRATIVE</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne un ordre ou une instruction. Finit par POINT (.) ou POINT D'EXCLAMATION (!)</strong><br>\"Viens ici!\" (ordre)<br>\"Arrête ce bruit.\" (instruction)<br>\"Prends ton sac et va à l'école.\" (comando)</div>",
+      order: 56,
+    };
+
+    const orthography15: Course = {
+      id: orthography15Id,
+      title: "Homophones grammaticaux essentiels",
+      description: "a/à, et/est, son/sont, ou/où, ce/se, c'/s', on/ont, mes/mais/met/mets",
+      category: "orthographe",
+      content: "<h2>Homophones Grammaticaux - Les Pièges Courants</h2><p>Les homophones SONNENT PAREILS mais s'écrivent différemment et ont des sens différents. C'est un piège très courant!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLE GÉNÉRALE:</strong><br>A = verbe avoir; À = préposition<br>Et = conjonction; Est = verbe être<br>Son = possessif/déterminant; Sont = verbe être</div><h3>1. A vs À</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>A = verbe avoir (il a)</strong> → \"Il A un chat\"<br><strong>À = préposition (indique lieu, temps)</strong> → \"Je vais À l'école\", \"C'est À toi\"<br><strong>Astuce:</strong> Si tu peux remplacer par \"avait\", c'est \"A\"</div><h3>2. ET vs EST</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>ET = conjonction de coordination</strong> → \"Jean ET Marie\"<br><strong>EST = verbe être (3ème personne)</strong> → \"Il EST heureux\"<br><strong>Astuce:</strong> \"ET\" peut être remplacé par \"ou\", \"EST\" par \"était\"</div><h3>3. SON vs SONT</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>SON = déterminant possessif</strong> → \"SON livre\" (le livre de lui)<br><strong>SONT = verbe être (pluriel)</strong> → \"Ils SONT heureux\"<br><strong>Astuce:</strong> \"SONT\" peut être remplacé par \"étaient\"</div><h3>4. OU vs OÙ</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>OU = conjonction de coordination (alternative)</strong> → \"Thé OU café?\"<br><strong>OÙ = adverbe de lieu</strong> → \"OÙ habites-tu?\"<br><strong>Astuce:</strong> \"OÙ\" = question \"où?\", \"OU\" = choix</div>",
+      order: 57,
+    };
+
+    const punctuation6: Course = {
+      id: punctuation6Id,
+      title: "Point, Point d'interrogation, Point d'exclamation",
+      description: "Les trois signes de ponctuation principaux et leur utilisation correcte",
+      category: "ponctuation",
+      content: "<h2>Point, ?, ! - Les Trois Signes Fondamentaux</h2><p>Ces trois signes terminent les phrases. Chacun a une fonction précise et change le sens de la phrase!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLES:</strong><br>Toute phrase se termine par l'un de ces trois<br>Ils ne se mélangent jamais<br>Un seul à la fois</div><h3>1. LE POINT (.)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Termine une phrase DÉCLARATIVE (information):</strong><br>\"Je suis heureux.\"<br>\"Elle habite à Paris.\"<br>\"Le soleil brille aujourd'hui.\"<br><strong>Après les points:</strong> On commence une nouvelle phrase avec MAJUSCULE</div><h3>2. LE POINT D'INTERROGATION (?)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Termine une phrase INTERROGATIVE (question):</strong><br>\"Quel est ton nom?\"<br>\"Où allez-vous?\"<br>\"Est-ce que tu aimes les films?\"<br><strong>Règle importante:</strong> PAS d'espace avant le ? en français (contrairement à d'autres langues)</div><h3>3. LE POINT D'EXCLAMATION (!)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Termine une phrase EXCLAMATIVE ou IMPÉRATIVE:</strong><br>\"Quel beau jour!\" (exclamation)<br>\"Viens ici tout de suite!\" (ordre)<br>\"C'est incroyable!\" (émotion)  <br><strong>Exprrime:</strong> Joie, peur, surprise, ordre, urgence</div><h3>4. COMPARAISON</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Même phrase, ponctuation différente, sens différent:</strong><br>\"Tu viens à ma fête.\" (affirmation)<br>\"Tu viens à ma fête?\" (question)<br>\"Tu viens à ma fête!\" (ordre ou joie)</div>",
+      order: 58,
+    };
+
+    const punctuation7: Course = {
+      id: punctuation7Id,
+      title: "La virgule - Utilisation correcte",
+      description: "Quand utiliser la virgule? Énumération, insertion, complément circonstanciel",
+      category: "ponctuation",
+      content: "<h2>La Virgule - Le Signe de Séparation</h2><p>La virgule sépare des éléments SANS COUPER la phrase. Elle offre une pause courte mais importante dans la lecture!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ FONCTION PRINCIPALE:</strong><br>Sépare des éléments sans couper la phrase<br>Permet une énumération<br>Encadre une insertion</div><h3>1. LA VIRGULE POUR ÉNUMÉRER</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Sépare les éléments d'une liste:</strong><br>\"Je veux du pain, du beurre, du miel et du fromage.\"<br>\"Les enfants, les adultes, les personnes âgées peuvent venir.\"<br>\"Elle aime lire, écrire, dessiner et danser.\"</div><h3>2. LA VIRGULE POUR INSÉRER</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Encadre une information insérée dans la phrase:</strong><br>\"Marie, ma meilleure amie, habite à côté.\"<br>\"Les oiseaux, ces créatures magnifiques, chantent.\"<br>\"Jean, qui est heureux, danse.\"</div><h3>3. LA VIRGULE ET LE COMPLÉMENT CIRCONSTANCIEL</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Quand il vient AVANT le verbe, on ajoute une virgule:</strong><br>\"DEMAIN, je vais à l'école.\" (virgule optionnelle)<br>\"AU PARC, les enfants jouent.\" (virgule recommandée)<br>\"RAPIDEMENT, il a fini ses devoirs.\" (virgule utile)</div><h3>4. ERREUR À ÉVITER</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>JAMAIS de virgule avant \"et\" dans une énumération simple:</strong><br>Mauvais: \"Je veux du pain, du beurre, et du fromage,\"<br>Bon: \"Je veux du pain, du beurre et du fromage.\"</div>",
+      order: 59,
+    };
+
+    const punctuation8: Course = {
+      id: punctuation8Id,
+      title: "Deux-points et tirets - Dialogue et énumération",
+      description: "Utilisation du deux-points et du tiret pour le dialogue et les listes",
+      category: "ponctuation",
+      content: "<h2>Deux-Points et Tirets - Dialogue et Énumération</h2><p>Ces deux signes introduisent des éléments ou indiquent un changement de personne. Essentiels pour écrire un dialogue en français!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ DEUX-POINTS (:)  = Introduction</strong><br><strong>TIRET (—) = Changement de personne dans dialogue</strong></div><h3>1. LE DEUX-POINTS</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Introduit une énumération:</strong><br>\"Les fruits sont: pommes, oranges, bananes.\"<br>\"Voici mes hobbies: lecture, musique, sport.\"<br><strong>Introduit une explication ou un exemple:</strong><br>\"Je ne viens pas: je suis malade.\"<br>\"Voici le problème: tu ne travailles pas assez.\"</div><h3>2. LE TIRET (—) DANS LE DIALOGUE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Marque le changement de personne:</strong><br>\"— Bonjour Marie, comment vas-tu?<br>— Très bien, merci! Et toi?<br>— Je vais bien aussi.\"<br><strong>Chaque tiret = nouvelle personne qui parle</strong></div><h3>3. LE TIRET AVEC VERBE DE PAROLE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ajoute qui parle:</strong><br>\"— Je suis malade, dit Jean.\"<br>\"— Pourquoi? demanda-t-elle.\"<br>\"— Parce que j'ai trop travaillé, répondit-il.\"</div><h3>4. EXEMPLE COMPLET</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Voici ce que tu dois acheter: — Du pain — Du beurre — Du lait — Des œufs\"</strong><br>Ou en dialogue:<br>\"— Veux-tu du café? demanda la mère.<br>— Non, merci. Je préfère du thé, répondit la fille.\"</div>",
+      order: 60,
+    };
+
+    const punctuation9: Course = {
+      id: punctuation9Id,
+      title: "Guillemets - Encadrer les dialogues et citations",
+      description: "Utilisation correcte des guillemets français pour dialogues et citations",
+      category: "ponctuation",
+      content: "<h2>Guillemets - Encadrer les Paroles</h2><p>Les guillemets encadrent exactement ce que quelqu'un dit ou écrit. C'est le signe qui \"montre\" une citation ou une parole!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ TYPES DE GUILLEMETS:</strong><br>Guillemets français: « et »<br>Guillemets anglais: \" et \"<br>Guillemets simples: ' et '</div><h3>1. GUILLEMETS FRANÇAIS (CORRECTS)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Avec espaces:</strong> « et »<br>\"Marie a dit: « Je suis heureuse. »\"<br>\"L'auteur écrit: « La vie est belle. »\"<br>\"Elle cria: « Au secours! »\"</div><h3>2. GUILLEMETS DANS LE DIALOGUE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Méthode 1: Avec guillemets</strong><br>\"Jean a dit: « Je viens demain. »\"<br><strong>Méthode 2: Avec tirets (préférée en français)</strong><br>\"— Je viens demain, dit Jean.\"<br>La méthode 2 est plus courante en français littéraire</div><h3>3. GUILLEMETS POUR CITATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Reproduire les paroles exactes d'un auteur:</strong><br>\"Montaigne écrit: « Que sais-je? »\"<br>\"Descartes a dit: « Je pense, donc je suis. »\"<br>\"La déclaration affirme: « Tous les hommes sont égaux. »\"</div><h3>4. PONCTUATION AUTOUR DES GUILLEMETS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Virgule/Point/Point d'interrogation AVANT le guillemet fermant:</strong><br>\"Il a demandé: « Où vas-tu? »\" (le ? va avant »)<br>\"Elle dit: « Je suis malade. »\" (le . va avant »)<br>\"Marie cria: « Attention! »\" (le ! va avant »)</div>",
+      order: 61,
     };
 
     // Additional orthography courses
@@ -868,6 +990,19 @@ export class MemStorage implements IStorage {
     this.courses.set(conjugation11Id, conjugation11);
     this.courses.set(conjugation12Id, conjugation12);
     this.courses.set(conjugation13Id, conjugation13);
+    // Add 12 new critical courses
+    this.courses.set(grammar17Id, grammar17);
+    this.courses.set(grammar18Id, grammar18);
+    this.courses.set(grammar19Id, grammar19);
+    this.courses.set(grammar20Id, grammar20);
+    this.courses.set(grammar21Id, grammar21);
+    this.courses.set(grammar22Id, grammar22);
+    this.courses.set(grammar23Id, grammar23);
+    this.courses.set(orthography15Id, orthography15);
+    this.courses.set(punctuation6Id, punctuation6);
+    this.courses.set(punctuation7Id, punctuation7);
+    this.courses.set(punctuation8Id, punctuation8);
+    this.courses.set(punctuation9Id, punctuation9);
 
     const question5: Question = {
       id: randomUUID(),
