@@ -10,6 +10,7 @@ import TeacherDashboard from "@/pages/teacher-dashboard";
 import TeacherReports from "@/pages/teacher-reports";
 import Course from "@/pages/course";
 import Exercise from "@/pages/exercise";
+import ReadingNarrative from "@/pages/reading-narrative";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/teacher-reports" component={TeacherReports} />
       <Route path="/course/:id" component={Course} />
       <Route path="/exercise/:id" component={Exercise} />
+      <Route path="/reading-narrative" component={ReadingNarrative} />
       <Route component={NotFound} />
     </Switch>
   );

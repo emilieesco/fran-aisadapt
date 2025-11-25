@@ -112,6 +112,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Reading Narrative Exercises Route
+  app.get("/api/reading-narratives", async (req, res) => {
+    try {
+      const userId = req.query.userId as string;
+      if (!userId) return res.status(400).send("userId requis");
+      
+      const exercises = await storage.getReadingNarrativeExercises(userId);
+      res.json(exercises);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   // Question Routes
   app.post("/api/questions", async (req, res) => {
     try {
