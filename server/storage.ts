@@ -1304,7 +1304,7 @@ export class MemStorage implements IStorage {
     const readQ2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Quel objet a déclenché toute l'aventure de Léa?",
       type: "multiple_choice",
       options: JSON.stringify(["Un livre ancien", "Une vieille clé rouillée", "Une lettre mystérieuse", "Un trésor caché"]),
@@ -1315,7 +1315,7 @@ export class MemStorage implements IStorage {
     const readQ2b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème grave s'est produit quand Léa a trouvé la porte secrète dans la cave?",
       type: "multiple_choice",
       options: JSON.stringify(["Elle s'est blessée", "Elle s'est perdue", "La porte se ferma et elle fut piégée", "Elle vit un fantôme"]),
@@ -1349,7 +1349,7 @@ export class MemStorage implements IStorage {
     const readQ4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Quel événement a poussé Marc à participer à la course dangereuse?",
       type: "multiple_choice",
       options: JSON.stringify(["Ses copains l'ont forcé et taquiné", "L'ambulance passait", "Il voulait faire une promenade", "Il n'avait rien à faire"]),
@@ -1360,7 +1360,7 @@ export class MemStorage implements IStorage {
     const readQ4b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel accident grave s'est produit pendant la course?",
       type: "multiple_choice",
       options: JSON.stringify(["Marc tomba dans une rivière", "Une voiture sortit d'une rue latérale et il chuta", "Un ami l'a fait tomber", "Son vélo s'est cassé"]),
@@ -1394,7 +1394,7 @@ export class MemStorage implements IStorage {
     const readQ6: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Quel événement a changé la vie de Sophie?",
       type: "multiple_choice",
       options: JSON.stringify(["Elle trouva de l'argent", "Elle vit une affiche pour une audition gratuite", "Elle rencontra une danseuse professionnelle", "Elle reçut un cadeau"]),
@@ -1405,7 +1405,7 @@ export class MemStorage implements IStorage {
     const readQ6b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème Sophie affronta-t-elle sur scène?",
       type: "multiple_choice",
       options: JSON.stringify(["La musique était mauvaise", "Elle était très nerveuse, avait peur et voulait partir", "Un enfant l'a interrompue", "La lumière était trop forte"]),
@@ -1439,7 +1439,7 @@ export class MemStorage implements IStorage {
     const readQ8: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Quel événement a séparé Lucas et Thomas?",
       type: "multiple_choice",
       options: JSON.stringify(["Ils se disputèrent", "La famille de Thomas déménagea loin", "Lucas devint occupé", "Ils allèrent à des écoles différentes"]),
@@ -1450,7 +1450,7 @@ export class MemStorage implements IStorage {
     const readQ8b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel était le problème pendant leur séparation?",
       type: "multiple_choice",
       options: JSON.stringify(["Ils s'envoyaient trop de messages", "Ni l'un ni l'autre n'osait faire le premier pas", "Ils trouvaient que c'était trop difficile", "Ils avaient oublié l'un l'autre"]),
@@ -1484,7 +1484,7 @@ export class MemStorage implements IStorage {
     const readQ11b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise6Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qui Alex a-t-il rencontré dans le train?",
       type: "multiple_choice",
       options: JSON.stringify(["Un contrôleur", "Une vieille femme bienveillante", "Son ami d'école", "Un autre voyageur"]),
@@ -1495,7 +1495,7 @@ export class MemStorage implements IStorage {
     const readQ11c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise6Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème grave s'est produit pendant le voyage?",
       type: "multiple_choice",
       options: JSON.stringify(["Le train s'arrêta", "Alex perdit son billet", "Il eut faim", "Le train était bondé"]),
@@ -1529,7 +1529,7 @@ export class MemStorage implements IStorage {
     const readQ12b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise7Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qu'ont trouvé Julien et Karine après l'école?",
       type: "multiple_choice",
       options: JSON.stringify(["Un trésor", "Une vieille cabane en bois", "Des animaux", "Une autre forêt"]),
@@ -1540,7 +1540,7 @@ export class MemStorage implements IStorage {
     const readQ12c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise7Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème les enfants ont-ils affronté?",
       type: "multiple_choice",
       options: JSON.stringify(["La porte était verrouillée", "Une voix forte les a effrayés", "Ils se sont perdus", "Il faisait nuit"]),
@@ -1574,7 +1574,7 @@ export class MemStorage implements IStorage {
     const readQ13b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise8Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Quel événement a changé la vie de Maya?",
       type: "multiple_choice",
       options: JSON.stringify(["Un compliment de son professeur", "Un concours de dessin régional annoncé", "L'exposition de ses dessins", "Une visite au musée"]),
@@ -1585,7 +1585,7 @@ export class MemStorage implements IStorage {
     const readQ13c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise8Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème Maya a-t-elle affronté?",
       type: "multiple_choice",
       options: JSON.stringify(["Manque de matériel", "Perte de confiance et doute avant le concours", "Les autres participants étaient agressifs", "Le concours était annulé"]),
@@ -1619,7 +1619,7 @@ export class MemStorage implements IStorage {
     const readQ14b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise9Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qu'a décidé de faire Noah?",
       type: "multiple_choice",
       options: JSON.stringify(["Quitter la maison", "Appeler un prêtre", "Investiguer le mystère", "Ignorer les bruits"]),
@@ -1630,7 +1630,7 @@ export class MemStorage implements IStorage {
     const readQ14c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise9Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Où Noah a-t-il trouvé la source des bruits?",
       type: "multiple_choice",
       options: JSON.stringify(["Au grenier", "En bas de la maison", "Dans le jardin", "La cave"]),
@@ -1664,7 +1664,7 @@ export class MemStorage implements IStorage {
     const readQ15b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise10Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qu'a découvert Léon au grenier?",
       type: "multiple_choice",
       options: JSON.stringify(["Des jouets cassés", "Des vieux coffres, albums photo et histoires familiales", "Juste de la poussière", "Rien du tout"]),
@@ -1675,7 +1675,7 @@ export class MemStorage implements IStorage {
     const readQ15c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise10Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel secret familial Léon a-t-il découvert?",
       type: "multiple_choice",
       options: JSON.stringify(["Ses grands-parents n'étaient pas vraiment mariés", "Son grand-père était un pilote courageux pendant la guerre", "Ses grands-parents étaient riches", "Sa grand-mère était danseuse"]),
@@ -1709,7 +1709,7 @@ export class MemStorage implements IStorage {
     const readQ16b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise11Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qui était le rival de Victor?",
       type: "multiple_choice",
       options: JSON.stringify(["Un autre élève", "Pierre, aussi très rapide", "Son frère", "Un coureur professionnel"]),
@@ -1720,7 +1720,7 @@ export class MemStorage implements IStorage {
     const readQ16c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise11Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel accident s'est produit?",
       type: "multiple_choice",
       options: JSON.stringify(["Victor trébucha", "Pierre tomba sur une racine", "Victor eut un point de côté", "La course fut annulée"]),
@@ -1754,7 +1754,7 @@ export class MemStorage implements IStorage {
     const readQ17b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise12Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Pourquoi Iris devint-elle bénévole?",
       type: "multiple_choice",
       options: JSON.stringify(["Elle fut forcée", "Elle voulait aider l'équipe organisatrice", "Elle voulait voyager", "Elle cherchait du travail"]),
@@ -1765,7 +1765,7 @@ export class MemStorage implements IStorage {
     const readQ17c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise12Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème technique s'est produit?",
       type: "multiple_choice",
       options: JSON.stringify(["La scène s'effondra", "Le système d'électricité s'est cassé", "Les musiciens ne vinrent pas", "La météo était mauvaise"]),
@@ -1799,7 +1799,7 @@ export class MemStorage implements IStorage {
     const readQ18b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise13Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Comment les voisins ont-ils appris la disparition?",
       type: "multiple_choice",
       options: JSON.stringify(["Par la police", "Via les affiches 'CHIEN PERDU'", "À la télévision", "Par un ami"]),
@@ -1810,7 +1810,7 @@ export class MemStorage implements IStorage {
     const readQ18c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise13Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Qui a organisé la recherche?",
       type: "multiple_choice",
       options: JSON.stringify(["La police", "Trois enfants du quartier", "La famille seule", "Un groupe de chercheurs"]),
@@ -1844,7 +1844,7 @@ export class MemStorage implements IStorage {
     const readQ19b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise14Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Où Olivier jouait-il?",
       type: "multiple_choice",
       options: JSON.stringify(["À l'école", "Dans le jardin de sa grand-mère", "À la plage", "Au parc"]),
@@ -1855,7 +1855,7 @@ export class MemStorage implements IStorage {
     const readQ19c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise14Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Qu'y avait-il dans la boîte?",
       type: "multiple_choice",
       options: JSON.stringify(["Des vêtements", "Une carte, des pièces d'or, des bijoux et une lettre historique", "Des photos", "Des livres"]),
@@ -1889,7 +1889,7 @@ export class MemStorage implements IStorage {
     const readQ20b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise15Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qu'est-ce qui a changé le beau temps?",
       type: "multiple_choice",
       options: JSON.stringify(["Le soleil se coucha", "Une tempête arriva rapidement", "La nuit tomba", "Un incident"]),
@@ -1900,7 +1900,7 @@ export class MemStorage implements IStorage {
     const readQ20c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise15Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème grave s'est produit?",
       type: "multiple_choice",
       options: JSON.stringify(["Le panier de pique-nique se renversa", "Léa se sépara de sa mère dans la tempête", "La voiture ne démarrait pas", "Tout le monde attrapa un rhume"]),
@@ -1934,7 +1934,7 @@ export class MemStorage implements IStorage {
     const readQ21b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise16Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Où Luc s'est-il retrouvé?",
       type: "multiple_choice",
       options: JSON.stringify(["En ville", "Sur une île déserte", "À la maison", "Dans la forêt"]),
@@ -1945,7 +1945,7 @@ export class MemStorage implements IStorage {
     const readQ21c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise16Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel défi principal Luc a-t-il affronté?",
       type: "multiple_choice",
       options: JSON.stringify(["La fatigue", "Pas de nourriture, pas d'eau, complètement seul", "Les animaux dangereux", "La chaleur"]),
@@ -1979,7 +1979,7 @@ export class MemStorage implements IStorage {
     const readQ22b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise17Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qu'a découvert Félix?",
       type: "multiple_choice",
       options: JSON.stringify(["Une salle de classe", "Une magnifique bibliothèque secrète", "Un trésor", "Une grotte"]),
@@ -1990,7 +1990,7 @@ export class MemStorage implements IStorage {
     const readQ22c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise17Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Comment la bibliothèque a-t-elle changé Félix?",
       type: "multiple_choice",
       options: JSON.stringify(["Il devint paresseux", "Il découvrit l'amour pour les livres et trouva l'inspiration", "Il abandonna l'école", "Il ne changea pas"]),
@@ -2024,7 +2024,7 @@ export class MemStorage implements IStorage {
     const readQ23b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise18Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Quel événement changea la vie de Camille?",
       type: "multiple_choice",
       options: JSON.stringify(["Son anniversaire", "L'invitation à jouer dans le concert de l'école", "Une compétition", "Un prix"]),
@@ -2035,7 +2035,7 @@ export class MemStorage implements IStorage {
     const readQ23c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise18Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel problème Camille a-t-elle affronté?",
       type: "multiple_choice",
       options: JSON.stringify(["Elle n'avait pas assez pratiqué", "Le trac terrible et peur de l'échec", "Elle n'aimait pas la musique", "Le piano était cassé"]),
@@ -2069,7 +2069,7 @@ export class MemStorage implements IStorage {
     const readQ24b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise19Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qu'a découvert Sarah en nettoyant sa chambre?",
       type: "multiple_choice",
       options: JSON.stringify(["Un vieux journal", "Une vieille lettre écrite en 2010", "De l'argent", "Des photos"]),
@@ -2080,7 +2080,7 @@ export class MemStorage implements IStorage {
     const readQ24c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise19Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel était le mystère de la lettre?",
       type: "multiple_choice",
       options: JSON.stringify(["La lettre était perdue depuis 50 ans", "La lettre venait d'une autre personne habitant la maison il y a longtemps", "C'était une fausse lettre", "Personne ne savait qui l'avait écrite"]),
@@ -2114,7 +2114,7 @@ export class MemStorage implements IStorage {
     const readQ25b: Question = {
       id: randomUUID(),
       exerciseId: readingExercise20Id,
-      title: "Question 2 (Élément déclencheur)",
+      title: "Question 2 (Élément perturbateur)",
       text: "Qu'ont fait les amis comme aventure finale?",
       type: "multiple_choice",
       options: JSON.stringify(["Un voyage en voiture", "Une randonnée à travers les montagnes", "Un voyage en bateau", "Un tour en avion"]),
@@ -2125,7 +2125,7 @@ export class MemStorage implements IStorage {
     const readQ25c: Question = {
       id: randomUUID(),
       exerciseId: readingExercise20Id,
-      title: "Question 3 (Nœud)",
+      title: "Question 3 (Péripéties)",
       text: "Quel moment difficile ils affrontèrent?",
       type: "multiple_choice",
       options: JSON.stringify(["La pluie intense", "La peur de se séparer et les larmes avant le sommet", "Un accident en montagne", "Ils eurent faim"]),
