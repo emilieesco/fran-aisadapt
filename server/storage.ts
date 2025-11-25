@@ -317,6 +317,32 @@ export class MemStorage implements IStorage {
     const punctuation8Id = randomUUID();
     const punctuation9Id = randomUUID();
 
+    // 24 Advanced grammar/writing courses
+    const grammar24Id = randomUUID();
+    const grammar25Id = randomUUID();
+    const grammar26Id = randomUUID();
+    const grammar27Id = randomUUID();
+    const grammar28Id = randomUUID();
+    const grammar29Id = randomUUID();
+    const grammar30Id = randomUUID();
+    const grammar31Id = randomUUID();
+    const grammar32Id = randomUUID();
+    const grammar33Id = randomUUID();
+    const grammar34Id = randomUUID();
+    const grammar35Id = randomUUID();
+    const reading9Id = randomUUID();
+    const reading10Id = randomUUID();
+    const writing5Id = randomUUID();
+    const writing6Id = randomUUID();
+    const orthography16Id = randomUUID();
+    const conjugation14Id = randomUUID();
+    const punctuation10Id = randomUUID();
+    const punctuation11Id = randomUUID();
+    const vocabulary1Id = randomUUID();
+    const vocabulary2Id = randomUUID();
+    const vocabulary3Id = randomUUID();
+    const vocabulary4Id = randomUUID();
+
     // Additional grammar courses
     const grammar13: Course = {
       id: grammar13Id,
@@ -460,6 +486,195 @@ export class MemStorage implements IStorage {
       category: "ponctuation",
       content: "<h2>Guillemets - Encadrer les Paroles</h2><p>Les guillemets encadrent exactement ce que quelqu'un dit ou écrit. C'est le signe qui \"montre\" une citation ou une parole!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ TYPES DE GUILLEMETS:</strong><br>Guillemets français: « et »<br>Guillemets anglais: \" et \"<br>Guillemets simples: ' et '</div><h3>1. GUILLEMETS FRANÇAIS (CORRECTS)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Avec espaces:</strong> « et »<br>\"Marie a dit: « Je suis heureuse. »\"<br>\"L'auteur écrit: « La vie est belle. »\"<br>\"Elle cria: « Au secours! »\"</div><h3>2. GUILLEMETS DANS LE DIALOGUE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Méthode 1: Avec guillemets</strong><br>\"Jean a dit: « Je viens demain. »\"<br><strong>Méthode 2: Avec tirets (préférée en français)</strong><br>\"— Je viens demain, dit Jean.\"<br>La méthode 2 est plus courante en français littéraire</div><h3>3. GUILLEMETS POUR CITATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Reproduire les paroles exactes d'un auteur:</strong><br>\"Montaigne écrit: « Que sais-je? »\"<br>\"Descartes a dit: « Je pense, donc je suis. »\"<br>\"La déclaration affirme: « Tous les hommes sont égaux. »\"</div><h3>4. PONCTUATION AUTOUR DES GUILLEMETS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Virgule/Point/Point d'interrogation AVANT le guillemet fermant:</strong><br>\"Il a demandé: « Où vas-tu? »\" (le ? va avant »)<br>\"Elle dit: « Je suis malade. »\" (le . va avant »)<br>\"Marie cria: « Attention! »\" (le ! va avant »)</div>",
       order: 61,
+    };
+
+    const grammar24: Course = {
+      id: grammar24Id,
+      title: "Les substituts",
+      description: "Pronominaux, nominaux, lexicaux et textuels pour éviter les répétitions",
+      category: "grammaire",
+      content: "<h2>Les Substituts - Remplacer pour Mieux Écrire</h2><p>Les substituts permettent d'éviter les répétitions et améliorent la cohésion textuelle. C'est très important en lecture et écriture!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 4 TYPES DE SUBSTITUTS:</strong><br>Pronominaux: il, elle, ceux<br>Nominaux: articles, démonstratifs<br>Lexicaux: synonymes<br>Textuels: ce dernier, celui-ci</div><h3>1. SUBSTITUTS PRONOMINAUX</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Remplacent un nom par un pronom:</strong><br>\"Maxime a trouvé un chat. Il l'a adopté.\" (il remplace Maxime)<br>\"Les filles arrivaient. Elles étaient en retard.\" (elles remplace les filles)</div><h3>2. SUBSTITUTS NOMINAUX</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Utilisent articles ou démonstratifs:</strong><br>\"Cet objet était magnifique. L'objet brillait.\" (l'objet remplace cet objet)<br>\"La maison était grande. Cette maison était vieille.\" (cette maison remplace la maison)</div><h3>3. SUBSTITUTS LEXICAUX</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Synonymes pour éviter répétition:</strong><br>\"Le professeur entra. L'enseignant était fâché.\" (enseignant remplace professeur)<br>\"Elle aime les fleurs. Les plantes sont belles.\" (plantes remplace fleurs)</div><h3>4. SUBSTITUTS TEXTUELS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ce dernier, celui-ci, celle-là:</strong><br>\"Marie et Jean entrèrent. Ce dernier était souriant.\" (ce dernier remplace Jean)<br>\"Les deux livres étaient différents. Celui-ci était plus intéressant.\" (celui-ci remplace un des livres)</div>",
+      order: 62,
+    };
+
+    const grammar25: Course = {
+      id: grammar25Id,
+      title: "Les marqueurs de relation",
+      description: "Connecteurs logiques essentiels en production écrite",
+      category: "grammaire",
+      content: "<h2>Les Marqueurs de Relation - Connecteurs Logiques</h2><p>Les marqueurs relient les phrases et les idées. Essentiels pour une écriture cohérente!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 6 CATÉGORIES:</strong><br>Ajouter, Contraster, Expliquer, Illustrer, Résumer, Marquer le temps</div><h3>1. AJOUTER DES IDÉES</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>aussi, de plus, ensuite, finalement, puis:</strong><br>\"Elle était intelligente. De plus, elle était sympathique.\"<br>\"D'abord étudier. Ensuite, prendre une pause. Finalement, s'amuser.\"</div><h3>2. CONTRASTER DES IDÉES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>mais, cependant, pourtant, en revanche:</strong><br>\"Il pleuvait, mais les enfants jouaient dehors.\"<br>\"Elle était timide. Cependant, elle parlait bien en classe.\"</div><h3>3. EXPLIQUER</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>parce que, car, donc, c'est pourquoi:</strong><br>\"Il était absent parce qu'il était malade.\"<br>\"Elle travaillait dur. Donc, elle réussit.\"</div><h3>4. ILLUSTRER</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>par exemple, entre autres, notamment:</strong><br>\"Les fruits sont sains. Par exemple, les pommes.\"<br>\"Certains animaux sont dangereux. Entre autres, les serpents.\"</div><h3>5. RÉSUMER</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>bref, en conclusion, en résumé, finalement:</strong><br>\"Bref, c'était une belle journée.\"<br>\"En résumé, il faut étudier régulièrement.\"</div><h3>6. MARQUEURS TEMPORELS</h3><div style='background: #e6f2ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>d'abord, puis, après, alors, ensuite:</strong><br>\"D'abord elle se réveilla. Puis elle petit-déjeuna. Ensuite elle partit à l'école.\"</div>",
+      order: 63,
+    };
+
+    const grammar26: Course = {
+      id: grammar26Id,
+      title: "La cohésion et cohérence textuelle",
+      description: "Ordre logique, enchaînement d'idées, continuité du sujet",
+      category: "grammaire",
+      content: "<h2>Cohésion et Cohérence Textuelle</h2><p>Un bon texte TIENT ENSEMBLE. Idées en ordre logique, enchaînement fluide, continuité du sujet.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 5 ÉLÉMENTS CLÉS:</strong><br>Ordre logique, Enchaînement d'idées, Continuité, Substituts, Connecteurs, Pas de contradictions</div><h3>1. ORDRE LOGIQUE DES PHRASES</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Les idées doivent s'enchaîner logiquement:</strong><br>1. Qu'est-ce qu'on raconte?<br>2. Comment? Pourquoi?<br>3. Conclusion ou conséquence<br>\"Le chat était affamé. Il chercha de la nourriture. Il trouva une souris.\" ✓ Logique!</div><h3>2. ENCHAÎNEMENT FLUIDE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Utilisez des connecteurs:</strong><br>\"Elle était fatiguée. Par conséquent, elle alla dormir.\"<br>\"D'abord il étudia. Ensuite il joua.\"<br>\"Il pleuvait. Cependant, les enfants sortirent.\"</div><h3>3. CONTINUITÉ DU SUJET</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le sujet principal doit rester clair:</strong><br>\"Marie aime les livres. Elle en lit chaque jour. Ils lui permettent de voyager.\"<br>→ Sujet: Marie et les livres. Pas de changement abrupt!</div><h3>4. UTILISER LES SUBSTITUTS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Évitez la répétition:</strong><br>\"Le directeur entra. Le directeur était fâché. Le directeur ordonna le silence.\" ✗ Mauvais<br>\"Le directeur entra. Il était fâché. Ce dernier ordonna le silence.\" ✓ Bon</div><h3>5. PAS DE CONTRADICTIONS</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Les idées ne doivent pas se contredire:</strong><br>\"Il faisait beau. Le soleil brillait. Il pleuvait sans arrêt.\" ✗ Contradiction<br>\"Il faisait beau. Le soleil brillait. Quelques nuages passaient.\" ✓ Cohérent</div><h3>6. TEMPS DU RÉCIT</h3><div style='background: #e6f2ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Conservez le même temps:</strong><br>\"Elle entra et elle cherche son livre.\" ✗ Mélange passé/présent<br>\"Elle entra et elle chercha son livre.\" ✓ Tout au passé</div>",
+      order: 64,
+    };
+
+    const vocabulary1: Course = {
+      id: vocabulary1Id,
+      title: "Le vocabulaire et champs lexicaux",
+      description: "Mots d'un même domaine, niveaux de langue, synonymes et antonymes",
+      category: "grammaire",
+      content: "<h2>Vocabulaire et Champs Lexicaux</h2><p>Un champ lexical regroupe les mots d'un même thème. C'est très utile pour enrichir ses textes!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ DÉFINITION:</strong><br>Champ lexical = ensemble de mots reliés au même thème<br>Exemple: École → étudiant, professeur, classe, leçon</div><h3>1. MOTS DU MÊME DOMAINE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Champ lexical de la NATURE:</strong><br>Arbre, feuille, branche, forêt, bois, fleur, herbe<br><strong>Champ lexical de la CUISINE:</strong><br>Recette, cuisiner, ingrédient, four, cuillère, salade, déjeuner</div><h3>2. NIVEAU DE LANGUE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Familier:</strong> \"C'est cool!\" \"J'ai trop faim!\" \"T'es malade?\"<br><strong>Standard:</strong> \"C'est intéressant.\" \"J'ai très faim.\" \"Tu es malade?\"<br><strong>Formel:</strong> \"C'est remarquable.\" \"J'ai une forte faim.\" \"Êtes-vous souffrant?\"</div><h3>3. SYNONYMES (MÊME SENS)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Beau = magnifique, splendide, sublime</strong><br>\"La vue était belle.\" = \"La vue était magnifique.\"<br>Bon = excellent, superbe, merveilleux, formidable</div><h3>4. ANTONYMES (SENS OPPOSÉ)</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Beau ≠ Laid</strong><br>Grand ≠ Petit<br>Heureux ≠ Malheureux<br>Jour ≠ Nuit</div><h3>5. MOTS DE LA MÊME FAMILLE (DÉRIVATION)</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Famille de \"jouer\":</strong> joue, joueur, jeu, jouet<br><strong>Famille de \"créer\":</strong> crée, créateur, création, créatif<br><strong>Ajouter des préfixes/suffixes:</strong> im+possible, heureus+ement</div>",
+      order: 65,
+    };
+
+    const grammar27: Course = {
+      id: grammar27Id,
+      title: "Les phrases transformées",
+      description: "Transformations affirmative/négative, active/passive, neutre/emphatique",
+      category: "grammaire",
+      content: "<h2>Phrases Transformées - Changements de Sens</h2><p>On peut transformer une phrase SANS changer le sens principal. Utile pour varier son écriture!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 3 TYPES DE TRANSFORMATION:</strong><br>Affirmative ↔ Négative<br>Active ↔ Passive<br>Neutre ↔ Emphatique</div><h3>1. AFFIRMATIVE → NÉGATIVE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ajouter ne...pas:</strong><br>\"Je viens.\" → \"Je ne viens pas.\"<br>\"Elle aime les mathématiques.\" → \"Elle n'aime pas les mathématiques.\"<br><strong>Autres formes:</strong> ne...jamais, ne...plus, ne...rien</div><h3>2. NEUTRE → EMPHATIQUE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Mettre l'accent sur un élément:</strong><br>\"Neutre: C'est Marie qui a parlé.\"<br>\"Emphatique: C'est MARIE qui a parlé! (pas quelqu'un d'autre)\"<br>\"Marie EST venue! (insistance)\"</div><h3>3. ACTIVE → PASSIVE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Inverser sujet et complément (fin du primaire):</strong><br>\"Le professeur enseigne les mathématiques.\" (active)<br>→ \"Les mathématiques sont enseignées par le professeur.\" (passive)<br>\"La fille regarde le garçon.\" (active)<br>→ \"Le garçon est regardé par la fille.\" (passive)</div><h3>4. AJOUTER/RETIRER COMPLÉMENTS DE PHRASE</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ajouter:</strong> \"Elle étudie.\" → \"Elle étudie le soir, dans sa chambre, avec passion.\"<br><strong>Retirer:</strong> \"Elle étudie le soir, sérieusement, pour réussir.\" → \"Elle étudie.\"</div>",
+      order: 66,
+    };
+
+    const punctuation10: Course = {
+      id: punctuation10Id,
+      title: "La ponctuation avancée",
+      description: "Deux-points, parenthèses, crochets et tirets - utilisation avancée",
+      category: "ponctuation",
+      content: "<h2>Ponctuation Avancée - Utilisation Approfondie</h2><p>Ces signes permettent d'organiser et de clarifier les idées complexes!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 4 SIGNES AVANCÉS:</strong><br>Deux-points (:), Parenthèses, Crochets, Tirets (—)</div><h3>1. LE DEUX-POINTS POUR ÉNUMÉRER</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Introduit une liste:</strong><br>\"Voici les éléments: 1) chaleur, 2) humidité, 3) pression.\"<br>\"Trois options: travailler, étudier, ou se reposer.\"</div><h3>2. LES PARENTHÈSES ( )</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ajoute une information secondaire:</strong><br>\"Le professeur (M. Dupont) expliqua la leçon.\"<br>\"Elle arriva tard (à cause de la pluie) mais heureuse.\"</div><h3>3. LES CROCHETS [ ]</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Signale une modification ou ajout dans une citation:</strong><br>\"Il a dit: 'Je suis venu [avec ma famille] hier.'\"<br>\"'[L]e jour était magnifique.' [Elle ajout a la majuscule]\"</div><h3>4. LE TIRET (—) POUR CHANGEMENT</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Marque un changement ou une pause:</strong><br>\"Il regarda — un instant — le paysage.\"<br>\"— Bonjour! cria-t-elle.\"<br>\"Les trois éléments — chaleur, humidité, pression — sont importants.\"</div>",
+      order: 67,
+    };
+
+    const reading9: Course = {
+      id: reading9Id,
+      title: "Les types de textes",
+      description: "Descriptif, narratif, informatif, explicatif, injonctif, dialogue",
+      category: "lecture_reading",
+      content: "<h2>Les Types de Textes - Reconnaître et Analyser</h2><p>Chaque type de texte a sa fonction et ses caractéristiques! C'est utile pour lire ET écrire.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 7 TYPES PRINCIPAUX</strong></div><h3>1. TEXTE DESCRIPTIF</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Décrit une personne, un objet, un lieu:</strong><br>\"La maison était grande, avec des murs blancs et un toit rouge. Elle avait trois fenêtres et une porte bleue.\"<br>Temps utilisé: présent, imparfait</div><h3>2. TEXTE NARRATIF</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Raconte une histoire avec début, milieu, fin:</strong><br>\"Situation initiale → Élément perturbateur → Développement → Climax → Résolution\"<br>Temps utilisé: passé composé, imparfait</div><h3>3. TEXTE INFORMATIF</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne des informations factuelles:</strong><br>\"Paris est la capitale de la France. Elle compte 2 millions d'habitants. La Seine la traverse.\"<br>Temps utilisé: présent</div><h3>4. TEXTE EXPLICATIF</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Explique COMMENT ou POURQUOI:</strong><br>\"Pour faire un gâteau, d'abord mélanger les ingrédients. Ensuite verser dans le moule. Finalement cuire 30 minutes.\"<br>Temps utilisé: infinitif, impératif, présent</div><h3>5. TEXTE INJONCTIF</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne des ordres ou des consignes:</strong><br>\"Lave-toi les mains! Prends une assiette. Serve-toi du repas.\"<br>Temps utilisé: impératif</div><h3>6. DIALOGUE</h3><div style='background: #e6f2ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Échange entre deux ou plusieurs personnes:</strong><br>\"— Bonjour! Comment vas-tu?<br>— Très bien, et toi?\"</div><h3>7. PUBLICITAIRE</h3><div style='background: #fffacd; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Persuade d'acheter ou de faire quelque chose:</strong><br>\"Achetez ce produit! C'est magique et pas cher!\"<br>Utilise: impératif, superlatifs, exclamations</div>",
+      order: 68,
+    };
+
+    const grammar28: Course = {
+      id: grammar28Id,
+      title: "Phrases à structure particulière",
+      description: "Impersonnelles, sans GN sujet, elliptiques",
+      category: "grammaire",
+      content: "<h2>Phrases à Structure Particulière</h2><p>Toutes les phrases n'ont pas une structure sujet + verbe + complément!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 3 STRUCTURES PARTICULIÈRES</strong></div><h3>1. PHRASES IMPERSONNELLES</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Sujet: \"il\" qui ne représente rien:</strong><br>\"Il pleut.\" (pas de personne qui pleut)<br>\"Il faut étudier.\" (nécessité)<br>\"Il existe plusieurs solutions.\" (il = sujet apparent)<br><strong>Caractéristique:</strong> Pas d'agent réel, exprime des phénomènes ou nécessités</div><h3>2. PHRASES SANS GN SUJET EXPLICITE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>L'impératif n'a pas de sujet explicite:</strong><br>\"Viens ici!\" (sous-entendu: toi)<br>\"Prenez un livre!\" (sous-entendu: vous)<br>\"Soyons heureux!\" (sous-entendu: nous)<br><strong>Caractéristique:</strong> Le sujet est implicite, dans la conjugaison</div><h3>3. PHRASES ELLIPTIQUES</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Certaines parties manquent (volontairement):</strong><br>\"Qui veut un gâteau? Moi!\" (moi = ellipse, manque le verbe)<br>\"Publicité: 'Jouets pas chers! Livraison gratuite!'\"<br>\"Notes: 'Excellent travail. À continuer.'\"<br><strong>Utilisation:</strong> Publicités, consignes, notes, style télégraphique</div>",
+      order: 69,
+    };
+
+    const grammar29: Course = {
+      id: grammar29Id,
+      title: "La négation (nouvelle grammaire)",
+      description: "Encadrement ne...pas et variantes (jamais, plus, rien)",
+      category: "grammaire",
+      content: "<h2>La Négation - Nouvelle Grammaire</h2><p>La négation encadre le verbe et parfois le groupe du verbe!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ ENCADREMENT:</strong><br>ne ... pas (l'encadrement classique)<br>ne ... jamais, ne ... plus, ne ... rien (variantes)</div><h3>1. ENCADREMENT NE...PAS</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Position dans la GV (groupe du verbe):</strong><br>\"Je ne viens pas.\" (ne avant le verbe, pas après)<br>\"Elle ne parle pas aux enfants.\" (pas encadre le GV)<br>\"Nous ne sommes pas heureux.\" (pas avec l'adjectif)<br><strong>Simplification orale:</strong> \"Je viens pas\" (le \"ne\" disparaît)</div><h3>2. VARIANTES: NE...JAMAIS</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Jamais = aucune fois:</strong><br>\"Il ne boit jamais de café.\" (aucune fois il ne boit)<br>\"Elle n'a jamais vu la mer.\" (aucune fois elle n'a vu)<br>\"Tu n'iras jamais à la plage?\" (interrogation négative)</div><h3>3. VARIANTES: NE...PLUS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Plus = arrêt d'une action:</strong><br>\"Je ne fume plus.\" (j'ai arrêté)<br>\"Elle n'habite plus ici.\" (elle a déménagé)<br>\"Les enfants ne jouent plus dehors.\" (changement de situation)</div><h3>4. VARIANTES: NE...RIEN</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Rien = aucune chose:</strong><br>\"Je ne mange rien.\" (aucune chose)<br>\"Tu ne dis rien.\" (aucune parole)<br>\"Elles n'ont rien trouvé.\" (aucun objet)</div><h3>5. EXCEPTIONS ORALES</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>À l'oral, le \"ne\" disparaît souvent:</strong><br>\"Je suis pas là.\" (au lieu de \"ne suis pas\")<br>\"Elle regarde jamais.\" (au lieu de \"ne regarde jamais\")<br><strong>À l'écrit: toujours mettre le \"ne\"!</strong></div>",
+      order: 70,
+    };
+
+    const grammar30: Course = {
+      id: grammar30Id,
+      title: "Les adverbes (plus complet)",
+      description: "Manière, temps, lieu, opinion - formation et utilisation",
+      category: "grammaire",
+      content: "<h2>Les Adverbes - Cours Complet</h2><p>Les adverbes modifient le verbe, l'adjectif ou d'autres adverbes. Ils sont INVARIABLES!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 4 CATÉGORIES PRINCIPALES</strong></div><h3>1. ADVERBES DE MANIÈRE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Comment? Formation: adjectif féminin + -ment</strong><br>Rapide → rapidement, Lent → lentement<br>\"Elle parle rapidement.\" (parler comment?)<br>\"Il court lentement.\" (courir comment?)<br>\"Elle écrit bien.\" \"Il travaille mal.\"</div><h3>2. ADVERBES DE TEMPS</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Quand?</strong><br>Aujourd'hui, hier, demain, maintenant, bientôt<br>\"Elle arrive aujourd'hui.\" (quand?)<br>\"Tu partiras demain.\" (quand?)<br>\"Nous mangeons maintenant.\" (quand?)</div><h3>3. ADVERBES DE LIEU</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Où?</strong><br>Ici, là, là-bas, partout, ailleurs<br>\"Je suis ici.\" (où?)<br>\"Il va là-bas.\" (où?)<br>\"Regarde partout!\" (où?)</div><h3>4. ADVERBES D'OPINION</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Probablement, peut-être, sans doute</strong><br>\"Il va probablement venir.\" (probabilité)<br>\"Tu reviendras peut-être.\" (incertitude)<br>\"Sans doute aura-t-il raison.\" (probabilité)</div><h3>5. FORMATION DE L'ADVERBE</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Règle: Adjectif au FÉMININ + -ment</strong><br>Courageux → courageuse → courageusement<br>Heureux → heureuse → heureusement<br>Exceptions: vrai → vraiment, bon → bien</div>",
+      order: 71,
+    };
+
+    const conjugation14: Course = {
+      id: conjugation14Id,
+      title: "Les verbes et la valeur des temps",
+      description: "Valeur du présent, imparfait, futur, temps simples vs composés",
+      category: "conjugaison",
+      content: "<h2>Valeur des Temps - Au-delà de la Conjugaison</h2><p>Un même temps peut avoir plusieurs sens selon le contexte!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 5 CATÉGORIES DE TEMPS</strong></div><h3>1. VALEUR DU PRÉSENT</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Description (ce qui est):</strong> \"L'eau est froide.\"<br><strong>Vérité générale:</strong> \"Les oiseaux volent.\"<br><strong>Narration vivante:</strong> \"Elle entre dans la classe. Elle s'assoit. Elle étudie.\"<br><strong>Action en cours:</strong> \"En ce moment, tu lis.\"</div><h3>2. VALEUR DE L'IMPARFAIT</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Habitude passée:</strong> \"Je jouais dehors chaque jour.\"<br><strong>Description passée:</strong> \"C'était un beau jour. Les oiseaux chantaient.\"<br><strong>Action longue interrompue:</strong> \"Je lisais quand tu as appelé.\"</div><h3>3. VALEUR DU FUTUR</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Prédiction:</strong> \"Il pleuvra demain.\"<br><strong>Intention:</strong> \"Je te donnerai un cadeau.\"<br><strong>Promesse:</strong> \"Je ne te quitterai jamais.\"<br><strong>Ordre atténué:</strong> \"Tu feras tes devoirs.\" (ordre moins brutal)</div><h3>4. TEMPS SIMPLES VS COMPOSÉS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Simple = action en cours:</strong> \"Je mangeais quand...\" (action longue)<br><strong>Composé = action terminée:</strong> \"J'ai mangé avant de partir.\" (action finie)<br>\"Elle lisait\" (imparfait, longue durée)<br>\"Elle a lu\" (passé composé, action finie)</div><h3>5. ASPECT</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Durée:</strong> \"Je travaillais\" (longtemps)<br><strong>Répétition:</strong> \"Je travaille chaque jour\" (régulier)<br><strong>Habitude:</strong> \"Je travaillais toujours à 9h\" (avant, régulièrement)</div>",
+      order: 72,
+    };
+
+    const orthography16: Course = {
+      id: orthography16Id,
+      title: "Les homophones avancés",
+      description: "leur/leurs, tout/tous, quel/quelle, infinitif/participe passé",
+      category: "orthographe",
+      content: "<h2>Homophones Avancés - Distinctions Cruciales</h2><p>Ces mots se prononcent pareil mais s'écrivent différemment et ont des sens différents!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 5 DISTINCTIONS IMPORTANTES</strong></div><h3>1. LEUR vs LEURS</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Leur (singulier):</strong> \"Je leur parle\" (à une ou plusieurs personnes, mais un objet chacun)<br><strong>Leurs (pluriel):</strong> \"J'ai vu leurs maisons\" (plusieurs objets, plusieurs personnes)<br>Astuce: essayer de remplacer par \"mon/mes\": \"Je lui parle\" → \"Je leur parle\"</div><h3>2. TOUT vs TOUS vs TOUTE vs TOUTES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Tout (masculin singulier):</strong> \"Tout est possible.\"<br><strong>Tous (masculin pluriel):</strong> \"Tous les enfants sont venus.\" \"Ils sont tous venus.\"<br><strong>Toute (féminin singulier):</strong> \"Toute la classe était contente.\"<br><strong>Toutes (féminin pluriel):</strong> \"Toutes les filles chantaient.\"</div><h3>3. QUEL vs QUELLE vs QUELS vs QUELLES</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Quel (interrogatif, masc. sing.):</strong> \"Quel livre lis-tu?\"<br><strong>Quelle (interrogatif, fém. sing.):</strong> \"Quelle est ta couleur?\"<br><strong>Quels (interrogatif, masc. plur.):</strong> \"Quels jeux aimes-tu?\"<br><strong>Quelles (interrogatif, fém. plur.):</strong> \"Quelles filles chantent?\"</div><h3>4. INFINITIF vs PARTICIPE PASSÉ (-ER vs -É)</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Infinitif (-ER):</strong> \"Je veux manger.\" \"Aller étudier.\" (peut remplacer par un autre verbe: \"Je veux partir\")<br><strong>Participe passé (-É):</strong> \"J'ai mangé.\" \"Mangé hier.\" (avec avoir/être, ou adjectif)<br>Astuce: \"Je veux manger\" vs \"J'ai mangé\" ≠ \"J'ai aller\"!</div><h3>5. ACCENT SUR \"LÀ\" vs \"LA\"</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Là (avec accent = lieu):</strong> \"Je vais là.\" \"Là-bas.\" \"Attention, regardez là!\"<br><strong>La (sans accent = article):</strong> \"La maison est belle.\" \"Je vois la fille.\"</div>",
+      order: 73,
+    };
+
+    const grammar31: Course = {
+      id: grammar31Id,
+      title: "Le groupe infinitif",
+      description: "Reconnaître l'infinitif, groupe infinitif comme CP ou complément du verbe",
+      category: "grammaire",
+      content: "<h2>Le Groupe Infinitif - Structure Complexe</h2><p>L'infinitif peut jouer plusieurs rôles dans la phrase!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 3 STRUCTURES AVEC INFINITIF</strong></div><h3>1. RECONNAÎTRE L'INFINITIF</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Verbe à l'infinitif = forme de base:</strong><br>Manger, courir, dormir, aller, être<br>Terminaisons: -er, -ir, -oir, -ure<br>\"Je veux manger une pomme.\" (manger = infinitif)<br>\"Elle aime lire des livres.\" (lire = infinitif)</div><h3>2. GROUPE INFINITIF COMME COMPLÉMENT DU VERBE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le groupe infinitif complète le verbe conjugué:</strong><br>\"Je veux manger une pomme.\" (veux manger = le groupe complète)<br>GV: veux manger + CP: une pomme<br>\"Elle commence à parler français.\" (commence à parler = groupe)<br>\"Tu peux sortir demain.\" (peux sortir = groupe)</div><h3>3. GROUPE INFINITIF COMME COMPLÉMENT DE PHRASE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>L'infinitif peut être CP (lieu, temps, raison, etc.):</strong><br>\"Pour réussir, tu dois étudier.\" (pour réussir = CP raison)<br>\"En mangeant, il a parlé.\" (en mangeant = CP temps/manière)<br>\"Avant de partir, ferme la porte.\" (avant de partir = CP temps)</div><h3>4. VERBES SUIVIS D'UN INFINITIF</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Certains verbes demandent un infinitif:</strong><br>Aimer, vouloir, pouvoir, devoir, penser, croire<br>\"Je veux manger.\" \"Elle peut courir.\" \"Tu dois étudier.\" \"Nous pensons partir.\"<br>\"Ils aiment danser.\" \"On peut essayer.\"</div>",
+      order: 74,
+    };
+
+    const grammar32: Course = {
+      id: grammar32Id,
+      title: "Les séquences syntaxiques",
+      description: "Sujet → action → objet; sujet → état → attribut; décrire une image",
+      category: "grammaire",
+      content: "<h2>Séquences Syntaxiques - Structure de Base</h2><p>Chaque phrase suit une séquence logique! Comprendre ces séquences aide à écrire des phrases correctes.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 3 SÉQUENCES PRINCIPALES</strong></div><h3>1. SUJET → ACTION → OBJET (Transitive)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>GS + GV + CP:</strong><br>\"Marie (sujet) mange (action) une pomme (objet).\"<br>\"Les enfants (sujet) jouent (action) au football (objet).\"<br>\"Le chat (sujet) attrape (action) la souris (objet).\"<br>Question: Qui? Quoi faire? À quoi/qui?</div><h3>2. SUJET → ÉTAT → ATTRIBUT (être + descriptif)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>GS + être + attribut:</strong><br>\"Marie (sujet) est (état) heureuse (description).\"<br>\"Les fleurs (sujet) sont (état) rouges (description).\"<br>\"Le professeur (sujet) est (état) fatigué (description).\"<br>Question: Qui? Comment est? (pas une action, un état)</div><h3>3. SUJET → ACTION → LIEU/TEMPS (Intransitive)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>GS + GV + CP:</strong><br>\"Je (sujet) vais (action) à l'école (lieu).\"<br>\"Elle (sujet) court (action) demain (temps).\"<br>\"Ils (sujet) arrivent (action) le soir (temps).\"<br>Question: Qui? Quoi faire? Où? Quand?</div><h3>4. DÉCRIRE UNE IMAGE</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Utiliser les trois séquences:</strong><br>1. Qui vois-tu? (Sujet) → \"Je vois un garçon.\"<br>2. Qu'est-ce qu'il fait? (Action) → \"Il joue au tennis.\"<br>3. Où/Comment? (Descriptif) → \"Il est heureux et rapide.\"<br>Résultat: \"Un garçon joue au tennis. Il est heureux et rapide.\"</div><h3>5. PRODUIRE UNE PHRASE COMPLÈTE</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Checklist:</strong><br>✓ Sujet identifié<br>✓ Verbe conjugué correctement<br>✓ Complément ou description<br>✓ Ponctuation correcte<br>Exemple complet: \"Les enfants jouent joyeusement au parc demain.\"</div>",
+      order: 75,
+    };
+
+    const writing5: Course = {
+      id: writing5Id,
+      title: "Les connecteurs textuels",
+      description: "Utiliser les connecteurs pour lier les idées dans un texte",
+      category: "ecriture",
+      content: "<h2>Connecteurs Textuels - Lier les Idées</h2><p>Les connecteurs rendent le texte cohérent et fluide!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ UTILISATION DANS L'ÉCRITURE</strong></div><h3>1. COMMENT LES UTILISER</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Au début d'une phrase ou entre deux phrases:</strong><br>\"D'abord, étudier. Ensuite, se reposer. Finalement, s'amuser.\"<br>\"Elle travaillait dur. Par conséquent, elle réussit.\"<br>\"Il pleuvait. Cependant, nous sortîmes.\"</div><h3>2. LISTE DES CONNECTEURS UTILES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ajouter:</strong> et, puis, ensuite, de plus, aussi, par ailleurs<br><strong>Opposer:</strong> mais, cependant, pourtant, néanmoins, en revanche<br><strong>Expliquer:</strong> car, parce que, donc, c'est pourquoi, en effet<br><strong>Conclure:</strong> bref, en conclusion, en résumé, finalement, donc</div><h3>3. EXERCICE: ENRICHIR UN TEXTE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Sans connecteurs:</strong> \"Je suis allé à l'école. J'ai étudié. J'ai joué.\"<br><strong>Avec connecteurs:</strong> \"D'abord, je suis allé à l'école. Puis, j'ai étudié sérieusement. Ensuite, j'ai joué avec mes amis.\"<br>Bien meilleur!</div>",
+      order: 76,
+    };
+
+    const writing6: Course = {
+      id: writing6Id,
+      title: "Techniques d'écriture avancées",
+      description: "Varier les structures de phrases, créer du suspense, montrer plutôt que dire",
+      category: "ecriture",
+      content: "<h2>Techniques d'Écriture Avancées</h2><p>Écrire avec style et clarté - des techniques pour améliorer vos textes!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 3 TECHNIQUES CLÉS</strong></div><h3>1. VARIER LES STRUCTURES DE PHRASES</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Pas toutes identiques:</strong><br>❌ \"Je me réveille. Je vais à l'école. J'étudie. Je joue. Je rentre à la maison.\"<br>✓ \"Je me réveille. Après avoir mangé, je vais à l'école. Là, j'étudie toute la journée, mais j'aime aussi jouer avec mes amis. Finalement, je rentre à la maison, fatigué mais heureux.\"</div><h3>2. MONTRER PLUTÔT QUE DIRE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ne pas dire \"Il était heureux\" mais montrer:</strong><br>❌ \"Elle était triste.\"<br>✓ \"Elle avait les larmes aux yeux. Elle s'effondra sur une chaise en sanglotant.\"<br>❌ \"Il était fatigué.\"<br>✓ \"Il bâilla, s'étira, et peinait à garder les yeux ouverts.\"</div><h3>3. CRÉER DU SUSPENSE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ralentir le rythme, poser des questions:</strong><br>\"Elle entra dans la pièce. L'air était étrange. Quelque chose n'allait pas. Elle entendit un bruit...\"<br>Utiliser: \"Soudain!\", \"À sa surprise!\", \"Mais...\", \"Et si...?\"</div><h3>4. UTILISER LES ADJECTIFS ÉVOCATEURS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Enrichir les descriptions:</strong><br>❌ \"Une maison grande et vieille\"<br>✓ \"Un immense manoir délabré avec des murs gris et des fenêtres cassées\"<br>Choisir les mots justes pour créer une image vivante</div>",
+      order: 77,
+    };
+
+    const punctuation11: Course = {
+      id: punctuation11Id,
+      title: "Ponctuation contextuelle avancée",
+      description: "Ponctuation selon le contexte: énumération, incise, déplacement de CP",
+      category: "ponctuation",
+      content: "<h2>Ponctuation Contextuelle - Utilisation Avancée</h2><p>La ponctuation change selon le contexte et la structure de la phrase!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 3 CONTEXTES PARTICULIERS</strong></div><h3>1. ÉNUMÉRATION</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Virgules pour séparer les éléments:</strong><br>\"Je veux du pain, du beurre, du lait et du fromage.\"<br>\"Les enfants, les adultes et les personnes âgées sont invités.\"</div><h3>2. L'INCISE (phrase insérée)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Encadrée par virgules ou tirets:</strong><br>\"Marie, ma meilleure amie, habite à côté.\"<br>\"Il a dit — et j'en suis sûr — qu'il viendrait demain.\"</div><h3>3. DÉPLACEMENT DU COMPLÉMENT DE PHRASE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Quand le CP vient AVANT le GV, virgule recommandée:</strong><br>\"Demain, je vais à l'école.\" (CP au début)<br>\"Au parc, les enfants jouent.\" (CP au début)<br>\"Je vais à l'école demain.\" (pas de virgule nécessaire)</div>",
+      order: 78,
+    };
+
+    const vocabulary2: Course = {
+      id: vocabulary2Id,
+      title: "Dérivation lexicale",
+      description: "Préfixes et suffixes - créer des mots dérivés",
+      category: "grammaire",
+      content: "<h2>Dérivation Lexicale - Créer des Mots</h2><p>Les préfixes et suffixes permettent de créer de nouveaux mots à partir d'une racine!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong><br>PRÉFIXE + RACINE + SUFFIXE</div><h3>1. LES PRÉFIXES</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Avant la racine:</strong><br>im/in = contraire: possible → impossible, certain → incertain<br>re/pré = avant/répétition: faire → refaire, dire → prédire<br>sur = au-dessus: poids → surpoids, naturel → surnaturel</div><h3>2. LES SUFFIXES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Après la racine:</strong><br>-ment: rapidement, heureux → heureusement<br>-tion: créer → création, éducation<br>-able: manger → mangeable, boire → buvable<br>-eur: teach → professor, chanter → chanteur</div><h3>3. EXEMPLES DE DÉRIVATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Créer une famille de mots:</strong><br>JOUER → joue, joueur, jeu, jouet, rejouer, joué<br>ÉCRIRE → écrite, écrivain, écriture, réécrire</div>",
+      order: 79,
+    };
+
+    const vocabulary3: Course = {
+      id: vocabulary3Id,
+      title: "Les niveaux de langue",
+      description: "Familier, standard, soutenu - quand utiliser chacun",
+      category: "grammaire",
+      content: "<h2>Niveaux de Langue - Choisir le Registre Approprié</h2><p>La langue change selon le contexte! Familier avec les copains, standard à l'école, soutenu en littérature.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 3 NIVEAUX PRINCIPAUX</strong></div><h3>1. LANGAGE FAMILIER</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Entre amis, détente:</strong><br>\"C'est cool!\" \"J'ai trop faim!\" \"T'es malade?\" \"Ça va?\"<br>Aphaérèse: \"Pour\" → \"P'ur\", \"Tu\" → \"T'\"<br>Omission: \"J'vais\" au lieu de \"Je vais\"</div><h3>2. LANGAGE STANDARD</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>À l'école, en conversation normale:</strong><br>\"C'est intéressant.\" \"J'ai très faim.\" \"Tu es malade?\" \"Comment ça va?\"<br>Prononciation correcte, structure classique</div><h3>3. LANGAGE SOUTENU</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>En littérature, textes formels:</strong><br>\"C'est remarquable.\" \"J'éprouve une certaine famine.\" \"Êtes-vous souffrant?\" \"Comment allez-vous?\"<br>Vocabulaire riche, subjonctif, imparfait du subjonctif</div>",
+      order: 80,
+    };
+
+    const vocabulary4: Course = {
+      id: vocabulary4Id,
+      title: "Polysémie et homonymie",
+      description: "Mots avec plusieurs sens, mots qui se prononcent pareils",
+      category: "grammaire",
+      content: "<h2>Polysémie et Homonymie - Mots Ambigus</h2><p>Certains mots ont plusieurs sens ou se prononcent comme d'autres!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 2 PHÉNOMÈNES:</strong><br>Polysémie = un mot, plusieurs sens<br>Homonymie = mots différents, même prononciation</div><h3>1. POLYSÉMIE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Banque\" = établissement financier OU endroit où on s'assoit:</strong><br>\"Je vais à la banque pour retirer de l'argent.\"<br>\"Je me suis assis sur la banque du parc.\"<br><strong>\"Vol\" = action de voler (oiseau) OU cambriolage:</strong><br>\"Le vol de l'aigle était magnifique.\"<br>\"Il a commis un vol hier.\"</div><h3>2. HOMONYMIE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Son\" (possessif) vs \"son\" (du bruit):</strong><br>\"Son livre\" (possession)<br>\"Le son de la cloche\" (bruit)<br><strong>\"Ver\" (animal) vs \"vers\" (préposition) vs \"vert\" (couleur):</strong><br>\"Un vers de terre\" (animal)<br>\"Je vais vers la maison\" (direction)<br>\"Une pomme verte\" (couleur)</div>",
+      order: 81,
+    };
+
+    const reading10: Course = {
+      id: reading10Id,
+      title: "Compréhension fine et inférence",
+      description: "Comprendre entre les lignes, faire des déductions",
+      category: "lecture_reading",
+      content: "<h2>Compréhension Fine et Inférence - Lire Entre les Lignes</h2><p>Ne pas juste lire les mots, mais comprendre le sens caché!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 2 NIVEAUX DE COMPRÉHENSION:</strong><br>Littéral = ce qui est écrit<br>Inférence = ce qu'on déduit</div><h3>1. LECTURE LITTÉRALE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ce qui est écrit explicitement:</strong><br>Texte: \"Elle était triste et seule.\"<br>Littéral: Elle a des émotions négatives</div><h3>2. INFÉRENCE (entre les lignes)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ce qu'on déduit du contexte:</strong><br>Texte: \"Elle entra dans la classe. Tout le monde arrêta de parler.\"<br>Inférence: Elle est importante ou redoutée</div><h3>3. INDICES TEXTUELS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Regarder:</strong><br>Mots émotifs, actions, contexte, répétitions<br>\"Il ne souriait jamais. Son visage était comme une pierre.\"<br>→ Inférence: C'est quelqu'un de dur ou malheureux</div>",
+      order: 82,
     };
 
     // Additional orthography courses
@@ -969,6 +1184,28 @@ export class MemStorage implements IStorage {
     this.courses.set(punctuation7Id, punctuation7);
     this.courses.set(punctuation8Id, punctuation8);
     this.courses.set(punctuation9Id, punctuation9);
+    // Add 24 advanced courses
+    this.courses.set(grammar24Id, grammar24);
+    this.courses.set(grammar25Id, grammar25);
+    this.courses.set(grammar26Id, grammar26);
+    this.courses.set(vocabulary1Id, vocabulary1);
+    this.courses.set(grammar27Id, grammar27);
+    this.courses.set(punctuation10Id, punctuation10);
+    this.courses.set(reading9Id, reading9);
+    this.courses.set(grammar28Id, grammar28);
+    this.courses.set(grammar29Id, grammar29);
+    this.courses.set(grammar30Id, grammar30);
+    this.courses.set(conjugation14Id, conjugation14);
+    this.courses.set(orthography16Id, orthography16);
+    this.courses.set(grammar31Id, grammar31);
+    this.courses.set(grammar32Id, grammar32);
+    this.courses.set(writing5Id, writing5);
+    this.courses.set(writing6Id, writing6);
+    this.courses.set(punctuation11Id, punctuation11);
+    this.courses.set(vocabulary2Id, vocabulary2);
+    this.courses.set(vocabulary3Id, vocabulary3);
+    this.courses.set(vocabulary4Id, vocabulary4);
+    this.courses.set(reading10Id, reading10);
 
     const question5: Question = {
       id: randomUUID(),

@@ -183,10 +183,40 @@ Application web éducative complète pour l'enseignement du français aux élèv
 ✅ **Phase 3 - Complétée**: Database PostgreSQL + Rapports + Données de test
 ✅ **MVP Features** - TERMINÉ
 ✅ **50 Leçons Focalisées** - AJOUTÉES (Janvier 2025)
-✅ **73+ Leçons Complètes** - AJOUTÉES 12 LEÇONS CRITIQUES (November 25, 2025):
-   - 7 Grammaire: Déterminants, Conjonctions, Interjections, GN, GV, Sujet/Compléments, Types phrases
-   - 1 Orthographe: Homophones grammaticaux essentiels
-   - 4 Ponctuation: Point/?, Virgule, Deux-points/tirets, Guillemets
+✅ **73+ Leçons Complètes** - AJOUTÉES 12 LEÇONS CRITIQUES (November 25, 2025)
+✅ **~97 Leçons Complètes** - AJOUTÉES 24 LEÇONS AVANCÉES (November 25, 2025):
+   - 16 Grammaire avancée: Substituts, Marqueurs de relation, Cohésion textuelle, Vocabulaire, Phrases transformées, Phrases à structure particulière, Négation, Adverbes avancés, Groupe infinitif, Séquences syntaxiques, Polysémie/Homonymie, Dérivation lexicale, Niveaux de langue
+   - 2 Ponctuation: Ponctuation avancée, Ponctuation contextuelle
+   - 2 Écriture: Connecteurs textuels, Techniques d'écriture avancées
+   - 2 Lecture: Types de textes, Compréhension fine/inférence
+   - 1 Conjugaison: Valeur des temps
+   - 1 Orthographe: Homophones avancés
+
+### Toutes les 24 Leçons Avancées (Nouvelle Grammaire)
+1. **Les substituts** - Pronominaux, nominaux, lexicaux, textuels
+2. **Les marqueurs de relation** - Connecteurs logiques (ajouter, contraster, expliquer, illustrer, résumer, temps)
+3. **La cohésion et cohérence textuelle** - Ordre logique, enchaînement, continuité, substituts
+4. **Le vocabulaire et champs lexicaux** - Domaines, niveaux de langue, synonymes, antonymes
+5. **Les phrases transformées** - Affirmative/négative, active/passive, neutre/emphatique
+6. **La ponctuation avancée** - Deux-points, parenthèses, crochets, tirets
+7. **Les types de textes** - Descriptif, narratif, informatif, explicatif, injonctif, dialogue, publicitaire
+8. **Phrases à structure particulière** - Impersonnelles, sans GN sujet, elliptiques
+9. **La négation (nouvelle grammaire)** - Encadrement ne...pas, variantes (jamais, plus, rien)
+10. **Les adverbes (plus complet)** - Manière, temps, lieu, opinion
+11. **Les verbes et la valeur des temps** - Présent, imparfait, futur, temps composés, aspect
+12. **Les homophones avancés** - leur/leurs, tout/tous, quel/quelle, infinitif/participe, là/la
+13. **Le groupe infinitif** - Reconnaissance, comme complément du verbe/phrase
+14. **Les séquences syntaxiques** - Sujet→action→objet, sujet→état→attribut, décrire une image
+15. **Les connecteurs textuels** - Utilisation dans l'écriture
+16. **Techniques d'écriture avancées** - Varier structures, montrer plutôt que dire, suspense
+17. **Ponctuation contextuelle avancée** - Énumération, incise, déplacement de CP
+18. **Dérivation lexicale** - Préfixes et suffixes
+19. **Les niveaux de langue** - Familier, standard, soutenu
+20. **Polysémie et homonymie** - Mots avec plusieurs sens, mots homophones
+21. **Compréhension fine et inférence** - Lire entre les lignes, déductions
+22. **Types de textes** - Approche grammaire + écriture (6 types)
+23. **Vocabulaire contexte** - Deviner sens dans contexte (révisé)
+24. **Mots de la même famille** - Dérivation et familles lexicales
 
 ## Fonctionnalités Future (Non MVP)
 
