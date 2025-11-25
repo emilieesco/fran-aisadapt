@@ -111,14 +111,23 @@ export default function TeacherDashboard() {
               Bienvenue, {teacherName}
             </p>
           </div>
-          <Button
-            variant="ghost"
-            onClick={handleLogout}
-            data-testid="button-logout"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Déconnexion
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setLocation("/teacher-reports")}
+              data-testid="button-reports"
+            >
+              Rapports
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={handleLogout}
+              data-testid="button-logout"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Déconnexion
+            </Button>
+          </div>
         </div>
       </header>
 

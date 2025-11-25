@@ -61,6 +61,7 @@ export interface IStorage {
 
   // Teacher queries
   getStudentsByTeacher(teacherId: string): Promise<(User & { progressPercentage: number })[]>;
+  getStudentReports(teacherId: string): Promise<any[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -145,6 +146,9 @@ export class MemStorage implements IStorage {
     // Create sample exercises
     const exercise1Id = randomUUID();
     const exercise2Id = randomUUID();
+    const exercise3Id = randomUUID();
+    const exercise4Id = randomUUID();
+    const exercise5Id = randomUUID();
 
     const exercise1: Exercise = {
       id: exercise1Id,
@@ -164,8 +168,38 @@ export class MemStorage implements IStorage {
       order: 2,
     };
 
+    const exercise3: Exercise = {
+      id: exercise3Id,
+      courseId: course2Id,
+      title: "Exercice: Identifier les verbes",
+      description: "Trouvez tous les verbes dans les phrases",
+      type: "multiple_choice",
+      order: 1,
+    };
+
+    const exercise4: Exercise = {
+      id: exercise4Id,
+      courseId: course3Id,
+      title: "Exercice: Analyser la structure narrative",
+      description: "Identifiez les éléments du texte narratif",
+      type: "multiple_choice",
+      order: 1,
+    };
+
+    const exercise5: Exercise = {
+      id: exercise5Id,
+      courseId: course3Id,
+      title: "Exercice: Écrire un texte narratif",
+      description: "Écrivez un court texte narratif sur un événement",
+      type: "text",
+      order: 2,
+    };
+
     this.exercises.set(exercise1Id, exercise1);
     this.exercises.set(exercise2Id, exercise2);
+    this.exercises.set(exercise3Id, exercise3);
+    this.exercises.set(exercise4Id, exercise4);
+    this.exercises.set(exercise5Id, exercise5);
 
     // Create sample questions
     const question1: Question = {
@@ -190,8 +224,43 @@ export class MemStorage implements IStorage {
       order: 2,
     };
 
+    const question3: Question = {
+      id: randomUUID(),
+      exerciseId: exercise3Id,
+      title: "Question 1",
+      text: 'Quel est le verbe dans la phrase: "Le professeur enseigne les mathématiques"?',
+      type: "multiple_choice",
+      options: JSON.stringify(["professeur", "enseigne", "mathématiques", "Les"]),
+      correctAnswer: "enseigne",
+      order: 1,
+    };
+
+    const question4: Question = {
+      id: randomUUID(),
+      exerciseId: exercise4Id,
+      title: "Question 1",
+      text: 'Dans un texte narratif, quel élément décrit la situation au début?',
+      type: "multiple_choice",
+      options: JSON.stringify(["La situation initiale", "Le nœud", "Le dénouement", "La conclusion"]),
+      correctAnswer: "La situation initiale",
+      order: 1,
+    };
+
+    const question5: Question = {
+      id: randomUUID(),
+      exerciseId: exercise5Id,
+      title: "Exercice d'écriture",
+      text: "Écrivez un court texte narratif (5-10 phrases) sur une aventure, un événement intéressant ou une histoire imaginaire.",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 1,
+    };
+
     this.questions.set(question1.id, question1);
     this.questions.set(question2.id, question2);
+    this.questions.set(question3.id, question3);
+    this.questions.set(question4.id, question4);
+    this.questions.set(question5.id, question5);
 
     // Create assignment
     const assignment: Assignment = {
@@ -428,6 +497,58 @@ export class MemStorage implements IStorage {
     }
 
     return students;
+  }
+
+  async getStudentReports(teacherId: string): Promise<any[]> {
+    const assignments = await this.getAssignmentsByTeacher(teacherId);
+    const studentIds = new Set(assignments.map((a) => a.studentId));
+
+    const reports: any[] = [];
+    for (const studentId of studentIds) {
+      const user = await this.getUser(studentId);
+      if (!user || user.role !== "student") continue;
+
+      const responses = await this.getResponsesByStudent(studentId);
+      const progress = await this.getAllStudentProgress(studentId);
+
+      const totalCorrect = responses.filter((r) => r.isCorrect).length;
+      const totalAttempts = responses.length;
+      const averageAccuracy =
+        totalAttempts > 0
+          ? Math.round((totalCorrect / totalAttempts) * 100)
+          : 0;
+
+      const coursesCompleted = progress.filter((p) => p.completed).length;
+      const totalCourses = progress.length;
+
+      // Progress by category
+      const progressByCategory: { [key: string]: number } = {};
+      for (const course of await Promise.all(
+        Array.from(new Set(progress.map((p) => p.courseId))).map((id) =>
+          this.getCourse(id)
+        )
+      )) {
+        if (course) {
+          const courseProgress = progress.find((p) => p.courseId === course.id);
+          progressByCategory[course.category] =
+            courseProgress?.progressPercentage || 0;
+        }
+      }
+
+      reports.push({
+        id: studentId,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        totalCorrect,
+        totalAttempts,
+        averageAccuracy,
+        coursesCompleted,
+        totalCourses,
+        progressByCategory,
+      });
+    }
+
+    return reports;
   }
 }
 

@@ -173,6 +173,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/teachers/:id/reports", async (req, res) => {
+    try {
+      const reports = await storage.getStudentReports(req.params.id);
+      res.json(reports);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

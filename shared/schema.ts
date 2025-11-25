@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, boolean, integer, json } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, boolean, integer, json, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -11,6 +11,7 @@ export const users = pgTable("users", {
   firstName: text("first_name").notNull(),
   lastName: text("last_name").notNull(),
   role: text("role").notNull(), // "teacher" or "student"
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Courses table
@@ -21,6 +22,7 @@ export const courses = pgTable("courses", {
   category: text("category").notNull(), // "classes_de_mots", "textes_narratifs", "ecriture"
   content: text("content").notNull(),
   order: integer("order").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Exercises table
@@ -31,6 +33,7 @@ export const exercises = pgTable("exercises", {
   description: text("description").notNull(),
   type: text("type").notNull(), // "multiple_choice", "text", "matching"
   order: integer("order").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Questions table
@@ -43,6 +46,7 @@ export const questions = pgTable("questions", {
   options: text("options"), // JSON string for multiple choice
   correctAnswer: text("correct_answer").notNull(),
   order: integer("order").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Student responses table
@@ -52,7 +56,7 @@ export const studentResponses = pgTable("student_responses", {
   questionId: varchar("question_id").notNull(),
   answer: text("answer").notNull(),
   isCorrect: boolean("is_correct").notNull(),
-  createdAt: text("created_at").notNull(),
+  createdAt: timestamp("created_at").notNull(),
 });
 
 // Student progress table
@@ -62,6 +66,9 @@ export const studentProgress = pgTable("student_progress", {
   courseId: varchar("course_id").notNull(),
   completed: boolean("completed").notNull().default(false),
   progressPercentage: integer("progress_percentage").notNull().default(0),
+  correctAnswers: integer("correct_answers").notNull().default(0),
+  totalQuestions: integer("total_questions").notNull().default(0),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 // Student badges table
@@ -69,7 +76,7 @@ export const studentBadges = pgTable("student_badges", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   studentId: varchar("student_id").notNull(),
   badgeType: text("badge_type").notNull(), // "first_exercise", "5_correct", "10_correct", etc.
-  earnedAt: text("earned_at").notNull(),
+  earnedAt: timestamp("earned_at").defaultNow(),
 });
 
 // Teacher assignments
@@ -79,6 +86,7 @@ export const assignments = pgTable("assignments", {
   studentId: varchar("student_id").notNull(),
   courseId: varchar("course_id").notNull(),
   dueDate: text("due_date"),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Schemas for insert operations
