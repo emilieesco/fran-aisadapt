@@ -1,0 +1,79 @@
+1. Les classes de mots (nature des mots)
+Le nom (commun, propre)
+Le déterminant (articles, déterminants possessifs, démonstratifs, numéraux)
+L’adjectif qualificatif
+Le pronom (personnel sujet / complément, démonstratif, possessif, interrogatif, indéfini)
+Le verbe (infinitif, temps, modes)
+L’adverbe
+La préposition
+La conjonction de coordination (mais, ou, et, donc, or, ni, car)
+L’interjection
+2. Le groupe du nom (GN)
+Nom noyau
+Déterminant + nom
+Ajout de l’adjectif
+Ajout du complément du nom (CDN)
+Expansion du nom
+Accord dans le GN (déterminant / nom / adjectif)
+3. Le groupe du verbe (GV)
+Le verbe noyau
+Les compléments du verbe (COD, COI)
+Les compléments circonstanciels (lieu, temps, manière)
+4. Les fonctions dans la phrase
+Sujet (repérage du groupe du sujet)
+Attribut du sujet
+Complément du verbe :
+COD
+COI
+Complément de phrase (CC)
+Complément du nom
+Apposition
+5. La phrase
+La phrase déclarative, interrogative, exclamative, impérative
+La phrase de base (sujet + verbe + complément)
+Phrase simple vs phrase complexe
+Complètes/incomplètes
+Types et formes de phrases
+6. Les accords
+Accord du déterminant avec le nom
+Accord de l’adjectif avec le nom
+Accord du verbe avec son sujet
+Accord du participe passé employé avec avoir / être (selon le niveau, fin primaire)
+Accord dans le GN
+Accord dans le GNS (groupe du nom sujet)
+7. La conjugaison (selon les cycles)
+Présent, passé composé, futur simple, imparfait, futur proche, passé récent
+Verbes du 1er groupe
+Verbes du 2e groupe
+Verbes du 3e groupe (essentiels)
+Être / Avoir (tous temps)
+Aller / Faire / Dire / Pouvoir / Vouloir / Venir / Prendre
+8. Les manipulations syntaxiques
+(vues à partir du 2e cycle)
+Remplacement
+Déplacement
+Suppression
+Encadrement (ex : « c’est… qui », « c’est… que »)
+9. Orthographe grammaticale (règles de base)
+Accord du pluriel
+Homophones grammaticaux :
+a / à
+et / est
+son / sont
+ou / où
+ce / se
+c’ / s’
+on / ont
+mes / mais / met / mets
+Terminaisons verbales régulières
+Accords en genre et en nombre
+10. Ponctuation
+Point, point d’interrogation, point d’exclamation
+Virgule
+Deux-points
+Tirets et alinéas (dialogue)
+Guillemets
+11. Cohérence et syntaxe
+Ordre logique des mots
+Connecteurs (d’abord, ensuite, finalement…)
+Reprises pronominales
