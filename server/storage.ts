@@ -181,269 +181,32 @@ export class MemStorage implements IStorage {
     this.courses.set(course2cId, course2c);
     this.courses.set(course3Id, course3);
 
-    // Create sample exercises for grammar courses
-    const exercise1Id = randomUUID();
-    const exercise1bId = randomUUID();
-    const exercise1cId = randomUUID();
-    const exercise2Id = randomUUID();
-    const exercise2bId = randomUUID();
-    const exercise3Id = randomUUID();
+    // No grammar exercises in this section - they go in the Exercices tab
+
+    // Create exercises for reading texts
     const exercise4Id = randomUUID();
     const exercise5Id = randomUUID();
-    const exercise2aId = randomUUID();
-    const exercise2aaBId = randomUUID();
-    const exercise2bId2 = randomUUID();
-    const exercise2cId = randomUUID();
-
-    const exercise1: Exercise = {
-      id: exercise1Id,
-      courseId: course1Id,
-      title: "Exercice: Identifier les noms",
-      description: "Identifiez les noms dans les phrases suivantes",
-      type: "multiple_choice",
-      order: 1,
-    };
-
-    const exercise1b: Exercise = {
-      id: exercise1bId,
-      courseId: course1Id,
-      title: "Exercice: Noms communs vs noms propres",
-      description: "Distinguez les noms communs des noms propres",
-      type: "multiple_choice",
-      order: 2,
-    };
-
-    const exercise1c: Exercise = {
-      id: exercise1cId,
-      courseId: course1Id,
-      title: "Exercice: Genre et nombre des noms",
-      description: "Identifiez le genre et le nombre des noms",
-      type: "multiple_choice",
-      order: 3,
-    };
-
-    const exercise2: Exercise = {
-      id: exercise2Id,
-      courseId: course2Id,
-      title: "Exercice: Identifier les verbes",
-      description: "Trouvez tous les verbes dans les phrases",
-      type: "multiple_choice",
-      order: 1,
-    };
-
-    const exercise2b: Exercise = {
-      id: exercise2bId,
-      courseId: course2Id,
-      title: "Exercice: Verbes d'action ou d'état",
-      description: "Classifiez les verbes selon leur type",
-      type: "multiple_choice",
-      order: 2,
-    };
-
-    const exercise2a: Exercise = {
-      id: exercise2aId,
-      courseId: course2aId,
-      title: "Exercice: Identifier les adjectifs",
-      description: "Trouvez les adjectifs dans les phrases",
-      type: "multiple_choice",
-      order: 1,
-    };
-
-    const exercise2aB: Exercise = {
-      id: exercise2aaBId,
-      courseId: course2aId,
-      title: "Exercice: Accord des adjectifs",
-      description: "Accordez les adjectifs avec les noms",
-      type: "multiple_choice",
-      order: 2,
-    };
-
-    const exercise2b2: Exercise = {
-      id: exercise2bId2,
-      courseId: course2bId,
-      title: "Exercice: Remplacer par un pronom",
-      description: "Remplacez les noms par des pronoms appropriés",
-      type: "multiple_choice",
-      order: 1,
-    };
-
-    const exercise2c: Exercise = {
-      id: exercise2cId,
-      courseId: course2cId,
-      title: "Exercice: Prépositions de lieu et temps",
-      description: "Choisissez la bonne préposition",
-      type: "multiple_choice",
-      order: 1,
-    };
 
     const exercise4: Exercise = {
       id: exercise4Id,
       courseId: course3Id,
-      title: "Exercice: Analyser la structure narrative",
-      description: "Identifiez les éléments du texte narratif",
-      type: "multiple_choice",
+      title: "Lecture: Analyser un texte narratif",
+      description: "Lisez et analysez un texte narratif",
+      type: "reading",
       order: 1,
     };
 
     const exercise5: Exercise = {
       id: exercise5Id,
       courseId: course3Id,
-      title: "Exercice: Écrire un texte narratif",
-      description: "Écrivez un court texte narratif sur un événement",
-      type: "text",
+      title: "Écriture: Créer un texte narratif",
+      description: "Écrivez votre propre texte narratif",
+      type: "writing",
       order: 2,
     };
 
-    this.exercises.set(exercise1Id, exercise1);
-    this.exercises.set(exercise1bId, exercise1b);
-    this.exercises.set(exercise1cId, exercise1c);
-    this.exercises.set(exercise2Id, exercise2);
-    this.exercises.set(exercise2bId, exercise2b);
-    this.exercises.set(exercise2aId, exercise2a);
-    this.exercises.set(exercise2aaBId, exercise2aB);
-    this.exercises.set(exercise2bId2, exercise2b2);
-    this.exercises.set(exercise2cId, exercise2c);
     this.exercises.set(exercise4Id, exercise4);
     this.exercises.set(exercise5Id, exercise5);
-
-    // Create sample questions
-    const question1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise1Id,
-      title: "Question 1",
-      text: 'Quel est le nom dans la phrase: "Le chat noir dort sur le canapé"?',
-      type: "multiple_choice",
-      options: JSON.stringify(["Le", "chat", "noir", "dort"]),
-      correctAnswer: "chat",
-      order: 1,
-    };
-
-    const question2: Question = {
-      id: randomUUID(),
-      exerciseId: exercise1Id,
-      title: "Question 2",
-      text: 'Combien de noms y a-t-il dans la phrase: "La fille et le garçon jouent au parc"?',
-      type: "multiple_choice",
-      options: JSON.stringify(["1", "2", "3", "4"]),
-      correctAnswer: "3",
-      order: 2,
-    };
-
-    // Questions for exercise1b
-    const question1b1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise1bId,
-      title: "Question 1",
-      text: "Quel est le nom propre dans cette liste?",
-      type: "multiple_choice",
-      options: JSON.stringify(["chat", "Paris", "maison", "liberté"]),
-      correctAnswer: "Paris",
-      order: 1,
-    };
-
-    const question1b2: Question = {
-      id: randomUUID(),
-      exerciseId: exercise1bId,
-      title: "Question 2",
-      text: 'Dans la phrase "Marie habite à Lyon", identifiez les noms propres:',
-      type: "multiple_choice",
-      options: JSON.stringify(["Marie", "Lyon", "Marie et Lyon", "habite"]),
-      correctAnswer: "Marie et Lyon",
-      order: 2,
-    };
-
-    // Questions for exercise1c
-    const question1c1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise1cId,
-      title: "Question 1",
-      text: 'Quel est le genre du nom "table"?',
-      type: "multiple_choice",
-      options: JSON.stringify(["Masculin", "Féminin", "Les deux", "Ni l'un ni l'autre"]),
-      correctAnswer: "Féminin",
-      order: 1,
-    };
-
-    // Questions for exercise2
-    const question2a: Question = {
-      id: randomUUID(),
-      exerciseId: exercise2Id,
-      title: "Question 1",
-      text: 'Quel est le verbe dans la phrase: "Le professeur enseigne les mathématiques"?',
-      type: "multiple_choice",
-      options: JSON.stringify(["professeur", "enseigne", "mathématiques", "Les"]),
-      correctAnswer: "enseigne",
-      order: 1,
-    };
-
-    const question2b1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise2bId,
-      title: "Question 1",
-      text: 'Le verbe "être" dans la phrase "Elle est heureuse" est:',
-      type: "multiple_choice",
-      options: JSON.stringify(["Verbe d'action", "Verbe d'état", "Verbe transitif", "Verbe intransitif"]),
-      correctAnswer: "Verbe d'état",
-      order: 1,
-    };
-
-    // Questions for adjectifs exercise
-    const question2a1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise2aId,
-      title: "Question 1",
-      text: 'Dans la phrase "Une belle maison blanche", quels sont les adjectifs?',
-      type: "multiple_choice",
-      options: JSON.stringify(["belle", "blanche", "belle et blanche", "maison"]),
-      correctAnswer: "belle et blanche",
-      order: 1,
-    };
-
-    const question2aB1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise2aaBId,
-      title: "Question 1",
-      text: "Accorder: Une fille _____ (beau)",
-      type: "multiple_choice",
-      options: JSON.stringify(["beau", "beaux", "belle", "belles"]),
-      correctAnswer: "belle",
-      order: 1,
-    };
-
-    // Questions for pronouns exercise
-    const question2b2_1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise2bId2,
-      title: "Question 1",
-      text: 'Remplacez "les enfants" par un pronom: "Je vois les enfants tous les jours"',
-      type: "multiple_choice",
-      options: JSON.stringify(["les", "leur", "lui", "eux"]),
-      correctAnswer: "les",
-      order: 1,
-    };
-
-    // Questions for prepositions exercise
-    const question2c1: Question = {
-      id: randomUUID(),
-      exerciseId: exercise2cId,
-      title: "Question 1",
-      text: "Complétez: Le livre est _____ la table",
-      type: "multiple_choice",
-      options: JSON.stringify(["en", "sur", "à", "de"]),
-      correctAnswer: "sur",
-      order: 1,
-    };
-
-    const question3: Question = {
-      id: randomUUID(),
-      exerciseId: exercise3Id,
-      title: "Question 1",
-      text: 'Dans la phrase "Le professeur enseigne les mathématiques", identifiez les noms:',
-      type: "multiple_choice",
-      options: JSON.stringify(["professeur", "mathématiques", "professeur et mathématiques", "enseigne"]),
-      correctAnswer: "professeur et mathématiques",
-      order: 1,
-    };
 
     const question4: Question = {
       id: randomUUID(),
@@ -696,18 +459,6 @@ export class MemStorage implements IStorage {
       order: 2,
     };
 
-    this.questions.set(question1.id, question1);
-    this.questions.set(question2.id, question2);
-    this.questions.set(question1b1.id, question1b1);
-    this.questions.set(question1b2.id, question1b2);
-    this.questions.set(question1c1.id, question1c1);
-    this.questions.set(question2a.id, question2a);
-    this.questions.set(question2b1.id, question2b1);
-    this.questions.set(question2a1.id, question2a1);
-    this.questions.set(question2aB1.id, question2aB1);
-    this.questions.set(question2b2_1.id, question2b2_1);
-    this.questions.set(question2c1.id, question2c1);
-    this.questions.set(question3.id, question3);
     this.questions.set(question4.id, question4);
     this.questions.set(question5.id, question5);
     this.questions.set(readQ1.id, readQ1);
