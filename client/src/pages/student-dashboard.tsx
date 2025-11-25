@@ -165,7 +165,7 @@ export default function StudentDashboard() {
     );
   }
 
-  const writingExercises = exercises.filter((ex) => ex.type === "text");
+  const writingExercises = exercises.filter((ex) => ex.type === "text" && ex.title.startsWith("Écriture:"));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">

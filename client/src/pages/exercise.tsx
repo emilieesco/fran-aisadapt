@@ -9,7 +9,7 @@ interface Question {
   title: string;
   text: string;
   type: string;
-  options?: string[];
+  options?: string | string[];
   correctAnswer: string;
   order: number;
 }
@@ -45,7 +45,12 @@ export default function Exercise() {
         if (exerciseRes.ok) setExercise(await exerciseRes.json());
         if (questionsRes.ok) {
           const qs = await questionsRes.json();
-          setQuestions(qs);
+          // Parse JSON options if they're strings
+          const parsedQs = qs.map((q: Question) => ({
+            ...q,
+            options: typeof q.options === 'string' ? JSON.parse(q.options) : q.options
+          }));
+          setQuestions(parsedQs);
         }
       } catch (err) {
         console.error("Erreur:", err);
