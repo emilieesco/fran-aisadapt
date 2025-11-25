@@ -2196,24 +2196,24 @@ export class MemStorage implements IStorage {
     // Templates for different question types
     const exerciseTemplates = {
       grammaire: [
-        { type: "multiple_choice", q1: "Identifiez l'élément grammatical correct dans cette phrase.", q2: "Quelle est la bonne transformation de cette phrase?" },
-        { type: "text", q1: "Écrivez 2-3 phrases utilisant ce concept grammatical.", q2: "Expliquez avec vos propres mots." }
+        { type: "multiple_choice", name: "Identification grammaticale", q1: "Identifiez l'élément grammatical correct dans cette phrase.", q2: "Quelle est la bonne transformation de cette phrase?" },
+        { type: "text", name: "Pratique: Expression grammaticale", q1: "Écrivez 2-3 phrases utilisant ce concept grammatical.", q2: "Expliquez avec vos propres mots." }
       ],
       orthographe: [
-        { type: "multiple_choice", q1: "Quelle est l'orthographe correcte?", q2: "Complétez correctement." },
-        { type: "text", q1: "Écrivez 3 mots avec cette règle d'orthographe.", q2: "Expliquez la règle appliquée." }
+        { type: "multiple_choice", name: "Orthographe: Choix multiples", q1: "Quelle est l'orthographe correcte?", q2: "Complétez correctement." },
+        { type: "text", name: "Orthographe: Rédaction", q1: "Écrivez 3 mots avec cette règle d'orthographe.", q2: "Expliquez la règle appliquée." }
       ],
       conjugaison: [
-        { type: "multiple_choice", q1: "Conjuguez ce verbe au bon temps.", q2: "Quel est le bon mode verbal?" },
-        { type: "text", q1: "Écrivez 3 phrases avec ce verbe au temps indiqué.", q2: "Justifiez votre choix de temps." }
+        { type: "multiple_choice", name: "Conjugaison: Temps et modes", q1: "Conjuguez ce verbe au bon temps.", q2: "Quel est le bon mode verbal?" },
+        { type: "text", name: "Conjugaison: Rédaction", q1: "Écrivez 3 phrases avec ce verbe au temps indiqué.", q2: "Justifiez votre choix de temps." }
       ],
       ponctuation: [
-        { type: "multiple_choice", q1: "Où placer la ponctuation?", q2: "Quel signe convient?" },
-        { type: "text", q1: "Ponctuez correctement ce texte.", q2: "Expliquez vos choix." }
+        { type: "multiple_choice", name: "Ponctuation: Placement", q1: "Où placer la ponctuation?", q2: "Quel signe convient?" },
+        { type: "text", name: "Ponctuation: Application", q1: "Ponctuez correctement ce texte.", q2: "Expliquez vos choix." }
       ],
       vocabulaire: [
-        { type: "multiple_choice", q1: "Quel mot convient le mieux?", q2: "Trouvez le synonyme." },
-        { type: "text", q1: "Utilisez ce mot dans 2 phrases différentes.", q2: "Expliquez son sens." }
+        { type: "multiple_choice", name: "Vocabulaire: Choix du mot", q1: "Quel mot convient le mieux?", q2: "Trouvez le synonyme." },
+        { type: "text", name: "Vocabulaire: Utilisation", q1: "Utilisez ce mot dans 2 phrases différentes.", q2: "Expliquez son sens." }
       ]
     };
 
@@ -2222,15 +2222,15 @@ export class MemStorage implements IStorage {
       const templates = exerciseTemplates[courseInfo.category as keyof typeof exerciseTemplates] || exerciseTemplates.grammaire;
       
       for (let exNum = 0; exNum < 2; exNum++) {
-        const template = templates[exNum];
+        const template = templates[exNum] as any;
         const exerciseId = randomUUID();
         const exerciseType = template.type as "multiple_choice" | "text";
         
         const exercise: Exercise = {
           id: exerciseId,
           courseId,
-          title: `Exercice ${exNum + 1}: ${courseInfo.title}`,
-          description: `Pratiquez: ${courseInfo.title}`,
+          title: `${template.name} - ${courseInfo.title}`,
+          description: `${template.name}: ${courseInfo.title}`,
           type: exerciseType,
           order: exNum + 1,
         };
