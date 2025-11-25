@@ -72,16 +72,6 @@ export default function Landing() {
             </Button>
           </div>
         </div>
-
-        {/* Hero Image/Illustration */}
-        <div className="mt-16 rounded-2xl overflow-hidden shadow-2xl">
-          <div className="bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 aspect-video flex items-center justify-center">
-            <div className="text-center space-y-4">
-              <BookOpen className="w-24 h-24 text-blue-400 mx-auto opacity-50" />
-              <p className="text-muted-foreground">Votre espace d'apprentissage personnalisé</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Features Section */}
