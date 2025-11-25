@@ -356,7 +356,9 @@ export default function StudentDashboard() {
                       .filter(
                         (e) =>
                           courses.find((c) => c.id === e.courseId)?.title ===
-                            "Structure du texte narratif" && e.type === "text"
+                            "Structure du texte narratif" && 
+                          e.type === "text" && 
+                          e.title.startsWith("Lecture:")
                       )
                       .map((exercise) => (
                         <Card
@@ -437,7 +439,9 @@ export default function StudentDashboard() {
                       .filter(
                         (e) =>
                           courses.find((c) => c.id === e.courseId)?.title ===
-                            "Texte descriptif" && e.type === "text"
+                            "Texte descriptif" && 
+                          e.type === "text" && 
+                          e.title.startsWith("Lecture:")
                       )
                       .map((exercise) => (
                         <Card
@@ -518,7 +522,9 @@ export default function StudentDashboard() {
                       .filter(
                         (e) =>
                           courses.find((c) => c.id === e.courseId)?.title ===
-                            "Texte explicatif" && e.type === "text"
+                            "Texte explicatif" && 
+                          e.type === "text" && 
+                          e.title.startsWith("Lecture:")
                       )
                       .map((exercise) => (
                         <Card
@@ -599,7 +605,9 @@ export default function StudentDashboard() {
                       .filter(
                         (e) =>
                           courses.find((c) => c.id === e.courseId)?.title ===
-                            "Texte argumentatif" && e.type === "text"
+                            "Texte argumentatif" && 
+                          e.type === "text" && 
+                          e.title.startsWith("Lecture:")
                       )
                       .map((exercise) => (
                         <Card
@@ -680,7 +688,9 @@ export default function StudentDashboard() {
                       .filter(
                         (e) =>
                           courses.find((c) => c.id === e.courseId)?.title ===
-                            "Texte informatif" && e.type === "text"
+                            "Texte informatif" && 
+                          e.type === "text" && 
+                          e.title.startsWith("Lecture:")
                       )
                       .map((exercise) => (
                         <Card
