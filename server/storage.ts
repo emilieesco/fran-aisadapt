@@ -1070,11 +1070,177 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
+    // 6 à 20 - Nouvelles histoires narratives
+    const readingExercise6Id = randomUUID();
+    const readingExercise6: Exercise = {
+      id: readingExercise6Id,
+      courseId: course3Id,
+      title: "Histoire 6: Le Voyage en Train",
+      description: "Une histoire de voyage et de découverte",
+      type: "text",
+      order: 6,
+    };
+
+    const readingExercise7Id = randomUUID();
+    const readingExercise7: Exercise = {
+      id: readingExercise7Id,
+      courseId: course3Id,
+      title: "Histoire 7: La Cabane Mystérieuse",
+      description: "Une exploration dans la forêt",
+      type: "text",
+      order: 7,
+    };
+
+    const readingExercise8Id = randomUUID();
+    const readingExercise8: Exercise = {
+      id: readingExercise8Id,
+      courseId: course3Id,
+      title: "Histoire 8: Le Concours de Dessin",
+      description: "Une compétition artistique",
+      type: "text",
+      order: 8,
+    };
+
+    const readingExercise9Id = randomUUID();
+    const readingExercise9: Exercise = {
+      id: readingExercise9Id,
+      courseId: course3Id,
+      title: "Histoire 9: La Maison Hantée",
+      description: "Un mystère à résoudre",
+      type: "text",
+      order: 9,
+    };
+
+    const readingExercise10Id = randomUUID();
+    const readingExercise10: Exercise = {
+      id: readingExercise10Id,
+      courseId: course3Id,
+      title: "Histoire 10: Le Secret du Grenier",
+      description: "Une découverte familiale",
+      type: "text",
+      order: 10,
+    };
+
+    const readingExercise11Id = randomUUID();
+    const readingExercise11: Exercise = {
+      id: readingExercise11Id,
+      courseId: course3Id,
+      title: "Histoire 11: La Course Épique",
+      description: "Un défi sportif mémorable",
+      type: "text",
+      order: 11,
+    };
+
+    const readingExercise12Id = randomUUID();
+    const readingExercise12: Exercise = {
+      id: readingExercise12Id,
+      courseId: course3Id,
+      title: "Histoire 12: Le Festival Annuel",
+      description: "Une célébration du village",
+      type: "text",
+      order: 12,
+    };
+
+    const readingExercise13Id = randomUUID();
+    const readingExercise13: Exercise = {
+      id: readingExercise13Id,
+      courseId: course3Id,
+      title: "Histoire 13: L'Animal Perdu",
+      description: "Une recherche touchante",
+      type: "text",
+      order: 13,
+    };
+
+    const readingExercise14Id = randomUUID();
+    const readingExercise14: Exercise = {
+      id: readingExercise14Id,
+      courseId: course3Id,
+      title: "Histoire 14: Le Trésor Caché du Jardin",
+      description: "Une aventure souterraine",
+      type: "text",
+      order: 14,
+    };
+
+    const readingExercise15Id = randomUUID();
+    const readingExercise15: Exercise = {
+      id: readingExercise15Id,
+      courseId: course3Id,
+      title: "Histoire 15: La Tempête",
+      description: "Un événement dramatique",
+      type: "text",
+      order: 15,
+    };
+
+    const readingExercise16Id = randomUUID();
+    const readingExercise16: Exercise = {
+      id: readingExercise16Id,
+      courseId: course3Id,
+      title: "Histoire 16: L'Île Déserte",
+      description: "Une survie inattendue",
+      type: "text",
+      order: 16,
+    };
+
+    const readingExercise17Id = randomUUID();
+    const readingExercise17: Exercise = {
+      id: readingExercise17Id,
+      courseId: course3Id,
+      title: "Histoire 17: La Bibliothèque Secrète",
+      description: "Un monde de connaissances",
+      type: "text",
+      order: 17,
+    };
+
+    const readingExercise18Id = randomUUID();
+    const readingExercise18: Exercise = {
+      id: readingExercise18Id,
+      courseId: course3Id,
+      title: "Histoire 18: Le Concert Spécial",
+      description: "Une performance musicale",
+      type: "text",
+      order: 18,
+    };
+
+    const readingExercise19Id = randomUUID();
+    const readingExercise19: Exercise = {
+      id: readingExercise19Id,
+      courseId: course3Id,
+      title: "Histoire 19: La Lettre du Futur",
+      description: "Un message intemporel",
+      type: "text",
+      order: 19,
+    };
+
+    const readingExercise20Id = randomUUID();
+    const readingExercise20: Exercise = {
+      id: readingExercise20Id,
+      courseId: course3Id,
+      title: "Histoire 20: L'Aventure Finale",
+      description: "Le grand voyage",
+      type: "text",
+      order: 20,
+    };
+
     this.exercises.set(readingExercise1Id, readingExercise1);
     this.exercises.set(readingExercise2Id, readingExercise2);
     this.exercises.set(readingExercise3Id, readingExercise3);
     this.exercises.set(readingExercise4Id, readingExercise4);
     this.exercises.set(readingExercise5Id, readingExercise5);
+    this.exercises.set(readingExercise6Id, readingExercise6);
+    this.exercises.set(readingExercise7Id, readingExercise7);
+    this.exercises.set(readingExercise8Id, readingExercise8);
+    this.exercises.set(readingExercise9Id, readingExercise9);
+    this.exercises.set(readingExercise10Id, readingExercise10);
+    this.exercises.set(readingExercise11Id, readingExercise11);
+    this.exercises.set(readingExercise12Id, readingExercise12);
+    this.exercises.set(readingExercise13Id, readingExercise13);
+    this.exercises.set(readingExercise14Id, readingExercise14);
+    this.exercises.set(readingExercise15Id, readingExercise15);
+    this.exercises.set(readingExercise16Id, readingExercise16);
+    this.exercises.set(readingExercise17Id, readingExercise17);
+    this.exercises.set(readingExercise18Id, readingExercise18);
+    this.exercises.set(readingExercise19Id, readingExercise19);
+    this.exercises.set(readingExercise20Id, readingExercise20);
 
     // Writing exercises
     const writingExercise1Id = randomUUID();
@@ -1303,6 +1469,681 @@ export class MemStorage implements IStorage {
       order: 4,
     };
 
+    // HISTOIRE 6: Le Voyage en Train
+    const readQ11: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Histoire 6: Le Voyage en Train",
+      text: "Alex avait 12 ans et n'avait jamais pris le train tout seul. Il vivait dans une petite ville de province et devait aller passer une semaine chez sa tante à Paris. C'était un garçon timide mais courageux qui aimait les aventures. Le matin du voyage, il monta dans le train avec son billet précieux, son cœur battant vite d'excitation et de nervosité.\n\nDans le wagon, il rencontra une vieille femme avec des cheveux blancs et des yeux bienveillants. Elle s'appelait Madame Beaumont. Pendant les premières heures du voyage, ils parlèrent de tout - de sa famille, de l'école, de ses rêves. Madame Beaumont lui raconta des histoires fascinantes sur ses propres voyages en train.\n\nAu moment de la pause, Alex réalisa avec horreur qu'il ne trouvait plus son billet! Il le chercha partout - sa poche, son sac, sous son siège. Rien! Il pensa que tout était perdu. Il commença à pleurer de frustration. Comment pouvait-il aller chez sa tante sans billet?\n\nMais Madame Beaumont le calma. \"Ne t'inquiète pas, jeune homme. Viens avec moi.\" Elle l'accompagna au contrôleur du train et expliqua la situation. Le contrôleur vérif ia l'achat du billet sur le système informatique et permit à Alex de continuer. Mais plus encore, Madame Beaumont prit son numéro de téléphone et devint une amie correspondante. Alex comprit ce jour-là que les gens bienveillants existent partout.\n\nQuel était le défi principal qu'Alex a affronté dans ce voyage?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il avait peur du train", "Il avait perdu son billet", "Il ne connaissait pas le chemin", "Il avait oublié ses affaires"]),
+      correctAnswer: "Il avait perdu son billet",
+      order: 1,
+    };
+
+    const readQ11b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qui Alex a-t-il rencontré dans le train?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un contrôleur", "Une vieille femme bienveillante", "Son ami d'école", "Un autre voyageur"]),
+      correctAnswer: "Une vieille femme bienveillante",
+      order: 2,
+    };
+
+    const readQ11c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème grave s'est produit pendant le voyage?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le train s'arrêta", "Alex perdit son billet", "Il eut faim", "Le train était bondé"]),
+      correctAnswer: "Alex perdit son billet",
+      order: 3,
+    };
+
+    const readQ11d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment l'histoire s'est-elle terminée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Alex ne put pas continuer", "Madame Beaumont l'aida et devint une amie", "Il dut retourner", "Le contrôleur l'expulsa"]),
+      correctAnswer: "Madame Beaumont l'aida et devint une amie",
+      order: 4,
+    };
+
+    // HISTOIRE 7: La Cabane Mystérieuse
+    const readQ12: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Histoire 7: La Cabane Mystérieuse",
+      text: "Julien et sa meilleure amie Karine explorai ent une vieille forêt derrière leur village. C'était une forêt dense avec des arbres très anciens et un silence mystérieux. Ils aimaient partir en exploration après l'école pour chercher des aventures et des secrets cachés. Un jour, en marchant plus profondément dans la forêt qu'ils n'avaient jamais osé le faire auparavant, Julien remarqua une petite cabane en bois cachée entre les buissons.\n\nLa cabane était vieille, poussiéreuse, avec une porte rouillée et des fenêtres couvertes de toiles d'araignée. On aurait dit qu'elle n'avait pas été visitée depuis des années. Julien et Karine ne savaient pas si c'était dangereux d'entrer, mais leur curiosité était plus forte que leur peur. Ils ouvrirent doucement la porte.\n\nInopinément, une voix forte retentit: \"Qui êtes-vous? Que faites-vous ici?\" Ils eurent peur et virent un vieil homme avec une longue barbe, le propriétaire de la cabane. Ils eurent peur qu'il les chasse.\n\nMais le vieil homme les accueillit chaleureusement. Il s'appelait Monsieur Leclerc et avait vécu en reclus pour écrire des histoires. Il leur montra tous ses manuscrits, ses dessins, ses inventions. Il devint un ami merveilleux et les enfants revinrent souvent le visiter. Le secret de la cabane ne fut plus un mystère mais une belle amitié.\n\nOù Julien et Karine ont-ils trouvé la cabane?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Au village", "Dans la forêt derrière leur village", "Au bord de la rivière", "Dans les montagnes"]),
+      correctAnswer: "Dans la forêt derrière leur village",
+      order: 1,
+    };
+
+    const readQ12b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qu'ont trouvé Julien et Karine après l'école?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un trésor", "Une vieille cabane en bois", "Des animaux", "Une autre forêt"]),
+      correctAnswer: "Une vieille cabane en bois",
+      order: 2,
+    };
+
+    const readQ12c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème les enfants ont-ils affronté?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La porte était verrouillée", "Une voix forte les a effrayés", "Ils se sont perdus", "Il faisait nuit"]),
+      correctAnswer: "Une voix forte les a effrayés",
+      order: 3,
+    };
+
+    const readQ12d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 4 (Dénouement)",
+      text: "Qui était le propriétaire de la cabane?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un agriculteur", "Un fantôme", "Monsieur Leclerc, un écrivain en reclus", "Un vieux moine"]),
+      correctAnswer: "Monsieur Leclerc, un écrivain en reclus",
+      order: 4,
+    };
+
+    // HISTOIRE 8: Le Concours de Dessin
+    const readQ13: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Histoire 8: Le Concours de Dessin",
+      text: "Maya était une fille de 10 ans passionnée par le dessin. Depuis son plus jeune âge, elle dessinait tout - les animaux, les paysages, les personnes, ses rêves et ses émotions. Son carnet de croquis était rempli de dessins colorés et expressifs. Ses parents la soutenant toujours et affichaient ses meilleures œuvres au réfrigérateur. Son professeur de dessin disait souvent: \"Maya, tu as un vrai talent. Continue comme cela.\"\n\nUn jour, l'école annonce un concours de dessin régional. Les lauréats seraient exposés au musée local. Maya vit l'affiche et son cœur sauta. C'était l'occasion qu'elle attendait! Elle se mit à dessiner son meilleur dessin - une magnifique forêt avec des animaux.\n\nMais quand l'heure du concours arriva, Maya eut une crise de doute. Elle regarda ses autres camarades présenter leurs dessins. Certains semblaient si professionnels, si parfaits! Elle pensa que son dessin n'était pas assez bon. Elle voulait abandonner et rentrer à la maison.\n\nSa mère lui dit: \"Maya, le concours n'est pas sur la perfection. C'est sur l'originalité et le cœur que tu mets dans ton travail.\" Maya prit une profonde respiration et soumit son dessin. Des semaines plus tard, elle reçut une lettre: elle avait GAGNÉ! Son dessin était apprécié pour son originalité et sa beauté unique.\n\nQuelle était la passion principale de Maya?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La musique", "Le dessin", "Le sport", "La danse"]),
+      correctAnswer: "Le dessin",
+      order: 1,
+    };
+
+    const readQ13b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Quel événement a changé la vie de Maya?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un compliment de son professeur", "Un concours de dessin régional annoncé", "L'exposition de ses dessins", "Une visite au musée"]),
+      correctAnswer: "Un concours de dessin régional annoncé",
+      order: 2,
+    };
+
+    const readQ13c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème Maya a-t-elle affronté?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Manque de matériel", "Perte de confiance et doute avant le concours", "Les autres participants étaient agressifs", "Le concours était annulé"]),
+      correctAnswer: "Perte de confiance et doute avant le concours",
+      order: 3,
+    };
+
+    const readQ13d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment l'histoire s'est-elle terminée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Maya abandonna le dessin", "Elle perdit le concours", "Elle gagna grâce à l'originalité de son dessin", "Son dessin fut rejeté"]),
+      correctAnswer: "Elle gagna grâce à l'originalité de son dessin",
+      order: 4,
+    };
+
+    // HISTOIRE 9: La Maison Hantée
+    const readQ14: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Histoire 9: La Maison Hantée",
+      text: "La famille de Noah venait de déménager dans une nouvelle maison au bord d'un petit bois. C'était une belle maison ancienne avec trois étages, des portes en bois massif et un grenier mystérieux. Noah était un garçon courageux de 11 ans. Les premiers jours, tout semblait normal.\n\nMais la nuit, Noah entendit des bruits étranges - des grincements, des coups, des sons qu'il ne pouvait pas expliquer. Au début, il eut peur. Il pensa qu'il y avait un fantôme! Il en parla à ses parents, mais ils dirent que c'était juste le vent ou la maison qui se tassait.\n\nNoah décida d'investiguer. Il monta à l'étage et pensa qu'il y avait quelque chose qui ne va pas. Les bruits venaient de la direction du grenier. Avec une lampe de poche, il monta lentement. Il entendit un bruit de battement d'ailes! Son cœur battait très vite. Était-ce un fantôme ou quelque chose d'autre?\n\nIl continua et découvrit qu'il n'y avait pas de fantôme! C'était une branche qui battait contre la fenêtre du grenier lors du vent! Il n'y avait rien de sinistre. Noah fut soulagé et rit de sa peur. Il répara le problème avec ses parents. La maison n'était pas hantée, juste vieille et bruyante!\n\nQuel était le problème initial que Noah a trouvé?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un vrai fantôme", "Des bruits étranges la nuit", "Des animaux dans la maison", "La maison s'effondrait"]),
+      correctAnswer: "Des bruits étranges la nuit",
+      order: 1,
+    };
+
+    const readQ14b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qu'a décidé de faire Noah?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Quitter la maison", "Appeler un prêtre", "Investiguer le mystère", "Ignorer les bruits"]),
+      correctAnswer: "Investiguer le mystère",
+      order: 2,
+    };
+
+    const readQ14c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 3 (Nœud)",
+      text: "Où Noah a-t-il trouvé la source des bruits?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Au grenier", "En bas de la maison", "Dans le jardin", "La cave"]),
+      correctAnswer: "Au grenier",
+      order: 3,
+    };
+
+    const readQ14d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 4 (Dénouement)",
+      text: "Quelle était la vraie explication?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un vrai fantôme", "Une branche battant contre la fenêtre", "Des souris dans le grenier", "Un intrus"]),
+      correctAnswer: "Une branche battant contre la fenêtre",
+      order: 4,
+    };
+
+    // HISTOIRE 10: Le Secret du Grenier
+    const readQ15: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Histoire 10: Le Secret du Grenier",
+      text: "Chaque été, Léon passait une semaine chez ses grands-parents dans leur grande maison à la campagne. Il aimait ces vacances. Cette année-là, le jour de son arrivée, sa grand-mère lui dit avec un air mystérieux: \"Léon, le grenier est interdit cette année. Il y a du travail en cours.\" Cela intrigua beaucoup Léon. Normalement, le grenier était son lieu préféré pour jouer.\n\nCurieux, Léon ne put pas résister. Après quelques jours, quand ses grands-parents faisaient la sieste, il monta l'escalier en bois qui grinçait vers le grenier. En ouvrant la porte, il trouva une merveille! Il y avait des vieux coffres, des albums photo anciens, des lettres jaunes par le temps, et des objets incroyables que son grand-père avait collectés au cours de sa vie.\n\nEn feuilletant un album, Léon vit des photos de son grand-père pendant la Seconde Guerre mondiale, en tant que pilote d'avion courageux. Il trouva aussi des lettres d'amour entre son grand-père et sa grand-mère écrites avant leur mariage. C'était comme découvrir une partie cachée de l'histoire familiale!\n\nCe soir-là, Léon demanda à ses grands-parents pourquoi le grenier était interdit. Ils sourirent et s'assirent avec lui. Pendant des heures, ils partagèrent des histoires de leur jeunesse, de leurs aventures, de la guerre, de leur amour qui a duré 60 ans. Léon comprit que ses grands-parents avaient mené des vies extraordinaires et héroïques.\n\nPourquoi le grenier était-il interdit?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'était dangereux", "Il y avait du travail en cours", "Les grands-parents le nettoyaient", "C'était fermé à clé"]),
+      correctAnswer: "Il y avait du travail en cours",
+      order: 1,
+    };
+
+    const readQ15b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qu'a découvert Léon au grenier?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Des jouets cassés", "Des vieux coffres, albums photo et histoires familiales", "Juste de la poussière", "Rien du tout"]),
+      correctAnswer: "Des vieux coffres, albums photo et histoires familiales",
+      order: 2,
+    };
+
+    const readQ15c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel secret familial Léon a-t-il découvert?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ses grands-parents n'étaient pas vraiment mariés", "Son grand-père était un pilote courageux pendant la guerre", "Ses grands-parents étaient riches", "Sa grand-mère était danseuse"]),
+      correctAnswer: "Son grand-père était un pilote courageux pendant la guerre",
+      order: 3,
+    };
+
+    const readQ15d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment l'histoire s'est-elle terminée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les grands-parents grondèrent Léon", "Ils partagèrent des histoires extraordinaires de leur vie", "Ils fermèrent le grenier à jamais", "Léon dut quitter la maison"]),
+      correctAnswer: "Ils partagèrent des histoires extraordinaires de leur vie",
+      order: 4,
+    };
+
+    // HISTOIRE 11: La Course Épique
+    const readQ16: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Histoire 11: La Course Épique",
+      text: "Victor était un coureur de 12 ans très rapide. Son école organisait une course annuelle de 5 kilomètres à travers la forêt. Victor s'entraînait depuis des mois pour gagner. Son grand rêve était de finir premier.\n\nLe jour de la course, tous les enfants se rassemblèrent au point de départ. Victor voyait son rival principal, Pierre, qui était aussi très rapide. La course commença et Victor courut aussi vite qu'il pouvait. Il restait deuxième, juste derrière Pierre.\n\nAu kilomètre 3, quelque chose de terrible se produisit. Pierre tomba! Il glissa sur une racine et s'écroula! Victor entendit Pierre crier de douleur. C'était sa chance de gagner! Mais Victor s'arrêta et regarda Pierre. Pierre avait mal à sa jambe et ne pouvait pas se relever.\n\nVictor fit un choix difficile. Il oublia la victoire et aida Pierre à se relever. Il lui donna de l'eau et l'aida à marcher jusqu'au point d'arrivée. Bien qu'ils n'aient pas gagnés, tous les spectateurs applaudirent l'acte de compassion de Victor. Pierre et Victor devinrent des meilleurs amis.\n\nQuel était le rêve de Victor?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Devenir célèbre", "Finir premier à la course", "Voyager autour du monde", "Avoir beaucoup d'amis"]),
+      correctAnswer: "Finir premier à la course",
+      order: 1,
+    };
+
+    const readQ16b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qui était le rival de Victor?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un autre élève", "Pierre, aussi très rapide", "Son frère", "Un coureur professionnel"]),
+      correctAnswer: "Pierre, aussi très rapide",
+      order: 2,
+    };
+
+    const readQ16c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel accident s'est produit?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Victor trébucha", "Pierre tomba sur une racine", "Victor eut un point de côté", "La course fut annulée"]),
+      correctAnswer: "Pierre tomba sur une racine",
+      order: 3,
+    };
+
+    const readQ16d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 4 (Dénouement)",
+      text: "Que fit Victor?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il continua pour gagner", "Il aida Pierre et devint son ami", "Il appela l'ambulance", "Il abandonna la course"]),
+      correctAnswer: "Il aida Pierre et devint son ami",
+      order: 4,
+    };
+
+    // HISTOIRE 12: Le Festival Annuel
+    const readQ17: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Histoire 12: Le Festival Annuel",
+      text: "Chaque année, le village de Sainte-Marguerite organisait un grand festival d'été avec de la musique, de la danse, des feux d'artifice et des spectacles. C'était l'événement le plus attendu de l'année. Iris, une fille de 11 ans, décida de devenir bénévole pour aider l'équipe organisatrice.\n\nPendant des semaines, Iris et d'autres bénévoles travaillèrent pour préparer le festival - décorer les rues, construire les scènes, vérifier les équipements. Iris adorait être utile et faisait partie d'une équipe.\n\nBut le jour du festival, trois jours avant, il y eut un problème technique énorme! Le système d'électricité pour les lumières et le son s'est cassé! Sans électricité, il n'y aurait pas de musique, pas de lumières, pas de spectacles! Les organisateurs étaient désespérés.\n\nMais Iris et les autres bénévoles se mobilisèrent. Ils appelèrent un électricien, ils improvisa des solutions créatives, ils travaillèrent toute la nuit. Au final, ils réparèrent le système juste à temps! Le festival se déroula magnifiquement et fut un grand succès!\n\nQuel était l'événement annuel du village?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un marché", "Un festival d'été", "Une course annuelle", "Une compétition sportive"]),
+      correctAnswer: "Un festival d'été",
+      order: 1,
+    };
+
+    const readQ17b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Pourquoi Iris devint-elle bénévole?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle fut forcée", "Elle voulait aider l'équipe organisatrice", "Elle voulait voyager", "Elle cherchait du travail"]),
+      correctAnswer: "Elle voulait aider l'équipe organisatrice",
+      order: 2,
+    };
+
+    const readQ17c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème technique s'est produit?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La scène s'effondra", "Le système d'électricité s'est cassé", "Les musiciens ne vinrent pas", "La météo était mauvaise"]),
+      correctAnswer: "Le système d'électricité s'est cassé",
+      order: 3,
+    };
+
+    const readQ17d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment le problème a-t-il été résolu?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le festival fut annulé", "Ils appelèrent un électricien et travaillèrent toute la nuit", "Ils utilisèrent des générateurs", "C'était impossible à réparer"]),
+      correctAnswer: "Ils appelèrent un électricien et travaillèrent toute la nuit",
+      order: 4,
+    };
+
+    // HISTOIRE 13: L'Animal Perdu
+    const readQ18: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Histoire 13: L'Animal Perdu",
+      text: "Max était un golden retriever adoré par toute la rue. Il appartenait à la famille Dubois. Chaque jour, Max jouait dans la cour et saluait tous les voisins avec enthousiasme.\n\nUn matin, Max disparu! La famille Dubois l'avait laissé dehors et quand ils sortirent, il n'était plus là! Ils cherchèrent partout mais ne le trouvèrent pas. Ils étaient dévastés. Ils mirent des affiches dans le quartier: \"CHIEN PERDU - RÉCOMPENSE.\"\n\nLes voisins apprirent la nouvelle et décidèrent d'aider. Trois enfants du quartier - Léa, Tomás et Adèle - organisèrent une équipe de recherche. Ils cherchèrent dans les parcs, les forêts proches, les abris pour animaux.\n\nAprès trois jours de recherche intensive, Adèle entendit un aboiement familier près du vieux pont. Elle regarda et vit Max! Il était coincé dans un petit buisson près de l'eau. Il avait dû tomber et ne pouvait pas se sortir.\n\nLes enfants aidèrent Max à sortir et le ramenèrent à sa famille. La famille pleura de joie! Max était sain et sauf! Les voisins organisèrent une fête pour célébrer et pour remercier les enfants courageux.\n\nQuel était le problème principal?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Max s'était enfui", "Max était malade", "Max avait disparu", "Max avait été volé"]),
+      correctAnswer: "Max avait disparu",
+      order: 1,
+    };
+
+    const readQ18b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Comment les voisins ont-ils appris la disparition?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Par la police", "Via les affiches 'CHIEN PERDU'", "À la télévision", "Par un ami"]),
+      correctAnswer: "Via les affiches 'CHIEN PERDU'",
+      order: 2,
+    };
+
+    const readQ18c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 3 (Nœud)",
+      text: "Qui a organisé la recherche?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La police", "Trois enfants du quartier", "La famille seule", "Un groupe de chercheurs"]),
+      correctAnswer: "Trois enfants du quartier",
+      order: 3,
+    };
+
+    const readQ18d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 4 (Dénouement)",
+      text: "Où Max a-t-il été retrouvé?",
+      type: "multiple_choice",
+      options: JSON.stringify(["À la maison", "Dans un parc", "Coincé dans un buisson près du vieux pont", "À l'abri pour animaux"]),
+      correctAnswer: "Coincé dans un buisson près du vieux pont",
+      order: 4,
+    };
+
+    // HISTOIRE 14: Le Trésor Caché du Jardin
+    const readQ19: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Histoire 14: Le Trésor Caché du Jardin",
+      text: "Olivier jouait dans le grand jardin de sa grand-mère. C'était un beau jardin avec des roses, des arbres fruitiers et une petite fontaine. Olivier adorait jouer au détective dans ce jardin magique.\n\nUn jour, en creusant sous un vieux pommier, sa pelle toucha quelque chose de dur. Olivier déterrait une vieille boîte en bois! Elle était rouillée et couverte de terre, mais elle était intacte.\n\nÀ l'intérieur, il trouva une vieille carte dessinée à la main, des pièces d'or anciennes, des bijoux et une lettre jaunie. La lettre était signée par un homme du 18e siècle qui avait enterré ces objets pour les protéger pendant une guerre!\n\nOlivier montra tout à sa grand-mère. Elle contacta un musée local. Les experts examinèrent les objets et décidèrent que c'était une trouvaille historique importante! Olivier gagna même une bourse pour l'université et devint archéologue plus tard!\n\nQu'Olivier a-t-il découvert?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Des jouets", "Une vieille boîte avec des trésors historiques", "Des documents officiels", "Des bonbons"]),
+      correctAnswer: "Une vieille boîte avec des trésors historiques",
+      order: 1,
+    };
+
+    const readQ19b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Où Olivier jouait-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["À l'école", "Dans le jardin de sa grand-mère", "À la plage", "Au parc"]),
+      correctAnswer: "Dans le jardin de sa grand-mère",
+      order: 2,
+    };
+
+    const readQ19c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 3 (Nœud)",
+      text: "Qu'y avait-il dans la boîte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Des vêtements", "Une carte, des pièces d'or, des bijoux et une lettre historique", "Des photos", "Des livres"]),
+      correctAnswer: "Une carte, des pièces d'or, des bijoux et une lettre historique",
+      order: 3,
+    };
+
+    const readQ19d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 4 (Dénouement)",
+      text: "Qu'est-il arrivé à Olivier?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Rien de spécial", "Il gagna une bourse et devint archéologue", "Il devint riche", "Il oublia la découverte"]),
+      correctAnswer: "Il gagna une bourse et devint archéologue",
+      order: 4,
+    };
+
+    // HISTOIRE 15: La Tempête
+    const readQ20: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Histoire 15: La Tempête",
+      text: "La famille Martins organisait un pique-nique dans la forêt. Le soleil brillait, le ciel était bleu et tout semblait parfait. Les enfants jouaient, les parents mangeaient et riaient. C'était un dimanche merveilleux.\n\nMais soudain, le ciel devint noir. Des nuages menaçants arrivèrent rapidement. Le vent commença à souffler fort. Les feuilles volaient partout. Les parents réalisèrent qu'une tempête arrivait vite!\n\nEn une minute, la pluie torrentiella commença à tomber! La tempête était violente avec du tonnerre et des éclairs! Les enfants eurent peur! La famille essaya de se réfugier sous les arbres mais ce n'était pas assez sûr.\n\nLe père prit rapidement les enfants et courut vers la voiture. Dans la confusion et le chaos, la petite fille Léa se sépara de sa mère! Tout le monde cria son nom: \"Léa! Léa!\" Les parents paniquèrent.\n\nAprès quelques minutes terrifiantes, le père la retrouva en train d'attendre sous un buisson. Elle était mouillée et effrayée mais en sécurité. Toute la famille se réunit dans la voiture. Ils rentrèrent à la maison. Bien que l'expérience ait été terrifiante, la famille devint plus unie et reconnaissante de s'avoir les uns les autres.\n\nOù la famille se pique-niquait-elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["À la plage", "Dans la forêt", "Au parc de la ville", "En montagne"]),
+      correctAnswer: "Dans la forêt",
+      order: 1,
+    };
+
+    const readQ20b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qu'est-ce qui a changé le beau temps?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le soleil se coucha", "Une tempête arriva rapidement", "La nuit tomba", "Un incident"]),
+      correctAnswer: "Une tempête arriva rapidement",
+      order: 2,
+    };
+
+    const readQ20c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème grave s'est produit?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le panier de pique-nique se renversa", "Léa se sépara de sa mère dans la tempête", "La voiture ne démarrait pas", "Tout le monde attrapa un rhume"]),
+      correctAnswer: "Léa se sépara de sa mère dans la tempête",
+      order: 3,
+    };
+
+    const readQ20d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment l'histoire s'est-elle terminée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils se perdirent à jamais", "Léa fut retrouvée et la famille rentra en sécurité", "La tempête empira", "Ils durent rester dehors toute la nuit"]),
+      correctAnswer: "Léa fut retrouvée et la famille rentra en sécurité",
+      order: 4,
+    };
+
+    // HISTOIRE 16: L'Île Déserte
+    const readQ21: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Histoire 16: L'Île Déserte",
+      text: "Pendant des vacances d'été, Luc partit en bateau avec sa famille pour une croisière. Il y avait un orage imprévu et le bateau fut secoué violemment. Dans la confusion, Luc tomba à l'eau! Il nagea aussi fort qu'il pouvait et atteignit une petite île déserte.\n\nLuc se retrouva seul sur une île avec seulement ses vêtements mouillés. Il n'y avait personne. Pas de nourriture, pas d'eau douce, rien! Luc eut peur mais aussi déterminé à survivre.\n\nIl utilisa son intelligence pour survivre. Il trouva de l'eau en creusant un petit puits. Il attrapa des poissons avec ses mains. Il construisit un abri avec des branches et du feuillage. Il fit un feu avec des silex. Il créa un signal de détresse avec des rochers sur la plage.\n\nAprès trois jours, un bateau de pêche vit le signal et le sauva! Luc fut secouru et retrouva sa famille. Il devint célèbre comme \"le garçon qui a survécu sur une île déserte\"!\n\nQue s'est-il passé pendant le voyage?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une tempête a éclaté", "Le bateau s'est arrêté", "Il a mangé trop", "Un ami tomba"]),
+      correctAnswer: "Une tempête a éclaté",
+      order: 1,
+    };
+
+    const readQ21b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Où Luc s'est-il retrouvé?",
+      type: "multiple_choice",
+      options: JSON.stringify(["En ville", "Sur une île déserte", "À la maison", "Dans la forêt"]),
+      correctAnswer: "Sur une île déserte",
+      order: 2,
+    };
+
+    const readQ21c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel défi principal Luc a-t-il affronté?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La fatigue", "Pas de nourriture, pas d'eau, complètement seul", "Les animaux dangereux", "La chaleur"]),
+      correctAnswer: "Pas de nourriture, pas d'eau, complètement seul",
+      order: 3,
+    };
+
+    const readQ21d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment Luc a-t-il été secouru?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un bateau de sauvetage arriva", "Un bateau de pêche vit son signal et le sauva", "Il nagea jusqu'à la côte", "Un hélicoptère l'emmena"]),
+      correctAnswer: "Un bateau de pêche vit son signal et le sauva",
+      order: 4,
+    };
+
+    // HISTOIRE 17: La Bibliothèque Secrète
+    const readQ22: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Histoire 17: La Bibliothèque Secrète",
+      text: "Félix aimait être seul et tranquille. L'école était bruyante et le chaos l'épuisait. Un jour, se promenant dans les couloirs de l'école, il remarqua une porte cachée derrière une affiche.\n\nCurieux, il l'ouvrit et découvrit une magnifique bibliothèque secrète! Elle était remplie de milliers de livres, silencieuse et paisible. Il y avait des fauteuils confortables, une petite lampe douce et des fenêtres avec vue sur un jardin.\n\nFélix rentra dans ce monde magique chaque jour après l'école. Il lut des livres de science-fiction, des aventures, des histoires d'amour. Chaque livre l'emmenait dans des mondes différents. Il se fit même un ami - le bibliothécaire, Monsieur Deschamps.\n\nAu fil du temps, Félix devint un grand lecteur appassionné. Son amour pour les livres le changea. Il trouva la confiance, les amis et l'inspiration dans cette bibliothèque secrète.\n\nPourquoi Félix cherchait-il la solitude?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il était triste", "L'école était bruyante et le chaos l'épuisait", "Il était malade", "Il n'aimait pas les gens"]),
+      correctAnswer: "L'école était bruyante et le chaos l'épuisait",
+      order: 1,
+    };
+
+    const readQ22b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qu'a découvert Félix?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une salle de classe", "Une magnifique bibliothèque secrète", "Un trésor", "Une grotte"]),
+      correctAnswer: "Une magnifique bibliothèque secrète",
+      order: 2,
+    };
+
+    const readQ22c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 3 (Nœud)",
+      text: "Comment la bibliothèque a-t-elle changé Félix?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il devint paresseux", "Il découvrit l'amour pour les livres et trouva l'inspiration", "Il abandonna l'école", "Il ne changea pas"]),
+      correctAnswer: "Il découvrit l'amour pour les livres et trouva l'inspiration",
+      order: 3,
+    };
+
+    const readQ22d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 4 (Dénouement)",
+      text: "Qu'est devenu Félix?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il resta isolé", "Il devint un grand lecteur passionné avec confiance et amis", "Il quitta l'école", "Il oublia la bibliothèque"]),
+      correctAnswer: "Il devint un grand lecteur passionné avec confiance et amis",
+      order: 4,
+    };
+
+    // HISTOIRE 18: Le Concert Spécial
+    const readQ23: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Histoire 18: Le Concert Spécial",
+      text: "Depuis l'âge de 5 ans, Camille jouait du piano. Elle rêvait de devenir pianiste professionnelle. Elle pratiquait plusieurs heures chaque jour, ses doigts dansaient sur les touches.\n\nUn jour, son professeur de musique l'invita à jouer dans le grand concert de l'école. C'était une opportunité énorme! Camille était excitée mais aussi très nerveuse.\n\nLa nuit avant le concert, Camille ne put pas dormir. Elle eut le trac terrible. Elle pensa à abandonner. \"Et si je faisais des erreurs? Et si j'oublie la musique? Et si je déçois tout le monde?\"\n\nMais le matin du concert, sa mère lui dit: \"Camille, tu as travaillé si dur. Tu es prête. La musique vient de ton cœur.\"\n\nSur la scène, Camille monta s'asseoir au piano sous les lumières brillantes. Elle vit l'audience assise silencieusement. Son trac augmenta. Mais elle ferma les yeux, prit une profonde respiration, et commença à jouer.\n\nLa musique coulait magnifiquement de ses doigts! Elle jouait avec passion et précision! Quand elle termina, l'audience se leva et applaudit pendant des minutes! Camille comprit que son dur travail avait porté ses fruits!\n\nQuelle était la passion de Camille?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La danse", "La musique et le piano", "Le dessin", "L'écriture"]),
+      correctAnswer: "La musique et le piano",
+      order: 1,
+    };
+
+    const readQ23b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Quel événement changea la vie de Camille?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Son anniversaire", "L'invitation à jouer dans le concert de l'école", "Une compétition", "Un prix"]),
+      correctAnswer: "L'invitation à jouer dans le concert de l'école",
+      order: 2,
+    };
+
+    const readQ23c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème Camille a-t-elle affronté?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle n'avait pas assez pratiqué", "Le trac terrible et peur de l'échec", "Elle n'aimait pas la musique", "Le piano était cassé"]),
+      correctAnswer: "Le trac terrible et peur de l'échec",
+      order: 3,
+    };
+
+    const readQ23d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment fut le concert?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle fit des erreurs", "Elle joua magnifiquement et reçut une ovation", "Elle abandonna", "Le concert fut annulé"]),
+      correctAnswer: "Elle joua magnifiquement et reçut une ovation",
+      order: 4,
+    };
+
+    // HISTOIRE 19: La Lettre du Futur
+    const readQ24: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Histoire 19: La Lettre du Futur",
+      text: "À l'école, le professeur donna un projet intéressant: \"Écrivez une lettre au vous-même du futur. Décrivez vos rêves pour 10 ans à partir de maintenant. On scellera ces lettres et nous les ouvrirons dans 10 ans.\"\n\nSarah écrivit une longue lettre. Elle écrivit sur ses rêves de voyager, d'avoir une bonne carrière, de voir le monde changer.\n\nAprès quelques semaines, en nettoyant sa chambre, Sarah trouva une vieille lettre cachée sous un floorboard. Elle était très ancienne et usée. En l'ouvrant, elle vit qu'elle avait été écrite par quelqu'un en 2010 - 13 ans auparavant!\n\nLa lettre parlait des rêves d'une fille de son âge. Les rêves étaient très similaires aux siens - voyager, réussir, être heureux. C'était comme si quelqu'un d'avant lui parlait à travers le temps!\n\nSarah montra la lettre à ses parents. Ils eurent une grande surprise - c'était la maison de la grand-mère de Sarah avant! La lettre avait probablement été écrite par un autre enfant qui habitait cette maison il y a longtemps!\n\nCet événement inspira Sarah à rêver encore plus grand et à croire que les rêves peuvent se réaliser à travers les générations.\n\nQuel projet le professeur a-t-il donné?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Écrire une biographie", "Écrire une lettre au futur à soi-même", "Faire un journal", "Créer une histoire fictive"]),
+      correctAnswer: "Écrire une lettre au futur à soi-même",
+      order: 1,
+    };
+
+    const readQ24b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qu'a découvert Sarah en nettoyant sa chambre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un vieux journal", "Une vieille lettre écrite en 2010", "De l'argent", "Des photos"]),
+      correctAnswer: "Une vieille lettre écrite en 2010",
+      order: 2,
+    };
+
+    const readQ24c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel était le mystère de la lettre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La lettre était perdue depuis 50 ans", "La lettre venait d'une autre personne habitant la maison il y a longtemps", "C'était une fausse lettre", "Personne ne savait qui l'avait écrite"]),
+      correctAnswer: "La lettre venait d'une autre personne habitant la maison il y a longtemps",
+      order: 3,
+    };
+
+    const readQ24d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment cette découverte affecta-t-elle Sarah?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle perdit ses rêves", "Elle fut inspirée à rêver encore plus grand", "Elle oublia la lettre", "Elle devint triste"]),
+      correctAnswer: "Elle fut inspirée à rêver encore plus grand",
+      order: 4,
+    };
+
+    // HISTOIRE 20: L'Aventure Finale
+    const readQ25: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Histoire 20: L'Aventure Finale",
+      text: "C'était la fin de l'école primaire. Les enfants qui avaient grandi ensemble depuis la maternelle se réalisaient qu'ils se sépareraient bientôt pour aller au collège. Tous les amis se rassemblèrent pour une dernière grande aventure.\n\nLe groupe d'amis - Jean, Marie, Pierre, Léa et Thomas - décida de faire un grand voyage ensemble. Ils partirent en randonnée pédestre à travers les montagnes, affrontant des défis physiques et émotionnels.\n\nIls grimpèrent des pentes raides, traversèrent des rivières froides, campèrent sous les étoiles et partagerent leurs peurs et leurs rêves autour du feu. Chaque jour amenait de nouvelles épreuves mais aussi de nouvelles joies.\n\nUne nuit, avant le sommet final, ils s'assirent ensemble sur les rochers et parlèrent de leurs peurs de se séparer. Ils pleuraient en se serrant les uns les autres.\n\nLe dernier jour, ils atteignirent le sommet de la montagne. De là, ils voyaient tout le monde en dessous - leur petite ville, leur école, le chemin qu'ils avaient parcouru. Ils comprirent qu'ils n'étaient plus les mêmes enfants. Ils étaient devenus plus forts, plus matures, plus sages.\n\nIls firent un serment: \"Peu importe où nous irons, nous resterons amis à jamais. Cette aventure nous a changés à jamais.\"\n\nPourquoi les amis décidèrent-ils de faire cette aventure finale?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Pour passer des vacances", "Parce que c'était la fin de l'école primaire et ils se sépareraient", "Pour devenir célèbres", "Pour établir un record"]),
+      correctAnswer: "Parce que c'était la fin de l'école primaire et ils se sépareraient",
+      order: 1,
+    };
+
+    const readQ25b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 2 (Élément déclencheur)",
+      text: "Qu'ont fait les amis comme aventure finale?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un voyage en voiture", "Une randonnée à travers les montagnes", "Un voyage en bateau", "Un tour en avion"]),
+      correctAnswer: "Une randonnée à travers les montagnes",
+      order: 2,
+    };
+
+    const readQ25c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel moment difficile ils affrontèrent?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La pluie intense", "La peur de se séparer et les larmes avant le sommet", "Un accident en montagne", "Ils eurent faim"]),
+      correctAnswer: "La peur de se séparer et les larmes avant le sommet",
+      order: 3,
+    };
+
+    const readQ25d: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 4 (Dénouement)",
+      text: "Qu'ont compris les amis au sommet?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils n'étaient plus amis", "Qu'ils n'étaient plus les mêmes enfants et qu'ils resteraient amis pour toujours", "Qu'ils retourneraient à l'école", "Que la montagne était facile"]),
+      correctAnswer: "Qu'ils n'étaient plus les mêmes enfants et qu'ils resteraient amis pour toujours",
+      order: 4,
+    };
+
     // Informatif - Un petit exercice
     const readQ9: Question = {
       id: randomUUID(),
@@ -1387,6 +2228,66 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ8c.id, readQ8c);
     this.questions.set(readQ9.id, readQ9);
     this.questions.set(readQ10.id, readQ10);
+    this.questions.set(readQ11.id, readQ11);
+    this.questions.set(readQ11b.id, readQ11b);
+    this.questions.set(readQ11c.id, readQ11c);
+    this.questions.set(readQ11d.id, readQ11d);
+    this.questions.set(readQ12.id, readQ12);
+    this.questions.set(readQ12b.id, readQ12b);
+    this.questions.set(readQ12c.id, readQ12c);
+    this.questions.set(readQ12d.id, readQ12d);
+    this.questions.set(readQ13.id, readQ13);
+    this.questions.set(readQ13b.id, readQ13b);
+    this.questions.set(readQ13c.id, readQ13c);
+    this.questions.set(readQ13d.id, readQ13d);
+    this.questions.set(readQ14.id, readQ14);
+    this.questions.set(readQ14b.id, readQ14b);
+    this.questions.set(readQ14c.id, readQ14c);
+    this.questions.set(readQ14d.id, readQ14d);
+    this.questions.set(readQ15.id, readQ15);
+    this.questions.set(readQ15b.id, readQ15b);
+    this.questions.set(readQ15c.id, readQ15c);
+    this.questions.set(readQ15d.id, readQ15d);
+    this.questions.set(readQ16.id, readQ16);
+    this.questions.set(readQ16b.id, readQ16b);
+    this.questions.set(readQ16c.id, readQ16c);
+    this.questions.set(readQ16d.id, readQ16d);
+    this.questions.set(readQ17.id, readQ17);
+    this.questions.set(readQ17b.id, readQ17b);
+    this.questions.set(readQ17c.id, readQ17c);
+    this.questions.set(readQ17d.id, readQ17d);
+    this.questions.set(readQ18.id, readQ18);
+    this.questions.set(readQ18b.id, readQ18b);
+    this.questions.set(readQ18c.id, readQ18c);
+    this.questions.set(readQ18d.id, readQ18d);
+    this.questions.set(readQ19.id, readQ19);
+    this.questions.set(readQ19b.id, readQ19b);
+    this.questions.set(readQ19c.id, readQ19c);
+    this.questions.set(readQ19d.id, readQ19d);
+    this.questions.set(readQ20.id, readQ20);
+    this.questions.set(readQ20b.id, readQ20b);
+    this.questions.set(readQ20c.id, readQ20c);
+    this.questions.set(readQ20d.id, readQ20d);
+    this.questions.set(readQ21.id, readQ21);
+    this.questions.set(readQ21b.id, readQ21b);
+    this.questions.set(readQ21c.id, readQ21c);
+    this.questions.set(readQ21d.id, readQ21d);
+    this.questions.set(readQ22.id, readQ22);
+    this.questions.set(readQ22b.id, readQ22b);
+    this.questions.set(readQ22c.id, readQ22c);
+    this.questions.set(readQ22d.id, readQ22d);
+    this.questions.set(readQ23.id, readQ23);
+    this.questions.set(readQ23b.id, readQ23b);
+    this.questions.set(readQ23c.id, readQ23c);
+    this.questions.set(readQ23d.id, readQ23d);
+    this.questions.set(readQ24.id, readQ24);
+    this.questions.set(readQ24b.id, readQ24b);
+    this.questions.set(readQ24c.id, readQ24c);
+    this.questions.set(readQ24d.id, readQ24d);
+    this.questions.set(readQ25.id, readQ25);
+    this.questions.set(readQ25b.id, readQ25b);
+    this.questions.set(readQ25c.id, readQ25c);
+    this.questions.set(readQ25d.id, readQ25d);
     this.questions.set(writQ1.id, writQ1);
     this.questions.set(writQ2.id, writQ2);
     this.questions.set(writQ3.id, writQ3);
