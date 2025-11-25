@@ -289,6 +289,135 @@ export class MemStorage implements IStorage {
     const writing3Id = randomUUID();
     const writing4Id = randomUUID();
 
+    // Additional grammar courses
+    const grammar13Id = randomUUID();
+    const grammar14Id = randomUUID();
+    const grammar15Id = randomUUID();
+    const grammar16Id = randomUUID();
+
+    // Additional orthography courses
+    const orthography11Id = randomUUID();
+    const orthography12Id = randomUUID();
+    const orthography13Id = randomUUID();
+    const orthography14Id = randomUUID();
+
+    // Additional conjugation courses
+    const conjugation10Id = randomUUID();
+    const conjugation11Id = randomUUID();
+    const conjugation12Id = randomUUID();
+    const conjugation13Id = randomUUID();
+
+    // Additional grammar courses
+    const grammar13: Course = {
+      id: grammar13Id,
+      title: "Complément du nom vs Complément du verbe",
+      description: "Différencier les deux types de compléments essentiels",
+      category: "grammaire",
+      content: "<h2>Complément du Nom vs Complément du Verbe - Distinction Cruciale</h2><p>C'est une confusion très courante! Les deux existent mais jouent des rôles très différents.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ CLÉS:</strong><br>Complément du nom = \"de quel nom?\", va après un nom<br>Complément du verbe = répond à des questions du verbe</div><h3>1. COMPLÉMENT DU NOM</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Répond à: DE QUEL NOM? QUEL NOM?</strong><br>\"La maison de Marie\" → \"de Marie\" complément du nom \"maison\"<br>\"Un verre d'eau\" → \"d'eau\" complément du nom \"verre\"<br>\"La table en bois\" → \"en bois\" complément du nom \"table\"</div><h3>2. COMPLÉMENT DU VERBE (COD, COI, etc.)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Répond à: QUOI? QUI? À QUI? DE QUI?</strong><br>\"Je mange une pomme\" → \"une pomme\" COD du verbe \"manger\" (manger quoi?)<br>\"Il parle à Marie\" → \"à Marie\" COI du verbe \"parler\" (parler à qui?)<br>\"Elle pense à toi\" → \"à toi\" COI du verbe \"penser\" (penser à qui?)</div><h3>3. EXEMPLES COMPLETS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"La porte de la maison rouge est fermée\"</strong><br>→ \"de la maison\" = complément du nom \"porte\" (porte de quelle maison?)<br>\"Marie regarde la porte de la maison rouge\"<br>→ \"la porte\" = COD du verbe \"regarde\" (regarde quoi?)</div>",
+      order: 46,
+    };
+
+    const grammar14: Course = {
+      id: grammar14Id,
+      title: "Adjectif vs Adverbe",
+      description: "Les confondre est une erreur très courante!",
+      category: "grammaire",
+      content: "<h2>Adjectif vs Adverbe - Ne Plus Confondre!</h2><p>L'adjectif décrit le NOM. L'adverbe modifie le VERBE. C'est la différence clé!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ ASTUCE:</strong><br>Adjectif + nom = accord (rapide, rapide, rapides)<br>Adverbe + verbe = NON accord (rapidement = toujours pareil)</div><h3>1. L'ADJECTIF</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Décrit le NOM, s'accorde avec lui:</strong><br>\"Elle est belle\" (belle = adjectif, accord féminin)<br>\"Il est beau\" (beau = adjectif, accord masculin)<br>\"Une robe rouge\" (rouge = adjectif, accord féminin)<br>\"Des cheveux blonds\" (blonds = adjectif, accord pluriel)</div><h3>2. L'ADVERBE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Modifie le VERBE, INVARIABLE:</strong><br>\"Elle parle rapidement\" (rapidement = adverbe, pas d'accord)<br>\"Il court vite\" (vite = adverbe, pas d'accord)<br>\"Elle mange lentement\" (lentement = adverbe, pas d'accord)<br>\"Ils chantent bien\" (bien = adverbe, pas d'accord)</div><h3>3. FORMATION DE L'ADVERBE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Adjectif au féminin + -ment:</strong><br>Rapide → rapidement, Lent → lentement<br>Heureux → heureusement, Vrai → vraiment<br>Joyeux → joyeusement, Facile → facilement</div>",
+      order: 47,
+    };
+
+    const grammar15: Course = {
+      id: grammar15Id,
+      title: "C'est vs Il est",
+      description: "Grande différence d'utilisation en français!",
+      category: "grammaire",
+      content: "<h2>C'est vs Il est - Utilisation Correcte</h2><p>Ces deux expressions sont souvent confondues mais ont des usages précis.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLE:</strong><br>C'est = démonstratif + être (cela est)<br>Il est = pronom personnel + être (il est)</div><h3>1. C'EST</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Avec article ou nom:</strong><br>\"C'est un livre\" (article)<br>\"C'est Marie\" (nom propre)<br>\"C'est une bonne idée\" (article + adjectif)<br><strong>Avec adjectif NEUTRE:</strong><br>\"C'est magnifique!\", \"C'est impossible!\"</div><h3>2. IL EST</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Avec adjectif qui s'accorde:</strong><br>\"Il est grand\" (il = masculin, grand s'accorde)<br>\"Elle est grande\" (elle = féminin, grande s'accorde)<br>\"Ils sont grands\" (ils = pluriel, grands s'accorde)<br><strong>Avec profession:</strong><br>\"Il est médecin\", \"Elle est professeur\"</div><h3>3. COMPARAISON</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"C'est un garçon\"</strong> (c'est = identité)<br>\"Il est grand\" (il est = description)<br><strong>\"C'est une robe\"</strong> (c'est = identité)<br>\"Elle est bleue\" (il est = description)</div>",
+      order: 48,
+    };
+
+    const grammar16: Course = {
+      id: grammar16Id,
+      title: "Négation et double négation",
+      description: "Ne...pas, ne...jamais, ne...plus, ne...rien",
+      category: "grammaire",
+      content: "<h2>Négation et Double Négation - Nuances Importantes</h2><p>La négation en français peut être simple ou double. Il faut connaître les différentes formes!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ FORMES NÉGATIVES:</strong><br>Ne...pas, ne...jamais, ne...plus, ne...rien, ne...personne</div><h3>1. NÉGATION SIMPLE (NE...PAS)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>La plus courante:</strong><br>\"Je ne vais pas à l'école\" (pas = négation)<br>\"Elle ne parle pas français\" (pas = négation)<br>\"Ils ne jouent pas au football\" (pas = négation)</div><h3>2. AUTRES NÉGATIONS</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ne...jamais:</strong> \"Je ne suis jamais allé en France\"<br><strong>Ne...plus:</strong> \"Je ne joue plus au parc\"<br><strong>Ne...rien:</strong> \"Je ne vois rien\"<br><strong>Ne...personne:</strong> \"Je ne vois personne\"</div><h3>3. DOUBLE NÉGATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Deux négations = affirmation:</strong><br>\"Je ne pense pas qu'il ne viendra pas\" = \"Je pense qu'il viendra\"<br><strong>Pièges:</strong> \"Je ne doute pas que tu es intelligent\" = \"Je suis sûr que tu es intelligent\"</div>",
+      order: 49,
+    };
+
+    // Additional orthography courses
+    const orthography11: Course = {
+      id: orthography11Id,
+      title: "Même vs Mêmes",
+      description: "Adjectif vs adverbe - quand s'accordent-ils?",
+      category: "orthographe",
+      content: "<h2>Même vs Mêmes - Accord Particulier</h2><p>\"Même\" peut être adjectif ou adverbe. L'accordaccord ne se fait que comme adjectif!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLE:</strong><br>MÊME (adjectif) = accord, va après le nom<br>même (adverbe) = invariable, peut être partout</div><h3>1. MÊME ADJECTIF (ACCORD)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Va après le nom, s'accorde:</strong><br>\"Les mêmes livres\" (mêmes = pluriel)<br>\"La même fille\" (même = singulier féminin)<br>\"Les enfants mêmes\" (mêmes = pluriel)<br>\"Au même moment\" (même = singulier))</div><h3>2. MÊME ADVERBE (INVARIABLE)</strong><br>\"Même les enfants savent\" (même = adverbe, avant le nom)<br>\"Il est tombé même en courant\" (même = adverbe, avant participe)<br>\"Elle a même accepté\" (même = adverbe, avant verbe)</div><h3>3. COMPARAISON</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Adjectif:</strong> \"Je fais la même chose\" (s'accorde avec \"chose\")<br><strong>Adverbe:</strong> \"Je fais même ça\" (invariable, modifie la phrase)</div>",
+      order: 50,
+    };
+
+    const orthography12: Course = {
+      id: orthography12Id,
+      title: "Quel vs Qu'elle vs Quelles",
+      description: "Trois formes différentes - trois sens différents!",
+      category: "orthographe",
+      content: "<h2>Quel vs Qu'elle vs Quelles - Distinction Essentielle</h2><p>Ces trois formes se prononcent pareil mais s'écrivent différemment!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ LES TROIS FORMES:</strong><br>Quel/quelle = adjectif interrogatif ou exclamatif<br>Qu'elle = que + elle (pronom)<br>Quelles = pluriel de quelle</div><h3>1. QUEL/QUELLE (ADJECTIF)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Question/exclamation avec un nom:</strong><br>\"Quel livre lis-tu?\" (quel = masculin)<br>\"Quelle est ta couleur préférée?\" (quelle = féminin)<br>\"Quel dommage!\" (exclamation)<br>\"Quelle belle maison!\" (exclamation féminin)</div><h3>2. QU'ELLE (QUE + ELLE)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Peut être remplacé par \"qu'il\":</strong><br>\"Je crois qu'elle viendra\" (que + elle)<br>\"Je pense qu'elle est intelligente\" (que + elle)<br>\"Il faut qu'elle parte\" (que + elle)<br>\"Je voudrais qu'elle soit heureuse\" (que + elle)</div><h3>3. QUELLES (PLURIEL)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Pluriel féminin de quel:</strong><br>\"Quelles robes préfères-tu?\" (quelles = pluriel féminin)<br>\"Quelles sont les réponses?\" (quelles = pluriel féminin)</div>",
+      order: 51,
+    };
+
+    const orthography13: Course = {
+      id: orthography13Id,
+      title: "Ces vs C'est vs S'est",
+      description: "Trois homophones - trois significations totalement différentes!",
+      category: "orthographe",
+      content: "<h2>Ces vs C'est vs S'est - Homophones Trompeurs</h2><p>Ces trois mots se prononcent identiquement mais ont des rôles complètement différents!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ TROIS HOMOPHONES:</strong><br>Ces = adjectif démonstratif<br>C'est = cela est<br>S'est = réfléchi passé</div><h3>1. CES (ADJECTIF DÉMONSTRATIF)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Montre, avant pluriel:</strong><br>\"Ces livres sont intéressants\" (ces = ce + ces livres)<br>\"Regarde ces enfants!\" (ces = ceux-ci)<br>\"J'aime ces couleurs\" (ces = celles-ci)</div><h3>2. C'EST (CELA EST)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>C = cela, 'est = est:</strong><br>\"C'est un livre\" (c'est = cela est)<br>\"C'est magnifique!\" (c'est = cela est)<br>\"C'est Marie\" (c'est = cela est)<br>\"C'est possible!\" (c'est = cela est)</div><h3>3. S'EST (SE + EST)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>s = se (réfléchi), 'est = passé composé:</strong><br>\"Il s'est levé\" (se + est = s'est levé)<br>\"Elle s'est endormie\" (se + est)<br>\"Ils se sont amusés\" (se + ont, pas \"s'est\")<br>\"On s'est rencontré\" (se + est)</div>",
+      order: 52,
+    };
+
+    const orthography14: Course = {
+      id: orthography14Id,
+      title: "Trait d'union dans les nombres",
+      description: "Quand mettre des traits d'union dans les nombres?",
+      category: "orthographe",
+      content: "<h2>Trait d'Union dans les Nombres - Règles Précises</h2><p>Il y a des règles pour l'utilisation du trait d'union dans les nombres en français!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLE MODERNE:</strong><br>Depuis 1990: TOUJOURS trait d'union dans les nombres composés</div><h3>1. NOMBRES DE 1 À 99</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Trait d'union entre dizaines et unités:</strong><br>\"Vingt-trois\" (23), \"Quarante-sept\" (47)<br>\"Soixante-dix\" (70), \"Quatre-vingt-dix\" (90)<br>\"Cent-un\" (101), \"Mille-deux\" (1002 - moderne)</div><h3>2. EXCEPTION: \"ET\"</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Avec \"et\", pas de trait d'union après:</strong><br>\"Vingt et un\" (21) - pas de trait après \"et\"<br>\"Soixante et onze\" (71) - pas de trait après \"et\"<br>\"Quatre-vingt-un\" (81) - trait d'union quand pas de \"et\"</div><h3>3. MULTIPLES</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Vingt\" prend un \"s\" au pluriel:</strong><br>\"Quatre-vingts\" (80) - avec s<br>\"Quatre-vingt-trois\" (83) - pas de s avant autre nombre<br>\"Cent\" prend un \"s\" au pluriel:</strong><br>\"Deux-cents\" (200) - avec s<br>\"Deux-cent-trois\" (203) - pas de s avant autre nombre</div>",
+      order: 53,
+    };
+
+    // Additional conjugation courses
+    const conjugation10: Course = {
+      id: conjugation10Id,
+      title: "Verbes pronominaux",
+      description: "Se lever, se laver, s'amuser - formes réfléchies",
+      category: "conjugaison",
+      content: "<h2>Verbes Pronominaux - Se lever, S'amuser, Se laver</h2><p>Les verbes pronominaux sont des verbes avec un pronom réfléchi devant. Ils sont très courants en français!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong><br>Pronom réfléchi + verbe<br>Je me lave, Tu te laves, Il se lave...</div><h3>1. CONJUGAISON AU PRÉSENT</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"SE LEVER\":</strong><br>Je me lève, Tu te lèves, Il se lève<br>Nous nous levons, Vous vous levez, Ils se lèvent<br><strong>\"S'AMUSER\":</strong><br>Je m'amuse, Tu t'amuses, Il s'amuse<br>Nous nous amusons, Vous vous amusez, Ils s'amusent</div><h3>2. AU PASSÉ COMPOSÉ</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Toujours avec l'auxiliaire \"être\":</strong><br>\"Je me suis levé\" (fém: levée)<br>\"Elle s'est amusée\"<br>\"Ils se sont rencontrés\"<br>Accord avec le sujet si pas de COD avant!</div><h3>3. À L'IMPARFAIT</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Pronom réfléchi + imparfait normal:</strong><br>\"Je me levais\", \"Tu te levais\", \"Il se levait\"<br>\"Nous nous levions\", \"Vous vous leviez\", \"Ils se levaient\"</div>",
+      order: 54,
+    };
+
+    const conjugation11: Course = {
+      id: conjugation11Id,
+      title: "Participe présent vs Gérondif",
+      description: "Formation et utilisation de ces formes verbales",
+      category: "conjugaison",
+      content: "<h2>Participe Présent vs Gérondif - Formes en -ANT</h2><p>Ces deux formes se ressemblent mais ont des usages différents!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ LES DEUX FORMES:</strong><br>Participe présent: -ANT (variable)<br>Gérondif: en + -ANT (invariable)</div><h3>1. PARTICIPE PRÉSENT</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Variable, remplace \"qui\":\"<br>\"Les enfants marchant vite\" = \"Les enfants qui marchent vite\"<br>\"Une femme souriante\" = \"Une femme qui sourit\"<br>Peut s'accorder avec le nom!</div><h3>2. GÉRONDIF</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Invariable, précédé de \"en\":</strong><br>\"En marchant vite\" = \"tandis que je marche vite\"<br>\"En souriant\" = \"tandis qu'elle sourit\"<br>Indique une action qui accompagne une autre</div><h3>3. FORMATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Nous + présent - ons + -ant:</strong><br>Nous parlons → parlant<br>Nous finissons → finissant<br>Nous vendons → vendant<br>Exceptions: avoir, être, savoir</div>",
+      order: 55,
+    };
+
+    const conjugation12: Course = {
+      id: conjugation12Id,
+      title: "Accord du verbe avec sujet collectif",
+      description: "Un groupe/une majorité d'enfants - singulier ou pluriel?",
+      category: "conjugaison",
+      content: "<h2>Accord du Verbe avec Sujet Collectif - Cas Particulier</h2><p>Un sujet collectif peut prendre un verbe singulier ou pluriel selon le contexte!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ DEUX USAGES:</strong><br>\"Un groupe\" d'enfants joue = singulier (le groupe)<br>\"Un groupe\" d'enfants jouent = pluriel (les enfants)</div><h3>1. SINGULIER (SUR LE COLLECTIF)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Insiste sur l'unité du groupe:</strong><br>\"Un groupe d'enfants joue au parc\"<br>\"La majorité des élèves réussit\"<br>\"Une foule de manifestants s'avance\"<br>Focus sur \"groupe\", \"majorité\", \"foule\"</div><h3>2. PLURIEL (SUR LES ÉLÉMENTS)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Insiste sur les éléments du groupe:</strong><br>\"Un groupe d'enfants jouent au parc\"<br>\"La majorité des élèves réussissent\"<br>\"Une foule de manifestants s'avancent\"<br>Focus sur les enfants, élèves, manifestants</div><h3>3. AVEC \"DE\" SEUL</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Plusieurs de\", \"Beaucoup de\", \"Peu de\" = pluriel:</strong><br>\"Plusieurs de mes amis viennent\"<br>\"Beaucoup d'élèves réussissent\"<br>\"Peu de gens savent\"</div>",
+      order: 56,
+    };
+
+    const conjugation13: Course = {
+      id: conjugation13Id,
+      title: "Plus-que-parfait",
+      description: "Le temps avant le passé composé - ce qui s'est passé avant",
+      category: "conjugaison",
+      content: "<h2>Plus-que-parfait - L'Antériorité au Passé</h2><p>Le plus-que-parfait exprime une action qui s'est passée AVANT une autre action passée.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ FORMATION:</strong><br>Auxiliaire (avoir ou être) à l'imparfait + participe passé<br>J'avais mangé, J'étais allé</div><h3>1. AVEC AVOIR</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Formation:</strong><br>J'avais mangé, Tu avais mangé, Il avait mangé<br>Nous avions mangé, Vous aviez mangé, Ils avaient mangé<br><strong>Exemple:</strong> \"Quand je suis arrivé, il avait déjà mangé\"</div><h3>2. AVEC ÊTRE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Formation:</strong><br>J'étais allé, Tu étais allé, Elle était allée<br>Nous étions allés, Vous étiez allés, Elles étaient allées<br>Accord avec le sujet!</div><h3>3. UTILISATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Indique l'antériorité:</strong><br>\"Quand j'suis arrivé, elle était partie\" (elle était partie avant)<br>\"Il avait etudié toute la nuit avant l'examen\"<br>\"Nous avions attendu une heure quand il est arrivé\"</div>",
+      order: 57,
+    };
+
     const course4: Course = {
       id: course4Id,
       title: "Texte descriptif",
@@ -726,6 +855,19 @@ export class MemStorage implements IStorage {
     this.courses.set(writing2Id, writing2);
     this.courses.set(writing3Id, writing3);
     this.courses.set(writing4Id, writing4);
+    // New 12 courses
+    this.courses.set(grammar13Id, grammar13);
+    this.courses.set(grammar14Id, grammar14);
+    this.courses.set(grammar15Id, grammar15);
+    this.courses.set(grammar16Id, grammar16);
+    this.courses.set(orthography11Id, orthography11);
+    this.courses.set(orthography12Id, orthography12);
+    this.courses.set(orthography13Id, orthography13);
+    this.courses.set(orthography14Id, orthography14);
+    this.courses.set(conjugation10Id, conjugation10);
+    this.courses.set(conjugation11Id, conjugation11);
+    this.courses.set(conjugation12Id, conjugation12);
+    this.courses.set(conjugation13Id, conjugation13);
 
     const question5: Question = {
       id: randomUUID(),
