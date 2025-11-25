@@ -296,64 +296,308 @@ export default function StudentDashboard() {
 
           {/* Lecture Tab */}
           <TabsContent value="lecture">
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold mb-2">Activités de Lecture</h2>
                 <p className="text-muted-foreground mb-6">
-                  Améliorez votre compréhension de la lecture avec des textes et questions
+                  Améliorez votre compréhension de la lecture avec différents types de textes
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses
-                  .filter((c) => c.category === "textes_narratifs")
-                  .map((course) => (
-                    <Card
-                      key={course.id}
-                      className="p-6 hover-elevate border-2 border-green-200 dark:border-green-800"
-                      data-testid={`card-lecture-${course.id}`}
-                    >
-                      <div className="space-y-4">
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <span className="text-xs font-semibold text-green-600 dark:text-green-300">
-                              Textes narratifs
-                            </span>
-                            <h3 className="text-lg font-bold text-foreground mt-1">
-                              {course.title}
-                            </h3>
-                          </div>
-                          <FileText className="w-5 h-5 text-green-500 flex-shrink-0" />
-                        </div>
-                        <p className="text-sm text-muted-foreground">
-                          {course.description}
-                        </p>
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-xs">
-                            <span className="font-semibold">Progression</span>
-                            <span className="text-muted-foreground">
-                              {course.progressPercentage}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-secondary rounded-full h-2">
-                            <div
-                              className="bg-green-500 h-2 rounded-full transition-all duration-300"
-                              style={{
-                                width: `${course.progressPercentage}%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <Button
-                          onClick={() => handleStartCourse(course.id)}
-                          className="w-full"
-                          data-testid={`button-start-lecture-${course.id}`}
+
+              <Tabs defaultValue="narratif" className="w-full">
+                <TabsList className="grid w-full grid-cols-5 mb-6 bg-green-50 dark:bg-green-900">
+                  <TabsTrigger value="narratif" data-testid="tab-narratif">
+                    Narratif
+                  </TabsTrigger>
+                  <TabsTrigger value="descriptif" data-testid="tab-descriptif">
+                    Descriptif
+                  </TabsTrigger>
+                  <TabsTrigger value="explicatif" data-testid="tab-explicatif">
+                    Explicatif
+                  </TabsTrigger>
+                  <TabsTrigger value="argumentatif" data-testid="tab-argumentatif">
+                    Argumentatif
+                  </TabsTrigger>
+                  <TabsTrigger value="informatif" data-testid="tab-informatif">
+                    Informatif
+                  </TabsTrigger>
+                </TabsList>
+
+                {/* Narratif */}
+                <TabsContent value="narratif" className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {courses
+                      .filter((c) => c.category === "textes_narratifs" && c.title.includes("Texte") === false)
+                      .map((course) => (
+                        <Card
+                          key={course.id}
+                          className="p-6 hover-elevate border-2 border-green-200 dark:border-green-800"
+                          data-testid={`card-lecture-${course.id}`}
                         >
-                          {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
-                        </Button>
-                      </div>
-                    </Card>
-                  ))}
-              </div>
+                          <div className="space-y-4">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <span className="text-xs font-semibold text-green-600 dark:text-green-300">
+                                  Textes narratifs
+                                </span>
+                                <h3 className="text-lg font-bold text-foreground mt-1">
+                                  {course.title}
+                                </h3>
+                              </div>
+                              <FileText className="w-5 h-5 text-green-500 flex-shrink-0" />
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                              {course.description}
+                            </p>
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-xs">
+                                <span className="font-semibold">Progression</span>
+                                <span className="text-muted-foreground">
+                                  {course.progressPercentage}%
+                                </span>
+                              </div>
+                              <div className="w-full bg-secondary rounded-full h-2">
+                                <div
+                                  className="bg-green-500 h-2 rounded-full transition-all duration-300"
+                                  style={{
+                                    width: `${course.progressPercentage}%`,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleStartCourse(course.id)}
+                              className="w-full"
+                              data-testid={`button-start-lecture-${course.id}`}
+                            >
+                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                            </Button>
+                          </div>
+                        </Card>
+                      ))}
+                  </div>
+                </TabsContent>
+
+                {/* Descriptif */}
+                <TabsContent value="descriptif" className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {courses
+                      .filter((c) => c.title === "Texte descriptif")
+                      .map((course) => (
+                        <Card
+                          key={course.id}
+                          className="p-6 hover-elevate border-2 border-blue-200 dark:border-blue-800"
+                          data-testid={`card-lecture-${course.id}`}
+                        >
+                          <div className="space-y-4">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <span className="text-xs font-semibold text-blue-600 dark:text-blue-300">
+                                  Textes descriptifs
+                                </span>
+                                <h3 className="text-lg font-bold text-foreground mt-1">
+                                  {course.title}
+                                </h3>
+                              </div>
+                              <FileText className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                              {course.description}
+                            </p>
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-xs">
+                                <span className="font-semibold">Progression</span>
+                                <span className="text-muted-foreground">
+                                  {course.progressPercentage}%
+                                </span>
+                              </div>
+                              <div className="w-full bg-secondary rounded-full h-2">
+                                <div
+                                  className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                  style={{
+                                    width: `${course.progressPercentage}%`,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleStartCourse(course.id)}
+                              className="w-full"
+                              data-testid={`button-start-lecture-${course.id}`}
+                            >
+                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                            </Button>
+                          </div>
+                        </Card>
+                      ))}
+                  </div>
+                </TabsContent>
+
+                {/* Explicatif */}
+                <TabsContent value="explicatif" className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {courses
+                      .filter((c) => c.title === "Texte explicatif")
+                      .map((course) => (
+                        <Card
+                          key={course.id}
+                          className="p-6 hover-elevate border-2 border-yellow-200 dark:border-yellow-800"
+                          data-testid={`card-lecture-${course.id}`}
+                        >
+                          <div className="space-y-4">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <span className="text-xs font-semibold text-yellow-600 dark:text-yellow-300">
+                                  Textes explicatifs
+                                </span>
+                                <h3 className="text-lg font-bold text-foreground mt-1">
+                                  {course.title}
+                                </h3>
+                              </div>
+                              <FileText className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                              {course.description}
+                            </p>
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-xs">
+                                <span className="font-semibold">Progression</span>
+                                <span className="text-muted-foreground">
+                                  {course.progressPercentage}%
+                                </span>
+                              </div>
+                              <div className="w-full bg-secondary rounded-full h-2">
+                                <div
+                                  className="bg-yellow-500 h-2 rounded-full transition-all duration-300"
+                                  style={{
+                                    width: `${course.progressPercentage}%`,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleStartCourse(course.id)}
+                              className="w-full"
+                              data-testid={`button-start-lecture-${course.id}`}
+                            >
+                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                            </Button>
+                          </div>
+                        </Card>
+                      ))}
+                  </div>
+                </TabsContent>
+
+                {/* Argumentatif */}
+                <TabsContent value="argumentatif" className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {courses
+                      .filter((c) => c.title === "Texte argumentatif")
+                      .map((course) => (
+                        <Card
+                          key={course.id}
+                          className="p-6 hover-elevate border-2 border-red-200 dark:border-red-800"
+                          data-testid={`card-lecture-${course.id}`}
+                        >
+                          <div className="space-y-4">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <span className="text-xs font-semibold text-red-600 dark:text-red-300">
+                                  Textes argumentatifs
+                                </span>
+                                <h3 className="text-lg font-bold text-foreground mt-1">
+                                  {course.title}
+                                </h3>
+                              </div>
+                              <FileText className="w-5 h-5 text-red-500 flex-shrink-0" />
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                              {course.description}
+                            </p>
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-xs">
+                                <span className="font-semibold">Progression</span>
+                                <span className="text-muted-foreground">
+                                  {course.progressPercentage}%
+                                </span>
+                              </div>
+                              <div className="w-full bg-secondary rounded-full h-2">
+                                <div
+                                  className="bg-red-500 h-2 rounded-full transition-all duration-300"
+                                  style={{
+                                    width: `${course.progressPercentage}%`,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleStartCourse(course.id)}
+                              className="w-full"
+                              data-testid={`button-start-lecture-${course.id}`}
+                            >
+                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                            </Button>
+                          </div>
+                        </Card>
+                      ))}
+                  </div>
+                </TabsContent>
+
+                {/* Informatif */}
+                <TabsContent value="informatif" className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {courses
+                      .filter((c) => c.title === "Texte informatif")
+                      .map((course) => (
+                        <Card
+                          key={course.id}
+                          className="p-6 hover-elevate border-2 border-purple-200 dark:border-purple-800"
+                          data-testid={`card-lecture-${course.id}`}
+                        >
+                          <div className="space-y-4">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <span className="text-xs font-semibold text-purple-600 dark:text-purple-300">
+                                  Textes informatifs
+                                </span>
+                                <h3 className="text-lg font-bold text-foreground mt-1">
+                                  {course.title}
+                                </h3>
+                              </div>
+                              <FileText className="w-5 h-5 text-purple-500 flex-shrink-0" />
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                              {course.description}
+                            </p>
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-xs">
+                                <span className="font-semibold">Progression</span>
+                                <span className="text-muted-foreground">
+                                  {course.progressPercentage}%
+                                </span>
+                              </div>
+                              <div className="w-full bg-secondary rounded-full h-2">
+                                <div
+                                  className="bg-purple-500 h-2 rounded-full transition-all duration-300"
+                                  style={{
+                                    width: `${course.progressPercentage}%`,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handleStartCourse(course.id)}
+                              className="w-full"
+                              data-testid={`button-start-lecture-${course.id}`}
+                            >
+                              {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
+                            </Button>
+                          </div>
+                        </Card>
+                      ))}
+                  </div>
+                </TabsContent>
+              </Tabs>
             </div>
           </TabsContent>
 

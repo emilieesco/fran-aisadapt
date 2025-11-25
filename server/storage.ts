@@ -246,6 +246,58 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
+    // Add more courses for different text types
+    const course4Id = randomUUID();
+    const course5Id = randomUUID();
+    const course6Id = randomUUID();
+    const course7Id = randomUUID();
+    const course8Id = randomUUID();
+
+    const course4: Course = {
+      id: course4Id,
+      title: "Texte descriptif",
+      description: "Analysez les descriptions détaillées et les techniques utilisées",
+      category: "textes_narratifs",
+      content:
+        "<h3>Le Texte Descriptif</h3><p>Un texte descriptif peint un tableau des choses. Il peut décrire un lieu, une personne, un objet ou une situation.</p>",
+      order: 4,
+    };
+
+    const course5: Course = {
+      id: course5Id,
+      title: "Texte explicatif",
+      description: "Comprenez comment expliquer un phénomène ou un concept",
+      category: "textes_narratifs",
+      content:
+        "<h3>Le Texte Explicatif</h3><p>Un texte explicatif explique un phénomène, un concept ou un processus de manière claire et logique.</p>",
+      order: 5,
+    };
+
+    const course6: Course = {
+      id: course6Id,
+      title: "Texte argumentatif",
+      description: "Maîtrisez les techniques de persuasion et d'argumentation",
+      category: "textes_narratifs",
+      content:
+        "<h3>Le Texte Argumentatif</h3><p>Un texte argumentatif vise à convaincre le lecteur en présentant des arguments soutenus par des preuves.</p>",
+      order: 6,
+    };
+
+    const course7: Course = {
+      id: course7Id,
+      title: "Texte informatif",
+      description: "Identifiez les informations clés et la structure des textes informatifs",
+      category: "textes_narratifs",
+      content:
+        "<h3>Le Texte Informatif</h3><p>Un texte informatif transmet des informations factuelles sur un sujet spécifique.</p>",
+      order: 7,
+    };
+
+    this.courses.set(course4Id, course4);
+    this.courses.set(course5Id, course5);
+    this.courses.set(course6Id, course6);
+    this.courses.set(course7Id, course7);
+
     const question5: Question = {
       id: randomUUID(),
       exerciseId: exercise5Id,
