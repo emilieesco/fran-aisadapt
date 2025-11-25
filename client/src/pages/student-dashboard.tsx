@@ -392,7 +392,7 @@ export default function StudentDashboard() {
 
                 {/* Narratif */}
                 <TabsContent value="narratif" className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {readingNarrativeExercises.map((exercise, index) => {
                       const storyTitles = [
                         "Histoire 1: Le Trésor de la Cave",
@@ -412,19 +412,19 @@ export default function StudentDashboard() {
                       return (
                         <Card
                           key={exercise.id}
-                          className="p-6 hover-elevate border-2 border-green-200 dark:border-green-800 cursor-pointer transition-all"
+                          className="p-8 hover-elevate border-2 border-green-200 dark:border-green-800 cursor-pointer transition-all min-h-64"
                           data-testid={`card-narrative-${index}`}
                           onClick={() => setLocation(`/exercise/${exercise.id}`)}
                         >
-                          <div className="space-y-3">
+                          <div className="space-y-4 h-full flex flex-col justify-between">
                             <div>
-                              <span className="text-xs font-semibold text-green-600 dark:text-green-300 uppercase">
+                              <span className="text-sm font-semibold text-green-600 dark:text-green-300 uppercase">
                                 Texte Narratif
                               </span>
-                              <h3 className="text-lg font-bold text-foreground mt-2">
+                              <h3 className="text-2xl font-bold text-foreground mt-3 leading-tight">
                                 {storyTitles[index] || exercise.title}
                               </h3>
-                              <p className="text-sm text-muted-foreground mt-2">
+                              <p className="text-base text-muted-foreground mt-3 leading-relaxed">
                                 {storyDescriptions[index] || exercise.description}
                               </p>
                             </div>
@@ -435,10 +435,10 @@ export default function StudentDashboard() {
                                 setLocation(`/exercise/${exercise.id}`);
                               }}
                               className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800"
-                              size="sm"
+                              size="lg"
                               data-testid={`button-read-narrative-${index}`}
                             >
-                              Lire l'histoire et répondre aux questions
+                              Lire l'histoire
                             </Button>
                           </div>
                         </Card>
