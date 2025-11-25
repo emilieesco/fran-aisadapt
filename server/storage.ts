@@ -2317,8 +2317,15 @@ export class MemStorage implements IStorage {
 
   async createExercise(insertExercise: InsertExercise): Promise<Exercise> {
     const id = randomUUID();
-    this.progress.set(id, progress);
-    return progress;
+    const exercise: Exercise = { ...insertExercise, id };
+    this.exercises.set(id, exercise);
+    return exercise;
+  }
+
+  async getQuestionsByExercise(exerciseId: string): Promise<Question[]> {
+    return Array.from(this.questions.values()).filter(
+      (q) => q.exerciseId === exerciseId
+    );
   }
 
   async getAllStudentProgress(studentId: string): Promise<StudentProgress[]> {
