@@ -227,7 +227,7 @@ export default function StudentDashboard() {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map((course) => (
+                {courses.filter((c) => !c.category.includes("lecture") && !c.category.includes("writing")).map((course) => (
                   <Card
                     key={course.id}
                     className="p-6 hover-elevate cursor-pointer transition-all"

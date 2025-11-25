@@ -257,7 +257,7 @@ export class MemStorage implements IStorage {
       id: course4Id,
       title: "Texte descriptif",
       description: "Analysez les descriptions détaillées et les techniques utilisées",
-      category: "textes",
+      category: "lecture_reading",
       content:
         "<h3>Le Texte Descriptif</h3><p>Un texte descriptif peint un tableau des choses. Il peut décrire un lieu, une personne, un objet ou une situation.</p>",
       order: 4,
@@ -267,7 +267,7 @@ export class MemStorage implements IStorage {
       id: course5Id,
       title: "Texte explicatif",
       description: "Comprenez comment expliquer un phénomène ou un concept",
-      category: "textes",
+      category: "lecture_reading",
       content:
         "<h3>Le Texte Explicatif</h3><p>Un texte explicatif explique un phénomène, un concept ou un processus de manière claire et logique.</p>",
       order: 5,
@@ -277,7 +277,7 @@ export class MemStorage implements IStorage {
       id: course6Id,
       title: "Texte argumentatif",
       description: "Maîtrisez les techniques de persuasion et d'argumentation",
-      category: "textes",
+      category: "lecture_reading",
       content:
         "<h3>Le Texte Argumentatif</h3><p>Un texte argumentatif vise à convaincre le lecteur en présentant des arguments soutenus par des preuves.</p>",
       order: 6,
@@ -287,7 +287,7 @@ export class MemStorage implements IStorage {
       id: course7Id,
       title: "Texte informatif",
       description: "Identifiez les informations clés et la structure des textes informatifs",
-      category: "textes",
+      category: "lecture_reading",
       content:
         "<h3>Le Texte Informatif</h3><p>Un texte informatif transmet des informations factuelles sur un sujet spécifique.</p>",
       order: 7,
