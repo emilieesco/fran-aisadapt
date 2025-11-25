@@ -2046,8 +2046,6 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    this.questions.set(question4.id, question4);
-    this.questions.set(question5.id, question5);
     this.questions.set(readQ1.id, readQ1);
     this.questions.set(readQ2.id, readQ2);
     this.questions.set(readQ2b.id, readQ2b);
