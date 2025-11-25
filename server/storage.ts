@@ -111,22 +111,57 @@ export class MemStorage implements IStorage {
 
     const course1: Course = {
       id: course1Id,
-      title: "Identification des noms",
+      title: "Les Noms",
       description: "Apprenez à identifier et classifier les différents types de noms",
       category: "grammaire",
       content:
-        "<h3>Les Noms</h3><p>Un nom est un mot qui désigne une personne, un animal, une chose, une idée ou un sentiment.</p><p><strong>Exemples:</strong> chat, maison, liberté, professeur</p><p><strong>Les types de noms:</strong></p><ul><li>Noms communs: désignent des êtres ou des choses de façon générale</li><li>Noms propres: désignent des êtres ou des choses particuliers</li></ul>",
+        "<h3>Les Noms</h3><p>Un nom est un mot qui désigne une personne, un animal, une chose, une idée ou un sentiment.</p><h4>Les types de noms:</h4><ul><li><strong>Noms communs:</strong> désignent des êtres ou des choses de façon générale (chat, maison, table, liberté)</li><li><strong>Noms propres:</strong> désignent des êtres ou des choses particuliers avec une majuscule (Marie, Paris, Noël)</li><li><strong>Noms concrets:</strong> désignent des choses qu'on peut voir ou toucher (livre, chaise, eau)</li><li><strong>Noms abstraits:</strong> désignent des idées ou des sentiments (amour, courage, joie)</li></ul><h4>Le genre des noms:</h4><p>Les noms ont un genre: masculin ou féminin. Le genre affecte les mots qui les accompagnent (articles, adjectifs).</p><ul><li>Masculins: le chat, un garçon, un stylo</li><li>Féminins: la maison, une fille, une fleur</li></ul><h4>Le nombre des noms:</h4><ul><li>Singulier: un chat, la maison</li><li>Pluriel: des chats, les maisons</li></ul>",
       order: 1,
     };
 
     const course2: Course = {
       id: course2Id,
-      title: "Identification des verbes",
-      description: "Maîtrisez l'identification des verbes et leurs conjugaisons",
+      title: "Les Verbes",
+      description: "Maîtrisez l'identification des verbes et leurs fonctions",
       category: "grammaire",
       content:
-        "<h3>Les Verbes</h3><p>Un verbe est un mot qui exprime une action ou un état.</p><p><strong>Exemples:</strong> manger, courir, être, avoir</p>",
+        "<h3>Les Verbes</h3><p>Un verbe est un mot qui exprime une action, un état ou un processus.</p><h4>Les types de verbes:</h4><ul><li><strong>Verbes d'action:</strong> expriment une action (manger, courir, écrire, danser, sauter)</li><li><strong>Verbes d'état:</strong> expriment un état (être, paraître, sembler, devenir)</li><li><strong>Verbes transitifs:</strong> demandent un complément d'objet (je mange une pomme)</li><li><strong>Verbes intransitifs:</strong> n'ont pas besoin de complément (il court)</li></ul><h4>L'infinitif:</h4><p>L'infinitif est la forme de base du verbe. On le trouve dans le dictionnaire. Les infinitifs se terminent généralement par -er, -ir, -oir, -re.</p><p>Exemples: manger, finir, pouvoir, faire</p><h4>La conjugaison:</h4><p>La conjugaison change la forme du verbe selon:</p><ul><li>La personne (je, tu, il/elle, nous, vous, ils/elles)</li><li>Le temps (présent, passé, futur)</li><li>Le mode (indicatif, subjonctif, impératif)</li></ul>",
       order: 2,
+    };
+
+    // New grammar courses
+    const course2aId = randomUUID();
+    const course2bId = randomUUID();
+    const course2cId = randomUUID();
+
+    const course2a: Course = {
+      id: course2aId,
+      title: "Les Adjectifs",
+      description: "Découvrez comment les adjectifs décrivent et modifient les noms",
+      category: "grammaire",
+      content:
+        "<h3>Les Adjectifs</h3><p>Un adjectif est un mot qui décrit ou modifie un nom.</p><h4>Fonction de l'adjectif:</h4><p>L'adjectif ajoute une qualité, une caractéristique ou une information à un nom.</p><p>Exemples: un beau chat, une petite maison, une fille intelligente</p><h4>Accord de l'adjectif:</h4><p>L'adjectif s'accorde en genre et en nombre avec le nom qu'il décrit.</p><ul><li>Masculin singulier: un grand chat</li><li>Féminin singulier: une grande maison</li><li>Pluriel: de grands chats, de grandes maisons</li></ul><h4>Position de l'adjectif:</h4><ul><li><strong>Adjectifs antéposés:</strong> placés avant le nom (un beau jour)</li><li><strong>Adjectifs postposés:</strong> placés après le nom (un jour magnifique)</li></ul><h4>Adjectifs de couleur, de taille, d'âge, de forme:</h4><ul><li>Couleur: rouge, bleu, vert, jaune</li><li>Taille: grand, petit, énorme, minuscule</li><li>Âge: jeune, vieux, nouveau, ancien</li><li>Forme: rond, carré, pointu</li></ul>",
+      order: 3,
+    };
+
+    const course2b: Course = {
+      id: course2bId,
+      title: "Les Pronoms",
+      description: "Apprenez à utiliser les pronoms pour remplacer les noms",
+      category: "grammaire",
+      content:
+        "<h3>Les Pronoms</h3><p>Un pronom est un mot qui remplace un nom ou un groupe nominal pour éviter la répétition.</p><h4>Les pronoms personnels:</h4><ul><li>Sujets: je, tu, il/elle, nous, vous, ils/elles</li><li>Compléments: me, te, le, la, nous, vous, les (objets directs)</li><li>Compléments: me, te, lui, nous, vous, leur (objets indirects)</li></ul><h4>Les pronoms possessifs:</h4><p>Indiquent la possession: le mien, le tien, le sien, le nôtre, le vôtre, le leur</p><h4>Les pronoms démonstratifs:</h4><p>Désignent quelque chose: celui-ci, celui-là, cela, ce</p><h4>Les pronoms relatifs:</h4><p>Relient deux phrases: qui, que, où, dont</p><h4>Les pronoms interrogatifs:</h4><p>Posent une question: qui, que, quoi, quel</p>",
+      order: 4,
+    };
+
+    const course2c: Course = {
+      id: course2cId,
+      title: "Les Prépositions",
+      description: "Comprendre les prépositions et leurs utilisations",
+      category: "grammaire",
+      content:
+        "<h3>Les Prépositions</h3><p>Une préposition est un mot invariable qui relie deux mots ou groupes de mots et indique une relation entre eux.</p><h4>Prépositions de lieu:</h4><ul><li>à, de, en, dans, sur, sous, devant, derrière, entre, chez</li><li>Exemples: Je vais à l'école. Le livre est dans le sac.</li></ul><h4>Prépositions de temps:</h4><ul><li>à, de, en, depuis, pendant, avant, après, vers</li><li>Exemples: Le cours commence à 9h. Je étudie depuis une heure.</li></ul><h4>Prépositions de cause/raison:</h4><ul><li>à cause de, grâce à, pour, par</li><li>Exemples: Il est absent à cause de la maladie. Il a réussi grâce au travail.</li></ul><h4>Prépositions de manière:</h4><ul><li>avec, sans, par, en, comme</li><li>Exemples: Je vais à l'école à pied. Elle parle avec enthousiasme.</li></ul>",
+      order: 5,
     };
 
     const course3: Course = {
@@ -141,14 +176,24 @@ export class MemStorage implements IStorage {
 
     this.courses.set(course1Id, course1);
     this.courses.set(course2Id, course2);
+    this.courses.set(course2aId, course2a);
+    this.courses.set(course2bId, course2b);
+    this.courses.set(course2cId, course2c);
     this.courses.set(course3Id, course3);
 
-    // Create sample exercises
+    // Create sample exercises for grammar courses
     const exercise1Id = randomUUID();
+    const exercise1bId = randomUUID();
+    const exercise1cId = randomUUID();
     const exercise2Id = randomUUID();
+    const exercise2bId = randomUUID();
     const exercise3Id = randomUUID();
     const exercise4Id = randomUUID();
     const exercise5Id = randomUUID();
+    const exercise2aId = randomUUID();
+    const exercise2aaBId = randomUUID();
+    const exercise2bId2 = randomUUID();
+    const exercise2cId = randomUUID();
 
     const exercise1: Exercise = {
       id: exercise1Id,
@@ -159,20 +204,74 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    const exercise2: Exercise = {
-      id: exercise2Id,
+    const exercise1b: Exercise = {
+      id: exercise1bId,
       courseId: course1Id,
-      title: "Exercice: Classer les noms",
-      description: "Classifiez les noms en noms communs ou propres",
+      title: "Exercice: Noms communs vs noms propres",
+      description: "Distinguez les noms communs des noms propres",
       type: "multiple_choice",
       order: 2,
     };
 
-    const exercise3: Exercise = {
-      id: exercise3Id,
+    const exercise1c: Exercise = {
+      id: exercise1cId,
+      courseId: course1Id,
+      title: "Exercice: Genre et nombre des noms",
+      description: "Identifiez le genre et le nombre des noms",
+      type: "multiple_choice",
+      order: 3,
+    };
+
+    const exercise2: Exercise = {
+      id: exercise2Id,
       courseId: course2Id,
       title: "Exercice: Identifier les verbes",
       description: "Trouvez tous les verbes dans les phrases",
+      type: "multiple_choice",
+      order: 1,
+    };
+
+    const exercise2b: Exercise = {
+      id: exercise2bId,
+      courseId: course2Id,
+      title: "Exercice: Verbes d'action ou d'état",
+      description: "Classifiez les verbes selon leur type",
+      type: "multiple_choice",
+      order: 2,
+    };
+
+    const exercise2a: Exercise = {
+      id: exercise2aId,
+      courseId: course2aId,
+      title: "Exercice: Identifier les adjectifs",
+      description: "Trouvez les adjectifs dans les phrases",
+      type: "multiple_choice",
+      order: 1,
+    };
+
+    const exercise2aB: Exercise = {
+      id: exercise2aaBId,
+      courseId: course2aId,
+      title: "Exercice: Accord des adjectifs",
+      description: "Accordez les adjectifs avec les noms",
+      type: "multiple_choice",
+      order: 2,
+    };
+
+    const exercise2b2: Exercise = {
+      id: exercise2bId2,
+      courseId: course2bId,
+      title: "Exercice: Remplacer par un pronom",
+      description: "Remplacez les noms par des pronoms appropriés",
+      type: "multiple_choice",
+      order: 1,
+    };
+
+    const exercise2c: Exercise = {
+      id: exercise2cId,
+      courseId: course2cId,
+      title: "Exercice: Prépositions de lieu et temps",
+      description: "Choisissez la bonne préposition",
       type: "multiple_choice",
       order: 1,
     };
@@ -196,8 +295,14 @@ export class MemStorage implements IStorage {
     };
 
     this.exercises.set(exercise1Id, exercise1);
+    this.exercises.set(exercise1bId, exercise1b);
+    this.exercises.set(exercise1cId, exercise1c);
     this.exercises.set(exercise2Id, exercise2);
-    this.exercises.set(exercise3Id, exercise3);
+    this.exercises.set(exercise2bId, exercise2b);
+    this.exercises.set(exercise2aId, exercise2a);
+    this.exercises.set(exercise2aaBId, exercise2aB);
+    this.exercises.set(exercise2bId2, exercise2b2);
+    this.exercises.set(exercise2cId, exercise2c);
     this.exercises.set(exercise4Id, exercise4);
     this.exercises.set(exercise5Id, exercise5);
 
@@ -224,14 +329,119 @@ export class MemStorage implements IStorage {
       order: 2,
     };
 
-    const question3: Question = {
+    // Questions for exercise1b
+    const question1b1: Question = {
       id: randomUUID(),
-      exerciseId: exercise3Id,
+      exerciseId: exercise1bId,
+      title: "Question 1",
+      text: "Quel est le nom propre dans cette liste?",
+      type: "multiple_choice",
+      options: JSON.stringify(["chat", "Paris", "maison", "liberté"]),
+      correctAnswer: "Paris",
+      order: 1,
+    };
+
+    const question1b2: Question = {
+      id: randomUUID(),
+      exerciseId: exercise1bId,
+      title: "Question 2",
+      text: 'Dans la phrase "Marie habite à Lyon", identifiez les noms propres:',
+      type: "multiple_choice",
+      options: JSON.stringify(["Marie", "Lyon", "Marie et Lyon", "habite"]),
+      correctAnswer: "Marie et Lyon",
+      order: 2,
+    };
+
+    // Questions for exercise1c
+    const question1c1: Question = {
+      id: randomUUID(),
+      exerciseId: exercise1cId,
+      title: "Question 1",
+      text: 'Quel est le genre du nom "table"?',
+      type: "multiple_choice",
+      options: JSON.stringify(["Masculin", "Féminin", "Les deux", "Ni l'un ni l'autre"]),
+      correctAnswer: "Féminin",
+      order: 1,
+    };
+
+    // Questions for exercise2
+    const question2a: Question = {
+      id: randomUUID(),
+      exerciseId: exercise2Id,
       title: "Question 1",
       text: 'Quel est le verbe dans la phrase: "Le professeur enseigne les mathématiques"?',
       type: "multiple_choice",
       options: JSON.stringify(["professeur", "enseigne", "mathématiques", "Les"]),
       correctAnswer: "enseigne",
+      order: 1,
+    };
+
+    const question2b1: Question = {
+      id: randomUUID(),
+      exerciseId: exercise2bId,
+      title: "Question 1",
+      text: 'Le verbe "être" dans la phrase "Elle est heureuse" est:',
+      type: "multiple_choice",
+      options: JSON.stringify(["Verbe d'action", "Verbe d'état", "Verbe transitif", "Verbe intransitif"]),
+      correctAnswer: "Verbe d'état",
+      order: 1,
+    };
+
+    // Questions for adjectifs exercise
+    const question2a1: Question = {
+      id: randomUUID(),
+      exerciseId: exercise2aId,
+      title: "Question 1",
+      text: 'Dans la phrase "Une belle maison blanche", quels sont les adjectifs?',
+      type: "multiple_choice",
+      options: JSON.stringify(["belle", "blanche", "belle et blanche", "maison"]),
+      correctAnswer: "belle et blanche",
+      order: 1,
+    };
+
+    const question2aB1: Question = {
+      id: randomUUID(),
+      exerciseId: exercise2aaBId,
+      title: "Question 1",
+      text: "Accorder: Une fille _____ (beau)",
+      type: "multiple_choice",
+      options: JSON.stringify(["beau", "beaux", "belle", "belles"]),
+      correctAnswer: "belle",
+      order: 1,
+    };
+
+    // Questions for pronouns exercise
+    const question2b2_1: Question = {
+      id: randomUUID(),
+      exerciseId: exercise2bId2,
+      title: "Question 1",
+      text: 'Remplacez "les enfants" par un pronom: "Je vois les enfants tous les jours"',
+      type: "multiple_choice",
+      options: JSON.stringify(["les", "leur", "lui", "eux"]),
+      correctAnswer: "les",
+      order: 1,
+    };
+
+    // Questions for prepositions exercise
+    const question2c1: Question = {
+      id: randomUUID(),
+      exerciseId: exercise2cId,
+      title: "Question 1",
+      text: "Complétez: Le livre est _____ la table",
+      type: "multiple_choice",
+      options: JSON.stringify(["en", "sur", "à", "de"]),
+      correctAnswer: "sur",
+      order: 1,
+    };
+
+    const question3: Question = {
+      id: randomUUID(),
+      exerciseId: exercise3Id,
+      title: "Question 1",
+      text: 'Dans la phrase "Le professeur enseigne les mathématiques", identifiez les noms:',
+      type: "multiple_choice",
+      options: JSON.stringify(["professeur", "mathématiques", "professeur et mathématiques", "enseigne"]),
+      correctAnswer: "professeur et mathématiques",
       order: 1,
     };
 
@@ -488,6 +698,15 @@ export class MemStorage implements IStorage {
 
     this.questions.set(question1.id, question1);
     this.questions.set(question2.id, question2);
+    this.questions.set(question1b1.id, question1b1);
+    this.questions.set(question1b2.id, question1b2);
+    this.questions.set(question1c1.id, question1c1);
+    this.questions.set(question2a.id, question2a);
+    this.questions.set(question2b1.id, question2b1);
+    this.questions.set(question2a1.id, question2a1);
+    this.questions.set(question2aB1.id, question2aB1);
+    this.questions.set(question2b2_1.id, question2b2_1);
+    this.questions.set(question2c1.id, question2c1);
     this.questions.set(question3.id, question3);
     this.questions.set(question4.id, question4);
     this.questions.set(question5.id, question5);
