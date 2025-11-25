@@ -177,7 +177,6 @@ export class MemStorage implements IStorage {
     this.courses.set(course1Id, course1);
     this.courses.set(course2Id, course2);
     this.courses.set(course2aId, course2a);
-    this.courses.set(course2bId, course2b);
     this.courses.set(course2cId, course2c);
     this.courses.set(course3Id, course3);
 
@@ -261,12 +260,9 @@ export class MemStorage implements IStorage {
 
     // New grammar courses
     const grammar10Id = randomUUID();
-    const grammar11Id = randomUUID();
-    const grammar12Id = randomUUID();
 
     // New orthography courses
     const orthography8Id = randomUUID();
-    const orthography9Id = randomUUID();
     const orthography10Id = randomUUID();
 
     // New conjugation courses
@@ -781,24 +777,6 @@ export class MemStorage implements IStorage {
       order: 28,
     };
 
-    const grammar11: Course = {
-      id: grammar11Id,
-      title: "Structure complète de la phrase",
-      description: "Sujet, verbe, COD, COI, compléments circonstanciels",
-      category: "grammaire",
-      content: "<h2>Structure Complète de la Phrase</h2><p>Une phrase bien construite contient généralement: Sujet + Verbe + Compléments.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong> SUJET + VERBE + COMPLÉMENTS</div><h3>1. LE SUJET</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Qui fait l'action?</strong><br>\"Les enfants jouent au parc.\" → Les enfants = sujet<br>\"Je viens.\" → Je = sujet<br>\"Elle étudie.\" → Elle = sujet</div><h3>2. LE VERBE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>L'action ou l'état</strong><br>\"Elle JOUE au tennis.\" → joue = verbe (action)<br>\"Je SUIS fatigué.\" → suis = verbe (état)</div><h3>3. COMPLÉMENTS D'OBJET DIRECT (COD)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Répond à: Quoi? Qui?</strong><br>\"Elle mange une pomme.\" → une pomme = COD<br>\"Il regarde Marie.\" → Marie = COD</div><h3>4. COMPLÉMENTS D'OBJET INDIRECT (COI)</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Répond à: À qui? De quoi?</strong><br>\"Je parle à Marie.\" → à Marie = COI<br>\"Elle pense à toi.\" → à toi = COI</div><h3>5. COMPLÉMENTS CIRCONSTANCIELS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Lieu (Où?):</strong> \"Je vais à l'école.\"<br><strong>Temps (Quand?):</strong> \"Demain, on part.\"<br><strong>Manière (Comment?):</strong> \"Elle court rapidement.\"<br><strong>Cause (Pourquoi?):</strong> \"Je suis fatigué parce que j'ai travaillé.\"</div>",
-      order: 29,
-    };
-
-    const grammar12: Course = {
-      id: grammar12Id,
-      title: "Voix active et voix passive",
-      description: "Transformer une phrase active en passive et inversement",
-      category: "grammaire",
-      content: "<h2>Voix Active et Voix Passive</h2><p>La même action peut s'exprimer de deux façons: voix ACTIVE ou voix PASSIVE.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ DIFFÉRENCE:</strong><br>ACTIVE: Le sujet FAIT l'action<br>PASSIVE: Le sujet REÇOIT l'action</div><h3>1. VOIX ACTIVE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le sujet est l'agent (celui qui fait):</strong><br>\"Le chat attrape la souris.\"<br>→ Sujet (chat) + Verbe (attrape) + COD (souris)</div><h3>2. VOIX PASSIVE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le sujet reçoit l'action:</strong><br>\"La souris est attrapée par le chat.\"<br>→ Sujet (souris) + Être (est attrapée) + Participe Passé (attrapée) + par l'agent (par le chat)</div><h3>3. TRANSFORMATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Formule: Être + Participe Passé + par + agent</strong><br>\"Le professeur enseigne les mathématiques.\" (active)<br>→ \"Les mathématiques sont enseignées par le professeur.\" (passive)</div>",
-      order: 30,
-    };
-
     const orthography8: Course = {
       id: orthography8Id,
       title: "Pluriels spéciaux",
@@ -806,15 +784,6 @@ export class MemStorage implements IStorage {
       category: "orthographe",
       content: "<h2>Pluriels Spéciaux - Cas Particuliers</h2><p>La plupart des noms ajoutent -s au pluriel, mais certains suivent des règles spéciales!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLES SPÉCIALES:</strong><br>-al → -aux (généralement)<br>-eau, -au, -eu → -x<br>-ail → -ails ou -aux</div><h3>1. MOTS EN -AL → -AUX</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Un cheval → Des chevaux</strong><br><strong>Un animal → Des animaux</strong><br><strong>Un journal → Des journaux</strong><br><strong>Exceptions:</strong> bal → bals, festival → festivals</div><h3>2. MOTS EN -EAU, -AU, -EU → -X</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Un château → Des châteaux</strong><br><strong>Un bureau → Des bureaux</strong><br><strong>Un jeu → Des jeux</strong><br><strong>Un lieu → Des lieux</strong></div><h3>3. MOTS EN -AIL</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Généralement -ails:</strong><br>• un détail → des détails<br>• un travail → des travaux (exception!)<br>• un vitrail → des vitraux (exception!)</div>",
       order: 31,
-    };
-
-    const orthography9: Course = {
-      id: orthography9Id,
-      title: "Accord du participe passé",
-      description: "Quand accorder le participe avec avoir, être, et pronoms",
-      category: "orthographe",
-      content: "<h2>Accord du Participe Passé - Règles Essentielles</h2><p>Le participe passé ne s'accorde pas toujours! Il y a des règles précises selon l'auxiliaire.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLES:</strong><br>AVOIR: accord avec COD si avant le verbe<br>ÊTRE: accord toujours avec le sujet</div><h3>1. AVEC L'AUXILIAIRE ÊTRE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le participe s'accorde toujours avec le sujet:</strong><br>\"Elle est allée.\" (participe allée: féminin)<br>\"Ils sont venus.\" (participe venus: pluriel)<br>\"Elles sont restées.\" (participe restées: féminin pluriel)</div><h3>2. AVEC L'AUXILIAIRE AVOIR</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>S'accorde avec le COD si le COD est AVANT le verbe:</strong><br>\"Elle a mangé une pomme.\" (pas d'accord: COD après)<br>\"La pomme qu'elle a mangée.\" (accord: \"pomme\" est avant)<br>\"Je les ai vus.\" (accord: \"les\" est avant)</div><h3>3. AVEC LES PRONOMS RÉFLÉCHIS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Se lever → Elle s'est levée (accord)</strong><br><strong>Se laver les mains → Elle s'est lavé les mains (pas d'accord)</strong><br>→ Dépend si le pronom est COD ou COI!</div>",
-      order: 32,
     };
 
     const orthography10: Course = {
@@ -960,10 +929,7 @@ export class MemStorage implements IStorage {
     this.courses.set(punctuation2Id, punctuation2);
     this.courses.set(punctuation3Id, punctuation3);
     this.courses.set(grammar10Id, grammar10);
-    this.courses.set(grammar11Id, grammar11);
-    this.courses.set(grammar12Id, grammar12);
     this.courses.set(orthography8Id, orthography8);
-    this.courses.set(orthography9Id, orthography9);
     this.courses.set(orthography10Id, orthography10);
     this.courses.set(conjugation8Id, conjugation8);
     this.courses.set(conjugation9Id, conjugation9);

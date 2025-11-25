@@ -1,0 +1,94 @@
+1. La phrase de base
+Définition
+Structure obligatoire : Groupe du sujet (GS) + Groupe du verbe (GV)
+Structure étendue : GS + GV + Compléments de phrase (CP)
+Ajouter / retirer un CP
+Reconnaitre la phrase de base dans différentes phrases
+2. Les groupes de mots
+a) Groupe du nom (GN)
+Nom noyau
+Déterminant (article, possessif, démonstratif, numéral)
+Adjectif (expansion du nom)
+Complément du nom (CDN)
+Groupe prépositionnel à l’intérieur du GN
+Accord dans le GN
+b) Groupe du verbe (GV)
+Verbe conjugué (noyau du GV)
+Complément(s) du verbe (fonction interne au GV)
+Complément direct / indirect (optionnel, ancien code)
+Complément essentiel vs complément non essentiel
+c) Groupe prépositionnel (GP)
+Préposition + groupe (nominal ou autre)
+Rôle dans la phrase (souvent complément du nom ou CP)
+d) Groupe adjectival (GA)
+Adjectif + modifieurs (adverbes)
+e) Groupe adverbial (GAdv)
+Adverbe noyau
+Modifieurs
+CP selon la fonction
+f) Groupe de déterminant (GD)
+Présent dans l’analyse du GN
+3. Les fonctions dans la phrase
+(Nouvelles appellations officielles)
+Groupe du sujet (GS)
+Groupe du verbe (GV)
+Attribut du sujet
+Complément de phrase (CP) — temps, lieu, manière
+Complément du verbe (fonction interne, sans COD/COI)
+Complément du nom
+Modificateur du verbe / adjectif
+Apposition (fin primaire)
+4. Les expansions
+De quoi peut-on ajouter autour des noyaux ?
+Expansion du nom : adjectif, CDN, proposition subordonnée (introduite très simplement)
+Expansion du verbe : compléments essentiels
+Expansion de la phrase : CP
+5. Les manipulations syntaxiques (outils-clés de la nouvelle grammaire)
+(Indispensables dans tous les programmes du Québec)
+Déplacement (pour valider un CP)
+Effacement (pour vérifier essentiel / non essentiel)
+Remplacement (pronomisation, substituts)
+Encadrement
+par « c’est… qui / que »
+par « ne…pas »
+6. Les classes de mots (Natures)
+Nom
+Déterminant (toutes catégories)
+Adjectif
+Verbe
+Adverbe
+Préposition
+Conjonction (coordination et subordination simple – fin primaire)
+Pronom : personnel, possessif, démonstratif, interrogatif, indéfini
+Interjection
+7. Les accords (nouvelle grammaire)
+Accord dans le groupe du nom (Déterminant – Nom – Adjectif)
+Accord du verbe avec le sujet
+Accord de l’attribut du sujet
+Accord du participe passé (introduit seulement en 6e année, de manière simplifiée)
+8. Conjugaison (perspective de nouvelle grammaire)
+Repérer l’infinitif
+Trouver le verbe conjugué
+Identifier le temps simple : présent, imparfait, futur simple
+Temps composés : passé composé (seulement)
+Verbes fréquents : être, avoir, aller, faire, pouvoir, vouloir, devoir, venir
+Conjugaison fonctionnelle (dans des phrases), pas cataloguée par tableaux
+9. Types et formes de phrases
+(Grammaire moderne, conforme Progression du MELS)
+Type : déclarative, interrogative, exclamative, impérative
+Forme :
+positive / négative
+neutre / emphatique
+Phrase simple / phrase complexe (introduction seulement)
+Ponctuation adéquate
+10. Orthographe grammaticale
+Homophones grammaticaux (piliers de fin primaire) :
+a / à
+est / et
+son / sont
+ou / où
+ce / se
+c’ / s’
+on / ont
+Pluriels réguliers
+Accords liés aux groupes
