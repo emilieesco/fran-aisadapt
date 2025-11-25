@@ -161,8 +161,11 @@ export default function StudentDashboard() {
       grammaire: "Grammaire",
       orthographe: "Orthographe",
       conjugaison: "Conjugaison",
+      ponctuation: "Ponctuation",
+      vocabulaire: "Vocabulaire",
       textes: "Textes",
       ecriture: "Écriture",
+      lecture_reading: "Lecture",
     };
     return labels[category] || category;
   };
@@ -238,13 +241,13 @@ export default function StudentDashboard() {
               </div>
 
               {/* Group courses by category */}
-              {["grammaire", "orthographe", "conjugaison", "ponctuation"].map((category) => {
+              {["grammaire", "orthographe", "conjugaison", "ponctuation", "vocabulaire"].map((category) => {
                 const categoryName = getCategoryLabel(category);
                 const categoryCourses = courses.filter(
                   (c) =>
                     c.category === category &&
                     !c.category.includes("lecture") &&
-                    !c.category.includes("writing")
+                    !c.category.includes("ecriture")
                 );
 
                 if (categoryCourses.length === 0) return null;
@@ -369,6 +372,30 @@ export default function StudentDashboard() {
                 <p className="text-muted-foreground mb-6">
                   Améliorez votre compréhension de la lecture avec différents types de textes
                 </p>
+              </div>
+
+              {/* Leçons de Lecture */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Leçons de Lecture</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {courses
+                    .filter((c) => c.category === "lecture_reading")
+                    .sort((a, b) => a.order - b.order)
+                    .map((course) => (
+                      <Card
+                        key={course.id}
+                        className="p-4 hover-elevate cursor-pointer"
+                        onClick={() => handleStartCourse(course.id)}
+                        data-testid={`card-lecture-course-${course.id}`}
+                      >
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-foreground">{course.title}</h4>
+                          <p className="text-sm text-muted-foreground">{course.description}</p>
+                          <Button size="sm" className="w-full">Lire le cours</Button>
+                        </div>
+                      </Card>
+                    ))}
+                </div>
               </div>
 
               <Tabs defaultValue="narratif" className="w-full">
@@ -780,13 +807,41 @@ export default function StudentDashboard() {
 
           {/* Écriture Tab */}
           <TabsContent value="ecriture">
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold mb-2">Activités d'Écriture</h2>
                 <p className="text-muted-foreground mb-6">
                   Pratiquez l'écriture avec des activités créatives et guidées
                 </p>
               </div>
+
+              {/* Leçons d'Écriture */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Leçons d'Écriture</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {courses
+                    .filter((c) => c.category === "ecriture")
+                    .sort((a, b) => a.order - b.order)
+                    .map((course) => (
+                      <Card
+                        key={course.id}
+                        className="p-4 hover-elevate cursor-pointer"
+                        onClick={() => handleStartCourse(course.id)}
+                        data-testid={`card-writing-course-${course.id}`}
+                      >
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-foreground">{course.title}</h4>
+                          <p className="text-sm text-muted-foreground">{course.description}</p>
+                          <Button size="sm" className="w-full">Lire le cours</Button>
+                        </div>
+                      </Card>
+                    ))}
+                </div>
+              </div>
+
+              {/* Exercices d'Écriture */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Exercices d'Écriture</h3>
               {writingExercises.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {writingExercises.map((exercise) => (
@@ -829,6 +884,7 @@ export default function StudentDashboard() {
                   </p>
                 </Card>
               )}
+              </div>
             </div>
           </TabsContent>
 
