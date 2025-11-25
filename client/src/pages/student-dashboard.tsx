@@ -131,9 +131,13 @@ export default function StudentDashboard() {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case "classes_de_mots":
+      case "grammaire":
         return "text-blue-500";
-      case "textes_narratifs":
+      case "orthographe":
+        return "text-orange-500";
+      case "conjugaison":
+        return "text-red-500";
+      case "textes":
         return "text-green-500";
       case "ecriture":
         return "text-purple-500";
@@ -144,8 +148,10 @@ export default function StudentDashboard() {
 
   const getCategoryLabel = (category: string) => {
     const labels: { [key: string]: string } = {
-      classes_de_mots: "Classes de mots",
-      textes_narratifs: "Textes narratifs",
+      grammaire: "Grammaire",
+      orthographe: "Orthographe",
+      conjugaison: "Conjugaison",
+      textes: "Textes",
       ecriture: "Écriture",
     };
     return labels[category] || category;

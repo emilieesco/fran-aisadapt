@@ -113,7 +113,7 @@ export class MemStorage implements IStorage {
       id: course1Id,
       title: "Identification des noms",
       description: "Apprenez à identifier et classifier les différents types de noms",
-      category: "classes_de_mots",
+      category: "grammaire",
       content:
         "<h3>Les Noms</h3><p>Un nom est un mot qui désigne une personne, un animal, une chose, une idée ou un sentiment.</p><p><strong>Exemples:</strong> chat, maison, liberté, professeur</p><p><strong>Les types de noms:</strong></p><ul><li>Noms communs: désignent des êtres ou des choses de façon générale</li><li>Noms propres: désignent des êtres ou des choses particuliers</li></ul>",
       order: 1,
@@ -123,7 +123,7 @@ export class MemStorage implements IStorage {
       id: course2Id,
       title: "Identification des verbes",
       description: "Maîtrisez l'identification des verbes et leurs conjugaisons",
-      category: "classes_de_mots",
+      category: "grammaire",
       content:
         "<h3>Les Verbes</h3><p>Un verbe est un mot qui exprime une action ou un état.</p><p><strong>Exemples:</strong> manger, courir, être, avoir</p>",
       order: 2,
@@ -133,7 +133,7 @@ export class MemStorage implements IStorage {
       id: course3Id,
       title: "Structure du texte narratif",
       description: "Comprenez les éléments d'un bon texte narratif",
-      category: "textes_narratifs",
+      category: "textes",
       content:
         "<h3>Le Texte Narratif</h3><p>Un texte narratif raconte une histoire avec:</p><ul><li>Début (situation initiale)</li><li>Nœud (conflit ou événement)</li><li>Dénouement (résolution)</li></ul>",
       order: 3,
@@ -257,7 +257,7 @@ export class MemStorage implements IStorage {
       id: course4Id,
       title: "Texte descriptif",
       description: "Analysez les descriptions détaillées et les techniques utilisées",
-      category: "textes_narratifs",
+      category: "textes",
       content:
         "<h3>Le Texte Descriptif</h3><p>Un texte descriptif peint un tableau des choses. Il peut décrire un lieu, une personne, un objet ou une situation.</p>",
       order: 4,
@@ -267,7 +267,7 @@ export class MemStorage implements IStorage {
       id: course5Id,
       title: "Texte explicatif",
       description: "Comprenez comment expliquer un phénomène ou un concept",
-      category: "textes_narratifs",
+      category: "textes",
       content:
         "<h3>Le Texte Explicatif</h3><p>Un texte explicatif explique un phénomène, un concept ou un processus de manière claire et logique.</p>",
       order: 5,
@@ -277,7 +277,7 @@ export class MemStorage implements IStorage {
       id: course6Id,
       title: "Texte argumentatif",
       description: "Maîtrisez les techniques de persuasion et d'argumentation",
-      category: "textes_narratifs",
+      category: "textes",
       content:
         "<h3>Le Texte Argumentatif</h3><p>Un texte argumentatif vise à convaincre le lecteur en présentant des arguments soutenus par des preuves.</p>",
       order: 6,
@@ -287,7 +287,7 @@ export class MemStorage implements IStorage {
       id: course7Id,
       title: "Texte informatif",
       description: "Identifiez les informations clés et la structure des textes informatifs",
-      category: "textes_narratifs",
+      category: "textes",
       content:
         "<h3>Le Texte Informatif</h3><p>Un texte informatif transmet des informations factuelles sur un sujet spécifique.</p>",
       order: 7,
