@@ -1122,119 +1122,207 @@ export class MemStorage implements IStorage {
     this.exercises.set(writingExercise3Id, writingExercise3);
     this.exercises.set(writingExercise4Id, writingExercise4);
 
-    // Reading questions
-    // Narratif
+    // Reading questions - NARRATIVE TEXTS with 4 dimensions
+    // Narratif - Exercice 1: Histoire 1
     const readQ1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
-      title: "Texte: Une journée à la plage",
-      text: "Ce matin, Marie et son frère Thomas se sont réveillés tôt avec excitation. Leurs parents les emmenaient à la plage! En arrivant, ils ont vu les vagues se crasher sur le sable doré. Thomas a couru vers l'eau tandis que Marie a commencé à construire un château de sable. Après quelques heures, ils sont rentrés à la maison, épuisés mais très heureux de cette belle journée.\n\nQuestion 1: Qui est allé à la plage?",
+      title: "HISTOIRE 1: Le Tresor de la Cave",
+      text: "SITUATION INITIALE: Léa avait 11 ans et vivait dans une petite maison ancienne au bord d'une forêt dense. Elle était une fille curieuse qui adorait lire des histoires d'aventure. Chaque jour, elle allait à l'école et revenait faire ses devoirs. Sa vie était calme et ordinaire, jusqu'à ce jour fatidique du samedi matin.\n\nÉLÉMENT DÉCLENCHEUR: Ce matin-là, en explorant le grenier, Léa découvrit une vieille clé rouillée tombée entre deux poutres en bois. La clé avait une forme bizarre, gravée de symboles mystérieux. Léa n'avait jamais vu cette clé avant et elle se demanda: \"À quoi ouvre-t-elle?\"\n\nNŒUD: Elle chercha partout dans la maison une serrure qui correspondrait à cette clé. Dans la cave, derrière les vieux meubles poussiéreux, elle trouva une petite porte en bois qu'elle n'avait jamais remarquée avant. Son cœur battait très vite. Avec beaucoup d'effort, elle tira la porte et vit une pièce secrète pleine de coffres. Mais soudain, elle entendit un bruit terrible: la porte de la cave claqua et s'enferma! Elle était piégée dans la pièce secrète!\n\nDÉNOUEMENT: Après une heure, Léa trouva une autre porte qui menait à un tunnel souterrain. Elle suivit le tunnel et arriva derrière le vieux puits du jardin. Elle s'échappa et raconta tout à ses parents. En explorant la maison avec sa famille et un expert, ils découvrirent que la maison appartenait à un homme riche du 19e siècle qui y avait caché des pièces de monnaie anciennes. Léa devint célèbre dans son village comme \"la fille qui a découvert le trésor caché\".\n\n--- QUESTIONS ---\nQuestion 1 (Situation initiale): Quel était le métier ou la passion de Léa avant sa découverte?",
       type: "multiple_choice",
-      options: JSON.stringify(["Marie et Thomas", "Seulement Marie", "Seulement Thomas", "Les parents seuls"]),
-      correctAnswer: "Marie et Thomas",
+      options: JSON.stringify(["Elle était archéologue", "Elle adorait lire des histoires d'aventure", "Elle était détective", "Elle construisait des châteaux"]),
+      correctAnswer: "Elle adorait lire des histoires d'aventure",
       order: 1,
     };
 
     const readQ2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
-      title: "Question 2",
-      text: "Que faisait Thomas à la plage?",
+      title: "Question 2 (Élément déclencheur)",
+      text: "Quel objet a déclenché toute l'aventure de Léa?",
       type: "multiple_choice",
-      options: JSON.stringify(["Il nageait", "Il courrait vers l'eau", "Il dormait", "Il lisait"]),
-      correctAnswer: "Il courrait vers l'eau",
+      options: JSON.stringify(["Un livre ancien", "Une vieille clé rouillée", "Une lettre mystérieuse", "Un trésor caché"]),
+      correctAnswer: "Une vieille clé rouillée",
       order: 2,
     };
 
-    // Descriptif
+    const readQ2b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème grave s'est produit quand Léa a trouvé la porte secrète dans la cave?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle s'est blessée", "Elle s'est perdue", "La porte se ferma et elle fut piégée", "Elle vit un fantôme"]),
+      correctAnswer: "La porte se ferma et elle fut piégée",
+      order: 3,
+    };
+
+    const readQ2c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment l'histoire s'est-elle terminée pour Léa?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle s'est perdue à jamais", "Elle s'échappa et découvrit le trésor avec sa famille", "Elle trouva juste des vieux meubles", "Elle ne sortit jamais de la cave"]),
+      correctAnswer: "Elle s'échappa et découvrit le trésor avec sa famille",
+      order: 4,
+    };
+
+    // HISTOIRE 2: Le Jour de l'Accident
     const readQ3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
-      title: "Texte: La vieille maison",
-      text: "La maison était vieille et isolée, perchée au sommet de la colline. Son toit pointu était couvert de tuiles rouges usées par le temps. Les murs de pierre grise, couverts de lierre, racontaient des histoires de plusieurs siècles. Les fenêtres à petits carreaux brillaient faiblement dans la lumière du coucher de soleil. Autour, un jardin sauvage s'étendait avec des fleurs blanches et jaunes.\n\nQuestion 1: De quelle couleur était le toit de la maison?",
+      title: "HISTOIRE 2: Le Jour de l'Accident",
+      text: "SITUATION INITIALE: Marc était un garçon de 13 ans qui vivait dans une grande ville. C'était un garçon sportif et courageux qui adorait faire du vélo avec ses copains du quartier. Chaque jour après l'école, lui et ses amis allaient au skate park faire des figures impressionnantes. Marc avait toujours porté un casque, mais ce jour-là, il l'avait oublié à la maison.\n\nÉLÉMENT DÉCLENCHEUR: En arrivant au parc, ses copains l'appelaient pour faire une course de vélo vers le pont à l'autre bout de la ville. Marc hésita: \"Je n'ai pas mon casque!\" cria-t-il. Mais ses copains plaisantaient: \"Allez Marc, t'es pas un bébé!\"\n\nNŒUD: Contre son mieux jugement, Marc accepta de participer à la course. Il pédalait vite, très vite. Soudain, une voiture sortit d'une rue latérale. Marc ne la vit pas à temps. Il freina brusquement et chuta violemment du vélo! Il tomba sur le trottoir, la tête la première. Il perdit connaissance. Les passants appelèrent l'ambulance immédiatement.\n\nDÉNOUEMENT: Marc fut transporté à l'hôpital avec une commotion cérébrale et plusieurs blessures. Il dut rester à l'hôpital pendant une semaine. Il avait beaucoup de chance: s'il avait porté un casque, les blessures auraient été moins graves; sans casque, il aurait pu mourir! Après sa sortie de l'hôpital, Marc devint ambassadeur de la sécurité à vélo dans son école. Il racontait à tous les enfants l'importance de porter un casque. Ses copains aussi commencèrent à toujours porter un casque.\n\n--- QUESTIONS ---\nQuestion 1 (Situation initiale): Pourquoi Marc adorait-il aller au parc?",
       type: "multiple_choice",
-      options: JSON.stringify(["Gris", "Rouges", "Blanc", "Jaune"]),
-      correctAnswer: "Rouges",
+      options: JSON.stringify(["Pour faire des devoirs", "Pour faire du vélo et faire des figures", "Pour regarder les autres", "Pour dormir"]),
+      correctAnswer: "Pour faire du vélo et faire des figures",
       order: 1,
     };
 
     const readQ4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
-      title: "Question 2",
-      text: "Quel était l'état du toit?",
+      title: "Question 2 (Élément déclencheur)",
+      text: "Quel événement a poussé Marc à participer à la course dangereuse?",
       type: "multiple_choice",
-      options: JSON.stringify(["Neuf et brillant", "Usé par le temps", "Peint récemment", "Couvert de neige"]),
-      correctAnswer: "Usé par le temps",
+      options: JSON.stringify(["Ses copains l'ont forcé et taquiné", "L'ambulance passait", "Il voulait faire une promenade", "Il n'avait rien à faire"]),
+      correctAnswer: "Ses copains l'ont forcé et taquiné",
       order: 2,
     };
 
-    // Explicatif
+    const readQ4b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel accident grave s'est produit pendant la course?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Marc tomba dans une rivière", "Une voiture sortit d'une rue latérale et il chuta", "Un ami l'a fait tomber", "Son vélo s'est cassé"]),
+      correctAnswer: "Une voiture sortit d'une rue latérale et il chuta",
+      order: 3,
+    };
+
+    const readQ4c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 4 (Dénouement)",
+      text: "Qu'a appris Marc de cet accident terrible?",
+      type: "multiple_choice",
+      options: JSON.stringify(["À conduire une voiture", "L'importance de porter un casque et devint ambassadeur de sécurité", "À courir au lieu de faire du vélo", "Rien du tout"]),
+      correctAnswer: "L'importance de porter un casque et devint ambassadeur de sécurité",
+      order: 4,
+    };
+
+    // HISTOIRE 3: La Fille qui Rêvait de Danser
     const readQ5: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
-      title: "Texte: Comment pousse une plante?",
-      text: "Une plante a besoin de trois choses essentielles pour pousser: la lumière du soleil, l'eau et un sol riche en nutriments. Tout d'abord, les racines de la plante absorbent l'eau et les minéraux du sol. Ensuite, la plante utilise la lumière du soleil pour créer son propre nourriture par photosynthèse. Finalement, la tige et les feuilles poussent, et la plante grandit. Ce processus peut durer plusieurs semaines ou plusieurs mois selon le type de plante.\n\nQuestion 1: Combien de choses essentielles une plante a-t-elle besoin?",
+      title: "HISTOIRE 3: La Fille qui Rêvait de Danser",
+      text: "SITUATION INITIALE: Sophie avait 12 ans et vivait dans un petit village. Elle adorait danser mais elle n'avait jamais eu l'occasion de prendre des cours de danse. Elle regardait des vidéos de danse sur Internet et s'entraînait seule dans sa chambre. Ses parents n'avaient pas assez d'argent pour lui payer des cours professionnels.\n\nÉLÉMENT DÉCLENCHEUR: Un jour, en se promenant au village, Sophie vit une affiche: \"Auditions de danse pour l'école d'arts! Gratuit pour tous! Samedi à 14h au centre culturel!\"\n\nNŒUD: Sophie était très nerveuse. Elle s'entraîna pendant toute la semaine. Le jour de l'audition, elle monta sur scène. Soudain, elle vit tous les regards fixés sur elle. Son cœur battait très fort. Elle oublia ses mouvements. Elle voulait arrêter et partir, mais elle prit une profonde respiration et continua de danser avec tout son cœur.\n\nDÉNOUEMENT: Le directeur de l'école d'arts fut tellement impressionné par sa passion qu'il l'accepta dans l'école et lui offrit même une bourse complète! Sophie pouvait danser gratuitement! Elle devint une danseuse talentueuse et plus tard, elle voyagea partout dans le monde pour partager sa passion avec les autres.\n\n--- QUESTIONS ---\nQuestion 1 (Situation initiale): Pourquoi Sophie ne pouvait-elle pas prendre de cours de danse avant?",
       type: "multiple_choice",
-      options: JSON.stringify(["1", "2", "3", "4"]),
-      correctAnswer: "3",
+      options: JSON.stringify(["Elle n'aimait pas la danse", "Ses parents n'avaient pas assez d'argent", "Il n'y avait pas de professeur", "Elle était trop occupée"]),
+      correctAnswer: "Ses parents n'avaient pas assez d'argent",
       order: 1,
     };
 
     const readQ6: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
-      title: "Question 2",
-      text: "Quel est le nom du processus par lequel la plante crée sa nourriture?",
+      title: "Question 2 (Élément déclencheur)",
+      text: "Quel événement a changé la vie de Sophie?",
       type: "multiple_choice",
-      options: JSON.stringify(["L'absorption", "La photosynthèse", "L'évaporation", "La croissance"]),
-      correctAnswer: "La photosynthèse",
+      options: JSON.stringify(["Elle trouva de l'argent", "Elle vit une affiche pour une audition gratuite", "Elle rencontra une danseuse professionnelle", "Elle reçut un cadeau"]),
+      correctAnswer: "Elle vit une affiche pour une audition gratuite",
       order: 2,
     };
 
-    // Argumentatif
+    const readQ6b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel problème Sophie affronta-t-elle sur scène?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La musique était mauvaise", "Elle était très nerveuse, avait peur et voulait partir", "Un enfant l'a interrompue", "La lumière était trop forte"]),
+      correctAnswer: "Elle était très nerveuse, avait peur et voulait partir",
+      order: 3,
+    };
+
+    const readQ6c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment la vie de Sophie changea-t-elle après l'audition?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle arrêta de danser", "Elle fut acceptée et reçut une bourse complète", "Elle partit du village", "Rien ne changea"]),
+      correctAnswer: "Elle fut acceptée et reçut une bourse complète",
+      order: 4,
+    };
+
+    // HISTOIRE 4: L'Amitié Retrouvée
     const readQ7: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
-      title: "Texte: Pourquoi il faut lire chaque jour",
-      text: "Il est très important de lire chaque jour. D'abord, la lecture enrichit notre vocabulaire et améliore notre façon de communiquer. Ensuite, lire stimule notre cerveau et nous aide à mieux comprendre le monde. De plus, la lecture est une excellent moyen de se détendre après une journée stressante. Enfin, les livres nous permettent de voyager dans des mondes imaginaires et de découvrir de nouvelles idées. Pour toutes ces raisons, nous devrions tous faire de la lecture une partie importante de notre routine quotidienne.\n\nQuestion 1: Quel est le premier argument présenté?",
+      title: "HISTOIRE 4: L'Amitié Retrouvée",
+      text: "SITUATION INITIALE: Lucas et Thomas étaient les meilleurs amis du monde. Ils faisaient tout ensemble: jouer au football, faire leurs devoirs, manger le gâteau d'anniversaire ensemble. Ils s'aimaient comme des frères. Ils avaient juré de rester amis pour toujours.\n\nÉLÉMENT DÉCLENCHEUR: Un jour, la famille de Thomas déménagea dans une autre ville, à plusieurs centaines de kilomètres de distance. Lucas et Thomas se promettirent de rester en contact, mais avec le temps, les messages devinrent de moins en moins fréquents. Après un an, ils ne communiquaient plus du tout.\n\nNŒUD: Lucas commença à se sentir très mal. Il pensait à Thomas tous les jours et avait le cœur brisé. Il voulait l'appeler mais avait peur que Thomas l'ait oublié. Thomas, de son côté, avait aussi les mêmes sentiments! Mais aucun des deux n'osa faire le premier pas.\n\nDÉNOUEMENT: Un jour, Lucas reçut une lettre de Thomas. Thomas avait écrit: \"Mon ami Lucas, je t'ai tellement manqué. Je veux que tu saches que tu restes mon meilleur ami. Je suis désolé de ne pas avoir écrit plus souvent.\" Lucas courut immédiatement chez son ordinateur et écrivit une longue réponse. Ils commencèrent à se parler régulièrement. Quelques mois plus tard, Lucas visita Thomas pendant les vacances. Ils s'embrassèrent et pleurèrent de joie. Leur amitié était revenue plus forte que jamais!\n\n--- QUESTIONS ---\nQuestion 1 (Situation initiale): Quelle était la relation entre Lucas et Thomas?",
       type: "multiple_choice",
-      options: JSON.stringify(["La lecture enrichit notre vocabulaire", "La lecture nous détend", "La lecture stimule le cerveau", "La lecture coûte cher"]),
-      correctAnswer: "La lecture enrichit notre vocabulaire",
+      options: JSON.stringify(["Ils se détestaient", "Ils étaient des meilleurs amis comme des frères", "Ils étaient voisins", "Ils se connaissaient à peine"]),
+      correctAnswer: "Ils étaient des meilleurs amis comme des frères",
       order: 1,
     };
 
     const readQ8: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
-      title: "Question 2",
-      text: "Pourquoi la lecture est-elle un bon moyen de se détendre?",
+      title: "Question 2 (Élément déclencheur)",
+      text: "Quel événement a séparé Lucas et Thomas?",
       type: "multiple_choice",
-      options: JSON.stringify(["C'est amusant", "C'est gratuit", "Cela nous aide à oublier le stress", "C'est rapide"]),
-      correctAnswer: "Cela nous aide à oublier le stress",
+      options: JSON.stringify(["Ils se disputèrent", "La famille de Thomas déménagea loin", "Lucas devint occupé", "Ils allèrent à des écoles différentes"]),
+      correctAnswer: "La famille de Thomas déménagea loin",
       order: 2,
     };
 
-    // Informatif
+    const readQ8b: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 3 (Nœud)",
+      text: "Quel était le problème pendant leur séparation?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils s'envoyaient trop de messages", "Ni l'un ni l'autre n'osait faire le premier pas", "Ils trouvaient que c'était trop difficile", "Ils avaient oublié l'un l'autre"]),
+      correctAnswer: "Ni l'un ni l'autre n'osait faire le premier pas",
+      order: 3,
+    };
+
+    const readQ8c: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 4 (Dénouement)",
+      text: "Comment leur amitié a-t-elle été retrouvée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils se déplaçaient ensemble", "Thomas écrivit une lettre et Lucas répondit", "Lucas se força à oublier", "Ils trouvèrent un nouveau meilleur ami"]),
+      correctAnswer: "Thomas écrivit une lettre et Lucas répondit",
+      order: 4,
+    };
+
+    // Informatif - Un petit exercice
     const readQ9: Question = {
       id: randomUUID(),
       exerciseId: readingExercise5Id,
-      title: "Texte: Les animaux de la forêt",
-      text: "La forêt est l'habitat de nombreux animaux fascinants. Les cerfs sont des herbivores élégants qui se nourrissent de feuilles et d'herbe. Les renards, quant à eux, sont des carnivores intelligents qui chassent les petits animaux. Les écureuils grimpent dans les arbres et collectent des noisettes. Les loups vivent en meutes et sont des prédateurs puissants. Les oiseaux de différentes espèces font leurs nids dans les arbres et chantent pour communiquer. Tous ces animaux jouent un rôle important dans l'équilibre de l'écosystème forestier.\n\nQuestion 1: Que mangent les cerfs?",
+      title: "HISTOIRE 5: La Découverte Scientifique",
+      text: "SITUATION INITIALE: Emma était une fille de 11 ans qui adorait la science. Elle passait des heures à faire des expériences dans sa chambre. Elle rêvait de devenir scientifique comme sa grand-mère.\n\nÉLÉMENT DÉCLENCHEUR: Un jour, elle découvrit une vieille expérience de cristaux de sel dans un livre de son grand-mère scientifique.\n\nNŒUD: Emma fit l'expérience mais quelque chose d'inattendu se produisit! Les cristaux se développaient d'une manière bizarre qu'elle n'avait jamais vue. Elle pensa d'abord que c'était un échec.\n\nDÉNOUEMENT: Après investigation, elle réalisa qu'elle avait créé une nouvelle forme de cristal! Elle présenta son découverte à l'école et gagna le prix de la meilleure expérience scientifique!\n\n--- QUESTIONS ---\nQuestion 1 (Situation initiale): Qu'aimait faire Emma?",
       type: "multiple_choice",
-      options: JSON.stringify(["Des petits animaux", "Des feuilles et de l'herbe", "Des poissons", "Des insectes"]),
-      correctAnswer: "Des feuilles et de l'herbe",
+      options: JSON.stringify(["Jouer au foot", "Faire des expériences scientifiques", "Regarder la TV", "Dormir"]),
+      correctAnswer: "Faire des expériences scientifiques",
       order: 1,
     };
 
     const readQ10: Question = {
       id: randomUUID(),
       exerciseId: readingExercise5Id,
-      title: "Question 2",
-      text: "Comment vivent les loups?",
+      title: "Question 2 (Dénouement)",
+      text: "Comment la découverte d'Emma a-t-elle terminé?",
       type: "multiple_choice",
-      options: JSON.stringify(["Seuls", "En paires", "En meutes", "En colonies"]),
-      correctAnswer: "En meutes",
+      options: JSON.stringify(["C'était un échec", "Elle gagna le prix de la meilleure expérience scientifique", "Elle arrêta la science", "Personne ne s'en souciait"]),
+      correctAnswer: "Elle gagna le prix de la meilleure expérience scientifique",
       order: 2,
     };
 
@@ -1283,12 +1371,20 @@ export class MemStorage implements IStorage {
     this.questions.set(question5.id, question5);
     this.questions.set(readQ1.id, readQ1);
     this.questions.set(readQ2.id, readQ2);
+    this.questions.set(readQ2b.id, readQ2b);
+    this.questions.set(readQ2c.id, readQ2c);
     this.questions.set(readQ3.id, readQ3);
     this.questions.set(readQ4.id, readQ4);
+    this.questions.set(readQ4b.id, readQ4b);
+    this.questions.set(readQ4c.id, readQ4c);
     this.questions.set(readQ5.id, readQ5);
     this.questions.set(readQ6.id, readQ6);
+    this.questions.set(readQ6b.id, readQ6b);
+    this.questions.set(readQ6c.id, readQ6c);
     this.questions.set(readQ7.id, readQ7);
     this.questions.set(readQ8.id, readQ8);
+    this.questions.set(readQ8b.id, readQ8b);
+    this.questions.set(readQ8c.id, readQ8c);
     this.questions.set(readQ9.id, readQ9);
     this.questions.set(readQ10.id, readQ10);
     this.questions.set(writQ1.id, writQ1);
