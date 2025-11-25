@@ -109,20 +109,72 @@ Application web éducative complète pour l'enseignement du français aux élèv
 - **Rétroaction**: Feedback immédiat sur les actions
 - **Motivations**: Badges, progressions visuelles, encouragements
 
+## 50 Leçons Focalisées par Catégorie
+
+### Grammaire (9 leçons)
+1. Les Noms - Identificationet classification
+2. Les Verbes - Identification et fonctions
+3. Les Adjectifs - Description et modification
+4. Les Pronoms - Remplacement des noms
+5. Les Prépositions - Utilisation et sens
+6. Les Adverbes - Manière, temps, lieu, quantité
+7. Les Mots de Liaison - Et, ou, mais, car, donc
+8. Phrase Simple - Structure de base
+9. Phrase Complexe - Coordination et subordination
+10. Genres et classes de noms - Masculin/féminin
+11. Structure complète de phrase - Sujet, verbe, COD, COI, CC
+12. Voix active et passive - Transformation
+
+### Orthographe (10 leçons)
+1. Les règles de base - Majuscules, accents, ponctuation
+2. Accords: noms et adjectifs - Genre et nombre
+3. Les accords du verbe - Conjugaison correcte
+4. Les homophones - Mots qui se prononcent pareils
+5. Les pièges courants - Erreurs fréquentes
+6. Homophones courants - A/à, ou/où, son/sont, ce/se, mes/mais
+7. Autres homophones - Cher/chère, vers/vert, pair/père/paire, court/cour
+8. Pluriels spéciaux - Mots en -al, -eau, -au, -ail
+9. Accord du participe passé - Avec avoir/être
+10. Mots invariables et exceptions - Couleurs, adverbes
+
+### Conjugaison (9 leçons)
+1. Les verbes au présent - Groupes 1, 2, 3
+2. Le passé composé - Construction et utilisation
+3. L'imparfait - Formation et usage
+4. Le futur simple - Prédiction et événements
+5. Le conditionnel - Hypothèse et politesse
+6. Les temps composés - Plus-que-parfait, futur antérieur
+7. Temps composés avancés - Conditionnel passé, subjonctif passé
+8. Le subjonctif présent - Doute, incertitude, émotion
+9. L'imparfait - Comparaison avec passé composé
+
+### Ponctuation (5 leçons)
+1. Signes basiques - Point, virgule, ?, !
+2. Signes avancés - Tirets, guillemets, parenthèses, apostrophe
+3. Espaces et dialogue français - Règles d'espacement
+4. Tirets et pointillés avancés - Utilisations stylistiques
+5. Virgules dans propositions complexes - Placement correct
+
+### Lecture & Compréhension (8 leçons)
+1. Texte descriptif - Techniques de description
+2. Texte explicatif - Comment expliquer un phénomène
+3. Texte argumentatif - Persuasion et arguments
+4. Texte informatif - Informations factuelles
+5. Vocabulaire en contexte - Deviner sens des mots
+6. Compréhension écrite - Principal vs secondaire
+7. Questions de compréhension - Techniques de réponse
+8. Analyse de texte - Thème, messages, intentions
+
 ## Données de Test Incluses
 
 ### Utilisateurs
 - Enseignant: Marie Dubois (enseignant/password123)
 - Élève: Jean Martin (eleve/password123)
 
-### Cours Disponibles
-1. **Identification des noms** (Classes de mots) - 2 exercices
-2. **Identification des verbes** (Classes de mots) - 1 exercice
-3. **Structure du texte narratif** (Textes narratifs) - 2 exercices
-
 ### Exercices
 - Exercices à choix multiples pour validation immédiate
 - Exercices texte libre pour écriture
+- Tous les 50 cours ont des exercices associés
 
 ## État du Projet
 
@@ -130,6 +182,7 @@ Application web éducative complète pour l'enseignement du français aux élèv
 ✅ **Phase 2 - Complétée**: Backend + API Routes + Storage
 ✅ **Phase 3 - Complétée**: Database PostgreSQL + Rapports + Données de test
 ✅ **MVP Features** - TERMINÉ
+✅ **50 Leçons Focalisées** - AJOUTÉES (Janvier 2025)
 
 ## Fonctionnalités Future (Non MVP)
 

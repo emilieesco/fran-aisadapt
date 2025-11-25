@@ -259,6 +259,30 @@ export class MemStorage implements IStorage {
     // Additional conjugation
     const conjugation7Id = randomUUID();
 
+    // New grammar courses
+    const grammar10Id = randomUUID();
+    const grammar11Id = randomUUID();
+    const grammar12Id = randomUUID();
+
+    // New orthography courses
+    const orthography8Id = randomUUID();
+    const orthography9Id = randomUUID();
+    const orthography10Id = randomUUID();
+
+    // New conjugation courses
+    const conjugation8Id = randomUUID();
+    const conjugation9Id = randomUUID();
+
+    // New punctuation courses
+    const punctuation4Id = randomUUID();
+    const punctuation5Id = randomUUID();
+
+    // New reading courses
+    const reading5Id = randomUUID();
+    const reading6Id = randomUUID();
+    const reading7Id = randomUUID();
+    const reading8Id = randomUUID();
+
     const course4: Course = {
       id: course4Id,
       title: "Texte descriptif",
@@ -491,6 +515,132 @@ export class MemStorage implements IStorage {
       order: 23,
     };
 
+    const grammar10: Course = {
+      id: grammar10Id,
+      title: "Genres et classes de noms",
+      description: "Identifier le genre (masculin/féminin) et les catégories de noms",
+      category: "grammaire",
+      content: "<h2>Genres et Classes de Noms</h2><p>Chaque nom français est soit MASCULIN soit FÉMININ. Reconnaître le genre est essentiel pour accorder les adjectifs et articles.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ LES ARTICLES INDIQUENT LE GENRE:</strong><br>UN (masculin), UNE (féminin)<br>LE (masculin), LA (féminin)</div><h3>1. NOMS GÉNÉRALEMENT MASCULINS</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Terminaisons -ment:</strong> un jugement, un vêtement<br><strong>Terminaisons -eau:</strong> un château, un bureau<br><strong>Terminaisons -tion (certains):</strong> un action (exception)<br><strong>Exemples courants:</strong> un arbre, un chat, un professeur, un jour, un ami</div><h3>2. NOMS GÉNÉRALEMENT FÉMININS</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Terminaisons -tion:</strong> une action, une condition<br><strong>Terminaisons -sion:</strong> une décision, une permission<br><strong>Terminaisons -ée:</strong> une journée, une année<br><strong>Exemples courants:</strong> une table, une maison, une fille, une leçon, une école</div><h3>3. PIÈGES: DEUX GENRES POSSIBLES</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Certains mots changent de sens selon le genre:</strong><br>• un poste (emploi) vs une poste (courrier)<br>• un livre (objet) vs une livre (monnaie anglaise)<br>• un tour (action) vs une tour (bâtiment)</div>",
+      order: 28,
+    };
+
+    const grammar11: Course = {
+      id: grammar11Id,
+      title: "Structure complète de la phrase",
+      description: "Sujet, verbe, COD, COI, compléments circonstanciels",
+      category: "grammaire",
+      content: "<h2>Structure Complète de la Phrase</h2><p>Une phrase bien construite contient généralement: Sujet + Verbe + Compléments.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong> SUJET + VERBE + COMPLÉMENTS</div><h3>1. LE SUJET</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Qui fait l'action?</strong><br>\"Les enfants jouent au parc.\" → Les enfants = sujet<br>\"Je viens.\" → Je = sujet<br>\"Elle étudie.\" → Elle = sujet</div><h3>2. LE VERBE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>L'action ou l'état</strong><br>\"Elle JOUE au tennis.\" → joue = verbe (action)<br>\"Je SUIS fatigué.\" → suis = verbe (état)</div><h3>3. COMPLÉMENTS D'OBJET DIRECT (COD)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Répond à: Quoi? Qui?</strong><br>\"Elle mange une pomme.\" → une pomme = COD<br>\"Il regarde Marie.\" → Marie = COD</div><h3>4. COMPLÉMENTS D'OBJET INDIRECT (COI)</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Répond à: À qui? De quoi?</strong><br>\"Je parle à Marie.\" → à Marie = COI<br>\"Elle pense à toi.\" → à toi = COI</div><h3>5. COMPLÉMENTS CIRCONSTANCIELS</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Lieu (Où?):</strong> \"Je vais à l'école.\"<br><strong>Temps (Quand?):</strong> \"Demain, on part.\"<br><strong>Manière (Comment?):</strong> \"Elle court rapidement.\"<br><strong>Cause (Pourquoi?):</strong> \"Je suis fatigué parce que j'ai travaillé.\"</div>",
+      order: 29,
+    };
+
+    const grammar12: Course = {
+      id: grammar12Id,
+      title: "Voix active et voix passive",
+      description: "Transformer une phrase active en passive et inversement",
+      category: "grammaire",
+      content: "<h2>Voix Active et Voix Passive</h2><p>La même action peut s'exprimer de deux façons: voix ACTIVE ou voix PASSIVE.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ DIFFÉRENCE:</strong><br>ACTIVE: Le sujet FAIT l'action<br>PASSIVE: Le sujet REÇOIT l'action</div><h3>1. VOIX ACTIVE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le sujet est l'agent (celui qui fait):</strong><br>\"Le chat attrape la souris.\"<br>→ Sujet (chat) + Verbe (attrape) + COD (souris)</div><h3>2. VOIX PASSIVE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le sujet reçoit l'action:</strong><br>\"La souris est attrapée par le chat.\"<br>→ Sujet (souris) + Être (est attrapée) + Participe Passé (attrapée) + par l'agent (par le chat)</div><h3>3. TRANSFORMATION</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Formule: Être + Participe Passé + par + agent</strong><br>\"Le professeur enseigne les mathématiques.\" (active)<br>→ \"Les mathématiques sont enseignées par le professeur.\" (passive)</div>",
+      order: 30,
+    };
+
+    const orthography8: Course = {
+      id: orthography8Id,
+      title: "Pluriels spéciaux",
+      description: "Mots en -al, -eau, -au, -ail et leurs pluriels irréguliers",
+      category: "orthographe",
+      content: "<h2>Pluriels Spéciaux - Cas Particuliers</h2><p>La plupart des noms ajoutent -s au pluriel, mais certains suivent des règles spéciales!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLES SPÉCIALES:</strong><br>-al → -aux (généralement)<br>-eau, -au, -eu → -x<br>-ail → -ails ou -aux</div><h3>1. MOTS EN -AL → -AUX</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Un cheval → Des chevaux</strong><br><strong>Un animal → Des animaux</strong><br><strong>Un journal → Des journaux</strong><br><strong>Exceptions:</strong> bal → bals, festival → festivals</div><h3>2. MOTS EN -EAU, -AU, -EU → -X</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Un château → Des châteaux</strong><br><strong>Un bureau → Des bureaux</strong><br><strong>Un jeu → Des jeux</strong><br><strong>Un lieu → Des lieux</strong></div><h3>3. MOTS EN -AIL</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Généralement -ails:</strong><br>• un détail → des détails<br>• un travail → des travaux (exception!)<br>• un vitrail → des vitraux (exception!)</div>",
+      order: 31,
+    };
+
+    const orthography9: Course = {
+      id: orthography9Id,
+      title: "Accord du participe passé",
+      description: "Quand accorder le participe avec avoir, être, et pronoms",
+      category: "orthographe",
+      content: "<h2>Accord du Participe Passé - Règles Essentielles</h2><p>Le participe passé ne s'accorde pas toujours! Il y a des règles précises selon l'auxiliaire.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLES:</strong><br>AVOIR: accord avec COD si avant le verbe<br>ÊTRE: accord toujours avec le sujet</div><h3>1. AVEC L'AUXILIAIRE ÊTRE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le participe s'accorde toujours avec le sujet:</strong><br>\"Elle est allée.\" (participe allée: féminin)<br>\"Ils sont venus.\" (participe venus: pluriel)<br>\"Elles sont restées.\" (participe restées: féminin pluriel)</div><h3>2. AVEC L'AUXILIAIRE AVOIR</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>S'accorde avec le COD si le COD est AVANT le verbe:</strong><br>\"Elle a mangé une pomme.\" (pas d'accord: COD après)<br>\"La pomme qu'elle a mangée.\" (accord: \"pomme\" est avant)<br>\"Je les ai vus.\" (accord: \"les\" est avant)</div><h3>3. AVEC LES PRONOMS RÉFLÉCHIS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Se lever → Elle s'est levée (accord)</strong><br><strong>Se laver les mains → Elle s'est lavé les mains (pas d'accord)</strong><br>→ Dépend si le pronom est COD ou COI!</div>",
+      order: 32,
+    };
+
+    const orthography10: Course = {
+      id: orthography10Id,
+      title: "Mots invariables et exceptions",
+      description: "Adjectifs invariables, adverbes, et exceptions à connaître",
+      category: "orthographe",
+      content: "<h2>Mots Invariables et Exceptions</h2><p>Certains mots ne changent JAMAIS de forme, peu importe le contexte.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ MOTS INVARIABLES:</strong><br>Adjectifs de couleur: marron, orange, rose, gris<br>Adverbes: très, très, bien, beaucoup, toujours</div><h3>1. ADJECTIFS DE COULEUR INVARIABLES</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>NE changent JAMAIS:</strong><br>• marron: une voiture marron, des voitures marron<br>• orange: un crayon orange, des crayons orange<br>• rose: une robe rose, des robes rose<br>• gris: un chat gris, des chats gris<br>• turquoise, chocolat, cerise...</div><h3>2. ADVERBES INVARIABLES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>NE changent JAMAIS:</strong><br>• très, beaucoup, peu, assez, trop<br>• bien, mal, mieux<br>• toujours, jamais, souvent<br>• \"C'est très important.\" pas \"très importante\"</div><h3>3. EXCEPTIONS À CONNAÎTRE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Couleurs composées:</strong> bleu ciel (invariable!)<br><strong>Noms utilisés comme couleurs:</strong> des robes bleu (invariable!)<br><strong>Chiffres:</strong> «vingts» s'accorde dans \"quatre-vingts\" mais pas dans \"quatre-vingt-trois\"</div>",
+      order: 33,
+    };
+
+    const conjugation8: Course = {
+      id: conjugation8Id,
+      title: "Le subjonctif présent",
+      description: "Formation et utilisation du subjonctif (douter, vouloir, pouvoir)",
+      category: "conjugaison",
+      content: "<h2>Le Subjonctif Présent - Formation et Utilisation</h2><p>Le subjonctif exprime le doute, l'incertitude, l'émotion, ou la volonté. C'est un mode important en français!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ UTILISATION:</strong><br>Après: Je veux que, Je doute que, Il est important que, Pourvu que</div><h3>1. FORMATION DU SUBJONCTIF</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Racine: 3e personne pluriel du présent</strong><br>\"Ils parlent\" → que je PARLE, que tu PARLES, qu'il PARLE<br>\"Ils finissent\" → que je FINISSE, que tu FINISSES</div><h3>2. CONJUGAISON: \"PARLER\"</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Que je parle</strong><br><strong>Que tu parles</strong><br><strong>Qu'il parle</strong><br><strong>Que nous parlions</strong><br><strong>Que vous parliez</strong><br><strong>Qu'ils parlent</strong></div><h3>3. QUAND L'UTILISER</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Après \"je veux que\":</strong> Je veux que tu étudies. (volonté)<br><strong>Après \"je doute que\":</strong> Je doute qu'il vienne. (doute)<br><strong>Après \"il faut que\":</strong> Il faut que tu t'en ailles. (nécessité)<br><strong>Après \"pourvu que\":</strong> Pourvu qu'il fasse beau ! (souhait)</div>",
+      order: 34,
+    };
+
+    const conjugation9: Course = {
+      id: conjugation9Id,
+      title: "L'imparfait",
+      description: "Formation et différences avec passé composé",
+      category: "conjugaison",
+      content: "<h2>L'Imparfait - Le Temps du Passé Descriptif</h2><p>L'imparfait décrit le passé: habitudes, descriptions, états. C'est un temps très courant!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ FORMATION:</strong> Nous + présent - ons + terminaison<br>Nous parlons → je parlAIS, tu parlAIS, il parlAIT</div><h3>1. CONJUGAISON: \"PARLER\"</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Je parlais</strong><br><strong>Tu parlais</strong><br><strong>Il parlait</strong><br><strong>Nous parlions</strong><br><strong>Vous parliez</strong><br><strong>Ils parlaient</strong></div><h3>2. UTILISATIONS</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Habitude passée:</strong> \"Je mangeais toujours du pain.\" (régulier)<br><strong>Description:</strong> \"C'était un beau jour.\" (état)<br><strong>Action longue interrompue:</strong> \"Je lisais quand tu es arrivé.\" (longue action)</div><h3>3. IMPARFAIT vs PASSÉ COMPOSÉ</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Imparfait = description/habitude:</strong> \"Je mangeais.\" (régulièrement)<br><strong>Passé composé = action unique/complète:</strong> \"J'ai mangé.\" (une fois, terminé)</div>",
+      order: 35,
+    };
+
+    const punctuation4: Course = {
+      id: punctuation4Id,
+      title: "Tirets et pointillés avancés",
+      description: "Utilisations avancées des tirets, pointillés, tirets d'union",
+      category: "ponctuation",
+      content: "<h2>Tirets et Pointillés Avancés</h2><p>Maîtrisez l'utilisation stylistique des tirets et pointillés pour enrichir votre texte.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ TROIS TIRETS:</strong><br>- Trait d'union: sans espace (arc-en-ciel)<br>– Tiret court: avec espace (insertion)<br>— Tiret long: dialogues</div><h3>1. TIRET D'UNION (-)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Relie deux mots:</strong><br>• \"Arc-en-ciel\" (liaison)<br>• \"Peut-être\" (adverbes)<br>• \"Quatre-vingt-dix\" (nombres)<br>• \"Garde-manger\" (noms composés)</div><h3>2. TIRET COURT (–)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Insertion ou énumération:</strong><br>\"La maison – mon endroit préféré – était magnifique.\"<br>\"Les fruits que j'aime – pommes, poires, cerises – sont délicieux.\"<br>(Espaces avant et après!)</div><h3>3. POINTILLÉS (...)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Suspension ou énumération ouverte:</strong><br>\"Elle a ouvert la porte et a vu...\"<br>\"Les pays européens: France, Allemagne, Italie...\"<br>(Sans espace avant, espace après)</div>",
+      order: 36,
+    };
+
+    const punctuation5: Course = {
+      id: punctuation5Id,
+      title: "Virgules dans propositions complexes",
+      description: "Où placer virgules dans phrases complexes avec propositions",
+      category: "ponctuation",
+      content: "<h2>Virgules dans Propositions Complexes</h2><p>La virgule est essentielle pour clarifier les relations entre propositions.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ RÈGLE:</strong> Virgule avant \"et\", \"mais\", \"car\" si propositions longues<br>Pas de virgule si propositions courtes</div><h3>1. PROPOSITIONS AVEC \"ET\", \"MAIS\", \"CAR\"</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Propositions courtes, pas de virgule:</strong><br>\"Je suis venu et tu étais absent.\"<br><strong>Propositions longues, virgule recommandée:</strong><br>\"Je suis venu de très loin avec mon ami, et tu n'étais pas là.\"</div><h3>2. PROPOSITIONS SUBORDONNÉES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Relative restrictive (pas de virgule):</strong><br>\"L'enfant qui court est mon ami.\" (essentielle)<br><strong>Relative explicative (avec virgules):</strong><br>\"Mon frère, qui habite à Paris, est médecin.\" (extra)</div><h3>3. DÉBUT DE PHRASE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Virgule après adverbe ou expression:</strong><br>\"Heureusement, il a réussi.\"<br>\"D'abord, on lit le texte ; ensuite, on répond.\"</div>",
+      order: 37,
+    };
+
+    const reading5: Course = {
+      id: reading5Id,
+      title: "Vocabulaire en contexte",
+      description: "Deviner le sens des mots inconnus à partir du contexte",
+      category: "lecture_reading",
+      content: "<h2>Vocabulaire en Contexte - Comprendre les Mots Inconnus</h2><p>Quand tu rencontres un mot inconnu, cherche des indices dans la phrase!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRATÉGIES:</strong><br>Mots similaires (famille), éléments autour, logique du texte</div><h3>1. RESSEMBLANCE AVEC D'AUTRES MOTS</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Elle est dans une situation désespérée.\"</strong><br>→ \"Désespérée\" contient \"espoir\" → contraire → sans espoir<br><strong>\"Une personne généreuse donne beaucoup.\"</strong><br>→ \"Généreuse\" ressemble à \"générosité\" → concept donner</div><h3>2. INDICES DANS LA PHRASE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Il saurait d'énormes gâteaux chaque jour\" (manger?)</strong><br>→ Contexte: gâteaux, chaque jour → sens: manger beaucoup<br><strong>\"Elle était furieuse, elle criait et tapait du pied.\"</strong><br>→ Furieuse = description par les actions → en colère</div><h3>3. SYNONYMES OU EXPLICATIONS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Un flambeau (torche) éclairait la nuit.\"</strong><br>→ \"Torche\" explique \"flambeau\"<br><strong>\"C'était une époque prospère, une période de richesse.\"</strong><br>→ \"Richesse\" explique \"prospère\"</div>",
+      order: 38,
+    };
+
+    const reading6: Course = {
+      id: reading6Id,
+      title: "Compréhension écrite",
+      description: "Identifier l'information principale et les détails secondaires",
+      category: "lecture_reading",
+      content: "<h2>Compréhension Écrite - Distinguer Principal et Secondaire</h2><p>Lire c'est comprendre! Savoir ce qui est IMPORTANT et ce qui est DÉTAIL.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ QUESTIONS À SE POSER:</strong><br>Qui? Quoi? Où? Quand? Pourquoi? Comment?</div><h3>1. L'IDÉE PRINCIPALE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Résume le texte en UNE phrase:</strong><br>\"Marie a acheté un vélo bleu le samedi 15 mars à 14h chez le commerçant Pierre.\"<br>→ PRINCIPALE: Marie a acheté un vélo<br>→ DÉTAILS: bleu, le 15 mars, chez Pierre</div><h3>2. DÉTAILS IMPORTANTS vs ANECDOTES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Important:</strong> \"Il y a eu un tremblement de terre.\"<br><strong>Anecdote:</strong> \"La maison était bleue avec des volets blancs.\"<br>(Sauf si la couleur est importante pour l'histoire!)</div><h3>3. CAUSE ET CONSÉQUENCE</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Cherche les liens logiques:</strong><br>\"Parce qu'il pleuvait, elle n'est pas sortie.\"<br>→ CAUSE: la pluie<br>→ CONSÉQUENCE: elle reste dedans</div>",
+      order: 39,
+    };
+
+    const reading7: Course = {
+      id: reading7Id,
+      title: "Questions de compréhension",
+      description: "Techniques pour répondre correctement aux questions sur un texte",
+      category: "lecture_reading",
+      content: "<h2>Questions de Compréhension - Techniques pour Bien Répondre</h2><p>Voici comment répondre correctement à chaque type de question.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ TYPES DE QUESTIONS:</strong><br>Qui? Quoi? Où? Quand? Pourquoi? Comment? Vrai/Faux?</div><h3>1. QUESTIONS \"OUI/NON\" OU \"VRAI/FAUX\"</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Marie est-elle allée à l'école?\"</strong><br>→ Cherche \"Marie\", \"école\", \"aller\" dans le texte<br>→ Réponds oui ou non avec la preuve du texte</div><h3>2. QUESTIONS \"QUOI\" OU \"QUI\"</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Que fait le chat?\"</strong><br>→ Cherche \"chat\" + action dans le texte<br>→ Réponds avec l'action (ex: \"Il dort\")</div><h3>3. QUESTIONS \"POURQUOI\"</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>\"Pourquoi Jean n'est-il pas venu?\"</strong><br>→ Cherche \"parce que\", \"car\", \"donc\" autour de Jean<br>→ Réponds avec la raison (ex: \"Parce qu'il était malade\")</div>",
+      order: 40,
+    };
+
+    const reading8: Course = {
+      id: reading8Id,
+      title: "Analyse de texte",
+      description: "Identifier thème, messages, personnages, et intentions de l'auteur",
+      category: "lecture_reading",
+      content: "<h2>Analyse de Texte - Au-Delà de la Compréhension</h2><p>Lire c'est aussi comprendre la SIGNIFICATION profonde d'un texte.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ ÉLÉMENTS À ANALYSER:</strong><br>Thème, personnages, messages, intentions, style</div><h3>1. LE THÈME</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>De quoi parle vraiment le texte?</strong><br>\"Une fille travaille dur pour réussir l'école.\"<br>→ THÈME: le travail mène au succès<br>→ VALEUR: importance de l'effort</div><h3>2. PERSONNAGES</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Qui est le personnage principal?</strong><br><strong>Quelles sont ses qualités?</strong> Courageux? Paresseux? Gentil?<br><strong>Comment change-t-il?</strong> Au début vs à la fin?</div><h3>3. MESSAGE DE L'AUTEUR</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Que veut dire l'auteur?</strong><br>\"Si tu es gentil avec les autres, ils seront gentils avec toi.\"<br>→ MESSAGE: la gentillesse est réciproque<br>→ MORALE: traite les autres comme tu veux être traité</div>",
+      order: 41,
+    };
+
     this.courses.set(course4Id, course4);
     this.courses.set(course5Id, course5);
     this.courses.set(course6Id, course6);
@@ -516,6 +666,20 @@ export class MemStorage implements IStorage {
     this.courses.set(punctuation1Id, punctuation1);
     this.courses.set(punctuation2Id, punctuation2);
     this.courses.set(punctuation3Id, punctuation3);
+    this.courses.set(grammar10Id, grammar10);
+    this.courses.set(grammar11Id, grammar11);
+    this.courses.set(grammar12Id, grammar12);
+    this.courses.set(orthography8Id, orthography8);
+    this.courses.set(orthography9Id, orthography9);
+    this.courses.set(orthography10Id, orthography10);
+    this.courses.set(conjugation8Id, conjugation8);
+    this.courses.set(conjugation9Id, conjugation9);
+    this.courses.set(punctuation4Id, punctuation4);
+    this.courses.set(punctuation5Id, punctuation5);
+    this.courses.set(reading5Id, reading5);
+    this.courses.set(reading6Id, reading6);
+    this.courses.set(reading7Id, reading7);
+    this.courses.set(reading8Id, reading8);
 
     const question5: Question = {
       id: randomUUID(),
