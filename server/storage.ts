@@ -239,6 +239,18 @@ export class MemStorage implements IStorage {
     const conjugation3Id = randomUUID();
     const conjugation4Id = randomUUID();
     const conjugation5Id = randomUUID();
+    const conjugation6Id = randomUUID();
+
+    // Additional grammar courses
+    const grammar6Id = randomUUID();
+    const grammar7Id = randomUUID();
+
+    // Additional orthography
+    const orthography6Id = randomUUID();
+
+    // Ponctuation courses
+    const punctuation1Id = randomUUID();
+    const punctuation2Id = randomUUID();
 
     const course4: Course = {
       id: course4Id,
@@ -372,6 +384,61 @@ export class MemStorage implements IStorage {
       order: 17,
     };
 
+    // Add the new courses we'll define below
+    const grammar6: Course = {
+      id: grammar6Id,
+      title: "Les adverbes",
+      description: "Utilisation des adverbes et des mots de liaison",
+      category: "grammaire",
+      content: "<h2>Les Adverbes</h2><p>Un adverbe modifie un verbe, un adjectif ou un autre adverbe. Les adverbes de manière répondent à COMMENT? Les adverbes de temps à QUAND? Les adverbes de lieu à OÙ? Les adverbes de quantité à COMBIEN?</p>",
+      order: 18,
+    };
+
+    const grammar7: Course = {
+      id: grammar7Id,
+      title: "Phrase simple et phrase complexe",
+      description: "Distinguer et construire différents types de phrases",
+      category: "grammaire",
+      content: "<h2>Phrase Simple et Complexe</h2><p>Une phrase simple contient UN SEUL VERBE. Une phrase complexe contient PLUSIEURS VERBES. Les phrases complexes utilisent la coordination (et, ou, mais) ou la subordination (dépendance entre propositions).</p>",
+      order: 19,
+    };
+
+    const orthography6: Course = {
+      id: orthography6Id,
+      title: "Homophones et confusions courantes",
+      description: "Comprendre et distinguer les mots qui se prononcent pareils",
+      category: "orthographe",
+      content: "<h2>Homophones</h2><p>Les homophones se prononcent pareils mais s'écrivent différemment. Exemples: a/à, ou/où, son/sont, ce/se. Astuce: Si je peux remplacer par \"avait\" → c'est \"a\". Sinon → c'est \"à\".</p>",
+      order: 20,
+    };
+
+    const punctuation1: Course = {
+      id: punctuation1Id,
+      title: "Les signes de ponctuation essentiels",
+      description: "Maîtrisez l'utilisation correcte de la ponctuation",
+      category: "ponctuation",
+      content: "<h2>Les Signes de Ponctuation</h2><p>Le point (.) termine une phrase. Le point d'interrogation (?) termine une question. Le point d'exclamation (!) exprime l'émotion. La virgule (,) sépare les éléments. En français: espace AVANT les signes doubles (:; ! ?).</p>",
+      order: 21,
+    };
+
+    const punctuation2: Course = {
+      id: punctuation2Id,
+      title: "Utilisation avancée de la ponctuation",
+      description: "Maîtriser les techniques de ponctuation pour un texte élégant",
+      category: "ponctuation",
+      content: "<h2>Ponctuation Avancée</h2><p>Les deux-points (:) introduisent une explication. Les tirets (–) marquent les dialogues. Les guillemets (\" \") encadrent les citations. Les parenthèses ( ) ajoutent une information supplémentaire. Les pointillés (...) créent du suspense.</p>",
+      order: 22,
+    };
+
+    const conjugation6: Course = {
+      id: conjugation6Id,
+      title: "Les temps composés",
+      description: "Plus-que-parfait, passé antérieur, et autres temps composés",
+      category: "conjugaison",
+      content: "<h2>Les Temps Composés</h2><p>Les temps composés = auxiliaire (avoir/être) + participe passé. Plus-que-parfait: action passée avant une autre action passée. Passé antérieur: temps littéraire. Futur antérieur: action future terminée avant une autre.</p>",
+      order: 23,
+    };
+
     this.courses.set(course4Id, course4);
     this.courses.set(course5Id, course5);
     this.courses.set(course6Id, course6);
@@ -381,11 +448,17 @@ export class MemStorage implements IStorage {
     this.courses.set(orthography3Id, orthography3);
     this.courses.set(orthography4Id, orthography4);
     this.courses.set(orthography5Id, orthography5);
+    this.courses.set(orthography6Id, orthography6);
     this.courses.set(conjugation1Id, conjugation1);
     this.courses.set(conjugation2Id, conjugation2);
     this.courses.set(conjugation3Id, conjugation3);
     this.courses.set(conjugation4Id, conjugation4);
     this.courses.set(conjugation5Id, conjugation5);
+    this.courses.set(conjugation6Id, conjugation6);
+    this.courses.set(grammar6Id, grammar6);
+    this.courses.set(grammar7Id, grammar7);
+    this.courses.set(punctuation1Id, punctuation1);
+    this.courses.set(punctuation2Id, punctuation2);
 
     const question5: Question = {
       id: randomUUID(),

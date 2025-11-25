@@ -219,65 +219,90 @@ export default function StudentDashboard() {
 
           {/* Cours Tab */}
           <TabsContent value="cours">
-            <div className="space-y-4">
+            <div className="space-y-8">
               <div>
                 <h2 className="text-2xl font-bold mb-2">Mes Cours</h2>
                 <p className="text-muted-foreground mb-6">
                   Sélectionnez un cours pour accéder aux contenus et exercices
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.filter((c) => !c.category.includes("lecture") && !c.category.includes("writing")).map((course) => (
-                  <Card
-                    key={course.id}
-                    className="p-6 hover-elevate cursor-pointer transition-all"
-                    data-testid={`card-course-${course.id}`}
-                  >
-                    <div className="space-y-4">
-                      <div>
-                        <span
-                          className={`inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 text-xs font-semibold rounded-full mb-2 ${getCategoryColor(
-                            course.category
-                          )}`}
-                        >
-                          {getCategoryLabel(course.category)}
-                        </span>
-                        <h3 className="text-lg font-bold text-foreground mt-2">
-                          {course.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          {course.description}
-                        </p>
-                      </div>
 
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-xs">
-                          <span className="font-semibold">Progression</span>
-                          <span className="text-muted-foreground">
-                            {course.progressPercentage}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-secondary rounded-full h-2">
-                          <div
-                            className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                            style={{
-                              width: `${course.progressPercentage}%`,
-                            }}
-                          />
-                        </div>
-                      </div>
+              {/* Group courses by category */}
+              {["grammaire", "orthographe", "conjugaison", "ponctuation"].map((category) => {
+                const categoryName = getCategoryLabel(category);
+                const categoryCourses = courses.filter(
+                  (c) =>
+                    c.category === category &&
+                    !c.category.includes("lecture") &&
+                    !c.category.includes("writing")
+                );
 
-                      <Button
-                        onClick={() => handleStartCourse(course.id)}
-                        className="w-full"
-                        data-testid={`button-start-${course.id}`}
-                      >
-                        {course.progressPercentage > 0 ? "Continuer" : "Commencer"}
-                      </Button>
+                if (categoryCourses.length === 0) return null;
+
+                return (
+                  <div key={category} className="space-y-4">
+                    <div className="border-l-4 border-amber-500 pl-4">
+                      <h3 className="text-xl font-bold text-foreground mb-4">
+                        {categoryName}
+                      </h3>
                     </div>
-                  </Card>
-                ))}
-              </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {categoryCourses.map((course) => (
+                        <Card
+                          key={course.id}
+                          className="p-6 hover-elevate cursor-pointer transition-all"
+                          data-testid={`card-course-${course.id}`}
+                        >
+                          <div className="space-y-4">
+                            <div>
+                              <span
+                                className={`inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 text-xs font-semibold rounded-full mb-2 ${getCategoryColor(
+                                  course.category
+                                )}`}
+                              >
+                                {getCategoryLabel(course.category)}
+                              </span>
+                              <h3 className="text-lg font-bold text-foreground mt-2">
+                                {course.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {course.description}
+                              </p>
+                            </div>
+
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-xs">
+                                <span className="font-semibold">Progression</span>
+                                <span className="text-muted-foreground">
+                                  {course.progressPercentage}%
+                                </span>
+                              </div>
+                              <div className="w-full bg-secondary rounded-full h-2">
+                                <div
+                                  className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                  style={{
+                                    width: `${course.progressPercentage}%`,
+                                  }}
+                                />
+                              </div>
+                            </div>
+
+                            <Button
+                              onClick={() => handleStartCourse(course.id)}
+                              className="w-full"
+                              data-testid={`button-start-${course.id}`}
+                            >
+                              {course.progressPercentage > 0
+                                ? "Continuer"
+                                : "Commencer"}
+                            </Button>
+                          </div>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </TabsContent>
 
