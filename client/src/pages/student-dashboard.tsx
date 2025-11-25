@@ -382,84 +382,25 @@ export default function StudentDashboard() {
 
                 {/* Narratif */}
                 <TabsContent value="narratif" className="space-y-4">
-                  <div className="grid grid-cols-1 gap-6">
-                    {exercises
-                      .filter(
-                        (e) =>
-                          courses.find((c) => c.id === e.courseId)?.title ===
-                            "Structure du texte narratif" && 
-                          e.type === "text" && 
-                          e.title.startsWith("Lecture:")
-                      )
-                      .map((exercise) => (
-                        <Card
-                          key={exercise.id}
-                          className="p-8 hover-elevate border-2 border-green-200 dark:border-green-800"
-                          data-testid={`card-reading-${exercise.id}`}
+                  <div className="flex flex-col gap-6">
+                    <Card className="p-8 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
+                      <div className="space-y-4 text-center">
+                        <h3 className="text-2xl font-bold text-amber-900 dark:text-amber-200">
+                          📖 Histoires Narratives
+                        </h3>
+                        <p className="text-amber-800 dark:text-amber-300">
+                          Découvrez 5 histoires fascinantes et répondez aux questions de compréhension pour approfondir votre analyse des textes narratifs.
+                        </p>
+                        <Button
+                          onClick={() => setLocation("/reading-narrative")}
+                          className="w-full bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 text-white"
+                          size="lg"
+                          data-testid="button-reading-narratives"
                         >
-                          <div className="space-y-6">
-                            <div>
-                              <span className="text-xs font-semibold text-green-600 dark:text-green-300">
-                                Texte narratif
-                              </span>
-                              <h3 className="text-2xl font-bold text-foreground mt-2">
-                                {exercise.title}
-                              </h3>
-                              <p className="text-sm text-muted-foreground mt-2">
-                                {exercise.description}
-                              </p>
-                            </div>
-
-                            <div className="bg-secondary/50 p-6 rounded-lg space-y-4">
-                              {questions
-                                .filter((q) => q.exerciseId === exercise.id)
-                                .map((question, idx) => (
-                                  <div key={question.id} className="space-y-3 border-b pb-4 last:border-b-0">
-                                    {idx === 0 ? (
-                                      <div className="bg-background p-4 rounded border border-muted">
-                                        <p className="text-sm whitespace-pre-wrap text-foreground">
-                                          {question.text.split("Question")[0]}
-                                        </p>
-                                      </div>
-                                    ) : null}
-                                    {idx > 0 && (
-                                      <div className="space-y-3 mt-4">
-                                        <p className="font-semibold text-foreground">
-                                          {question.text.includes("?")
-                                            ? question.text.split("?")[0] + "?"
-                                            : question.text}
-                                        </p>
-                                        <div className="space-y-2">
-                                          {question.options &&
-                                            JSON.parse(question.options).map(
-                                              (option: string) => (
-                                                <Button
-                                                  key={option}
-                                                  variant="outline"
-                                                  className="w-full justify-start text-left"
-                                                  data-testid={`button-answer-${question.id}-${option}`}
-                                                >
-                                                  {option}
-                                                </Button>
-                                              )
-                                            )}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                ))}
-                            </div>
-
-                            <Button
-                              onClick={() => handleStartExercise(exercise.id)}
-                              className="w-full"
-                              data-testid={`button-submit-reading-${exercise.id}`}
-                            >
-                              Soumettre mes réponses
-                            </Button>
-                          </div>
-                        </Card>
-                      ))}
+                          Accéder aux 5 histoires
+                        </Button>
+                      </div>
+                    </Card>
                   </div>
                 </TabsContent>
 
