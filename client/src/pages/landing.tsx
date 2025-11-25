@@ -62,14 +62,6 @@ export default function Landing() {
               Commencer maintenant
               <ArrowRight className="w-4 h-4" />
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => setLocation("/auth?mode=login")}
-              data-testid="button-login-hero"
-            >
-              Se connecter
-            </Button>
           </div>
         </div>
       </section>
