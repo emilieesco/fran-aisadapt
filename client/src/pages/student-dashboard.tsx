@@ -168,7 +168,7 @@ export default function StudentDashboard() {
   const writingExercises = exercises.filter((ex) => ex.type === "text");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header */}
       <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">

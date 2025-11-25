@@ -49,11 +49,11 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-lg">
         <div className="p-8">
-          <h1 className="text-3xl font-bold text-center mb-2 text-blue-600 dark:text-blue-400">
-            Français Actif
+          <h1 className="text-3xl font-bold text-center mb-2 text-amber-700 dark:text-amber-400">
+            Français Adaptation scolaire
           </h1>
           <p className="text-center text-muted-foreground mb-6">
             Plateforme d'apprentissage du français
@@ -148,7 +148,7 @@ export default function Home() {
                   setIsLogin(!isLogin);
                   setError("");
                 }}
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
+                className="text-amber-700 dark:text-amber-400 font-semibold hover:underline"
                 data-testid="button-toggle-mode"
               >
                 {isLogin ? "S'inscrire" : "Se connecter"}

@@ -99,12 +99,12 @@ export default function TeacherDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header */}
       <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            <h1 className="text-2xl font-bold text-amber-700 dark:text-amber-400">
               Tableau de bord Enseignant
             </h1>
             <p className="text-sm text-muted-foreground">

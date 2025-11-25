@@ -15,7 +15,7 @@ export default function Landing() {
           <div className="flex items-center gap-2">
             <BookOpen className="w-8 h-8 text-amber-700 dark:text-amber-400" />
             <span className="text-2xl font-bold text-amber-700 dark:text-amber-400">
-              Français Actif
+              Français Adaptation scolaire
             </span>
           </div>
           <div className="flex gap-3">
@@ -82,7 +82,7 @@ export default function Landing() {
       {/* Features Section */}
       <section className="max-w-7xl mx-auto px-4 py-20">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-amber-900">Pourquoi choisir Français Actif?</h2>
+          <h2 className="text-4xl font-bold mb-4 text-amber-900">Pourquoi choisir Français Adaptation scolaire?</h2>
           <p className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto">
             Une plateforme conçue spécialement pour l'apprentissage du français en adaptation scolaire
           </p>
@@ -221,20 +221,11 @@ export default function Landing() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              onClick={() => setLocation("/auth?mode=register")}
-              className="bg-white text-amber-700 hover:bg-amber-50 font-semibold"
-              data-testid="button-signup-cta"
-            >
-              Créer mon compte gratuitement
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
               onClick={() => setLocation("/auth?mode=login")}
-              className="border-white text-white hover:bg-white/20"
+              className="bg-white text-amber-700 hover:bg-amber-50 font-semibold"
               data-testid="button-login-cta"
             >
-              J'ai déjà un compte
+              Se connecter
             </Button>
           </div>
         </div>

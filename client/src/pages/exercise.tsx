@@ -59,7 +59,7 @@ export default function Exercise() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center">
         <p>Chargement de l'exercice...</p>
       </div>
     );
@@ -67,7 +67,7 @@ export default function Exercise() {
 
   if (!exercise || questions.length === 0) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center">
         <p>Exercice non trouvé</p>
       </div>
     );
@@ -119,12 +119,12 @@ export default function Exercise() {
     ).length;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-950 dark:to-slate-900 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
         <Card className="max-w-md w-full p-8 text-center">
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-          <h1 className="text-3xl font-bold mb-4">Bravo!</h1>
+          <CheckCircle className="w-16 h-16 text-amber-600 mx-auto mb-4" />
+          <h1 className="text-3xl font-bold mb-4 text-amber-900">Bravo!</h1>
           <p className="text-lg mb-2">Vous avez complété l'exercice</p>
-          <p className="text-2xl font-bold text-green-600 mb-6">
+          <p className="text-2xl font-bold text-amber-700 mb-6">
             {correctCount}/{questions.length} correct
           </p>
           <Button
@@ -140,7 +140,7 @@ export default function Exercise() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header */}
       <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
