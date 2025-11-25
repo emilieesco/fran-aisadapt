@@ -2293,24 +2293,58 @@ export class MemStorage implements IStorage {
     this.questions.set(writQ3.id, writQ3);
     this.questions.set(writQ4.id, writQ4);
 
-    // Create assignment
-    const assignment: Assignment = {
+    // Create assignments for multiple courses
+    const assignment1: Assignment = {
       id: randomUUID(),
       teacherId,
       studentId,
       courseId: course1Id,
     };
-    this.assignments.set(assignment.id, assignment);
+    this.assignments.set(assignment1.id, assignment1);
 
-    // Create initial progress
-    const progress: StudentProgress = {
+    const assignment2: Assignment = {
+      id: randomUUID(),
+      teacherId,
+      studentId,
+      courseId: course3Id,
+    };
+    this.assignments.set(assignment2.id, assignment2);
+
+    const assignment3: Assignment = {
+      id: randomUUID(),
+      teacherId,
+      studentId,
+      courseId: writing1Id,
+    };
+    this.assignments.set(assignment3.id, assignment3);
+
+    // Create initial progress for all courses
+    const progress1: StudentProgress = {
       id: randomUUID(),
       studentId,
       courseId: course1Id,
       progressPercentage: 0,
       completed: false,
     };
-    this.progress.set(progress.id, progress);
+    this.progress.set(progress1.id, progress1);
+
+    const progress2: StudentProgress = {
+      id: randomUUID(),
+      studentId,
+      courseId: course3Id,
+      progressPercentage: 0,
+      completed: false,
+    };
+    this.progress.set(progress2.id, progress2);
+
+    const progress3: StudentProgress = {
+      id: randomUUID(),
+      studentId,
+      courseId: writing1Id,
+      progressPercentage: 0,
+      completed: false,
+    };
+    this.progress.set(progress3.id, progress3);
   }
 
   // Users
