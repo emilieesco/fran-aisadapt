@@ -45,6 +45,7 @@ export default function StudentDashboard() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [badges, setBadges] = useState<Badge[]>([]);
+  const [readingNarrativeExercises, setReadingNarrativeExercises] = useState<Exercise[]>([]);
   const [loading, setLoading] = useState(true);
   const [studentName, setStudentName] = useState("");
 
@@ -101,6 +102,15 @@ export default function StudentDashboard() {
         }
 
         if (badgesRes.ok) setBadges(await badgesRes.json());
+        
+        // Fetch reading narrative exercises
+        const narrativeRes = await fetch(`/api/reading-narratives?userId=${userId}`, {
+          credentials: "include",
+        });
+        if (narrativeRes.ok) {
+          setReadingNarrativeExercises(await narrativeRes.json());
+        }
+
         if (userRes.ok) {
           const user = await userRes.json();
           setStudentName(user.firstName);
@@ -382,25 +392,58 @@ export default function StudentDashboard() {
 
                 {/* Narratif */}
                 <TabsContent value="narratif" className="space-y-4">
-                  <div className="flex flex-col gap-6">
-                    <Card className="p-8 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
-                      <div className="space-y-4 text-center">
-                        <h3 className="text-2xl font-bold text-amber-900 dark:text-amber-200">
-                          📖 Histoires Narratives
-                        </h3>
-                        <p className="text-amber-800 dark:text-amber-300">
-                          Découvrez 5 histoires fascinantes et répondez aux questions de compréhension pour approfondir votre analyse des textes narratifs.
-                        </p>
-                        <Button
-                          onClick={() => setLocation("/reading-narrative")}
-                          className="w-full bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 text-white"
-                          size="lg"
-                          data-testid="button-reading-narratives"
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {readingNarrativeExercises.map((exercise, index) => {
+                      const storyTitles = [
+                        "Histoire 1: Le Trésor de la Cave",
+                        "Histoire 2: Le Jour de l'Accident",
+                        "Histoire 3: La Fille qui Rêvait de Danser",
+                        "Histoire 4: L'Amitié Retrouvée",
+                        "Histoire 5: La Découverte Scientifique",
+                      ];
+                      const storyDescriptions = [
+                        "Léa découvre une clé mystérieuse qui change sa vie",
+                        "Marc apprend l'importance de la sécurité à vélo",
+                        "Sophie poursuit son rêve de danser malgré les obstacles",
+                        "Lucas et Thomas retrouvent leur amitié malgré la distance",
+                        "Emma fait une découverte scientifique extraordinaire",
+                      ];
+                      
+                      return (
+                        <Card
+                          key={exercise.id}
+                          className="p-6 hover-elevate border-2 border-green-200 dark:border-green-800 cursor-pointer transition-all"
+                          data-testid={`card-narrative-${index}`}
+                          onClick={() => setLocation(`/exercise/${exercise.id}`)}
                         >
-                          Accéder aux 5 histoires
-                        </Button>
-                      </div>
-                    </Card>
+                          <div className="space-y-3">
+                            <div>
+                              <span className="text-xs font-semibold text-green-600 dark:text-green-300 uppercase">
+                                Texte Narratif
+                              </span>
+                              <h3 className="text-lg font-bold text-foreground mt-2">
+                                {storyTitles[index] || exercise.title}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {storyDescriptions[index] || exercise.description}
+                              </p>
+                            </div>
+                            
+                            <Button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setLocation(`/exercise/${exercise.id}`);
+                              }}
+                              className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800"
+                              size="sm"
+                              data-testid={`button-read-narrative-${index}`}
+                            >
+                              Lire l'histoire et répondre aux questions
+                            </Button>
+                          </div>
+                        </Card>
+                      );
+                    })}
                   </div>
                 </TabsContent>
 
