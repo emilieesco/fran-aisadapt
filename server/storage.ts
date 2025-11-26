@@ -1072,17 +1072,6 @@ export class MemStorage implements IStorage {
     // Narratif
     const readingExercise1Id = randomUUID();
 
-    // Create descriptive exercise
-    const descriptiveExercise1: Exercise = {
-      id: descriptiveExercise1Id,
-      courseId: reading9Id,
-      title: "Lecture: La Bibliothèque Enchantée",
-      description: "Texte descriptif sur une vieille bibliothèque - 8 questions",
-      type: "text",
-      order: 1,
-    };
-    this.exercises.set(descriptiveExercise1.id, descriptiveExercise1);
-
     // Narratif - Histoire 2
     const readingExercise2Id = randomUUID();
 
@@ -1132,6 +1121,17 @@ export class MemStorage implements IStorage {
     const descriptiveExercise1Id = randomUUID();
     const descriptiveExercise2Id = randomUUID();
     const descriptiveExercise3Id = randomUUID();
+
+    // Create descriptive exercise
+    const descriptiveExercise1: Exercise = {
+      id: descriptiveExercise1Id,
+      courseId: reading9Id,
+      title: "Lecture: La Bibliothèque Enchantée",
+      description: "Texte descriptif sur une vieille bibliothèque - 8 questions",
+      type: "text",
+      order: 1,
+    };
+    this.exercises.set(descriptiveExercise1.id, descriptiveExercise1);
 
     // Writing exercises
     const writingExercise1Id = randomUUID();
