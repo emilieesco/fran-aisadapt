@@ -42,8 +42,16 @@ Application web éducative complète pour l'enseignement du français aux élèv
 
 ### Types de Contenu ✅
 - **Classes de mots**: Noms, verbes, adjectifs, etc.
-- **Textes narratifs**: Analyse de structure (situation initiale, nœud, dénouement)
+- **Textes narratifs**: 11 questions (5 structure narrative + 2 Compréhension + 1 Interprétation + 2 Réaction + 1 Jugement critique)
+- **Textes descriptifs**: 5 questions (3 Compréhension QCM + 2 Interprétation/Réaction texte)
 - **Écriture**: Exercices d'écriture guidée
+
+### Textes Descriptifs (5 exercices) ✅
+1. **La Forêt Enchantée** - Description d'une forêt mystérieuse
+2. **Le Vieux Pêcheur** - Portrait d'un pêcheur au bord de l'eau
+3. **La Maison de Grand-mère** - Description d'une maison ancienne
+4. **Le Marché du Dimanche** - Scène vivante d'un marché
+5. **La Montagne au Lever du Soleil** - Paysage montagneux
 
 ## Structure des Données
 
