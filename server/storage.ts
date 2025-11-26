@@ -2286,6 +2286,241 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // EXERCICES SPÉCIFIQUES PAR TYPE DE COURS
+    // Exercices pour les cours sur les ACCORDS DU VERBE
+    const accordsVerbeExercises = [
+      {
+        name: "Accords sujet-verbe",
+        type: "multiple_choice",
+        questions: [
+          { text: "Accorde le verbe: 'Les enfants _____ au parc.' (jouer)", options: ["joue", "joues", "jouent", "jouons"], correct: "jouent" },
+          { text: "Accorde le verbe: 'Marie et Pierre _____ ensemble.' (chanter)", options: ["chante", "chantes", "chantent", "chantons"], correct: "chantent" },
+          { text: "Accorde le verbe: 'Le chien et le chat _____ dans le jardin.' (courir)", options: ["court", "courts", "courent", "courrons"], correct: "courent" },
+          { text: "Accorde le verbe: 'Tout le monde _____ content.' (être)", options: ["est", "sont", "es", "sommes"], correct: "est" },
+          { text: "Accorde le verbe: 'Personne ne _____ la réponse.' (savoir)", options: ["sait", "savent", "sais", "savons"], correct: "sait" }
+        ]
+      },
+      {
+        name: "Accords avec sujets complexes",
+        type: "multiple_choice",
+        questions: [
+          { text: "Accorde: 'C'est moi qui _____ le premier.' (arriver)", options: ["arrive", "arrives", "arrivons", "arrivent"], correct: "arrive" },
+          { text: "Accorde: 'C'est toi qui _____ raison.' (avoir)", options: ["a", "as", "avons", "ont"], correct: "as" },
+          { text: "Accorde: 'Ni Jean ni Marie ne _____ venir.' (pouvoir)", options: ["peut", "peux", "peuvent", "pouvons"], correct: "peuvent" },
+          { text: "Accorde: 'Une foule de gens _____ dans la rue.' (marcher)", options: ["marche", "marchent", "marches", "marchons"], correct: "marche" },
+          { text: "Accorde: 'Beaucoup d'élèves _____ leur devoir.' (faire)", options: ["fait", "fais", "font", "faisons"], correct: "font" }
+        ]
+      },
+      {
+        name: "Production - Accords du verbe",
+        type: "text",
+        questions: [
+          { text: "Écris 3 phrases où le verbe s'accorde avec un sujet au pluriel.", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'C'est moi qui...' et accorde correctement le verbe.", correct: "réponse libre" },
+          { text: "Crée une phrase avec un sujet collectif (une foule, un groupe) et accorde le verbe.", correct: "réponse libre" },
+          { text: "Écris une phrase avec deux sujets reliés par 'et' et accorde le verbe.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Identification des accords",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quelle phrase a le verbe correctement accordé?", options: ["Les oiseaux chante.", "Les oiseaux chantes.", "Les oiseaux chantent.", "Les oiseaux chantons."], correct: "Les oiseaux chantent." },
+          { text: "Trouve l'erreur: 'Les élèves travailles dur.'", options: ["Les", "élèves", "travailles", "dur"], correct: "travailles" },
+          { text: "Le verbe s'accorde avec...", options: ["le complément", "l'adjectif", "le sujet", "l'adverbe"], correct: "le sujet" },
+          { text: "Quelle phrase est correcte?", options: ["Toi et moi partons ensemble.", "Toi et moi part ensemble.", "Toi et moi partes ensemble.", "Toi et moi partent ensemble."], correct: "Toi et moi partons ensemble." }
+        ]
+      }
+    ];
+
+    // Exercices pour les cours sur les HOMOPHONES
+    const homophonesExercises = [
+      {
+        name: "Homophones courants - a/à",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Il _____ mangé une pomme.' (a/à)", options: ["a", "à", "as", "ah"], correct: "a" },
+          { text: "Complète: 'Je vais _____ l'école.' (a/à)", options: ["a", "à", "as", "ah"], correct: "à" },
+          { text: "Complète: 'Elle _____ un beau chapeau.' (a/à)", options: ["a", "à", "as", "ah"], correct: "a" },
+          { text: "Complète: 'C'est _____ toi de jouer.' (a/à)", options: ["a", "à", "as", "ah"], correct: "à" },
+          { text: "Complète: 'Mon père _____ acheté un vélo _____ Marie.' (a/à)", options: ["a, à", "à, a", "a, a", "à, à"], correct: "a, à" }
+        ]
+      },
+      {
+        name: "Homophones - ou/où, et/est",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ vas-tu?' (ou/où)", options: ["ou", "où", "oû", "oux"], correct: "où" },
+          { text: "Complète: 'Tu veux du café _____ du thé?' (ou/où)", options: ["ou", "où", "oû", "oux"], correct: "ou" },
+          { text: "Complète: 'Pierre _____ content.' (et/est)", options: ["et", "est", "es", "ai"], correct: "est" },
+          { text: "Complète: 'Marie _____ Paul sont amis.' (et/est)", options: ["et", "est", "es", "ai"], correct: "et" },
+          { text: "Complète: 'La ville _____ je suis né _____ belle.' (ou/où, et/est)", options: ["où, est", "ou, et", "où, et", "ou, est"], correct: "où, est" }
+        ]
+      },
+      {
+        name: "Production - Homophones",
+        type: "text",
+        questions: [
+          { text: "Écris 2 phrases: une avec 'a' (verbe avoir), une avec 'à' (préposition).", correct: "réponse libre" },
+          { text: "Écris 2 phrases: une avec 'ou' (choix), une avec 'où' (lieu).", correct: "réponse libre" },
+          { text: "Écris 2 phrases: une avec 'et' (liaison), une avec 'est' (verbe être).", correct: "réponse libre" },
+          { text: "Écris une phrase qui contient à la fois 'a', 'à' et 'et'.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Homophones - son/sont, on/ont",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Ils _____ partis hier.' (son/sont)", options: ["son", "sont", "sons", "sonts"], correct: "sont" },
+          { text: "Complète: 'C'est _____ livre préféré.' (son/sont)", options: ["son", "sont", "sons", "sonts"], correct: "son" },
+          { text: "Complète: '_____ va au cinéma ce soir.' (on/ont)", options: ["on", "ont", "ons", "onts"], correct: "on" },
+          { text: "Complète: 'Ils _____ trois chiens.' (on/ont)", options: ["on", "ont", "ons", "onts"], correct: "ont" },
+          { text: "Complète: '_____ dit que les élèves _____ bien travaillé.' (on/ont)", options: ["On, ont", "Ont, on", "On, on", "Ont, ont"], correct: "On, ont" }
+        ]
+      }
+    ];
+
+    // Exercices pour les PLURIELS SPÉCIAUX
+    const plurielsExercises = [
+      {
+        name: "Pluriels en -aux",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel est le pluriel de 'cheval'?", options: ["chevals", "chevaux", "chevau", "chevales"], correct: "chevaux" },
+          { text: "Quel est le pluriel de 'journal'?", options: ["journals", "journaux", "journau", "journales"], correct: "journaux" },
+          { text: "Quel est le pluriel de 'animal'?", options: ["animals", "animaux", "animau", "animales"], correct: "animaux" },
+          { text: "Quel est le pluriel de 'hôpital'?", options: ["hôpitals", "hôpitaux", "hôpitau", "hôpitales"], correct: "hôpitaux" },
+          { text: "Quel est le pluriel de 'canal'?", options: ["canals", "canaux", "canau", "canales"], correct: "canaux" }
+        ]
+      },
+      {
+        name: "Pluriels en -eux, -oux",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel est le pluriel de 'cheveu'?", options: ["cheveus", "cheveux", "cheveu", "cheveaux"], correct: "cheveux" },
+          { text: "Quel est le pluriel de 'caillou'?", options: ["caillous", "cailloux", "caillou", "cailloues"], correct: "cailloux" },
+          { text: "Quel est le pluriel de 'genou'?", options: ["genous", "genoux", "genou", "genoues"], correct: "genoux" },
+          { text: "Quel est le pluriel de 'bijou'?", options: ["bijous", "bijoux", "bijou", "bijoues"], correct: "bijoux" },
+          { text: "Quel est le pluriel de 'jeu'?", options: ["jeus", "jeux", "jeu", "jeaux"], correct: "jeux" }
+        ]
+      },
+      {
+        name: "Production - Pluriels spéciaux",
+        type: "text",
+        questions: [
+          { text: "Écris 5 mots qui font leur pluriel en -aux.", correct: "réponse libre" },
+          { text: "Écris les 7 mots en -ou qui prennent un -x au pluriel.", correct: "réponse libre" },
+          { text: "Écris 3 phrases avec des mots au pluriel irrégulier.", correct: "réponse libre" },
+          { text: "Trouve 3 mots en -al qui font leur pluriel en -als (pas -aux).", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Pluriels - Cas particuliers",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel est le pluriel de 'oeil'?", options: ["oeils", "oeux", "yeux", "yeils"], correct: "yeux" },
+          { text: "Quel est le pluriel de 'madame'?", options: ["madames", "mesdames", "madams", "mesdams"], correct: "mesdames" },
+          { text: "Quel est le pluriel de 'monsieur'?", options: ["monsieurs", "messieurs", "monsiers", "messiers"], correct: "messieurs" },
+          { text: "Quel est le pluriel de 'travail'?", options: ["travails", "travaux", "travau", "travailles"], correct: "travaux" },
+          { text: "Quel est le pluriel de 'bal'?", options: ["baux", "bals", "bales", "bau"], correct: "bals" }
+        ]
+      }
+    ];
+
+    // Exercices pour TRAIT D'UNION DANS LES NOMBRES
+    const traitUnionExercises = [
+      {
+        name: "Trait d'union - Nombres composés",
+        type: "multiple_choice",
+        questions: [
+          { text: "Comment écrire 21?", options: ["vingt et un", "vingt-et-un", "vingt-un", "vingtetun"], correct: "vingt-et-un" },
+          { text: "Comment écrire 45?", options: ["quarante cinq", "quarante-cinq", "quarantecinq", "quarante et cinq"], correct: "quarante-cinq" },
+          { text: "Comment écrire 80?", options: ["quatre-vingt", "quatre vingt", "quatrevingt", "quatre-vingts"], correct: "quatre-vingts" },
+          { text: "Comment écrire 99?", options: ["quatre-vingt-dix-neuf", "quatre vingt dix neuf", "quatrevingtdixneuf", "quatre-vingt dix-neuf"], correct: "quatre-vingt-dix-neuf" },
+          { text: "Comment écrire 17?", options: ["dix sept", "dix-sept", "dixsept", "dix et sept"], correct: "dix-sept" }
+        ]
+      },
+      {
+        name: "Trait d'union - Règles",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quand met-on un trait d'union dans les nombres?", options: ["Jamais", "Toujours", "Entre les mots composant un nombre < 100", "Seulement après 'vingt'"], correct: "Entre les mots composant un nombre < 100" },
+          { text: "Comment écrire 31?", options: ["trente et un", "trente-et-un", "trente-un", "trenteun"], correct: "trente-et-un" },
+          { text: "Comment écrire 71?", options: ["soixante et onze", "soixante-et-onze", "soixante-onze", "soixanteonze"], correct: "soixante-et-onze" },
+          { text: "Comment écrire 200?", options: ["deux-cents", "deux cents", "deuxcents", "deux-cent"], correct: "deux-cents" },
+          { text: "Comment écrire 1000?", options: ["mille", "un-mille", "un mille", "unmille"], correct: "mille" }
+        ]
+      },
+      {
+        name: "Production - Trait d'union",
+        type: "text",
+        questions: [
+          { text: "Écris en lettres les nombres suivants avec les traits d'union: 37, 54, 82.", correct: "réponse libre" },
+          { text: "Écris en lettres: 156, 278, 491.", correct: "réponse libre" },
+          { text: "Explique la règle du trait d'union dans les nombres.", correct: "réponse libre" },
+          { text: "Écris 5 nombres entre 10 et 100 en lettres.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Trait d'union - Application",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quelle écriture est correcte?", options: ["J'ai quarante-deux ans.", "J'ai quarante deux ans.", "J'ai quarantedeux ans.", "J'ai quarante et deux ans."], correct: "J'ai quarante-deux ans." },
+          { text: "Comment écrire 'page 58'?", options: ["page cinquante huit", "page cinquante-huit", "page cinquantehuit", "page cinquante et huit"], correct: "page cinquante-huit" },
+          { text: "Comment écrire 61?", options: ["soixante et un", "soixante-et-un", "soixante-un", "soixanteun"], correct: "soixante-et-un" },
+          { text: "Quel nombre s'écrit SANS trait d'union?", options: ["dix-sept", "vingt-trois", "cent", "quatre-vingts"], correct: "cent" },
+          { text: "Comment écrire 'chapitre 14'?", options: ["chapitre quatorze", "chapitre quator-ze", "chapitre qua-torze", "chapitre 14"], correct: "chapitre quatorze" }
+        ]
+      }
+    ];
+
+    // Exercices HOMOPHONES AVANCÉS
+    const homophonesAvancesExercises = [
+      {
+        name: "Homophones avancés - leur/leurs",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Je _____ ai donné un cadeau.' (leur/leurs)", options: ["leur", "leurs", "leurre", "leures"], correct: "leur" },
+          { text: "Complète: 'Ce sont _____ livres.' (leur/leurs)", options: ["leur", "leurs", "leurre", "leures"], correct: "leurs" },
+          { text: "Complète: 'Ils ont oublié _____ parapluie.' (leur/leurs)", options: ["leur", "leurs", "leurre", "leures"], correct: "leur" },
+          { text: "Complète: 'Je _____ parle souvent.' (leur/leurs)", options: ["leur", "leurs", "leurre", "leures"], correct: "leur" },
+          { text: "Complète: '_____ parents sont gentils.' (leur/leurs)", options: ["Leur", "Leurs", "Leurre", "Leures"], correct: "Leurs" }
+        ]
+      },
+      {
+        name: "Homophones avancés - ce/se, ces/ses/c'est/s'est",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ matin, il fait beau.' (ce/se)", options: ["Ce", "Se", "Ces", "Ses"], correct: "Ce" },
+          { text: "Complète: 'Il _____ lave les mains.' (ce/se)", options: ["ce", "se", "ces", "ses"], correct: "se" },
+          { text: "Complète: '_____ sont mes amis.' (ce/se, c'est/s'est)", options: ["Ce", "Se", "C'est", "S'est"], correct: "Ce" },
+          { text: "Complète: 'Elle _____ trompée.' (ce/se, c'est/s'est)", options: ["ce", "se", "c'est", "s'est"], correct: "s'est" },
+          { text: "Complète: '_____ la vie!' (ce/se, c'est/s'est)", options: ["Ce", "Se", "C'est", "S'est"], correct: "C'est" }
+        ]
+      },
+      {
+        name: "Production - Homophones avancés",
+        type: "text",
+        questions: [
+          { text: "Écris 2 phrases: une avec 'leur' (pronom), une avec 'leurs' (adjectif possessif).", correct: "réponse libre" },
+          { text: "Écris 2 phrases: une avec 'ce' (déterminant), une avec 'se' (pronom réfléchi).", correct: "réponse libre" },
+          { text: "Écris 2 phrases: une avec 'c'est' (ce + est), une avec 's'est' (se + est).", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'ces' et une avec 'ses'.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Homophones avancés - tout/tous/toute/toutes",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ le monde est là.' (tout/tous)", options: ["Tout", "Tous", "Toute", "Toutes"], correct: "Tout" },
+          { text: "Complète: 'Ils sont _____ partis.' (tout/tous)", options: ["tout", "tous", "toute", "toutes"], correct: "tous" },
+          { text: "Complète: '_____ la journée, il a plu.' (tout/toute)", options: ["Tout", "Tous", "Toute", "Toutes"], correct: "Toute" },
+          { text: "Complète: '_____ les filles sont arrivées.' (tout/toutes)", options: ["Tout", "Tous", "Toute", "Toutes"], correct: "Toutes" },
+          { text: "Complète: 'Il est _____ content.' (tout/tous)", options: ["tout", "tous", "toute", "toutes"], correct: "tout" }
+        ]
+      }
+    ];
+
     // CONJUGAISON: 4 exercices avec 4-5 questions chacun
     const conjugaisonExercises = [
       {
@@ -2431,9 +2666,34 @@ export class MemStorage implements IStorage {
           }
         }
       } else if (courseInfo.category === "orthographe") {
+        // SÉLECTION DES EXERCICES SELON LE TITRE DU COURS
+        const titleLower = courseInfo.title.toLowerCase();
+        let selectedExercises;
+        
+        if (titleLower.includes("accords du verbe")) {
+          // Cours sur les accords du verbe → exercices d'accords sujet-verbe
+          selectedExercises = accordsVerbeExercises;
+        } else if (titleLower.includes("homophone") || titleLower.includes("c'est") || titleLower.includes("ces vs")) {
+          // Cours sur les homophones → exercices d'homophones
+          if (titleLower.includes("avancé") || titleLower.includes("grammaticaux") || titleLower.includes("autres")) {
+            selectedExercises = homophonesAvancesExercises;
+          } else {
+            selectedExercises = homophonesExercises;
+          }
+        } else if (titleLower.includes("pluriel")) {
+          // Cours sur les pluriels → exercices de pluriels
+          selectedExercises = plurielsExercises;
+        } else if (titleLower.includes("trait d'union") || titleLower.includes("trait-d'union")) {
+          // Cours sur le trait d'union → exercices de trait d'union
+          selectedExercises = traitUnionExercises;
+        } else {
+          // Par défaut: exercices génériques d'orthographe
+          selectedExercises = orthographeExercises;
+        }
+        
         // Create 4 exercises for orthography courses
         for (let exNum = 0; exNum < 4; exNum++) {
-          const exerciseTemplate = orthographeExercises[exNum];
+          const exerciseTemplate = selectedExercises[exNum];
           const exerciseId = randomUUID();
           
           const exercise: Exercise = {
