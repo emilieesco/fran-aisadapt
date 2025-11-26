@@ -472,85 +472,53 @@ export default function StudentDashboard() {
 
                 {/* Descriptif */}
                 <TabsContent value="descriptif" className="space-y-4">
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                     {exercises
                       .filter(
                         (e) =>
-                          courses.find((c) => c.id === e.courseId)?.title ===
-                            "Texte descriptif" && 
-                          e.type === "text" && 
-                          e.title.startsWith("Lecture:")
+                          courses.find((c) => c.id === e.courseId)?.category === "lecture_descriptif" && 
+                          e.type === "text"
                       )
-                      .map((exercise) => (
+                      .sort((a, b) => a.order - b.order)
+                      .map((exercise, index) => (
                         <Card
                           key={exercise.id}
-                          className="p-8 hover-elevate border-2 border-blue-200 dark:border-blue-800"
-                          data-testid={`card-reading-${exercise.id}`}
+                          className="p-3 hover-elevate border-2 border-blue-200 dark:border-blue-800 cursor-pointer transition-all min-h-40 flex flex-col"
+                          data-testid={`card-descriptif-${index}`}
+                          onClick={() => setLocation(`/exercise/${exercise.id}`)}
                         >
-                          <div className="space-y-6">
+                          <div className="space-y-2 h-full flex flex-col justify-between">
                             <div>
-                              <span className="text-xs font-semibold text-blue-600 dark:text-blue-300">
-                                Texte descriptif
+                              <span className="text-xs font-semibold text-blue-600 dark:text-blue-300 uppercase">
+                                Description {index + 1}
                               </span>
-                              <h3 className="text-2xl font-bold text-foreground mt-2">
+                              <h3 className="text-sm font-bold text-foreground mt-1 leading-tight line-clamp-2">
                                 {exercise.title}
                               </h3>
-                              <p className="text-sm text-muted-foreground mt-2">
+                              <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
                                 {exercise.description}
                               </p>
                             </div>
-
-                            <div className="bg-secondary/50 p-6 rounded-lg space-y-4">
-                              {questions
-                                .filter((q) => q.exerciseId === exercise.id)
-                                .map((question, idx) => (
-                                  <div key={question.id} className="space-y-3 border-b pb-4 last:border-b-0">
-                                    {idx === 0 ? (
-                                      <div className="bg-background p-4 rounded border border-muted">
-                                        <p className="text-sm whitespace-pre-wrap text-foreground">
-                                          {question.text.split("Question")[0]}
-                                        </p>
-                                      </div>
-                                    ) : null}
-                                    {idx > 0 && (
-                                      <div className="space-y-3 mt-4">
-                                        <p className="font-semibold text-foreground">
-                                          {question.text.includes("?")
-                                            ? question.text.split("?")[0] + "?"
-                                            : question.text}
-                                        </p>
-                                        <div className="space-y-2">
-                                          {question.options &&
-                                            JSON.parse(question.options).map(
-                                              (option: string) => (
-                                                <Button
-                                                  key={option}
-                                                  variant="outline"
-                                                  className="w-full justify-start text-left"
-                                                  data-testid={`button-answer-${question.id}-${option}`}
-                                                >
-                                                  {option}
-                                                </Button>
-                                              )
-                                            )}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                ))}
-                            </div>
-
+                            
                             <Button
-                              onClick={() => handleStartExercise(exercise.id)}
-                              className="w-full"
-                              data-testid={`button-submit-reading-${exercise.id}`}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setLocation(`/exercise/${exercise.id}`);
+                              }}
+                              className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-xs h-auto py-1"
+                              data-testid={`button-read-descriptif-${index}`}
                             >
-                              Soumettre mes réponses
+                              Lire
                             </Button>
                           </div>
                         </Card>
                       ))}
                   </div>
+                  {exercises.filter((e) => courses.find((c) => c.id === e.courseId)?.category === "lecture_descriptif").length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <p>Aucun texte descriptif disponible pour le moment.</p>
+                    </div>
+                  )}
                 </TabsContent>
 
                 {/* Explicatif */}
