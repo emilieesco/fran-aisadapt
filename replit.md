@@ -155,15 +155,33 @@ Application web éducative complète pour l'enseignement du français aux élèv
 4. Tirets et pointillés avancés - Utilisations stylistiques
 5. Virgules dans propositions complexes - Placement correct
 
-### Lecture & Compréhension (8 leçons)
-1. Texte descriptif - Techniques de description
-2. Texte explicatif - Comment expliquer un phénomène
-3. Texte argumentatif - Persuasion et arguments
-4. Texte informatif - Informations factuelles
-5. Vocabulaire en contexte - Deviner sens des mots
-6. Compréhension écrite - Principal vs secondaire
-7. Questions de compréhension - Techniques de réponse
-8. Analyse de texte - Thème, messages, intentions
+### Lecture & Compréhension - 20 Textes Narratifs Complets ✅
+Chaque texte contient 8 questions basées sur les 4 dimensions de lecture:
+- **Compréhension** (3 questions choix multiples)
+- **Interprétation** (2 questions choix multiples)
+- **Réaction** (2 questions texte libre)
+- **Jugement critique** (1 question texte libre)
+
+1. Histoire 1: Le Trésor de la Cave
+2. Histoire 2: Le Jour de l'Accident
+3. Histoire 3: La Fille qui Rêvait de Danser
+4. Histoire 4: L'Amitié Retrouvée
+5. Histoire 5: Le Voyage en Train
+6. Histoire 6: La Cabane Mystérieuse
+7. Histoire 7: Le Concours de Dessin
+8. Histoire 8: La Maison Hantée
+9. Histoire 9: Le Secret du Grenier
+10. Histoire 10: La Course Épique
+11. Histoire 11: Le Festival Annuel
+12. Histoire 12: L'Animal Perdu
+13. Histoire 13: Le Trésor Caché du Jardin
+14. Histoire 14: La Tempête
+15. Histoire 15: L'Île Déserte
+16. Histoire 16: La Bibliothèque Secrète
+17. Histoire 17: Le Concert Spécial
+18. Histoire 18: La Lettre du Futur
+19. Histoire 19: L'Aventure Finale
+20. Histoire 20: Le Rêve de Mathieu
 
 ## Données de Test Incluses
 

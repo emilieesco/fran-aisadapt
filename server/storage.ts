@@ -1115,6 +1115,8 @@ export class MemStorage implements IStorage {
 
     const readingExercise20Id = randomUUID();
 
+    const readingExercise21Id = randomUUID();
+
 
     // Writing exercises
     const writingExercise1Id = randomUUID();
@@ -1307,505 +1309,989 @@ export class MemStorage implements IStorage {
     };
 
     // HISTOIRE 3: La Fille qui Rêvait de Danser
-    const readQ5: Question = {
+    const readQ3_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
       title: "Histoire 3: La Fille qui Rêvait de Danser",
-      text: "Sophie avait 12 ans et vivait dans un petit village tranquille appelé Saint-Honoré-les-Bains, nichée entre les montagnes verdoyantes. C'était un village avec seulement deux mille habitants, loin des grandes villes et de leurs écoles d'arts prestigieuses. La maison de Sophie était modeste mais chaleureuse. Elle partageait une chambre avec sa petite sœur Marie. Elle adorait danser, passionnément, avec tout son cœur. Depuis qu'elle était petite, en regardant les pluies frapper la fenêtre, Sophie dansait. Elle rêvait de devenir danseuse professionnelle, de danser dans des théâtres magnifiques, de voyager autour du monde.\n\nMais il y avait un problème majeur: Sophie n'avait jamais eu l'occasion de prendre de vrais cours de danse professionnels. Ses parents travaillaient dur - son père était électricien et sa mère était infirmière - mais ils n'avaient pas assez d'argent pour lui payer des cours d'une école d'arts privée qui coûtaient 150 euros par mois. C'était beaucoup trop cher pour leur budget serré. Sophie se sentait frustrée. Au lieu de cela, elle regardait des vidéos de danse sur YouTube, étudiant chaque mouvement, chaque pirouette, chaque grand saut. Elle s'entraînait seule dans sa chambre après l'école, mettant sa musique préférée, dansant pendant des heures jusqu'à ce que ses jambes soient fatiguées et que ses pieds lui fassent mal. Ses parents l'encourageaient: \"Sophie, continue tes rêves! Tu es naturellement talentueuse!\" Mais Sophie doutait d'elle-même. Sans cours professionnels, pouvait-elle vraiment réussir?\n\nUn jour du mois de mars, en se promenant au village après l'école avec son meilleur ami Thomas, Sophie vit une affiche accrochée sur le mur du centre culturel du village. L'affiche était colorée, avec des dessins de danseurs en mouvement. Elle lisait: \"AUDITIONS DE DANSE POUR L'ÉCOLE D'ARTS RÉGIONALE! GRATUIT POUR TOUS LES ENFANTS! Samedi 15 avril à 14h au centre culturel de Saint-Honoré! Une opportunité unique pour découvrir votre talent! Les meilleurs candidats recevront une bourse pour suivre nos cours!\"\n\nLe cœur de Sophie s'arrêta. Une chance! Une vrai chance! Un audition, gratuite, pour une école d'arts reconnue! Mais presque immédiatement, la peur l'envahit. Comment pouvait-elle concourir? Elle n'avait pas eu de formation professionnelle comme les autres enfants. Les autres candidates auraient probablement suivi des cours pendant des années. Elle serait ridicule sur scène!\n\nMais Thomas vit l'expression de Sophie et sourit. \"Sophie, tu DOIS essayer! Tu es la meilleure danseuse que je connaisse! Fais-le pour toi!\" dit-il fermement. Sophie rentra à la maison ce jour-là, le cœur déchiré entre l'espoir et la peur. Elle montra l'affiche à ses parents. Sa mère lui lança: \"Ma chérie, tu dois essayer! C'est ta chance!\" Son père ajouta: \"Sophie, je crois en toi. Je vais t'aider à te préparer.\"\n\nPendant toute la semaine suivante, Sophie s'entraîna avec intensité. Elle répéta sa chorégraphie des centaines de fois. Son père caméra ses répétitions pour qu'elle puisse se voir et s'améliorer. Sa mère l'aida à trouver une tenue de danse appropriée - un léotard noir et des chaussons de danse que sa grand-mère lui offrit. Sophie dansait jusqu'à minuit, ses muscles brûlaient, mais elle ne s'arrêtait pas. Elle voulait être parfaite.\n\nLe jour de l'audition finalement arriva. Sophie se réveilla à 6h du matin, incapable de dormir. Elle avait des papillons dans l'estomac. Avec ses parents, elle se rendit au centre culturel. Il y avait environ 50 autres enfants qui attendaient, tous nerveusement assis dans des chaises en plastique. Quelques-uns portaient les uniformes d'écoles d'arts prestigieuses. Sophie se sentait petite et sans importance.\n\nLorsque son tour arriva, Sophie monta lentement sur la scène. Les lumières s'allumèrent. Elle voyait les visages des juges assis à une table noire, stylos à la main, regardant fixement. Elle voyait aussi les parents et les amis dans le public. Tous les regards étaient fixés sur elle. Son cœur battait à plus de 100 coups par minute. Elle tremblait. La musique de sa chanson commença - c'était une musique émotionnelle et magnifique.\n\nSophie commença à danser, mais ses mouvements n'étaient pas fluides. Elle était raide de nervosité. Elle oublia une partie de sa chorégraphie! Son pied gauche décalé! Elle voulait arrêter, se sauver de la scène, disparaître. La honte l'envahissait. Mais alors, quelque chose se produisit. Elle ferma les yeux. Elle respira profondément. Elle se rappela pourquoi elle était là - pas pour être parfaite, mais parce qu'elle aimait danser. Elle continua de danser, pas sa chorégraphie préparée, mais avec son cœur, avec ses émotions, laissant la musique la guider. Ses mouvements devinrent fluides, gracieux, plein de passion. Elle sauta, tourna, glissa sur la scène comme si elle volait.\n\nLorsqu'elle termina, il y eut un silence. Puis, les juges applaudirent! Les parents applaudirent! Sophie était hors d'haleine, versant des larmes de soulagement.\n\nUne semaine plus tard, Sophie reçut une lettre de l'école d'arts régionale. Elle avait REMPORTÉ une bourse complète! Une bourse de deux ans pour suivre des cours professionnels! Elle pleura de joie en lisant la lettre. Ses rêves se réalisaient enfin!\n\nSophie suivit les cours et devint une danseuse talentueuse et reconnue. Quelques années plus tard, elle voyagea partout dans le monde - en France, en Italie, en Espagne - partageant sa passion de la danse avec des audiences du monde entier. Et elle ne oublia jamais sa petite chambre au village de Saint-Honoré-les-Bains, où tout a commencé.\n\nPourquoi Sophie ne pouvait-elle pas prendre de cours de danse avant?",
+      text: "Sophie avait 12 ans et vivait dans un petit village tranquille appelé Saint-Honoré-les-Bains, nichée entre les montagnes verdoyantes. C'était un village avec seulement deux mille habitants, loin des grandes villes et de leurs écoles d'arts prestigieuses. La maison de Sophie était modeste mais chaleureuse. Elle partageait une chambre avec sa petite sœur Marie. Elle adorait danser, passionnément, avec tout son cœur. Depuis qu'elle était petite, en regardant les pluies frapper la fenêtre, Sophie dansait. Elle rêvait de devenir danseuse professionnelle, de danser dans des théâtres magnifiques, de voyager autour du monde.\n\nMais il y avait un problème majeur: Sophie n'avait jamais eu l'occasion de prendre de vrais cours de danse professionnels. Ses parents travaillaient dur - son père était électricien et sa mère était infirmière - mais ils n'avaient pas assez d'argent pour lui payer des cours d'une école d'arts privée qui coûtaient 150 euros par mois. C'était beaucoup trop cher pour leur budget serré. Sophie se sentait frustrée. Au lieu de cela, elle regardait des vidéos de danse sur YouTube, étudiant chaque mouvement, chaque pirouette, chaque grand saut. Elle s'entraînait seule dans sa chambre après l'école, mettant sa musique préférée, dansant pendant des heures jusqu'à ce que ses jambes soient fatiguées et que ses pieds lui fassent mal. Ses parents l'encourageaient: \"Sophie, continue tes rêves! Tu es naturellement talentueuse!\" Mais Sophie doutait d'elle-même. Sans cours professionnels, pouvait-elle vraiment réussir?\n\nUn jour du mois de mars, en se promenant au village après l'école avec son meilleur ami Thomas, Sophie vit une affiche accrochée sur le mur du centre culturel du village. L'affiche était colorée, avec des dessins de danseurs en mouvement. Elle lisait: \"AUDITIONS DE DANSE POUR L'ÉCOLE D'ARTS RÉGIONALE! GRATUIT POUR TOUS LES ENFANTS! Samedi 15 avril à 14h au centre culturel de Saint-Honoré! Une opportunité unique pour découvrir votre talent! Les meilleurs candidats recevront une bourse pour suivre nos cours!\"\n\nLe cœur de Sophie s'arrêta. Une chance! Une vrai chance! Un audition, gratuite, pour une école d'arts reconnue! Mais presque immédiatement, la peur l'envahit. Comment pouvait-elle concourir? Elle n'avait pas eu de formation professionnelle comme les autres enfants. Les autres candidates auraient probablement suivi des cours pendant des années. Elle serait ridicule sur scène!\n\nMais Thomas vit l'expression de Sophie et sourit. \"Sophie, tu DOIS essayer! Tu es la meilleure danseuse que je connaisse! Fais-le pour toi!\" dit-il fermement. Sophie rentra à la maison ce jour-là, le cœur déchiré entre l'espoir et la peur. Elle montra l'affiche à ses parents. Sa mère lui lança: \"Ma chérie, tu dois essayer! C'est ta chance!\" Son père ajouta: \"Sophie, je crois en toi. Je vais t'aider à te préparer.\"\n\nPendant toute la semaine suivante, Sophie s'entraîna avec intensité. Elle répéta sa chorégraphie des centaines de fois. Son père caméra ses répétitions pour qu'elle puisse se voir et s'améliorer. Sa mère l'aida à trouver une tenue de danse appropriée - un léotard noir et des chaussons de danse que sa grand-mère lui offrit. Sophie dansait jusqu'à minuit, ses muscles brûlaient, mais elle ne s'arrêtait pas. Elle voulait être parfaite.\n\nLe jour de l'audition finalement arriva. Sophie se réveilla à 6h du matin, incapable de dormir. Elle avait des papillons dans l'estomac. Avec ses parents, elle se rendit au centre culturel. Il y avait environ 50 autres enfants qui attendaient, tous nerveusement assis dans des chaises en plastique. Quelques-uns portaient les uniformes d'écoles d'arts prestigieuses. Sophie se sentait petite et sans importance.\n\nLorsque son tour arriva, Sophie monta lentement sur la scène. Les lumières s'allumèrent. Elle voyait les visages des juges assis à une table noire, stylos à la main, regardant fixement. Elle voyait aussi les parents et les amis dans le public. Tous les regards étaient fixés sur elle. Son cœur battait à plus de 100 coups par minute. Elle tremblait. La musique de sa chanson commença - c'était une musique émotionnelle et magnifique.\n\nSophie commença à danser, mais ses mouvements n'étaient pas fluides. Elle était raide de nervosité. Elle oublia une partie de sa chorégraphie! Son pied gauche décalé! Elle voulait arrêter, se sauver de la scène, disparaître. La honte l'envahissait. Mais alors, quelque chose se produisit. Elle ferma les yeux. Elle respira profondément. Elle se rappela pourquoi elle était là - pas pour être parfaite, mais parce qu'elle aimait danser. Elle continua de danser, pas sa chorégraphie préparée, mais avec son cœur, avec ses émotions, laissant la musique la guider. Ses mouvements devinrent fluides, gracieux, plein de passion. Elle sauta, tourna, glissa sur la scène comme si elle volait.\n\nLorsqu'elle termina, il y eut un silence. Puis, les juges applaudirent! Les parents applaudirent! Sophie était hors d'haleine, versant des larmes de soulagement.\n\nUne semaine plus tard, Sophie reçut une lettre de l'école d'arts régionale. Elle avait REMPORTÉ une bourse complète! Une bourse de deux ans pour suivre des cours professionnels! Elle pleura de joie en lisant la lettre. Ses rêves se réalisaient enfin!\n\nSophie suivit les cours et devint une danseuse talentueuse et reconnue. Quelques années plus tard, elle voyagea partout dans le monde - en France, en Italie, en Espagne - partageant sa passion de la danse avec des audiences du monde entier. Et elle ne oublia jamais sa petite chambre au village de Saint-Honoré-les-Bains, où tout a commencé.\n\nQuel âge avait Sophie?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle n'aimait pas la danse", "Ses parents n'avaient pas assez d'argent", "Il n'y avait pas de professeur", "Elle était trop occupée"]),
-      correctAnswer: "Ses parents n'avaient pas assez d'argent",
+      options: JSON.stringify(["10 ans", "11 ans", "12 ans", "13 ans"]),
+      correctAnswer: "12 ans",
       order: 1,
     };
 
-    const readQ6: Question = {
+    const readQ3_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Quel événement a changé la vie de Sophie?",
+      title: "Question 2 (Compréhension)",
+      text: "Combien coûtaient les cours de danse professionnels par mois?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle trouva de l'argent", "Elle vit une affiche pour une audition gratuite", "Elle rencontra une danseuse professionnelle", "Elle reçut un cadeau"]),
-      correctAnswer: "Elle vit une affiche pour une audition gratuite",
+      options: JSON.stringify(["100 euros", "120 euros", "150 euros", "200 euros"]),
+      correctAnswer: "150 euros",
       order: 2,
     };
 
-    const readQ6b: Question = {
+    const readQ3_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème Sophie affronta-t-elle sur scène?",
+      title: "Question 3 (Compréhension)",
+      text: "Comment Sophie apprenait-elle à danser sans cours professionnels?",
       type: "multiple_choice",
-      options: JSON.stringify(["La musique était mauvaise", "Elle était très nerveuse, avait peur et voulait partir", "Un enfant l'a interrompue", "La lumière était trop forte"]),
-      correctAnswer: "Elle était très nerveuse, avait peur et voulait partir",
+      options: JSON.stringify(["Avec sa mère", "En regardant des vidéos sur YouTube", "Avec une amie danseuse", "Dans un livre"]),
+      correctAnswer: "En regardant des vidéos sur YouTube",
       order: 3,
     };
 
-    const readQ6c: Question = {
+    const readQ3_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise3Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment la vie de Sophie changea-t-elle après l'audition?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Sophie doutait-elle d'elle-même malgré son talent?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle arrêta de danser", "Elle fut acceptée et reçut une bourse complète", "Elle partit du village", "Rien ne changea"]),
-      correctAnswer: "Elle fut acceptée et reçut une bourse complète",
+      options: JSON.stringify(["Elle était trop timide", "Elle n'avait pas de cours professionnels", "Ses parents ne la soutenaient pas", "Elle n'aimait pas vraiment danser"]),
+      correctAnswer: "Elle n'avait pas de cours professionnels",
       order: 4,
+    };
+
+    const readQ3_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que représente la bourse pour Sophie et sa famille?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Juste de l'argent", "Une chance de réaliser son rêve malgré les obstacles financiers", "Une obligation de travailler plus dur", "Un cadeau sans importance"]),
+      correctAnswer: "Une chance de réaliser son rêve malgré les obstacles financiers",
+      order: 5,
+    };
+
+    const readQ3_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu un rêve que tu aimerais réaliser comme Sophie? Explique quel est ce rêve.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ3_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 7 (Réaction)",
+      text: "Comment réagirais-tu si tu voyais une opportunité gratuite pour réaliser ton rêve?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ3_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que l'auteur montre bien les défis des familles qui n'ont pas beaucoup d'argent? Explique avec un exemple du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
     };
 
     // HISTOIRE 4: L'Amitié Retrouvée
-    const readQ7: Question = {
+    const readQ4_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
       title: "Histoire 4: L'Amitié Retrouvée",
-      text: "Lucas et Thomas étaient les meilleurs amis du monde, inséparables, comme des frères de sang. Ils avaient tous les deux 11 ans et avaient grandi ensemble depuis l'école maternelle. Ils habitaient dans le même quartier à Lyon, dans des maisons juste à côté l'une de l'autre. Ils faisaient absolument tout ensemble: jouer au football dans le parc, faire leurs devoirs ensemble à la bibliothèque, aller à la piscine le mercredi, manger le gâteau d'anniversaire ensemble chaque année. Chaque soir après l'école, ils se retrouvaient dans la cour de Lucas et jouaient jusqu'à ce que le soleil se couche. Thomas était grand et blond, Lucas était petit et brun. Mais leurs caractères se complétaient parfaitement. Thomas était calme et réfléchi, Lucas était énergique et aventurier. Ils s'aimaient comme des frères. Ils dormaient souvent chez l'un ou l'autre. Leurs familles se voyaient régulièrement. Un soir, assis sur le toit de la maison de Lucas, regardant les étoiles, les deux garçons jurent solennellement l'un envers l'autre: \"Thomas, on sera amis pour TOUJOURS, d'accord? Aucune distance ne peut nous séparer!\" \"Oui Lucas, pour toujours! Promis!\" avaient-ils dit.\n\nMais un jour du mois de mai, la vie prit un tournant tragique. La mère de Thomas appela sa meilleure amie, la mère de Lucas, et dit: \"Ma famille déménage. Le travail de mon mari nous demande d'aller vivre à Marseille.\" C'était à plusieurs centaines de kilomètres de distance! Marseille! Un monde différent! Lucas était dévastée lorsqu'il entendit la nouvelle. Il se précipita chez Thomas, qui avait aussi le cœur brisé. Les deux garçons s'assirent sur le lit de Thomas, silencieusement, entourés de boîtes d'emballage. \"Comment peut-on faire ça?\" demanda Lucas, les larmes aux yeux. \"Nous avions promis!\" répondit Thomas, sa voix tremblante.\n\nLe jour du déménagement arriva trop rapidement. Les parents se dirent au revoir. Lucas et Thomas s'embrassèrent et se promirent: \"On va s'appeler tous les jours! On va se faire des vidéos! On sera toujours ensemble dans nos cœurs!\" Pendant les premiers mois, ils tinrent parole. Ils s'appelaient tous les dimanches soir. Thomas envoyait à Lucas des photos de sa nouvelle maison, de la plage à côté. Lucas envoyait à Thomas des vidéos de leurs amis du quartier. Mais avec le temps, les appels devinrent de moins en moins fréquents. Les premiers mois, c'était chaque semaine. Puis deux fois par mois. Puis une fois par mois. Puis plus rien.\n\nLucas commença à se sentir très mal. À chaque rentrée scolaire, il voyait des amis qui lui manquaient, mais aucun n'était Thomas. Il pensait à Thomas tous les jours. Il voyait des garçons qui ressemblaient à Thomas dans le rue et son cœur s'arrêtait. Il gardait une photo de Thomas et de lui sur son bureau. Son journal était rempli de pensées: \"Pourquoi Thomas n'appelle-t-il pas? Peut-être qu'il a de nouveaux amis à Marseille. Peut-être qu'il m'a oublié.\" Lucas avait le cœur brisé. Il voulait l'appeler, lui écrire, lui envoyer un email, mais il avait PEUR. Peur que Thomas l'ait oublié. Peur qu'il ne veuille pas lui parler. Peur que Thomas dise: \"Non, je suis occupé. Je n'ai pas le temps pour des amis de Lyon.\" Cette peur était plus grande que son amour pour Thomas, et ça le paraissait.\n\nThomas, de son côté, à Marseille, ressentait exactement la même chose! Il pensait à Lucas chaque jour. Il avait aussi le cœur brisé. Il voyait des moments qu'ils auraient partagés ensemble et pensait: \"Lucas adorait le football. Je voudrais qu'il soit ici pour voir ce match!\" Thomas avait aussi peur. Il avait peur que Lucas ait des nouveaux meilleurs amis maintenant. Il avait peur que Lucas dise: \"Thomas, tu es trop loin. Je ne peux pas rester ami avec quelqu'un qui habite à l'autre bout de la France.\"\n\nUn jour d'octobre, deux ans après la séparation, Lucas reçut une lettre manuscrite. Une vraie lettre papier! L'enveloppe était adressée en écriture maladroite, à l'encre bleue. Le timbre était de Marseille. Lucas reconnut immédiatement l'écriture de Thomas. Ses mains tremblaient en ouvrant l'enveloppe. À l'intérieur était une longue lettre, plusieurs pages, écrite de la main de Thomas:\n\n\"Mon ami Lucas,\n\nJe sais que j'ai été stupide de ne pas te contacter depuis si longtemps. Chaque jour pendant ces deux ans, j'ai pensé à toi. Je me suis demandé comment tu allais. J'ai vu un match de football à la télé l'autre jour et j'ai pensé: \"Lucas adorerait ce match.\" Je t'ai tellement manqué. Je veux que tu saches que tu restes mon meilleur ami. Rien n'a changé dans mon cœur. Je suis désolé de ne pas avoir écrit plus souvent. Je suis aussi désolé d'avoir eu peur de t'appeler. J'avais peur que tu m'aies oublié. Mais je sais maintenant que une amitié véritable n'est jamais oubliée, peu importe la distance.\n\nJe t'aime, mon ami.\n\nThomas\"\n\nLucas pleura en lisant cette lettre. Des larmes de joie coulaient sur ses joues. Il courut immédiatement chez son ordinateur et écrivit une longue réponse à Thomas. Il lui parla de ses deux dernières années, de comment il avait pensé à lui aussi, de comment il avait eu peur aussi.\n\nAprès cette lettre, les deux garçons commencèrent à se parler régulièrement. D'abord par email, puis par vidéo-call une fois par semaine. Ils rattrapèrent les deux ans d'amitié perdue. Quelques mois plus tard, pour les vacances d'été, Lucas visita Thomas à Marseille. C'est moment de retrouvailles était magique. Quand Lucas descendit du train et vit Thomas à la gare, ils couraient vers l'un l'autre. Ils s'embrassèrent et pleurèrent de joie. Ils passèrent les deux semaines ensemble à la plage, explorant Marseille, riant, parlant, se rattrappant. Leur amitié était revenue plus forte que jamais! Ils comprenaient maintenant que l'amitié véritable ne peut jamais être brisée par la distance ou le temps.\n\nQuelle était la relation entre Lucas et Thomas?",
+      text: "Lucas et Thomas étaient les meilleurs amis du monde, inséparables, comme des frères de sang. Ils avaient tous les deux 11 ans et avaient grandi ensemble depuis l'école maternelle. Ils habitaient dans le même quartier à Lyon, dans des maisons juste à côté l'une de l'autre. Ils faisaient absolument tout ensemble: jouer au football dans le parc, faire leurs devoirs ensemble à la bibliothèque, aller à la piscine le mercredi, manger le gâteau d'anniversaire ensemble chaque année. Chaque soir après l'école, ils se retrouvaient dans la cour de Lucas et jouaient jusqu'à ce que le soleil se couche. Thomas était grand et blond, Lucas était petit et brun. Mais leurs caractères se complétaient parfaitement. Thomas était calme et réfléchi, Lucas était énergique et aventurier. Ils s'aimaient comme des frères. Ils dormaient souvent chez l'un ou l'autre. Leurs familles se voyaient régulièrement. Un soir, assis sur le toit de la maison de Lucas, regardant les étoiles, les deux garçons jurent solennellement l'un envers l'autre: \"Thomas, on sera amis pour TOUJOURS, d'accord? Aucune distance ne peut nous séparer!\" \"Oui Lucas, pour toujours! Promis!\" avaient-ils dit.\n\nMais un jour du mois de mai, la vie prit un tournant tragique. La mère de Thomas appela sa meilleure amie, la mère de Lucas, et dit: \"Ma famille déménage. Le travail de mon mari nous demande d'aller vivre à Marseille.\" C'était à plusieurs centaines de kilomètres de distance! Marseille! Un monde différent! Lucas était dévastée lorsqu'il entendit la nouvelle. Il se précipita chez Thomas, qui avait aussi le cœur brisé. Les deux garçons s'assirent sur le lit de Thomas, silencieusement, entourés de boîtes d'emballage. \"Comment peut-on faire ça?\" demanda Lucas, les larmes aux yeux. \"Nous avions promis!\" répondit Thomas, sa voix tremblante.\n\nLe jour du déménagement arriva trop rapidement. Les parents se dirent au revoir. Lucas et Thomas s'embrassèrent et se promirent: \"On va s'appeler tous les jours! On va se faire des vidéos! On sera toujours ensemble dans nos cœurs!\" Pendant les premiers mois, ils tinrent parole. Ils s'appelaient tous les dimanches soir. Thomas envoyait à Lucas des photos de sa nouvelle maison, de la plage à côté. Lucas envoyait à Thomas des vidéos de leurs amis du quartier. Mais avec le temps, les appels devinrent de moins en moins fréquents. Les premiers mois, c'était chaque semaine. Puis deux fois par mois. Puis une fois par mois. Puis plus rien.\n\nLucas commença à se sentir très mal. À chaque rentrée scolaire, il voyait des amis qui lui manquaient, mais aucun n'était Thomas. Il pensait à Thomas tous les jours. Il voyait des garçons qui ressemblaient à Thomas dans le rue et son cœur s'arrêtait. Il gardait une photo de Thomas et de lui sur son bureau. Son journal était rempli de pensées: \"Pourquoi Thomas n'appelle-t-il pas? Peut-être qu'il a de nouveaux amis à Marseille. Peut-être qu'il m'a oublié.\" Lucas avait le cœur brisé. Il voulait l'appeler, lui écrire, lui envoyer un email, mais il avait PEUR. Peur que Thomas l'ait oublié. Peur qu'il ne veuille pas lui parler. Peur que Thomas dise: \"Non, je suis occupé. Je n'ai pas le temps pour des amis de Lyon.\" Cette peur était plus grande que son amour pour Thomas, et ça le paraissait.\n\nThomas, de son côté, à Marseille, ressentait exactement la même chose! Il pensait à Lucas chaque jour. Il avait aussi le cœur brisé. Il voyait des moments qu'ils auraient partagés ensemble et pensait: \"Lucas adorait le football. Je voudrais qu'il soit ici pour voir ce match!\" Thomas avait aussi peur. Il avait peur que Lucas ait des nouveaux meilleurs amis maintenant. Il avait peur que Lucas dise: \"Thomas, tu es trop loin. Je ne peux pas rester ami avec quelqu'un qui habite à l'autre bout de la France.\"\n\nUn jour d'octobre, deux ans après la séparation, Lucas reçut une lettre manuscrite. Une vraie lettre papier! L'enveloppe était adressée en écriture maladroite, à l'encre bleue. Le timbre était de Marseille. Lucas reconnut immédiatement l'écriture de Thomas. Ses mains tremblaient en ouvrant l'enveloppe. À l'intérieur était une longue lettre, plusieurs pages, écrite de la main de Thomas:\n\n\"Mon ami Lucas,\n\nJe sais que j'ai été stupide de ne pas te contacter depuis si longtemps. Chaque jour pendant ces deux ans, j'ai pensé à toi. Je me suis demandé comment tu allais. J'ai vu un match de football à la télé l'autre jour et j'ai pensé: \"Lucas adorerait ce match.\" Je t'ai tellement manqué. Je veux que tu saches que tu restes mon meilleur ami. Rien n'a changé dans mon cœur. Je suis désolé de ne pas avoir écrit plus souvent. Je suis aussi désolé d'avoir eu peur de t'appeler. J'avais peur que tu m'aies oublié. Mais je sais maintenant que une amitié véritable n'est jamais oubliée, peu importe la distance.\n\nJe t'aime, mon ami.\n\nThomas\"\n\nLucas pleura en lisant cette lettre. Des larmes de joie coulaient sur ses joues. Il courut immédiatement chez son ordinateur et écrivit une longue réponse à Thomas. Il lui parla de ses deux dernières années, de comment il avait pensé à lui aussi, de comment il avait eu peur aussi.\n\nAprès cette lettre, les deux garçons commencèrent à se parler régulièrement. D'abord par email, puis par vidéo-call une fois par semaine. Ils rattrapèrent les deux ans d'amitié perdue. Quelques mois plus tard, pour les vacances d'été, Lucas visita Thomas à Marseille. C'est moment de retrouvailles était magique. Quand Lucas descendit du train et vit Thomas à la gare, ils couraient vers l'un l'autre. Ils s'embrassèrent et pleurèrent de joie. Ils passèrent les deux semaines ensemble à la plage, explorant Marseille, riant, parlant, se rattrappant. Leur amitié était revenue plus forte que jamais! Ils comprenaient maintenant que l'amitié véritable ne peut jamais être brisée par la distance ou le temps.\n\nQuel âge avaient Lucas et Thomas?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ils se détestaient", "Ils étaient des meilleurs amis comme des frères", "Ils étaient voisins", "Ils se connaissaient à peine"]),
-      correctAnswer: "Ils étaient des meilleurs amis comme des frères",
+      options: JSON.stringify(["9 ans", "10 ans", "11 ans", "12 ans"]),
+      correctAnswer: "11 ans",
       order: 1,
     };
 
-    const readQ8: Question = {
+    const readQ4_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Quel événement a séparé Lucas et Thomas?",
+      title: "Question 2 (Compréhension)",
+      text: "Dans quelle ville Thomas a-t-il déménagé?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ils se disputèrent", "La famille de Thomas déménagea loin", "Lucas devint occupé", "Ils allèrent à des écoles différentes"]),
-      correctAnswer: "La famille de Thomas déménagea loin",
+      options: JSON.stringify(["Paris", "Marseille", "Bordeaux", "Toulouse"]),
+      correctAnswer: "Marseille",
       order: 2,
     };
 
-    const readQ8b: Question = {
+    const readQ4_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel était le problème pendant leur séparation?",
+      title: "Question 3 (Compréhension)",
+      text: "Combien de temps s'est écoulé avant que Thomas n'envoie sa lettre?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ils s'envoyaient trop de messages", "Ni l'un ni l'autre n'osait faire le premier pas", "Ils trouvaient que c'était trop difficile", "Ils avaient oublié l'un l'autre"]),
-      correctAnswer: "Ni l'un ni l'autre n'osait faire le premier pas",
+      options: JSON.stringify(["Six mois", "Un an", "Deux ans", "Trois ans"]),
+      correctAnswer: "Deux ans",
       order: 3,
     };
 
-    const readQ8c: Question = {
+    const readQ4_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise4Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment leur amitié a-t-elle été retrouvée?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Lucas et Thomas ont-ils arrêté de communiquer pendant si longtemps?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ils se déplaçaient ensemble", "Thomas écrivit une lettre et Lucas répondit", "Lucas se força à oublier", "Ils trouvèrent un nouveau meilleur ami"]),
-      correctAnswer: "Thomas écrivit une lettre et Lucas répondit",
+      options: JSON.stringify(["Ils n'avaient plus le temps", "Ils avaient peur que l'autre les ait oubliés", "Ils étaient fâchés", "Ils n'avaient pas internet"]),
+      correctAnswer: "Ils avaient peur que l'autre les ait oubliés",
       order: 4,
     };
 
-    // HISTOIRE 6: Le Voyage en Train
-    const readQ11: Question = {
+    const readQ4_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous apprend cette histoire sur l'amitié véritable?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle disparaît avec le temps", "Elle peut survivre à la distance et au temps", "Elle n'existe pas vraiment", "Elle est facile à maintenir"]),
+      correctAnswer: "Elle peut survivre à la distance et au temps",
+      order: 5,
+    };
+
+    const readQ4_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu déjà perdu contact avec un ami proche? Comment t'es-tu senti?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ4_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 7 (Réaction)",
+      text: "Que ferais-tu pour maintenir une amitié à distance?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ4_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que Thomas a eu raison d'écrire une lettre papier plutôt qu'un message? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 5: Le Voyage en Train
+    const readQ5_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise6Id,
-      title: "Histoire 6: Le Voyage en Train",
-      text: "Alex avait 12 ans et n'avait jamais pris le train tout seul. Il vivait dans une petite ville de province appelée Troyes et devait aller passer une semaine chez sa tante à Paris, une grande ville qu'il ne connaissait pas vraiment. C'était un garçon timide mais courageux qui aimait les aventures, bien qu'il soit un peu anxieux à propos des nouveaux défis. Ses parents lui avaient répété les instructions plusieurs fois: \"Reste près de ton billet, sois prudent, et appelle si tu as besoin.\"\n\nLe matin du voyage, le samedi 18 mai à 8 heures du matin, Alex monta dans le train avec son billet précieux qu'il avait mis dans son sac à dos. Son cœur battait vite d'excitation et de nervosité. La gare était bruyante et pleine de gens qui couraient partout. Il trouva son compartiment et s'assit près de la fenêtre, regardant dehors avec émerveillement. C'était la première fois qu'il voyait un train aussi grand.\n\nDans le wagon, il rencontra une vieille femme avec des cheveux blancs comme neige et des yeux bienveillants pleins de sagesse. Elle s'appelait Madame Beaumont et avait environ 75 ans. Elle sourit chaleureusement à Alex. \"Bonjour jeune homme, c'est ta première fois en train?\" demanda-t-elle gentiment. Pendant les premières heures du voyage, ils parlèrent de tout - de sa famille, de l'école, de ses rêves d'avenir, de sa peur des nouveaux endroits. Madame Beaumont lui raconta des histoires fascinantes sur ses propres voyages en train à travers toute la France et même l'Europe. Elle lui parla de Paris, des musées, des parcs, de la cuisine parisienne. Alex écoutait avec fascination, ses yeux s'écarquillant. \"Tu vas adorer Paris, mon cher\", disait Madame Beaumont avec un sourire.\n\nAu moment de la pause de midi, vers 13 heures, Alex réalisa avec horreur qu'il ne trouvait plus son billet! Son cœur sauta dans sa poitrine. Il le chercha partout - sa poche avant, sa poche arrière, son sac à dos, sous son siège, entre les coussins du siège. Rien! Il regarda sous le siège, derrière le coussin, partout où il pouvait penser. Rien! Il pensa que quelqu'un l'avait volé ou qu'il l'avait perdu en montant dans le train. Il commença à pleurer de frustration. \"Oh non! Oh non! Comment est-ce possible?\" murmura-t-il, les larmes coulant sur ses joues. Comment pouvait-il aller chez sa tante sans billet? Le contrôleur allait sûrement le renvoyer! Il serait humilié! Il serait coincé à la gare! Ses parents seraient tellement déçus!\n\nMais Madame Beaumont posa sa main chaude sur son épaule. \"Calme-toi, jeune homme. Ce n'est pas une catastrophe. Les choses perues peuvent se retrouver ou se résoudre.\" Elle le calma avec des paroles apaisantes et une présence rassurante. \"Viens avec moi, allons trouver le contrôleur et expliquons la situation.\" Elle l'accompagna au wagon suivant et expliqua calmement la situation au contrôleur, un homme aux cheveux gris qui avait l'air sévère au premier abord. Madame Beaumont parla avec confiance, rachetant le respect du contrôleur. Le contrôleur vérifia l'achat du billet sur le système informatique de la gare et visa que oui, le billet avait été acheté pour Alex Moreau, correspondant à son nom. \"Pas de problème, jeune homme. Tu peux continuer. Sois plus prudent la prochaine fois\", dit-il avec un petit sourire.\n\nMais plus encore, Madame Beaumont prit le numéro de téléphone d'Alex et devint une amie correspondante. Elle lui promit de lui envoyer des lettres pendant l'année et de lui aider quand il aurait besoin. Alex comprit ce jour-là que les gens bienveillants existent partout et que les étrangers peuvent devenir des amis pour la vie.\n\nQuel était le défi principal qu'Alex a affronté dans ce voyage?",
+      title: "Histoire 5: Le Voyage en Train",
+      text: "Alex avait 12 ans et n'avait jamais pris le train tout seul. Il vivait dans une petite ville de province appelée Troyes et devait aller passer une semaine chez sa tante à Paris, une grande ville qu'il ne connaissait pas vraiment. C'était un garçon timide mais courageux qui aimait les aventures, bien qu'il soit un peu anxieux à propos des nouveaux défis. Ses parents lui avaient répété les instructions plusieurs fois: \"Reste près de ton billet, sois prudent, et appelle si tu as besoin.\"\n\nLe matin du voyage, le samedi 18 mai à 8 heures du matin, Alex monta dans le train avec son billet précieux qu'il avait mis dans son sac à dos. Son cœur battait vite d'excitation et de nervosité. La gare était bruyante et pleine de gens qui couraient partout. Il trouva son compartiment et s'assit près de la fenêtre, regardant dehors avec émerveillement. C'était la première fois qu'il voyait un train aussi grand.\n\nDans le wagon, il rencontra une vieille femme avec des cheveux blancs comme neige et des yeux bienveillants pleins de sagesse. Elle s'appelait Madame Beaumont et avait environ 75 ans. Elle sourit chaleureusement à Alex. \"Bonjour jeune homme, c'est ta première fois en train?\" demanda-t-elle gentiment. Pendant les premières heures du voyage, ils parlèrent de tout - de sa famille, de l'école, de ses rêves d'avenir, de sa peur des nouveaux endroits. Madame Beaumont lui raconta des histoires fascinantes sur ses propres voyages en train à travers toute la France et même l'Europe. Elle lui parla de Paris, des musées, des parcs, de la cuisine parisienne. Alex écoutait avec fascination, ses yeux s'écarquillant. \"Tu vas adorer Paris, mon cher\", disait Madame Beaumont avec un sourire.\n\nAu moment de la pause de midi, vers 13 heures, Alex réalisa avec horreur qu'il ne trouvait plus son billet! Son cœur sauta dans sa poitrine. Il le chercha partout - sa poche avant, sa poche arrière, son sac à dos, sous son siège, entre les coussins du siège. Rien! Il regarda sous le siège, derrière le coussin, partout où il pouvait penser. Rien! Il pensa que quelqu'un l'avait volé ou qu'il l'avait perdu en montant dans le train. Il commença à pleurer de frustration. \"Oh non! Oh non! Comment est-ce possible?\" murmura-t-il, les larmes coulant sur ses joues. Comment pouvait-il aller chez sa tante sans billet? Le contrôleur allait sûrement le renvoyer! Il serait humilié! Il serait coincé à la gare! Ses parents seraient tellement déçus!\n\nMais Madame Beaumont posa sa main chaude sur son épaule. \"Calme-toi, jeune homme. Ce n'est pas une catastrophe. Les choses perues peuvent se retrouver ou se résoudre.\" Elle le calma avec des paroles apaisantes et une présence rassurante. \"Viens avec moi, allons trouver le contrôleur et expliquons la situation.\" Elle l'accompagna au wagon suivant et expliqua calmement la situation au contrôleur, un homme aux cheveux gris qui avait l'air sévère au premier abord. Madame Beaumont parla avec confiance, rachetant le respect du contrôleur. Le contrôleur vérifia l'achat du billet sur le système informatique de la gare et visa que oui, le billet avait été acheté pour Alex Moreau, correspondant à son nom. \"Pas de problème, jeune homme. Tu peux continuer. Sois plus prudent la prochaine fois\", dit-il avec un petit sourire.\n\nMais plus encore, Madame Beaumont prit le numéro de téléphone d'Alex et devint une amie correspondante. Elle lui promit de lui envoyer des lettres pendant l'année et de lui aider quand il aurait besoin. Alex comprit ce jour-là que les gens bienveillants existent partout et que les étrangers peuvent devenir des amis pour la vie.\n\nQuel âge avait Alex?",
       type: "multiple_choice",
-      options: JSON.stringify(["Il avait peur du train", "Il avait perdu son billet", "Il ne connaissait pas le chemin", "Il avait oublié ses affaires"]),
-      correctAnswer: "Il avait perdu son billet",
+      options: JSON.stringify(["10 ans", "11 ans", "12 ans", "13 ans"]),
+      correctAnswer: "12 ans",
       order: 1,
     };
 
-    const readQ11b: Question = {
+    const readQ5_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise6Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qui Alex a-t-il rencontré dans le train?",
+      title: "Question 2 (Compréhension)",
+      text: "Comment s'appelait la dame qu'Alex a rencontrée dans le train?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un contrôleur", "Une vieille femme bienveillante", "Son ami d'école", "Un autre voyageur"]),
-      correctAnswer: "Une vieille femme bienveillante",
+      options: JSON.stringify(["Madame Dupont", "Madame Beaumont", "Madame Martin", "Madame Leclerc"]),
+      correctAnswer: "Madame Beaumont",
       order: 2,
     };
 
-    const readQ11c: Question = {
+    const readQ5_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise6Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème grave s'est produit pendant le voyage?",
+      title: "Question 3 (Compréhension)",
+      text: "Où Alex devait-il se rendre?",
       type: "multiple_choice",
-      options: JSON.stringify(["Le train s'arrêta", "Alex perdit son billet", "Il eut faim", "Le train était bondé"]),
-      correctAnswer: "Alex perdit son billet",
+      options: JSON.stringify(["Chez ses grands-parents à Lyon", "Chez sa tante à Paris", "Chez un ami à Marseille", "À l'école à Bordeaux"]),
+      correctAnswer: "Chez sa tante à Paris",
       order: 3,
     };
 
-    const readQ11d: Question = {
+    const readQ5_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise6Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment l'histoire s'est-elle terminée?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Madame Beaumont a-t-elle aidé Alex?",
       type: "multiple_choice",
-      options: JSON.stringify(["Alex ne put pas continuer", "Madame Beaumont l'aida et devint une amie", "Il dut retourner", "Le contrôleur l'expulsa"]),
-      correctAnswer: "Madame Beaumont l'aida et devint une amie",
+      options: JSON.stringify(["Elle était payée pour cela", "Elle était bienveillante et voulait l'aider", "Elle connaissait sa famille", "Le contrôleur le lui a demandé"]),
+      correctAnswer: "Elle était bienveillante et voulait l'aider",
       order: 4,
     };
 
-    // HISTOIRE 7: La Cabane Mystérieuse
-    const readQ12: Question = {
+    const readQ5_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 5 (Interprétation)",
+      text: "Quelle leçon Alex a-t-il apprise de cette expérience?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ne jamais prendre le train seul", "Les étrangers peuvent devenir des amis bienveillants", "Toujours garder son billet dans sa poche", "Les voyages sont ennuyeux"]),
+      correctAnswer: "Les étrangers peuvent devenir des amis bienveillants",
+      order: 5,
+    };
+
+    const readQ5_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu déjà voyagé seul ou vécu une situation stressante en voyage? Raconte brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ5_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 7 (Réaction)",
+      text: "Comment te sentirais-tu si tu perdais quelque chose d'important pendant un voyage?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ5_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que les parents d'Alex ont eu raison de le laisser voyager seul? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 6: La Cabane Mystérieuse
+    const readQ6_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise7Id,
-      title: "Histoire 7: La Cabane Mystérieuse",
-      text: "Julien et sa meilleure amie Karine exploreraient chaque jour après l'école une vieille forêt dense et mystérieuse derrière leur petit village de Normandie appelé Honfleur. C'était une forêt d'au moins 500 hectares avec des arbres très anciens dont certains dataient de plusieurs siècles. Il y avait un silence mystérieux qui les fascinait - on n'entendait que le chant des oiseaux et le bruit de leurs pas sur les feuilles mortes. Ils aimaient partir en exploration pour chercher des aventures et des secrets cachés. Julien était un garçon courageux de 11 ans avec les cheveux noirs et les yeux curieux. Karine était sa meilleure amie depuis l'école primaire, une fille intelligente et observatrice.\n\nCe jour-là du mois d'octobre, après avoir marché très profondément dans la forêt - plus profondément qu'ils n'avaient jamais osé le faire auparavant - Julien remarqua une petite cabane en bois découpée entre les buissons épais et les arbres gigantesques. La cabane semblait presque invisible, camouflée par la nature. \"Karine! Regarde là! Une cabane!\" s'écria Julien, pointant du doigt. Karine le rejoignit et ses yeux s'écarquillèrent.\n\nLa cabane était vieille, très vieille, datant probablement du 19e siècle. Elle était poussiéreuse et couverte de mousse verte. La porte était rouillée et grinçait quand elle bougeait au vent. Les fenêtres étaient couvertes de toiles d'araignée et de saleté épaisse. Le toit était en mauvais état avec des tuiles manquantes laissant voir des briques rouges dessous. On aurait vraiment dit qu'elle n'avait pas été visitée depuis des décennies. Un léger brouillard blanc sortait de la cheminée, ce qui était étrange puisque la cabane semblait abandonnée.\n\nJulien et Karine ne savaient pas si c'était dangereux d'entrer, mais leur curiosité était bien plus forte que leur peur. Ils s'approchèrent doucement de la porte, regardant autour d'eux pour voir s'il y avait quelqu'un. Le silence était total. Julien tendit la main vers la poignée de la porte, hésitant un moment. \"Tu crois qu'il y a quelqu'un à l'intérieur?\" chuchota Karine. \"Je ne sais pas\", murmura Julien. Il ouvrit doucement la porte. Elle grinça bruyamment.\n\nInopinément, une voix forte retentit depuis l'intérieur: \"Qui êtes-vous? Que faites-vous ici? Cette propriété est privée!\" Julien et Karine eurent terriblement peur. Leur cœur battait très vite. Ils virent émerger du coin sombre de la cabane un vieil homme avec une longue barbe blanche tout emmêlée, les cheveux longs et gris, vêtu de vêtements anciens et troués. Il avait probablement 80 ans ou plus. Il regardait les enfants avec des yeux suspicieux. \"Allez-vous-en! C'est ma propriété privée! Sortez!\" cria-t-il. Julien et Karine reculèrent. Ils eurent peur qu'il ne les chasse ou pire, qu'il ne soit en colère contre eux.\n\nMais alors, quelque chose de merveilleux se produisit. Le vieil homme regarda plus attentivement les enfants et son expression changea complètement. Un sourire chaleureux apparut sur son visage. \"Attendez... vous n'êtes pas des voleurs. Vous êtes juste des enfants curieux.\" Il s'appela Monsieur Leclerc et avait 82 ans. Il avait vécu en reclus dans cette cabane pendant 40 ans pour écrire des histoires, des contes de fées et des romans. Quand il vit les enfants, il se rappela sa propre enfance et sa curiosité. \"Venez, venez à l'intérieur. N'ayez pas peur.\"\n\nDe manière surprenante, Monsieur Leclerc accueillit les enfants chaleureusement. L'intérieur de la cabane était incroyable - des milliers de livres alignés sur les murs, des manuscrits empilés partout, des dessins magnifiques accrochés aux murs montrant des paysages, des animaux, des scènes de contes de fées. Il y avait des inventions bizarres et créatives dans tous les coins - des engrenages, des boîtes à musique, des carrousels de papier. Monsieur Leclerc leur montra tous ses manuscrits, expliquant les histoires qu'il avait écrites pendant 40 ans en solitude. Il leur parla de ses aventures avant qu'il ne décide de se retirer dans la forêt pour créer. Il devint un ami merveilleux et une figure importante dans la vie de Julien et Karine.\n\nEt c'est ainsi que les enfants revinrent souvent le visiter, et Monsieur Leclerc reçut de la compagnie et de la joie. Le secret de la cabane ne fut plus un mystère effrayant mais une belle et profonde amitié entre trois générations différentes.\n\nOù Julien et Karine ont-ils trouvé la cabane?",
+      title: "Histoire 6: La Cabane Mystérieuse",
+      text: "Julien et sa meilleure amie Karine exploreraient chaque jour après l'école une vieille forêt dense et mystérieuse derrière leur petit village de Normandie appelé Honfleur. C'était une forêt d'au moins 500 hectares avec des arbres très anciens dont certains dataient de plusieurs siècles. Il y avait un silence mystérieux qui les fascinait - on n'entendait que le chant des oiseaux et le bruit de leurs pas sur les feuilles mortes. Ils aimaient partir en exploration pour chercher des aventures et des secrets cachés. Julien était un garçon courageux de 11 ans avec les cheveux noirs et les yeux curieux. Karine était sa meilleure amie depuis l'école primaire, une fille intelligente et observatrice.\n\nCe jour-là du mois d'octobre, après avoir marché très profondément dans la forêt - plus profondément qu'ils n'avaient jamais osé le faire auparavant - Julien remarqua une petite cabane en bois découpée entre les buissons épais et les arbres gigantesques. La cabane semblait presque invisible, camouflée par la nature. \"Karine! Regarde là! Une cabane!\" s'écria Julien, pointant du doigt. Karine le rejoignit et ses yeux s'écarquillèrent.\n\nLa cabane était vieille, très vieille, datant probablement du 19e siècle. Elle était poussiéreuse et couverte de mousse verte. La porte était rouillée et grinçait quand elle bougeait au vent. Les fenêtres étaient couvertes de toiles d'araignée et de saleté épaisse. Le toit était en mauvais état avec des tuiles manquantes laissant voir des briques rouges dessous. On aurait vraiment dit qu'elle n'avait pas été visitée depuis des décennies. Un léger brouillard blanc sortait de la cheminée, ce qui était étrange puisque la cabane semblait abandonnée.\n\nJulien et Karine ne savaient pas si c'était dangereux d'entrer, mais leur curiosité était bien plus forte que leur peur. Ils s'approchèrent doucement de la porte, regardant autour d'eux pour voir s'il y avait quelqu'un. Le silence était total. Julien tendit la main vers la poignée de la porte, hésitant un moment. \"Tu crois qu'il y a quelqu'un à l'intérieur?\" chuchota Karine. \"Je ne sais pas\", murmura Julien. Il ouvrit doucement la porte. Elle grinça bruyamment.\n\nInopinément, une voix forte retentit depuis l'intérieur: \"Qui êtes-vous? Que faites-vous ici? Cette propriété est privée!\" Julien et Karine eurent terriblement peur. Leur cœur battait très vite. Ils virent émerger du coin sombre de la cabane un vieil homme avec une longue barbe blanche tout emmêlée, les cheveux longs et gris, vêtu de vêtements anciens et troués. Il avait probablement 80 ans ou plus. Il regardait les enfants avec des yeux suspicieux. \"Allez-vous-en! C'est ma propriété privée! Sortez!\" cria-t-il. Julien et Karine reculèrent. Ils eurent peur qu'il ne les chasse ou pire, qu'il ne soit en colère contre eux.\n\nMais alors, quelque chose de merveilleux se produisit. Le vieil homme regarda plus attentivement les enfants et son expression changea complètement. Un sourire chaleureux apparut sur son visage. \"Attendez... vous n'êtes pas des voleurs. Vous êtes juste des enfants curieux.\" Il s'appela Monsieur Leclerc et avait 82 ans. Il avait vécu en reclus dans cette cabane pendant 40 ans pour écrire des histoires, des contes de fées et des romans. Quand il vit les enfants, il se rappela sa propre enfance et sa curiosité. \"Venez, venez à l'intérieur. N'ayez pas peur.\"\n\nDe manière surprenante, Monsieur Leclerc accueillit les enfants chaleureusement. L'intérieur de la cabane était incroyable - des milliers de livres alignés sur les murs, des manuscrits empilés partout, des dessins magnifiques accrochés aux murs montrant des paysages, des animaux, des scènes de contes de fées. Il y avait des inventions bizarres et créatives dans tous les coins - des engrenages, des boîtes à musique, des carrousels de papier. Monsieur Leclerc leur montra tous ses manuscrits, expliquant les histoires qu'il avait écrites pendant 40 ans en solitude. Il leur parla de ses aventures avant qu'il ne décide de se retirer dans la forêt pour créer. Il devint un ami merveilleux et une figure importante dans la vie de Julien et Karine.\n\nEt c'est ainsi que les enfants revinrent souvent le visiter, et Monsieur Leclerc reçut de la compagnie et de la joie. Le secret de la cabane ne fut plus un mystère effrayant mais une belle et profonde amitié entre trois générations différentes.\n\nQuel âge avait Julien?",
       type: "multiple_choice",
-      options: JSON.stringify(["Au village", "Dans la forêt derrière leur village", "Au bord de la rivière", "Dans les montagnes"]),
-      correctAnswer: "Dans la forêt derrière leur village",
+      options: JSON.stringify(["9 ans", "10 ans", "11 ans", "12 ans"]),
+      correctAnswer: "11 ans",
       order: 1,
     };
 
-    const readQ12b: Question = {
+    const readQ6_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise7Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qu'ont trouvé Julien et Karine après l'école?",
+      title: "Question 2 (Compréhension)",
+      text: "Quel âge avait Monsieur Leclerc?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un trésor", "Une vieille cabane en bois", "Des animaux", "Une autre forêt"]),
-      correctAnswer: "Une vieille cabane en bois",
+      options: JSON.stringify(["70 ans", "75 ans", "82 ans", "90 ans"]),
+      correctAnswer: "82 ans",
       order: 2,
     };
 
-    const readQ12c: Question = {
+    const readQ6_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise7Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème les enfants ont-ils affronté?",
+      title: "Question 3 (Compréhension)",
+      text: "Depuis combien de temps Monsieur Leclerc vivait-il dans la cabane?",
       type: "multiple_choice",
-      options: JSON.stringify(["La porte était verrouillée", "Une voix forte les a effrayés", "Ils se sont perdus", "Il faisait nuit"]),
-      correctAnswer: "Une voix forte les a effrayés",
+      options: JSON.stringify(["10 ans", "20 ans", "40 ans", "50 ans"]),
+      correctAnswer: "40 ans",
       order: 3,
     };
 
-    const readQ12d: Question = {
+    const readQ6_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise7Id,
-      title: "Question 4 (Dénouement)",
-      text: "Qui était le propriétaire de la cabane?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Monsieur Leclerc a-t-il changé d'attitude envers les enfants?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un agriculteur", "Un fantôme", "Monsieur Leclerc, un écrivain en reclus", "Un vieux moine"]),
-      correctAnswer: "Monsieur Leclerc, un écrivain en reclus",
+      options: JSON.stringify(["Il avait peur d'eux", "Il a vu qu'ils étaient curieux comme lui enfant", "Ils lui ont offert de l'argent", "Ses voisins lui ont demandé"]),
+      correctAnswer: "Il a vu qu'ils étaient curieux comme lui enfant",
       order: 4,
     };
 
-    // HISTOIRE 8: Le Concours de Dessin
-    const readQ13: Question = {
+    const readQ6_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que symbolise la rencontre entre les enfants et Monsieur Leclerc?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le danger de la forêt", "L'amitié possible entre différentes générations", "L'importance de rester chez soi", "La solitude"]),
+      correctAnswer: "L'amitié possible entre différentes générations",
+      order: 5,
+    };
+
+    const readQ6_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 6 (Réaction)",
+      text: "Aurais-tu eu le courage d'entrer dans la cabane mystérieuse? Explique pourquoi.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ6_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 7 (Réaction)",
+      text: "As-tu déjà découvert un endroit secret ou mystérieux? Raconte brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ6_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que Julien et Karine ont bien fait d'entrer dans la cabane d'un inconnu? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 7: Le Concours de Dessin
+    const readQ7_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise8Id,
-      title: "Histoire 8: Le Concours de Dessin",
-      text: "Maya était une fille de 10 ans passionnée fiévreusement par le dessin et l'art créatif. Depuis son plus jeune âge, elle dessinait tout ce qu'elle voyait et sentait - les animaux de la nature, les paysages magnifiques, les portraits des personnes qu'elle aimait, ses rêves nocturnes et ses émotions les plus profondes. Elle avait des carnets de croquis remplis de dessins colorés et expressifs, presque deux cents pages au total. Ses parents la soutenaient toujours, encourageaient sa créativité, et affichaient ses meilleures œuvres au réfrigérateur et dans sa chambre. Son professeur d'arts plastiques, Monsieur Lecourt, disait souvent avec un sourire bienveillant: \"Maya, tu as un vrai talent naturel. Continue comme cela et tu deviendras une grande artiste.\"\n\nUn jour du mois de février, l'école annonça un grand concours de dessin régional pour tous les enfants de dix à douze ans. Les lauréats seraient exposés au prestigieux musée local de Dijon. Le premier prix était une bourse complète pour une école d'arts privée. Maya vit l'affiche rouge et or accrochée sur le mur du couloir de l'école et son cœur sauta d'excitation. C'était l'occasion qu'elle attendait depuis longtemps! Elle avait toujours rêvé d'être reconnue pour son art!\n\nElle se mit immédiatement à préparer son chef-d'œuvre. Pendant deux mois, elle dessina, réfléchit, recommença, cherchant l'inspiration parfaite. Elle finit par créer une magnifique forêt enchantée avec des animaux mystérieux et des détails incroyables - des cerfs, des oiseaux colorés, des fleurs délicates, et des structures géométriques complexes qui donnaient de la profondeur à son œuvre. Elle utilisa des crayons de couleur, des pastels, et même des paillettes pour donner de la magie au dessin. Elle était très fière de son travail.\n\nMais quand le jour du concours arriva le 15 avril, Maya eut une terrible crise de doute et d'anxiété. Elle rentra à l'école avec son dessin précieux dans son sac, son cœur battant rapidement. Elle regarda les autres camarades qui présentaient leurs dessins. Certains semblaient si professionnels, si techniquement parfaits! Il y avait Léa avec un portrait photorealiste d'une actrice célèbre, parfait dans chaque détail. Il y avait Thomas avec un paysage urbain en perspective géométrique complexe. Il y avait Sophie avec une illustration de conte de fées magnifique avec des couleurs explosives. Maya regarda son propre dessin et pensa: \"Oh non, mon dessin n'est pas assez technique. Ce n'est pas assez parfait. Les autres dessins sont tellement meilleurs! Pourquoi ai-je pensé que je pourrais gagner?\" Elle sentit les larmes menacer ses yeux. Elle voulait sortir de la salle et rentrer à la maison. Elle ne voulait pas que les autres voient son dessin. Elle avait honte.\n\nMais sa mère, qui l'accompagnait, posa sa main chaude sur l'épaule de Maya et lui dit tendrement: \"Maya, écoute-moi. Le concours n'est pas sur la perfection technique. C'est sur l'originalité, la créativité unique, et le cœur que tu mets dans ton travail. Ton dessin vient de ton âme. C'est ça qui est magnifique.\" Son père ajouta: \"Oui, bébé. Ton dessin est une expression de toi-même. C'est ce qui le rend spécial.\" Maya prit une profonde respiration, essuya ses larmes, et regarda son dessin avec des yeux nouveaux. Elle voyait maintenant la beauté dans son style unique et expressif.\n\nMaya prit une profonde respiration et soumit son dessin au jury. Les semaines d'attente ont été longues et angoissantes. Elle vérifiait son email et son téléphone chaque jour, attendant anxieusement la réponse. Enfin, un samedi matin trois semaines plus tard, elle reçut une lettre officielle du musée. Elle était hésitante à l'ouvrir. Ses mains tremblaient. Enfin, elle l'ouvrit... \"Félicitations! Vous avez GAGNÉ le premier prix du concours régional de dessin!\" Quand elle lut cela, elle cria de joie et embrassa ses parents. Son dessin avait été choisi par le jury pour son originalité remarquable, son style unique expressif, et sa beauté créative authentique, exactement comme sa mère l'avait dit. Son œuvre serait exposée au musée pendant trois mois. Maya avait aussi reçu une bourse de 2000 euros pour une école d'arts. Elle était la plus heureuse du monde!\n\nQuelle était la passion principale de Maya?",
+      title: "Histoire 7: Le Concours de Dessin",
+      text: "Maya était une fille de 10 ans passionnée fiévreusement par le dessin et l'art créatif. Depuis son plus jeune âge, elle dessinait tout ce qu'elle voyait et sentait - les animaux de la nature, les paysages magnifiques, les portraits des personnes qu'elle aimait, ses rêves nocturnes et ses émotions les plus profondes. Elle avait des carnets de croquis remplis de dessins colorés et expressifs, presque deux cents pages au total. Ses parents la soutenaient toujours, encourageaient sa créativité, et affichaient ses meilleures œuvres au réfrigérateur et dans sa chambre. Son professeur d'arts plastiques, Monsieur Lecourt, disait souvent avec un sourire bienveillant: \"Maya, tu as un vrai talent naturel. Continue comme cela et tu deviendras une grande artiste.\"\n\nUn jour du mois de février, l'école annonça un grand concours de dessin régional pour tous les enfants de dix à douze ans. Les lauréats seraient exposés au prestigieux musée local de Dijon. Le premier prix était une bourse complète pour une école d'arts privée. Maya vit l'affiche rouge et or accrochée sur le mur du couloir de l'école et son cœur sauta d'excitation. C'était l'occasion qu'elle attendait depuis longtemps! Elle avait toujours rêvé d'être reconnue pour son art!\n\nElle se mit immédiatement à préparer son chef-d'œuvre. Pendant deux mois, elle dessina, réfléchit, recommença, cherchant l'inspiration parfaite. Elle finit par créer une magnifique forêt enchantée avec des animaux mystérieux et des détails incroyables - des cerfs, des oiseaux colorés, des fleurs délicates, et des structures géométriques complexes qui donnaient de la profondeur à son œuvre. Elle utilisa des crayons de couleur, des pastels, et même des paillettes pour donner de la magie au dessin. Elle était très fière de son travail.\n\nMais quand le jour du concours arriva le 15 avril, Maya eut une terrible crise de doute et d'anxiété. Elle rentra à l'école avec son dessin précieux dans son sac, son cœur battant rapidement. Elle regarda les autres camarades qui présentaient leurs dessins. Certains semblaient si professionnels, si techniquement parfaits! Il y avait Léa avec un portrait photorealiste d'une actrice célèbre, parfait dans chaque détail. Il y avait Thomas avec un paysage urbain en perspective géométrique complexe. Il y avait Sophie avec une illustration de conte de fées magnifique avec des couleurs explosives. Maya regarda son propre dessin et pensa: \"Oh non, mon dessin n'est pas assez technique. Ce n'est pas assez parfait. Les autres dessins sont tellement meilleurs! Pourquoi ai-je pensé que je pourrais gagner?\" Elle sentit les larmes menacer ses yeux. Elle voulait sortir de la salle et rentrer à la maison. Elle ne voulait pas que les autres voient son dessin. Elle avait honte.\n\nMais sa mère, qui l'accompagnait, posa sa main chaude sur l'épaule de Maya et lui dit tendrement: \"Maya, écoute-moi. Le concours n'est pas sur la perfection technique. C'est sur l'originalité, la créativité unique, et le cœur que tu mets dans ton travail. Ton dessin vient de ton âme. C'est ça qui est magnifique.\" Son père ajouta: \"Oui, bébé. Ton dessin est une expression de toi-même. C'est ce qui le rend spécial.\" Maya prit une profonde respiration, essuya ses larmes, et regarda son dessin avec des yeux nouveaux. Elle voyait maintenant la beauté dans son style unique et expressif.\n\nMaya prit une profonde respiration et soumit son dessin au jury. Les semaines d'attente ont été longues et angoissantes. Elle vérifiait son email et son téléphone chaque jour, attendant anxieusement la réponse. Enfin, un samedi matin trois semaines plus tard, elle reçut une lettre officielle du musée. Elle était hésitante à l'ouvrir. Ses mains tremblaient. Enfin, elle l'ouvrit... \"Félicitations! Vous avez GAGNÉ le premier prix du concours régional de dessin!\" Quand elle lut cela, elle cria de joie et embrassa ses parents. Son dessin avait été choisi par le jury pour son originalité remarquable, son style unique expressif, et sa beauté créative authentique, exactement comme sa mère l'avait dit. Son œuvre serait exposée au musée pendant trois mois. Maya avait aussi reçu une bourse de 2000 euros pour une école d'arts. Elle était la plus heureuse du monde!\n\nQuel âge avait Maya?",
       type: "multiple_choice",
-      options: JSON.stringify(["La musique", "Le dessin", "Le sport", "La danse"]),
-      correctAnswer: "Le dessin",
+      options: JSON.stringify(["8 ans", "9 ans", "10 ans", "11 ans"]),
+      correctAnswer: "10 ans",
       order: 1,
     };
 
-    const readQ13b: Question = {
+    const readQ7_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise8Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Quel événement a changé la vie de Maya?",
+      title: "Question 2 (Compréhension)",
+      text: "Quel était le premier prix du concours?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un compliment de son professeur", "Un concours de dessin régional annoncé", "L'exposition de ses dessins", "Une visite au musée"]),
-      correctAnswer: "Un concours de dessin régional annoncé",
+      options: JSON.stringify(["Un voyage", "Une bourse pour une école d'arts", "Un nouveau matériel de dessin", "Un trophée"]),
+      correctAnswer: "Une bourse pour une école d'arts",
       order: 2,
     };
 
-    const readQ13c: Question = {
+    const readQ7_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise8Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème Maya a-t-elle affronté?",
+      title: "Question 3 (Compréhension)",
+      text: "Que représentait le dessin de Maya?",
       type: "multiple_choice",
-      options: JSON.stringify(["Manque de matériel", "Perte de confiance et doute avant le concours", "Les autres participants étaient agressifs", "Le concours était annulé"]),
-      correctAnswer: "Perte de confiance et doute avant le concours",
+      options: JSON.stringify(["Un portrait", "Une forêt enchantée avec des animaux", "Un paysage urbain", "Un autoportrait"]),
+      correctAnswer: "Une forêt enchantée avec des animaux",
       order: 3,
     };
 
-    const readQ13d: Question = {
+    const readQ7_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise8Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment l'histoire s'est-elle terminée?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Maya a-t-elle douté de son dessin au concours?",
       type: "multiple_choice",
-      options: JSON.stringify(["Maya abandonna le dessin", "Elle perdit le concours", "Elle gagna grâce à l'originalité de son dessin", "Son dessin fut rejeté"]),
-      correctAnswer: "Elle gagna grâce à l'originalité de son dessin",
+      options: JSON.stringify(["Son dessin était cassé", "Les autres dessins semblaient plus techniques et parfaits", "Elle n'aimait plus son dessin", "Le jury l'a critiquée"]),
+      correctAnswer: "Les autres dessins semblaient plus techniques et parfaits",
       order: 4,
     };
 
-    // HISTOIRE 9: La Maison Hantée
-    const readQ14: Question = {
+    const readQ7_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 5 (Interprétation)",
+      text: "Quelle leçon Maya a-t-elle apprise de cette expérience?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La technique est plus importante que l'originalité", "L'originalité et l'authenticité ont autant de valeur que la perfection technique", "Il faut abandonner quand on doute", "Les concours sont inutiles"]),
+      correctAnswer: "L'originalité et l'authenticité ont autant de valeur que la perfection technique",
+      order: 5,
+    };
+
+    const readQ7_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu déjà douté de toi-même avant un événement important? Comment as-tu surmonté ce doute?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ7_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 7 (Réaction)",
+      text: "Quelle activité créative aimes-tu faire? Pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ7_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que le jury a fait le bon choix en choisissant le dessin de Maya? Explique avec des exemples du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 8: La Maison Hantée
+    const readQ8_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise9Id,
-      title: "Histoire 9: La Maison Hantée",
-      text: "La famille de Noah venait de déménager en juillet dans une nouvelle maison ancienne au bord d'un petit bois mystérieux appelé la Forêt des Murmures. C'était une belle maison en pierre de trois étages avec des portes en bois massif noirci par le temps, des fenêtres en forme d'arche, et un grenier mystérieux qui existait depuis plus d'un siècle. Noah était un garçon courageux de 11 ans avec les cheveux roux et les yeux curieux, très intelligent et passionné par les mystères. Sa sœur cadette, Léa, avait sept ans et était facilement effrayée. Les premiers jours du déménagement, tout semblait normal et agréable. Les parents de Noah étaient contents d'avoir trouvé cette maison de rêve avec ses caractéristiques historiques uniques.\n\nMais les trois premières nuits, Noah entendit des bruits étranges et effrayants dans la maison - des grincements inexplicables, des coups réguliers, des sons étranges qu'il ne pouvait pas expliquer. Chaque nuit, vers 2 heures du matin, les bruits revenaient. Au début, Noah eut peur. Il pensa sérieusement qu'il y avait un fantôme dans la maison, peut-être un homme mort qui hantait les lieux depuis des siècles! Il en parla à ses parents, mais sa mère Céline dit que c'était juste le vent qui soufflait, ou la maison ancienne qui se tassait et faisait des bruits normaux de contraction thermique. Son père Marc ajouta: \"Les vieilles maisons font du bruit, Noah. C'est normal. Il n'y a rien à craindre.\"\n\nMais Noah ne pouvait pas dormir tranquille. Il avait lu beaucoup de livres sur les fantômes et les maisons hantées. Il décida de faire ses propres investigations comme un vrai détective. Il prépara une lampe de poche puissante, un carnet pour noter les observations, et même un thermomètre pour mesurer les changements de température (une technique qu'il avait lue dans un livre sur les fantômes). La nuit suivante, vers 1h45 du matin, Noah s'équipait et monta à l'étage silencieusement, voulant trouver la source des bruits avant que sa famille ne se réveille.\n\nIl monta lentement les marches en bois qui grinçaient sous ses pieds. Il pensa qu'il y avait quelque chose qui n'allait pas. Les bruits venaient clairement de la direction du grenier au troisième étage. Avec sa lampe de poche, Noah illumina le couloir sombre. Les ombres dansaient sur les murs. Tout semblait effrayant. Il entendit un bruit de battement d'ailes très forte! Son cœur battait extrêmement vite dans sa poitrine. \"Est-ce un fantôme? Ou une créature vivante? Ou un oiseau?\" pensait-il, terrifiée. Il n'était pas sûr s'il devait avoir peur ou être curieux.\n\nIl continua à monter vers le grenier, ses jambes tremblant. Il ouvrit la porte du grenier qui grinça bruyamment. La lampe révéla un grenier poussiéreux rempli de vieux meubles, de boîtes anciennes, et de toiles d'araignée partout. Et puis... il découvrit qu'il n'y avait pas de fantôme du tout! Ce n'était pas un esprit maléfique! C'était une grande branche d'arbre morte qui battait et frappait contre la fenêtre du grenier chaque fois que le vent soufflait fort! Il n'y avait rien de sinistre du tout. Noah fut extrêmement soulagé et rit de sa propre peur et imaginatio. Il se sentait un peu bête d'avoir pensé à un fantôme, mais aussi fier d'avoir résolu le mystère par lui-même!\n\nLe jour suivant, Noah expliqua sa découverte à ses parents. Ils trouvèrent la chose très amusante et admirèrent le courage et l'intelligence de Noah. Ensemble, ils montèrent au grenier, examinèrent la branche, et décidèrent de l'enlever. Ils appelèrent un élagueur professionnel qui enleva complètement la branche dangereuse. Après cela, les bruits mystérieux disparurent complètement. La maison n'était pas hantée, juste vieille et bruyante à cause d'une branche qui battait contre la fenêtre du grenier. Noah devint le héros de la famille, et sa sœur Léa n'eut plus peur de la \"maison hantée\".\n\nQuel était le problème initial que Noah a trouvé?",
+      title: "Histoire 8: La Maison Hantée",
+      text: "La famille de Noah venait de déménager en juillet dans une nouvelle maison ancienne au bord d'un petit bois mystérieux appelé la Forêt des Murmures. C'était une belle maison en pierre de trois étages avec des portes en bois massif noirci par le temps, des fenêtres en forme d'arche, et un grenier mystérieux qui existait depuis plus d'un siècle. Noah était un garçon courageux de 11 ans avec les cheveux roux et les yeux curieux, très intelligent et passionné par les mystères. Sa sœur cadette, Léa, avait sept ans et était facilement effrayée. Les premiers jours du déménagement, tout semblait normal et agréable. Les parents de Noah étaient contents d'avoir trouvé cette maison de rêve avec ses caractéristiques historiques uniques.\n\nMais les trois premières nuits, Noah entendit des bruits étranges et effrayants dans la maison - des grincements inexplicables, des coups réguliers, des sons étranges qu'il ne pouvait pas expliquer. Chaque nuit, vers 2 heures du matin, les bruits revenaient. Au début, Noah eut peur. Il pensa sérieusement qu'il y avait un fantôme dans la maison, peut-être un homme mort qui hantait les lieux depuis des siècles! Il en parla à ses parents, mais sa mère Céline dit que c'était juste le vent qui soufflait, ou la maison ancienne qui se tassait et faisait des bruits normaux de contraction thermique. Son père Marc ajouta: \"Les vieilles maisons font du bruit, Noah. C'est normal. Il n'y a rien à craindre.\"\n\nMais Noah ne pouvait pas dormir tranquille. Il avait lu beaucoup de livres sur les fantômes et les maisons hantées. Il décida de faire ses propres investigations comme un vrai détective. Il prépara une lampe de poche puissante, un carnet pour noter les observations, et même un thermomètre pour mesurer les changements de température (une technique qu'il avait lue dans un livre sur les fantômes). La nuit suivante, vers 1h45 du matin, Noah s'équipait et monta à l'étage silencieusement, voulant trouver la source des bruits avant que sa famille ne se réveille.\n\nIl monta lentement les marches en bois qui grinçaient sous ses pieds. Il pensa qu'il y avait quelque chose qui n'allait pas. Les bruits venaient clairement de la direction du grenier au troisième étage. Avec sa lampe de poche, Noah illumina le couloir sombre. Les ombres dansaient sur les murs. Tout semblait effrayant. Il entendit un bruit de battement d'ailes très forte! Son cœur battait extrêmement vite dans sa poitrine. \"Est-ce un fantôme? Ou une créature vivante? Ou un oiseau?\" pensait-il, terrifiée. Il n'était pas sûr s'il devait avoir peur ou être curieux.\n\nIl continua à monter vers le grenier, ses jambes tremblant. Il ouvrit la porte du grenier qui grinça bruyamment. La lampe révéla un grenier poussiéreux rempli de vieux meubles, de boîtes anciennes, et de toiles d'araignée partout. Et puis... il découvrit qu'il n'y avait pas de fantôme du tout! Ce n'était pas un esprit maléfique! C'était une grande branche d'arbre morte qui battait et frappait contre la fenêtre du grenier chaque fois que le vent soufflait fort! Il n'y avait rien de sinistre du tout. Noah fut extrêmement soulagé et rit de sa propre peur et imaginatio. Il se sentait un peu bête d'avoir pensé à un fantôme, mais aussi fier d'avoir résolu le mystère par lui-même!\n\nLe jour suivant, Noah expliqua sa découverte à ses parents. Ils trouvèrent la chose très amusante et admirèrent le courage et l'intelligence de Noah. Ensemble, ils montèrent au grenier, examinèrent la branche, et décidèrent de l'enlever. Ils appelèrent un élagueur professionnel qui enleva complètement la branche dangereuse. Après cela, les bruits mystérieux disparurent complètement. La maison n'était pas hantée, juste vieille et bruyante à cause d'une branche qui battait contre la fenêtre du grenier. Noah devint le héros de la famille, et sa sœur Léa n'eut plus peur de la \"maison hantée\".\n\nQuel âge avait Noah?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un vrai fantôme", "Des bruits étranges la nuit", "Des animaux dans la maison", "La maison s'effondrait"]),
-      correctAnswer: "Des bruits étranges la nuit",
+      options: JSON.stringify(["9 ans", "10 ans", "11 ans", "12 ans"]),
+      correctAnswer: "11 ans",
       order: 1,
     };
 
-    const readQ14b: Question = {
+    const readQ8_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise9Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qu'a décidé de faire Noah?",
+      title: "Question 2 (Compréhension)",
+      text: "À quelle heure les bruits revenaient-ils chaque nuit?",
       type: "multiple_choice",
-      options: JSON.stringify(["Quitter la maison", "Appeler un prêtre", "Investiguer le mystère", "Ignorer les bruits"]),
-      correctAnswer: "Investiguer le mystère",
+      options: JSON.stringify(["Minuit", "1 heure du matin", "2 heures du matin", "3 heures du matin"]),
+      correctAnswer: "2 heures du matin",
       order: 2,
     };
 
-    const readQ14c: Question = {
+    const readQ8_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise9Id,
-      title: "Question 3 (Péripéties)",
-      text: "Où Noah a-t-il trouvé la source des bruits?",
+      title: "Question 3 (Compréhension)",
+      text: "Quelle était la vraie cause des bruits?",
       type: "multiple_choice",
-      options: JSON.stringify(["Au grenier", "En bas de la maison", "Dans le jardin", "La cave"]),
-      correctAnswer: "Au grenier",
+      options: JSON.stringify(["Un fantôme", "Des souris", "Une branche d'arbre contre la fenêtre", "Le vent dans la cheminée"]),
+      correctAnswer: "Une branche d'arbre contre la fenêtre",
       order: 3,
     };
 
-    const readQ14d: Question = {
+    const readQ8_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise9Id,
-      title: "Question 4 (Dénouement)",
-      text: "Quelle était la vraie explication?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Noah a-t-il décidé d'investiguer lui-même?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un vrai fantôme", "Une branche battant contre la fenêtre", "Des souris dans le grenier", "Un intrus"]),
-      correctAnswer: "Une branche battant contre la fenêtre",
+      options: JSON.stringify(["Ses parents ne le croyaient pas vraiment", "Il voulait prouver qu'il y avait un fantôme", "Il aimait les mystères et était curieux", "Il avait peur de dormir"]),
+      correctAnswer: "Il aimait les mystères et était curieux",
       order: 4,
     };
 
-    // HISTOIRE 10: Le Secret du Grenier
-    const readQ15: Question = {
+    const readQ8_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous apprend cette histoire sur les peurs?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les fantômes existent vraiment", "Souvent nos peurs ont des explications logiques", "Il ne faut jamais avoir peur", "Les vieilles maisons sont dangereuses"]),
+      correctAnswer: "Souvent nos peurs ont des explications logiques",
+      order: 5,
+    };
+
+    const readQ8_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 6 (Réaction)",
+      text: "Aurais-tu eu le courage d'aller investiguer les bruits étranges la nuit? Pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ8_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 7 (Réaction)",
+      text: "As-tu déjà eu peur de quelque chose qui s'est révélé inoffensif? Raconte brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ8_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que les parents de Noah auraient dû prendre ses inquiétudes plus au sérieux? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 9: Le Secret du Grenier
+    const readQ9_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise10Id,
-      title: "Histoire 10: Le Secret du Grenier",
-      text: "Chaque été pendant presque dix ans, Léon passait une semaine complète chez ses grands-parents dans leur grande maison à la campagne en Provence, une belle région du sud de la France. Il adorait ces vacances estivales - c'était le moment de l'année où il se sentait le plus libre et le plus heureux. Sa grand-mère Margot préparait les meilleurs repas, et son grand-père Georges lui racontait des histoires fascinantes. Cette année-là, le jour de son arrivée au début du mois d'août, sa grand-mère lui dit avec un air mystérieux et presque secret: \"Léon, le grenier est interdit cette année. Il y a du travail en cours. Nous le préparons pour quelque chose de spécial.\" Cela intrigua énormément Léon, car normalement, le grenier était son endroit préféré pour jouer, explorer, et laisser son imagination s'envoler. Il passait des heures là-haut, rêvant et explorant les vieilles choses.\n\nCurieux comme toujours, Léon ne put pas résister à l'envie. Après quelques jours passés à la maison des grands-parents, quand ses grands-parents faisaient leur sieste de l'après-midi vers 14h30, Léon monta furtivement l'escalier en bois qui grinçait bruyamment vers le grenier. Son cœur battait vite - il savait qu'il faisait quelque chose d'interdit, mais sa curiosité était plus puissante que la discipline. En ouvrant la porte ancienne du grenier, il trouva une merveille absolue! Le grenier était rempli de trésors incroyables - des vieux coffres en bois massif, des albums photo anciens avec des pages jaunies, des lettres écrites à la main jaunes par le temps, des objets incroyables que son grand-père avait collectés au cours de sa longue vie de 82 ans. Il y avait aussi des uniformes militaires encadrés, des médailles dans des vitrines, et même un journal intime ancien.\n\nLéon s'assit sur le sol du grenier et commença à explorer lentement et respectueusement. En feuilletant un album photo très ancien intitulé \"Ma vie de guerre\", Léon vit des photos fascinantes de son grand-père pendant la Seconde Guerre mondiale, en tant que pilote d'avion courageux volant dans un Spitfire britannique. Il y avait des photos de son grand-père en uniform de pilote, souriant devant un avion de chasse avec ses camarades. Il y avait des photos de missions de vol documentées, des certificats de vol, et même une lettre d'une autorité militaire loue commendant son courage exceptionnel. Léon découvrit aussi des lettres d'amour manuscrites très touchantes entre son grand-père et sa grand-mère écrites avant leur mariage, en 1963, remplies de mots tendres et de promesses d'amour éternel. Les lettres étaient parfumées et certaines avaient des taches de ce qui ressemblait à des larmes de joie. C'était comme découvrir une partie magique et cachée de l'histoire familiale!\n\nCe soir-là, après le dîner, Léon demanda à ses grands-parents pourquoi le grenier était interdit cette année. Ses grands-parents se regardèrent, sourirent tendrement l'un à l'autre, et s'assirent avec Léon dans le salon familial. Pendant des heures - presque quatre heures - ils partagèrent des histoires extraordinaires de leur jeunesse, de leurs aventures de guerre, de comment ils s'étaient rencontrés à Paris en 1960, de leurs rêves, de la guerre, et de leur amour qui avait duré magnifiquement pendant 60 ans à travers les bons et les mauvais moments. Grand-père Georges parla avec passion de son expérience de pilote, de la peur et du courage, de ses copains qui n'étaient pas rentrés, de ses rêves d'après-guerre. Grand-mère Margot parla de comment elle attendait ses lettres avec anxiété pendant la guerre, de ses prières chaque nuit, de la joie quand il est revenu vivant. Léon comprit profondément que ses grands-parents avaient mené des vies extraordinaires, courageuses et héroïques, remplies de passion et de dévouement. Il comprit aussi que le grenier était sacré pour eux - c'était un mausolée de leurs souvenirs les plus précieux.\n\nAvant de partir cette année-là, ses grands-parents donnèrent à Léon l'album photo et une des lettres d'amour encadrée pour qu'il se souvienne toujours de leur histoire incroyable.\n\nPourquoi le grenier était-il interdit?",
+      title: "Histoire 9: Le Secret du Grenier",
+      text: "Chaque été pendant presque dix ans, Léon passait une semaine complète chez ses grands-parents dans leur grande maison à la campagne en Provence, une belle région du sud de la France. Il adorait ces vacances estivales - c'était le moment de l'année où il se sentait le plus libre et le plus heureux. Sa grand-mère Margot préparait les meilleurs repas, et son grand-père Georges lui racontait des histoires fascinantes. Cette année-là, le jour de son arrivée au début du mois d'août, sa grand-mère lui dit avec un air mystérieux et presque secret: \"Léon, le grenier est interdit cette année. Il y a du travail en cours. Nous le préparons pour quelque chose de spécial.\" Cela intrigua énormément Léon, car normalement, le grenier était son endroit préféré pour jouer, explorer, et laisser son imagination s'envoler. Il passait des heures là-haut, rêvant et explorant les vieilles choses.\n\nCurieux comme toujours, Léon ne put pas résister à l'envie. Après quelques jours passés à la maison des grands-parents, quand ses grands-parents faisaient leur sieste de l'après-midi vers 14h30, Léon monta furtivement l'escalier en bois qui grinçait bruyamment vers le grenier. Son cœur battait vite - il savait qu'il faisait quelque chose d'interdit, mais sa curiosité était plus puissante que la discipline. En ouvrant la porte ancienne du grenier, il trouva une merveille absolue! Le grenier était rempli de trésors incroyables - des vieux coffres en bois massif, des albums photo anciens avec des pages jaunies, des lettres écrites à la main jaunes par le temps, des objets incroyables que son grand-père avait collectés au cours de sa longue vie de 82 ans. Il y avait aussi des uniformes militaires encadrés, des médailles dans des vitrines, et même un journal intime ancien.\n\nLéon s'assit sur le sol du grenier et commença à explorer lentement et respectueusement. En feuilletant un album photo très ancien intitulé \"Ma vie de guerre\", Léon vit des photos fascinantes de son grand-père pendant la Seconde Guerre mondiale, en tant que pilote d'avion courageux volant dans un Spitfire britannique. Il y avait des photos de son grand-père en uniform de pilote, souriant devant un avion de chasse avec ses camarades. Il y avait des photos de missions de vol documentées, des certificats de vol, et même une lettre d'une autorité militaire loue commendant son courage exceptionnel. Léon découvrit aussi des lettres d'amour manuscrites très touchantes entre son grand-père et sa grand-mère écrites avant leur mariage, en 1963, remplies de mots tendres et de promesses d'amour éternel. Les lettres étaient parfumées et certaines avaient des taches de ce qui ressemblait à des larmes de joie. C'était comme découvrir une partie magique et cachée de l'histoire familiale!\n\nCe soir-là, après le dîner, Léon demanda à ses grands-parents pourquoi le grenier était interdit cette année. Ses grands-parents se regardèrent, sourirent tendrement l'un à l'autre, et s'assirent avec Léon dans le salon familial. Pendant des heures - presque quatre heures - ils partagèrent des histoires extraordinaires de leur jeunesse, de leurs aventures de guerre, de comment ils s'étaient rencontrés à Paris en 1960, de leurs rêves, de la guerre, et de leur amour qui avait duré magnifiquement pendant 60 ans à travers les bons et les mauvais moments. Grand-père Georges parla avec passion de son expérience de pilote, de la peur et du courage, de ses copains qui n'étaient pas rentrés, de ses rêves d'après-guerre. Grand-mère Margot parla de comment elle attendait ses lettres avec anxiété pendant la guerre, de ses prières chaque nuit, de la joie quand il est revenu vivant. Léon comprit profondément que ses grands-parents avaient mené des vies extraordinaires, courageuses et héroïques, remplies de passion et de dévouement. Il comprit aussi que le grenier était sacré pour eux - c'était un mausolée de leurs souvenirs les plus précieux.\n\nAvant de partir cette année-là, ses grands-parents donnèrent à Léon l'album photo et une des lettres d'amour encadrée pour qu'il se souvienne toujours de leur histoire incroyable.\n\nDepuis combien d'années Léon passait-il des vacances chez ses grands-parents?",
       type: "multiple_choice",
-      options: JSON.stringify(["C'était dangereux", "Il y avait du travail en cours", "Les grands-parents le nettoyaient", "C'était fermé à clé"]),
-      correctAnswer: "Il y avait du travail en cours",
+      options: JSON.stringify(["5 ans", "8 ans", "10 ans", "12 ans"]),
+      correctAnswer: "10 ans",
       order: 1,
     };
 
-    const readQ15b: Question = {
+    const readQ9_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise10Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qu'a découvert Léon au grenier?",
+      title: "Question 2 (Compréhension)",
+      text: "Quel âge avait le grand-père de Léon?",
       type: "multiple_choice",
-      options: JSON.stringify(["Des jouets cassés", "Des vieux coffres, albums photo et histoires familiales", "Juste de la poussière", "Rien du tout"]),
-      correctAnswer: "Des vieux coffres, albums photo et histoires familiales",
+      options: JSON.stringify(["75 ans", "80 ans", "82 ans", "85 ans"]),
+      correctAnswer: "82 ans",
       order: 2,
     };
 
-    const readQ15c: Question = {
+    const readQ9_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise10Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel secret familial Léon a-t-il découvert?",
+      title: "Question 3 (Compréhension)",
+      text: "Quel était le métier du grand-père pendant la guerre?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ses grands-parents n'étaient pas vraiment mariés", "Son grand-père était un pilote courageux pendant la guerre", "Ses grands-parents étaient riches", "Sa grand-mère était danseuse"]),
-      correctAnswer: "Son grand-père était un pilote courageux pendant la guerre",
+      options: JSON.stringify(["Soldat", "Pilote d'avion", "Médecin", "Capitaine de bateau"]),
+      correctAnswer: "Pilote d'avion",
       order: 3,
     };
 
-    const readQ15d: Question = {
+    const readQ9_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise10Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment l'histoire s'est-elle terminée?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi les grands-parents ont-ils finalement partagé leurs histoires?",
       type: "multiple_choice",
-      options: JSON.stringify(["Les grands-parents grondèrent Léon", "Ils partagèrent des histoires extraordinaires de leur vie", "Ils fermèrent le grenier à jamais", "Léon dut quitter la maison"]),
-      correctAnswer: "Ils partagèrent des histoires extraordinaires de leur vie",
+      options: JSON.stringify(["Ils étaient en colère contre Léon", "La curiosité de Léon les a touchés et ils voulaient transmettre leur histoire", "Ils voulaient punir Léon", "Léon les a forcés"]),
+      correctAnswer: "La curiosité de Léon les a touchés et ils voulaient transmettre leur histoire",
       order: 4,
     };
 
-    // HISTOIRE 11: La Course Épique
-    const readQ16: Question = {
+    const readQ9_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 5 (Interprétation)",
+      text: "Quelle est l'importance du grenier pour les grands-parents?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'est juste un espace de rangement", "C'est un lieu sacré gardant leurs souvenirs les plus précieux", "Ils n'aiment pas le grenier", "C'est un endroit dangereux"]),
+      correctAnswer: "C'est un lieu sacré gardant leurs souvenirs les plus précieux",
+      order: 5,
+    };
+
+    const readQ9_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu déjà découvert quelque chose de surprenant sur ta famille? Raconte brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ9_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 7 (Réaction)",
+      text: "Y a-t-il un endroit spécial chez tes grands-parents ou dans ta famille que tu aimes explorer?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ9_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Léon a désobéi en montant au grenier. Penses-tu qu'il a eu raison ou tort? Explique avec des arguments.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 10: La Course Épique
+    const readQ10_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise11Id,
-      title: "Histoire 11: La Course Épique",
-      text: "Victor était un coureur de 12 ans extrêmement rapide et athlétique. Il vivait dans une petite ville montagneuse des Alpes appelée Chamonix. Son école organisait une grande course annuelle de 5 kilomètres à travers la forêt dense et les pentes montagneuses. Victor s'entraînait intensément depuis des mois - courant chaque jour après l'école, faisant de la musculation, et suivant un régime spécial pour les athlètes. Son grand rêve était de finir premier à cette course, de remporter la victoire, et de recevoir le trophée d'or pour son école. Il rêvait d'être reconnu comme le meilleur coureur de sa région.\n\nLe jour de la course, un samedi matin ensoleillé du mois de mai, tous les enfants de l'école se rassemblèrent au point de départ - environ deux cent cinquante enfants de différents niveaux et âges. Victor voyait son rival principal, Pierre, un garçon qui était aussi très rapide et ambitieux. Pierre avait remporté la course l'année dernière et s'entraînait aussi beaucoup pour gagner à nouveau. Leurs familles se connaissaient depuis longtemps.\n\nLa course commença avec le coup de sifflet du directeur. Victor courut aussi vite qu'il pouvait, poussant son corps à ses limites. Il restait deuxième, juste derrière Pierre. Victor était frustré - il donner tout ce qu'il avait, mais Pierre était légèrement plus rapide. Pendant les deux premiers kilomètres, Victor essaya de passer Pierre plusieurs fois, mais Pierre restait devant. \"Je vais te battre!\", pensa Victor avec détermination.\n\nAu kilomètre 3, quelque chose de terrible et inattendu se produisit. Pierre courut sur une racine cachée sous les feuilles tombées. Il glissa soudainement sur la surface mouillée et s'écroula brutalement au sol! Il roula dans la terre et cria de douleur! \"Aaaaaahhhhh! Ma jambe! Ma jambe!\" Victor entendit Pierre crier avec angoisse. C'était maintenant la chance de Victor de gagner! Il pouvait simplement continuer à courir et remporter la victoire qu'il attendait depuis tant de temps!\n\nMais Victor s'arrêta soudainement et regarda Pierre qui gisait au sol, gravement blessé. Pierre avait du mal à sa jambe gauche et ne pouvait pas se relever. Il pleura it de douleur. Victor voyait la blessure - la jambe était gonflée et rougie. Victor fit un choix difficile et moralement crucial. Il oublia sa victoire, son rêve, et son ambition. Il courut vers Pierre.\n\n\"Pierre! Est-ce que ça va? Où as-tu mal?\" demanda Victor avec inquiétude sincère. \"C'est ma jambe. Je crois que je me suis foulé la cheville\", gémit Pierre. Victor l'aida à se lever lentement, mettant le bras de Pierre autour de son cou. Il lui donna de l'eau de sa gourde. Il soutint son ami blessé et l'aida à marcher lentement jusqu'au point d'arrivée à travers les trois derniers kilomètres de la course.\n\nBien qu'aucun d'eux n'ait \"gagné\" techniquement (ils n'ont pas complété la course avant beaucoup d'autres coureurs qui continuaient), tous les spectateurs, les professeurs, et les parents applaudirent chaleureusement l'acte de compassion extraordinaire et de sacrifice de Victor. Le directeur de l'école organisa une cérémonie spéciale et récompensa Victor d'un trophée d'argent pour \"sauvetage humanitaire et amitié sincère\". Plus important encore, Pierre et Victor devinrent des meilleurs amis inséparables après cet événement. La compassion de Victor lui avait apporté une amitié bien plus précieuse qu'une victoire sportive.\n\nQuel était le rêve de Victor?",
+      title: "Histoire 10: La Course Épique",
+      text: "Victor était un coureur de 12 ans extrêmement rapide et athlétique. Il vivait dans une petite ville montagneuse des Alpes appelée Chamonix. Son école organisait une grande course annuelle de 5 kilomètres à travers la forêt dense et les pentes montagneuses. Victor s'entraînait intensément depuis des mois - courant chaque jour après l'école, faisant de la musculation, et suivant un régime spécial pour les athlètes. Son grand rêve était de finir premier à cette course, de remporter la victoire, et de recevoir le trophée d'or pour son école. Il rêvait d'être reconnu comme le meilleur coureur de sa région.\n\nLe jour de la course, un samedi matin ensoleillé du mois de mai, tous les enfants de l'école se rassemblèrent au point de départ - environ deux cent cinquante enfants de différents niveaux et âges. Victor voyait son rival principal, Pierre, un garçon qui était aussi très rapide et ambitieux. Pierre avait remporté la course l'année dernière et s'entraînait aussi beaucoup pour gagner à nouveau. Leurs familles se connaissaient depuis longtemps.\n\nLa course commença avec le coup de sifflet du directeur. Victor courut aussi vite qu'il pouvait, poussant son corps à ses limites. Il restait deuxième, juste derrière Pierre. Victor était frustré - il donner tout ce qu'il avait, mais Pierre était légèrement plus rapide. Pendant les deux premiers kilomètres, Victor essaya de passer Pierre plusieurs fois, mais Pierre restait devant. \"Je vais te battre!\", pensa Victor avec détermination.\n\nAu kilomètre 3, quelque chose de terrible et inattendu se produisit. Pierre courut sur une racine cachée sous les feuilles tombées. Il glissa soudainement sur la surface mouillée et s'écroula brutalement au sol! Il roula dans la terre et cria de douleur! \"Aaaaaahhhhh! Ma jambe! Ma jambe!\" Victor entendit Pierre crier avec angoisse. C'était maintenant la chance de Victor de gagner! Il pouvait simplement continuer à courir et remporter la victoire qu'il attendait depuis tant de temps!\n\nMais Victor s'arrêta soudainement et regarda Pierre qui gisait au sol, gravement blessé. Pierre avait du mal à sa jambe gauche et ne pouvait pas se relever. Il pleura it de douleur. Victor voyait la blessure - la jambe était gonflée et rougie. Victor fit un choix difficile et moralement crucial. Il oublia sa victoire, son rêve, et son ambition. Il courut vers Pierre.\n\n\"Pierre! Est-ce que ça va? Où as-tu mal?\" demanda Victor avec inquiétude sincère. \"C'est ma jambe. Je crois que je me suis foulé la cheville\", gémit Pierre. Victor l'aida à se lever lentement, mettant le bras de Pierre autour de son cou. Il lui donna de l'eau de sa gourde. Il soutint son ami blessé et l'aida à marcher lentement jusqu'au point d'arrivée à travers les trois derniers kilomètres de la course.\n\nBien qu'aucun d'eux n'ait \"gagné\" techniquement (ils n'ont pas complété la course avant beaucoup d'autres coureurs qui continuaient), tous les spectateurs, les professeurs, et les parents applaudirent chaleureusement l'acte de compassion extraordinaire et de sacrifice de Victor. Le directeur de l'école organisa une cérémonie spéciale et récompensa Victor d'un trophée d'argent pour \"sauvetage humanitaire et amitié sincère\". Plus important encore, Pierre et Victor devinrent des meilleurs amis inséparables après cet événement. La compassion de Victor lui avait apporté une amitié bien plus précieuse qu'une victoire sportive.\n\nQuel âge avait Victor?",
       type: "multiple_choice",
-      options: JSON.stringify(["Devenir célèbre", "Finir premier à la course", "Voyager autour du monde", "Avoir beaucoup d'amis"]),
-      correctAnswer: "Finir premier à la course",
+      options: JSON.stringify(["10 ans", "11 ans", "12 ans", "13 ans"]),
+      correctAnswer: "12 ans",
       order: 1,
     };
 
-    const readQ16b: Question = {
+    const readQ10_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise11Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qui était le rival de Victor?",
+      title: "Question 2 (Compréhension)",
+      text: "Quelle était la distance de la course?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un autre élève", "Pierre, aussi très rapide", "Son frère", "Un coureur professionnel"]),
-      correctAnswer: "Pierre, aussi très rapide",
+      options: JSON.stringify(["3 kilomètres", "5 kilomètres", "7 kilomètres", "10 kilomètres"]),
+      correctAnswer: "5 kilomètres",
       order: 2,
     };
 
-    const readQ16c: Question = {
+    const readQ10_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise11Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel accident s'est produit?",
+      title: "Question 3 (Compréhension)",
+      text: "Qu'est-il arrivé à Pierre pendant la course?",
       type: "multiple_choice",
-      options: JSON.stringify(["Victor trébucha", "Pierre tomba sur une racine", "Victor eut un point de côté", "La course fut annulée"]),
-      correctAnswer: "Pierre tomba sur une racine",
+      options: JSON.stringify(["Il a abandonné", "Il s'est blessé à la jambe en tombant sur une racine", "Il a gagné la course", "Il s'est perdu"]),
+      correctAnswer: "Il s'est blessé à la jambe en tombant sur une racine",
       order: 3,
     };
 
-    const readQ16d: Question = {
+    const readQ10_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise11Id,
-      title: "Question 4 (Dénouement)",
-      text: "Que fit Victor?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Victor a-t-il choisi d'aider Pierre plutôt que de gagner?",
       type: "multiple_choice",
-      options: JSON.stringify(["Il continua pour gagner", "Il aida Pierre et devint son ami", "Il appela l'ambulance", "Il abandonna la course"]),
-      correctAnswer: "Il aida Pierre et devint son ami",
+      options: JSON.stringify(["Il était trop fatigué pour continuer", "Il a fait preuve de compassion et d'humanité", "Les organisateurs lui ont demandé", "Il n'aimait pas courir"]),
+      correctAnswer: "Il a fait preuve de compassion et d'humanité",
       order: 4,
     };
 
-    // HISTOIRE 12: Le Festival Annuel
-    const readQ17: Question = {
+    const readQ10_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 5 (Interprétation)",
+      text: "Quelle leçon cette histoire nous enseigne-t-elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Gagner est toujours le plus important", "L'entraide et l'amitié sont plus précieuses que la victoire", "Il ne faut jamais aider ses rivaux", "Les courses sont dangereuses"]),
+      correctAnswer: "L'entraide et l'amitié sont plus précieuses que la victoire",
+      order: 5,
+    };
+
+    const readQ10_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 6 (Réaction)",
+      text: "Qu'aurais-tu fait à la place de Victor? Aurais-tu continué la course ou aidé Pierre?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ10_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 7 (Réaction)",
+      text: "Raconte un moment où tu as dû choisir entre ton intérêt personnel et aider quelqu'un d'autre.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ10_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Le directeur a donné un trophée à Victor pour son acte. Penses-tu que c'était une bonne décision? Explique.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 11: Le Festival Annuel
+    const readQ11_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise12Id,
-      title: "Histoire 12: Le Festival Annuel",
-      text: "Chaque année, le village pittoresque de Sainte-Marguerite, situé en Provence, organisait un grand festival d'été spectaculaire avec de la musique live variée, de la danse traditionnelle et moderne, des feux d'artifice pyrotechniques magnifiques, et des spectacles de cirque. C'était l'événement le plus attendu et le plus important de l'année - une fête de trois jours qui réunissait tous les villageois et de nombreux visiteurs de villages voisins. Iris, une fille de 11 ans intelligente et dévouée, décida de devenir bénévole pour aider l'équipe organisatrice du festival. Elle voulait faire partie de quelque chose de grand et d'important.\n\nPendant les trois semaines précédentes le festival, Iris et vingt autres bénévoles travaillèrent dur pour préparer l'événement - décorer magnifiquement les rues principales avec des drapeaux et des lumières, construire les scènes en bois pour les musiciens et les danseurs, vérifier tous les équipements techniques, installer les systèmes d'électricité, et préparer les zones de camping. Iris adorait être utile et se sentait fière de faire partie d'une équipe. Elle travailler après l'école et les week-ends, sans se plaindre. Elle faisait des tâches difficiles comme porter des boxes lourdes, peindre des bannières, et organiser les câbles électriques.\n\nMais trois jours avant le festival, le jour du 10 juillet, il y eut un problème technique catastrophique! Le système d'électricité complexe pour les lumières, l'amplification du son, et les équipements de spectacle s'est soudainement cassé! Une panne électrique totale! Sans électricité, il n'y aurait pas de musique live, pas de lumières spectaculaires, pas de feux d'artifice, pas de spectacles! Le festival entier risquait d'être annulé ou sérieusement compromis! Les organisateurs étaient désespérés et paniqués. \"C'est fini\", disait le responsable du festival, la tête dans ses mains.\n\nMais Iris et les autres bénévoles ont refusé d'abandonner. Ils se mobilisèrent immédiatement. Iris proposa des solutions créatives. Ils appelèrent un électricien professionnel d'urgence, ils empruntèrent des générateurs de secours auprès des entreprises locales, ils travaillèrent toute la nuit - trois nuits entières sans dormir! Iris n'abandonna pas un seul instant. Elle tira des câbles, testa les circuits, nettoya les connexions rouillées, et reconstruisit presque entièrement le système électrique avec l'aide de l'électricien et de ses camarades bénévoles. Au final, grâce aux efforts héroïques d'Iris et des autres bénévoles, ils réparèrent le système électrique juste à temps - à seulement deux heures avant le début du festival!\n\nLe festival se déroula magnifiquement comme prévu, avec de la musique joyeuse, des lumières spectaculaires, et des spectacles extraordinaires. C'était un grand succès complet! Les organisateurs remercièrent chaleureusement Iris et tous les bénévoles, les reconnaissant comme les héros du festival. Iris reçut un certificat d'honneur du maire du village.\n\nQuel était l'événement annuel du village?",
+      title: "Histoire 11: Le Festival Annuel",
+      text: "Chaque année, le village pittoresque de Sainte-Marguerite, situé en Provence, organisait un grand festival d'été spectaculaire avec de la musique live variée, de la danse traditionnelle et moderne, des feux d'artifice pyrotechniques magnifiques, et des spectacles de cirque. C'était l'événement le plus attendu et le plus important de l'année - une fête de trois jours qui réunissait tous les villageois et de nombreux visiteurs de villages voisins. Iris, une fille de 11 ans intelligente et dévouée, décida de devenir bénévole pour aider l'équipe organisatrice du festival. Elle voulait faire partie de quelque chose de grand et d'important.\n\nPendant les trois semaines précédentes le festival, Iris et vingt autres bénévoles travaillèrent dur pour préparer l'événement - décorer magnifiquement les rues principales avec des drapeaux et des lumières, construire les scènes en bois pour les musiciens et les danseurs, vérifier tous les équipements techniques, installer les systèmes d'électricité, et préparer les zones de camping. Iris adorait être utile et se sentait fière de faire partie d'une équipe. Elle travailler après l'école et les week-ends, sans se plaindre. Elle faisait des tâches difficiles comme porter des boxes lourdes, peindre des bannières, et organiser les câbles électriques.\n\nMais trois jours avant le festival, le jour du 10 juillet, il y eut un problème technique catastrophique! Le système d'électricité complexe pour les lumières, l'amplification du son, et les équipements de spectacle s'est soudainement cassé! Une panne électrique totale! Sans électricité, il n'y aurait pas de musique live, pas de lumières spectaculaires, pas de feux d'artifice, pas de spectacles! Le festival entier risquait d'être annulé ou sérieusement compromis! Les organisateurs étaient désespérés et paniqués. \"C'est fini\", disait le responsable du festival, la tête dans ses mains.\n\nMais Iris et les autres bénévoles ont refusé d'abandonner. Ils se mobilisèrent immédiatement. Iris proposa des solutions créatives. Ils appelèrent un électricien professionnel d'urgence, ils empruntèrent des générateurs de secours auprès des entreprises locales, ils travaillèrent toute la nuit - trois nuits entières sans dormir! Iris n'abandonna pas un seul instant. Elle tira des câbles, testa les circuits, nettoya les connexions rouillées, et reconstruisit presque entièrement le système électrique avec l'aide de l'électricien et de ses camarades bénévoles. Au final, grâce aux efforts héroïques d'Iris et des autres bénévoles, ils réparèrent le système électrique juste à temps - à seulement deux heures avant le début du festival!\n\nLe festival se déroula magnifiquement comme prévu, avec de la musique joyeuse, des lumières spectaculaires, et des spectacles extraordinaires. C'était un grand succès complet! Les organisateurs remercièrent chaleureusement Iris et tous les bénévoles, les reconnaissant comme les héros du festival. Iris reçut un certificat d'honneur du maire du village.\n\nQuel âge avait Iris?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un marché", "Un festival d'été", "Une course annuelle", "Une compétition sportive"]),
-      correctAnswer: "Un festival d'été",
+      options: JSON.stringify(["9 ans", "10 ans", "11 ans", "12 ans"]),
+      correctAnswer: "11 ans",
       order: 1,
     };
 
-    const readQ17b: Question = {
+    const readQ11_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise12Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Pourquoi Iris devint-elle bénévole?",
+      title: "Question 2 (Compréhension)",
+      text: "Combien de jours avant le festival le problème électrique s'est-il produit?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle fut forcée", "Elle voulait aider l'équipe organisatrice", "Elle voulait voyager", "Elle cherchait du travail"]),
-      correctAnswer: "Elle voulait aider l'équipe organisatrice",
+      options: JSON.stringify(["1 jour", "2 jours", "3 jours", "5 jours"]),
+      correctAnswer: "3 jours",
       order: 2,
     };
 
-    const readQ17c: Question = {
+    const readQ11_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise12Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème technique s'est produit?",
+      title: "Question 3 (Compréhension)",
+      text: "Combien de temps avant le début du festival ont-ils fini les réparations?",
       type: "multiple_choice",
-      options: JSON.stringify(["La scène s'effondra", "Le système d'électricité s'est cassé", "Les musiciens ne vinrent pas", "La météo était mauvaise"]),
-      correctAnswer: "Le système d'électricité s'est cassé",
+      options: JSON.stringify(["30 minutes", "2 heures", "5 heures", "1 jour"]),
+      correctAnswer: "2 heures",
       order: 3,
     };
 
-    const readQ17d: Question = {
+    const readQ11_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise12Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment le problème a-t-il été résolu?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi les bénévoles ont-ils refusé d'abandonner?",
       type: "multiple_choice",
-      options: JSON.stringify(["Le festival fut annulé", "Ils appelèrent un électricien et travaillèrent toute la nuit", "Ils utilisèrent des générateurs", "C'était impossible à réparer"]),
-      correctAnswer: "Ils appelèrent un électricien et travaillèrent toute la nuit",
+      options: JSON.stringify(["Ils voulaient de l'argent", "Ils étaient dévoués à leur communauté et voulaient sauver le festival", "Ils avaient peur des organisateurs", "Ils n'avaient rien d'autre à faire"]),
+      correctAnswer: "Ils étaient dévoués à leur communauté et voulaient sauver le festival",
       order: 4,
     };
 
-    // HISTOIRE 13: L'Animal Perdu
-    const readQ18: Question = {
+    const readQ11_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous montre cette histoire sur le bénévolat?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'est une perte de temps", "Le travail d'équipe et le dévouement peuvent surmonter les obstacles", "Il ne faut jamais aider gratuitement", "Les festivals sont trop compliqués"]),
+      correctAnswer: "Le travail d'équipe et le dévouement peuvent surmonter les obstacles",
+      order: 5,
+    };
+
+    const readQ11_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu déjà participé comme bénévole à un événement? Raconte ton expérience.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ11_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 7 (Réaction)",
+      text: "Si tu devais organiser un festival, quelles activités proposerais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ11_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que les bénévoles comme Iris sont suffisamment reconnus pour leur travail? Explique ton opinion.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 12: L'Animal Perdu
+    const readQ12_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise13Id,
-      title: "Histoire 13: L'Animal Perdu",
-      text: "Max était un golden retriever adoré par toute la rue du Bois-Joli, une petite rue paisible dans un quartier résidentiel. Il appartenait à la famille Dubois depuis neuf ans. Max était un ami loyal, gentil, et joyeux pour tous le voisins. Chaque jour, Max jouait dans la cour clôturée de la famille Dubois et saluait tous ses voisins avec enthousiasme quand ils passaient - remuant sa queue, jappant joyeusement, et cherchant à être caressé. Les enfants du quartier adoraient jouer avec Max. Il était le cœur du quartier.\n\nUn matin du samedi 5 novembre, Max disparut mystérieusement! La famille Dubois l'avait laissé dehors dans la cour pour faire ses besoins vers 7 heures du matin. Quand la mère de la famille, Stéphanie, retourna dix minutes plus tard, la porte était toujours ouverte, mais Max n'était plus là! Elle appela frénétiquement: \"Max! Max! Où es-tu?\" Pas de réponse. Elle chercha dans toute la maison et le quartier pendant une heure, paniquée. Son mari Thomas revint du travail et ils cherchèrent partout ensemble mais ne le trouvèrent nulle part. Ils étaient dévastés et leur cœur était brisé. Leur enfant, Marine, pleura pendant des heures. Ils pensaient qu'on l'avait volé ou qu'il s'était perdu à jamais.\n\nDésespérés, la famille Dubois mit des affiches colorées partout dans le quartier: \"CHIEN PERDU - RÉCOMPENSE 500 EUROS. Max, golden retriever, 9 ans, très gentil. S'il vous plaît appelez...\" Ils appelèrent aussi les refuges pour animaux, la police, et les vétérinaires de la région.\n\nLes voisins apprirent rapidement la nouvelle et décidèrent d'aider immédiatement. Trois enfants du quartier - Léa (13 ans), Tomás (12 ans) et Adèle (11 ans) - organisèrent une équipe de recherche systématique. Ils créèrent des cartes du quartier, divisèrent les zones, et établirent un plan de recherche. Pendant trois jours entiers, ils cherchèrent intensivement dans les parcs, les forêts proches, les abris pour animaux, les zones industrielles abandonnées, et même les canaux à proximité. Ils questionnaient chaque personne qu'ils rencontraient. Ils distribuaient des affiches. Léa utilisa aussi les réseaux sociaux pour diffuser la photo de Max.\n\nAprès trois jours très long de recherche intensive, le mardi soir vers 18 heures, Adèle entendit un aboiement faible et familier près du vieux pont délabré qui traversait la rivière à la limite du quartier. Elle alertes immédiatement Léa et Tomás. Ils regardèrent attentivement et virent Max! Il était coincé dans un petit buisson épais au bord du pont, à moitié dans l'eau! Il avait dû tomber du pont en essayant de chasser un chat trois jours plus tôt et ne pouvait pas se sortir. Il était blessé, mouillé, tremblant, et affamé, mais vivant! Les enfants travaillèrent ensemble pour le sortir du buisson dangereux sans le blesser davantage. C'était difficile mais ils réussirent!\n\nLes enfants ramenèrent Max immédiatement à sa famille. La famille Dubois pleura de joie absolue quand ils virent Max! Marine courait vers Max et l'embrassa. Toute la maison était remplie de larmes de bonheur! Max fut examiné par un vétérinaire - il avait quelques blessures mineures mais aucune blessure grave. Il guérit rapidement.\n\nLes voisins du quartier organisèrent une grande fête le samedi suivant pour célébrer le retour de Max et pour remercier Léa, Tomás et Adèle pour leur courage, leur intelligence, et leur dévouement. Les enfants reçurent chacun une récompense de cent euros de la famille Dubois, et plus important encore, ils reçurent l'amitié éternelle de Max et de toute la famille.\n\nQuel était le problème principal?",
+      title: "Histoire 12: L'Animal Perdu",
+      text: "Max était un golden retriever adoré par toute la rue du Bois-Joli, une petite rue paisible dans un quartier résidentiel. Il appartenait à la famille Dubois depuis neuf ans. Max était un ami loyal, gentil, et joyeux pour tous le voisins. Chaque jour, Max jouait dans la cour clôturée de la famille Dubois et saluait tous ses voisins avec enthousiasme quand ils passaient - remuant sa queue, jappant joyeusement, et cherchant à être caressé. Les enfants du quartier adoraient jouer avec Max. Il était le cœur du quartier.\n\nUn matin du samedi 5 novembre, Max disparut mystérieusement! La famille Dubois l'avait laissé dehors dans la cour pour faire ses besoins vers 7 heures du matin. Quand la mère de la famille, Stéphanie, retourna dix minutes plus tard, la porte était toujours ouverte, mais Max n'était plus là! Elle appela frénétiquement: \"Max! Max! Où es-tu?\" Pas de réponse. Elle chercha dans toute la maison et le quartier pendant une heure, paniquée. Son mari Thomas revint du travail et ils cherchèrent partout ensemble mais ne le trouvèrent nulle part. Ils étaient dévastés et leur cœur était brisé. Leur enfant, Marine, pleura pendant des heures. Ils pensaient qu'on l'avait volé ou qu'il s'était perdu à jamais.\n\nDésespérés, la famille Dubois mit des affiches colorées partout dans le quartier: \"CHIEN PERDU - RÉCOMPENSE 500 EUROS. Max, golden retriever, 9 ans, très gentil. S'il vous plaît appelez...\" Ils appelèrent aussi les refuges pour animaux, la police, et les vétérinaires de la région.\n\nLes voisins apprirent rapidement la nouvelle et décidèrent d'aider immédiatement. Trois enfants du quartier - Léa (13 ans), Tomás (12 ans) et Adèle (11 ans) - organisèrent une équipe de recherche systématique. Ils créèrent des cartes du quartier, divisèrent les zones, et établirent un plan de recherche. Pendant trois jours entiers, ils cherchèrent intensivement dans les parcs, les forêts proches, les abris pour animaux, les zones industrielles abandonnées, et même les canaux à proximité. Ils questionnaient chaque personne qu'ils rencontraient. Ils distribuaient des affiches. Léa utilisa aussi les réseaux sociaux pour diffuser la photo de Max.\n\nAprès trois jours très long de recherche intensive, le mardi soir vers 18 heures, Adèle entendit un aboiement faible et familier près du vieux pont délabré qui traversait la rivière à la limite du quartier. Elle alertes immédiatement Léa et Tomás. Ils regardèrent attentivement et virent Max! Il était coincé dans un petit buisson épais au bord du pont, à moitié dans l'eau! Il avait dû tomber du pont en essayant de chasser un chat trois jours plus tôt et ne pouvait pas se sortir. Il était blessé, mouillé, tremblant, et affamé, mais vivant! Les enfants travaillèrent ensemble pour le sortir du buisson dangereux sans le blesser davantage. C'était difficile mais ils réussirent!\n\nLes enfants ramenèrent Max immédiatement à sa famille. La famille Dubois pleura de joie absolue quand ils virent Max! Marine courait vers Max et l'embrassa. Toute la maison était remplie de larmes de bonheur! Max fut examiné par un vétérinaire - il avait quelques blessures mineures mais aucune blessure grave. Il guérit rapidement.\n\nLes voisins du quartier organisèrent une grande fête le samedi suivant pour célébrer le retour de Max et pour remercier Léa, Tomás et Adèle pour leur courage, leur intelligence, et leur dévouement. Les enfants reçurent chacun une récompense de cent euros de la famille Dubois, et plus important encore, ils reçurent l'amitié éternelle de Max et de toute la famille.\n\nDepuis combien d'années Max appartenait-il à la famille Dubois?",
       type: "multiple_choice",
-      options: JSON.stringify(["Max s'était enfui", "Max était malade", "Max avait disparu", "Max avait été volé"]),
-      correctAnswer: "Max avait disparu",
+      options: JSON.stringify(["5 ans", "7 ans", "9 ans", "11 ans"]),
+      correctAnswer: "9 ans",
       order: 1,
     };
 
-    const readQ18b: Question = {
+    const readQ12_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise13Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Comment les voisins ont-ils appris la disparition?",
+      title: "Question 2 (Compréhension)",
+      text: "Pendant combien de jours les enfants ont-ils cherché Max?",
       type: "multiple_choice",
-      options: JSON.stringify(["Par la police", "Via les affiches 'CHIEN PERDU'", "À la télévision", "Par un ami"]),
-      correctAnswer: "Via les affiches 'CHIEN PERDU'",
+      options: JSON.stringify(["1 jour", "2 jours", "3 jours", "5 jours"]),
+      correctAnswer: "3 jours",
       order: 2,
     };
 
-    const readQ18c: Question = {
+    const readQ12_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise13Id,
-      title: "Question 3 (Péripéties)",
-      text: "Qui a organisé la recherche?",
-      type: "multiple_choice",
-      options: JSON.stringify(["La police", "Trois enfants du quartier", "La famille seule", "Un groupe de chercheurs"]),
-      correctAnswer: "Trois enfants du quartier",
-      order: 3,
-    };
-
-    const readQ18d: Question = {
-      id: randomUUID(),
-      exerciseId: readingExercise13Id,
-      title: "Question 4 (Dénouement)",
+      title: "Question 3 (Compréhension)",
       text: "Où Max a-t-il été retrouvé?",
       type: "multiple_choice",
-      options: JSON.stringify(["À la maison", "Dans un parc", "Coincé dans un buisson près du vieux pont", "À l'abri pour animaux"]),
-      correctAnswer: "Coincé dans un buisson près du vieux pont",
-      order: 4,
-    };
-
-    // HISTOIRE 14: Le Trésor Caché du Jardin
-    const readQ19: Question = {
-      id: randomUUID(),
-      exerciseId: readingExercise14Id,
-      title: "Histoire 14: Le Trésor Caché du Jardin",
-      text: "Olivier, un garçon intelligent et curieux de dix ans, jouait dans le grand jardin magnifique de sa grand-mère Marie à la campagne en Loire-et-Cher. C'était un jardin extraordinaire avec des roses de plusieurs couleurs, des arbres fruitiers centenaires - des pommiers, des poiriers, des cerisiers - et une petite fontaine en pierre datant du 19e siècle. Olivier adorait jouer au détective et à l'explorateur dans ce jardin magique. Il imaginait qu'il était un archéologue découvrant des secrets cachés.\n\nUn jour du mois de juin, en creusant profondément sous un vieux pommier noirci par le temps, sa pelle en métal toucha quelque chose de dur avec un bruit métallique. Son cœur sauta! Olivier creusa plus attentivement et découvrit une vieille boîte en bois complètement rouillée par le temps et couverte de terre épaisse et de racines. Elle était impressionnante et mystérieuse. Bien que la boîte soit rouillée et ancienne, elle était étonnamment intacte - aucune fissure, aucun trou.\n\nOlivier appela sa grand-mère. Ensemble, ils nettoyèrent la boîte très attentivement. À l'intérieur, qui était rempli d'une poudre préservative, Olivier trouva une vieille carte dessinée à la main sur du parchemin jauni, des pièces d'or anciennes d'au moins 200 ans, des bijoux en argent magnifiquement travaillés, et une lettre manuscrite très ancienne. La lettre était signée par \"Antoine de Beaumont, marquis, 1756\". Elle était écrite en français ancien et expliquait qu'Antoine de Beaumont avait enterré ces objets de valeur pour les protéger pendant la Révolution française, une période de violence et de chaos!\n\nOlivier et sa grand-mère contactèrent le musée local. Les experts archéologues examinèrent attentivement tous les objets avec fascination. Ils confirmèrent que c'était une trouvaille historique extrêmement importante et rare! Les pièces étaient de véritables pièces d'or de l'époque royale française. Les bijoux étaient des pièces d'orfèvrerie ancienne de haute qualité. La lettre était un document historique authentique témoignant de la vie pendant la Révolution!\n\nOlivier devint célèbre dans toute la région comme \"l'enfant qui a découvert le trésor du marquis\". Il reçut une bourse complète pour une université prestigieuse d'études archéologiques, un prix du maire, et même une exposition au musée portant son nom. Plus tard, Olivier devint un archéologue de renommée mondiale, découvrant plusieurs autres importants trésors historiques!\n\n",
-      type: "multiple_choice",
-      options: JSON.stringify(["Des jouets", "Une vieille boîte avec des trésors historiques", "Des documents officiels", "Des bonbons"]),
-      correctAnswer: "Une vieille boîte avec des trésors historiques",
-      order: 1,
-    };
-
-    const readQ19b: Question = {
-      id: randomUUID(),
-      exerciseId: readingExercise14Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Où Olivier jouait-il?",
-      type: "multiple_choice",
-      options: JSON.stringify(["À l'école", "Dans le jardin de sa grand-mère", "À la plage", "Au parc"]),
-      correctAnswer: "Dans le jardin de sa grand-mère",
-      order: 2,
-    };
-
-    const readQ19c: Question = {
-      id: randomUUID(),
-      exerciseId: readingExercise14Id,
-      title: "Question 3 (Péripéties)",
-      text: "Qu'y avait-il dans la boîte?",
-      type: "multiple_choice",
-      options: JSON.stringify(["Des vêtements", "Une carte, des pièces d'or, des bijoux et une lettre historique", "Des photos", "Des livres"]),
-      correctAnswer: "Une carte, des pièces d'or, des bijoux et une lettre historique",
+      options: JSON.stringify(["Dans un parc", "Dans un buisson près du vieux pont", "Chez un voisin", "Au refuge pour animaux"]),
+      correctAnswer: "Dans un buisson près du vieux pont",
       order: 3,
     };
 
-    const readQ19d: Question = {
+    const readQ12_4: Question = {
       id: randomUUID(),
-      exerciseId: readingExercise14Id,
-      title: "Question 4 (Dénouement)",
-      text: "Qu'est-il arrivé à Olivier?",
+      exerciseId: readingExercise13Id,
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi les enfants du quartier ont-ils décidé d'aider?",
       type: "multiple_choice",
-      options: JSON.stringify(["Rien de spécial", "Il gagna une bourse et devint archéologue", "Il devint riche", "Il oublia la découverte"]),
-      correctAnswer: "Il gagna une bourse et devint archéologue",
+      options: JSON.stringify(["Pour l'argent de la récompense", "Par solidarité et amour pour Max qui était l'ami de tous", "Les parents les ont obligés", "Ils n'avaient rien d'autre à faire"]),
+      correctAnswer: "Par solidarité et amour pour Max qui était l'ami de tous",
       order: 4,
     };
 
-    // HISTOIRE 15: La Tempête
-    const readQ20: Question = {
+    const readQ12_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous montre cette histoire sur la communauté?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les voisins ne s'entraident jamais", "Une communauté solidaire peut accomplir beaucoup ensemble", "Il faut toujours garder ses animaux enfermés", "Les enfants ne peuvent pas aider"]),
+      correctAnswer: "Une communauté solidaire peut accomplir beaucoup ensemble",
+      order: 5,
+    };
+
+    const readQ12_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu un animal de compagnie? Si oui, que ferais-tu s'il disparaissait?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ12_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 7 (Réaction)",
+      text: "Connais-tu tes voisins? Penses-tu qu'ils t'aideraient si tu avais un problème?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ12_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Les enfants ont reçu 100 euros chacun. Penses-tu que l'argent était la bonne façon de les remercier? Explique.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 13: Le Trésor Caché du Jardin
+    const readQ13_1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Histoire 13: Le Trésor Caché du Jardin",
+      text: "Olivier, un garçon intelligent et curieux de dix ans, jouait dans le grand jardin magnifique de sa grand-mère Marie à la campagne en Loire-et-Cher. C'était un jardin extraordinaire avec des roses de plusieurs couleurs, des arbres fruitiers centenaires - des pommiers, des poiriers, des cerisiers - et une petite fontaine en pierre datant du 19e siècle. Olivier adorait jouer au détective et à l'explorateur dans ce jardin magique. Il imaginait qu'il était un archéologue découvrant des secrets cachés.\n\nUn jour du mois de juin, en creusant profondément sous un vieux pommier noirci par le temps, sa pelle en métal toucha quelque chose de dur avec un bruit métallique. Son cœur sauta! Olivier creusa plus attentivement et découvrit une vieille boîte en bois complètement rouillée par le temps et couverte de terre épaisse et de racines. Elle était impressionnante et mystérieuse. Bien que la boîte soit rouillée et ancienne, elle était étonnamment intacte - aucune fissure, aucun trou.\n\nOlivier appela sa grand-mère. Ensemble, ils nettoyèrent la boîte très attentivement. À l'intérieur, qui était rempli d'une poudre préservative, Olivier trouva une vieille carte dessinée à la main sur du parchemin jauni, des pièces d'or anciennes d'au moins 200 ans, des bijoux en argent magnifiquement travaillés, et une lettre manuscrite très ancienne. La lettre était signée par \"Antoine de Beaumont, marquis, 1756\". Elle était écrite en français ancien et expliquait qu'Antoine de Beaumont avait enterré ces objets de valeur pour les protéger pendant la Révolution française, une période de violence et de chaos!\n\nOlivier et sa grand-mère contactèrent le musée local. Les experts archéologues examinèrent attentivement tous les objets avec fascination. Ils confirmèrent que c'était une trouvaille historique extrêmement importante et rare! Les pièces étaient de véritables pièces d'or de l'époque royale française. Les bijoux étaient des pièces d'orfèvrerie ancienne de haute qualité. La lettre était un document historique authentique témoignant de la vie pendant la Révolution!\n\nOlivier devint célèbre dans toute la région comme \"l'enfant qui a découvert le trésor du marquis\". Il reçut une bourse complète pour une université prestigieuse d'études archéologiques, un prix du maire, et même une exposition au musée portant son nom. Plus tard, Olivier devint un archéologue de renommée mondiale, découvrant plusieurs autres importants trésors historiques!\n\nQuel âge avait Olivier?",
+      type: "multiple_choice",
+      options: JSON.stringify(["8 ans", "9 ans", "10 ans", "11 ans"]),
+      correctAnswer: "10 ans",
+      order: 1,
+    };
+
+    const readQ13_2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 2 (Compréhension)",
+      text: "De quelle année datait la lettre dans la boîte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["1656", "1756", "1856", "1956"]),
+      correctAnswer: "1756",
+      order: 2,
+    };
+
+    const readQ13_3: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 3 (Compréhension)",
+      text: "Qui avait signé la lettre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un roi", "Antoine de Beaumont, un marquis", "Un soldat", "Un paysan"]),
+      correctAnswer: "Antoine de Beaumont, un marquis",
+      order: 3,
+    };
+
+    const readQ13_4: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi le marquis avait-il enterré ses objets de valeur?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il les avait oubliés", "Pour les protéger pendant la Révolution française", "Il n'en voulait plus", "Pour un jeu de chasse au trésor"]),
+      correctAnswer: "Pour les protéger pendant la Révolution française",
+      order: 4,
+    };
+
+    const readQ13_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 5 (Interprétation)",
+      text: "Comment cette découverte a-t-elle changé la vie d'Olivier?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il est devenu riche", "Elle a éveillé sa passion pour l'archéologie et lui a ouvert des portes", "Rien n'a changé", "Il est devenu célèbre à la télévision"]),
+      correctAnswer: "Elle a éveillé sa passion pour l'archéologie et lui a ouvert des portes",
+      order: 5,
+    };
+
+    const readQ13_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 6 (Réaction)",
+      text: "Aimerais-tu faire une découverte historique comme Olivier? Pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ13_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 7 (Réaction)",
+      text: "Si tu trouvais un trésor, que ferais-tu avec?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ13_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu qu'Olivier aurait dû garder le trésor ou le donner au musée? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 14: La Tempête
+    const readQ14_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise15Id,
-      title: "Histoire 15: La Tempête",
+      title: "Histoire 14: La Tempête",
       text: "La famille Martins, composée du père Robert, de la mère Évelyne, et de leurs trois enfants - Thomas (13 ans), Léa (7 ans) et Sophie (10 ans) - organisait un grand pique-nique familial dans la belle forêt de la Vallée de Chevreuse, à l'ouest de Paris. C'était un dimanche de juillet parfaitement prévisible et idéal. Le soleil brillait magnifiquement, le ciel était d'un bleu cristallin et tout semblait absolument parfait pour une journée en famille. Les enfants jouaient joyeusement à des jeux - cache-cache, balle volante - les parents mangeaient et riaient, assis sur une couverture pique-nique rouge. C'était un dimanche merveilleux et mémorable.\n\nMais soudain, vers 15 heures, le ciel devint complètement noir en quelques minutes seulement. Des nuages menaçants et anguleux arrivèrent rapidement, cachant le soleil entièrement. Le vent commença à souffler fort et violent - des rafales qui secouaient les arbres. Les feuilles et les branches volaient partout. Robert remarqua les premiers éclairs lointains. Les parents réalisèrent immédiatement qu'une tempête violente arrivait très vite - peut-être une tempête d'orage importante!\n\nEn une minute environ, la pluie torrentielle commença à tomber abondamment! Ce n'était pas une pluie normale - c'était une pluie de tempête intense. La tempête était extrêmement violente avec du tonnerre assourdissant qui résonnait à travers la forêt et des éclairs zigzaguants qui illuminaient le ciel. Les enfants eurent très peur! Évelyne cria: \"Rentrez à l'intérieur!\" La famille essaya de se réfugier sous les grands arbres mais ce n'était pas assez sûr - les éclairs frappaient près des arbres.\n\nRobert fit une décision rapide. Il prit rapidement les trois enfants par les mains et courut vers la voiture stationnée à environ cent mètres de là. Tout le monde courait aussi vite qu'ils pouvaient à travers la pluie torrentiella. Les enfants criaient. Dans la confusion totale et le chaos de la tempête, la petite fille Léa se sépara accidentellement de sa mère! Elle avait glissé dans la boue et s'était perdue! Tout le monde cria frénétiquement son nom: \"Léa! Léa! Où es-tu?!\" Les parents paniquèrent absolument. Robert arrêta la voiture et cria: \"On ne part pas sans Léa!\"\n\nAprès quelques minutes terrifiantes qui semblèrent comme des heures, Robert la retrouva en train d'attendre courageusement sous un buisson dense qui l'avait protégée des éclairs. Elle était complètement mouillée, tremblante et effrayée mais miraculement en sécurité! Robert la souleva et courut à la voiture. Toute la famille se réunit enfin dans la voiture. Robert démarra rapidement et ils rentrèrent à la maison. Bien que l'expérience ait été extrêmement terrifiante et traumatisante, la famille devint profondément plus unie et infiniment reconnaissante de s'avoir les uns les autres. Ils comprirent combien l'amour familial était précieux.\n\n",
       type: "multiple_choice",
       options: JSON.stringify(["À la plage", "Dans la forêt", "Au parc de la ville", "En montagne"]),
@@ -1813,89 +2299,177 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    const readQ20b: Question = {
+    const readQ14_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise15Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qu'est-ce qui a changé le beau temps?",
+      title: "Question 2 (Compréhension)",
+      text: "À quelle heure la tempête a-t-elle commencé?",
       type: "multiple_choice",
-      options: JSON.stringify(["Le soleil se coucha", "Une tempête arriva rapidement", "La nuit tomba", "Un incident"]),
-      correctAnswer: "Une tempête arriva rapidement",
+      options: JSON.stringify(["13 heures", "14 heures", "15 heures", "16 heures"]),
+      correctAnswer: "15 heures",
       order: 2,
     };
 
-    const readQ20c: Question = {
+    const readQ14_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise15Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème grave s'est produit?",
+      title: "Question 3 (Compréhension)",
+      text: "Qui s'est perdu pendant la tempête?",
       type: "multiple_choice",
-      options: JSON.stringify(["Le panier de pique-nique se renversa", "Léa se sépara de sa mère dans la tempête", "La voiture ne démarrait pas", "Tout le monde attrapa un rhume"]),
-      correctAnswer: "Léa se sépara de sa mère dans la tempête",
+      options: JSON.stringify(["Thomas", "Sophie", "Léa", "Évelyne"]),
+      correctAnswer: "Léa",
       order: 3,
     };
 
-    const readQ20d: Question = {
+    const readQ14_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise15Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment l'histoire s'est-elle terminée?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi la famille est-elle devenue plus unie après cette expérience?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ils se perdirent à jamais", "Léa fut retrouvée et la famille rentra en sécurité", "La tempête empira", "Ils durent rester dehors toute la nuit"]),
-      correctAnswer: "Léa fut retrouvée et la famille rentra en sécurité",
+      options: JSON.stringify(["Ils ont gagné de l'argent", "Ils ont compris la valeur de l'amour familial face au danger", "Ils ont décidé de déménager", "Ils ont acheté une nouvelle voiture"]),
+      correctAnswer: "Ils ont compris la valeur de l'amour familial face au danger",
       order: 4,
     };
 
-    // HISTOIRE 16: L'Île Déserte
-    const readQ21: Question = {
+    const readQ14_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous enseigne cette histoire sur les situations de crise?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il faut toujours rester chez soi", "Les crises peuvent renforcer les liens familiaux", "Les pique-niques sont dangereux", "Il ne faut jamais faire confiance à la météo"]),
+      correctAnswer: "Les crises peuvent renforcer les liens familiaux",
+      order: 5,
+    };
+
+    const readQ14_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu déjà vécu une situation effrayante avec ta famille? Comment as-tu réagi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ14_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 7 (Réaction)",
+      text: "Que ferais-tu si tu te retrouvais séparé de ta famille dans une situation d'urgence?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ14_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que les parents ont bien géré la situation? Qu'auraient-ils pu faire différemment?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 15: L'Île Déserte
+    const readQ15_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise16Id,
-      title: "Histoire 16: L'Île Déserte",
-      text: "Pendant les vacances d'été du mois d'août, Luc, un garçon courageux et aventurier de douze ans, partit en bateau avec sa famille pour une croisière méditerranéenne. Ils voyageaient vers plusieurs îles grecques. Le voyage était merveilleux les premières trois jours - soleil, mer calme, paysages magnifiques. Luc adorait cette aventure!\n\nMais le quatrième jour, une situation catastrophique se produisit. Il y avait un orage violent et imprévu qui arriva soudainement. Le bateau fut secoué violemment par des vagues géantes. Le bateau tangua dangereusement d'un côté à l'autre. Les passagers criaient. Dans la confusion totale et le chaos, Luc, qui était sur le pont supérieur, glissa et tomba à l'eau! Il cria à l'aide!\n\nLuc nagea aussi fort qu'il pouvait, luttant contre les vagues furieuses. Le bateau s'éloigna rapidement dans la tempête - ils ne l'avaient pas entendu crier. Luc nagea désespérément pendant une heure, craignant pour sa vie. Finalement, épuisé, il atteignit une petite île déserte et montagneuse qu'il vit à travers les vagues. Il s'écroula sur la plage, respirant et tremblant.\n\nLuc se retrouva soudain seul sur une île avec seulement ses vêtements mouillés et une montre. Il n'y avait personne - aucune trace d'habitation humaine. Pas de nourriture, pas d'eau douce potable, rien du tout! Luc eut très peur mais aussi déterminé à survivre. Il savait qu'il devait être intelligent et fort.\n\nIl utilisa son intelligence et ses connaissances de survie pour survivre. Il creusa un petit puits en bas de la montagne et trouva de l'eau souterraine potable. Il attrapa des poissons à mains nues dans les petits étangs. Il construisit un abri confortable avec des branches d'arbre et du feuillage épais. Il fit un feu avec des silex qu'il trouva et du bois mort. Il mangea des noix et des racines. Il créa un grand signal de détresse sur la plage avec des rochers blancs formant le mot \"AIDE\" visible de très loin.\n\nAprès trois jours et trois nuits très long d'isolement, un bateau de pêche français vit le signal de détresse sur la plage! Luc cria et agita les bras frénétiquement. Ils le virent! Le bateau arrêta et le sauva! Luc fut amené au hôpital le plus proche où il se rétablit complètement. Il retrouva sa famille qui le pensait mort. C'était une réunion émotionnelle!\n\nLuc devint célèbre dans les journaux du monde entier comme \"le garçon courageux qui a survécu trois jours seul sur une île déserte\"! Il reçut des prix de survie et d'courage. Il inspira des millions de personnes!\n\n",
+      title: "Histoire 15: L'Île Déserte",
+      text: "Pendant les vacances d'été du mois d'août, Luc, un garçon courageux et aventurier de douze ans, partit en bateau avec sa famille pour une croisière méditerranéenne. Ils voyageaient vers plusieurs îles grecques. Le voyage était merveilleux les premières trois jours - soleil, mer calme, paysages magnifiques. Luc adorait cette aventure!\n\nMais le quatrième jour, une situation catastrophique se produisit. Il y avait un orage violent et imprévu qui arriva soudainement. Le bateau fut secoué violemment par des vagues géantes. Le bateau tangua dangereusement d'un côté à l'autre. Les passagers criaient. Dans la confusion totale et le chaos, Luc, qui était sur le pont supérieur, glissa et tomba à l'eau! Il cria à l'aide!\n\nLuc nagea aussi fort qu'il pouvait, luttant contre les vagues furieuses. Le bateau s'éloigna rapidement dans la tempête - ils ne l'avaient pas entendu crier. Luc nagea désespérément pendant une heure, craignant pour sa vie. Finalement, épuisé, il atteignit une petite île déserte et montagneuse qu'il vit à travers les vagues. Il s'écroula sur la plage, respirant et tremblant.\n\nLuc se retrouva soudain seul sur une île avec seulement ses vêtements mouillés et une montre. Il n'y avait personne - aucune trace d'habitation humaine. Pas de nourriture, pas d'eau douce potable, rien du tout! Luc eut très peur mais aussi déterminé à survivre. Il savait qu'il devait être intelligent et fort.\n\nIl utilisa son intelligence et ses connaissances de survie pour survivre. Il creusa un petit puits en bas de la montagne et trouva de l'eau souterraine potable. Il attrapa des poissons à mains nues dans les petits étangs. Il construisit un abri confortable avec des branches d'arbre et du feuillage épais. Il fit un feu avec des silex qu'il trouva et du bois mort. Il mangea des noix et des racines. Il créa un grand signal de détresse sur la plage avec des rochers blancs formant le mot \"AIDE\" visible de très loin.\n\nAprès trois jours et trois nuits très long d'isolement, un bateau de pêche français vit le signal de détresse sur la plage! Luc cria et agita les bras frénétiquement. Ils le virent! Le bateau arrêta et le sauva! Luc fut amené au hôpital le plus proche où il se rétablit complètement. Il retrouva sa famille qui le pensait mort. C'était une réunion émotionnelle!\n\nLuc devint célèbre dans les journaux du monde entier comme \"le garçon courageux qui a survécu trois jours seul sur une île déserte\"! Il reçut des prix de survie et d'courage. Il inspira des millions de personnes!\n\nQuel âge avait Luc?",
       type: "multiple_choice",
-      options: JSON.stringify(["Une tempête a éclaté", "Le bateau s'est arrêté", "Il a mangé trop", "Un ami tomba"]),
-      correctAnswer: "Une tempête a éclaté",
+      options: JSON.stringify(["10 ans", "11 ans", "12 ans", "13 ans"]),
+      correctAnswer: "12 ans",
       order: 1,
     };
 
-    const readQ21b: Question = {
+    const readQ15_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise16Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Où Luc s'est-il retrouvé?",
+      title: "Question 2 (Compréhension)",
+      text: "Combien de temps Luc a-t-il survécu seul sur l'île?",
       type: "multiple_choice",
-      options: JSON.stringify(["En ville", "Sur une île déserte", "À la maison", "Dans la forêt"]),
-      correctAnswer: "Sur une île déserte",
+      options: JSON.stringify(["1 jour", "2 jours", "3 jours", "5 jours"]),
+      correctAnswer: "3 jours",
       order: 2,
     };
 
-    const readQ21c: Question = {
+    const readQ15_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise16Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel défi principal Luc a-t-il affronté?",
+      title: "Question 3 (Compréhension)",
+      text: "Comment Luc a-t-il créé un signal de détresse?",
       type: "multiple_choice",
-      options: JSON.stringify(["La fatigue", "Pas de nourriture, pas d'eau, complètement seul", "Les animaux dangereux", "La chaleur"]),
-      correctAnswer: "Pas de nourriture, pas d'eau, complètement seul",
+      options: JSON.stringify(["Avec un feu", "Avec des rochers blancs formant le mot AIDE", "Avec une bouteille à la mer", "Avec un drapeau"]),
+      correctAnswer: "Avec des rochers blancs formant le mot AIDE",
       order: 3,
     };
 
-    const readQ21d: Question = {
+    const readQ15_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise16Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment Luc a-t-il été secouru?",
+      title: "Question 4 (Interprétation)",
+      text: "Quelles qualités ont permis à Luc de survivre?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un bateau de sauvetage arriva", "Un bateau de pêche vit son signal et le sauva", "Il nagea jusqu'à la côte", "Un hélicoptère l'emmena"]),
-      correctAnswer: "Un bateau de pêche vit son signal et le sauva",
+      options: JSON.stringify(["Sa chance", "Son intelligence, sa détermination et ses connaissances de survie", "L'aide des animaux", "Le beau temps"]),
+      correctAnswer: "Son intelligence, sa détermination et ses connaissances de survie",
       order: 4,
     };
 
-    // HISTOIRE 17: La Bibliothèque Secrète
-    const readQ22: Question = {
+    const readQ15_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous apprend cette histoire sur la résilience?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il faut toujours abandonner", "La détermination et l'ingéniosité peuvent nous sauver dans les situations difficiles", "Les voyages en bateau sont dangereux", "Il ne faut jamais voyager"]),
+      correctAnswer: "La détermination et l'ingéniosité peuvent nous sauver dans les situations difficiles",
+      order: 5,
+    };
+
+    const readQ15_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 6 (Réaction)",
+      text: "Si tu étais seul sur une île déserte, quelle serait ta première action? Pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ15_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 7 (Réaction)",
+      text: "Quelles compétences de survie aimerais-tu apprendre?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ15_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que Luc a eu de la chance ou qu'il a mérité d'être sauvé grâce à ses efforts? Explique.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 16: La Bibliothèque Secrète
+    const readQ16_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise17Id,
-      title: "Histoire 17: La Bibliothèque Secrète",
+      title: "Histoire 16: La Bibliothèque Secrète",
       text: "Félix, un garçon introverti et sensible de douze ans, aimait profondément être seul et en paix. L'école était extrêmement bruyante avec ses centaines d'élèves criards, et le chaos constant de la vie scolaire l'épuisait profondément - les cris dans les couloirs, les matchs de football violent à la cour, les salles de classe surpeuplées. Félix aspirait à la tranquillité et à la solitude.\n\nUn jour, se promenant seul dans les couloirs abandonnés de l'école pendant la pause, il remarqua une vieille porte rouillée cachée derrière une grande affiche de football décolorée. La porte était presque invisible - personne d'autre ne l'avait jamais remarquée. Félix était curieux. Il l'ouvrit lentement.\n\nIl découvrit une magnifique bibliothèque secrète extraordinaire! Elle était remplie de milliers de livres anciens et modernes alignés sur les murs du sol au plafond, complètement silencieuse et paisible comme un temple. Il y avait des fauteuils club confortables en cuir, une petite lampe douce qui créait une ambiance chaude, et des fenêtres françaises avec une vue sur un beau jardin vert. C'était comme un monde complètement différent - magique et merveilleux.\n\nFélix rentra dans ce monde magique secret chaque jour après l'école pendant deux heures. Il lut des livres de science-fiction époustouflants, des aventures extraordinaires, des histoires d'amour émouvantes, des biographies inspirantes. Chaque livre l'emmenait dans des mondes différents, loin du chaos de l'école. Il se fit même un ami précieux - le bibliothécaire bienveillant, Monsieur Deschamps, qui avait 70 ans et qui aimait partager ses connaissances avec Félix.\n\nAu fil du temps - des mois et des années - Félix devint un grand lecteur passionné et culturellement érudit. Son amour profond pour les livres le changea complètement en tant que personne. Il gagna la confiance en lui-même à travers les personnages courageux des histoires. Il trouva des amis à travers le club de lecture. Il trouva l'inspiration et le sens de la vie à travers la littérature. Sa vie changea profondément grâce à cette bibliothèque secrète magique. Plus tard, Félix devint écrivain et professeur de littérature.\n\n",
       type: "multiple_choice",
       options: JSON.stringify(["Il était triste", "L'école était bruyante et le chaos l'épuisait", "Il était malade", "Il n'aimait pas les gens"]),
@@ -1903,44 +2477,88 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    const readQ22b: Question = {
+    const readQ16_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise17Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qu'a découvert Félix?",
+      title: "Question 2 (Compréhension)",
+      text: "Où Félix a-t-il trouvé la porte secrète?",
       type: "multiple_choice",
-      options: JSON.stringify(["Une salle de classe", "Une magnifique bibliothèque secrète", "Un trésor", "Une grotte"]),
-      correctAnswer: "Une magnifique bibliothèque secrète",
+      options: JSON.stringify(["Dans le gymnase", "Derrière une affiche de football", "Dans la cantine", "Dans la cour"]),
+      correctAnswer: "Derrière une affiche de football",
       order: 2,
     };
 
-    const readQ22c: Question = {
+    const readQ16_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise17Id,
-      title: "Question 3 (Péripéties)",
-      text: "Comment la bibliothèque a-t-elle changé Félix?",
+      title: "Question 3 (Compréhension)",
+      text: "Quel âge avait le bibliothécaire Monsieur Deschamps?",
       type: "multiple_choice",
-      options: JSON.stringify(["Il devint paresseux", "Il découvrit l'amour pour les livres et trouva l'inspiration", "Il abandonna l'école", "Il ne changea pas"]),
-      correctAnswer: "Il découvrit l'amour pour les livres et trouva l'inspiration",
+      options: JSON.stringify(["60 ans", "65 ans", "70 ans", "75 ans"]),
+      correctAnswer: "70 ans",
       order: 3,
     };
 
-    const readQ22d: Question = {
+    const readQ16_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise17Id,
-      title: "Question 4 (Dénouement)",
-      text: "Qu'est devenu Félix?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi la bibliothèque était-elle si importante pour Félix?",
       type: "multiple_choice",
-      options: JSON.stringify(["Il resta isolé", "Il devint un grand lecteur passionné avec confiance et amis", "Il quitta l'école", "Il oublia la bibliothèque"]),
-      correctAnswer: "Il devint un grand lecteur passionné avec confiance et amis",
+      options: JSON.stringify(["Il pouvait y dormir", "Elle lui offrait la paix et l'évasion qu'il cherchait", "Il y trouvait de l'argent", "Elle était proche de chez lui"]),
+      correctAnswer: "Elle lui offrait la paix et l'évasion qu'il cherchait",
       order: 4,
     };
 
-    // HISTOIRE 18: Le Concert Spécial
-    const readQ23: Question = {
+    const readQ16_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 5 (Interprétation)",
+      text: "Comment les livres ont-ils transformé la personnalité de Félix?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils l'ont rendu plus timide", "Ils lui ont donné confiance et des amis", "Ils l'ont rendu paresseux", "Ils n'ont eu aucun effet"]),
+      correctAnswer: "Ils lui ont donné confiance et des amis",
+      order: 5,
+    };
+
+    const readQ16_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu un endroit spécial où tu aimes te réfugier? Décris-le.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ16_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 7 (Réaction)",
+      text: "Quel livre ou activité t'aide à te sentir mieux quand tu es stressé?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ16_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que les écoles devraient avoir plus d'espaces calmes pour les élèves comme Félix? Pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 17: Le Concert Spécial
+    const readQ17_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise18Id,
-      title: "Histoire 18: Le Concert Spécial",
+      title: "Histoire 17: Le Concert Spécial",
       text: "Depuis l'âge de 5 ans, Camille, une fille douée et passionnée de 12 ans, jouait du piano avec dévouement dans sa petite ville de Bourgogne. Elle rêvait profondément de devenir une pianiste professionnelle célèbre, peut-être comme ses héroïnes - Alicia Keys ou Lang Lang. Elle pratiquait plusieurs heures chaque jour - deux ou trois heures minimum, plus le week-end - ses doigts dansaient gracieusement sur les touches en ivoire du vieux piano à queue noir qui appartenait à ses parents. Elle jouait tout - du classique de Chopin au moderne, en passant par le jazz. Ses voisins pouvaient l'entendre pratiquer ses gammes, ses concertos, ses sonates, chaque jour après l'école et le week-end.\n\nUn jour du mois de mars, son professeur de musique, Monsieur Beaumont, l'invita personnellement à jouer en solo dans le grand concert de printemps de l'école - un événement annuel très prestigieux devant environ mille personnes! C'était une opportunité énorme et honneur extraordinaire! Camille était initialement excitée et confiante. Elle sélectionna \"Clair de Lune\" de Debussy comme sa pièce - une composition magnifique mais très difficile.\n\nLa nuit avant le concert, Camille ne put absolument pas dormir. Son esprit tournoyait avec des pensées négatives. Elle eut le trac terrible et paralysant. Elle pensa sérieusement à abandonner et à prétendre être malade le jour suivant. \"Et si je faisais des erreurs terribles? Et si j'oubliais complètement la musique au milieu de la performance? Et si je déçois tout le monde - mes parents, mon professeur, l'école entière?\" Elle se sentait paralysée par la peur.\n\nMais le matin du concert, sa mère, Isabelle, la regarda dans les yeux avec amour et tendresse et lui dit: \"Camille, tu as travaillé si dur pendant des mois. Tu es prête, crois-moi. Tu as le talent et la technique. La musique vient de ton cœur, pas de ta tête. Ne pense pas aux erreurs - sents la musique.\"\n\nSur la scène du grand auditorium, devant les mille spectateurs silencieux, Camille monta lentement s'asseoir au piano noir sous les lumières brillantes du projecteur. Elle vit l'audience massive assise silencieusement, attendant. Son trac augmenta encore. Mais elle ferma les yeux, prit une profonde respiration calmante, pensa à sa mère, et commença à jouer.\n\nLa musique coulait magnifiquement et émotionnellement de ses doigts! Elle jouait avec passion absolue et précision technique! Ses mains volaient sur les touches. L'audience était complètement silencieuse - hypnotisée par sa performance. Quand elle termina les dernières notes, il y eut un moment de silence complet - puis l'audience entière se leva et applaudit passionnément pendant cinq minutes entières! Les gens criaient \"Bravo!\" Camille sentit les larmes de joie sur ses joues. Elle comprit profondément que son dur travail incessant, sa persévérance, et sa foi en elle-même avaient porté leurs fruits. Elle reçut le prix du meilleur soliste de l'année!\n\n",
       type: "multiple_choice",
       options: JSON.stringify(["La danse", "La musique et le piano", "Le dessin", "L'écriture"]),
@@ -1948,44 +2566,88 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    const readQ23b: Question = {
+    const readQ17_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise18Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Quel événement changea la vie de Camille?",
+      title: "Question 2 (Compréhension)",
+      text: "Depuis quel âge Camille jouait-elle du piano?",
       type: "multiple_choice",
-      options: JSON.stringify(["Son anniversaire", "L'invitation à jouer dans le concert de l'école", "Une compétition", "Un prix"]),
-      correctAnswer: "L'invitation à jouer dans le concert de l'école",
+      options: JSON.stringify(["3 ans", "4 ans", "5 ans", "6 ans"]),
+      correctAnswer: "5 ans",
       order: 2,
     };
 
-    const readQ23c: Question = {
+    const readQ17_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise18Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème Camille a-t-elle affronté?",
+      title: "Question 3 (Compréhension)",
+      text: "Quelle pièce Camille a-t-elle choisie pour le concert?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle n'avait pas assez pratiqué", "Le trac terrible et peur de l'échec", "Elle n'aimait pas la musique", "Le piano était cassé"]),
-      correctAnswer: "Le trac terrible et peur de l'échec",
+      options: JSON.stringify(["Für Elise de Beethoven", "Clair de Lune de Debussy", "Nocturne de Chopin", "Arabesque de Schumann"]),
+      correctAnswer: "Clair de Lune de Debussy",
       order: 3,
     };
 
-    const readQ23d: Question = {
+    const readQ17_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise18Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment fut le concert?",
+      title: "Question 4 (Interprétation)",
+      text: "Quel conseil de sa mère a aidé Camille à surmonter sa peur?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle fit des erreurs", "Elle joua magnifiquement et reçut une ovation", "Elle abandonna", "Le concert fut annulé"]),
-      correctAnswer: "Elle joua magnifiquement et reçut une ovation",
+      options: JSON.stringify(["De ne pas jouer", "De sentir la musique avec le cœur plutôt que de penser aux erreurs", "De jouer plus vite", "De regarder l'audience"]),
+      correctAnswer: "De sentir la musique avec le cœur plutôt que de penser aux erreurs",
       order: 4,
     };
 
-    // HISTOIRE 19: La Lettre du Futur
-    const readQ24: Question = {
+    const readQ17_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous enseigne cette histoire sur la confiance en soi?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La confiance n'est pas importante", "Le travail acharné et la foi en soi-même portent leurs fruits", "Il faut éviter les défis", "La peur est toujours justifiée"]),
+      correctAnswer: "Le travail acharné et la foi en soi-même portent leurs fruits",
+      order: 5,
+    };
+
+    const readQ17_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu déjà ressenti le trac avant un événement important? Comment l'as-tu géré?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ17_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 7 (Réaction)",
+      text: "Quelle passion ou activité pratiques-tu avec dévouement?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ17_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que Camille aurait dû abandonner si elle n'avait pas réussi? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 18: La Lettre du Futur
+    const readQ18_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise19Id,
-      title: "Histoire 19: La Lettre du Futur",
+      title: "Histoire 18: La Lettre du Futur",
       text: "À l'école Jeanne d'Arc de Reims, le professeur de français, Madame Leclerc, donna un projet intéressant et créatif à sa classe de sixième: \"Écrivez une lettre très personnelle au vous-même du futur. Décrivez en détail vos rêves, vos espoirs, vos peurs, vos objectifs pour les 10 prochaines années. Soyez honnête et vulnérable. Nous scelllerons ces lettres solennellement et nous les ouvrirons exactement dans 10 ans quand vous aurez 22 ans!\"\n\nSarah, une fille imaginative de 12 ans, écrivit une longue lettre très sincère et détaillée. Elle écrivit passionnément sur ses rêves de voyager dans des pays exotiques - la Thaïlande, le Maroc, le Japon - d'avoir une bonne carrière comme journaliste, de contribuer positivement à la société, de voir le monde et l'humanité changer pour le mieux. Elle parla de ses peurs aussi - peur de l'échec, peur de décevoir ses parents. Elle écrivit: \"Chère Sarah du futur, j'espère que tu as réalisé tes rêves et que tu es heureuse.\"\n\nAprès quelques semaines, en nettoyant profondément sa chambre en désordre, en vidant les placards et en réorganisant les choses sous le vieux plancher, Sarah découvrit accidentellement une vieille lettre jaunâtre cachée sous un floorboard ancien. Elle était très ancienne et usée par le temps, enveloppée dans du papier journal de 1960. En l'ouvrant délicatement, elle vit qu'elle avait été écrite par quelqu'un en 2010 - exactement 13 ans auparavant! L'écriture était celle d'une jeune fille d'environ 12-13 ans.\n\nLa lettre parlait avec passion des rêves d'une fille du même âge que Sarah. Les rêves étaient étonnamment similaires aux siens - voyager autour du monde, réussir dans la vie, avoir une carrière significative, être heureux et faire une différence. La fille parlait de ses peurs aussi. C'était profondément émotionnel - comme si quelqu'un d'une époque passée parlait directement à Sarah à travers le temps!\n\nSarah montra la lettre mystérieuse à ses parents, tremblant d'excitation. Ses parents furent surpris et se regardèrent avec une expression significative. Ils lui racontèrent finalement la vérité - c'était la maison de sa grand-mère avant! Sa grand-mère avait vendu la maison à ses parents il y a trois ans seulement! La lettre avait probablement été écrite par un autre enfant qui habitait cette maison il y a 13 ans - avant que la grand-mère ne la vende!\n\nSarah fut profondément ému par cette découverte. Cet événement magique inspira Sarah à rêver encore plus grand et à croire fermement que les rêves peuvent se réaliser et que les connexions humaines transcendent le temps et l'espace. Elle alla même chercher le contact de la grand-mère de la maison précédente et échangea des lettres avec la fille qui avait écrit la lettre mystérieuse!\n\n",
       type: "multiple_choice",
       options: JSON.stringify(["Écrire une biographie", "Écrire une lettre au futur à soi-même", "Faire un journal", "Créer une histoire fictive"]),
@@ -1993,44 +2655,88 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    const readQ24b: Question = {
+    const readQ18_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise19Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qu'a découvert Sarah en nettoyant sa chambre?",
+      title: "Question 2 (Compréhension)",
+      text: "Dans quelle école étudiait Sarah?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un vieux journal", "Une vieille lettre écrite en 2010", "De l'argent", "Des photos"]),
-      correctAnswer: "Une vieille lettre écrite en 2010",
+      options: JSON.stringify(["École Victor Hugo", "École Jeanne d'Arc", "École Marie Curie", "École Louis Pasteur"]),
+      correctAnswer: "École Jeanne d'Arc",
       order: 2,
     };
 
-    const readQ24c: Question = {
+    const readQ18_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise19Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel était le mystère de la lettre?",
+      title: "Question 3 (Compréhension)",
+      text: "Quand la lettre mystérieuse avait-elle été écrite?",
       type: "multiple_choice",
-      options: JSON.stringify(["La lettre était perdue depuis 50 ans", "La lettre venait d'une autre personne habitant la maison il y a longtemps", "C'était une fausse lettre", "Personne ne savait qui l'avait écrite"]),
-      correctAnswer: "La lettre venait d'une autre personne habitant la maison il y a longtemps",
+      options: JSON.stringify(["En 2000", "En 2005", "En 2010", "En 2015"]),
+      correctAnswer: "En 2010",
       order: 3,
     };
 
-    const readQ24d: Question = {
+    const readQ18_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise19Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment cette découverte affecta-t-elle Sarah?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Sarah a-t-elle été émue en lisant la vieille lettre?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle perdit ses rêves", "Elle fut inspirée à rêver encore plus grand", "Elle oublia la lettre", "Elle devint triste"]),
-      correctAnswer: "Elle fut inspirée à rêver encore plus grand",
+      options: JSON.stringify(["La lettre était drôle", "Les rêves de l'auteure étaient similaires aux siens", "La lettre était courte", "Elle connaissait l'auteure"]),
+      correctAnswer: "Les rêves de l'auteure étaient similaires aux siens",
       order: 4,
     };
 
-    // HISTOIRE 20: L'Aventure Finale
-    const readQ25: Question = {
+    const readQ18_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous apprend cette histoire sur les connexions humaines?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les lettres sont inutiles", "Les connexions humaines peuvent transcender le temps", "Il ne faut pas garder de souvenirs", "Le passé n'a pas d'importance"]),
+      correctAnswer: "Les connexions humaines peuvent transcender le temps",
+      order: 5,
+    };
+
+    const readQ18_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 6 (Réaction)",
+      text: "Si tu écrivais une lettre à toi-même dans 10 ans, que dirais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ18_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 7 (Réaction)",
+      text: "As-tu déjà trouvé quelque chose d'ancien et mystérieux? Raconte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ18_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que l'exercice d'écrire une lettre au futur est une bonne idée? Pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 19: L'Aventure Finale
+    const readQ19_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise20Id,
-      title: "Histoire 20: L'Aventure Finale",
+      title: "Histoire 19: L'Aventure Finale",
       text: "C'était la fin de l'école primaire en juin. Les enfants qui avaient grandi ensemble intrinsèquement depuis la maternelle - pendant sept ans - se réalisaient que très bientôt, ils se sépareraient pour aller à différents collèges dans différentes villes. Cette réalité était déchirante pour tous. Tous les meilleurs amis se rassemblèrent solennellement pour planifier une dernière grande aventure inoubliable.\n\nLe groupe d'amis inséparable - Jean (12 ans, leader), Marie (12 ans, créative), Pierre (12 ans, fort), Léa (11 ans, intelligente) et Thomas (12 ans, sage) - se rencontrèrent et décidèrent ensemble de faire un grand voyage d'aventure mémorable. Ils demandèrent la permission à leurs parents et partirent en randonnée pédestre épique à travers les montagnes des Vosges pendant une semaine complète, affrontant des défis physiques intenses et des épreuves émotionnelles profondes.\n\nIls grimpèrent des pentes raides et rocheuses, leurs jambes fatiguées mais leurs cœurs forts. Ils traversèrent des rivières froides qui glacèrent leurs os. Ils campèrent sous les étoiles magnifiques et partagèrent leurs peurs les plus profondes et leurs rêves les plus secrets autour du feu de camp. Ils se confièrent des choses qu'ils n'avaient jamais confiées à personne. Chaque jour amenait de nouvelles épreuves physiques - épuisement, blessures mineures, blisters aux pieds - mais aussi de nouvelles joies - rires ensemble, moments de beauté naturelle, découvertes surprenantes.\n\nUne nuit cruciale, avant l'ascension finale du sommet principal, les cinq amis s'assirent ensemble sur les rochers chauds sous les étoiles. Ils parlèrent ouvertement de leurs peurs terribles de se séparer. Jean parla de sa peur de perdre ses amis. Marie pleura en disant que Jean et elle avaient des sentiments spéciaux l'un pour l'autre. Pierre parla de sa peur du changement et de l'inconnu. Léa et Thomas écoutaient silencieusement. Ils pleuraient en se serrant les uns les autres - une étreinte de groupe chaleureuse et profonde qui dura longtemps. C'était un moment de connexion émotionnelle brute et authentique que jamais ils n'oublieraient.\n\nLe dernier jour, après quatre heures de randonnée intense, les cinq amis atteignirent finalement le sommet spectaculaire de la montagne à 1500 mètres d'altitude. De là, de cette perspective élevée, ils voyaient tout le monde en dessous - leur petite ville pittoresque, l'école qu'ils quitaient, les forêts vertes, les rivières brillantes, tout le chemin qu'ils avaient parcouru physiquement et émotionnellement ensemble. Ils comprirent profondément qu'ils n'étaient plus les mêmes enfants insouciants. Ils étaient devenus plus forts physiquement et émotionnellement, plus matures, plus sages, plus conscients du monde.\n\nAu sommet, au coucher du soleil, les cinq amis firent un serment solennel l'un envers l'autre, se tenant les mains: \"Peu importe où nous irons, quels collèges nous fréquenterons, quelles amies nouveaux nous rencontrerons, nous resterons amis à jamais. Cette aventure nous a changés à jamais. Nous promettons de rester en contact, de nous écrire, de nous visiter, de nous aider. Vous êtes mes frères et mes sœurs.\" Ils se promettaient loyalty mutuelle éternelle.\n\n",
       type: "multiple_choice",
       options: JSON.stringify(["Pour passer des vacances", "Parce que c'était la fin de l'école primaire et ils se sépareraient", "Pour devenir célèbres", "Pour établir un record"]),
@@ -2038,37 +2744,170 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    const readQ25b: Question = {
+    const readQ19_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise20Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Qu'ont fait les amis comme aventure finale?",
+      title: "Question 2 (Compréhension)",
+      text: "Combien d'amis faisaient partie du groupe?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un voyage en voiture", "Une randonnée à travers les montagnes", "Un voyage en bateau", "Un tour en avion"]),
-      correctAnswer: "Une randonnée à travers les montagnes",
+      options: JSON.stringify(["3", "4", "5", "6"]),
+      correctAnswer: "5",
       order: 2,
     };
 
-    const readQ25c: Question = {
+    const readQ19_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise20Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel moment difficile ils affrontèrent?",
+      title: "Question 3 (Compréhension)",
+      text: "Où le groupe a-t-il fait sa randonnée?",
       type: "multiple_choice",
-      options: JSON.stringify(["La pluie intense", "La peur de se séparer et les larmes avant le sommet", "Un accident en montagne", "Ils eurent faim"]),
-      correctAnswer: "La peur de se séparer et les larmes avant le sommet",
+      options: JSON.stringify(["Les Alpes", "Les Vosges", "Les Pyrénées", "Le Jura"]),
+      correctAnswer: "Les Vosges",
       order: 3,
     };
 
-    const readQ25d: Question = {
+    const readQ19_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise20Id,
-      title: "Question 4 (Dénouement)",
-      text: "Qu'ont compris les amis au sommet?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi cette aventure était-elle si importante pour le groupe?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ils n'étaient plus amis", "Qu'ils n'étaient plus les mêmes enfants et qu'ils resteraient amis pour toujours", "Qu'ils retourneraient à l'école", "Que la montagne était facile"]),
-      correctAnswer: "Qu'ils n'étaient plus les mêmes enfants et qu'ils resteraient amis pour toujours",
+      options: JSON.stringify(["Pour battre un record", "Pour créer un dernier souvenir avant de se séparer", "Pour impressionner leurs parents", "Pour gagner un prix"]),
+      correctAnswer: "Pour créer un dernier souvenir avant de se séparer",
       order: 4,
+    };
+
+    const readQ19_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que symbolise le sommet de la montagne dans cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La fin de leur amitié", "Le passage de l'enfance à l'adolescence et la maturité", "Juste un point géographique", "Un défi physique"]),
+      correctAnswer: "Le passage de l'enfance à l'adolescence et la maturité",
+      order: 5,
+    };
+
+    const readQ19_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu des amis proches que tu as peur de perdre? Comment maintiens-tu ces amitiés?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ19_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 7 (Réaction)",
+      text: "Si tu pouvais planifier une aventure finale avec tes amis, que ferais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ19_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que les amitiés d'enfance peuvent vraiment durer toute la vie? Justifie ta réponse.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    // HISTOIRE 20: Le Rêve de Mathieu
+    const readQ20_1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Histoire 20: Le Rêve de Mathieu",
+      text: "Mathieu était un garçon de 11 ans qui vivait dans un petit appartement modeste au cinquième étage d'un vieil immeuble dans une banlieue de Paris. Sa famille n'était pas riche - son père travaillait comme chauffeur de bus et sa mère comme aide-soignante à l'hôpital. Malgré leurs moyens limités, ses parents l'encourageaient toujours à poursuivre ses rêves.\n\nDepuis qu'il avait 6 ans, Mathieu rêvait de devenir astronome. Il passait des heures sur son petit balcon à regarder les étoiles avec un vieux télescope que son grand-père lui avait donné avant de mourir. Il connaissait le nom de toutes les constellations, les distances des planètes, les mystères des trous noirs. Ses cahiers d'école étaient remplis de dessins de galaxies et de fusées spatiales.\n\nUn jour de septembre, son professeur de sciences, Monsieur Dupont, annonça qu'un concours national de sciences était ouvert à tous les élèves de France. Le thème était: 'Comment l'exploration spatiale peut améliorer la vie sur Terre?' Le premier prix était une visite au Centre National d'Études Spatiales à Toulouse et une rencontre avec un vrai astronaute!\n\nMathieu décida immédiatement de participer. Pendant trois mois, il travailla dur sur son projet. Il créa une maquette détaillée montrant comment les satellites aident les agriculteurs, prévoient les catastrophes naturelles, et connectent les gens dans les régions isolées. Il passa ses week-ends à la bibliothèque municipale, lisant des livres scientifiques. Il demanda conseil à son professeur. Il fit et refit sa présentation des dizaines de fois.\n\nLe jour de la présentation régionale arriva. Mathieu était très nerveux. Il vit les autres participants avec leurs projets sophistiqués et leurs uniformes d'écoles privées. Il se sentit petit et insignifiant avec sa maquette faite de cartons récupérés et de bouteilles recyclées.\n\nMais quand il commença à parler, quelque chose de magique se produisit. Sa passion pour l'espace brilla à travers chaque mot. Les juges furent impressionnés non seulement par ses connaissances approfondies, mais surtout par son enthousiasme authentique et sa créativité. Contre toute attente, Mathieu gagna le premier prix régional, puis le national!\n\nÀ Toulouse, en rencontrant l'astronaute Thomas Pesquet qui lui serra la main, Mathieu comprit que les rêves n'ont pas besoin d'argent pour se réaliser - ils ont besoin de passion, de travail acharné, et de persévérance.\n\nQuel âge avait Mathieu?",
+      type: "multiple_choice",
+      options: JSON.stringify(["9 ans", "10 ans", "11 ans", "12 ans"]),
+      correctAnswer: "11 ans",
+      order: 1,
+    };
+
+    const readQ20_2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Question 2 (Compréhension)",
+      text: "Qui avait donné le télescope à Mathieu?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Son père", "Sa mère", "Son grand-père", "Son professeur"]),
+      correctAnswer: "Son grand-père",
+      order: 2,
+    };
+
+    const readQ20_3: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Question 3 (Compréhension)",
+      text: "Quel était le premier prix du concours?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un nouveau télescope", "Une visite au CNES et rencontre avec un astronaute", "Un voyage en avion", "Un ordinateur"]),
+      correctAnswer: "Une visite au CNES et rencontre avec un astronaute",
+      order: 3,
+    };
+
+    const readQ20_4: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Mathieu s'est-il senti petit et insignifiant au début de la compétition?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il était malade", "Les autres avaient des projets sophistiqués et des uniformes d'écoles privées", "Il avait oublié sa présentation", "Son projet était en retard"]),
+      correctAnswer: "Les autres avaient des projets sophistiqués et des uniformes d'écoles privées",
+      order: 4,
+    };
+
+    const readQ20_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Question 5 (Interprétation)",
+      text: "Quelle leçon principale Mathieu a-t-il apprise de cette expérience?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'argent est nécessaire pour réussir", "La passion et le travail acharné sont plus importants que les moyens financiers", "Les concours sont injustes", "Il faut toujours avoir des uniformes"]),
+      correctAnswer: "La passion et le travail acharné sont plus importants que les moyens financiers",
+      order: 5,
+    };
+
+    const readQ20_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Question 6 (Réaction)",
+      text: "As-tu un rêve que tu aimerais réaliser? Comment travailles-tu pour y arriver?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ20_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Question 7 (Réaction)",
+      text: "Que ferais-tu si tu gagnais un concours comme Mathieu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ20_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise21Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que les enfants de familles modestes ont les mêmes chances de réussir que les autres? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
     };
 
     // Informatif - Un petit exercice
@@ -2151,76 +2990,150 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ2_6.id, readQ2_6);
     this.questions.set(readQ2_7.id, readQ2_7);
     this.questions.set(readQ2_8.id, readQ2_8);
-    this.questions.set(readQ5.id, readQ5);
-    this.questions.set(readQ6.id, readQ6);
-    this.questions.set(readQ6b.id, readQ6b);
-    this.questions.set(readQ6c.id, readQ6c);
-    this.questions.set(readQ7.id, readQ7);
-    this.questions.set(readQ8.id, readQ8);
-    this.questions.set(readQ8b.id, readQ8b);
-    this.questions.set(readQ8c.id, readQ8c);
-    this.questions.set(readQ9.id, readQ9);
-    this.questions.set(readQ10.id, readQ10);
-    this.questions.set(readQ11.id, readQ11);
-    this.questions.set(readQ11b.id, readQ11b);
-    this.questions.set(readQ11c.id, readQ11c);
-    this.questions.set(readQ11d.id, readQ11d);
-    this.questions.set(readQ12.id, readQ12);
-    this.questions.set(readQ12b.id, readQ12b);
-    this.questions.set(readQ12c.id, readQ12c);
-    this.questions.set(readQ12d.id, readQ12d);
-    this.questions.set(readQ13.id, readQ13);
-    this.questions.set(readQ13b.id, readQ13b);
-    this.questions.set(readQ13c.id, readQ13c);
-    this.questions.set(readQ13d.id, readQ13d);
-    this.questions.set(readQ14.id, readQ14);
-    this.questions.set(readQ14b.id, readQ14b);
-    this.questions.set(readQ14c.id, readQ14c);
-    this.questions.set(readQ14d.id, readQ14d);
-    this.questions.set(readQ15.id, readQ15);
-    this.questions.set(readQ15b.id, readQ15b);
-    this.questions.set(readQ15c.id, readQ15c);
-    this.questions.set(readQ15d.id, readQ15d);
-    this.questions.set(readQ16.id, readQ16);
-    this.questions.set(readQ16b.id, readQ16b);
-    this.questions.set(readQ16c.id, readQ16c);
-    this.questions.set(readQ16d.id, readQ16d);
-    this.questions.set(readQ17.id, readQ17);
-    this.questions.set(readQ17b.id, readQ17b);
-    this.questions.set(readQ17c.id, readQ17c);
-    this.questions.set(readQ17d.id, readQ17d);
-    this.questions.set(readQ18.id, readQ18);
-    this.questions.set(readQ18b.id, readQ18b);
-    this.questions.set(readQ18c.id, readQ18c);
-    this.questions.set(readQ18d.id, readQ18d);
-    this.questions.set(readQ19.id, readQ19);
-    this.questions.set(readQ19b.id, readQ19b);
-    this.questions.set(readQ19c.id, readQ19c);
-    this.questions.set(readQ19d.id, readQ19d);
-    this.questions.set(readQ20.id, readQ20);
-    this.questions.set(readQ20b.id, readQ20b);
-    this.questions.set(readQ20c.id, readQ20c);
-    this.questions.set(readQ20d.id, readQ20d);
-    this.questions.set(readQ21.id, readQ21);
-    this.questions.set(readQ21b.id, readQ21b);
-    this.questions.set(readQ21c.id, readQ21c);
-    this.questions.set(readQ21d.id, readQ21d);
-    this.questions.set(readQ22.id, readQ22);
-    this.questions.set(readQ22b.id, readQ22b);
-    this.questions.set(readQ22c.id, readQ22c);
-    this.questions.set(readQ22d.id, readQ22d);
-    this.questions.set(readQ23.id, readQ23);
-    this.questions.set(readQ23b.id, readQ23b);
-    this.questions.set(readQ23c.id, readQ23c);
-    this.questions.set(readQ23d.id, readQ23d);
-    this.questions.set(readQ24.id, readQ24);
-    this.questions.set(readQ24b.id, readQ24b);
-    this.questions.set(readQ24c.id, readQ24c);
-    this.questions.set(readQ24d.id, readQ24d);
-    this.questions.set(readQ25.id, readQ25);
-    this.questions.set(readQ25b.id, readQ25b);
-    this.questions.set(readQ25c.id, readQ25c);
-    this.questions.set(readQ25d.id, readQ25d);
+    this.questions.set(readQ3_1.id, readQ3_1);
+    this.questions.set(readQ3_2.id, readQ3_2);
+    this.questions.set(readQ3_3.id, readQ3_3);
+    this.questions.set(readQ3_4.id, readQ3_4);
+    this.questions.set(readQ3_5.id, readQ3_5);
+    this.questions.set(readQ3_6.id, readQ3_6);
+    this.questions.set(readQ3_7.id, readQ3_7);
+    this.questions.set(readQ3_8.id, readQ3_8);
+    this.questions.set(readQ4_1.id, readQ4_1);
+    this.questions.set(readQ4_2.id, readQ4_2);
+    this.questions.set(readQ4_3.id, readQ4_3);
+    this.questions.set(readQ4_4.id, readQ4_4);
+    this.questions.set(readQ4_5.id, readQ4_5);
+    this.questions.set(readQ4_6.id, readQ4_6);
+    this.questions.set(readQ4_7.id, readQ4_7);
+    this.questions.set(readQ4_8.id, readQ4_8);
+    this.questions.set(readQ5_1.id, readQ5_1);
+    this.questions.set(readQ5_2.id, readQ5_2);
+    this.questions.set(readQ5_3.id, readQ5_3);
+    this.questions.set(readQ5_4.id, readQ5_4);
+    this.questions.set(readQ5_5.id, readQ5_5);
+    this.questions.set(readQ5_6.id, readQ5_6);
+    this.questions.set(readQ5_7.id, readQ5_7);
+    this.questions.set(readQ5_8.id, readQ5_8);
+    this.questions.set(readQ6_1.id, readQ6_1);
+    this.questions.set(readQ6_2.id, readQ6_2);
+    this.questions.set(readQ6_3.id, readQ6_3);
+    this.questions.set(readQ6_4.id, readQ6_4);
+    this.questions.set(readQ6_5.id, readQ6_5);
+    this.questions.set(readQ6_6.id, readQ6_6);
+    this.questions.set(readQ6_7.id, readQ6_7);
+    this.questions.set(readQ6_8.id, readQ6_8);
+    this.questions.set(readQ7_1.id, readQ7_1);
+    this.questions.set(readQ7_2.id, readQ7_2);
+    this.questions.set(readQ7_3.id, readQ7_3);
+    this.questions.set(readQ7_4.id, readQ7_4);
+    this.questions.set(readQ7_5.id, readQ7_5);
+    this.questions.set(readQ7_6.id, readQ7_6);
+    this.questions.set(readQ7_7.id, readQ7_7);
+    this.questions.set(readQ7_8.id, readQ7_8);
+    this.questions.set(readQ8_1.id, readQ8_1);
+    this.questions.set(readQ8_2.id, readQ8_2);
+    this.questions.set(readQ8_3.id, readQ8_3);
+    this.questions.set(readQ8_4.id, readQ8_4);
+    this.questions.set(readQ8_5.id, readQ8_5);
+    this.questions.set(readQ8_6.id, readQ8_6);
+    this.questions.set(readQ8_7.id, readQ8_7);
+    this.questions.set(readQ8_8.id, readQ8_8);
+    this.questions.set(readQ9_1.id, readQ9_1);
+    this.questions.set(readQ9_2.id, readQ9_2);
+    this.questions.set(readQ9_3.id, readQ9_3);
+    this.questions.set(readQ9_4.id, readQ9_4);
+    this.questions.set(readQ9_5.id, readQ9_5);
+    this.questions.set(readQ9_6.id, readQ9_6);
+    this.questions.set(readQ9_7.id, readQ9_7);
+    this.questions.set(readQ9_8.id, readQ9_8);
+    this.questions.set(readQ10_1.id, readQ10_1);
+    this.questions.set(readQ10_2.id, readQ10_2);
+    this.questions.set(readQ10_3.id, readQ10_3);
+    this.questions.set(readQ10_4.id, readQ10_4);
+    this.questions.set(readQ10_5.id, readQ10_5);
+    this.questions.set(readQ10_6.id, readQ10_6);
+    this.questions.set(readQ10_7.id, readQ10_7);
+    this.questions.set(readQ10_8.id, readQ10_8);
+    this.questions.set(readQ11_1.id, readQ11_1);
+    this.questions.set(readQ11_2.id, readQ11_2);
+    this.questions.set(readQ11_3.id, readQ11_3);
+    this.questions.set(readQ11_4.id, readQ11_4);
+    this.questions.set(readQ11_5.id, readQ11_5);
+    this.questions.set(readQ11_6.id, readQ11_6);
+    this.questions.set(readQ11_7.id, readQ11_7);
+    this.questions.set(readQ11_8.id, readQ11_8);
+    this.questions.set(readQ12_1.id, readQ12_1);
+    this.questions.set(readQ12_2.id, readQ12_2);
+    this.questions.set(readQ12_3.id, readQ12_3);
+    this.questions.set(readQ12_4.id, readQ12_4);
+    this.questions.set(readQ12_5.id, readQ12_5);
+    this.questions.set(readQ12_6.id, readQ12_6);
+    this.questions.set(readQ12_7.id, readQ12_7);
+    this.questions.set(readQ12_8.id, readQ12_8);
+    this.questions.set(readQ13_1.id, readQ13_1);
+    this.questions.set(readQ13_2.id, readQ13_2);
+    this.questions.set(readQ13_3.id, readQ13_3);
+    this.questions.set(readQ13_4.id, readQ13_4);
+    this.questions.set(readQ13_5.id, readQ13_5);
+    this.questions.set(readQ13_6.id, readQ13_6);
+    this.questions.set(readQ13_7.id, readQ13_7);
+    this.questions.set(readQ13_8.id, readQ13_8);
+    this.questions.set(readQ14_1.id, readQ14_1);
+    this.questions.set(readQ14_2.id, readQ14_2);
+    this.questions.set(readQ14_3.id, readQ14_3);
+    this.questions.set(readQ14_4.id, readQ14_4);
+    this.questions.set(readQ14_5.id, readQ14_5);
+    this.questions.set(readQ14_6.id, readQ14_6);
+    this.questions.set(readQ14_7.id, readQ14_7);
+    this.questions.set(readQ14_8.id, readQ14_8);
+    this.questions.set(readQ15_1.id, readQ15_1);
+    this.questions.set(readQ15_2.id, readQ15_2);
+    this.questions.set(readQ15_3.id, readQ15_3);
+    this.questions.set(readQ15_4.id, readQ15_4);
+    this.questions.set(readQ15_5.id, readQ15_5);
+    this.questions.set(readQ15_6.id, readQ15_6);
+    this.questions.set(readQ15_7.id, readQ15_7);
+    this.questions.set(readQ15_8.id, readQ15_8);
+    this.questions.set(readQ16_1.id, readQ16_1);
+    this.questions.set(readQ16_2.id, readQ16_2);
+    this.questions.set(readQ16_3.id, readQ16_3);
+    this.questions.set(readQ16_4.id, readQ16_4);
+    this.questions.set(readQ16_5.id, readQ16_5);
+    this.questions.set(readQ16_6.id, readQ16_6);
+    this.questions.set(readQ16_7.id, readQ16_7);
+    this.questions.set(readQ16_8.id, readQ16_8);
+    this.questions.set(readQ17_1.id, readQ17_1);
+    this.questions.set(readQ17_2.id, readQ17_2);
+    this.questions.set(readQ17_3.id, readQ17_3);
+    this.questions.set(readQ17_4.id, readQ17_4);
+    this.questions.set(readQ17_5.id, readQ17_5);
+    this.questions.set(readQ17_6.id, readQ17_6);
+    this.questions.set(readQ17_7.id, readQ17_7);
+    this.questions.set(readQ17_8.id, readQ17_8);
+    this.questions.set(readQ18_1.id, readQ18_1);
+    this.questions.set(readQ18_2.id, readQ18_2);
+    this.questions.set(readQ18_3.id, readQ18_3);
+    this.questions.set(readQ18_4.id, readQ18_4);
+    this.questions.set(readQ18_5.id, readQ18_5);
+    this.questions.set(readQ18_6.id, readQ18_6);
+    this.questions.set(readQ18_7.id, readQ18_7);
+    this.questions.set(readQ18_8.id, readQ18_8);
+    this.questions.set(readQ19_1.id, readQ19_1);
+    this.questions.set(readQ19_2.id, readQ19_2);
+    this.questions.set(readQ19_3.id, readQ19_3);
+    this.questions.set(readQ19_4.id, readQ19_4);
+    this.questions.set(readQ19_5.id, readQ19_5);
+    this.questions.set(readQ19_6.id, readQ19_6);
+    this.questions.set(readQ19_7.id, readQ19_7);
+    this.questions.set(readQ19_8.id, readQ19_8);
+    this.questions.set(readQ20_1.id, readQ20_1);
+    this.questions.set(readQ20_2.id, readQ20_2);
+    this.questions.set(readQ20_3.id, readQ20_3);
+    this.questions.set(readQ20_4.id, readQ20_4);
+    this.questions.set(readQ20_5.id, readQ20_5);
+    this.questions.set(readQ20_6.id, readQ20_6);
+    this.questions.set(readQ20_7.id, readQ20_7);
+    this.questions.set(readQ20_8.id, readQ20_8);
     this.questions.set(writQ1.id, writQ1);
     this.questions.set(writQ2.id, writQ2);
     this.questions.set(writQ3.id, writQ3);
