@@ -2389,6 +2389,726 @@ export class MemStorage implements IStorage {
       order: 11,
     };
 
+    // HISTOIRE 6: La Cabane Mystérieuse - Questions additionnelles
+    const readQ6_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment l'histoire de la cabane s'est-elle terminée pour les enfants?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils ont eu peur et sont partis", "Ils ont découvert que c'était l'atelier secret d'un artiste et sont devenus ses amis", "La cabane s'est effondrée", "Ils n'ont rien trouvé"]),
+      correctAnswer: "Ils ont découvert que c'était l'atelier secret d'un artiste et sont devenus ses amis",
+      order: 5,
+    };
+    const readQ6_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 6 (Compréhension)",
+      text: "Où se trouvait la cabane mystérieuse?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Au bord de la rivière", "Au milieu de la forêt", "Dans un jardin", "Sur une colline"]),
+      correctAnswer: "Au milieu de la forêt",
+      order: 6,
+    };
+    const readQ6_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 7 (Compréhension)",
+      text: "Combien d'enfants ont exploré la cabane?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un", "Deux", "Trois", "Quatre"]),
+      correctAnswer: "Trois",
+      order: 7,
+    };
+    const readQ6_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi penses-tu que les enfants ont eu le courage d'entrer dans la cabane malgré leur peur? Que nous dit cela sur la curiosité?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ6_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 9 (Réaction)",
+      text: "Aurais-tu eu le courage d'entrer dans cette cabane mystérieuse? Pourquoi ou pourquoi pas?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ6_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 10 (Réaction)",
+      text: "As-tu déjà exploré un endroit mystérieux ou interdit? Raconte ton expérience.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ6_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise6Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il réussi à créer du suspense dans cette histoire? Donne un exemple qui t'a tenu en haleine.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 7: Le Concours de Dessin - Questions additionnelles
+    const readQ7_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment Maya a-t-elle été transformée par cette expérience?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle a abandonné le dessin", "Elle a gagné confiance en elle et a continué à créer", "Elle est devenue jalouse", "Rien n'a changé"]),
+      correctAnswer: "Elle a gagné confiance en elle et a continué à créer",
+      order: 5,
+    };
+    const readQ7_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quel était le thème du concours de dessin?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les animaux", "La nature en automne", "Les sports", "La famille"]),
+      correctAnswer: "La nature en automne",
+      order: 6,
+    };
+    const readQ7_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 7 (Compréhension)",
+      text: "Pourquoi Maya hésitait-elle à participer au concours?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle n'aimait pas dessiner", "Elle avait peur de ne pas être assez bonne", "Elle n'avait pas de crayons", "Ses parents l'interdisaient"]),
+      correctAnswer: "Elle avait peur de ne pas être assez bonne",
+      order: 7,
+    };
+    const readQ7_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous enseigne l'histoire de Maya sur le fait de surmonter ses peurs et de croire en soi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ7_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu déjà hésité à participer à quelque chose par peur d'échouer? Qu'as-tu fait?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ7_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 10 (Réaction)",
+      text: "Comment te sentirais-tu si tu présentais ton travail devant tout le monde comme Maya?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ7_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise7Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Penses-tu que le personnage de Maya est réaliste? Les enfants de ton âge ressentent-ils les mêmes doutes?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 8: La Maison Hantée - Questions additionnelles
+    const readQ8_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 5 (Situation finale)",
+      text: "Quelle était la vérité sur la maison hantée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle était vraiment hantée", "C'était juste une vieille dame solitaire qui y habitait", "Elle était abandonnée", "Des fantômes y vivaient"]),
+      correctAnswer: "C'était juste une vieille dame solitaire qui y habitait",
+      order: 5,
+    };
+    const readQ8_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 6 (Compréhension)",
+      text: "Qu'est-ce que les enfants du quartier racontaient sur la maison?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Qu'elle était belle", "Qu'elle était hantée par des fantômes", "Qu'elle était à vendre", "Qu'elle appartenait au maire"]),
+      correctAnswer: "Qu'elle était hantée par des fantômes",
+      order: 6,
+    };
+    const readQ8_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 7 (Compréhension)",
+      text: "Qui habitait réellement dans la maison?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un fantôme", "Une vieille dame seule", "Une famille", "Personne"]),
+      correctAnswer: "Une vieille dame seule",
+      order: 7,
+    };
+    const readQ8_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi les gens créent-ils des histoires effrayantes sur les choses qu'ils ne comprennent pas? Que nous apprend cette histoire sur les préjugés?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ8_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu déjà cru à une rumeur qui s'est avérée fausse? Raconte cette expérience.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ8_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 10 (Réaction)",
+      text: "Comment aurais-tu réagi en découvrant la vérité sur la maison?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ8_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise8Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Cette histoire a-t-elle une bonne morale? Explique pourquoi cette leçon est importante.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 9: Le Secret du Grenier - Questions additionnelles
+    const readQ9_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment Léo se sent-il à la fin de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Déçu", "Plus proche de son grand-père décédé et heureux d'avoir découvert son passé", "Triste", "Indifférent"]),
+      correctAnswer: "Plus proche de son grand-père décédé et heureux d'avoir découvert son passé",
+      order: 5,
+    };
+    const readQ9_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 6 (Compréhension)",
+      text: "Qu'a trouvé Léo dans le grenier?",
+      type: "multiple_choice",
+      options: JSON.stringify(["De l'argent", "Une vieille malle avec des souvenirs de son grand-père", "Des jouets", "Rien d'intéressant"]),
+      correctAnswer: "Une vieille malle avec des souvenirs de son grand-père",
+      order: 6,
+    };
+    const readQ9_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 7 (Compréhension)",
+      text: "Quel métier avait le grand-père de Léo quand il était jeune?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Médecin", "Musicien dans un orchestre", "Professeur", "Agriculteur"]),
+      correctAnswer: "Musicien dans un orchestre",
+      order: 7,
+    };
+    const readQ9_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi est-il important de connaître l'histoire de notre famille? Que nous apportent ces souvenirs du passé?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ9_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 9 (Réaction)",
+      text: "Y a-t-il un objet dans ta famille qui a une histoire spéciale? Décris-le.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ9_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 10 (Réaction)",
+      text: "Si tu pouvais poser une question à un de tes ancêtres, que lui demanderais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ9_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise9Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il réussi à transmettre l'émotion de Léo en découvrant le passé de son grand-père? Explique avec un passage du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 10: La Course Épique - Questions additionnelles
+    const readQ10_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 5 (Situation finale)",
+      text: "Qu'a appris le protagoniste de cette course?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que gagner est tout ce qui compte", "Que la persévérance et l'entraide sont plus importantes que la victoire", "Que le vélo est ennuyeux", "Qu'il ne faut jamais faire de compétition"]),
+      correctAnswer: "Que la persévérance et l'entraide sont plus importantes que la victoire",
+      order: 5,
+    };
+    const readQ10_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quelle était la distance de la course de vélo?",
+      type: "multiple_choice",
+      options: JSON.stringify(["5 kilomètres", "10 kilomètres", "15 kilomètres", "20 kilomètres"]),
+      correctAnswer: "15 kilomètres",
+      order: 6,
+    };
+    const readQ10_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 7 (Compréhension)",
+      text: "Qu'est-il arrivé pendant la course qui a changé tout?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il a plu", "Un concurrent est tombé et le protagoniste s'est arrêté pour l'aider", "La course a été annulée", "Il a gagné facilement"]),
+      correctAnswer: "Un concurrent est tombé et le protagoniste s'est arrêté pour l'aider",
+      order: 7,
+    };
+    const readQ10_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi le protagoniste a-t-il choisi d'aider son concurrent plutôt que de continuer à courir pour gagner? Que nous dit cela sur ses valeurs?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ10_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 9 (Réaction)",
+      text: "Si tu étais dans la même situation, aurais-tu aidé ton concurrent ou continué la course? Explique ton choix.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ10_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 10 (Réaction)",
+      text: "Raconte une fois où tu as dû choisir entre gagner et aider quelqu'un.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ10_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise10Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Cette histoire transmet-elle un bon message aux jeunes lecteurs? Explique pourquoi ce message est important dans notre société.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 11: Le Festival Annuel - Questions additionnelles
+    const readQ11_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment le festival s'est-il terminé pour le village?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il a été annulé", "Il a réuni tout le village et a renforcé les liens de la communauté", "Il a plu et tout le monde est parti", "Personne n'est venu"]),
+      correctAnswer: "Il a réuni tout le village et a renforcé les liens de la communauté",
+      order: 5,
+    };
+    const readQ11_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quelle fête traditionnelle le village célébrait-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Noël", "La fête de la moisson", "Le carnaval", "Pâques"]),
+      correctAnswer: "La fête de la moisson",
+      order: 6,
+    };
+    const readQ11_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 7 (Compréhension)",
+      text: "Qui organisait le festival cette année?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le maire", "Les jeunes du village", "Les anciens", "Une entreprise"]),
+      correctAnswer: "Les jeunes du village",
+      order: 7,
+    };
+    const readQ11_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi les traditions et les fêtes sont-elles importantes pour une communauté? Explique avec tes propres mots.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ11_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 9 (Réaction)",
+      text: "Quelle est ta fête préférée dans ton village ou ta ville? Pourquoi l'aimes-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ11_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 10 (Réaction)",
+      text: "Si tu pouvais organiser un festival, quel thème choisirais-tu et pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ11_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise11Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il bien montré l'importance de la communauté dans cette histoire? Explique avec un exemple du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 12: L'Animal Perdu - Questions additionnelles
+    const readQ12_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment l'histoire de l'animal perdu s'est-elle terminée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'animal n'a jamais été retrouvé", "L'enfant a retrouvé son animal grâce à l'aide de ses voisins", "L'animal est resté chez quelqu'un d'autre", "L'enfant a abandonné ses recherches"]),
+      correctAnswer: "L'enfant a retrouvé son animal grâce à l'aide de ses voisins",
+      order: 5,
+    };
+    const readQ12_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quel type d'animal était perdu?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un chien", "Un chat roux nommé Caramel", "Un lapin", "Un hamster"]),
+      correctAnswer: "Un chat roux nommé Caramel",
+      order: 6,
+    };
+    const readQ12_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 7 (Compréhension)",
+      text: "Comment l'enfant a-t-il cherché son animal?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il a attendu à la maison", "Il a fait des affiches et a demandé aux voisins", "Il a appelé la police", "Il a abandonné"]),
+      correctAnswer: "Il a fait des affiches et a demandé aux voisins",
+      order: 7,
+    };
+    const readQ12_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous montre cette histoire sur la persévérance et l'entraide dans les moments difficiles?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ12_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu un animal de compagnie? Décris-le et explique pourquoi il est important pour toi.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ12_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 10 (Réaction)",
+      text: "Comment te sentirais-tu si tu perdais ton animal de compagnie? Que ferais-tu pour le retrouver?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ12_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise12Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Cette histoire est-elle émouvante? L'auteur a-t-il réussi à transmettre l'attachement entre l'enfant et son animal?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 13: Le Trésor Caché du Jardin - Questions additionnelles
+    const readQ13_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 5 (Situation finale)",
+      text: "Qu'ont fait les enfants avec leur découverte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils l'ont gardé secret", "Ils ont partagé leur découverte avec le musée local", "Ils l'ont vendu", "Ils l'ont jeté"]),
+      correctAnswer: "Ils ont partagé leur découverte avec le musée local",
+      order: 5,
+    };
+    const readQ13_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 6 (Compréhension)",
+      text: "Où les enfants ont-ils trouvé le trésor?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Dans la maison", "Enterré sous le vieux chêne du jardin", "À la plage", "Dans le grenier"]),
+      correctAnswer: "Enterré sous le vieux chêne du jardin",
+      order: 6,
+    };
+    const readQ13_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 7 (Compréhension)",
+      text: "Que contenait le trésor?",
+      type: "multiple_choice",
+      options: JSON.stringify(["De l'or", "Des pièces anciennes et des objets historiques", "Des bijoux", "Rien d'important"]),
+      correctAnswer: "Des pièces anciennes et des objets historiques",
+      order: 7,
+    };
+    const readQ13_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi était-il important de partager cette découverte avec le musée plutôt que de la garder? Que nous enseigne cela?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ13_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 9 (Réaction)",
+      text: "Si tu trouvais un trésor dans ton jardin, que ferais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ13_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 10 (Réaction)",
+      text: "As-tu déjà fait une découverte inattendue? Raconte cette expérience.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ13_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise13Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il bien créé du suspense et de l'excitation dans cette histoire de découverte? Donne un exemple.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 14: La Tempête - Questions additionnelles
+    const readQ14_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment la famille s'est-elle sentie après la tempête?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Terrifiée et traumatisée", "Plus unie et reconnaissante d'être ensemble", "Fâchée", "Indifférente"]),
+      correctAnswer: "Plus unie et reconnaissante d'être ensemble",
+      order: 5,
+    };
+    const readQ14_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quel type de tempête a frappé la région?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une tempête de neige", "Un violent orage avec vents et grêle", "Un cyclone", "Une tempête de sable"]),
+      correctAnswer: "Un violent orage avec vents et grêle",
+      order: 6,
+    };
+    const readQ14_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 7 (Compréhension)",
+      text: "Où la famille s'est-elle réfugiée pendant la tempête?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Dans la cave", "Sous l'escalier", "Dans la salle de bain", "Dans le garage"]),
+      correctAnswer: "Dans la cave",
+      order: 7,
+    };
+    const readQ14_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous apprend cette histoire sur l'importance de la famille dans les moments difficiles?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ14_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu déjà vécu une situation effrayante avec ta famille? Comment vous êtes-vous soutenus?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ14_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 10 (Réaction)",
+      text: "Comment réagirais-tu si une tempête violente arrivait chez toi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ14_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise14Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il réussi à faire ressentir la tension et la peur de la tempête? Cite un passage qui t'a marqué.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 15: L'Île Déserte - Questions additionnelles
+    const readQ15_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment les aventuriers ont-ils quitté l'île?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils sont restés sur l'île", "Ils ont été secourus par un bateau de pêcheurs", "Ils ont construit un radeau", "Un hélicoptère les a trouvés"]),
+      correctAnswer: "Ils ont été secourus par un bateau de pêcheurs",
+      order: 5,
+    };
+    const readQ15_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 6 (Compréhension)",
+      text: "Comment les personnages se sont-ils retrouvés sur l'île?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils y sont allés en vacances", "Leur bateau a fait naufrage", "Ils s'y sont perdus en randonnée", "Ils ont été abandonnés"]),
+      correctAnswer: "Leur bateau a fait naufrage",
+      order: 6,
+    };
+    const readQ15_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 7 (Compréhension)",
+      text: "Comment ont-ils survécu sur l'île?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils avaient des provisions", "Ils ont trouvé de l'eau douce et des fruits", "Ils ont chassé", "Ils n'ont pas mangé"]),
+      correctAnswer: "Ils ont trouvé de l'eau douce et des fruits",
+      order: 7,
+    };
+    const readQ15_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous apprend cette aventure sur la survie et le travail d'équipe dans des situations extrêmes?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ15_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 9 (Réaction)",
+      text: "Si tu étais bloqué sur une île déserte, quelles seraient les trois premières choses que tu ferais?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ15_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 10 (Réaction)",
+      text: "Quel objet emporterais-tu si tu savais que tu allais être bloqué sur une île? Explique ton choix.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ15_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise15Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Cette histoire d'aventure est-elle réaliste? L'auteur a-t-il bien décrit les défis de la survie sur une île?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
     // Writing questions
     const writQ1: Question = {
       id: randomUUID(),
@@ -2550,6 +3270,96 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ5_react1.id, readQ5_react1);
     this.questions.set(readQ5_react2.id, readQ5_react2);
     this.questions.set(readQ5_jug.id, readQ5_jug);
+    
+    // Questions additionnelles Histoire 6
+    this.questions.set(readQ6_sitFin.id, readQ6_sitFin);
+    this.questions.set(readQ6_comp1.id, readQ6_comp1);
+    this.questions.set(readQ6_comp2.id, readQ6_comp2);
+    this.questions.set(readQ6_interp.id, readQ6_interp);
+    this.questions.set(readQ6_react1.id, readQ6_react1);
+    this.questions.set(readQ6_react2.id, readQ6_react2);
+    this.questions.set(readQ6_jug.id, readQ6_jug);
+    
+    // Questions additionnelles Histoire 7
+    this.questions.set(readQ7_sitFin.id, readQ7_sitFin);
+    this.questions.set(readQ7_comp1.id, readQ7_comp1);
+    this.questions.set(readQ7_comp2.id, readQ7_comp2);
+    this.questions.set(readQ7_interp.id, readQ7_interp);
+    this.questions.set(readQ7_react1.id, readQ7_react1);
+    this.questions.set(readQ7_react2.id, readQ7_react2);
+    this.questions.set(readQ7_jug.id, readQ7_jug);
+    
+    // Questions additionnelles Histoire 8
+    this.questions.set(readQ8_sitFin.id, readQ8_sitFin);
+    this.questions.set(readQ8_comp1.id, readQ8_comp1);
+    this.questions.set(readQ8_comp2.id, readQ8_comp2);
+    this.questions.set(readQ8_interp.id, readQ8_interp);
+    this.questions.set(readQ8_react1.id, readQ8_react1);
+    this.questions.set(readQ8_react2.id, readQ8_react2);
+    this.questions.set(readQ8_jug.id, readQ8_jug);
+    
+    // Questions additionnelles Histoire 9
+    this.questions.set(readQ9_sitFin.id, readQ9_sitFin);
+    this.questions.set(readQ9_comp1.id, readQ9_comp1);
+    this.questions.set(readQ9_comp2.id, readQ9_comp2);
+    this.questions.set(readQ9_interp.id, readQ9_interp);
+    this.questions.set(readQ9_react1.id, readQ9_react1);
+    this.questions.set(readQ9_react2.id, readQ9_react2);
+    this.questions.set(readQ9_jug.id, readQ9_jug);
+    
+    // Questions additionnelles Histoire 10
+    this.questions.set(readQ10_sitFin.id, readQ10_sitFin);
+    this.questions.set(readQ10_comp1.id, readQ10_comp1);
+    this.questions.set(readQ10_comp2.id, readQ10_comp2);
+    this.questions.set(readQ10_interp.id, readQ10_interp);
+    this.questions.set(readQ10_react1.id, readQ10_react1);
+    this.questions.set(readQ10_react2.id, readQ10_react2);
+    this.questions.set(readQ10_jug.id, readQ10_jug);
+    
+    // Questions additionnelles Histoire 11
+    this.questions.set(readQ11_sitFin.id, readQ11_sitFin);
+    this.questions.set(readQ11_comp1.id, readQ11_comp1);
+    this.questions.set(readQ11_comp2.id, readQ11_comp2);
+    this.questions.set(readQ11_interp.id, readQ11_interp);
+    this.questions.set(readQ11_react1.id, readQ11_react1);
+    this.questions.set(readQ11_react2.id, readQ11_react2);
+    this.questions.set(readQ11_jug.id, readQ11_jug);
+    
+    // Questions additionnelles Histoire 12
+    this.questions.set(readQ12_sitFin.id, readQ12_sitFin);
+    this.questions.set(readQ12_comp1.id, readQ12_comp1);
+    this.questions.set(readQ12_comp2.id, readQ12_comp2);
+    this.questions.set(readQ12_interp.id, readQ12_interp);
+    this.questions.set(readQ12_react1.id, readQ12_react1);
+    this.questions.set(readQ12_react2.id, readQ12_react2);
+    this.questions.set(readQ12_jug.id, readQ12_jug);
+    
+    // Questions additionnelles Histoire 13
+    this.questions.set(readQ13_sitFin.id, readQ13_sitFin);
+    this.questions.set(readQ13_comp1.id, readQ13_comp1);
+    this.questions.set(readQ13_comp2.id, readQ13_comp2);
+    this.questions.set(readQ13_interp.id, readQ13_interp);
+    this.questions.set(readQ13_react1.id, readQ13_react1);
+    this.questions.set(readQ13_react2.id, readQ13_react2);
+    this.questions.set(readQ13_jug.id, readQ13_jug);
+    
+    // Questions additionnelles Histoire 14
+    this.questions.set(readQ14_sitFin.id, readQ14_sitFin);
+    this.questions.set(readQ14_comp1.id, readQ14_comp1);
+    this.questions.set(readQ14_comp2.id, readQ14_comp2);
+    this.questions.set(readQ14_interp.id, readQ14_interp);
+    this.questions.set(readQ14_react1.id, readQ14_react1);
+    this.questions.set(readQ14_react2.id, readQ14_react2);
+    this.questions.set(readQ14_jug.id, readQ14_jug);
+    
+    // Questions additionnelles Histoire 15
+    this.questions.set(readQ15_sitFin.id, readQ15_sitFin);
+    this.questions.set(readQ15_comp1.id, readQ15_comp1);
+    this.questions.set(readQ15_comp2.id, readQ15_comp2);
+    this.questions.set(readQ15_interp.id, readQ15_interp);
+    this.questions.set(readQ15_react1.id, readQ15_react1);
+    this.questions.set(readQ15_react2.id, readQ15_react2);
+    this.questions.set(readQ15_jug.id, readQ15_jug);
     
     this.questions.set(writQ1.id, writQ1);
     this.questions.set(writQ2.id, writQ2);
