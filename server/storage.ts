@@ -2286,6 +2286,53 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // CONJUGAISON: 4 exercices avec 4-5 questions chacun
+    const conjugaisonExercises = [
+      {
+        name: "Présent - Identification",
+        type: "multiple_choice",
+        questions: [
+          { text: "Conjugue 'manger' à la 1ère personne du présent: 'Je _____ une pomme.'", options: ["mangent", "manges", "mange", "mangeai"], correct: "mange" },
+          { text: "Conjugue 'aller' à la 3e personne du pluriel: 'Elles _____ à l'école.'", options: ["allons", "allez", "vont", "vas"], correct: "vont" },
+          { text: "Quel verbe est conjugué au présent? 'Nous chantons une chanson.'", options: ["chantons", "chantions", "chantâmes", "chanterons"], correct: "chantons" },
+          { text: "Complète: 'Tu _____ (être) intelligent.' Quel temps?", options: ["es - présent", "étais - imparfait", "seras - futur", "serais - conditionnel"], correct: "es - présent" },
+          { text: "Conjugue 'avoir' à la 2e personne du pluriel: 'Vous _____ des livres.'", options: ["avez", "avons", "ont", "ai"], correct: "avez" }
+        ]
+      },
+      {
+        name: "Passé composé vs Imparfait",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel temps? 'J'ai mangé une pomme.' (action terminée)", options: ["passé composé", "imparfait", "présent", "futur"], correct: "passé composé" },
+          { text: "Quel temps? 'Je mangeais une pomme quand tu as appelé.' (action en cours)", options: ["passé composé", "imparfait", "présent", "futur"], correct: "imparfait" },
+          { text: "Complète: 'Quand j'_____ (arriver), il était déjà parti.' (au passé composé)", options: ["suis arrivé", "arrivais", "arrives", "arriverai"], correct: "suis arrivé" },
+          { text: "Conjugue 'être' à l'imparfait: 'Elle _____ très heureuse.'", options: ["était", "est", "a été", "serait"], correct: "était" },
+          { text: "Différence: 'J'ai étudié pendant 2 heures' vs 'J'étudiais depuis longtemps'. Lequel est passé composé?", options: ["premier", "deuxième", "les deux", "aucun"], correct: "premier" }
+        ]
+      },
+      {
+        name: "Futur simple - Production",
+        type: "text",
+        questions: [
+          { text: "Conjugue 3 verbes au futur simple (je vais..., tu seras..., etc.)", correct: "réponse libre" },
+          { text: "Écris 2 phrases au futur: une avec 'aller' et une avec 'avoir'", correct: "réponse libre" },
+          { text: "Transforme 'Je mange' au futur simple et à l'imparfait.", correct: "réponse libre" },
+          { text: "Écris une phrase au passé composé avec le verbe 'faire'.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Temps mélangés - Quiz",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel temps? 'Je mangerai une pomme demain.'", options: ["présent", "imparfait", "futur", "passé composé"], correct: "futur" },
+          { text: "Complète: 'Si je _____ (avoir) du temps, j'irai à la plage.' (conditionnel)", options: ["avais", "ai", "aurais", "aurai"], correct: "avais" },
+          { text: "Conjugue 'faire' au passé composé avec 'je': 'J'_____ mes devoirs.'", options: ["fais", "faisais", "ai fait", "ferai"], correct: "ai fait" },
+          { text: "Quel verbe est à l'imparfait? 'Pendant que je lisais, il regardait la TV.'", options: ["lisais - oui, regardait - oui", "lisais - oui, regardait - non", "lisais - non, regardait - oui", "les deux - non"], correct: "lisais - oui, regardait - oui" },
+          { text: "Que signifie le passé composé?", options: ["action habituelle du passé", "action terminée du passé", "action future", "action présente"], correct: "action terminée du passé" }
+        ]
+      }
+    ];
+
     // Generate GRAMMAR exercises with 4-5 questions each
     for (const [courseId, courseInfo] of Object.entries(courseMap)) {
       if (courseInfo.category === "grammaire") {
@@ -2340,6 +2387,54 @@ export class MemStorage implements IStorage {
         // Create 4 exercises for orthography courses
         for (let exNum = 0; exNum < 4; exNum++) {
           const exerciseTemplate = orthographeExercises[exNum];
+          const exerciseId = randomUUID();
+          
+          const exercise: Exercise = {
+            id: exerciseId,
+            courseId,
+            title: `${exerciseTemplate.name} - ${courseInfo.title}`,
+            description: `${exerciseTemplate.name}: ${courseInfo.title}`,
+            type: exerciseTemplate.type as "multiple_choice" | "text",
+            order: exNum + 1,
+          };
+          
+          this.exercises.set(exerciseId, exercise);
+
+          // Add 4-5 questions per exercise
+          for (let qNum = 0; qNum < exerciseTemplate.questions.length; qNum++) {
+            const qData = exerciseTemplate.questions[qNum];
+            const questionId = randomUUID();
+            
+            if (exerciseTemplate.type === "multiple_choice") {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "multiple_choice",
+                options: JSON.stringify(qData.options),
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            } else {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "text",
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            }
+          }
+        }
+      } else if (courseInfo.category === "conjugaison") {
+        // Create 4 exercises for conjugation courses
+        for (let exNum = 0; exNum < 4; exNum++) {
+          const exerciseTemplate = conjugaisonExercises[exNum];
           const exerciseId = randomUUID();
           
           const exercise: Exercise = {
