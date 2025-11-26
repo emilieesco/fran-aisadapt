@@ -242,6 +242,9 @@ export class MemStorage implements IStorage {
     const vocabulary2Id = randomUUID();
     const vocabulary3Id = randomUUID();
     const vocabulary4Id = randomUUID();
+    
+    // Cours Textes Narratifs (pour les 20 histoires de compréhension de lecture)
+    const textesNarratifsId = randomUUID();
 
     // Additional grammar courses
     const grammar13: Course = {
