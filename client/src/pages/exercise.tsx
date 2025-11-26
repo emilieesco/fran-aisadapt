@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRoute, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 
 interface Question {
@@ -205,6 +206,21 @@ export default function Exercise() {
                     <span className="font-medium">{option}</span>
                   </button>
                 ))}
+              </div>
+            ) : currentQuestion.type === "select" ? (
+              <div className="mt-6">
+                <Select value={currentAnswer} onValueChange={handleAnswerChange}>
+                  <SelectTrigger className="w-full" data-testid="select-answer">
+                    <SelectValue placeholder="Choisissez une réponse..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(currentQuestion.options || []).map((option) => (
+                      <SelectItem key={option} value={option} data-testid={`select-option-${option}`}>
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             ) : (
               <textarea
