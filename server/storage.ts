@@ -232,6 +232,7 @@ export class MemStorage implements IStorage {
     const grammar35Id = randomUUID();
     const reading9Id = randomUUID();
     const reading10Id = randomUUID();
+    const reading11Id = randomUUID(); // Texte descriptif
     const writing5Id = randomUUID();
     const writing6Id = randomUUID();
     const orthography16Id = randomUUID();
@@ -575,6 +576,16 @@ export class MemStorage implements IStorage {
       category: "lecture_reading",
       content: "<h2>Compréhension Fine et Inférence - Lire Entre les Lignes</h2><p>Ne pas juste lire les mots, mais comprendre le sens caché!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 2 NIVEAUX DE COMPRÉHENSION:</strong><br>Littéral = ce qui est écrit<br>Inférence = ce qu'on déduit</div><h3>1. LECTURE LITTÉRALE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ce qui est écrit explicitement:</strong><br>Texte: \"Elle était triste et seule.\"<br>Littéral: Elle a des émotions négatives</div><h3>2. INFÉRENCE (entre les lignes)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Ce qu'on déduit du contexte:</strong><br>Texte: \"Elle entra dans la classe. Tout le monde arrêta de parler.\"<br>Inférence: Elle est importante ou redoutée</div><h3>3. INDICES TEXTUELS</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Regarder:</strong><br>Mots émotifs, actions, contexte, répétitions<br>\"Il ne souriait jamais. Son visage était comme une pierre.\"<br>→ Inférence: C'est quelqu'un de dur ou malheureux</div>",
       order: 82,
+    };
+
+    // Texte descriptif - Reading course for descriptive texts
+    const reading11: Course = {
+      id: reading11Id,
+      title: "Texte descriptif",
+      description: "Comprendre et analyser des textes descriptifs - lieux, personnes, objets",
+      category: "lecture_descriptif",
+      content: "<h2>Le Texte Descriptif</h2><p>Un texte descriptif présente les caractéristiques d'un lieu, d'une personne, d'un objet ou d'un phénomène.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ CARACTÉRISTIQUES:</strong><br>• Utilise des adjectifs qualificatifs<br>• Emploie des comparaisons et métaphores<br>• Fait appel aux 5 sens (vue, ouïe, toucher, goût, odorat)<br>• Organise la description dans l'espace</div><h3>1. DÉCRIRE UN LIEU</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'>Observer: position, taille, couleurs, ambiance<br>Exemple: \"La forêt était sombre et mystérieuse. De grands arbres centenaires formaient une voûte au-dessus du sentier.\"</div><h3>2. DÉCRIRE UNE PERSONNE</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'>Portrait physique: taille, visage, vêtements<br>Portrait moral: caractère, comportement<br>Exemple: \"Grand et mince, il avait des yeux verts perçants et un sourire chaleureux.\"</div><h3>3. DÉCRIRE UN OBJET</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'>Forme, matière, couleur, utilité<br>Exemple: \"La vieille montre en argent, légèrement ternie par le temps, portait des gravures délicates sur son boîtier.\"</div>",
+      order: 83,
     };
 
     // Additional orthography courses
@@ -1066,6 +1077,7 @@ export class MemStorage implements IStorage {
     this.courses.set(vocabulary3Id, vocabulary3);
     this.courses.set(vocabulary4Id, vocabulary4);
     this.courses.set(reading10Id, reading10);
+    this.courses.set(reading11Id, reading11);
 
 
     // Reading exercises for different text types
@@ -1140,6 +1152,25 @@ export class MemStorage implements IStorage {
     ];
     
     readingNarratives.forEach(exercise => {
+      this.exercises.set(exercise.id, exercise);
+    });
+
+    // TEXTES DESCRIPTIFS - 5 exercices de lecture descriptive
+    const descriptifExercise1Id = randomUUID();
+    const descriptifExercise2Id = randomUUID();
+    const descriptifExercise3Id = randomUUID();
+    const descriptifExercise4Id = randomUUID();
+    const descriptifExercise5Id = randomUUID();
+
+    const readingDescriptifs: Exercise[] = [
+      { id: descriptifExercise1Id, courseId: reading11Id, title: "Description 1: La Forêt Enchantée", description: "Un lieu magique et mystérieux", type: "text", order: 1 },
+      { id: descriptifExercise2Id, courseId: reading11Id, title: "Description 2: Le Vieux Pêcheur", description: "Portrait d'un homme de la mer", type: "text", order: 2 },
+      { id: descriptifExercise3Id, courseId: reading11Id, title: "Description 3: La Maison de Grand-mère", description: "Une maison pleine de souvenirs", type: "text", order: 3 },
+      { id: descriptifExercise4Id, courseId: reading11Id, title: "Description 4: Le Marché du Dimanche", description: "L'ambiance colorée du marché", type: "text", order: 4 },
+      { id: descriptifExercise5Id, courseId: reading11Id, title: "Description 5: La Montagne au Lever du Soleil", description: "Un paysage spectaculaire", type: "text", order: 5 },
+    ];
+    
+    readingDescriptifs.forEach(exercise => {
       this.exercises.set(exercise.id, exercise);
     });
 
@@ -3503,6 +3534,268 @@ export class MemStorage implements IStorage {
       order: 11,
     };
 
+    // ========== TEXTES DESCRIPTIFS - Questions ==========
+    
+    // Description 1: La Forêt Enchantée
+    const descQ1_1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise1Id,
+      title: "Description 1: La Forêt Enchantée",
+      text: "Au cœur de la vallée de Bellevue, cachée derrière les collines verdoyantes, se trouve une forêt extraordinaire que les habitants appellent la Forêt Enchantée. Cette forêt ancienne couvre une superficie de plusieurs kilomètres carrés et abrite des arbres centenaires aux troncs massifs recouverts de mousse émeraude.\n\nEn entrant dans la forêt, on est immédiatement enveloppé par une lumière tamisée, douce et mystérieuse. Les rayons du soleil filtrent à travers le feuillage dense, créant des taches lumineuses dorées sur le sol tapissé de feuilles mortes et de fougères délicates. L'air est frais et parfumé, chargé de l'odeur de la terre humide, des champignons sauvages et de la résine de pin.\n\nLes arbres sont majestueux : de grands chênes aux branches tordues comme des bras tendus vers le ciel, des hêtres aux écorces lisses et argentées, et des sapins imposants dont les aiguilles vertes forment un tapis moelleux. Entre leurs racines noueuses poussent des mousses d'un vert intense, des lichens gris-bleu et de petites fleurs sauvages aux couleurs vives – violettes, blanches et jaunes.\n\nLa faune de la forêt est tout aussi remarquable. Des écureuils roux sautent de branche en branche avec agilité. Des oiseaux aux plumages colorés – mésanges, rouge-gorges et pics-verts – chantent des mélodies harmonieuses qui résonnent dans le silence paisible. Parfois, on peut apercevoir un cerf majestueux qui traverse une clairière, ses bois dorés brillant dans la lumière du matin.\n\nAu centre de la forêt coule un ruisseau cristallin dont l'eau fraîche et pure chante sur les pierres polies. Ses berges sont bordées de joncs et de nénuphars, et de petites libellules aux ailes irisées dansent au-dessus de la surface miroitante. Non loin du ruisseau se dresse un vieux chêne millénaire, le plus ancien de la forêt, que les gens du village appellent le Gardien. Son tronc est si large qu'il faudrait dix personnes se tenant par la main pour l'entourer.\n\nSelon la légende locale, cette forêt était autrefois le refuge des fées et des lutins. Aujourd'hui encore, certains prétendent voir des lumières mystérieuses danser entre les arbres les nuits de pleine lune. Vraie ou non, cette légende ajoute au charme magique de ce lieu unique, un véritable trésor naturel préservé au fil des siècles.",
+      type: "multiple_choice",
+      options: JSON.stringify(["Dans les montagnes du Nord", "Au cœur de la vallée de Bellevue", "Au bord de la mer", "Dans une île tropicale"]),
+      correctAnswer: "Au cœur de la vallée de Bellevue",
+      order: 1,
+    };
+    const descQ1_2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise1Id,
+      title: "Question 2 (Compréhension)",
+      text: "De quelle couleur est la mousse qui recouvre les troncs des arbres?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Brune", "Grise", "Émeraude (vert intense)", "Jaune"]),
+      correctAnswer: "Émeraude (vert intense)",
+      order: 2,
+    };
+    const descQ1_3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise1Id,
+      title: "Question 3 (Compréhension)",
+      text: "Comment s'appelle le plus ancien arbre de la forêt?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le Protecteur", "Le Gardien", "Le Sage", "L'Ancien"]),
+      correctAnswer: "Le Gardien",
+      order: 3,
+    };
+    const descQ1_4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise1Id,
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi l'auteur utilise-t-il le mot 'enchantée' pour décrire cette forêt? Quels éléments du texte justifient ce choix?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 4,
+    };
+    const descQ1_5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise1Id,
+      title: "Question 5 (Réaction)",
+      text: "Aimerais-tu visiter cette forêt? Explique pourquoi en te basant sur les éléments de la description.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 5,
+    };
+    
+    // Description 2: Le Vieux Pêcheur
+    const descQ2_1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise2Id,
+      title: "Description 2: Le Vieux Pêcheur",
+      text: "Chaque matin, bien avant l'aube, on peut voir une silhouette familière marcher sur le quai du petit port de Sainte-Marine. C'est Jacques, le vieux pêcheur, un homme que tout le village connaît et respecte depuis plus de cinquante ans.\n\nJacques est un homme de haute stature, malgré ses soixante-dix-huit ans. Il mesure près d'un mètre quatre-vingt-cinq et se tient encore droit comme un mât de bateau. Ses épaules sont larges et puissantes, sculptées par des décennies de travail en mer. Ses mains sont grandes, calleuses et tannées par le sel, avec des doigts épais habitués à manier les filets et les cordages.\n\nSon visage est une carte de sa vie en mer. Sa peau, brunie par le soleil et le vent, est sillonnée de rides profondes qui racontent mille tempêtes affrontées. Ses yeux sont d'un bleu perçant, de la couleur exacte de la mer par temps clair, et ils brillent d'une lumière vive quand il parle de ses aventures. Son nez est large et légèrement busqué, et sa bouche, souvent étirée en un sourire chaleureux, laisse voir quelques dents manquantes – souvenirs de bagarres de jeunesse, dit-il en riant.\n\nIl porte invariablement la même tenue : un vieux chandail de laine bleu marine, rapiécé aux coudes, un pantalon de toile robuste et des bottes en caoutchouc vert foncé. Sur sa tête trône une casquette de marin délavée par les années, qu'il ne quitte jamais, même pour dormir selon la rumeur du village. Autour de son cou pend une chaîne en argent avec une médaille de la Vierge Marie, que sa mère lui a donnée lors de sa première sortie en mer.\n\nJacques est un homme de peu de mots mais de grande sagesse. Quand il parle, sa voix est grave et rauque, comme le grondement de la mer sur les rochers. Il raconte parfois des histoires de baleines aperçues au large, de tempêtes terrifiantes survivies par miracle, et de poissons extraordinaires. Les enfants du village l'adorent et se pressent autour de lui pour écouter ses récits.\n\nMais ce qui frappe le plus chez Jacques, c'est son regard. Un regard qui a vu tant de choses : des aurores boréales dans les mers du Nord, des couchers de soleil flamboyants sur l'océan, la beauté et la cruauté de la nature. Un regard qui inspire le respect et qui semble contenir tous les secrets de la mer.",
+      type: "multiple_choice",
+      options: JSON.stringify(["65 ans", "70 ans", "78 ans", "85 ans"]),
+      correctAnswer: "78 ans",
+      order: 1,
+    };
+    const descQ2_2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise2Id,
+      title: "Question 2 (Compréhension)",
+      text: "De quelle couleur sont les yeux de Jacques?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Verts", "Bruns", "Bleus comme la mer", "Gris"]),
+      correctAnswer: "Bleus comme la mer",
+      order: 2,
+    };
+    const descQ2_3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise2Id,
+      title: "Question 3 (Compréhension)",
+      text: "Quel objet Jacques porte-t-il autour du cou?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une clé ancienne", "Une médaille de la Vierge Marie", "Un coquillage", "Une dent de requin"]),
+      correctAnswer: "Une médaille de la Vierge Marie",
+      order: 3,
+    };
+    const descQ2_4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise2Id,
+      title: "Question 4 (Interprétation)",
+      text: "L'auteur dit que le visage de Jacques est 'une carte de sa vie en mer'. Que signifie cette comparaison? Que nous apprend-elle sur le personnage?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 4,
+    };
+    const descQ2_5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise2Id,
+      title: "Question 5 (Réaction)",
+      text: "Connais-tu quelqu'un qui ressemble à Jacques (une personne âgée qui t'inspire du respect)? Décris cette personne.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 5,
+    };
+    
+    // Description 3: La Maison de Grand-mère
+    const descQ3_1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise3Id,
+      title: "Description 3: La Maison de Grand-mère",
+      text: "La maison de grand-mère se dresse au bout d'une petite rue pavée, dans le vieux quartier de Montjoie. C'est une maison ancienne à deux étages, construite en pierres grises du pays et coiffée d'un toit d'ardoises bleutées qui brillent sous la pluie. Les volets en bois, peints en vert sapin, encadrent des fenêtres à petits carreaux où se reflète le ciel changeant.\n\nDès qu'on pousse la lourde porte d'entrée en chêne massif, une odeur familière et réconfortante nous accueille : un mélange de cire d'abeille pour les meubles, de lavande séchée et de gâteau en train de cuire. Le vestibule est étroit mais chaleureux, avec un portemanteau en fer forgé où pendent toujours le vieux parapluie noir de grand-père et le châle fleuri de grand-mère.\n\nLe salon est la pièce principale, le cœur de la maison. Un grand canapé recouvert de velours bordeaux trône face à une cheminée en pierre où crépite un feu l'hiver. Au-dessus de la cheminée, une grande horloge comtoise marque les heures avec un tic-tac régulier et rassurant. Les murs sont tapissés de papier peint à fleurs jaunes et roses, un peu passé par le temps mais toujours joli. Des cadres dorés exposent des photos de famille en noir et blanc : mariages, baptêmes, fêtes de village.\n\nLa cuisine est le royaume de grand-mère. C'est une pièce spacieuse avec un sol en tomettes rouges, usées par des générations de pas. Une grande table en bois de ferme occupe le centre, ses pieds légèrement bancals témoignant de milliers de repas partagés. L'odeur du café frais se mêle à celle du pain grillé le matin. Sur les étagères s'alignent des pots en faïence bleue contenant sucre, farine et épices, et une collection de tasses dépareillées aux motifs variés.\n\nÀ l'étage, la chambre d'amis attend toujours les petits-enfants. Le lit est recouvert d'un édredon moelleux en plumes d'oie, et sur la table de nuit, une petite lampe à abat-jour rose diffuse une lumière douce. Par la fenêtre, on aperçoit le jardin : quelques arbres fruitiers, un potager soigneusement entretenu, et le vieux banc en fer où grand-mère s'assoit pour tricoter les après-midi d'été.\n\nCette maison est un refuge hors du temps, un lieu où chaque objet raconte une histoire et où l'amour imprègne les murs. Quand on la quitte, on emporte toujours un peu de sa chaleur dans son cœur.",
+      type: "multiple_choice",
+      options: JSON.stringify(["En briques rouges", "En pierres grises", "En bois", "En béton blanc"]),
+      correctAnswer: "En pierres grises",
+      order: 1,
+    };
+    const descQ3_2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise3Id,
+      title: "Question 2 (Compréhension)",
+      text: "De quelle couleur est le canapé du salon?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Bleu marine", "Vert olive", "Velours bordeaux", "Beige clair"]),
+      correctAnswer: "Velours bordeaux",
+      order: 2,
+    };
+    const descQ3_3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise3Id,
+      title: "Question 3 (Compréhension)",
+      text: "Quelles sont les trois odeurs qui accueillent les visiteurs à l'entrée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Rose, vanille et chocolat", "Cire d'abeille, lavande et gâteau", "Bois, café et pain", "Fleurs, épices et miel"]),
+      correctAnswer: "Cire d'abeille, lavande et gâteau",
+      order: 3,
+    };
+    const descQ3_4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise3Id,
+      title: "Question 4 (Interprétation)",
+      text: "L'auteur dit que cette maison est 'un refuge hors du temps'. Explique ce que cela signifie et pourquoi l'auteur utilise cette expression.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 4,
+    };
+    const descQ3_5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise3Id,
+      title: "Question 5 (Réaction)",
+      text: "As-tu un lieu (maison, appartement, chalet) qui te procure le même sentiment de réconfort? Décris-le brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 5,
+    };
+    
+    // Description 4: Le Marché du Dimanche
+    const descQ4_1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise4Id,
+      title: "Description 4: Le Marché du Dimanche",
+      text: "Chaque dimanche matin, la grande place du village de Beaumont se transforme en un spectacle coloré et animé : c'est le jour du marché. Dès six heures, les marchands installent leurs étals sous des toiles rayées de toutes les couleurs – rouge et blanc, bleu et jaune, vert et orange – créant un patchwork joyeux sous le ciel matinal.\n\nL'entrée du marché est gardée par le stand du fleuriste, explosion de couleurs et de parfums. Des seaux débordent de roses rouges, de tulipes jaunes, de marguerites blanches et d'hortensias bleus. L'air est chargé du parfum sucré des lys et de l'odeur fraîche des eucalyptus. Les abeilles bourdonnent autour des lavandes en pots, ajoutant leur musique au brouhaha ambiant.\n\nPlus loin, les étals des maraîchers exposent les trésors de la terre. Des pyramides de tomates bien rouges côtoient des aubergines violettes à la peau brillante. Des salades vertes aux feuilles croquantes s'alignent à côté de carottes orangées encore couvertes de terre fraîche. Les courges de toutes formes – rondes, allongées, biscornues – rivalisent de couleurs : jaune pâle, orange vif, vert strié.\n\nLe stand du fromager attire les gourmands avec ses meules dorées et ses petits fromages de chèvre cendrés. L'odeur puissante mais appétissante flotte dans l'air. À côté, le boucher expose ses jambons, ses saucissons et ses pâtés artisanaux. Le poissonnier, lui, dispose sur la glace pilée des poissons argentés aux yeux encore vifs, des crevettes roses et des huîtres nacrées.\n\nLe bruit est partout : les cris des marchands qui vantent leurs produits, les discussions animées entre voisins qui se retrouvent, les rires des enfants qui courent entre les étals, le tintement de la monnaie dans les caisses. Un accordéoniste joue des airs populaires devant le café, ajoutant une touche de fête à l'atmosphère.\n\nAu centre de la place, le stand du boulanger fait des merveilles. Des baguettes croustillantes, des croissants dorés, des pains aux noix et aux olives, des brioches moelleuses à la fleur d'oranger... L'odeur du pain chaud est irrésistible et attire une file de clients matinaux.\n\nLe marché du dimanche n'est pas seulement un lieu d'achat, c'est un rituel social, un moment de partage et de convivialité qui rythme la vie du village depuis des générations.",
+      type: "multiple_choice",
+      options: JSON.stringify(["À 5 heures", "À 6 heures", "À 7 heures", "À 8 heures"]),
+      correctAnswer: "À 6 heures",
+      order: 1,
+    };
+    const descQ4_2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise4Id,
+      title: "Question 2 (Compréhension)",
+      text: "Quel musicien joue devant le café?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un guitariste", "Un violoniste", "Un accordéoniste", "Un pianiste"]),
+      correctAnswer: "Un accordéoniste",
+      order: 2,
+    };
+    const descQ4_3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise4Id,
+      title: "Question 3 (Compréhension)",
+      text: "Quel stand 'garde' l'entrée du marché?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le boulanger", "Le fromager", "Le fleuriste", "Le poissonnier"]),
+      correctAnswer: "Le fleuriste",
+      order: 3,
+    };
+    const descQ4_4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise4Id,
+      title: "Question 4 (Interprétation)",
+      text: "L'auteur dit que le marché est 'un rituel social'. Que veut-il dire par là? Pourquoi le marché est-il plus qu'un simple lieu d'achat?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 4,
+    };
+    const descQ4_5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise4Id,
+      title: "Question 5 (Réaction)",
+      text: "Es-tu déjà allé(e) à un marché? Quel stand préfères-tu et pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 5,
+    };
+    
+    // Description 5: La Montagne au Lever du Soleil
+    const descQ5_1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise5Id,
+      title: "Description 5: La Montagne au Lever du Soleil",
+      text: "Il est cinq heures du matin et le monde est encore plongé dans l'obscurité. Au refuge du Pic Blanc, perché à 2 800 mètres d'altitude dans les Alpes, quelques randonneurs courageux se préparent à assister à un spectacle extraordinaire : le lever du soleil sur les sommets.\n\nDehors, le froid est vif, presque mordant. La température affiche moins dix degrés, et chaque respiration forme un petit nuage de vapeur blanche. Le ciel est d'un noir d'encre, constellé de milliers d'étoiles brillantes comme des diamants sur un velours sombre. La Voie Lactée dessine une arche laiteuse d'un bout à l'autre de l'horizon.\n\nPeu à peu, à l'est, une lueur timide apparaît. D'abord d'un bleu très pâle, presque blanc, elle se teinte progressivement de rose tendre. Les silhouettes noires des montagnes se découpent contre ce fond pastel. Les pics enneigés, jusqu'alors invisibles, commencent à émerger de l'ombre comme des fantômes majestueux.\n\nLe rose s'intensifie, devient orange, puis or. Les premiers rayons du soleil effleurent les sommets les plus hauts, les transformant en flammes immobiles. Le Mont Blanc, géant de glace culminant à 4 810 mètres, s'embrase d'une lumière dorée éclatante. C'est ce que les alpinistes appellent l'alpenglühen, la lueur des Alpes, un phénomène d'une beauté saisissante.\n\nLes glaciers scintillent comme des millions de cristaux, réfléchissant les couleurs changeantes du ciel. Les vallées en contrebas sont encore noyées dans une mer de brouillard blanc et cotonneux, d'où émergent quelques sommets comme des îles perdues. Le contraste entre l'ombre et la lumière est spectaculaire.\n\nEnfin, le disque du soleil apparaît à l'horizon, éblouissant. En quelques minutes, la lumière dorée dévale les pentes, chassant les ombres, réchauffant l'air. Les oiseaux commencent à chanter, les marmottes sortent de leurs terriers. La montagne s'éveille.\n\nLe silence est profond, presque sacré. Face à ce spectacle, les randonneurs restent muets, émerveillés. Certains ont les larmes aux yeux. Ils viennent de vivre un moment de pure magie, un de ces instants rares où la nature révèle toute sa splendeur et nous rappelle combien le monde est beau.",
+      type: "multiple_choice",
+      options: JSON.stringify(["1 800 mètres", "2 300 mètres", "2 800 mètres", "3 200 mètres"]),
+      correctAnswer: "2 800 mètres",
+      order: 1,
+    };
+    const descQ5_2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise5Id,
+      title: "Question 2 (Compréhension)",
+      text: "Comment s'appelle le phénomène de lumière dorée sur les sommets?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'auror boréale", "L'alpenglühen", "Le mirage montagnard", "L'éclat glaciaire"]),
+      correctAnswer: "L'alpenglühen",
+      order: 2,
+    };
+    const descQ5_3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise5Id,
+      title: "Question 3 (Compréhension)",
+      text: "Quelle est la température au moment de la description?",
+      type: "multiple_choice",
+      options: JSON.stringify(["0 degré", "-5 degrés", "-10 degrés", "-15 degrés"]),
+      correctAnswer: "-10 degrés",
+      order: 3,
+    };
+    const descQ5_4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise5Id,
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi l'auteur dit-il que 'le silence est profond, presque sacré'? Que cherche-t-il à transmettre au lecteur?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 4,
+    };
+    const descQ5_5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifExercise5Id,
+      title: "Question 5 (Réaction)",
+      text: "As-tu déjà été impressionné(e) par un paysage naturel? Décris ce moment et les émotions que tu as ressenties.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 5,
+    };
+
     // Writing questions
     const writQ1: Question = {
       id: randomUUID(),
@@ -3807,6 +4100,33 @@ export class MemStorage implements IStorage {
     this.questions.set(writQ2.id, writQ2);
     this.questions.set(writQ3.id, writQ3);
     this.questions.set(writQ4.id, writQ4);
+
+    // Register descriptive text questions
+    this.questions.set(descQ1_1.id, descQ1_1);
+    this.questions.set(descQ1_2.id, descQ1_2);
+    this.questions.set(descQ1_3.id, descQ1_3);
+    this.questions.set(descQ1_4.id, descQ1_4);
+    this.questions.set(descQ1_5.id, descQ1_5);
+    this.questions.set(descQ2_1.id, descQ2_1);
+    this.questions.set(descQ2_2.id, descQ2_2);
+    this.questions.set(descQ2_3.id, descQ2_3);
+    this.questions.set(descQ2_4.id, descQ2_4);
+    this.questions.set(descQ2_5.id, descQ2_5);
+    this.questions.set(descQ3_1.id, descQ3_1);
+    this.questions.set(descQ3_2.id, descQ3_2);
+    this.questions.set(descQ3_3.id, descQ3_3);
+    this.questions.set(descQ3_4.id, descQ3_4);
+    this.questions.set(descQ3_5.id, descQ3_5);
+    this.questions.set(descQ4_1.id, descQ4_1);
+    this.questions.set(descQ4_2.id, descQ4_2);
+    this.questions.set(descQ4_3.id, descQ4_3);
+    this.questions.set(descQ4_4.id, descQ4_4);
+    this.questions.set(descQ4_5.id, descQ4_5);
+    this.questions.set(descQ5_1.id, descQ5_1);
+    this.questions.set(descQ5_2.id, descQ5_2);
+    this.questions.set(descQ5_3.id, descQ5_3);
+    this.questions.set(descQ5_4.id, descQ5_4);
+    this.questions.set(descQ5_5.id, descQ5_5);
 
     // Create assignments for multiple courses
     const assignment1: Assignment = {
