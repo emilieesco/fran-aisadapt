@@ -2077,6 +2077,318 @@ export class MemStorage implements IStorage {
       order: 2,
     };
 
+    // ========== QUESTIONS ADDITIONNELLES POUR TOUTES LES HISTOIRES ==========
+    // Chaque histoire doit avoir: Situation initiale, Élément perturbateur, Péripéties, 
+    // Dénouement, Situation finale + Compréhension, Interprétation, Réaction, Jugement critique
+
+    // HISTOIRE 2: Questions additionnelles
+    const readQ2_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment la vie de Marc a-t-elle changé après cet événement?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il a arrêté le vélo", "Il est devenu ambassadeur de la sécurité à vélo dans son école", "Il a déménagé", "Rien n'a changé"]),
+      correctAnswer: "Il est devenu ambassadeur de la sécurité à vélo dans son école",
+      order: 5,
+    };
+    const readQ2_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 6 (Compréhension)",
+      text: "De quelle couleur était le casque que Marc portait habituellement?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Bleu", "Noir", "Rouge brillant", "Vert"]),
+      correctAnswer: "Rouge brillant",
+      order: 6,
+    };
+    const readQ2_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 7 (Compréhension)",
+      text: "Combien de temps Marc a-t-il dû rester à l'hôpital?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un jour", "Trois jours", "Une semaine", "Un mois"]),
+      correctAnswer: "Une semaine",
+      order: 7,
+    };
+    const readQ2_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi penses-tu que Marc a cédé à la pression de ses amis malgré ses doutes? Explique ce que cela nous apprend sur la pression sociale.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ2_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu déjà ressenti la pression de tes amis pour faire quelque chose que tu savais dangereux? Comment as-tu réagi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ2_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 10 (Réaction)",
+      text: "Que ferais-tu si tu voyais un ami prendre un risque dangereux comme Marc?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ2_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Penses-tu que cette histoire transmet un message important? Quel est ce message et pourquoi est-il utile?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 3: Questions additionnelles
+    const readQ3_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 5 (Situation finale)",
+      text: "Qu'est-ce qui a changé dans la vie de Sophie après l'audition?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle a abandonné la danse", "Elle a reçu une bourse complète pour l'école d'arts", "Elle est restée au village", "Elle a trouvé un autre hobby"]),
+      correctAnswer: "Elle a reçu une bourse complète pour l'école d'arts",
+      order: 5,
+    };
+    const readQ3_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quel était le métier du père de Sophie?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Médecin", "Électricien", "Professeur", "Agriculteur"]),
+      correctAnswer: "Électricien",
+      order: 6,
+    };
+    const readQ3_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 7 (Compréhension)",
+      text: "Combien coûtaient les cours d'une école d'arts privée par mois?",
+      type: "multiple_choice",
+      options: JSON.stringify(["50 euros", "100 euros", "150 euros", "200 euros"]),
+      correctAnswer: "150 euros",
+      order: 7,
+    };
+    const readQ3_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous apprend l'histoire de Sophie sur la persévérance et le travail acharné? Explique avec tes propres mots.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ3_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu un rêve que tu poursuis malgré les obstacles? Décris-le brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ3_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 10 (Réaction)",
+      text: "Comment te sentirais-tu si tu étais Sophie sur scène, avec tous les regards fixés sur toi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ3_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise3Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il réussi à rendre le personnage de Sophie attachant? Explique pourquoi avec des exemples du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 4: Questions additionnelles
+    const readQ4_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment se termine l'histoire de Lucas et Thomas?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils ne se sont jamais revus", "Leur amitié est revenue plus forte que jamais", "Ils sont devenus ennemis", "Ils ont oublié leur promesse"]),
+      correctAnswer: "Leur amitié est revenue plus forte que jamais",
+      order: 5,
+    };
+    const readQ4_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 6 (Compréhension)",
+      text: "Dans quelle ville habitaient Lucas et Thomas avant le déménagement?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Paris", "Lyon", "Marseille", "Bordeaux"]),
+      correctAnswer: "Lyon",
+      order: 6,
+    };
+    const readQ4_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 7 (Compréhension)",
+      text: "Où la famille de Thomas a-t-elle déménagé?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Paris", "Lyon", "Marseille", "Bordeaux"]),
+      correctAnswer: "Marseille",
+      order: 7,
+    };
+    const readQ4_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi penses-tu que ni Lucas ni Thomas n'osait faire le premier pas pour reprendre contact? Que nous dit cela sur la nature de l'amitié?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ4_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu déjà été séparé d'un ami proche? Comment as-tu maintenu cette amitié?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ4_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 10 (Réaction)",
+      text: "Que ressentirais-tu si ton meilleur ami déménageait très loin?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ4_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise4Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur montre-t-il bien les émotions des personnages dans cette histoire? Donne un exemple du texte qui t'a touché.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 5: Questions additionnelles (cette histoire n'avait que 2 questions!)
+    const readQ5_sitInit: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 3 (Situation initiale)",
+      text: "Où Emma faisait-elle ses expériences?",
+      type: "multiple_choice",
+      options: JSON.stringify(["À l'école", "Dans sa chambre convertie en laboratoire", "Dans le jardin", "Chez sa grand-mère"]),
+      correctAnswer: "Dans sa chambre convertie en laboratoire",
+      order: 3,
+    };
+    const readQ5_perturb: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 4 (Élément perturbateur)",
+      text: "Qu'a découvert Emma dans les archives de sa grand-mère?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un trésor", "Un vieux journal avec une expérience inachevée", "Des photos de famille", "Des bijoux anciens"]),
+      correctAnswer: "Un vieux journal avec une expérience inachevée",
+      order: 4,
+    };
+    const readQ5_perip: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 5 (Péripéties)",
+      text: "Que s'est-il passé quand Emma a fait l'expérience de cristaux?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Rien de spécial", "Les cristaux se sont développés d'une manière bizarre et nouvelle", "L'expérience a échoué", "Elle s'est blessée"]),
+      correctAnswer: "Les cristaux se sont développés d'une manière bizarre et nouvelle",
+      order: 5,
+    };
+    const readQ5_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 6 (Situation finale)",
+      text: "Quel honneur Emma a-t-elle reçu pour sa découverte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une médaille d'or", "Le prix de la meilleure expérience scientifique à l'école", "Un voyage en laboratoire", "Rien du tout"]),
+      correctAnswer: "Le prix de la meilleure expérience scientifique à l'école",
+      order: 6,
+    };
+    const readQ5_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 7 (Compréhension)",
+      text: "Quel était le métier de la grand-mère d'Emma?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Médecin", "Chimiste renommée", "Professeure", "Artiste"]),
+      correctAnswer: "Chimiste renommée",
+      order: 7,
+    };
+    const readQ5_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous montre cette histoire sur la curiosité et la persévérance? Pourquoi est-il important de continuer même quand on pense avoir échoué?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ5_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 9 (Réaction)",
+      text: "As-tu déjà fait une expérience ou une découverte qui t'a surpris? Raconte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ5_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 10 (Réaction)",
+      text: "Si tu pouvais faire une expérience scientifique, laquelle choisirais-tu et pourquoi?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ5_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise5Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Penses-tu que l'auteur a bien décrit la passion d'Emma pour la science? Explique avec un exemple du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
     // Writing questions
     const writQ1: Question = {
       id: randomUUID(),
@@ -2200,6 +2512,45 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ25b.id, readQ25b);
     this.questions.set(readQ25c.id, readQ25c);
     this.questions.set(readQ25d.id, readQ25d);
+    
+    // Questions additionnelles Histoire 2
+    this.questions.set(readQ2_sitFin.id, readQ2_sitFin);
+    this.questions.set(readQ2_comp1.id, readQ2_comp1);
+    this.questions.set(readQ2_comp2.id, readQ2_comp2);
+    this.questions.set(readQ2_interp.id, readQ2_interp);
+    this.questions.set(readQ2_react1.id, readQ2_react1);
+    this.questions.set(readQ2_react2.id, readQ2_react2);
+    this.questions.set(readQ2_jug.id, readQ2_jug);
+    
+    // Questions additionnelles Histoire 3
+    this.questions.set(readQ3_sitFin.id, readQ3_sitFin);
+    this.questions.set(readQ3_comp1.id, readQ3_comp1);
+    this.questions.set(readQ3_comp2.id, readQ3_comp2);
+    this.questions.set(readQ3_interp.id, readQ3_interp);
+    this.questions.set(readQ3_react1.id, readQ3_react1);
+    this.questions.set(readQ3_react2.id, readQ3_react2);
+    this.questions.set(readQ3_jug.id, readQ3_jug);
+    
+    // Questions additionnelles Histoire 4
+    this.questions.set(readQ4_sitFin.id, readQ4_sitFin);
+    this.questions.set(readQ4_comp1.id, readQ4_comp1);
+    this.questions.set(readQ4_comp2.id, readQ4_comp2);
+    this.questions.set(readQ4_interp.id, readQ4_interp);
+    this.questions.set(readQ4_react1.id, readQ4_react1);
+    this.questions.set(readQ4_react2.id, readQ4_react2);
+    this.questions.set(readQ4_jug.id, readQ4_jug);
+    
+    // Questions additionnelles Histoire 5
+    this.questions.set(readQ5_sitInit.id, readQ5_sitInit);
+    this.questions.set(readQ5_perturb.id, readQ5_perturb);
+    this.questions.set(readQ5_perip.id, readQ5_perip);
+    this.questions.set(readQ5_sitFin.id, readQ5_sitFin);
+    this.questions.set(readQ5_comp1.id, readQ5_comp1);
+    this.questions.set(readQ5_interp.id, readQ5_interp);
+    this.questions.set(readQ5_react1.id, readQ5_react1);
+    this.questions.set(readQ5_react2.id, readQ5_react2);
+    this.questions.set(readQ5_jug.id, readQ5_jug);
+    
     this.questions.set(writQ1.id, writQ1);
     this.questions.set(writQ2.id, writQ2);
     this.questions.set(writQ3.id, writQ3);
