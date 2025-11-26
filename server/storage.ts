@@ -2897,6 +2897,711 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // TEMPLATE SPÉCIFIQUE: Les séquences syntaxiques (grammaire)
+    const sequencesSyntaxiquesExercises = [
+      {
+        name: "Structure GS + GV",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Le chat mange', quel est le GS (groupe sujet)?", options: ["mange", "Le chat", "chat", "Le"], correct: "Le chat" },
+          { text: "Dans 'Le chat mange', quel est le GV (groupe verbal)?", options: ["Le chat", "mange", "Le", "chat"], correct: "mange" },
+          { text: "La structure de base d'une phrase est...", options: ["GV + GS", "GS + GV", "CP + GS", "GV + CP"], correct: "GS + GV" },
+          { text: "Dans 'Marie lit un livre', le GV complet est...", options: ["Marie", "lit", "lit un livre", "un livre"], correct: "lit un livre" },
+          { text: "Le GS répond à la question...", options: ["Quoi?", "Comment?", "Qui est-ce qui? / Qu'est-ce qui?", "Où?"], correct: "Qui est-ce qui? / Qu'est-ce qui?" }
+        ]
+      },
+      {
+        name: "Structure avec CP",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Le chat dort sur le canapé', 'sur le canapé' est...", options: ["le GS", "le GV", "un CP (complément de phrase)", "un attribut"], correct: "un CP (complément de phrase)" },
+          { text: "Le CP peut généralement être...", options: ["jamais supprimé", "supprimé ou déplacé", "remplacé par un pronom", "avant le verbe seulement"], correct: "supprimé ou déplacé" },
+          { text: "Dans 'Hier, Marie a chanté', 'Hier' est...", options: ["le GS", "le GV", "un CP de temps", "un attribut"], correct: "un CP de temps" },
+          { text: "Quel élément est un CP? 'Il mange une pomme à midi.'", options: ["Il", "mange", "une pomme", "à midi"], correct: "à midi" },
+          { text: "La structure GS + GV + CP est...", options: ["obligatoire", "fréquente mais le CP est facultatif", "impossible", "rare"], correct: "fréquente mais le CP est facultatif" }
+        ]
+      },
+      {
+        name: "Production - Séquences",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase simple: GS + GV (ex: Le chien court.)", correct: "réponse libre" },
+          { text: "Écris une phrase avec: GS + GV + CP de temps.", correct: "réponse libre" },
+          { text: "Dans 'Mon ami joue au parc chaque jour', identifie le GS, le GV et le(s) CP.", correct: "réponse libre" },
+          { text: "Ajoute un CP de lieu à cette phrase: 'L'oiseau chante.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Séquences syntaxiques",
+        type: "multiple_choice",
+        questions: [
+          { text: "GS signifie...", options: ["Grand Sujet", "Groupe Sujet", "Genre Singulier", "Grammaire Simple"], correct: "Groupe Sujet" },
+          { text: "GV signifie...", options: ["Grand Verbe", "Groupe Verbal", "Genre Variable", "Grammaire Verbale"], correct: "Groupe Verbal" },
+          { text: "CP signifie...", options: ["Complément Principal", "Complément de Phrase", "Catégorie Principale", "Classe de Phrase"], correct: "Complément de Phrase" },
+          { text: "Quelle phrase a la structure GS + GV + CP?", options: ["Il dort.", "Marie mange.", "Le chat dort sur le lit.", "Courir est bon."], correct: "Le chat dort sur le lit." },
+          { text: "Le GV contient toujours...", options: ["un adjectif", "un verbe", "un CP", "un nom propre"], correct: "un verbe" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les adverbes (plus complet) (grammaire)
+    const adverbesCompletExercises = [
+      {
+        name: "Catégories d'adverbes",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Rapidement', 'lentement', 'bien' sont des adverbes de...", options: ["temps", "lieu", "manière", "quantité"], correct: "manière" },
+          { text: "'Hier', 'demain', 'maintenant' sont des adverbes de...", options: ["manière", "temps", "lieu", "opinion"], correct: "temps" },
+          { text: "'Ici', 'là-bas', 'partout' sont des adverbes de...", options: ["temps", "lieu", "manière", "quantité"], correct: "lieu" },
+          { text: "'Beaucoup', 'peu', 'très' sont des adverbes de...", options: ["manière", "temps", "quantité/intensité", "lieu"], correct: "quantité/intensité" },
+          { text: "'Probablement', 'certainement', 'peut-être' sont des adverbes de...", options: ["manière", "opinion/modalité", "temps", "lieu"], correct: "opinion/modalité" }
+        ]
+      },
+      {
+        name: "Formation des adverbes",
+        type: "multiple_choice",
+        questions: [
+          { text: "L'adverbe de 'lent' (adjectif) est...", options: ["lentment", "lentement", "lentamment", "lente"], correct: "lentement" },
+          { text: "L'adverbe de 'vrai' (adjectif) est...", options: ["vraiment", "vraiement", "vrai", "vraie"], correct: "vraiment" },
+          { text: "L'adverbe de 'gentil' (adjectif) est...", options: ["gentilment", "gentilement", "gentiment", "gentille"], correct: "gentiment" },
+          { text: "Pour former un adverbe en -ment, on part généralement de...", options: ["l'adjectif masculin", "l'adjectif féminin", "le nom", "le verbe"], correct: "l'adjectif féminin" },
+          { text: "L'adverbe de 'récent' est...", options: ["récentment", "récemment", "récentement", "récent"], correct: "récemment" }
+        ]
+      },
+      {
+        name: "Production - Adverbes complet",
+        type: "text",
+        questions: [
+          { text: "Donne un adverbe pour chaque catégorie: manière, temps, lieu, quantité.", correct: "réponse libre" },
+          { text: "Transforme ces adjectifs en adverbes: rapide, doux, prudent.", correct: "réponse libre" },
+          { text: "Écris 3 phrases avec des adverbes d'opinion (probablement, certainement...).", correct: "réponse libre" },
+          { text: "Place l'adverbe correctement: 'Elle a (beaucoup) mangé.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Adverbes complet",
+        type: "multiple_choice",
+        questions: [
+          { text: "L'adverbe est un mot...", options: ["variable", "invariable", "qui s'accorde", "qui se conjugue"], correct: "invariable" },
+          { text: "L'adverbe peut modifier...", options: ["un nom", "un verbe, adjectif ou autre adverbe", "un article", "un pronom seulement"], correct: "un verbe, adjectif ou autre adverbe" },
+          { text: "Dans 'très gentil', 'très' modifie...", options: ["un nom", "un verbe", "un adjectif", "rien"], correct: "un adjectif" },
+          { text: "Où se place généralement l'adverbe avec un temps composé?", options: ["Avant l'auxiliaire", "Entre auxiliaire et participe", "Après le participe", "Au début de phrase"], correct: "Entre auxiliaire et participe" },
+          { text: "Quel adverbe n'existe PAS?", options: ["vraiment", "joliment", "bonnement", "rapidement"], correct: "bonnement" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: La cohésion et cohérence textuelle (grammaire)
+    const cohesionCoherenceExercises = [
+      {
+        name: "Comprendre la cohérence",
+        type: "multiple_choice",
+        questions: [
+          { text: "Un texte cohérent est un texte...", options: ["long", "qui a du sens et une logique", "avec beaucoup de mots", "sans ponctuation"], correct: "qui a du sens et une logique" },
+          { text: "Quel élément assure la cohérence d'un texte?", options: ["Les fautes d'orthographe", "L'ordre logique des idées", "Les répétitions", "Les phrases longues"], correct: "L'ordre logique des idées" },
+          { text: "Un texte incohérent est difficile à...", options: ["lire rapidement", "comprendre", "écrire", "imprimer"], correct: "comprendre" },
+          { text: "Pour qu'un texte soit cohérent, les phrases doivent...", options: ["être très longues", "être reliées entre elles", "commencer par une majuscule", "avoir le même sujet"], correct: "être reliées entre elles" },
+          { text: "La cohérence textuelle concerne...", options: ["l'orthographe", "le sens global du texte", "la ponctuation", "la mise en page"], correct: "le sens global du texte" }
+        ]
+      },
+      {
+        name: "Comprendre la cohésion",
+        type: "multiple_choice",
+        questions: [
+          { text: "La cohésion textuelle utilise...", options: ["des fautes", "des marqueurs et substituts", "des dessins", "des nombres"], correct: "des marqueurs et substituts" },
+          { text: "Quel outil assure la cohésion? 'Marie arrive. Elle est contente.'", options: ["Marie", "arrive", "Elle (substitut)", "contente"], correct: "Elle (substitut)" },
+          { text: "'D'abord... ensuite... enfin' assurent la cohésion par...", options: ["les substituts", "les marqueurs de relation", "la ponctuation", "les adjectifs"], correct: "les marqueurs de relation" },
+          { text: "Répéter le même mot trop souvent nuit à...", options: ["la cohérence", "la cohésion", "rien du tout", "la longueur"], correct: "la cohésion" },
+          { text: "Les pronoms (il, elle, ils) améliorent la cohésion car ils...", options: ["sont courts", "évitent les répétitions", "sont faciles", "sont beaux"], correct: "évitent les répétitions" }
+        ]
+      },
+      {
+        name: "Production - Cohésion/Cohérence",
+        type: "text",
+        questions: [
+          { text: "Remets ces phrases dans l'ordre logique: 'Ensuite je mange. Je me réveille. Enfin je pars. D'abord je me lave.'", correct: "réponse libre" },
+          { text: "Améliore ce texte en utilisant des substituts: 'Le chat dort. Le chat ronronne. Le chat est content.'", correct: "réponse libre" },
+          { text: "Ajoute des marqueurs pour relier ces phrases: 'Je suis fatigué. Je continue à travailler.'", correct: "réponse libre" },
+          { text: "Écris 3 phrases cohérentes sur le thème de l'école.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Cohésion et cohérence",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quelle est la différence entre cohésion et cohérence?", options: ["Aucune", "Cohésion = liens entre phrases, Cohérence = sens global", "Cohésion = sens, Cohérence = liens", "Les deux sont identiques"], correct: "Cohésion = liens entre phrases, Cohérence = sens global" },
+          { text: "Un texte peut-il être cohésif mais pas cohérent?", options: ["Non, jamais", "Oui, s'il a des liens mais pas de sens global", "Oui, s'il est court", "Non, impossible"], correct: "Oui, s'il a des liens mais pas de sens global" },
+          { text: "Quel texte est le plus cohérent?", options: ["Chat. Arbre. Lune. Vert.", "Le chat dort. Il rêve. Puis il se réveille.", "Bleu rouge jaune.", "Manger dormir courir."], correct: "Le chat dort. Il rêve. Puis il se réveille." },
+          { text: "Pour améliorer la cohésion, on peut...", options: ["ajouter des fautes", "utiliser des substituts et marqueurs", "enlever la ponctuation", "écrire plus vite"], correct: "utiliser des substituts et marqueurs" },
+          { text: "Un paragraphe doit généralement développer...", options: ["plusieurs idées mélangées", "une idée principale", "aucune idée", "des idées contradictoires"], correct: "une idée principale" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les marqueurs de relation (grammaire)
+    const marqueursRelationExercises = [
+      {
+        name: "Identifier les marqueurs",
+        type: "multiple_choice",
+        questions: [
+          { text: "'D'abord', 'ensuite', 'enfin' sont des marqueurs de...", options: ["cause", "conséquence", "temps/ordre", "opposition"], correct: "temps/ordre" },
+          { text: "'Parce que', 'car', 'puisque' sont des marqueurs de...", options: ["temps", "cause", "conséquence", "but"], correct: "cause" },
+          { text: "'Donc', 'ainsi', 'par conséquent' sont des marqueurs de...", options: ["cause", "conséquence", "temps", "opposition"], correct: "conséquence" },
+          { text: "'Cependant', 'mais', 'toutefois' sont des marqueurs de...", options: ["addition", "opposition", "cause", "temps"], correct: "opposition" },
+          { text: "'De plus', 'également', 'aussi' sont des marqueurs de...", options: ["opposition", "cause", "addition", "conclusion"], correct: "addition" }
+        ]
+      },
+      {
+        name: "Utilisation des marqueurs",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Il pleut, _____ je prends mon parapluie.' (conséquence)", options: ["parce que", "donc", "mais", "d'abord"], correct: "donc" },
+          { text: "Complète: 'J'aime le sport _____ je préfère le basketball.' (précision)", options: ["donc", "car", "en particulier", "ensuite"], correct: "en particulier" },
+          { text: "Complète: '_____, je me lève. _____, je déjeune.' (ordre)", options: ["D'abord...Ensuite", "Car...Donc", "Mais...Cependant", "Parce que...Ainsi"], correct: "D'abord...Ensuite" },
+          { text: "Complète: 'Elle est fatiguée _____ elle continue.' (opposition)", options: ["donc", "car", "mais", "ensuite"], correct: "mais" },
+          { text: "Complète: '_____, je conclus que...' (conclusion)", options: ["D'abord", "Ensuite", "En somme", "Parce que"], correct: "En somme" }
+        ]
+      },
+      {
+        name: "Production - Marqueurs",
+        type: "text",
+        questions: [
+          { text: "Écris 2 phrases reliées par un marqueur de temps (d'abord, ensuite, enfin...).", correct: "réponse libre" },
+          { text: "Écris 2 phrases reliées par un marqueur de cause (car, parce que...).", correct: "réponse libre" },
+          { text: "Écris 2 phrases reliées par un marqueur d'opposition (mais, cependant...).", correct: "réponse libre" },
+          { text: "Écris une courte conclusion en utilisant 'en conclusion' ou 'en somme'.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Marqueurs de relation",
+        type: "multiple_choice",
+        questions: [
+          { text: "Les marqueurs de relation servent à...", options: ["décrire", "relier les idées et organiser le texte", "conjuguer", "remplacer des mots"], correct: "relier les idées et organiser le texte" },
+          { text: "'Premièrement, deuxièmement, troisièmement' marquent...", options: ["la cause", "l'ordre/énumération", "l'opposition", "la conséquence"], correct: "l'ordre/énumération" },
+          { text: "Quel marqueur n'exprime PAS l'opposition?", options: ["mais", "cependant", "toutefois", "ensuite"], correct: "ensuite" },
+          { text: "'Pour conclure' est un marqueur de...", options: ["introduction", "développement", "conclusion", "opposition"], correct: "conclusion" },
+          { text: "Dans un texte argumentatif, on utilise souvent...", options: ["des marqueurs de temps seulement", "des marqueurs variés (cause, conséquence, opposition)", "aucun marqueur", "des marqueurs de lieu"], correct: "des marqueurs variés (cause, conséquence, opposition)" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les substituts (grammaire)
+    const substitutsExercises = [
+      {
+        name: "Identifier les substituts",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Marie est arrivée. Elle est fatiguée.', 'Elle' remplace...", options: ["fatiguée", "arrivée", "Marie", "rien"], correct: "Marie" },
+          { text: "Un substitut sert à...", options: ["décrire", "éviter la répétition", "conjuguer", "questionner"], correct: "éviter la répétition" },
+          { text: "'Le chien aboie. L'animal a faim.' - 'L'animal' est un substitut...", options: ["pronominal", "nominal", "verbal", "adverbial"], correct: "nominal" },
+          { text: "Dans 'Paul aime lire. Celui-ci lit chaque jour.', 'Celui-ci' remplace...", options: ["lire", "jour", "Paul", "chaque"], correct: "Paul" },
+          { text: "Les pronoms personnels sont des substituts...", options: ["nominaux", "pronominaux", "lexicaux", "textuels"], correct: "pronominaux" }
+        ]
+      },
+      {
+        name: "Types de substituts",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Il, elle, ils, elles' sont des substituts...", options: ["nominaux", "pronominaux", "lexicaux", "aucun"], correct: "pronominaux" },
+          { text: "Remplacer 'le docteur' par 'le médecin' est un substitut...", options: ["pronominal", "nominal synonymique", "verbal", "adverbial"], correct: "nominal synonymique" },
+          { text: "'Cette idée' qui reprend une phrase entière est un substitut...", options: ["pronominal", "nominal", "textuel", "verbal"], correct: "textuel" },
+          { text: "Dans 'Les élèves travaillent. Ils sont concentrés.', le substitut est...", options: ["Les élèves", "travaillent", "Ils", "concentrés"], correct: "Ils" },
+          { text: "'Le premier' dans 'J'ai deux chiens. Le premier est noir.' est un substitut...", options: ["pronominal", "nominal", "numéral/ordinal", "adjectival"], correct: "numéral/ordinal" }
+        ]
+      },
+      {
+        name: "Production - Substituts",
+        type: "text",
+        questions: [
+          { text: "Réécris en utilisant un pronom: 'Marie mange. Marie est contente.'", correct: "réponse libre" },
+          { text: "Réécris en utilisant un substitut nominal: 'Le lion chasse. Le lion est fort.' (Ex: L'animal, Le félin...)", correct: "réponse libre" },
+          { text: "Trouve le substitut: 'Pierre et Jean jouent. Les deux amis s'amusent.'", correct: "réponse libre" },
+          { text: "Écris 2 phrases en utilisant 'celui-ci' ou 'celle-là' comme substitut.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Les substituts",
+        type: "multiple_choice",
+        questions: [
+          { text: "Pourquoi utilise-t-on des substituts?", options: ["Pour allonger le texte", "Pour éviter les répétitions", "Pour compliquer", "Pour rien"], correct: "Pour éviter les répétitions" },
+          { text: "Un substitut doit être...", options: ["plus long que le mot remplacé", "clairement lié au mot qu'il remplace", "toujours un pronom", "toujours au pluriel"], correct: "clairement lié au mot qu'il remplace" },
+          { text: "'Cela' peut remplacer...", options: ["un nom", "une idée ou phrase entière", "un verbe", "un adjectif"], correct: "une idée ou phrase entière" },
+          { text: "Dans 'Le chat dort. Il ronronne.', que remplace 'Il'?", options: ["dort", "ronronne", "Le chat", "Rien"], correct: "Le chat" },
+          { text: "Quel substitut est incorrect? 'Marie et Paul arrivent. Elle est contente.'", options: ["C'est correct", "'Elle' devrait être 'Ils'", "'Elle' devrait être 'Marie'", "On ne sait pas"], correct: "'Elle' devrait être 'Ils'" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Sujet et Compléments du verbe (grammaire)
+    const sujetComplementsExercises = [
+      {
+        name: "Identifier le sujet (GS)",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Le chat mange une souris', quel est le GS (groupe sujet)?", options: ["mange", "une souris", "Le chat", "souris"], correct: "Le chat" },
+          { text: "Le sujet répond à quelle question?", options: ["Quoi?", "Qui est-ce qui? / Qu'est-ce qui?", "Comment?", "Où?"], correct: "Qui est-ce qui? / Qu'est-ce qui?" },
+          { text: "Dans 'Courir est bon pour la santé', le sujet est...", options: ["Courir", "est", "bon", "la santé"], correct: "Courir" },
+          { text: "Dans 'Les enfants de Marie jouent', le GS complet est...", options: ["Les enfants", "Les enfants de Marie", "Marie", "jouent"], correct: "Les enfants de Marie" },
+          { text: "Le sujet se place généralement...", options: ["après le verbe", "avant le verbe", "à la fin", "n'importe où"], correct: "avant le verbe" }
+        ]
+      },
+      {
+        name: "Identifier les compléments du verbe",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Elle lit un livre', 'un livre' est...", options: ["le sujet", "un complément du verbe", "un attribut", "un adverbe"], correct: "un complément du verbe" },
+          { text: "Le complément du verbe répond à...", options: ["Qui? Quoi? (après le verbe)", "Où? Quand?", "Comment?", "Pourquoi?"], correct: "Qui? Quoi? (après le verbe)" },
+          { text: "Dans 'Il donne un cadeau à son ami', combien de compléments du verbe?", options: ["0", "1", "2", "3"], correct: "2" },
+          { text: "Le complément du verbe fait partie du...", options: ["GS (groupe sujet)", "GV (groupe verbal)", "CP (complément de phrase)", "GN (groupe nominal)"], correct: "GV (groupe verbal)" },
+          { text: "Dans 'Marie est contente', 'contente' est...", options: ["un complément du verbe", "un attribut du sujet", "un adverbe", "un complément de phrase"], correct: "un attribut du sujet" }
+        ]
+      },
+      {
+        name: "Production - Sujet et compléments",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase et souligne le GS (groupe sujet).", correct: "réponse libre" },
+          { text: "Écris une phrase avec un complément du verbe (qui répond à 'quoi?').", correct: "réponse libre" },
+          { text: "Dans 'Mon frère joue au soccer', identifie le GS et le complément du verbe.", correct: "réponse libre" },
+          { text: "Transforme la phrase pour changer le sujet: 'Le chien court.' → '_____ court.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Sujet et compléments",
+        type: "multiple_choice",
+        questions: [
+          { text: "Le GS (groupe sujet) peut être...", options: ["un nom seul", "un pronom", "un groupe nominal", "toutes ces réponses"], correct: "toutes ces réponses" },
+          { text: "Un verbe peut avoir combien de compléments?", options: ["0", "1", "2", "0, 1 ou 2"], correct: "0, 1 ou 2" },
+          { text: "Dans 'Ils nous parlent', 'nous' est...", options: ["le sujet", "un complément du verbe", "un adverbe", "un adjectif"], correct: "un complément du verbe" },
+          { text: "Le complément du verbe peut-il être supprimé?", options: ["Toujours", "Jamais", "Parfois, selon le verbe", "Seulement au passé"], correct: "Parfois, selon le verbe" },
+          { text: "'Il pleut.' - Y a-t-il un sujet?", options: ["Non", "Oui, 'Il' (sujet apparent)", "Oui, 'pleut'", "On ne sait pas"], correct: "Oui, 'Il' (sujet apparent)" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les Interjections (grammaire)
+    const interjectionsExercises = [
+      {
+        name: "Identifier les interjections",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quelle est l'interjection dans: 'Hélas! Il est parti.'?", options: ["Il", "est", "parti", "Hélas"], correct: "Hélas" },
+          { text: "Une interjection exprime...", options: ["une action", "une émotion ou un sentiment", "une description", "un temps"], correct: "une émotion ou un sentiment" },
+          { text: "Quel mot est une interjection?", options: ["courir", "beau", "Ouf!", "table"], correct: "Ouf!" },
+          { text: "L'interjection est généralement suivie de...", options: ["un point", "une virgule", "un point d'exclamation", "deux points"], correct: "un point d'exclamation" },
+          { text: "'Aïe!' exprime...", options: ["la joie", "la douleur", "la surprise", "le dégoût"], correct: "la douleur" }
+        ]
+      },
+      {
+        name: "Types d'interjections",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Bravo!' exprime...", options: ["la tristesse", "l'admiration/félicitation", "la peur", "l'hésitation"], correct: "l'admiration/félicitation" },
+          { text: "'Bof!' exprime...", options: ["l'enthousiasme", "l'indifférence", "la joie", "la colère"], correct: "l'indifférence" },
+          { text: "'Chut!' sert à...", options: ["féliciter", "demander le silence", "exprimer la surprise", "dire au revoir"], correct: "demander le silence" },
+          { text: "'Oh là là!' exprime souvent...", options: ["la joie", "la surprise ou l'inquiétude", "le silence", "l'accord"], correct: "la surprise ou l'inquiétude" },
+          { text: "'Hourra!' exprime...", options: ["la tristesse", "l'enthousiasme/la victoire", "le doute", "la peur"], correct: "l'enthousiasme/la victoire" }
+        ]
+      },
+      {
+        name: "Production - Interjections",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase avec une interjection de joie.", correct: "réponse libre" },
+          { text: "Écris une phrase avec une interjection de douleur.", correct: "réponse libre" },
+          { text: "Écris une phrase avec une interjection de surprise.", correct: "réponse libre" },
+          { text: "Donne 5 interjections différentes.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Interjections",
+        type: "multiple_choice",
+        questions: [
+          { text: "L'interjection est une classe de mots...", options: ["variable", "invariable", "qui s'accorde", "qui se conjugue"], correct: "invariable" },
+          { text: "Où se place généralement l'interjection?", options: ["À la fin de la phrase", "Au début de la phrase, isolée", "Après le verbe", "Avant le sujet"], correct: "Au début de la phrase, isolée" },
+          { text: "'Hein?' est une interjection qui sert à...", options: ["exprimer la joie", "demander confirmation", "exprimer la douleur", "saluer"], correct: "demander confirmation" },
+          { text: "Quel groupe ne contient QUE des interjections?", options: ["Aïe, table, Ouf", "Hélas, Bravo, Zut", "Courir, Ah, Oh", "Beau, Chut, Hourra"], correct: "Hélas, Bravo, Zut" },
+          { text: "Les onomatopées (Boum!, Splash!) sont...", options: ["des verbes", "des interjections", "des adjectifs", "des noms"], correct: "des interjections" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les Conjonctions de coordination (grammaire)
+    const conjonctionsExercises = [
+      {
+        name: "Identifier les conjonctions",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quelle est la conjonction dans: 'Je mange et je bois.'?", options: ["Je", "mange", "et", "bois"], correct: "et" },
+          { text: "Combien y a-t-il de conjonctions de coordination en français?", options: ["5", "6", "7", "8"], correct: "7" },
+          { text: "Quel mot n'est PAS une conjonction de coordination?", options: ["mais", "donc", "parce que", "or"], correct: "parce que" },
+          { text: "Le moyen mnémotechnique 'Mais où est donc Ornicar?' aide à retenir...", options: ["les pronoms", "les conjonctions de coordination", "les prépositions", "les adverbes"], correct: "les conjonctions de coordination" },
+          { text: "'Ni' est une conjonction qui exprime...", options: ["l'addition", "l'opposition", "la négation double", "la conséquence"], correct: "la négation double" }
+        ]
+      },
+      {
+        name: "Sens des conjonctions",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Mais' exprime...", options: ["l'addition", "l'opposition", "la cause", "le choix"], correct: "l'opposition" },
+          { text: "'Ou' exprime...", options: ["l'addition", "l'opposition", "le choix", "la conséquence"], correct: "le choix" },
+          { text: "'Donc' exprime...", options: ["la cause", "la conséquence", "l'opposition", "l'addition"], correct: "la conséquence" },
+          { text: "'Car' exprime...", options: ["la cause", "la conséquence", "l'opposition", "le choix"], correct: "la cause" },
+          { text: "'Or' introduit souvent...", options: ["une conclusion", "un argument nouveau/une transition", "une addition", "une négation"], correct: "un argument nouveau/une transition" }
+        ]
+      },
+      {
+        name: "Production - Conjonctions",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase avec 'et' (addition).", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'mais' (opposition).", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'car' (cause).", correct: "réponse libre" },
+          { text: "Cite les 7 conjonctions de coordination.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Conjonctions de coordination",
+        type: "multiple_choice",
+        questions: [
+          { text: "Les conjonctions de coordination relient...", options: ["des mots ou groupes de même fonction", "un verbe à son sujet", "un nom à son adjectif", "rien de particulier"], correct: "des mots ou groupes de même fonction" },
+          { text: "Dans 'ni chaud ni froid', combien de conjonctions?", options: ["0", "1", "2", "3"], correct: "2" },
+          { text: "Complète: 'Il est malade _____ il va à l'école.' (opposition)", options: ["et", "mais", "donc", "car"], correct: "mais" },
+          { text: "Complète: 'Elle étudie _____ elle veut réussir.' (cause)", options: ["mais", "ou", "car", "ni"], correct: "car" },
+          { text: "Une conjonction de coordination est toujours...", options: ["placée entre les éléments qu'elle relie", "au début de la phrase", "à la fin de la phrase", "avant le verbe"], correct: "placée entre les éléments qu'elle relie" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les Déterminants (grammaire)
+    const determinantsExercises = [
+      {
+        name: "Identifier les déterminants",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Le chat dort', quel est le déterminant?", options: ["chat", "dort", "Le", "Aucun"], correct: "Le" },
+          { text: "Dans 'Ma sœur joue', 'ma' est un déterminant...", options: ["défini", "indéfini", "possessif", "démonstratif"], correct: "possessif" },
+          { text: "Dans 'Cette maison est grande', 'cette' est un déterminant...", options: ["défini", "possessif", "démonstratif", "indéfini"], correct: "démonstratif" },
+          { text: "Quel est le déterminant indéfini?", options: ["le", "mon", "un", "ce"], correct: "un" },
+          { text: "Dans 'Trois pommes', 'trois' est un déterminant...", options: ["possessif", "numéral", "défini", "indéfini"], correct: "numéral" }
+        ]
+      },
+      {
+        name: "Types de déterminants",
+        type: "multiple_choice",
+        questions: [
+          { text: "Les déterminants définis sont...", options: ["un, une, des", "le, la, les, l'", "mon, ton, son", "ce, cette, ces"], correct: "le, la, les, l'" },
+          { text: "Les déterminants possessifs indiquent...", options: ["une quantité", "l'appartenance", "une démonstration", "une question"], correct: "l'appartenance" },
+          { text: "'Quel livre?' - 'Quel' est un déterminant...", options: ["possessif", "démonstratif", "interrogatif", "défini"], correct: "interrogatif" },
+          { text: "'Chaque élève' - 'chaque' est un déterminant...", options: ["défini", "indéfini", "numéral", "indéfini (distributif)"], correct: "indéfini (distributif)" },
+          { text: "Quel déterminant utilise-t-on devant une voyelle?", options: ["le", "la", "l'", "les"], correct: "l'" }
+        ]
+      },
+      {
+        name: "Production - Déterminants",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase avec un déterminant défini (le, la, les).", correct: "réponse libre" },
+          { text: "Écris une phrase avec un déterminant possessif (mon, ton, son...).", correct: "réponse libre" },
+          { text: "Écris une phrase avec un déterminant démonstratif (ce, cette, ces).", correct: "réponse libre" },
+          { text: "Complète avec les bons déterminants: '___ chat de ___ voisin mange ___ souris.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Déterminants",
+        type: "multiple_choice",
+        questions: [
+          { text: "Le déterminant se place toujours...", options: ["après le nom", "avant le nom", "après le verbe", "à la fin de la phrase"], correct: "avant le nom" },
+          { text: "Le déterminant s'accorde en...", options: ["temps", "genre et nombre avec le nom", "personne", "mode"], correct: "genre et nombre avec le nom" },
+          { text: "'Des' est le pluriel de...", options: ["le", "la", "un/une", "ce"], correct: "un/une" },
+          { text: "Dans 'Leur maison', 'leur' est...", options: ["un pronom", "un déterminant possessif", "un adverbe", "un adjectif"], correct: "un déterminant possessif" },
+          { text: "Quel groupe ne contient QUE des déterminants?", options: ["le, beau, mon", "un, cette, mes", "ce, grand, les", "ma, joli, une"], correct: "un, cette, mes" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Négation et double négation (grammaire)
+    const negationExercises = [
+      {
+        name: "Identifier la négation",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quelle phrase est à la forme négative?", options: ["Il mange.", "Il ne mange pas.", "Mange-t-il?", "Qu'il mange!"], correct: "Il ne mange pas." },
+          { text: "Quels mots encadrent le verbe dans une négation?", options: ["ne...pas", "pas...ne", "non...oui", "ni...ou"], correct: "ne...pas" },
+          { text: "Dans 'Je ne vois rien', quel est le mot de négation?", options: ["Je", "ne...rien", "vois", "Aucun"], correct: "ne...rien" },
+          { text: "'Personne n'est venu.' - Le mot de négation est...", options: ["Personne", "n'...venu", "est", "ne...personne"], correct: "ne...personne" },
+          { text: "Quelle négation exprime 'zéro fois'?", options: ["ne...pas", "ne...plus", "ne...jamais", "ne...rien"], correct: "ne...jamais" }
+        ]
+      },
+      {
+        name: "Types de négation",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Je ne mange plus.' signifie...", options: ["Je n'ai jamais mangé", "J'ai arrêté de manger", "Je ne mange rien", "Je mange beaucoup"], correct: "J'ai arrêté de manger" },
+          { text: "'Je ne vois personne.' - 'personne' est...", options: ["un sujet", "un mot de négation", "un nom", "un adjectif"], correct: "un mot de négation" },
+          { text: "Quelle phrase utilise 'ne...que' (restriction)?", options: ["Je ne mange pas.", "Je ne mange que des fruits.", "Je ne mange jamais.", "Je ne mange plus."], correct: "Je ne mange que des fruits." },
+          { text: "'Ne...guère' signifie...", options: ["beaucoup", "pas du tout", "à peine, peu", "toujours"], correct: "à peine, peu" },
+          { text: "Dans 'Rien ne bouge', où est le sujet?", options: ["ne", "bouge", "Rien", "Il n'y a pas de sujet"], correct: "Rien" }
+        ]
+      },
+      {
+        name: "Production - Négation",
+        type: "text",
+        questions: [
+          { text: "Mets cette phrase à la forme négative: 'Il mange une pomme.'", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'ne...jamais'.", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'ne...plus'.", correct: "réponse libre" },
+          { text: "Transforme en restriction avec 'ne...que': 'Je mange des fruits.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Négation",
+        type: "multiple_choice",
+        questions: [
+          { text: "Une double négation en français standard donne...", options: ["une négation plus forte", "une affirmation", "une question", "une exclamation"], correct: "une affirmation" },
+          { text: "'Je n'ai aucun ami.' - Combien de mots de négation?", options: ["0", "1", "2", "3"], correct: "2" },
+          { text: "À l'oral, on omet souvent...", options: ["pas", "ne", "jamais", "rien"], correct: "ne" },
+          { text: "'Ni...ni' s'utilise pour...", options: ["ajouter", "nier deux choses", "questionner", "affirmer"], correct: "nier deux choses" },
+          { text: "Quelle phrase est correcte?", options: ["Je ne veux pas rien.", "Je ne veux rien.", "Je veux pas rien.", "Rien je ne veux."], correct: "Je ne veux rien." }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Adjectif vs Adverbe (grammaire)
+    const adjectifAdverbeExercises = [
+      {
+        name: "Identifier l'adjectif",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'une belle maison', 'belle' est...", options: ["un adverbe", "un adjectif", "un nom", "un verbe"], correct: "un adjectif" },
+          { text: "L'adjectif qualifie toujours...", options: ["un verbe", "un nom", "un autre adjectif", "une phrase"], correct: "un nom" },
+          { text: "Dans 'Le chat est noir', 'noir' est...", options: ["un adverbe", "un adjectif attribut", "un nom", "un verbe"], correct: "un adjectif attribut" },
+          { text: "L'adjectif s'accorde en...", options: ["temps", "genre et nombre", "personne", "rien"], correct: "genre et nombre" },
+          { text: "Quel mot est un adjectif?", options: ["rapidement", "rapide", "courir", "vitesse"], correct: "rapide" }
+        ]
+      },
+      {
+        name: "Identifier l'adverbe",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Elle parle doucement', 'doucement' est...", options: ["un adjectif", "un adverbe", "un nom", "un verbe"], correct: "un adverbe" },
+          { text: "L'adverbe modifie généralement...", options: ["un nom", "un verbe, adjectif ou adverbe", "un article", "un pronom"], correct: "un verbe, adjectif ou adverbe" },
+          { text: "L'adverbe est...", options: ["variable", "invariable", "parfois variable", "toujours au pluriel"], correct: "invariable" },
+          { text: "Quel mot est un adverbe?", options: ["lent", "lente", "lentement", "lenteur"], correct: "lentement" },
+          { text: "Dans 'très grand', 'très' modifie...", options: ["un nom", "un verbe", "un adjectif", "rien"], correct: "un adjectif" }
+        ]
+      },
+      {
+        name: "Production - Adjectif vs Adverbe",
+        type: "text",
+        questions: [
+          { text: "Transforme 'rapide' (adjectif) en adverbe et utilise-le dans une phrase.", correct: "réponse libre" },
+          { text: "Écris une phrase où 'fort' est un adjectif, puis une où 'fort' est un adverbe.", correct: "réponse libre" },
+          { text: "Complète: 'La fille _____ chante _____.' (adjectif + adverbe)", correct: "réponse libre" },
+          { text: "Donne 3 adjectifs et leurs adverbes correspondants.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Différencier adjectif et adverbe",
+        type: "multiple_choice",
+        questions: [
+          { text: "La différence principale entre adjectif et adverbe est...", options: ["L'adjectif qualifie un nom, l'adverbe modifie un verbe/adjectif", "Ils sont identiques", "L'adverbe est plus long", "L'adjectif est invariable"], correct: "L'adjectif qualifie un nom, l'adverbe modifie un verbe/adjectif" },
+          { text: "Dans 'Il court vite', 'vite' est...", options: ["un adjectif", "un adverbe", "un nom", "un verbe"], correct: "un adverbe" },
+          { text: "'Bon' vs 'Bien': quelle est la bonne association?", options: ["Bon=adverbe, Bien=adjectif", "Bon=adjectif, Bien=adverbe", "Les deux sont adjectifs", "Les deux sont adverbes"], correct: "Bon=adjectif, Bien=adverbe" },
+          { text: "Dans 'Elle chante faux', 'faux' est utilisé comme...", options: ["adjectif", "adverbe", "nom", "verbe"], correct: "adverbe" },
+          { text: "Comment reconnaître un adverbe de manière?", options: ["Il finit par -ment", "Il finit par -tion", "Il est court", "Il s'accorde"], correct: "Il finit par -ment" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Complément du nom vs Complément du verbe (grammaire)
+    const complementNomVerbeExercises = [
+      {
+        name: "Identification - Complément du nom",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'un livre de français', 'de français' est...", options: ["complément du verbe", "complément du nom", "sujet", "attribut"], correct: "complément du nom" },
+          { text: "Dans 'la maison en briques', 'en briques' complète...", options: ["le verbe", "le nom 'maison'", "le sujet", "l'adjectif"], correct: "le nom 'maison'" },
+          { text: "Le complément du nom est souvent introduit par...", options: ["un adverbe", "une préposition (de, en, à)", "un verbe", "un pronom"], correct: "une préposition (de, en, à)" },
+          { text: "Dans 'une tasse à café', 'à café' indique...", options: ["l'action du verbe", "la fonction de la tasse", "le temps", "le lieu"], correct: "la fonction de la tasse" },
+          { text: "Quel groupe est un complément du nom?", options: ["mange rapidement", "de mon ami", "est grand", "court vite"], correct: "de mon ami" }
+        ]
+      },
+      {
+        name: "Identification - Complément du verbe",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Je mange une pomme', 'une pomme' est...", options: ["complément du nom", "complément du verbe", "sujet", "attribut"], correct: "complément du verbe" },
+          { text: "Le complément du verbe répond à quelle question?", options: ["De quoi?", "Quoi? Qui? (après le verbe)", "Où est?", "Comment est?"], correct: "Quoi? Qui? (après le verbe)" },
+          { text: "Dans 'Elle parle à son frère', 'à son frère' est...", options: ["complément du nom", "complément du verbe", "sujet", "attribut"], correct: "complément du verbe" },
+          { text: "Dans 'Il donne un cadeau à Marie', combien y a-t-il de compléments du verbe?", options: ["0", "1", "2", "3"], correct: "2" },
+          { text: "Le complément du verbe peut-il être supprimé?", options: ["Toujours", "Jamais", "Parfois, selon le verbe", "Seulement au pluriel"], correct: "Parfois, selon le verbe" }
+        ]
+      },
+      {
+        name: "Production - Compléments",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase avec un complément du nom (ex: de, en, à + nom).", correct: "réponse libre" },
+          { text: "Écris une phrase avec un complément du verbe (qui répond à 'quoi?').", correct: "réponse libre" },
+          { text: "Dans 'Le livre de Pierre est sur la table', identifie le complément du nom.", correct: "réponse libre" },
+          { text: "Ajoute un complément du nom à: 'J'ai vu une maison _____.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Différencier les compléments",
+        type: "multiple_choice",
+        questions: [
+          { text: "La différence principale entre complément du nom et du verbe est...", options: ["Le nom vs le verbe complété", "La longueur", "La position", "Le genre"], correct: "Le nom vs le verbe complété" },
+          { text: "Dans 'La porte de la cuisine est fermée', 'de la cuisine' complète...", options: ["le verbe 'est'", "le nom 'porte'", "l'adjectif 'fermée'", "rien"], correct: "le nom 'porte'" },
+          { text: "Dans 'Je vois le chien de mon voisin', 'de mon voisin' est...", options: ["complément du verbe 'vois'", "complément du nom 'chien'", "sujet", "attribut"], correct: "complément du nom 'chien'" },
+          { text: "Dans 'Elle lit un livre', 'un livre' complète...", options: ["le nom", "le verbe 'lit'", "le sujet", "l'adjectif"], correct: "le verbe 'lit'" },
+          { text: "Quel groupe contient DEUX compléments différents? 'Pierre mange...'", options: ["une pomme", "la tarte de mamie", "rapidement", "souvent"], correct: "la tarte de mamie" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Genres et classes de noms (grammaire)
+    const genresClassesNomsExercises = [
+      {
+        name: "Le genre des noms",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel est le genre du mot 'table'?", options: ["masculin", "féminin", "les deux", "neutre"], correct: "féminin" },
+          { text: "Quel est le genre du mot 'livre'?", options: ["masculin", "féminin", "les deux", "neutre"], correct: "masculin" },
+          { text: "Comment reconnaît-on souvent un nom féminin?", options: ["Il finit par -e", "Il finit par -tion, -ette, -ée", "Il est court", "Il désigne un objet"], correct: "Il finit par -tion, -ette, -ée" },
+          { text: "Quel nom est masculin?", options: ["la maison", "le garage", "la voiture", "la table"], correct: "le garage" },
+          { text: "'Enfant' peut être...", options: ["masculin seulement", "féminin seulement", "masculin ou féminin", "ni l'un ni l'autre"], correct: "masculin ou féminin" }
+        ]
+      },
+      {
+        name: "Classes de noms",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Marie' est un nom...", options: ["commun", "propre", "abstrait", "collectif"], correct: "propre" },
+          { text: "'Liberté' est un nom...", options: ["concret", "abstrait", "propre", "collectif"], correct: "abstrait" },
+          { text: "'Troupeau' est un nom...", options: ["individuel", "collectif", "propre", "abstrait"], correct: "collectif" },
+          { text: "Un nom commun désigne...", options: ["une personne spécifique", "une catégorie générale", "un lieu unique", "un sentiment"], correct: "une catégorie générale" },
+          { text: "'Chaise' est un nom...", options: ["abstrait", "concret", "propre", "collectif"], correct: "concret" }
+        ]
+      },
+      {
+        name: "Production - Genres et classes",
+        type: "text",
+        questions: [
+          { text: "Écris 3 noms masculins et 3 noms féminins.", correct: "réponse libre" },
+          { text: "Écris 2 noms propres et 2 noms communs.", correct: "réponse libre" },
+          { text: "Écris 2 noms abstraits (sentiments, idées) et 2 noms concrets (objets).", correct: "réponse libre" },
+          { text: "Donne un exemple de nom collectif et utilise-le dans une phrase.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Genres et classes de noms",
+        type: "multiple_choice",
+        questions: [
+          { text: "Un nom propre prend toujours...", options: ["une minuscule", "une majuscule", "un article", "un adjectif"], correct: "une majuscule" },
+          { text: "Le féminin de 'chanteur' est...", options: ["chanteure", "chanteuse", "chantrice", "chanteur"], correct: "chanteuse" },
+          { text: "'Foule' désigne plusieurs personnes, c'est un nom...", options: ["abstrait", "propre", "collectif", "individuel"], correct: "collectif" },
+          { text: "Quel mot change de sens selon le genre? 'le/la...'", options: ["table", "livre", "voile", "maison"], correct: "voile" },
+          { text: "Les noms de pays sont généralement...", options: ["tous masculins", "tous féminins", "féminins s'ils finissent par -e", "sans genre"], correct: "féminins s'ils finissent par -e" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les mots de liaison (grammaire)
+    const motsLiaisonExercises = [
+      {
+        name: "Identification des mots de liaison",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel mot de liaison exprime une addition?", options: ["mais", "donc", "et", "car"], correct: "et" },
+          { text: "Quel mot de liaison exprime une opposition?", options: ["et", "ou", "mais", "puis"], correct: "mais" },
+          { text: "Quel mot de liaison exprime une cause?", options: ["donc", "car", "puis", "ou"], correct: "car" },
+          { text: "Quel mot de liaison exprime une conséquence?", options: ["car", "mais", "donc", "et"], correct: "donc" },
+          { text: "Quel mot de liaison exprime un choix?", options: ["et", "ou", "mais", "car"], correct: "ou" }
+        ]
+      },
+      {
+        name: "Utilisation des mots de liaison",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Il pleut _____ je prends mon parapluie.' (conséquence)", options: ["mais", "donc", "car", "ou"], correct: "donc" },
+          { text: "Complète: 'J'aime les pommes _____ les oranges.' (addition)", options: ["mais", "ou", "et", "donc"], correct: "et" },
+          { text: "Complète: 'Je veux venir _____ je suis malade.' (opposition)", options: ["et", "mais", "donc", "car"], correct: "mais" },
+          { text: "Complète: 'Il est fatigué _____ il a beaucoup travaillé.' (cause)", options: ["donc", "mais", "car", "et"], correct: "car" },
+          { text: "Complète: 'Tu veux du thé _____ du café?' (choix)", options: ["et", "mais", "ou", "donc"], correct: "ou" }
+        ]
+      },
+      {
+        name: "Production - Mots de liaison",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase avec 'et' pour relier deux idées.", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'mais' pour exprimer une opposition.", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'car' pour donner une raison.", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'donc' pour exprimer une conséquence.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Mots de liaison",
+        type: "multiple_choice",
+        questions: [
+          { text: "Les mots de liaison servent à...", options: ["remplacer un nom", "relier des phrases ou des idées", "conjuguer un verbe", "décrire un nom"], correct: "relier des phrases ou des idées" },
+          { text: "Quel est le moyen mnémotechnique pour retenir les conjonctions de coordination?", options: ["MAIS OU ET DONC OR NI CAR", "ET OU MAIS CAR", "DONC CAR MAIS", "NI ET OU"], correct: "MAIS OU ET DONC OR NI CAR" },
+          { text: "'Ni' exprime...", options: ["une addition positive", "une négation double", "une cause", "un choix"], correct: "une négation double" },
+          { text: "'Or' est utilisé pour...", options: ["une addition", "une opposition légère/transition", "une cause", "une conséquence"], correct: "une opposition légère/transition" },
+          { text: "Dans 'Je lis et j'écris', 'et' relie...", options: ["deux noms", "deux verbes", "deux adjectifs", "deux phrases"], correct: "deux verbes" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les adverbes (grammaire)
+    const adverbesExercises = [
+      {
+        name: "Identification des adverbes",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel mot est un adverbe dans: 'Il parle lentement.'?", options: ["Il", "parle", "lentement", "Aucun"], correct: "lentement" },
+          { text: "Quel mot est un adverbe dans: 'Elle chante très bien.'?", options: ["Elle", "chante", "très", "bien"], correct: "bien" },
+          { text: "Quel mot est un adverbe de temps?", options: ["rapidement", "hier", "beaucoup", "ici"], correct: "hier" },
+          { text: "Quel mot est un adverbe de lieu?", options: ["souvent", "gentiment", "dehors", "jamais"], correct: "dehors" },
+          { text: "Quel mot est un adverbe de manière?", options: ["toujours", "là-bas", "doucement", "peu"], correct: "doucement" }
+        ]
+      },
+      {
+        name: "Types d'adverbes",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Demain' est un adverbe de...", options: ["manière", "temps", "lieu", "quantité"], correct: "temps" },
+          { text: "'Beaucoup' est un adverbe de...", options: ["manière", "temps", "lieu", "quantité"], correct: "quantité" },
+          { text: "'Poliment' est un adverbe de...", options: ["manière", "temps", "lieu", "quantité"], correct: "manière" },
+          { text: "'Partout' est un adverbe de...", options: ["manière", "temps", "lieu", "quantité"], correct: "lieu" },
+          { text: "'Peut-être' est un adverbe de...", options: ["manière", "doute/opinion", "lieu", "quantité"], correct: "doute/opinion" }
+        ]
+      },
+      {
+        name: "Production - Adverbes",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase avec un adverbe de manière (comment?).", correct: "réponse libre" },
+          { text: "Écris une phrase avec un adverbe de temps (quand?).", correct: "réponse libre" },
+          { text: "Écris une phrase avec un adverbe de lieu (où?).", correct: "réponse libre" },
+          { text: "Transforme l'adjectif 'rapide' en adverbe et utilise-le dans une phrase.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Adverbes",
+        type: "multiple_choice",
+        questions: [
+          { text: "Comment forme-t-on généralement un adverbe à partir d'un adjectif?", options: ["On ajoute -ment au féminin", "On ajoute -ment au masculin", "On ajoute -ement", "On ne change rien"], correct: "On ajoute -ment au féminin" },
+          { text: "L'adverbe modifie généralement...", options: ["un nom", "un verbe, adjectif ou autre adverbe", "un pronom", "un article"], correct: "un verbe, adjectif ou autre adverbe" },
+          { text: "Quelle phrase contient un adverbe?", options: ["Le chat dort.", "Elle est belle.", "Il court vite.", "La maison rouge."], correct: "Il court vite." },
+          { text: "'Jamais' est un adverbe de...", options: ["lieu", "manière", "négation/temps", "quantité"], correct: "négation/temps" },
+          { text: "Où se place généralement l'adverbe?", options: ["Avant le nom", "Après le verbe", "Au début de phrase seulement", "À la fin seulement"], correct: "Après le verbe" }
+        ]
+      }
+    ];
+
     // TEMPLATE SPÉCIFIQUE: C'est vs Il est (grammaire)
     const cestVsIlEstExercises = [
       {
@@ -2954,6 +3659,51 @@ export class MemStorage implements IStorage {
         if (titleLower.includes("c'est vs il est") || titleLower === "c'est vs il est") {
           // Cours "C'est vs Il est"
           selectedExercises = cestVsIlEstExercises;
+        } else if (titleLower === "les adverbes" || (titleLower.includes("adverbes") && !titleLower.includes("plus complet"))) {
+          // Cours "Les adverbes"
+          selectedExercises = adverbesExercises;
+        } else if (titleLower.includes("mots de liaison")) {
+          // Cours "Les mots de liaison"
+          selectedExercises = motsLiaisonExercises;
+        } else if (titleLower.includes("genres et classes")) {
+          // Cours "Genres et classes de noms"
+          selectedExercises = genresClassesNomsExercises;
+        } else if (titleLower.includes("complément du nom") && titleLower.includes("complément du verbe")) {
+          // Cours "Complément du nom vs Complément du verbe"
+          selectedExercises = complementNomVerbeExercises;
+        } else if (titleLower.includes("adjectif vs adverbe") || titleLower.includes("adjectif") && titleLower.includes("adverbe")) {
+          // Cours "Adjectif vs Adverbe"
+          selectedExercises = adjectifAdverbeExercises;
+        } else if (titleLower.includes("négation") || titleLower.includes("negation")) {
+          // Cours "Négation et double négation" ET "La négation (nouvelle grammaire)"
+          selectedExercises = negationExercises;
+        } else if (titleLower.includes("déterminant") || titleLower.includes("determinant")) {
+          // Cours "Les Déterminants"
+          selectedExercises = determinantsExercises;
+        } else if (titleLower.includes("conjonction")) {
+          // Cours "Les Conjonctions de coordination"
+          selectedExercises = conjonctionsExercises;
+        } else if (titleLower.includes("interjection")) {
+          // Cours "Les Interjections"
+          selectedExercises = interjectionsExercises;
+        } else if (titleLower.includes("sujet") && titleLower.includes("complément")) {
+          // Cours "Sujet et Compléments du verbe"
+          selectedExercises = sujetComplementsExercises;
+        } else if (titleLower.includes("substitut")) {
+          // Cours "Les substituts"
+          selectedExercises = substitutsExercises;
+        } else if (titleLower.includes("marqueur")) {
+          // Cours "Les marqueurs de relation"
+          selectedExercises = marqueursRelationExercises;
+        } else if (titleLower.includes("cohésion") || titleLower.includes("cohérence")) {
+          // Cours "La cohésion et cohérence textuelle"
+          selectedExercises = cohesionCoherenceExercises;
+        } else if (titleLower.includes("adverbes") && titleLower.includes("plus complet")) {
+          // Cours "Les adverbes (plus complet)"
+          selectedExercises = adverbesCompletExercises;
+        } else if (titleLower.includes("séquence") && titleLower.includes("syntaxique")) {
+          // Cours "Les séquences syntaxiques"
+          selectedExercises = sequencesSyntaxiquesExercises;
         } else {
           // Par défaut: exercices génériques de grammaire
           selectedExercises = grammaireExercises;
