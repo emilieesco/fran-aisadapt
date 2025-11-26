@@ -1126,50 +1126,95 @@ export class MemStorage implements IStorage {
     const writingExercise4Id = randomUUID();
 
 
-    // Reading questions - NARRATIVE TEXTS with 4 dimensions
-    // Narratif - Exercice 1: Histoire 1
-    const readQ1: Question = {
+    // Reading questions - NARRATIVE TEXTS with 4 dimensions de lecture
+    // Histoire 1: Le Trésor de la Cave (8 questions)
+    // 3 Compréhension + 2 Interprétation (choix multiples) + 2 Réaction + 1 Jugement critique (texte libre)
+    const readQ1_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
       title: "Histoire 1: Le Trésor de la Cave",
-      text: "Léa avait 11 ans et vivait dans une petite maison ancienne au bord d'une forêt dense. C'était une maison de trois étages avec un toit pointu et des volets bleus. Elle était une fille curieuse et aventurière qui adorait lire des histoires d'aventure, en particulier les légendes de pirates et de trésors perdus. Elle rêvait de découvrir des secrets cachés. Chaque jour, elle allait à l'école, écoutait ses professeurs, puis revenait faire ses devoirs à la table de la cuisine. Mais dès qu'elle terminait, elle explorait chaque coin de sa maison, se demandant quels mystères se cachaient derrière les vieilles portes et les murs craqués.\n\nCe matin-là du samedi, pendant que ses parents dormaient, Léa décida d'explorer le grenier. Elle monta l'escalier en bois qui grinçait bruyamment, levant des nuages de poussière dorée dans la lumière qui venait par une petite fenêtre. Elle regardait partout, examinant les vieilles boîtes, les cadres poussiéreux, les malles oubliées depuis des décennies. C'est alors qu'elle entendit un léger bruit métallique. Elle regarda entre deux poutres en bois et découvrit une vieille clé rouillée tombée au sol. La clé était lourde et froide entre ses mains. Elle avait une forme bizarre et compliquée, gravée de symboles mystérieux qui ressemblaient à des étoiles et des croix. Léa n'avait jamais vu une clé comme celle-ci avant. Son cœur s'accéléra. Elle la nettoya doucement et murmura: \"À quoi ouvre-t-elle? D'où vient-elle?\"\n\nPendant les jours suivants, Léa chercha partout dans la maison une serrure qui correspondrait à cette clé mystérieuse. Elle essaya toutes les portes, tous les tiroirs, tous les petits coffres. Rien ne fonctionnait. Elle était frustée mais aussi déterminée. Elle lut des livres à la bibliothèque sur les vieilles maisons et les secrets cachés. Elle posa des questions à ses parents sur l'histoire de leur maison, mais ils ne savaient pas grand-chose. Une semaine plus tard, en explorant la cave, dans un coin sombre derrière les vieux meubles poussiéreux et les boîtes oubliées, elle trouva enfin une petite porte en bois qu'elle n'avait jamais remarquée avant. Elle était cachée derrière une armoire lourde. La porte était ancienne, avec des joints noircis par le temps et une petite serrure. Léa tremblait d'excitation. Elle sortit la clé mystérieuse de sa poche. Ses mains tremblaient lorsqu'elle l'approcha de la serrure. La clé tourna parfaitement! La porte s'ouvrit avec un craquement sinistre.\n\nDerrier la porte s'étendait une pièce secrète que personne n'avait visitée depuis des décennies. À l'intérieur, il y avait des coffres en bois, des caisses recouvertes de toiles d'araignée, des pièces de monnaie anciennes brillant à la lumière de sa lampe de poche. Des tableaux accrochés aux murs racontaient des histoires d'un passé lointain. Léa était bouche bée, trop fascinée pour crier. C'est alors qu'elle entendit un bruit terrible: la porte de la cave claqua bruyamment! Quelque chose l'avait fermée derrière elle! La lumière du grenier disparut. Elle était piégée dans le noir complet! Elle sentit la panique monter. Elle appela ses parents, mais sa voix résonnait seulement dans la pièce vide. Elle chercha une sortie, tâtonnant dans le noir, ses yeux s'adaptant lentement. Elle avait peur, mais elle se rappela qu'elle était courageuse.\n\nAprès une heure qui sembla durer une éternité, Léa remarqua une légère lumière au loin, dans un coin de la pièce secrète. Elle trouva une autre porte en bois, presque invisible, qui menait à un tunnel souterrain ancien et moisi. Elle le suivit, rampant parfois, marchant lentement d'autres fois, son cœur battant à chaque pas. Le tunnel était humide et froid. Elle entendit des sons bizarres - probablement des animaux ou simplement l'écho de ses propres pas. Après ce qui sembla une éternité, elle vit une lumière naturelle. Elle arriva finalement derrière le vieux puits du jardin! Elle s'échappa, haletante, heureuse de voir le soleil à nouveau.\n\nLéa courut immédiatement chez ses parents et raconta toute l'histoire. Au début, ils ne la crurent pas! Mais quand elle leur montra la clé et la porte secrète, ils furent choqués. Ensemble avec un expert en histoire locale, ils explorèrent la maison avec sa famille. Ils découvrirent que la maison appartenait autrefois à un homme très riche du 19e siècle qui y avait caché des pièces de monnaie anciennes, de l'or et des bijoux pour les protéger. C'était comme un musée souterrain! L'expert et les parents de Léa documentèrent tout et firent don des trésors à un musée. Léa devint célèbre dans tout le village comme \"la fille qui a découvert le trésor caché\". Elle reçut même un certificat du maire! Son rêve d'aventure était devenu réalité.\n\nQuel était le métier ou la passion de Léa avant sa découverte?",
+      text: "Léa avait 11 ans et vivait dans une petite maison ancienne au bord d'une forêt dense. C'était une maison de trois étages avec un toit pointu et des volets bleus. Elle était une fille curieuse et aventurière qui adorait lire des histoires d'aventure, en particulier les légendes de pirates et de trésors perdus. Elle rêvait de découvrir des secrets cachés. Chaque jour, elle allait à l'école, écoutait ses professeurs, puis revenait faire ses devoirs à la table de la cuisine. Mais dès qu'elle terminait, elle explorait chaque coin de sa maison, se demandant quels mystères se cachaient derrière les vieilles portes et les murs craqués.\n\nCe matin-là du samedi, pendant que ses parents dormaient, Léa décida d'explorer le grenier. Elle monta l'escalier en bois qui grinçait bruyamment, levant des nuages de poussière dorée dans la lumière qui venait par une petite fenêtre. Elle regardait partout, examinant les vieilles boîtes, les cadres poussiéreux, les malles oubliées depuis des décennies. C'est alors qu'elle entendit un léger bruit métallique. Elle regarda entre deux poutres en bois et découvrit une vieille clé rouillée tombée au sol. La clé était lourde et froide entre ses mains. Elle avait une forme bizarre et compliquée, gravée de symboles mystérieux qui ressemblaient à des étoiles et des croix. Léa n'avait jamais vu une clé comme celle-ci avant. Son cœur s'accéléra. Elle la nettoya doucement et murmura: \"À quoi ouvre-t-elle? D'où vient-elle?\"\n\nPendant les jours suivants, Léa chercha partout dans la maison une serrure qui correspondrait à cette clé mystérieuse. Elle essaya toutes les portes, tous les tiroirs, tous les petits coffres. Rien ne fonctionnait. Elle était frustée mais aussi déterminée. Elle lut des livres à la bibliothèque sur les vieilles maisons et les secrets cachés. Elle posa des questions à ses parents sur l'histoire de leur maison, mais ils ne savaient pas grand-chose. Une semaine plus tard, en explorant la cave, dans un coin sombre derrière les vieux meubles poussiéreux et les boîtes oubliées, elle trouva enfin une petite porte en bois qu'elle n'avait jamais remarquée avant. Elle était cachée derrière une armoire lourde. La porte était ancienne, avec des joints noircis par le temps et une petite serrure. Léa tremblait d'excitation. Elle sortit la clé mystérieuse de sa poche. Ses mains tremblaient lorsqu'elle l'approcha de la serrure. La clé tourna parfaitement! La porte s'ouvrit avec un craquement sinistre.\n\nDerrier la porte s'étendait une pièce secrète que personne n'avait visitée depuis des décennies. À l'intérieur, il y avait des coffres en bois, des caisses recouvertes de toiles d'araignée, des pièces de monnaie anciennes brillant à la lumière de sa lampe de poche. Des tableaux accrochés aux murs racontaient des histoires d'un passé lointain. Léa était bouche bée, trop fascinée pour crier. C'est alors qu'elle entendit un bruit terrible: la porte de la cave claqua bruyamment! Quelque chose l'avait fermée derrière elle! La lumière du grenier disparut. Elle était piégée dans le noir complet! Elle sentit la panique monter. Elle appela ses parents, mais sa voix résonnait seulement dans la pièce vide. Elle chercha une sortie, tâtonnant dans le noir, ses yeux s'adaptant lentement. Elle avait peur, mais elle se rappela qu'elle était courageuse.\n\nAprès une heure qui sembla durer une éternité, Léa remarqua une légère lumière au loin, dans un coin de la pièce secrète. Elle trouva une autre porte en bois, presque invisible, qui menait à un tunnel souterrain ancien et moisi. Elle le suivit, rampant parfois, marchant lentement d'autres fois, son cœur battant à chaque pas. Le tunnel était humide et froid. Elle entendit des sons bizarres - probablement des animaux ou simplement l'écho de ses propres pas. Après ce qui sembla une éternité, elle vit une lumière naturelle. Elle arriva finalement derrière le vieux puits du jardin! Elle s'échappa, haletante, heureuse de voir le soleil à nouveau.\n\nLéa courut immédiatement chez ses parents et raconta toute l'histoire. Au début, ils ne la crurent pas! Mais quand elle leur montra la clé et la porte secrète, ils furent choqués. Ensemble avec un expert en histoire locale, ils explorèrent la maison avec sa famille. Ils découvrirent que la maison appartenait autrefois à un homme très riche du 19e siècle qui y avait caché des pièces de monnaie anciennes, de l'or et des bijoux pour les protéger. C'était comme un musée souterrain! L'expert et les parents de Léa documentèrent tout et firent don des trésors à un musée. Léa devint célèbre dans tout le village comme \"la fille qui a découvert le trésor caché\". Elle reçut même un certificat du maire! Son rêve d'aventure était devenu réalité.\n\nQuel âge avait Léa?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle était archéologue", "Elle adorait lire des histoires d'aventure", "Elle était détective", "Elle construisait des châteaux"]),
-      correctAnswer: "Elle adorait lire des histoires d'aventure",
+      options: JSON.stringify(["9 ans", "11 ans", "13 ans", "15 ans"]),
+      correctAnswer: "11 ans",
       order: 1,
     };
 
-    const readQ2: Question = {
+    const readQ1_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Quel objet a déclenché toute l'aventure de Léa?",
+      title: "Question 2 (Compréhension)",
+      text: "Où Léa a-t-elle trouvé la vieille clé rouillée?",
       type: "multiple_choice",
-      options: JSON.stringify(["Un livre ancien", "Une vieille clé rouillée", "Une lettre mystérieuse", "Un trésor caché"]),
-      correctAnswer: "Une vieille clé rouillée",
+      options: JSON.stringify(["Dans la cave", "Dans le grenier", "Dans sa chambre", "Dans le jardin"]),
+      correctAnswer: "Dans le grenier",
       order: 2,
     };
 
-    const readQ2b: Question = {
+    const readQ1_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel problème grave s'est produit quand Léa a trouvé la porte secrète dans la cave?",
+      title: "Question 3 (Compréhension)",
+      text: "De quelle couleur étaient les volets de la maison de Léa?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle s'est blessée", "Elle s'est perdue", "La porte se ferma et elle fut piégée", "Elle vit un fantôme"]),
-      correctAnswer: "La porte se ferma et elle fut piégée",
+      options: JSON.stringify(["Rouges", "Verts", "Bleus", "Blancs"]),
+      correctAnswer: "Bleus",
       order: 3,
     };
 
-    const readQ2c: Question = {
+    const readQ1_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise1Id,
-      title: "Question 4 (Dénouement)",
-      text: "Comment l'histoire s'est-elle terminée pour Léa?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Léa n'a-t-elle pas abandonné ses recherches malgré les difficultés?",
       type: "multiple_choice",
-      options: JSON.stringify(["Elle s'est perdue à jamais", "Elle s'échappa et découvrit le trésor avec sa famille", "Elle trouva juste des vieux meubles", "Elle ne sortit jamais de la cave"]),
-      correctAnswer: "Elle s'échappa et découvrit le trésor avec sa famille",
+      options: JSON.stringify(["Elle était obligée par ses parents", "Elle était curieuse et déterminée", "Elle avait peur de la punition", "Elle n'avait rien d'autre à faire"]),
+      correctAnswer: "Elle était curieuse et déterminée",
       order: 4,
+    };
+
+    const readQ1_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous apprend le fait que le maire ait donné un certificat à Léa?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que Léa était en retard à l'école", "Que sa découverte était importante pour l'histoire du village", "Que le maire aimait les enfants", "Que Léa devait payer une amende"]),
+      correctAnswer: "Que sa découverte était importante pour l'histoire du village",
+      order: 5,
+    };
+
+    const readQ1_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 6 (Réaction)",
+      text: "Aurais-tu eu peur comme Léa quand la porte s'est refermée et qu'elle s'est retrouvée dans le noir? Explique ta réponse.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ1_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 7 (Réaction)",
+      text: "Cette histoire te rappelle-t-elle une aventure ou une découverte que tu as vécue? Raconte brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ1_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que l'auteur a réussi à créer du suspense dans cette histoire? Explique pourquoi en donnant un exemple du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
     };
 
     // HISTOIRE 2: Le Jour de l'Accident
@@ -2046,10 +2091,14 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
-    this.questions.set(readQ1.id, readQ1);
-    this.questions.set(readQ2.id, readQ2);
-    this.questions.set(readQ2b.id, readQ2b);
-    this.questions.set(readQ2c.id, readQ2c);
+    this.questions.set(readQ1_1.id, readQ1_1);
+    this.questions.set(readQ1_2.id, readQ1_2);
+    this.questions.set(readQ1_3.id, readQ1_3);
+    this.questions.set(readQ1_4.id, readQ1_4);
+    this.questions.set(readQ1_5.id, readQ1_5);
+    this.questions.set(readQ1_6.id, readQ1_6);
+    this.questions.set(readQ1_7.id, readQ1_7);
+    this.questions.set(readQ1_8.id, readQ1_8);
     this.questions.set(readQ3.id, readQ3);
     this.questions.set(readQ4.id, readQ4);
     this.questions.set(readQ4b.id, readQ4b);
