@@ -1218,48 +1218,92 @@ export class MemStorage implements IStorage {
     };
 
     // HISTOIRE 2: Le Jour de l'Accident
-    const readQ3: Question = {
+    const readQ2_1: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
       title: "Histoire 2: Le Jour de l'Accident",
-      text: "Marc était un garçon de 13 ans qui vivait dans une grande ville bruyante appelée Montpellier. C'était un garçon sportif, musclé et très courageux qui adorait faire du vélo avec ses copains du quartier. Il était rapide, agile, et avait des réflexes exceptionnels. Ses cheveux bruns volaient au vent quand il roulait. Chaque jour après l'école, lui et ses trois meilleurs amis - Antoine, Karim et David - allaient au skate park faire des figures impressionnantes et des acrobaties étonnantes. Marc rêvait de participer aux Jeux Olympiques un jour. Il était discipliné et responsable. Marc avait toujours porté un casque rouge brillant qui le rendait facile à repérer, car ses parents lui avaient enseigné l'importance de la sécurité. Il portait aussi des genouillères et des coudières, ce qui le rendait un peu ridicule aux yeux de certains, mais Marc s'en fichait.\n\nCe jour-là du samedi après-midi, quand Marc arriva au parc à vélo, ses copains l'appelaient avec enthousiasme: \"Marc! Marc! Viens ici!\" Antoine courait vers lui en sautant sur place. \"On fait une course de vélo vers le pont à l'autre bout de la ville! Le gagnant recevra de l'argent pour s'acheter une glace!\" cria Karim avec un grand sourire. La route était longue, environ 5 kilomètres, descente puis montée. C'était dangereux et excitant! Mais Marc réalisa quelque chose: en se dépêchant ce matin, il avait oublié son casque à la maison! Il regarda dans son sac à dos vide. Son cœur se serra. \"Attendez! Je n'ai pas mon casque!\" cria-t-il à ses amis. \"Je vais aller le chercher. Je reviens dans 5 minutes!\"\n\nMais ses copains commencèrent à rire et à le taquiner: \"Allez Marc, t'es pas un bébé! Personne ne porte de casque de toute façon!\" dit David en la poussant doucement. \"Oui, regarde tous ces autres kids, personne n'en porte!\" ajouta Antoine. \"Juste une course rapide, Marc! S'il te plaît! On meurt d'envie de jouer!\" supplia Karim avec des yeux de chiot. Marc sentait la pression. Il ne voulait pas avoir l'air faible ou peureux devant ses copains. Il regarda la route, puis regarda ses amis, puis regarda le pont au loin. Contre son meilleur jugement, contre ce qu'il savait être correct, Marc prit une décision stupide: \"D'accord! Allons-y! Mais on y va doucement, d'accord?\"\n\nMais il ne pouvait pas y aller lentement! Ses amis accéléraient, se dépassaient les uns les autres, criant de joie. Marc ne voulait pas être en arrière. Son orgueil refusait de perdre. Il pédalait vite, de plus en plus vite, dépassant les feux rouges, ignorant les panneaux d'arrêt, son vélo volant à plus de 40 km/h. Le vent sifflait dans ses oreilles. Son adrenaline pompait. Il se sentait invincible.\n\nSoudain, au carrefour principal près du vieux marché, une voiture rouge sortit rapidement d'une rue latérale à gauche! Marc ne la vit pas à temps! Il n'eut qu'une seconde pour réagir. Il freina brusquement, mais c'était trop tard. L'avant de la voiture heurta son vélo! Marc vola par-dessus le vélo! Il tomba violemment sur le trottoir en béton dur, la tête la première! Son crâne heurta le sol avec un bruit sec et terrible! La douleur explosa dans sa tête. Le monde devint noir. Il perdit connaissance. Son corps était immobile, effondré sur le trottoir gris.\n\nUn attroupement de gens se forma rapidement. Une femme âgée cria pour appeler une ambulance. Une autre personne administra les premiers secours. Ses copains couraient vers lui en panique, criant son nom. \"Marc! Marc! Réveille-toi!\" pleura Karim, les larmes coulant sur ses joues. L'ambulance arriva en 7 minutes, toutes sirènes hurlantes.\n\nMarc fut transporté à l'hôpital municipal avec une grave commotion cérébrale, plusieurs lacérations à la tête, une fracture du bras droit et de nombreuses contusions. Il dut rester à l'hôpital pendant une semaine complète. Le médecin dit à ses parents: \"Il a eu une très grande chance. Sans casque, il y a 90% de chance qu'il ne serait pas ici.\" Ses parents pleurèrent de soulagement et de culpabilité de ne pas avoir forcé Marc à prendre son casque ce jour-là.\n\nQuand Marc quitta l'hôpital, il était différent. Il avait appris une leçon de vie importante et douleur. Après sa sortie, il n'était qu'une chose: il devint ambassadeur de la sécurité à vélo à son école. Il alla de classe en classe avec des photos et des vidéos montrant les conséquences de l'accident. \"Porter un casque n'est pas bon marché, c'est une NÉCESSITÉ!\" criait-il aux enfants. \"Je suis vivant uniquement grâce à la chance. Mais vous ne devez pas compter sur la chance! Portez TOUJOURS un casque!\" Ses copains Antoine, Karim et David, choqués par l'accident, commencèrent aussi à toujours porter un casque et aidèrent Marc à promouvoir la sécurité.\n\nPourquoi Marc adorait-il aller au parc?",
+      text: "Marc était un garçon de 13 ans qui vivait dans une grande ville bruyante appelée Montpellier. C'était un garçon sportif, musclé et très courageux qui adorait faire du vélo avec ses copains du quartier. Il était rapide, agile, et avait des réflexes exceptionnels. Ses cheveux bruns volaient au vent quand il roulait. Chaque jour après l'école, lui et ses trois meilleurs amis - Antoine, Karim et David - allaient au skate park faire des figures impressionnantes et des acrobaties étonnantes. Marc rêvait de participer aux Jeux Olympiques un jour. Il était discipliné et responsable. Marc avait toujours porté un casque rouge brillant qui le rendait facile à repérer, car ses parents lui avaient enseigné l'importance de la sécurité. Il portait aussi des genouillères et des coudières, ce qui le rendait un peu ridicule aux yeux de certains, mais Marc s'en fichait.\n\nCe jour-là du samedi après-midi, quand Marc arriva au parc à vélo, ses copains l'appelaient avec enthousiasme: \"Marc! Marc! Viens ici!\" Antoine courait vers lui en sautant sur place. \"On fait une course de vélo vers le pont à l'autre bout de la ville! Le gagnant recevra de l'argent pour s'acheter une glace!\" cria Karim avec un grand sourire. La route était longue, environ 5 kilomètres, descente puis montée. C'était dangereux et excitant! Mais Marc réalisa quelque chose: en se dépêchant ce matin, il avait oublié son casque à la maison! Il regarda dans son sac à dos vide. Son cœur se serra. \"Attendez! Je n'ai pas mon casque!\" cria-t-il à ses amis. \"Je vais aller le chercher. Je reviens dans 5 minutes!\"\n\nMais ses copains commencèrent à rire et à le taquiner: \"Allez Marc, t'es pas un bébé! Personne ne porte de casque de toute façon!\" dit David en la poussant doucement. \"Oui, regarde tous ces autres kids, personne n'en porte!\" ajouta Antoine. \"Juste une course rapide, Marc! S'il te plaît! On meurt d'envie de jouer!\" supplia Karim avec des yeux de chiot. Marc sentait la pression. Il ne voulait pas avoir l'air faible ou peureux devant ses copains. Il regarda la route, puis regarda ses amis, puis regarda le pont au loin. Contre son meilleur jugement, contre ce qu'il savait être correct, Marc prit une décision stupide: \"D'accord! Allons-y! Mais on y va doucement, d'accord?\"\n\nMais il ne pouvait pas y aller lentement! Ses amis accéléraient, se dépassaient les uns les autres, criant de joie. Marc ne voulait pas être en arrière. Son orgueil refusait de perdre. Il pédalait vite, de plus en plus vite, dépassant les feux rouges, ignorant les panneaux d'arrêt, son vélo volant à plus de 40 km/h. Le vent sifflait dans ses oreilles. Son adrenaline pompait. Il se sentait invincible.\n\nSoudain, au carrefour principal près du vieux marché, une voiture rouge sortit rapidement d'une rue latérale à gauche! Marc ne la vit pas à temps! Il n'eut qu'une seconde pour réagir. Il freina brusquement, mais c'était trop tard. L'avant de la voiture heurta son vélo! Marc vola par-dessus le vélo! Il tomba violemment sur le trottoir en béton dur, la tête la première! Son crâne heurta le sol avec un bruit sec et terrible! La douleur explosa dans sa tête. Le monde devint noir. Il perdit connaissance. Son corps était immobile, effondré sur le trottoir gris.\n\nUn attroupement de gens se forma rapidement. Une femme âgée cria pour appeler une ambulance. Une autre personne administra les premiers secours. Ses copains couraient vers lui en panique, criant son nom. \"Marc! Marc! Réveille-toi!\" pleura Karim, les larmes coulant sur ses joues. L'ambulance arriva en 7 minutes, toutes sirènes hurlantes.\n\nMarc fut transporté à l'hôpital municipal avec une grave commotion cérébrale, plusieurs lacérations à la tête, une fracture du bras droit et de nombreuses contusions. Il dut rester à l'hôpital pendant une semaine complète. Le médecin dit à ses parents: \"Il a eu une très grande chance. Sans casque, il y a 90% de chance qu'il ne serait pas ici.\" Ses parents pleurèrent de soulagement et de culpabilité de ne pas avoir forcé Marc à prendre son casque ce jour-là.\n\nQuand Marc quitta l'hôpital, il était différent. Il avait appris une leçon de vie importante et douleur. Après sa sortie, il n'était qu'une chose: il devint ambassadeur de la sécurité à vélo à son école. Il alla de classe en classe avec des photos et des vidéos montrant les conséquences de l'accident. \"Porter un casque n'est pas bon marché, c'est une NÉCESSITÉ!\" criait-il aux enfants. \"Je suis vivant uniquement grâce à la chance. Mais vous ne devez pas compter sur la chance! Portez TOUJOURS un casque!\" Ses copains Antoine, Karim et David, choqués par l'accident, commencèrent aussi à toujours porter un casque et aidèrent Marc à promouvoir la sécurité.\n\nQuel âge avait Marc?",
       type: "multiple_choice",
-      options: JSON.stringify(["Pour faire des devoirs", "Pour faire du vélo et faire des figures", "Pour regarder les autres", "Pour dormir"]),
-      correctAnswer: "Pour faire du vélo et faire des figures",
+      options: JSON.stringify(["11 ans", "12 ans", "13 ans", "14 ans"]),
+      correctAnswer: "13 ans",
       order: 1,
     };
 
-    const readQ4: Question = {
+    const readQ2_2: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
-      title: "Question 2 (Élément perturbateur)",
-      text: "Quel événement a poussé Marc à participer à la course dangereuse?",
+      title: "Question 2 (Compréhension)",
+      text: "De quelle couleur était le casque que Marc portait habituellement?",
       type: "multiple_choice",
-      options: JSON.stringify(["Ses copains l'ont forcé et taquiné", "L'ambulance passait", "Il voulait faire une promenade", "Il n'avait rien à faire"]),
-      correctAnswer: "Ses copains l'ont forcé et taquiné",
+      options: JSON.stringify(["Bleu", "Noir", "Rouge brillant", "Jaune"]),
+      correctAnswer: "Rouge brillant",
       order: 2,
     };
 
-    const readQ4b: Question = {
+    const readQ2_3: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
-      title: "Question 3 (Péripéties)",
-      text: "Quel accident grave s'est produit pendant la course?",
+      title: "Question 3 (Compréhension)",
+      text: "Combien de kilomètres faisait la course vers le pont?",
       type: "multiple_choice",
-      options: JSON.stringify(["Marc tomba dans une rivière", "Une voiture sortit d'une rue latérale et il chuta", "Un ami l'a fait tomber", "Son vélo s'est cassé"]),
-      correctAnswer: "Une voiture sortit d'une rue latérale et il chuta",
+      options: JSON.stringify(["2 kilomètres", "5 kilomètres", "10 kilomètres", "15 kilomètres"]),
+      correctAnswer: "5 kilomètres",
       order: 3,
     };
 
-    const readQ4c: Question = {
+    const readQ2_4: Question = {
       id: randomUUID(),
       exerciseId: readingExercise2Id,
-      title: "Question 4 (Dénouement)",
-      text: "Qu'a appris Marc de cet accident terrible?",
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi Marc a-t-il cédé à la pression de ses amis malgré le danger?",
       type: "multiple_choice",
-      options: JSON.stringify(["À conduire une voiture", "L'importance de porter un casque et devint ambassadeur de sécurité", "À courir au lieu de faire du vélo", "Rien du tout"]),
-      correctAnswer: "L'importance de porter un casque et devint ambassadeur de sécurité",
+      options: JSON.stringify(["Il voulait gagner de l'argent", "Il ne voulait pas avoir l'air faible ou peureux", "Il n'avait pas compris le danger", "Il voulait impressionner une fille"]),
+      correctAnswer: "Il ne voulait pas avoir l'air faible ou peureux",
       order: 4,
+    };
+
+    const readQ2_5: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 5 (Interprétation)",
+      text: "Que nous apprend le fait que Marc soit devenu ambassadeur de sécurité à la fin?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Qu'il voulait devenir célèbre", "Qu'il a transformé son erreur en leçon positive pour les autres", "Qu'il avait peur de refaire du vélo", "Que ses parents l'ont obligé"]),
+      correctAnswer: "Qu'il a transformé son erreur en leçon positive pour les autres",
+      order: 5,
+    };
+
+    const readQ2_6: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 6 (Réaction)",
+      text: "Aurais-tu résisté à la pression de tes amis dans cette situation? Explique pourquoi.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const readQ2_7: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 7 (Réaction)",
+      text: "As-tu déjà vécu une situation où tes amis t'ont poussé à faire quelque chose que tu savais dangereux? Raconte brièvement.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const readQ2_8: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise2Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Penses-tu que cette histoire est efficace pour sensibiliser les jeunes à la sécurité routière? Explique avec un exemple du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
     };
 
     // HISTOIRE 3: La Fille qui Rêvait de Danser
@@ -2099,10 +2143,14 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ1_6.id, readQ1_6);
     this.questions.set(readQ1_7.id, readQ1_7);
     this.questions.set(readQ1_8.id, readQ1_8);
-    this.questions.set(readQ3.id, readQ3);
-    this.questions.set(readQ4.id, readQ4);
-    this.questions.set(readQ4b.id, readQ4b);
-    this.questions.set(readQ4c.id, readQ4c);
+    this.questions.set(readQ2_1.id, readQ2_1);
+    this.questions.set(readQ2_2.id, readQ2_2);
+    this.questions.set(readQ2_3.id, readQ2_3);
+    this.questions.set(readQ2_4.id, readQ2_4);
+    this.questions.set(readQ2_5.id, readQ2_5);
+    this.questions.set(readQ2_6.id, readQ2_6);
+    this.questions.set(readQ2_7.id, readQ2_7);
+    this.questions.set(readQ2_8.id, readQ2_8);
     this.questions.set(readQ5.id, readQ5);
     this.questions.set(readQ6.id, readQ6);
     this.questions.set(readQ6b.id, readQ6b);
