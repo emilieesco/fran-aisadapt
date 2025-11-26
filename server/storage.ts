@@ -1244,6 +1244,40 @@ export class MemStorage implements IStorage {
       order: 8,
     };
 
+    // Questions additionnelles Histoire 1 pour compléter à 11 questions
+    const readQ1_9: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 9 (Situation initiale)",
+      text: "Au début de l'histoire, où vivait Léa?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Dans un appartement en ville", "Dans une petite maison ancienne au bord d'une forêt", "Dans une ferme", "Dans un château"]),
+      correctAnswer: "Dans une petite maison ancienne au bord d'une forêt",
+      order: 9,
+    };
+
+    const readQ1_10: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 10 (Dénouement)",
+      text: "Qu'a découvert Léa dans la pièce secrète de la cave?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un trésor de pirates", "Des documents anciens et des objets historiques du village", "De l'or et des bijoux", "Rien d'intéressant"]),
+      correctAnswer: "Des documents anciens et des objets historiques du village",
+      order: 10,
+    };
+
+    const readQ1_11: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise1Id,
+      title: "Question 11 (Interprétation)",
+      text: "Que nous enseigne l'aventure de Léa sur la curiosité et la persévérance? Explique avec tes propres mots.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
     // HISTOIRE 2: Le Jour de l'Accident
     const readQ3: Question = {
       id: randomUUID(),
@@ -3518,6 +3552,9 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ1_6.id, readQ1_6);
     this.questions.set(readQ1_7.id, readQ1_7);
     this.questions.set(readQ1_8.id, readQ1_8);
+    this.questions.set(readQ1_9.id, readQ1_9);
+    this.questions.set(readQ1_10.id, readQ1_10);
+    this.questions.set(readQ1_11.id, readQ1_11);
     this.questions.set(readQ3.id, readQ3);
     this.questions.set(readQ4.id, readQ4);
     this.questions.set(readQ4b.id, readQ4b);
