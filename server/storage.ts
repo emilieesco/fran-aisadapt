@@ -1072,6 +1072,17 @@ export class MemStorage implements IStorage {
     // Narratif
     const readingExercise1Id = randomUUID();
 
+    // Create descriptive exercise
+    const descriptiveExercise1: Exercise = {
+      id: descriptiveExercise1Id,
+      courseId: reading9Id,
+      title: "Lecture: La Bibliothèque Enchantée",
+      description: "Texte descriptif sur une vieille bibliothèque - 8 questions",
+      type: "text",
+      order: 1,
+    };
+    this.exercises.set(descriptiveExercise1.id, descriptiveExercise1);
+
     // Narratif - Histoire 2
     const readingExercise2Id = randomUUID();
 
@@ -1117,6 +1128,10 @@ export class MemStorage implements IStorage {
 
     const readingExercise21Id = randomUUID();
 
+    // Textes Descriptifs
+    const descriptiveExercise1Id = randomUUID();
+    const descriptiveExercise2Id = randomUUID();
+    const descriptiveExercise3Id = randomUUID();
 
     // Writing exercises
     const writingExercise1Id = randomUUID();
@@ -3134,6 +3149,105 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ20_6.id, readQ20_6);
     this.questions.set(readQ20_7.id, readQ20_7);
     this.questions.set(readQ20_8.id, readQ20_8);
+    
+    // TEXTE DESCRIPTIF 1: La Bibliothèque Enchantée
+    const descQ1_1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Texte Descriptif 1: La Bibliothèque Enchantée",
+      text: "Lecture: La Bibliothèque Enchantée\n\nLa vieille bibliothèque municipale se dressait au coin de la rue principale, avec sa façade de pierre grise ornée de sculptures délicates. En franchissant les portes en chêne massif, on pénétrait dans un univers magique. L'intérieur respirait l'histoire et la sagesse. Les murs étaient entièrement couverts d'étagères en bois sombre qui montaient jusqu'au plafond voûté. Des milliers de livres y étaient rangés, leurs dos multicolores formant un arc-en-ciel de connaissances. Le sol était recouvert de tapis rouge foncé qui assourdi les pas, créant une atmosphère paisible et respectueuse. La lumière du jour pénétrait par de grandes fenêtres ornées de vitraux, projetant des motifs colorés sur les pages des livres. L'odeur caractéristique du papier ancien et du cuir reliure flottait dans l'air. Au centre de la salle principale, trônait une grande table de travail en bois massif, entourée de fauteuils confortables en velours bleu. Des lampadaires en laiton diffusaient une lumière chaude et accueillante. C'était un endroit où le temps semblait s'arrêter, où chaque coin invitait à la découverte et à la rêverie.",
+      type: "multiple_choice",
+      options: JSON.stringify(["En pierre blanche", "En pierre grise", "En bois", "En briques"]),
+      correctAnswer: "En pierre grise",
+      order: 1,
+    };
+
+    const descQ1_2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Question 2 (Compréhension)",
+      text: "Quel type de tapis recouvre le sol de la bibliothèque?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Beige clair", "Noir", "Rouge foncé", "Bleu marine"]),
+      correctAnswer: "Rouge foncé",
+      order: 2,
+    };
+
+    const descQ1_3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Question 3 (Compréhension)",
+      text: "Quelle odeur flotte dans l'air de la bibliothèque?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Fleurs fraîches", "Papier ancien et cuir reliure", "Encens", "Café"]),
+      correctAnswer: "Papier ancien et cuir reliure",
+      order: 3,
+    };
+
+    const descQ1_4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Question 4 (Interprétation)",
+      text: "Pourquoi l'auteur décrit-il le tapis comme 'étouffant les pas'?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Pour montrer le tapis est sale", "Pour créer une atmosphère calme et respectueuse", "Parce que le tapis est mouillé", "Pour montrer que la bibliothèque est fermée"]),
+      correctAnswer: "Pour créer une atmosphère calme et respectueuse",
+      order: 4,
+    };
+
+    const descQ1_5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Question 5 (Interprétation)",
+      text: "Quel sentiment principal l'auteur veut-il transmettre sur cette bibliothèque?",
+      type: "multiple_choice",
+      options: JSON.stringify(["De la peur et du mystère", "De la beauté, de la magie et de la paix", "De la solitude et de la tristesse", "De l'ennui et de la fatigue"]),
+      correctAnswer: "De la beauté, de la magie et de la paix",
+      order: 5,
+    };
+
+    const descQ1_6: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Question 6 (Réaction)",
+      text: "Aimerais-tu visiter cette bibliothèque? Pourquoi ou pourquoi pas?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+
+    const descQ1_7: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Question 7 (Réaction)",
+      text: "Décris un endroit calme et paisible que tu connaissances. Quels éléments le rendent spécial?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 7,
+    };
+
+    const descQ1_8: Question = {
+      id: randomUUID(),
+      exerciseId: descriptiveExercise1Id,
+      title: "Question 8 (Jugement critique)",
+      text: "Crois-tu que les anciennes bibliothèques comme celle-ci devraient être préservées à l'ère numérique? Explique ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+
+    this.questions.set(descQ1_1.id, descQ1_1);
+    this.questions.set(descQ1_2.id, descQ1_2);
+    this.questions.set(descQ1_3.id, descQ1_3);
+    this.questions.set(descQ1_4.id, descQ1_4);
+    this.questions.set(descQ1_5.id, descQ1_5);
+    this.questions.set(descQ1_6.id, descQ1_6);
+    this.questions.set(descQ1_7.id, descQ1_7);
+    this.questions.set(descQ1_8.id, descQ1_8);
+
     this.questions.set(writQ1.id, writQ1);
     this.questions.set(writQ2.id, writQ2);
     this.questions.set(writQ3.id, writQ3);
