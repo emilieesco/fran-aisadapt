@@ -2239,12 +2239,107 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // ORTHOGRAPHE: 4 exercices avec 4-5 questions chacun
+    const orthographeExercises = [
+      {
+        name: "Accords - Nom/Adjectif",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Les maison _____ sont vieilles.' Quel accord est correct?", options: ["maison vieille", "maisons vieille", "maisons vieilles", "maison vieilles"], correct: "maisons vieilles" },
+          { text: "Quel mot est correctement accordé? 'Une fille intéligente' ou 'Une fille intelligente'?", options: ["intéligente", "intelligente", "Les deux", "Aucun"], correct: "intelligente" },
+          { text: "Accorde: 'Les chats _____ courent.' (noir/noirs/noire/noires)", options: ["noir", "noirs", "noire", "noires"], correct: "noirs" },
+          { text: "Complète: 'Des fleur_____ jaune_____' (pluriel)", options: ["s, s", "s, -", "-, s", "-, -"], correct: "s, s" },
+          { text: "Quel accord est correct? 'Les grands arbres' ou 'Les grand arbres'?", options: ["Les grands arbres", "Les grand arbres", "Les grands arbre", "grand arbres"], correct: "Les grands arbres" }
+        ]
+      },
+      {
+        name: "Homophones & Confusion",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'C____ la maison de Pierre.' (c'est ou ses ou ces)", options: ["C'est", "ces", "ses", "s'est"], correct: "C'est" },
+          { text: "Choisis: 'Jean et _____ vont à l'école.' (ou/où)", options: ["ou", "où", "oû", "oux"], correct: "où" },
+          { text: "Complète: 'C'____ des livres ____.'' (son/sont)", options: ["son, son", "sont, sont", "son, sont", "sont, son"], correct: "sont, son" },
+          { text: "Quel homophone est correct? 'Je vais à _____ école.' (la/là/las)", options: ["la", "là", "las", "l'a"], correct: "la" },
+          { text: "Complète: 'C'est _____ ami, pas le vôtre.' (mon/m'ont)", options: ["mon", "m'ont", "mont", "monsieur"], correct: "mon" }
+        ]
+      },
+      {
+        name: "Production - Écriture orthographe",
+        type: "text",
+        questions: [
+          { text: "Écris 5 mots au pluriel. Exemple: chat → chats", correct: "réponse libre" },
+          { text: "Écris une phrase avec 'c'est' (pas 'ces' ou 'ses').", correct: "réponse libre" },
+          { text: "Accorde correctement: 'Les ___ et les ___ sont coloré___.' (fleur, papillon)", correct: "réponse libre" },
+          { text: "Distingue: Écris 2 phrases, une avec 'a' (verbe avoir), une avec 'à' (préposition).", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Majuscules et ponctuation",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel début de phrase est correct?", options: ["marie habite à paris.", "Marie habite à Paris.", "marie habite à Paris.", "MARIE HABITE À PARIS."], correct: "Marie habite à Paris." },
+          { text: "Où faut-il une majuscule? 'Le français est utile.'", options: ["français", "Le", "utile", "Nulle part"], correct: "Le" },
+          { text: "Complète correctement: 'Je s'appelle ___.'", options: ["jean", "Jean", "JEAN", "J."], correct: "Jean" },
+          { text: "Quel titre est bien capitalisé?", options: ["le ROI et LA reine", "Le Roi et la Reine", "le roi et la reine", "LE ROI ET LA REINE"], correct: "Le Roi et la Reine" },
+          { text: "Comment débuter une phrase après un point?", options: ["minuscule", "majuscule", "majuscule accentuée", "symbole"], correct: "majuscule" }
+        ]
+      }
+    ];
+
     // Generate GRAMMAR exercises with 4-5 questions each
     for (const [courseId, courseInfo] of Object.entries(courseMap)) {
       if (courseInfo.category === "grammaire") {
         // Create 4 exercises for grammar courses
         for (let exNum = 0; exNum < 4; exNum++) {
           const exerciseTemplate = grammaireExercises[exNum];
+          const exerciseId = randomUUID();
+          
+          const exercise: Exercise = {
+            id: exerciseId,
+            courseId,
+            title: `${exerciseTemplate.name} - ${courseInfo.title}`,
+            description: `${exerciseTemplate.name}: ${courseInfo.title}`,
+            type: exerciseTemplate.type as "multiple_choice" | "text",
+            order: exNum + 1,
+          };
+          
+          this.exercises.set(exerciseId, exercise);
+
+          // Add 4-5 questions per exercise
+          for (let qNum = 0; qNum < exerciseTemplate.questions.length; qNum++) {
+            const qData = exerciseTemplate.questions[qNum];
+            const questionId = randomUUID();
+            
+            if (exerciseTemplate.type === "multiple_choice") {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "multiple_choice",
+                options: JSON.stringify(qData.options),
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            } else {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "text",
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            }
+          }
+        }
+      } else if (courseInfo.category === "orthographe") {
+        // Create 4 exercises for orthography courses
+        for (let exNum = 0; exNum < 4; exNum++) {
+          const exerciseTemplate = orthographeExercises[exNum];
           const exerciseId = randomUUID();
           
           const exercise: Exercise = {
