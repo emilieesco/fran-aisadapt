@@ -180,29 +180,14 @@ export default function Exercise() {
       <main className="max-w-4xl mx-auto px-4 py-8">
         <Card className="p-8 mb-6">
           <div className="mb-8">
-            {/* For first question (the story), show it differently */}
-            {currentQuestionIndex === 0 ? (
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 text-amber-900 dark:text-amber-200">
-                  {currentQuestion.title}
-                </h2>
-                <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-8 rounded-lg border-l-4 border-amber-500">
-                  <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground mb-6">
-                    {currentQuestion.text}
-                  </p>
-                </div>
-                <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-900/10 rounded-lg border-l-4 border-blue-500">
-                  <p className="font-semibold text-blue-900 dark:text-blue-200 text-lg mb-4">
-                    Première question:
-                  </p>
-                  <p className="text-base text-blue-900 dark:text-blue-300 leading-relaxed">
-                    Basée sur l'histoire que tu viens de lire, répondez à la question ci-dessous.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <h2 className="text-2xl font-bold mb-6 text-foreground">{currentQuestion.title}</h2>
-            )}
+            <h2 className="text-2xl font-bold mb-4 text-amber-900 dark:text-amber-200">
+              Question {currentQuestionIndex + 1}
+            </h2>
+            <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500">
+              <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground">
+                {currentQuestion.text}
+              </p>
+            </div>
 
             {currentQuestion.type === "multiple_choice" ? (
               <div className="space-y-4 mt-6">
