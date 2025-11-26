@@ -2521,6 +2521,288 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // TEMPLATE SPÉCIFIQUE: Même vs Mêmes
+    const memeMemeExercises = [
+      {
+        name: "Même - Adverbe ou adjectif",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Elles sont venues _____ .' (même = aussi, adverbe)", options: ["même", "mêmes", "mème", "memes"], correct: "même" },
+          { text: "Complète: 'Ce sont les _____ personnes qu'hier.' (même = identique, adjectif)", options: ["même", "mêmes", "mème", "memes"], correct: "mêmes" },
+          { text: "Complète: 'Les enfants _____ étaient surpris.' (même = aussi, adverbe)", options: ["même", "mêmes", "mème", "memes"], correct: "même" },
+          { text: "Complète: 'Nous avons les _____ idées.' (même = identique, adjectif)", options: ["même", "mêmes", "mème", "memes"], correct: "mêmes" },
+          { text: "Complète: '_____ les adultes ont ri.' (même = aussi, adverbe)", options: ["Même", "Mêmes", "Mème", "Memes"], correct: "Même" }
+        ]
+      },
+      {
+        name: "Même - Accord avec le nom",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Même' s'accorde quand il est...", options: ["adverbe", "adjectif", "pronom", "verbe"], correct: "adjectif" },
+          { text: "Quelle phrase est correcte?", options: ["Les mêmes erreurs", "Les même erreurs", "Les mèmes erreurs", "Les meme erreurs"], correct: "Les mêmes erreurs" },
+          { text: "Complète: 'Ils ont fait la _____ chose.' (singulier)", options: ["même", "mêmes", "mème", "memes"], correct: "même" },
+          { text: "Complète: 'Elle a eu les _____ résultats.' (pluriel)", options: ["même", "mêmes", "mème", "memes"], correct: "mêmes" },
+          { text: "'Même' est invariable quand il signifie...", options: ["identique", "aussi/y compris", "pareil", "semblable"], correct: "aussi/y compris" }
+        ]
+      },
+      {
+        name: "Production - Même vs Mêmes",
+        type: "text",
+        questions: [
+          { text: "Écris 2 phrases avec 'même' adverbe (invariable, = aussi).", correct: "réponse libre" },
+          { text: "Écris 2 phrases avec 'mêmes' adjectif (accord au pluriel).", correct: "réponse libre" },
+          { text: "Explique la différence entre 'même' adverbe et 'mêmes' adjectif.", correct: "réponse libre" },
+          { text: "Complète et justifie: 'Les garçons _____ étaient fatigués.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Même - Quiz récapitulatif",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Les professeurs même ont applaudi.' - 'même' est...", options: ["adverbe (invariable)", "adjectif (accord)", "pronom", "nom"], correct: "adverbe (invariable)" },
+          { text: "'Ce sont les mêmes livres.' - 'mêmes' est...", options: ["adverbe", "adjectif (accord)", "pronom", "nom"], correct: "adjectif (accord)" },
+          { text: "Trouve l'erreur: 'Elles portent les même robes.'", options: ["Elles", "portent", "même", "robes"], correct: "même" },
+          { text: "Quelle phrase utilise 'même' correctement?", options: ["Les même choses", "Même les enfants", "Les enfants mêmes sont venus", "Mêmes adultes"], correct: "Même les enfants" },
+          { text: "Corrige: 'Les mêmes erreurs se répètent.' - Est-ce correct?", options: ["Oui, c'est correct", "Non, 'même erreurs'", "Non, 'mème erreurs'", "Non, 'memes erreurs'"], correct: "Oui, c'est correct" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Quel vs Qu'elle vs Quelles
+    const quelQuelleExercises = [
+      {
+        name: "Quel/Quelle - Déterminant interrogatif",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ heure est-il?' (masculin singulier)", options: ["Quel", "Quelle", "Qu'elle", "Quels"], correct: "Quel" },
+          { text: "Complète: '_____ est ta couleur préférée?' (féminin singulier)", options: ["Quel", "Quelle", "Qu'elle", "Quelles"], correct: "Quelle" },
+          { text: "Complète: '_____ sont tes amis?' (masculin pluriel)", options: ["Quel", "Quelle", "Quels", "Quelles"], correct: "Quels" },
+          { text: "Complète: '_____ sont tes fleurs préférées?' (féminin pluriel)", options: ["Quel", "Quelle", "Quels", "Quelles"], correct: "Quelles" },
+          { text: "Complète: '_____ beau temps!' (exclamatif masculin)", options: ["Quel", "Quelle", "Qu'elle", "Quels"], correct: "Quel" }
+        ]
+      },
+      {
+        name: "Qu'elle/Qu'elles - Pronom + verbe",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Je pense _____ viendra.' (que + elle)", options: ["quel", "quelle", "qu'elle", "qu'elles"], correct: "qu'elle" },
+          { text: "Complète: 'Il dit _____ sont parties.' (que + elles)", options: ["quel", "quelles", "qu'elle", "qu'elles"], correct: "qu'elles" },
+          { text: "Complète: 'C'est _____ est belle!' (que + elle)", options: ["quel", "quelle", "qu'elle", "qu'elles"], correct: "qu'elle" },
+          { text: "Astuce: On peut remplacer par 'qu'il' quand c'est...", options: ["quel/quelle", "qu'elle", "quels", "quelles"], correct: "qu'elle" },
+          { text: "Complète: 'Je sais _____ ont réussi.' (que + elles)", options: ["quelles", "qu'elle", "qu'elles", "quel"], correct: "qu'elles" }
+        ]
+      },
+      {
+        name: "Production - Quel/Qu'elle",
+        type: "text",
+        questions: [
+          { text: "Écris 2 phrases avec 'quel' (masculin) et 2 avec 'quelle' (féminin).", correct: "réponse libre" },
+          { text: "Écris 2 phrases avec 'qu'elle' (que + elle).", correct: "réponse libre" },
+          { text: "Explique comment distinguer 'quelle' de 'qu'elle'.", correct: "réponse libre" },
+          { text: "Complète et justifie: '_____ belle journée!' et 'Je crois _____ a raison.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quel/Qu'elle - Quiz récapitulatif",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Quelle chance!' - 'quelle' est...", options: ["pronom que + elle", "déterminant exclamatif", "adverbe", "verbe"], correct: "déterminant exclamatif" },
+          { text: "'Je pense qu'elle a raison.' - 'qu'elle' est...", options: ["déterminant", "que + elle (pronom)", "adjectif", "nom"], correct: "que + elle (pronom)" },
+          { text: "Trouve l'erreur: 'Quel est ta maison?'", options: ["Quel", "est", "ta", "maison"], correct: "Quel" },
+          { text: "Pour vérifier 'qu'elle', on peut remplacer par...", options: ["quelle", "qu'il", "quel", "quels"], correct: "qu'il" },
+          { text: "Quelle phrase est correcte?", options: ["Qu'elle heure est-il?", "Quelle heure est-il?", "Quel heure est-il?", "Quels heure est-il?"], correct: "Quelle heure est-il?" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Ces vs C'est vs S'est
+    const cesCestExercises = [
+      {
+        name: "Ces - Déterminant démonstratif",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ livres sont intéressants.' (démonstratif pluriel)", options: ["Ces", "C'est", "S'est", "Ses"], correct: "Ces" },
+          { text: "Complète: '_____ enfants jouent dehors.' (démonstratif pluriel)", options: ["Ces", "C'est", "S'est", "Ses"], correct: "Ces" },
+          { text: "'Ces' est utilisé pour...", options: ["montrer/désigner", "dire 'ce est'", "verbe pronominal", "possession"], correct: "montrer/désigner" },
+          { text: "Complète: 'Regarde _____ oiseaux!' (démonstratif)", options: ["ces", "c'est", "s'est", "ses"], correct: "ces" },
+          { text: "'Ces' peut être remplacé par...", options: ["ce est", "il est", "ceux-là/celles-là", "se est"], correct: "ceux-là/celles-là" }
+        ]
+      },
+      {
+        name: "C'est vs S'est - Verbe être",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ mon ami.' (ce + est)", options: ["Ces", "C'est", "S'est", "Ses"], correct: "C'est" },
+          { text: "Complète: 'Elle _____ trompée.' (se + est, pronominal)", options: ["ces", "c'est", "s'est", "ses"], correct: "s'est" },
+          { text: "Complète: '_____ une bonne idée!' (ce + est)", options: ["Ces", "C'est", "S'est", "Ses"], correct: "C'est" },
+          { text: "Complète: 'Il _____ levé tôt.' (se + est, pronominal)", options: ["ces", "c'est", "s'est", "ses"], correct: "s'est" },
+          { text: "'S'est' s'utilise avec un verbe...", options: ["transitif", "intransitif", "pronominal", "impersonnel"], correct: "pronominal" }
+        ]
+      },
+      {
+        name: "Production - Ces/C'est/S'est",
+        type: "text",
+        questions: [
+          { text: "Écris 2 phrases avec 'ces' (démonstratif pluriel).", correct: "réponse libre" },
+          { text: "Écris 2 phrases avec 'c'est' (ce + est).", correct: "réponse libre" },
+          { text: "Écris 2 phrases avec 's'est' (verbe pronominal).", correct: "réponse libre" },
+          { text: "Explique la différence entre 'c'est' et 's'est'.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Ces/C'est/S'est - Quiz récapitulatif",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Ces fleurs sont belles.' - 'ces' est...", options: ["ce + est", "se + est", "déterminant démonstratif", "possessif"], correct: "déterminant démonstratif" },
+          { text: "'C'est formidable!' - 'c'est' est...", options: ["démonstratif pluriel", "ce + est", "se + est", "possessif"], correct: "ce + est" },
+          { text: "'Elle s'est blessée.' - 's'est' est...", options: ["démonstratif", "ce + est", "se + est (pronominal)", "possessif"], correct: "se + est (pronominal)" },
+          { text: "Trouve l'erreur: 'Ces mon frère.'", options: ["Ces", "mon", "frère", "Pas d'erreur"], correct: "Ces" },
+          { text: "Quelle phrase est correcte?", options: ["Ces magnifique!", "C'est magnifique!", "S'est magnifique!", "Ses magnifique!"], correct: "C'est magnifique!" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les règles de base (majuscules, accents, ponctuation)
+    const reglesBaseExercises = [
+      {
+        name: "Majuscules - Règles essentielles",
+        type: "multiple_choice",
+        questions: [
+          { text: "Où met-on toujours une majuscule?", options: ["Après une virgule", "Au début d'une phrase", "Avant un point", "Après 'et'"], correct: "Au début d'une phrase" },
+          { text: "Quelle phrase est correcte?", options: ["je suis content.", "Je suis content.", "JE suis content.", "je Suis content."], correct: "Je suis content." },
+          { text: "Les noms propres prennent...", options: ["une minuscule", "une majuscule", "pas de règle", "deux majuscules"], correct: "une majuscule" },
+          { text: "Quelle écriture est correcte?", options: ["paris", "Paris", "PARIS", "pARIS"], correct: "Paris" },
+          { text: "Après un point, on met...", options: ["une minuscule", "une majuscule", "un espace seulement", "rien"], correct: "une majuscule" }
+        ]
+      },
+      {
+        name: "Accents - Types et usage",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel accent est sur 'é'?", options: ["accent grave", "accent aigu", "accent circonflexe", "tréma"], correct: "accent aigu" },
+          { text: "Quel accent est sur 'è'?", options: ["accent grave", "accent aigu", "accent circonflexe", "tréma"], correct: "accent grave" },
+          { text: "Quel accent est sur 'ê'?", options: ["accent grave", "accent aigu", "accent circonflexe", "tréma"], correct: "accent circonflexe" },
+          { text: "Le tréma sert à...", options: ["allonger le son", "séparer deux voyelles", "marquer le passé", "rien"], correct: "séparer deux voyelles" },
+          { text: "Quel mot a un accent circonflexe?", options: ["ecole", "forêt", "mere", "pere"], correct: "forêt" }
+        ]
+      },
+      {
+        name: "Production - Règles de base",
+        type: "text",
+        questions: [
+          { text: "Écris 3 phrases en respectant les règles de majuscule.", correct: "réponse libre" },
+          { text: "Écris 5 mots avec un accent aigu (é).", correct: "réponse libre" },
+          { text: "Écris 5 mots avec un accent grave (è, à, ù).", correct: "réponse libre" },
+          { text: "Corrige les erreurs: 'marie habite a paris depuis l'ete.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Règles de base - Quiz",
+        type: "multiple_choice",
+        questions: [
+          { text: "Combien de types d'accents existe-t-il en français?", options: ["2", "3", "4", "5"], correct: "4" },
+          { text: "La cédille (ç) se met sous quelle lettre?", options: ["s", "c", "g", "t"], correct: "c" },
+          { text: "Quelle phrase respecte toutes les règles?", options: ["il mange a paris.", "Il mange à Paris.", "il Mange à paris.", "IL mange a Paris."], correct: "Il mange à Paris." },
+          { text: "Le mot 'où' a quel accent?", options: ["aigu", "grave", "circonflexe", "pas d'accent"], correct: "grave" },
+          { text: "'Noël' utilise quel signe?", options: ["accent aigu", "accent grave", "tréma", "cédille"], correct: "tréma" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Mots invariables et exceptions
+    const motsInvariablesExercises = [
+      {
+        name: "Mots invariables - Identification",
+        type: "multiple_choice",
+        questions: [
+          { text: "Un mot invariable est un mot qui...", options: ["change au pluriel", "ne change jamais", "change au féminin", "change au passé"], correct: "ne change jamais" },
+          { text: "Quel mot est invariable?", options: ["chien", "toujours", "maison", "grand"], correct: "toujours" },
+          { text: "Quel mot est invariable?", options: ["belle", "souvent", "petit", "verte"], correct: "souvent" },
+          { text: "Les adverbes sont généralement...", options: ["variables", "invariables", "féminins", "pluriels"], correct: "invariables" },
+          { text: "Quel mot ne change pas?", options: ["maintenant", "chat", "fleur", "arbre"], correct: "maintenant" }
+        ]
+      },
+      {
+        name: "Catégories de mots invariables",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Beaucoup', 'peu', 'très' sont des...", options: ["noms", "verbes", "adverbes (invariables)", "adjectifs"], correct: "adverbes (invariables)" },
+          { text: "'Dans', 'sur', 'sous' sont des...", options: ["adverbes", "prépositions (invariables)", "conjonctions", "noms"], correct: "prépositions (invariables)" },
+          { text: "'Et', 'ou', 'mais' sont des...", options: ["adverbes", "prépositions", "conjonctions (invariables)", "pronoms"], correct: "conjonctions (invariables)" },
+          { text: "Quel mot invariable indique le temps?", options: ["rouge", "hier", "maison", "grand"], correct: "hier" },
+          { text: "Quel mot invariable indique le lieu?", options: ["ici", "bleu", "table", "petit"], correct: "ici" }
+        ]
+      },
+      {
+        name: "Production - Mots invariables",
+        type: "text",
+        questions: [
+          { text: "Écris 5 adverbes invariables (ex: toujours, jamais...).", correct: "réponse libre" },
+          { text: "Écris 5 prépositions invariables (ex: dans, sur...).", correct: "réponse libre" },
+          { text: "Écris 3 phrases avec des mots invariables.", correct: "réponse libre" },
+          { text: "Explique pourquoi 'toujours' ne change pas même au pluriel.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Mots invariables - Quiz",
+        type: "multiple_choice",
+        questions: [
+          { text: "Trouve le mot invariable: 'Les enfants jouent souvent dehors.'", options: ["enfants", "jouent", "souvent", "dehors"], correct: "souvent" },
+          { text: "Combien de mots invariables? 'Il mange toujours ici.'", options: ["0", "1", "2", "3"], correct: "2" },
+          { text: "'Lentement' est-il invariable?", options: ["Oui", "Non", "Parfois", "Ça dépend"], correct: "Oui" },
+          { text: "Quel mot peut changer?", options: ["jamais", "content", "très", "avant"], correct: "content" },
+          { text: "Les prépositions sont...", options: ["toujours variables", "toujours invariables", "parfois variables", "jamais utilisées"], correct: "toujours invariables" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les pièges courants (erreurs fréquentes)
+    const piegesCourantsExercises = [
+      {
+        name: "Erreurs de doublement de consonnes",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quelle orthographe est correcte?", options: ["adresse", "adrese", "addresse", "adrèse"], correct: "adresse" },
+          { text: "Quelle orthographe est correcte?", options: ["appercevoir", "apercevoir", "apperçevoir", "apercevoire"], correct: "apercevoir" },
+          { text: "Quelle orthographe est correcte?", options: ["courrir", "courir", "courrire", "courire"], correct: "courir" },
+          { text: "Quelle orthographe est correcte?", options: ["nourrir", "nourir", "nourrire", "nourire"], correct: "nourrir" },
+          { text: "Quelle orthographe est correcte?", options: ["apeller", "appeler", "apellé", "appeller"], correct: "appeler" }
+        ]
+      },
+      {
+        name: "Erreurs de terminaisons",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: 'Je mang___ une pomme.' (présent)", options: ["-e", "-es", "-ent", "-ai"], correct: "-e" },
+          { text: "Quelle terminaison? 'Il a fini___ son travail.'", options: ["é", "er", "ez", "ée"], correct: "" },
+          { text: "Quelle est la bonne forme? 'Ils ont _____ leur devoir.'", options: ["terminer", "terminé", "terminés", "terminée"], correct: "terminé" },
+          { text: "Erreur fréquente: 'Je voudrais mang___.' (infinitif)", options: ["-é", "-er", "-ez", "-ée"], correct: "-er" },
+          { text: "Quelle phrase est correcte?", options: ["J'ai mangé", "J'ai manger", "J'ai mangez", "J'ai mangés"], correct: "J'ai mangé" }
+        ]
+      },
+      {
+        name: "Production - Pièges courants",
+        type: "text",
+        questions: [
+          { text: "Écris 5 mots avec des consonnes doublées (mm, ll, ss, tt, etc.).", correct: "réponse libre" },
+          { text: "Distingue: Écris une phrase avec 'é' (participe) et une avec 'er' (infinitif).", correct: "réponse libre" },
+          { text: "Corrige les erreurs: 'J'ai manger du pain et je vais aller mangé.'", correct: "réponse libre" },
+          { text: "Explique comment distinguer '-é' de '-er' à la fin d'un verbe.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Pièges courants - Quiz",
+        type: "multiple_choice",
+        questions: [
+          { text: "Trouve l'erreur: 'Je suis aller au marché.'", options: ["suis", "aller", "au", "marché"], correct: "aller" },
+          { text: "Quelle phrase est correcte?", options: ["Il faut manger", "Il faut mangé", "Il faut mangez", "Il faut mangés"], correct: "Il faut manger" },
+          { text: "Comment savoir si c'est '-é' ou '-er'?", options: ["Remplacer par 'vendu/vendre'", "Regarder le sujet", "Compter les syllabes", "Au hasard"], correct: "Remplacer par 'vendu/vendre'" },
+          { text: "Quelle orthographe est correcte?", options: ["language", "langage", "langague", "lengague"], correct: "langage" },
+          { text: "Quelle orthographe est correcte?", options: ["developper", "développer", "develloper", "dévelloper"], correct: "développer" }
+        ]
+      }
+    ];
+
     // CONJUGAISON: 4 exercices avec 4-5 questions chacun
     const conjugaisonExercises = [
       {
@@ -2670,10 +2952,29 @@ export class MemStorage implements IStorage {
         const titleLower = courseInfo.title.toLowerCase();
         let selectedExercises;
         
-        if (titleLower.includes("accords du verbe")) {
+        // COURS SPÉCIFIQUES - vérifier en premier pour éviter les faux positifs
+        if (titleLower.includes("même vs") || titleLower.includes("même/mêmes")) {
+          // Cours "Même vs Mêmes"
+          selectedExercises = memeMemeExercises;
+        } else if (titleLower.includes("quel vs") || titleLower.includes("qu'elle")) {
+          // Cours "Quel vs Qu'elle vs Quelles"
+          selectedExercises = quelQuelleExercises;
+        } else if (titleLower.includes("ces vs") || titleLower.includes("c'est vs") || titleLower.includes("s'est")) {
+          // Cours "Ces vs C'est vs S'est"
+          selectedExercises = cesCestExercises;
+        } else if (titleLower.includes("règles de base")) {
+          // Cours "Les règles de base"
+          selectedExercises = reglesBaseExercises;
+        } else if (titleLower.includes("mots invariables") || titleLower.includes("invariables et exceptions")) {
+          // Cours "Mots invariables et exceptions"
+          selectedExercises = motsInvariablesExercises;
+        } else if (titleLower.includes("pièges courants") || titleLower.includes("pieges courants")) {
+          // Cours "Les pièges courants"
+          selectedExercises = piegesCourantsExercises;
+        } else if (titleLower.includes("accords du verbe")) {
           // Cours sur les accords du verbe → exercices d'accords sujet-verbe
           selectedExercises = accordsVerbeExercises;
-        } else if (titleLower.includes("homophone") || titleLower.includes("c'est") || titleLower.includes("ces vs")) {
+        } else if (titleLower.includes("homophone")) {
           // Cours sur les homophones → exercices d'homophones
           if (titleLower.includes("avancé") || titleLower.includes("grammaticaux") || titleLower.includes("autres")) {
             selectedExercises = homophonesAvancesExercises;
