@@ -2897,6 +2897,382 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // TEMPLATE SPÉCIFIQUE: Le groupe infinitif (grammaire)
+    const groupeInfinitifExercises = [
+      {
+        name: "Reconnaître le groupe infinitif",
+        type: "multiple_choice",
+        questions: [
+          { text: "Un groupe infinitif a pour noyau...", options: ["un verbe conjugué", "un verbe à l'infinitif", "un nom", "un adjectif"], correct: "un verbe à l'infinitif" },
+          { text: "Dans 'Je veux manger une pomme.', le groupe infinitif est...", options: ["Je veux", "manger une pomme", "une pomme", "Je"], correct: "manger une pomme" },
+          { text: "L'infinitif est une forme verbale...", options: ["conjuguée", "non conjuguée", "au passé", "au futur"], correct: "non conjuguée" },
+          { text: "Dans 'Il aime lire des romans.', le groupe infinitif est...", options: ["Il aime", "lire des romans", "des romans", "aime lire"], correct: "lire des romans" },
+          { text: "Quel groupe est un groupe infinitif?", options: ["mange bien", "manger bien", "a mangé", "mangera"], correct: "manger bien" }
+        ]
+      },
+      {
+        name: "Fonctions du groupe infinitif",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Manger est nécessaire.' - Le groupe infinitif est...", options: ["complément", "sujet", "attribut", "CP"], correct: "sujet" },
+          { text: "'Je veux partir.' - Le groupe infinitif est...", options: ["sujet", "complément du verbe", "CP", "attribut"], correct: "complément du verbe" },
+          { text: "'Il est parti sans manger.' - Le groupe infinitif est dans...", options: ["le GS", "le GV", "un GP", "le CP"], correct: "un GP" },
+          { text: "Le groupe infinitif peut avoir la fonction de...", options: ["seulement sujet", "seulement complément", "sujet, complément, ou autre", "aucune fonction"], correct: "sujet, complément, ou autre" },
+          { text: "'Courir vite fatigue.' - 'Courir vite' est...", options: ["le GV", "le GS (sujet)", "un CP", "un attribut"], correct: "le GS (sujet)" }
+        ]
+      },
+      {
+        name: "Production - Groupe infinitif",
+        type: "text",
+        questions: [
+          { text: "Écris 3 phrases avec un groupe infinitif comme complément du verbe.", correct: "réponse libre" },
+          { text: "Écris une phrase où le groupe infinitif est sujet.", correct: "réponse libre" },
+          { text: "Identifie le groupe infinitif et sa fonction: 'Nous aimons voyager en été.'", correct: "réponse libre" },
+          { text: "Enrichis ce groupe infinitif: 'marcher' → avec un complément.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Groupe infinitif",
+        type: "multiple_choice",
+        questions: [
+          { text: "Le groupe infinitif peut contenir...", options: ["seulement l'infinitif", "l'infinitif + ses compléments", "seulement des noms", "des verbes conjugués"], correct: "l'infinitif + ses compléments" },
+          { text: "Quelle phrase contient un groupe infinitif sujet?", options: ["Il mange.", "Dormir est bon.", "Marie court.", "Le chat dort."], correct: "Dormir est bon." },
+          { text: "Dans 'Je dois finir mon travail.', le groupe infinitif est...", options: ["Je dois", "finir mon travail", "mon travail", "dois finir"], correct: "finir mon travail" },
+          { text: "L'infinitif peut être complément de certains verbes comme...", options: ["être, avoir", "vouloir, pouvoir, devoir, aimer", "le, la, les", "qui, que, dont"], correct: "vouloir, pouvoir, devoir, aimer" },
+          { text: "'Avant de partir' contient un groupe infinitif introduit par...", options: ["un nom", "une préposition", "un verbe", "un adjectif"], correct: "une préposition" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Phrases à structure particulière (grammaire)
+    const phrasesStructureParticuliereExercises = [
+      {
+        name: "Phrases impersonnelles",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Il pleut.' est une phrase...", options: ["personnelle", "impersonnelle", "complexe", "interrogative"], correct: "impersonnelle" },
+          { text: "Dans 'Il neige fort.', 'il' représente...", options: ["une personne", "un animal", "rien (sujet apparent)", "le temps"], correct: "rien (sujet apparent)" },
+          { text: "Quelle phrase est impersonnelle?", options: ["Il mange.", "Il faut partir.", "Il dort.", "Pierre rit."], correct: "Il faut partir." },
+          { text: "'Il est important de réussir.' Le 'il' est...", options: ["un pronom personnel", "un sujet apparent (impersonnel)", "un nom propre", "un déterminant"], correct: "un sujet apparent (impersonnel)" },
+          { text: "Les verbes météo (pleuvoir, neiger) sont souvent...", options: ["personnels", "impersonnels", "transitifs", "pronominaux"], correct: "impersonnels" }
+        ]
+      },
+      {
+        name: "Phrases sans GN sujet",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Viens ici!' est une phrase...", options: ["sans sujet exprimé (impérative)", "sans verbe", "complexe", "passive"], correct: "sans sujet exprimé (impérative)" },
+          { text: "Dans une phrase impérative, le sujet est...", options: ["toujours présent", "sous-entendu", "après le verbe", "un pronom 'il'"], correct: "sous-entendu" },
+          { text: "'Mangeons!' - Le sujet sous-entendu est...", options: ["je", "tu", "nous", "ils"], correct: "nous" },
+          { text: "'Taisez-vous!' - Le sujet sous-entendu est...", options: ["tu", "nous", "vous", "ils"], correct: "vous" },
+          { text: "Quelle phrase a un sujet sous-entendu?", options: ["Il dort.", "Marie mange.", "Parle plus fort!", "Le chat miaule."], correct: "Parle plus fort!" }
+        ]
+      },
+      {
+        name: "Production - Structures particulières",
+        type: "text",
+        questions: [
+          { text: "Écris 3 phrases impersonnelles (avec 'il' impersonnel).", correct: "réponse libre" },
+          { text: "Écris 2 phrases impératives (sans sujet exprimé).", correct: "réponse libre" },
+          { text: "Transforme en phrase impersonnelle: 'Partir tôt est nécessaire.'", correct: "réponse libre" },
+          { text: "Identifie la structure particulière: 'Il convient d'attendre.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Structures particulières",
+        type: "multiple_choice",
+        questions: [
+          { text: "Une phrase impersonnelle a pour sujet...", options: ["un nom propre", "un 'il' qui ne représente rien", "un pronom personnel", "un GN"], correct: "un 'il' qui ne représente rien" },
+          { text: "L'impératif est une phrase sans...", options: ["verbe", "sujet exprimé", "sens", "ponctuation"], correct: "sujet exprimé" },
+          { text: "Quelle phrase n'est PAS impersonnelle?", options: ["Il neige.", "Il fait froid.", "Il est gentil.", "Il faut manger."], correct: "Il est gentil." },
+          { text: "'Il y a' est une construction...", options: ["personnelle", "impersonnelle", "passive", "pronominale"], correct: "impersonnelle" },
+          { text: "Les phrases à structure particulière sont...", options: ["incorrectes", "des variations normales de la langue", "interdites", "rares"], correct: "des variations normales de la langue" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Les phrases transformées (grammaire)
+    const phrasesTransformeesExercises = [
+      {
+        name: "Affirmative ↔ Négative",
+        type: "multiple_choice",
+        questions: [
+          { text: "La forme négative de 'Il mange.' est...", options: ["Il ne mange pas.", "Il mange beaucoup.", "Mange-t-il?", "Il mangera."], correct: "Il ne mange pas." },
+          { text: "La forme affirmative de 'Elle ne dort pas.' est...", options: ["Elle dort.", "Elle dort-elle?", "Dort-elle?", "Elle ne dort jamais."], correct: "Elle dort." },
+          { text: "'Je n'ai rien vu.' La négation est formée par...", options: ["ne...pas", "ne...rien", "ne...jamais", "ne...plus"], correct: "ne...rien" },
+          { text: "Quelle phrase est à la forme négative?", options: ["Il travaille bien.", "Il ne travaille plus.", "Travaille-t-il?", "Il travaillera demain."], correct: "Il ne travaille plus." },
+          { text: "Transforme en négatif: 'Il mange toujours.'", options: ["Il ne mange jamais.", "Il ne mange pas.", "Il mange peu.", "Il mangera."], correct: "Il ne mange jamais." }
+        ]
+      },
+      {
+        name: "Active ↔ Passive",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Le chat mange la souris.' à la voix passive:", options: ["La souris mange le chat.", "La souris est mangée par le chat.", "Le chat est mangé.", "La souris a mangé."], correct: "La souris est mangée par le chat." },
+          { text: "'La pomme est mangée par Marie.' à la voix active:", options: ["Marie mange la pomme.", "La pomme mange Marie.", "Marie est mangée.", "La pomme mangera."], correct: "Marie mange la pomme." },
+          { text: "À la voix passive, le sujet...", options: ["fait l'action", "subit l'action", "pose une question", "donne un ordre"], correct: "subit l'action" },
+          { text: "Quel mot introduit l'agent à la voix passive?", options: ["et", "par", "pour", "avec"], correct: "par" },
+          { text: "Quelle phrase est à la voix passive?", options: ["Marie lit un livre.", "Le livre est lu par Marie.", "Marie a lu.", "Lis ce livre!"], correct: "Le livre est lu par Marie." }
+        ]
+      },
+      {
+        name: "Production - Transformations",
+        type: "text",
+        questions: [
+          { text: "Transforme en phrase négative: 'Les enfants jouent dehors.'", correct: "réponse libre" },
+          { text: "Transforme en voix passive: 'Le professeur corrige les copies.'", correct: "réponse libre" },
+          { text: "Transforme en voix active: 'Le gâteau a été préparé par maman.'", correct: "réponse libre" },
+          { text: "Écris une phrase puis transforme-la: affirmative → négative → interrogative.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Phrases transformées",
+        type: "multiple_choice",
+        questions: [
+          { text: "Les principales transformations de phrases sont...", options: ["longue/courte", "négation, passivation, interrogation", "simple/complexe", "écrite/orale"], correct: "négation, passivation, interrogation" },
+          { text: "La voix passive utilise l'auxiliaire...", options: ["avoir", "être", "faire", "aller"], correct: "être" },
+          { text: "Pour transformer en interrogatif, on peut...", options: ["ajouter ne...pas", "inverser sujet-verbe ou ajouter est-ce que", "changer le temps", "ajouter un complément"], correct: "inverser sujet-verbe ou ajouter est-ce que" },
+          { text: "'Personne ne vient.' est une phrase...", options: ["affirmative", "négative", "passive", "impérative"], correct: "négative" },
+          { text: "Une phrase peut subir plusieurs transformations à la fois?", options: ["Non, jamais", "Oui (ex: n'est-il pas aimé?)", "Seulement 2", "C'est interdit"], correct: "Oui (ex: n'est-il pas aimé?)" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Types et formes de phrases (grammaire)
+    const typesFormesPhrasesExercises = [
+      {
+        name: "Les 4 types de phrases",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Le chat dort.' est une phrase de type...", options: ["interrogatif", "déclaratif", "impératif", "exclamatif"], correct: "déclaratif" },
+          { text: "'Viens ici!' est une phrase de type...", options: ["déclaratif", "interrogatif", "impératif", "exclamatif"], correct: "impératif" },
+          { text: "'Où vas-tu?' est une phrase de type...", options: ["déclaratif", "interrogatif", "impératif", "exclamatif"], correct: "interrogatif" },
+          { text: "'Comme c'est beau!' est une phrase de type...", options: ["déclaratif", "interrogatif", "impératif", "exclamatif"], correct: "exclamatif" },
+          { text: "Combien y a-t-il de types de phrases?", options: ["2", "3", "4", "5"], correct: "4" }
+        ]
+      },
+      {
+        name: "Les formes de phrases",
+        type: "multiple_choice",
+        questions: [
+          { text: "'Je ne mange pas.' est une phrase de forme...", options: ["affirmative", "négative", "interrogative", "exclamative"], correct: "négative" },
+          { text: "'Marie est contente.' est une phrase de forme...", options: ["négative", "affirmative", "impérative", "exclamative"], correct: "affirmative" },
+          { text: "La forme affirmative et la forme négative sont...", options: ["des types", "des formes", "des modes", "des temps"], correct: "des formes" },
+          { text: "Une phrase peut être à la fois déclarative et...", options: ["interrogative", "impérative", "négative", "exclamative"], correct: "négative" },
+          { text: "'Ne parle pas!' est une phrase...", options: ["déclarative affirmative", "impérative négative", "interrogative affirmative", "exclamative négative"], correct: "impérative négative" }
+        ]
+      },
+      {
+        name: "Production - Types et formes",
+        type: "text",
+        questions: [
+          { text: "Transforme cette phrase déclarative en interrogative: 'Tu aimes le chocolat.'", correct: "réponse libre" },
+          { text: "Transforme cette phrase affirmative en négative: 'Il mange des fruits.'", correct: "réponse libre" },
+          { text: "Écris une phrase impérative affirmative et une impérative négative.", correct: "réponse libre" },
+          { text: "Identifie le type et la forme: 'Ne cours-tu pas?'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Types et formes",
+        type: "multiple_choice",
+        questions: [
+          { text: "Les 4 types de phrases sont...", options: ["affirmatif, négatif, passif, actif", "déclaratif, interrogatif, impératif, exclamatif", "simple, complexe, minimale, étendue", "présent, passé, futur, conditionnel"], correct: "déclaratif, interrogatif, impératif, exclamatif" },
+          { text: "Les 2 formes principales sont...", options: ["active et passive", "affirmative et négative", "simple et complexe", "courte et longue"], correct: "affirmative et négative" },
+          { text: "Une phrase peut-elle être interrogative ET négative?", options: ["Non, jamais", "Oui (ex: Ne viens-tu pas?)", "Seulement parfois", "C'est impossible"], correct: "Oui (ex: Ne viens-tu pas?)" },
+          { text: "Quelle phrase est exclamative?", options: ["Tu viens.", "Viens ici.", "Comme tu es grand!", "Es-tu prêt?"], correct: "Comme tu es grand!" },
+          { text: "La phrase impérative sert à...", options: ["poser une question", "exprimer un ordre ou conseil", "décrire un fait", "s'exclamer"], correct: "exprimer un ordre ou conseil" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Le groupe du verbe - GV (grammaire)
+    const groupeVerbeExercises = [
+      {
+        name: "Identifier le GV",
+        type: "multiple_choice",
+        questions: [
+          { text: "Le GV (groupe du verbe) a pour noyau...", options: ["un nom", "un verbe", "un adjectif", "un adverbe"], correct: "un verbe" },
+          { text: "Dans 'Il mange une pomme', le GV est...", options: ["Il", "mange", "une pomme", "mange une pomme"], correct: "mange une pomme" },
+          { text: "Le GV contient toujours...", options: ["un nom", "un verbe conjugué ou à l'infinitif", "un adjectif", "un déterminant"], correct: "un verbe conjugué ou à l'infinitif" },
+          { text: "Dans 'Marie dort profondément', le GV est...", options: ["Marie", "dort", "profondément", "dort profondément"], correct: "dort profondément" },
+          { text: "Le GV peut contenir...", options: ["seulement le verbe", "le verbe + ses compléments/attribut", "seulement des noms", "le sujet"], correct: "le verbe + ses compléments/attribut" }
+        ]
+      },
+      {
+        name: "Composition du GV",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Il donne un livre à Marie', 'un livre' fait partie du...", options: ["GS", "GV", "CP", "GN sujet"], correct: "GV" },
+          { text: "L'attribut du sujet fait partie du...", options: ["GS", "GV", "CP", "GN"], correct: "GV" },
+          { text: "Dans 'Elle est contente', 'contente' est...", options: ["dans le GS", "dans le GV (attribut)", "un CP", "le noyau"], correct: "dans le GV (attribut)" },
+          { text: "Dans 'Nous allons au parc', 'au parc' est...", options: ["un CP déplaçable", "dans le GV", "le GS", "facultatif"], correct: "dans le GV" },
+          { text: "Le GV peut contenir des compléments du verbe qui sont...", options: ["toujours supprimables", "essentiels au sens", "toujours déplaçables", "avant le verbe"], correct: "essentiels au sens" }
+        ]
+      },
+      {
+        name: "Production - GV",
+        type: "text",
+        questions: [
+          { text: "Écris 3 phrases et souligne le GV complet dans chacune.", correct: "réponse libre" },
+          { text: "Identifie le GV: 'Mon frère regarde un film avec ses amis.'", correct: "réponse libre" },
+          { text: "Enrichis ce GV minimal: 'Il mange.'", correct: "réponse libre" },
+          { text: "Dans 'Elle semble fatiguée', identifie le verbe et l'attribut du sujet.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Groupe du verbe",
+        type: "multiple_choice",
+        questions: [
+          { text: "GV signifie...", options: ["Grand Verbe", "Groupe du Verbe", "Genre Verbal", "Grammaire Verbale"], correct: "Groupe du Verbe" },
+          { text: "Le GV fait partie de...", options: ["seulement du CP", "la structure GS + GV", "seulement du GN", "l'expansion du nom"], correct: "la structure GS + GV" },
+          { text: "Un complément du verbe est...", options: ["toujours déplaçable", "généralement essentiel au sens", "toujours un nom", "avant le sujet"], correct: "généralement essentiel au sens" },
+          { text: "Dans 'Il devient médecin', 'médecin' est...", options: ["un CP", "un attribut du sujet (dans le GV)", "le GS", "un complément de phrase"], correct: "un attribut du sujet (dans le GV)" },
+          { text: "Le noyau du GV est toujours...", options: ["un nom", "un adjectif", "un verbe", "un adverbe"], correct: "un verbe" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Le groupe du nom - GN (grammaire)
+    const groupeNomExercises = [
+      {
+        name: "Identifier le GN",
+        type: "multiple_choice",
+        questions: [
+          { text: "Le GN (groupe du nom) a pour noyau...", options: ["un verbe", "un nom", "un adverbe", "une préposition"], correct: "un nom" },
+          { text: "Dans 'le petit chat', quel est le noyau du GN?", options: ["le", "petit", "chat", "le petit"], correct: "chat" },
+          { text: "Dans 'une belle maison', le GN complet est...", options: ["une", "belle", "maison", "une belle maison"], correct: "une belle maison" },
+          { text: "Le GN minimal contient...", options: ["déterminant + nom", "nom seulement ou déterminant + nom", "adjectif + nom", "verbe + nom"], correct: "nom seulement ou déterminant + nom" },
+          { text: "Quel groupe est un GN?", options: ["mange rapidement", "les enfants joyeux", "très vite", "et puis"], correct: "les enfants joyeux" }
+        ]
+      },
+      {
+        name: "Composition du GN",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'mon grand frère', 'grand' est...", options: ["le noyau", "le déterminant", "une expansion (adjectif)", "un complément"], correct: "une expansion (adjectif)" },
+          { text: "Dans 'le livre de Marie', 'de Marie' est...", options: ["le noyau", "une expansion (GP)", "le déterminant", "un adverbe"], correct: "une expansion (GP)" },
+          { text: "Les expansions du GN peuvent être...", options: ["seulement des adjectifs", "adjectifs, GP, subordonnées relatives", "seulement des verbes", "seulement des noms"], correct: "adjectifs, GP, subordonnées relatives" },
+          { text: "'Le chat qui dort' contient quelle expansion?", options: ["Un adjectif", "Un GP", "Une subordonnée relative", "Un adverbe"], correct: "Une subordonnée relative" },
+          { text: "Dans 'la maison rouge de mon voisin', combien d'expansions?", options: ["Aucune", "Une", "Deux", "Trois"], correct: "Deux" }
+        ]
+      },
+      {
+        name: "Production - GN",
+        type: "text",
+        questions: [
+          { text: "Écris 3 GN différents avec au moins une expansion chacun.", correct: "réponse libre" },
+          { text: "Enrichis ce GN minimal: 'le livre'.", correct: "réponse libre" },
+          { text: "Identifie le noyau et les expansions: 'la jolie maison bleue de mes parents'.", correct: "réponse libre" },
+          { text: "Transforme ce GN avec adjectif en GN avec GP: 'un manteau hivernal'.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Groupe du nom",
+        type: "multiple_choice",
+        questions: [
+          { text: "GN signifie...", options: ["Grand Nom", "Groupe du Nom", "Genre Nominatif", "Grammaire Nominale"], correct: "Groupe du Nom" },
+          { text: "Le noyau du GN est toujours...", options: ["un verbe", "un nom", "un adjectif", "un déterminant"], correct: "un nom" },
+          { text: "Une expansion du GN est...", options: ["obligatoire", "facultative", "toujours un adjectif", "avant le déterminant"], correct: "facultative" },
+          { text: "Quel élément n'est PAS une expansion possible du GN?", options: ["Un adjectif", "Un GP", "Un adverbe seul", "Une relative"], correct: "Un adverbe seul" },
+          { text: "'La petite fille aux yeux bleus' a combien d'expansions?", options: ["Une", "Deux", "Trois", "Aucune"], correct: "Deux" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Phrase complexe (grammaire)
+    const phraseComplexeExercises = [
+      {
+        name: "Reconnaître une phrase complexe",
+        type: "multiple_choice",
+        questions: [
+          { text: "Une phrase complexe contient...", options: ["un seul verbe conjugué", "plusieurs verbes conjugués", "aucun verbe", "un infinitif seulement"], correct: "plusieurs verbes conjugués" },
+          { text: "Quelle phrase est complexe?", options: ["Le chat dort.", "Marie mange une pomme.", "Il pleut et je reste.", "L'oiseau chante."], correct: "Il pleut et je reste." },
+          { text: "'Quand il fait beau, je sors.' est une phrase...", options: ["simple", "complexe", "sans verbe", "minimale"], correct: "complexe" },
+          { text: "Une phrase complexe a plusieurs...", options: ["sujets seulement", "propositions", "adjectifs", "noms"], correct: "propositions" },
+          { text: "Quelle phrase est complexe?", options: ["Les enfants jouent.", "Il mange rapidement.", "Je pense que tu as raison.", "Mon frère dort."], correct: "Je pense que tu as raison." }
+        ]
+      },
+      {
+        name: "Types de propositions",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans 'Il mange et il dort.', les propositions sont reliées par...", options: ["subordination", "coordination", "juxtaposition", "rien"], correct: "coordination" },
+          { text: "Dans 'Je sais que tu viendras.', 'que tu viendras' est une proposition...", options: ["principale", "subordonnée", "coordonnée", "juxtaposée"], correct: "subordonnée" },
+          { text: "'Il pleut; je reste.' Les propositions sont...", options: ["coordonnées", "subordonnées", "juxtaposées", "principales"], correct: "juxtaposées" },
+          { text: "La proposition principale est celle qui...", options: ["est subordonnée", "peut exister seule et dont dépend une autre", "commence par 'que'", "est toujours au début"], correct: "peut exister seule et dont dépend une autre" },
+          { text: "'Quand' et 'parce que' introduisent des propositions...", options: ["principales", "coordonnées", "subordonnées", "juxtaposées"], correct: "subordonnées" }
+        ]
+      },
+      {
+        name: "Production - Phrase complexe",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase complexe avec deux propositions coordonnées (utilise 'et', 'mais', 'ou').", correct: "réponse libre" },
+          { text: "Écris une phrase complexe avec une subordonnée (utilise 'quand', 'parce que', 'que').", correct: "réponse libre" },
+          { text: "Transforme ces 2 phrases simples en 1 phrase complexe: 'Il pleut. Je reste à la maison.'", correct: "réponse libre" },
+          { text: "Identifie la proposition principale et la subordonnée: 'Je sais que tu réussiras.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Phrase complexe",
+        type: "multiple_choice",
+        questions: [
+          { text: "Phrase complexe = ...", options: ["phrase longue", "phrase avec plusieurs verbes conjugués", "phrase difficile", "phrase négative"], correct: "phrase avec plusieurs verbes conjugués" },
+          { text: "Quelle phrase n'est PAS complexe?", options: ["Il mange et dort.", "Quand je suis fatigué, je dors.", "Les oiseaux chantent dans le jardin.", "Je pense que c'est vrai."], correct: "Les oiseaux chantent dans le jardin." },
+          { text: "Les mots 'et', 'ou', 'mais' servent à...", options: ["subordonner", "coordonner", "juxtaposer", "rien"], correct: "coordonner" },
+          { text: "Une phrase complexe a au moins...", options: ["un verbe", "deux propositions", "trois sujets", "quatre mots"], correct: "deux propositions" },
+          { text: "'Parce que', 'quand', 'si' introduisent une proposition...", options: ["principale", "coordonnée", "subordonnée", "juxtaposée"], correct: "subordonnée" }
+        ]
+      }
+    ];
+
+    // TEMPLATE SPÉCIFIQUE: Phrase simple (grammaire)
+    const phraseSimpleExercises = [
+      {
+        name: "Reconnaître une phrase simple",
+        type: "multiple_choice",
+        questions: [
+          { text: "Une phrase simple contient...", options: ["plusieurs verbes conjugués", "un seul verbe conjugué", "aucun verbe", "trois verbes"], correct: "un seul verbe conjugué" },
+          { text: "Quelle phrase est simple?", options: ["Il mange et il dort.", "Le chat dort.", "Quand il pleut, je reste.", "Elle chante parce qu'elle est contente."], correct: "Le chat dort." },
+          { text: "'Marie lit un livre.' est une phrase...", options: ["complexe", "simple", "sans verbe", "négative"], correct: "simple" },
+          { text: "Combien de verbes conjugués dans une phrase simple?", options: ["Zéro", "Un seul", "Deux", "Trois ou plus"], correct: "Un seul" },
+          { text: "Quelle phrase est simple?", options: ["Je pense que tu as raison.", "Les enfants jouent dans le parc.", "Si tu viens, appelle-moi.", "Il dit qu'il viendra."], correct: "Les enfants jouent dans le parc." }
+        ]
+      },
+      {
+        name: "Structure de la phrase simple",
+        type: "multiple_choice",
+        questions: [
+          { text: "La structure minimale d'une phrase simple est...", options: ["GS + GV", "GS + GV + GV", "Deux propositions", "GS seulement"], correct: "GS + GV" },
+          { text: "Dans 'Le chien aboie.', le GS est...", options: ["aboie", "Le chien", "Le", "chien"], correct: "Le chien" },
+          { text: "Dans 'Le chien aboie.', le GV est...", options: ["Le chien", "aboie", "Le", "chien aboie"], correct: "aboie" },
+          { text: "Une phrase simple peut-elle avoir un CP?", options: ["Non, jamais", "Oui, c'est facultatif", "Seulement si elle est longue", "Non, c'est interdit"], correct: "Oui, c'est facultatif" },
+          { text: "'L'oiseau chante sur la branche.' a combien de propositions?", options: ["Zéro", "Une", "Deux", "Trois"], correct: "Une" }
+        ]
+      },
+      {
+        name: "Production - Phrase simple",
+        type: "text",
+        questions: [
+          { text: "Écris 3 phrases simples différentes.", correct: "réponse libre" },
+          { text: "Transforme cette phrase complexe en phrase simple: 'Quand il fait beau, je sors.'", correct: "réponse libre" },
+          { text: "Écris une phrase simple avec un CP de lieu.", correct: "réponse libre" },
+          { text: "Identifie le GS et le GV: 'Mon frère mange une pomme.'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Quiz - Phrase simple",
+        type: "multiple_choice",
+        questions: [
+          { text: "Phrase simple = ...", options: ["phrase courte", "phrase avec un seul verbe conjugué", "phrase sans CP", "phrase affirmative"], correct: "phrase avec un seul verbe conjugué" },
+          { text: "Quelle phrase n'est PAS simple?", options: ["Il pleut.", "Les oiseaux chantent.", "Je mange quand j'ai faim.", "Elle dort paisiblement."], correct: "Je mange quand j'ai faim." },
+          { text: "Une phrase simple forme...", options: ["deux propositions", "une seule proposition", "trois propositions", "aucune proposition"], correct: "une seule proposition" },
+          { text: "'Les élèves travaillent.' est une phrase...", options: ["complexe", "simple", "interrogative", "exclamative"], correct: "simple" },
+          { text: "Une phrase simple peut être...", options: ["seulement affirmative", "seulement négative", "affirmative, négative, interrogative...", "seulement courte"], correct: "affirmative, négative, interrogative..." }
+        ]
+      }
+    ];
+
     // TEMPLATE SPÉCIFIQUE: Les séquences syntaxiques (grammaire)
     const sequencesSyntaxiquesExercises = [
       {
@@ -3704,6 +4080,30 @@ export class MemStorage implements IStorage {
         } else if (titleLower.includes("séquence") && titleLower.includes("syntaxique")) {
           // Cours "Les séquences syntaxiques"
           selectedExercises = sequencesSyntaxiquesExercises;
+        } else if (titleLower === "phrase simple") {
+          // Cours "Phrase simple"
+          selectedExercises = phraseSimpleExercises;
+        } else if (titleLower === "phrase complexe") {
+          // Cours "Phrase complexe"
+          selectedExercises = phraseComplexeExercises;
+        } else if (titleLower.includes("groupe du nom") || titleLower.includes("(gn)")) {
+          // Cours "Le groupe du nom (GN)"
+          selectedExercises = groupeNomExercises;
+        } else if (titleLower.includes("groupe du verbe") || titleLower.includes("(gv)")) {
+          // Cours "Le groupe du verbe (GV)"
+          selectedExercises = groupeVerbeExercises;
+        } else if (titleLower.includes("types") && titleLower.includes("formes") && titleLower.includes("phrase")) {
+          // Cours "Types et formes de phrases"
+          selectedExercises = typesFormesPhrasesExercises;
+        } else if (titleLower.includes("phrases transformées") || (titleLower.includes("phrase") && titleLower.includes("transformée"))) {
+          // Cours "Les phrases transformées"
+          selectedExercises = phrasesTransformeesExercises;
+        } else if (titleLower.includes("structure particulière") || titleLower.includes("phrases à structure")) {
+          // Cours "Phrases à structure particulière"
+          selectedExercises = phrasesStructureParticuliereExercises;
+        } else if (titleLower.includes("groupe infinitif") || titleLower.includes("infinitif")) {
+          // Cours "Le groupe infinitif"
+          selectedExercises = groupeInfinitifExercises;
         } else {
           // Par défaut: exercices génériques de grammaire
           selectedExercises = grammaireExercises;
