@@ -2193,79 +2193,171 @@ export class MemStorage implements IStorage {
       }
     }
 
-    // Templates for different question types
-    const exerciseTemplates = {
-      grammaire: [
-        { type: "multiple_choice", name: "Identification grammaticale", q1: "Identifiez l'élément grammatical correct dans cette phrase.", q2: "Quelle est la bonne transformation de cette phrase?" },
-        { type: "text", name: "Pratique: Expression grammaticale", q1: "Écrivez 2-3 phrases utilisant ce concept grammatical.", q2: "Expliquez avec vos propres mots." }
-      ],
-      orthographe: [
-        { type: "multiple_choice", name: "Orthographe: Choix multiples", q1: "Quelle est l'orthographe correcte?", q2: "Complétez correctement." },
-        { type: "text", name: "Orthographe: Rédaction", q1: "Écrivez 3 mots avec cette règle d'orthographe.", q2: "Expliquez la règle appliquée." }
-      ],
-      conjugaison: [
-        { type: "multiple_choice", name: "Conjugaison: Temps et modes", q1: "Conjuguez ce verbe au bon temps.", q2: "Quel est le bon mode verbal?" },
-        { type: "text", name: "Conjugaison: Rédaction", q1: "Écrivez 3 phrases avec ce verbe au temps indiqué.", q2: "Justifiez votre choix de temps." }
-      ],
-      ponctuation: [
-        { type: "multiple_choice", name: "Ponctuation: Placement", q1: "Où placer la ponctuation?", q2: "Quel signe convient?" },
-        { type: "text", name: "Ponctuation: Application", q1: "Ponctuez correctement ce texte.", q2: "Expliquez vos choix." }
-      ],
-      vocabulaire: [
-        { type: "multiple_choice", name: "Vocabulaire: Choix du mot", q1: "Quel mot convient le mieux?", q2: "Trouvez le synonyme." },
-        { type: "text", name: "Vocabulaire: Utilisation", q1: "Utilisez ce mot dans 2 phrases différentes.", q2: "Expliquez son sens." }
-      ]
-    };
+    // GRAMMAIRE: 4 exercices avec 4-5 questions chacun
+    const grammaireExercises = [
+      {
+        name: "Identification - QCM",
+        type: "multiple_choice",
+        questions: [
+          { text: "Dans la phrase 'Le chat noir mange une souris', identifie le groupe sujet.", options: ["Le chat noir", "noir mange", "mange une souris", "une souris"], correct: "Le chat noir" },
+          { text: "Quel mot est un verbe dans: 'Marie court rapidement au parc'?", options: ["Marie", "court", "parc", "rapidement"], correct: "court" },
+          { text: "Combien d'adjectifs dans: 'La grande maison blanche'?", options: ["0", "1", "2", "3"], correct: "2" },
+          { text: "Le mot 'gentil' dans 'une fille gentille' est un...", options: ["nom", "verbe", "adjectif", "adverbe"], correct: "adjectif" },
+          { text: "Quel est le GV (groupe verbal) dans: 'Les enfants jouent au football'?", options: ["Les enfants", "jouent au football", "au football", "enfants jouent"], correct: "jouent au football" }
+        ]
+      },
+      {
+        name: "Propriétés grammaticales - Vrai/Faux",
+        type: "multiple_choice",
+        questions: [
+          { text: "Vrai ou Faux: Un adjectif s'accorde toujours avec le nom.", options: ["Vrai", "Faux", "Parfois", "Ça dépend"], correct: "Vrai" },
+          { text: "Vrai ou Faux: Un adverbe se termine toujours par '-ment'.", options: ["Vrai", "Faux", "Souvent", "Rarement"], correct: "Faux" },
+          { text: "Vrai ou Faux: Le verbe s'accorde avec le sujet.", options: ["Vrai", "Faux", "Parfois", "Non jamais"], correct: "Vrai" },
+          { text: "Vrai ou Faux: Un pronom remplace toujours un nom.", options: ["Vrai", "Faux", "Généralement", "Parfois"], correct: "Vrai" },
+          { text: "Vrai ou Faux: 'De la maison' est un complément du verbe.", options: ["Vrai", "Faux", "Parfois", "C'est un GN"], correct: "Faux" }
+        ]
+      },
+      {
+        name: "Production écrite - Texte libre",
+        type: "text",
+        questions: [
+          { text: "Donne 3 exemples de noms communs (pas de noms propres).", correct: "réponse libre" },
+          { text: "Écris 2 adjectifs qui décrivent un ami gentil.", correct: "réponse libre" },
+          { text: "Utilise le verbe 'courir' dans 2 phrases différentes.", correct: "réponse libre" },
+          { text: "Crée une phrase avec un GS de 3 mots minimum.", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Classement - Identification",
+        type: "multiple_choice",
+        questions: [
+          { text: "Classe: 'bleu'. C'est un...", options: ["nom", "adjectif", "verbe", "adverbe"], correct: "adjectif" },
+          { text: "Classe: 'rapidement'. C'est un...", options: ["nom", "adjectif", "verbe", "adverbe"], correct: "adverbe" },
+          { text: "Classe: 'manger'. C'est un...", options: ["nom", "adjectif", "verbe", "adverbe"], correct: "verbe" },
+          { text: "Classe: 'enfant'. C'est un...", options: ["verbe", "adjectif", "nom", "adverbe"], correct: "nom" }
+        ]
+      }
+    ];
 
-    // Generate 2 exercises per course
+    // Generate GRAMMAR exercises with 4-5 questions each
     for (const [courseId, courseInfo] of Object.entries(courseMap)) {
-      const templates = exerciseTemplates[courseInfo.category as keyof typeof exerciseTemplates] || exerciseTemplates.grammaire;
-      
-      for (let exNum = 0; exNum < 2; exNum++) {
-        const template = templates[exNum] as any;
-        const exerciseId = randomUUID();
-        const exerciseType = template.type as "multiple_choice" | "text";
-        
-        const exercise: Exercise = {
-          id: exerciseId,
-          courseId,
-          title: `${template.name} - ${courseInfo.title}`,
-          description: `${template.name}: ${courseInfo.title}`,
-          type: exerciseType,
-          order: exNum + 1,
+      if (courseInfo.category === "grammaire") {
+        // Create 4 exercises for grammar courses
+        for (let exNum = 0; exNum < 4; exNum++) {
+          const exerciseTemplate = grammaireExercises[exNum];
+          const exerciseId = randomUUID();
+          
+          const exercise: Exercise = {
+            id: exerciseId,
+            courseId,
+            title: `${exerciseTemplate.name} - ${courseInfo.title}`,
+            description: `${exerciseTemplate.name}: ${courseInfo.title}`,
+            type: exerciseTemplate.type as "multiple_choice" | "text",
+            order: exNum + 1,
+          };
+          
+          this.exercises.set(exerciseId, exercise);
+
+          // Add 4-5 questions per exercise
+          for (let qNum = 0; qNum < exerciseTemplate.questions.length; qNum++) {
+            const qData = exerciseTemplate.questions[qNum];
+            const questionId = randomUUID();
+            
+            if (exerciseTemplate.type === "multiple_choice") {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "multiple_choice",
+                options: JSON.stringify(qData.options),
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            } else {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "text",
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            }
+          }
+        }
+      } else {
+        // For non-grammar courses, keep original 2 exercises
+        const templates = {
+          orthographe: [
+            { type: "multiple_choice", name: "Orthographe: Choix multiples", q1: "Quelle est l'orthographe correcte?", q2: "Complétez correctement." },
+            { type: "text", name: "Orthographe: Rédaction", q1: "Écrivez 3 mots avec cette règle d'orthographe.", q2: "Expliquez la règle appliquée." }
+          ],
+          conjugaison: [
+            { type: "multiple_choice", name: "Conjugaison: Temps et modes", q1: "Conjuguez ce verbe au bon temps.", q2: "Quel est le bon mode verbal?" },
+            { type: "text", name: "Conjugaison: Rédaction", q1: "Écrivez 3 phrases avec ce verbe au temps indiqué.", q2: "Justifiez votre choix de temps." }
+          ],
+          ponctuation: [
+            { type: "multiple_choice", name: "Ponctuation: Placement", q1: "Où placer la ponctuation?", q2: "Quel signe convient?" },
+            { type: "text", name: "Ponctuation: Application", q1: "Ponctuez correctement ce texte.", q2: "Expliquez vos choix." }
+          ],
+          vocabulaire: [
+            { type: "multiple_choice", name: "Vocabulaire: Choix du mot", q1: "Quel mot convient le mieux?", q2: "Trouvez le synonyme." },
+            { type: "text", name: "Vocabulaire: Utilisation", q1: "Utilisez ce mot dans 2 phrases différentes.", q2: "Expliquez son sens." }
+          ]
         };
         
-        this.exercises.set(exerciseId, exercise);
-
-        // Add 2 questions per exercise
-        for (let qNum = 0; qNum < 2; qNum++) {
-          const questionText = qNum === 0 ? template.q1 : template.q2;
-          const questionId = randomUUID();
+        const categoryTemplates = templates[courseInfo.category as keyof typeof templates] || templates.orthographe;
+        
+        for (let exNum = 0; exNum < 2; exNum++) {
+          const template = categoryTemplates[exNum] as any;
+          const exerciseId = randomUUID();
+          const exerciseType = template.type as "multiple_choice" | "text";
           
-          if (exerciseType === "multiple_choice") {
-            const options = ["Oui, c'est correct", "Non, ce n'est pas correct", "Partiellement correct", "Je ne sais pas"];
-            const question: Question = {
-              id: questionId,
-              exerciseId,
-              title: `Question ${qNum + 1}`,
-              text: questionText,
-              type: "multiple_choice",
-              options: JSON.stringify(options),
-              correctAnswer: "Oui, c'est correct",
-              order: qNum + 1,
-            };
-            this.questions.set(questionId, question);
-          } else {
-            const question: Question = {
-              id: questionId,
-              exerciseId,
-              title: `Question ${qNum + 1}`,
-              text: questionText,
-              type: "text",
-              correctAnswer: "réponse libre",
-              order: qNum + 1,
-            };
-            this.questions.set(questionId, question);
+          const exercise: Exercise = {
+            id: exerciseId,
+            courseId,
+            title: `${template.name} - ${courseInfo.title}`,
+            description: `${template.name}: ${courseInfo.title}`,
+            type: exerciseType,
+            order: exNum + 1,
+          };
+          
+          this.exercises.set(exerciseId, exercise);
+
+          // Add 2 questions per exercise for non-grammar
+          for (let qNum = 0; qNum < 2; qNum++) {
+            const questionText = qNum === 0 ? template.q1 : template.q2;
+            const questionId = randomUUID();
+            
+            if (exerciseType === "multiple_choice") {
+              const options = ["Oui, c'est correct", "Non, ce n'est pas correct", "Partiellement correct", "Je ne sais pas"];
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: questionText,
+                type: "multiple_choice",
+                options: JSON.stringify(options),
+                correctAnswer: "Oui, c'est correct",
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            } else {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: questionText,
+                type: "text",
+                correctAnswer: "réponse libre",
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            }
           }
         }
       }
