@@ -2897,12 +2897,71 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // TEMPLATE SPÉCIFIQUE: C'est vs Il est (grammaire)
+    const cestVsIlEstExercises = [
+      {
+        name: "C'est - Identification",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ mon ami Pierre.' (présenter quelqu'un)", options: ["C'est", "Il est", "Elle est", "Ce sont"], correct: "C'est" },
+          { text: "Complète: '_____ une bonne idée!' (commenter)", options: ["C'est", "Il est", "Elle est", "Ça est"], correct: "C'est" },
+          { text: "Complète: '_____ difficile à comprendre.' (situation générale)", options: ["C'est", "Il est", "Elle est", "Ça"], correct: "C'est" },
+          { text: "Quelle phrase est correcte?", options: ["C'est un médecin.", "Il est un médecin.", "C'est médecin.", "Lui est médecin."], correct: "C'est un médecin." },
+          { text: "Complète: '_____ le livre que je cherchais.' (identifier)", options: ["C'est", "Il est", "Elle est", "Ce"], correct: "C'est" }
+        ]
+      },
+      {
+        name: "Il est / Elle est - Identification",
+        type: "multiple_choice",
+        questions: [
+          { text: "Complète: '_____ médecin.' (profession sans article)", options: ["C'est", "Il est", "C'est un", "Lui est"], correct: "Il est" },
+          { text: "Complète: '_____ française.' (nationalité)", options: ["C'est", "Elle est", "C'est une", "Elle a"], correct: "Elle est" },
+          { text: "Complète: '_____ très intelligent.' (qualité d'une personne déjà mentionnée)", options: ["C'est", "Il est", "C'est un", "Lui est"], correct: "Il est" },
+          { text: "Quelle phrase est correcte pour dire l'heure?", options: ["C'est 3 heures.", "Il est 3 heures.", "Elle est 3 heures.", "Sont 3 heures."], correct: "Il est 3 heures." },
+          { text: "Complète: 'Mon père? _____ avocat.' (profession)", options: ["C'est", "Il est", "C'est un", "Lui est"], correct: "Il est" }
+        ]
+      },
+      {
+        name: "Production - C'est vs Il est",
+        type: "text",
+        questions: [
+          { text: "Écris 3 phrases avec 'C'est' pour présenter des personnes ou des choses.", correct: "réponse libre" },
+          { text: "Écris 3 phrases avec 'Il est' ou 'Elle est' pour décrire des professions.", correct: "réponse libre" },
+          { text: "Explique la différence entre 'C'est un professeur' et 'Il est professeur'.", correct: "réponse libre" },
+          { text: "Complète: 'Marie? _____. Pierre? _____.' (utilise C'est/Il est/Elle est)", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "C'est vs Il est - Quiz",
+        type: "multiple_choice",
+        questions: [
+          { text: "On utilise 'C'est' devant...", options: ["un adjectif seul", "un article + nom", "une profession sans article", "l'heure"], correct: "un article + nom" },
+          { text: "On utilise 'Il est' pour...", options: ["présenter quelqu'un", "dire l'heure", "identifier un objet", "commenter une situation"], correct: "dire l'heure" },
+          { text: "'C'est beau!' vs 'Il est beau.' - Quelle est la différence?", options: ["Aucune différence", "C'est = situation générale, Il est = personne spécifique", "C'est = masculin, Il est = féminin", "Même sens"], correct: "C'est = situation générale, Il est = personne spécifique" },
+          { text: "Quelle phrase est INCORRECTE?", options: ["C'est un avocat.", "Il est avocat.", "Il est un avocat.", "C'est mon avocat."], correct: "Il est un avocat." },
+          { text: "Pour l'heure, on dit...", options: ["C'est midi.", "Il est midi.", "Elle est midi.", "Midi est."], correct: "Il est midi." }
+        ]
+      }
+    ];
+
     // Generate GRAMMAR exercises with 4-5 questions each
     for (const [courseId, courseInfo] of Object.entries(courseMap)) {
       if (courseInfo.category === "grammaire") {
+        // SÉLECTION DES EXERCICES SELON LE TITRE DU COURS
+        const titleLower = courseInfo.title.toLowerCase();
+        let selectedExercises;
+        
+        if (titleLower.includes("c'est vs il est") || titleLower === "c'est vs il est") {
+          // Cours "C'est vs Il est"
+          selectedExercises = cestVsIlEstExercises;
+        } else {
+          // Par défaut: exercices génériques de grammaire
+          selectedExercises = grammaireExercises;
+        }
+        
         // Create 4 exercises for grammar courses
         for (let exNum = 0; exNum < 4; exNum++) {
-          const exerciseTemplate = grammaireExercises[exNum];
+          const exerciseTemplate = selectedExercises[exNum];
           const exerciseId = randomUUID();
           
           const exercise: Exercise = {
