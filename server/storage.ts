@@ -1115,6 +1115,33 @@ export class MemStorage implements IStorage {
 
     const readingExercise20Id = randomUUID();
 
+    // Ajouter les 20 compréhensions de lecture au map des exercices
+    const readingNarratives: Exercise[] = [
+      { id: readingExercise1Id, courseId: reading9Id, title: "Histoire 1: Le Trésor de la Cave", description: "Léa découvre une clé mystérieuse", type: "text", order: 1 },
+      { id: readingExercise2Id, courseId: reading9Id, title: "Histoire 2: Le Jour de l'Accident", description: "Marc apprend l'importance de la sécurité", type: "text", order: 2 },
+      { id: readingExercise3Id, courseId: reading9Id, title: "Histoire 3: La Fille qui Rêvait de Danser", description: "Sophie poursuit son rêve de danse", type: "text", order: 3 },
+      { id: readingExercise4Id, courseId: reading9Id, title: "Histoire 4: L'Amitié Retrouvée", description: "Lucas et Thomas se retrouvent malgré la distance", type: "text", order: 4 },
+      { id: readingExercise5Id, courseId: reading9Id, title: "Histoire 5: Le Voyage en Train", description: "Emma fait une découverte extraordinaire", type: "text", order: 5 },
+      { id: readingExercise6Id, courseId: reading9Id, title: "Histoire 6: La Cabane Mystérieuse", description: "Une cabane dans la forêt cache un secret", type: "text", order: 6 },
+      { id: readingExercise7Id, courseId: reading9Id, title: "Histoire 7: Le Concours de Dessin", description: "Maya participe à un concours d'art", type: "text", order: 7 },
+      { id: readingExercise8Id, courseId: reading9Id, title: "Histoire 8: La Maison Hantée", description: "Une maison abandonnée intrigue les enfants", type: "text", order: 8 },
+      { id: readingExercise9Id, courseId: reading9Id, title: "Histoire 9: Le Secret du Grenier", description: "Un vieux grenier révèle des souvenirs", type: "text", order: 9 },
+      { id: readingExercise10Id, courseId: reading9Id, title: "Histoire 10: La Course Épique", description: "Une course de vélo inoubliable", type: "text", order: 10 },
+      { id: readingExercise11Id, courseId: reading9Id, title: "Histoire 11: Le Festival Annuel", description: "Le village célèbre sa fête traditionnelle", type: "text", order: 11 },
+      { id: readingExercise12Id, courseId: reading9Id, title: "Histoire 12: L'Animal Perdu", description: "Un enfant cherche son animal de compagnie", type: "text", order: 12 },
+      { id: readingExercise13Id, courseId: reading9Id, title: "Histoire 13: Le Trésor Caché du Jardin", description: "Une découverte dans le jardin", type: "text", order: 13 },
+      { id: readingExercise14Id, courseId: reading9Id, title: "Histoire 14: La Tempête", description: "Une famille fait face à une tempête", type: "text", order: 14 },
+      { id: readingExercise15Id, courseId: reading9Id, title: "Histoire 15: L'Île Déserte", description: "Une aventure sur une île mystérieuse", type: "text", order: 15 },
+      { id: readingExercise16Id, courseId: reading9Id, title: "Histoire 16: La Bibliothèque Secrète", description: "Une bibliothèque cache des secrets", type: "text", order: 16 },
+      { id: readingExercise17Id, courseId: reading9Id, title: "Histoire 17: Le Concert Spécial", description: "Un concert mémorable", type: "text", order: 17 },
+      { id: readingExercise18Id, courseId: reading9Id, title: "Histoire 18: La Lettre du Futur", description: "Une lettre mystérieuse du futur", type: "text", order: 18 },
+      { id: readingExercise19Id, courseId: reading9Id, title: "Histoire 19: L'Aventure Finale", description: "Une dernière grande aventure", type: "text", order: 19 },
+      { id: readingExercise20Id, courseId: reading9Id, title: "Histoire 20: Le Rêve de Mathieu", description: "Mathieu réalise son rêve", type: "text", order: 20 },
+    ];
+    
+    readingNarratives.forEach(exercise => {
+      this.exercises.set(exercise.id, exercise);
+    });
 
     // Writing exercises
     const writingExercise1Id = randomUUID();
