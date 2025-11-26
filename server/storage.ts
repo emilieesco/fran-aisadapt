@@ -2333,6 +2333,53 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // PONCTUATION: 4 exercices avec 4-5 questions chacun
+    const ponctuationExercises = [
+      {
+        name: "Signes basiques - Identification",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel signe marque la fin d'une phrase assertive?", options: ["?", "!", ".", ","], correct: "." },
+          { text: "Quel signe faut-il après 'Bonjour'?", options: [".", "?", ",", "-"], correct: "." },
+          { text: "Quelle phrase utilise correctement le point d'interrogation?", options: ["Pourquoi tu fais ça.", "Pourquoi tu fais ça?", "Pourquoi tu fais ça!", "Pourquoi tu fais ça,"], correct: "Pourquoi tu fais ça?" },
+          { text: "Complète: 'J'adore les bonbons____ les glaces____ et les gâteaux.' (virgules ou points?)", options: ["virgule, virgule", "point, point", "virgule, et", "point, et"], correct: "virgule, et" },
+          { text: "Quel signe exprime une forte émotion?", options: [".", ",", "!", "?"], correct: "!" }
+        ]
+      },
+      {
+        name: "Dialogue - Tirets et guillemets",
+        type: "multiple_choice",
+        questions: [
+          { text: "Comment commencer un dialogue en français?", options: ["'Il dit...", "— Il dit...", "\"Il dit...", "Il dit:"], correct: "— Il dit..." },
+          { text: "Complète: '_____ Bonjour! _____ répondit Marie.' (tirets avant et après)", options: ["— ... —", "\" ... \"", "- ... -", "— ... —"], correct: "— ... —" },
+          { text: "Quel est le format correct? 'Jean: Ça va? Pierre: Oui, ça va.'", options: ["Pas de tirets", "Tirets au début de chaque ligne", "Guillemets anglais", "Aucun"], correct: "Tirets au début de chaque ligne" },
+          { text: "Où placer le point d'interrogation? '___Pourquoi___' demanda-t-il.", options: ["'?Pourquoi?'", "'Pourquoi'?", "Pourquoi?", "'Pourquoi?'"], correct: "'Pourquoi?'" },
+          { text: "Quelle est la bonne ponctuation après un tiret de dialogue?", options: ["rien", "virgule", "deux-points", "espaces libres"], correct: "rien" }
+        ]
+      },
+      {
+        name: "Ponctuation avancée - Production",
+        type: "text",
+        questions: [
+          { text: "Écris une phrase avec une virgule, un tiret, et une exclamation.", correct: "réponse libre" },
+          { text: "Écris un petit dialogue (2-3 lignes) avec tirets et bonne ponctuation.", correct: "réponse libre" },
+          { text: "Utilise les parenthèses, les guillemets et un point-virgule dans une phrase.", correct: "réponse libre" },
+          { text: "Ponctue correctement: 'Où vas tu Qu'est ce que tu fais Ce que tu fais est dangereux'", correct: "réponse libre" }
+        ]
+      },
+      {
+        name: "Cas complexes - Quiz",
+        type: "multiple_choice",
+        questions: [
+          { text: "Quel signe sépare deux propositions indépendantes?", options: ["virgule", "deux-points", "point-virgule", "tiret"], correct: "point-virgule" },
+          { text: "Complète: 'Les fruits_____ pommes_____ oranges_____ bananes sont délicieux.' (énumération)", options: ["virgule, virgule, virgule", ", , et", "virgule, virgule, et", "virgule, et, virgule"], correct: "virgule, virgule, et" },
+          { text: "Où va la virgule? 'Si tu viens demain nous jouerons ensemble.'", options: ["Pas de virgule", "Après 'demain'", "Après 'Si tu viens'", "Avant 'nous'"], correct: "Après 'Si tu viens'" },
+          { text: "Comment écrire une liste bien ponctuée?", options: ["élément1 élément2 élément3", "élément1, élément2, élément3", "élément1; élément2; élément3", "élément1. élément2. élément3."], correct: "élément1, élément2, élément3" },
+          { text: "Quel signe introduit une explication?", options: ["-", ":", ",", "!"], correct: ":" }
+        ]
+      }
+    ];
+
     // Generate GRAMMAR exercises with 4-5 questions each
     for (const [courseId, courseInfo] of Object.entries(courseMap)) {
       if (courseInfo.category === "grammaire") {
@@ -2435,6 +2482,54 @@ export class MemStorage implements IStorage {
         // Create 4 exercises for conjugation courses
         for (let exNum = 0; exNum < 4; exNum++) {
           const exerciseTemplate = conjugaisonExercises[exNum];
+          const exerciseId = randomUUID();
+          
+          const exercise: Exercise = {
+            id: exerciseId,
+            courseId,
+            title: `${exerciseTemplate.name} - ${courseInfo.title}`,
+            description: `${exerciseTemplate.name}: ${courseInfo.title}`,
+            type: exerciseTemplate.type as "multiple_choice" | "text",
+            order: exNum + 1,
+          };
+          
+          this.exercises.set(exerciseId, exercise);
+
+          // Add 4-5 questions per exercise
+          for (let qNum = 0; qNum < exerciseTemplate.questions.length; qNum++) {
+            const qData = exerciseTemplate.questions[qNum];
+            const questionId = randomUUID();
+            
+            if (exerciseTemplate.type === "multiple_choice") {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "multiple_choice",
+                options: JSON.stringify(qData.options),
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            } else {
+              const question: Question = {
+                id: questionId,
+                exerciseId,
+                title: `Question ${qNum + 1}`,
+                text: qData.text,
+                type: "text",
+                correctAnswer: qData.correct,
+                order: qNum + 1,
+              };
+              this.questions.set(questionId, question);
+            }
+          }
+        }
+      } else if (courseInfo.category === "ponctuation") {
+        // Create 4 exercises for punctuation courses
+        for (let exNum = 0; exNum < 4; exNum++) {
+          const exerciseTemplate = ponctuationExercises[exNum];
           const exerciseId = randomUUID();
           
           const exercise: Exercise = {
