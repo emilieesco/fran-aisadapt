@@ -3109,6 +3109,366 @@ export class MemStorage implements IStorage {
       order: 11,
     };
 
+    // HISTOIRE 16: La Bibliothèque Secrète - Questions additionnelles
+    const readQ16_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 5 (Situation finale)",
+      text: "Qu'est-il arrivé à la bibliothèque secrète à la fin de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle a été détruite", "Elle est devenue un lieu de rencontre pour les jeunes lecteurs du quartier", "Elle a été fermée", "Personne n'y est retourné"]),
+      correctAnswer: "Elle est devenue un lieu de rencontre pour les jeunes lecteurs du quartier",
+      order: 5,
+    };
+    const readQ16_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 6 (Compréhension)",
+      text: "Où était cachée la bibliothèque secrète?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Dans une cave", "Derrière une porte cachée dans le sous-sol de la mairie", "Dans un arbre", "Sur un toit"]),
+      correctAnswer: "Derrière une porte cachée dans le sous-sol de la mairie",
+      order: 6,
+    };
+    const readQ16_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 7 (Compréhension)",
+      text: "Qui avait créé cette bibliothèque secrète?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le maire actuel", "Un ancien bibliothécaire passionné de livres rares", "Les enfants du quartier", "Un inconnu"]),
+      correctAnswer: "Un ancien bibliothécaire passionné de livres rares",
+      order: 7,
+    };
+    const readQ16_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi la lecture et les livres sont-ils importants dans notre vie? Que nous apporte la découverte de cette bibliothèque?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ16_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 9 (Réaction)",
+      text: "Quel est ton livre préféré et pourquoi? Décris ce qui t'a marqué dans ce livre.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ16_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 10 (Réaction)",
+      text: "Si tu pouvais créer ta propre bibliothèque secrète, quels types de livres y mettrais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ16_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise16Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il réussi à transmettre l'amour des livres dans cette histoire? Cite un passage qui le montre.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 17: Le Concert Spécial - Questions additionnelles
+    const readQ17_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment le concert s'est-il terminé?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'était un échec", "Le public a ovationné les jeunes musiciens et ils ont été invités à jouer au festival de la ville", "Il a été annulé", "Personne n'est venu"]),
+      correctAnswer: "Le public a ovationné les jeunes musiciens et ils ont été invités à jouer au festival de la ville",
+      order: 5,
+    };
+    const readQ17_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quel instrument jouait le personnage principal?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le piano", "La guitare", "Le violon", "La batterie"]),
+      correctAnswer: "Le violon",
+      order: 6,
+    };
+    const readQ17_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 7 (Compréhension)",
+      text: "Pourquoi ce concert était-il spécial?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'était gratuit", "C'était le premier concert organisé par des élèves pour une cause caritative", "C'était en plein air", "Les parents jouaient aussi"]),
+      correctAnswer: "C'était le premier concert organisé par des élèves pour une cause caritative",
+      order: 7,
+    };
+    const readQ17_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous apprend cette histoire sur le travail d'équipe et l'importance de s'engager pour une cause?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ17_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 9 (Réaction)",
+      text: "Joues-tu d'un instrument de musique? Si oui, lequel et pourquoi l'as-tu choisi? Si non, quel instrument aimerais-tu apprendre?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ17_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 10 (Réaction)",
+      text: "As-tu déjà participé à un événement pour aider les autres? Raconte cette expérience.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ17_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise17Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Cette histoire montre-t-elle bien la valeur de l'entraide et de la solidarité? Explique pourquoi avec un exemple du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 18: La Lettre du Futur - Questions additionnelles
+    const readQ18_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 5 (Situation finale)",
+      text: "Qu'a décidé le personnage après avoir lu la lettre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["D'ignorer la lettre", "De changer ses habitudes et de mieux profiter de sa vie", "De la jeter", "De la montrer à tout le monde"]),
+      correctAnswer: "De changer ses habitudes et de mieux profiter de sa vie",
+      order: 5,
+    };
+    const readQ18_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 6 (Compréhension)",
+      text: "D'où venait la mystérieuse lettre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["D'un ami", "Du personnage lui-même, 20 ans plus tard", "D'un inconnu", "De ses parents"]),
+      correctAnswer: "Du personnage lui-même, 20 ans plus tard",
+      order: 6,
+    };
+    const readQ18_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 7 (Compréhension)",
+      text: "Quel conseil principal contenait la lettre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Travailler plus dur à l'école", "Profiter de chaque moment et prendre soin de ses relations", "Économiser de l'argent", "Voyager plus"]),
+      correctAnswer: "Profiter de chaque moment et prendre soin de ses relations",
+      order: 7,
+    };
+    const readQ18_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 8 (Interprétation)",
+      text: "Pourquoi recevoir des conseils de son futur soi pourrait-il être utile? Que nous apprend cette histoire sur l'importance du présent?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ18_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 9 (Réaction)",
+      text: "Si tu pouvais écrire une lettre à toi-même dans 10 ans, que dirais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ18_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 10 (Réaction)",
+      text: "Quel conseil donnerais-tu au toi du passé (il y a 5 ans)?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ18_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise18Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Cette histoire est-elle originale et intéressante? L'idée d'une lettre du futur est-elle bien exploitée par l'auteur?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 19: L'Aventure Finale - Questions additionnelles
+    const readQ19_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment les amis se sentent-ils à la fin de leur aventure?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Déçus", "Fiers d'avoir accompli leur mission ensemble et prêts pour de nouvelles aventures", "Fatigués et tristes", "Indifférents"]),
+      correctAnswer: "Fiers d'avoir accompli leur mission ensemble et prêts pour de nouvelles aventures",
+      order: 5,
+    };
+    const readQ19_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quel était l'objectif de cette aventure finale?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Trouver un trésor", "Résoudre un mystère qui hantait le village depuis des générations", "Gagner une compétition", "Voyager à l'étranger"]),
+      correctAnswer: "Résoudre un mystère qui hantait le village depuis des générations",
+      order: 6,
+    };
+    const readQ19_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 7 (Compréhension)",
+      text: "Combien d'amis participaient à cette aventure?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Deux", "Trois", "Quatre", "Cinq"]),
+      correctAnswer: "Quatre",
+      order: 7,
+    };
+    const readQ19_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que représente cette 'aventure finale' pour le groupe d'amis? Pourquoi les amitiés d'enfance sont-elles si importantes?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ19_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 9 (Réaction)",
+      text: "Raconte une aventure que tu as vécue avec tes amis. Qu'est-ce qui l'a rendue spéciale?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ19_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 10 (Réaction)",
+      text: "Si tu pouvais vivre une aventure avec tes amis, où irais-tu et que ferais-tu?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ19_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise19Id,
+      title: "Question 11 (Jugement critique)",
+      text: "L'auteur a-t-il réussi à créer une histoire captivante avec des personnages attachants? Explique avec des exemples.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
+    // HISTOIRE 20: Le Rêve de Mathieu - Questions additionnelles
+    const readQ20_sitFin: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 5 (Situation finale)",
+      text: "Comment Mathieu a-t-il réalisé son rêve?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il a abandonné", "Grâce à sa persévérance et au soutien de sa famille, il est devenu pilote", "Il a changé de rêve", "Quelqu'un l'a aidé par hasard"]),
+      correctAnswer: "Grâce à sa persévérance et au soutien de sa famille, il est devenu pilote",
+      order: 5,
+    };
+    const readQ20_comp1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 6 (Compréhension)",
+      text: "Quel était le rêve de Mathieu?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Devenir médecin", "Devenir pilote d'avion", "Devenir footballeur", "Devenir musicien"]),
+      correctAnswer: "Devenir pilote d'avion",
+      order: 6,
+    };
+    const readQ20_comp2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 7 (Compréhension)",
+      text: "Quel obstacle principal Mathieu a-t-il dû surmonter?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le manque d'argent de sa famille", "Une peur des avions", "Un manque de soutien", "Une blessure"]),
+      correctAnswer: "Le manque d'argent de sa famille",
+      order: 7,
+    };
+    const readQ20_interp: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 8 (Interprétation)",
+      text: "Que nous enseigne l'histoire de Mathieu sur l'importance de poursuivre ses rêves malgré les obstacles?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    const readQ20_react1: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 9 (Réaction)",
+      text: "Quel est ton rêve pour l'avenir? Comment comptes-tu le réaliser?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    const readQ20_react2: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 10 (Réaction)",
+      text: "Y a-t-il quelqu'un qui t'inspire dans la poursuite de tes rêves? Décris cette personne.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    const readQ20_jug: Question = {
+      id: randomUUID(),
+      exerciseId: readingExercise20Id,
+      title: "Question 11 (Jugement critique)",
+      text: "Cette histoire est-elle inspirante pour les jeunes lecteurs? L'auteur réussit-il à nous motiver à poursuivre nos rêves? Explique.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+
     // Writing questions
     const writQ1: Question = {
       id: randomUUID(),
@@ -3360,6 +3720,51 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ15_react1.id, readQ15_react1);
     this.questions.set(readQ15_react2.id, readQ15_react2);
     this.questions.set(readQ15_jug.id, readQ15_jug);
+    
+    // Questions additionnelles Histoire 16
+    this.questions.set(readQ16_sitFin.id, readQ16_sitFin);
+    this.questions.set(readQ16_comp1.id, readQ16_comp1);
+    this.questions.set(readQ16_comp2.id, readQ16_comp2);
+    this.questions.set(readQ16_interp.id, readQ16_interp);
+    this.questions.set(readQ16_react1.id, readQ16_react1);
+    this.questions.set(readQ16_react2.id, readQ16_react2);
+    this.questions.set(readQ16_jug.id, readQ16_jug);
+    
+    // Questions additionnelles Histoire 17
+    this.questions.set(readQ17_sitFin.id, readQ17_sitFin);
+    this.questions.set(readQ17_comp1.id, readQ17_comp1);
+    this.questions.set(readQ17_comp2.id, readQ17_comp2);
+    this.questions.set(readQ17_interp.id, readQ17_interp);
+    this.questions.set(readQ17_react1.id, readQ17_react1);
+    this.questions.set(readQ17_react2.id, readQ17_react2);
+    this.questions.set(readQ17_jug.id, readQ17_jug);
+    
+    // Questions additionnelles Histoire 18
+    this.questions.set(readQ18_sitFin.id, readQ18_sitFin);
+    this.questions.set(readQ18_comp1.id, readQ18_comp1);
+    this.questions.set(readQ18_comp2.id, readQ18_comp2);
+    this.questions.set(readQ18_interp.id, readQ18_interp);
+    this.questions.set(readQ18_react1.id, readQ18_react1);
+    this.questions.set(readQ18_react2.id, readQ18_react2);
+    this.questions.set(readQ18_jug.id, readQ18_jug);
+    
+    // Questions additionnelles Histoire 19
+    this.questions.set(readQ19_sitFin.id, readQ19_sitFin);
+    this.questions.set(readQ19_comp1.id, readQ19_comp1);
+    this.questions.set(readQ19_comp2.id, readQ19_comp2);
+    this.questions.set(readQ19_interp.id, readQ19_interp);
+    this.questions.set(readQ19_react1.id, readQ19_react1);
+    this.questions.set(readQ19_react2.id, readQ19_react2);
+    this.questions.set(readQ19_jug.id, readQ19_jug);
+    
+    // Questions additionnelles Histoire 20
+    this.questions.set(readQ20_sitFin.id, readQ20_sitFin);
+    this.questions.set(readQ20_comp1.id, readQ20_comp1);
+    this.questions.set(readQ20_comp2.id, readQ20_comp2);
+    this.questions.set(readQ20_interp.id, readQ20_interp);
+    this.questions.set(readQ20_react1.id, readQ20_react1);
+    this.questions.set(readQ20_react2.id, readQ20_react2);
+    this.questions.set(readQ20_jug.id, readQ20_jug);
     
     this.questions.set(writQ1.id, writQ1);
     this.questions.set(writQ2.id, writQ2);
