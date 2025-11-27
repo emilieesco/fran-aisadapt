@@ -94,9 +94,9 @@ export default function Exercise() {
     firstQuestion.title.toLowerCase().includes("histoire") && 
     firstQuestion.text.length > 500;
   
-  // Check if this is a descriptive text exercise (title contains "Lecture:" and has long text)
+  // Check if this is a descriptive text exercise (title starts with "Description" and has long text)
   const isDescriptiveExercise = exercise &&
-    exercise.title.includes("Lecture:") &&
+    (exercise.title.startsWith("Description") || exercise.title.includes("Lecture:")) &&
     firstQuestion &&
     firstQuestion.text.length > 200 &&
     !isNarrativeExercise;
