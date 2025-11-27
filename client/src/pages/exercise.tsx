@@ -88,14 +88,22 @@ export default function Exercise() {
   const isTextQuestion = currentQuestion.type === "text";
   const isCorrect = isTextQuestion ? null : currentAnswer === currentQuestion.correctAnswer;
 
-  // Check if this is a reading comprehension exercise (first question contains the story text)
+  // Check if this is a reading comprehension exercise (narrative or descriptive)
   const firstQuestion = questions[0];
-  const isReadingExercise = firstQuestion && 
+  const isNarrativeExercise = firstQuestion && 
     firstQuestion.title.toLowerCase().includes("histoire") && 
     firstQuestion.text.length > 500;
   
-  // Extract story text from the first question if this is a reading exercise
-  const storyText = isReadingExercise ? firstQuestion.text : null;
+  // Check if this is a descriptive text exercise (title contains "Lecture:" and has long text)
+  const isDescriptiveExercise = exercise &&
+    exercise.title.includes("Lecture:") &&
+    firstQuestion &&
+    firstQuestion.text.length > 200 &&
+    !isNarrativeExercise;
+  
+  // Extract story/text from the first question if this is a reading exercise
+  const storyText = (isNarrativeExercise || isDescriptiveExercise) ? firstQuestion.text : null;
+  const isReadingExercise = isNarrativeExercise || isDescriptiveExercise;
 
   const handleAnswerChange = (answer: string) => {
     setUserAnswers({ ...userAnswers, [currentQuestion.id]: answer });
@@ -208,38 +216,58 @@ export default function Exercise() {
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Story Panel for Reading Comprehension */}
+        {/* Story/Text Panel for Reading Comprehension */}
         {isReadingExercise && storyText && (
-          <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
-            <Card className="p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
-              <CollapsibleTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full flex items-center justify-between p-2 hover:bg-amber-100 dark:hover:bg-amber-900/30"
-                  data-testid="button-toggle-story"
-                >
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                    <span className="font-semibold text-amber-800 dark:text-amber-200">
-                      Texte de l'histoire
-                    </span>
-                  </div>
-                  {storyPanelOpen ? (
-                    <ChevronUp className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                  )}
-                </Button>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <div className="mt-4 max-h-80 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+          <>
+            {isDescriptiveExercise ? (
+              // For descriptive texts: show permanently at the top
+              <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700 mb-6">
+                <div className="flex items-start gap-3 mb-3">
+                  <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span className="font-semibold text-blue-800 dark:text-blue-200">
+                    Texte à lire
+                  </span>
+                </div>
+                <div className="max-h-64 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
                     {storyText}
                   </p>
                 </div>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
+              </Card>
+            ) : (
+              // For narrative texts: collapsible panel
+              <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
+                <Card className="p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
+                  <CollapsibleTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="w-full flex items-center justify-between p-2 hover:bg-amber-100 dark:hover:bg-amber-900/30"
+                      data-testid="button-toggle-story"
+                    >
+                      <div className="flex items-center gap-2">
+                        <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                        <span className="font-semibold text-amber-800 dark:text-amber-200">
+                          Texte de l'histoire
+                        </span>
+                      </div>
+                      {storyPanelOpen ? (
+                        <ChevronUp className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                      )}
+                    </Button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <div className="mt-4 max-h-80 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
+                        {storyText}
+                      </p>
+                    </div>
+                  </CollapsibleContent>
+                </Card>
+              </Collapsible>
+            )}
+          </>
         )}
 
         <Card className="p-8 mb-6">
