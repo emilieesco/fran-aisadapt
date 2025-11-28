@@ -195,6 +195,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/teachers/:teacherId/students/:studentId/responses", async (req, res) => {
+    try {
+      const { teacherId, studentId } = req.params;
+      
+      // Verify teacher has access to this student
+      const assignments = await storage.getAssignmentsByTeacher(teacherId);
+      const hasAccess = assignments.some((a) => a.studentId === studentId);
+      if (!hasAccess) {
+        return res.status(403).send("Accès non autorisé");
+      }
+
+      const responses = await storage.getResponsesByStudent(studentId);
+      
+      // Enrich responses with question and exercise details
+      const enrichedResponses = await Promise.all(
+        responses.map(async (response) => {
+          const question = await storage.getQuestion(response.questionId);
+          const exercise = question ? await storage.getExercise(question.exerciseId) : null;
+          const course = exercise ? await storage.getCourse(exercise.courseId) : null;
+          
+          return {
+            ...response,
+            question: question ? { id: question.id, title: question.title, text: question.text, type: question.type } : null,
+            exercise: exercise ? { id: exercise.id, title: exercise.title } : null,
+            course: course ? { id: course.id, title: course.title, category: course.category } : null,
+          };
+        })
+      );
+
+      res.json(enrichedResponses);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

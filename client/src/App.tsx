@@ -8,6 +8,7 @@ import Auth from "@/pages/auth";
 import StudentDashboard from "@/pages/student-dashboard";
 import TeacherDashboard from "@/pages/teacher-dashboard";
 import TeacherReports from "@/pages/teacher-reports";
+import StudentResponses from "@/pages/student-responses";
 import Course from "@/pages/course";
 import Exercise from "@/pages/exercise";
 import ReadingNarrative from "@/pages/reading-narrative";
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/student-dashboard" component={StudentDashboard} />
       <Route path="/teacher-dashboard" component={TeacherDashboard} />
       <Route path="/teacher-reports" component={TeacherReports} />
+      <Route path="/student-responses" component={StudentResponses} />
       <Route path="/course/:id" component={Course} />
       <Route path="/exercise/:id" component={Exercise} />
       <Route path="/reading-narrative" component={ReadingNarrative} />

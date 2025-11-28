@@ -76,6 +76,10 @@ ${Object.entries(student.progressByCategory)
     link.click();
   };
 
+  const handleViewResponses = (studentId: string) => {
+    setLocation(`/student-responses?studentId=${studentId}`);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -118,20 +122,30 @@ ${Object.entries(student.progressByCategory)
                   <h2 className="text-xl font-bold">
                     {report.firstName} {report.lastName}
                   </h2>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() =>
-                      handleDownloadReport(
-                        report.id,
-                        `${report.firstName} ${report.lastName}`
-                      )
-                    }
-                    data-testid={`button-download-${report.id}`}
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Télécharger CSV
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleViewResponses(report.id)}
+                      data-testid={`button-view-responses-${report.id}`}
+                    >
+                      Voir les Réponses
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() =>
+                        handleDownloadReport(
+                          report.id,
+                          `${report.firstName} ${report.lastName}`
+                        )
+                      }
+                      data-testid={`button-download-${report.id}`}
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Télécharger CSV
+                    </Button>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
