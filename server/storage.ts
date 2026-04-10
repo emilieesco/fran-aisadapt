@@ -452,7 +452,7 @@ export class MemStorage implements IStorage {
       title: "Les types de textes",
       description: "Descriptif, narratif, informatif, explicatif, injonctif, dialogue",
       category: "lecture_reading",
-      content: "<h2>Les Types de Textes - Reconnaître et Analyser</h2><p>Chaque type de texte a sa fonction et ses caractéristiques! C'est utile pour lire ET écrire.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 7 TYPES PRINCIPAUX</strong></div><h3>1. TEXTE DESCRIPTIF</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Décrit une personne, un objet, un lieu:</strong><br>\"La maison était grande, avec des murs blancs et un toit rouge. Elle avait trois fenêtres et une porte bleue.\"<br>Temps utilisé: présent, imparfait</div><h3>2. TEXTE NARRATIF</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Raconte une histoire avec début, milieu, fin:</strong><br>\"Situation initiale → Élément perturbateur → Développement → Climax → Résolution\"<br>Temps utilisé: passé composé, imparfait</div><h3>3. TEXTE INFORMATIF</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne des informations factuelles:</strong><br>\"Paris est la capitale de la France. Elle compte 2 millions d'habitants. La Seine la traverse.\"<br>Temps utilisé: présent</div><h3>4. TEXTE EXPLICATIF</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Explique COMMENT ou POURQUOI:</strong><br>\"Pour faire un gâteau, d'abord mélanger les ingrédients. Ensuite verser dans le moule. Finalement cuire 30 minutes.\"<br>Temps utilisé: infinitif, impératif, présent</div><h3>5. TEXTE INJONCTIF</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne des ordres ou des consignes:</strong><br>\"Lave-toi les mains! Prends une assiette. Serve-toi du repas.\"<br>Temps utilisé: impératif</div><h3>6. DIALOGUE</h3><div style='background: #e6f2ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Échange entre deux ou plusieurs personnes:</strong><br>\"— Bonjour! Comment vas-tu?<br>— Très bien, et toi?\"</div><h3>7. PUBLICITAIRE</h3><div style='background: #fffacd; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Persuade d'acheter ou de faire quelque chose:</strong><br>\"Achetez ce produit! C'est magique et pas cher!\"<br>Utilise: impératif, superlatifs, exclamations</div>",
+      content: "<h2>Les Types de Textes - Reconnaître et Analyser</h2><p>Chaque type de texte a sa fonction et ses caractéristiques! C'est utile pour lire ET écrire.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ 7 TYPES PRINCIPAUX</strong></div><h3>1. TEXTE DESCRIPTIF</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Décrit une personne, un objet, un lieu:</strong><br>\"La maison était grande, avec des murs blancs et un toit rouge. Elle avait trois fenêtres et une porte bleue.\"<br>Temps utilisé: présent, imparfait</div><h3>2. TEXTE NARRATIF</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Raconte une histoire avec début, milieu, fin:</strong><br>\"Situation initiale → Élément perturbateur → Péripéties → Dénouement → Situation finale\"<br>Temps utilisé: passé composé, imparfait</div><h3>3. TEXTE INFORMATIF</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne des informations factuelles:</strong><br>\"Paris est la capitale de la France. Elle compte 2 millions d'habitants. La Seine la traverse.\"<br>Temps utilisé: présent</div><h3>4. TEXTE EXPLICATIF</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Explique COMMENT ou POURQUOI:</strong><br>\"Pour faire un gâteau, d'abord mélanger les ingrédients. Ensuite verser dans le moule. Finalement cuire 30 minutes.\"<br>Temps utilisé: infinitif, impératif, présent</div><h3>5. TEXTE INJONCTIF</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Donne des ordres ou des consignes:</strong><br>\"Lave-toi les mains! Prends une assiette. Serve-toi du repas.\"<br>Temps utilisé: impératif</div><h3>6. DIALOGUE</h3><div style='background: #e6f2ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Échange entre deux ou plusieurs personnes:</strong><br>\"— Bonjour! Comment vas-tu?<br>— Très bien, et toi?\"</div><h3>7. PUBLICITAIRE</h3><div style='background: #fffacd; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Persuade d'acheter ou de faire quelque chose:</strong><br>\"Achetez ce produit! C'est magique et pas cher!\"<br>Utilise: impératif, superlatifs, exclamations</div>",
       order: 68,
     };
 
@@ -984,7 +984,7 @@ export class MemStorage implements IStorage {
       title: "Écrire une histoire courte",
       description: "Structure d'une histoire courte avec début, milieu et fin satisfaisants",
       category: "ecriture",
-      content: "<h2>Écrire une Histoire Courte</h2><p>Une histoire courte bien structurée entraîne le lecteur du début à la fin. Elle a besoin d'une structure claire pour captiver l'audience!</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ STRUCTURE:</strong><br>Situation initiale → Problème/Conflit → Climax → Résolution</div><h3>1. SITUATION INITIALE (LE DÉBUT)</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Présente:</strong> personnage principal, lieu, temps, situation normale<br><strong>Exemple:</strong> \"Léa était une fillette de 10 ans qui vivait près d'une grande forêt. Elle aimait explorer la nature après l'école. Un jour, en sortant de classe, elle découvrit quelque chose d'extraordinaire...\"</div><h3>2. LE PROBLÈME OU CONFLIT (LE MILIEU)</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Crée la tension:</strong> obstacle, danger, mystère, question<br><strong>Exemple:</strong> \"Près du grand chêne, Léa trouva une petite porte verte qu'elle n'avait jamais vue avant. Elle était intriguée. Devrait-elle l'ouvrir? Que se passerait-il?\"<br><strong>Types de conflits:</strong> personnage vs nature, personnage vs autre, personnage vs lui-même</div><h3>3. LE CLIMAX (LE MOMENT CRUCIAL)</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le moment le plus intense:</strong> où l'action principale se produit<br><strong>Exemple:</strong> \"Léa prit une profonde respiration et ouvrit la petite porte. Ce qu'elle vit la stupéfia! C'était un monde magique rempli de créatures lumineuses et de fleurs qui chantaient!\"</div><h3>4. LA RÉSOLUTION (LA FIN)</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Comment se termine l'histoire?</strong> Problème résolu, leçon apprise<br><strong>Exemple:</strong> \"Léa découvrit que ce monde magique existait pour aider les enfants courageux. Elle y retourna chaque jour et devint la gardienne de ce monde secret. Et jamais elle n'oublia sa première adventure extraordinaire.\"</div>",
+      content: "<h2>Écrire une Histoire Courte</h2><p>Une histoire courte bien structurée entraîne le lecteur du début à la fin. En nouvelle grammaire québécoise, on utilise le <strong>schéma narratif</strong> en 5 étapes.</p><div style='background: #fef08a; border-left: 4px solid #eab308; padding: 12px; margin: 15px 0; border-radius: 4px;'><strong>⭐ SCHÉMA NARRATIF (5 étapes):</strong><br>Situation initiale → Élément perturbateur → Péripéties → Dénouement → Situation finale</div><h3>1. SITUATION INITIALE</h3><div style='background: #dbeafe; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>L'équilibre du début:</strong> personnage principal, lieu, temps, vie normale<br><strong>Exemple:</strong> \"Léa était une fillette de 10 ans qui vivait près d'une grande forêt. Elle aimait explorer la nature après l'école.\"</div><h3>2. ÉLÉMENT PERTURBATEUR</h3><div style='background: #fee2e2; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>L'événement qui brise l'équilibre:</strong> obstacle, danger, mystère, découverte<br><strong>Exemple:</strong> \"Un jour, en sortant de classe, Léa découvrit une petite porte verte qu'elle n'avait jamais vue avant près du grand chêne.\"</div><h3>3. PÉRIPÉTIES</h3><div style='background: #f0fdf4; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Les actions du personnage pour faire face à la situation:</strong> tentatives, obstacles, émotions<br><strong>Exemple:</strong> \"Léa hésita longtemps. Elle avait peur, mais sa curiosité était plus forte. Elle s'approcha doucement...\"</div><h3>4. DÉNOUEMENT</h3><div style='background: #f3e8ff; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>La résolution du problème ou du conflit:</strong><br><strong>Exemple:</strong> \"Léa ouvrit la porte et découvrit un monde magique rempli de créatures bienveillantes. Elle comprit qu'elle avait été choisie pour en être la gardienne.\"</div><h3>5. SITUATION FINALE</h3><div style='background: #fce7f3; padding: 10px; margin: 10px 0; border-radius: 4px;'><strong>Le nouvel équilibre — comment la vie du personnage a changé:</strong><br><strong>Exemple:</strong> \"Depuis ce jour, Léa retourna au monde magique chaque soir après l'école. Elle n'était plus la même fillette curieuse — elle était devenue une gardienne.\"</div>",
       order: 44,
     };
 
@@ -3898,33 +3898,33 @@ export class MemStorage implements IStorage {
     const writQ3_a: Question = {
       id: randomUUID(),
       exerciseId: writingExercise3Id,
-      title: "Question 1 — Structure narrative",
-      text: "Quelle est la bonne ordre des étapes dans une histoire courte?",
+      title: "Question 1 — Schéma narratif",
+      text: "Quelle est la bonne ordre des 5 étapes du schéma narratif québécois?",
       type: "multiple_choice",
       options: JSON.stringify([
-        "Résolution → Situation initiale → Problème → Climax",
-        "Situation initiale → Problème → Climax → Résolution",
-        "Climax → Situation initiale → Résolution → Problème",
-        "Problème → Climax → Situation initiale → Résolution",
+        "Situation initiale → Élément perturbateur → Péripéties → Dénouement → Situation finale",
+        "Élément perturbateur → Situation initiale → Péripéties → Situation finale → Dénouement",
+        "Situation initiale → Péripéties → Élément perturbateur → Dénouement → Situation finale",
+        "Dénouement → Péripéties → Situation initiale → Élément perturbateur → Situation finale",
       ]),
-      correctAnswer: "Situation initiale → Problème → Climax → Résolution",
+      correctAnswer: "Situation initiale → Élément perturbateur → Péripéties → Dénouement → Situation finale",
       order: 1,
     };
     const writQ3_b: Question = {
       id: randomUUID(),
       exerciseId: writingExercise3Id,
-      title: "Question 2 — Identifier la partie de l'histoire",
-      text: "Lis cet extrait: «Léa ouvrit la porte. Ce qu'elle vit la laissa sans voix: la pièce était remplie de lumière dorée et une créature brillante la regardait.»\nCette partie est...",
+      title: "Question 2 — Identifier l'étape du schéma narratif",
+      text: "Lis cet extrait: «Léa ouvrit la porte. Ce qu'elle vit la laissa sans voix: la pièce était remplie de lumière dorée et une créature brillante la regardait.»\nQuelle étape du schéma narratif est-ce?",
       type: "multiple_choice",
-      options: JSON.stringify(["La situation initiale", "Le problème ou conflit", "Le climax", "La résolution"]),
-      correctAnswer: "Le climax",
+      options: JSON.stringify(["La situation initiale", "L'élément perturbateur", "Les péripéties", "Le dénouement"]),
+      correctAnswer: "Le dénouement",
       order: 2,
     };
     const writQ3_c: Question = {
       id: randomUUID(),
       exerciseId: writingExercise3Id,
-      title: "Question 3 — Planifier avant d'écrire",
-      text: "Avant d'écrire ton histoire, planifie-la en 4 points:\n1. Personnage principal et lieu\n2. Le problème ou l'obstacle\n3. Le moment le plus intense (climax)\n4. Comment ça se termine\n\nNote tes 4 points ici en quelques mots chacun.",
+      title: "Question 3 — Planifier selon le schéma narratif",
+      text: "Avant d'écrire ton histoire, planifie tes 5 étapes:\n1. Situation initiale: qui? où? quand?\n2. Élément perturbateur: qu'est-ce qui vient briser l'équilibre?\n3. Péripéties: que fait le personnage pour y faire face?\n4. Dénouement: comment le problème se règle-t-il?\n5. Situation finale: comment la vie du personnage a-t-elle changé?\n\nNote chaque étape en 1-2 phrases.",
       type: "text",
       correctAnswer: "réponse libre",
       order: 3,
@@ -3933,7 +3933,7 @@ export class MemStorage implements IStorage {
       id: randomUUID(),
       exerciseId: writingExercise3Id,
       title: "Question 4 — Production: Histoire courte",
-      text: "Écris ton histoire courte (15-20 phrases) en suivant le plan que tu as fait à la question 3.\n\nConsignes:\n• Situation initiale claire (personnage + lieu + moment)\n• Un problème ou conflit qui crée de la tension\n• Un climax fort (le moment le plus intense)\n• Une résolution satisfaisante",
+      text: "Écris ton histoire courte (15-20 phrases) en suivant le plan que tu as fait à la question 3.\n\nConsignes — respecte les 5 étapes du schéma narratif:\n• Situation initiale: présente ton personnage, son lieu et son quotidien\n• Élément perturbateur: l'événement qui change tout\n• Péripéties: les actions et réactions du personnage\n• Dénouement: comment la situation se règle\n• Situation finale: le nouvel équilibre à la fin",
       type: "text",
       correctAnswer: "réponse libre",
       order: 4,
