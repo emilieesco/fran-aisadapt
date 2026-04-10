@@ -30,7 +30,7 @@ export default function TeacherDashboard() {
   const [newCourse, setNewCourse] = useState({
     title: "",
     description: "",
-    category: "classes_de_mots",
+    category: "grammaire",
   });
 
   useEffect(() => {
@@ -189,9 +189,22 @@ export default function TeacherDashboard() {
                       }
                       className="w-full h-10 px-3 rounded-md border border-input bg-background"
                     >
-                      <option value="classes_de_mots">Classes de mots</option>
-                      <option value="textes_narratifs">Textes narratifs</option>
-                      <option value="ecriture">Écriture</option>
+                      <optgroup label="Langue">
+                        <option value="grammaire">Grammaire</option>
+                        <option value="orthographe">Orthographe</option>
+                        <option value="conjugaison">Conjugaison</option>
+                        <option value="ponctuation">Ponctuation</option>
+                        <option value="vocabulaire">Vocabulaire</option>
+                        <option value="classes_de_mots">Classes de mots</option>
+                      </optgroup>
+                      <optgroup label="Lecture">
+                        <option value="lecture_reading">Lecture — cours</option>
+                        <option value="textes_narratifs">Textes narratifs</option>
+                        <option value="textes_descriptifs">Textes descriptifs</option>
+                      </optgroup>
+                      <optgroup label="Écriture">
+                        <option value="ecriture">Écriture</option>
+                      </optgroup>
                     </select>
                   </div>
 
