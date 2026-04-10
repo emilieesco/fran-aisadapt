@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw } from "lucide-react";
 
 interface Question {
   id: string;
@@ -18,9 +18,11 @@ interface Question {
 
 interface Exercise {
   id: string;
+  courseId: string;
   title: string;
   description: string;
   type: string;
+  order?: number;
 }
 
 export default function Exercise() {
@@ -34,9 +36,18 @@ export default function Exercise() {
   const [loading, setLoading] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [storyPanelOpen, setStoryPanelOpen] = useState(true);
+  const [siblingExercises, setSiblingExercises] = useState<Exercise[]>([]);
 
   useEffect(() => {
     if (!match || !params?.id) return;
+
+    // Reset state for the new exercise
+    setCompleted(false);
+    setCurrentQuestionIndex(0);
+    setUserAnswers({});
+    setShowFeedback(false);
+    setLoading(true);
+    setSiblingExercises([]);
 
     const fetchExercise = async () => {
       try {
@@ -45,15 +56,30 @@ export default function Exercise() {
           fetch(`/api/exercises/${params.id}/questions`, { credentials: "include" }),
         ]);
 
-        if (exerciseRes.ok) setExercise(await exerciseRes.json());
+        let fetchedExercise: Exercise | null = null;
+        if (exerciseRes.ok) {
+          fetchedExercise = await exerciseRes.json();
+          setExercise(fetchedExercise);
+        }
         if (questionsRes.ok) {
           const qs = await questionsRes.json();
-          // Parse JSON options if they're strings
           const parsedQs = qs.map((q: Question) => ({
             ...q,
             options: typeof q.options === 'string' ? JSON.parse(q.options) : q.options
           }));
           setQuestions(parsedQs);
+        }
+
+        // Fetch sibling exercises from the same course
+        if (fetchedExercise?.courseId) {
+          const siblingsRes = await fetch(
+            `/api/courses/${fetchedExercise.courseId}/exercises`,
+            { credentials: "include" }
+          );
+          if (siblingsRes.ok) {
+            const siblings: Exercise[] = await siblingsRes.json();
+            setSiblingExercises(siblings.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
+          }
         }
       } catch (err) {
         console.error("Erreur:", err);
@@ -143,40 +169,131 @@ export default function Exercise() {
   };
 
   if (completed) {
-    // Separate questions by type
     const autoGradedQuestions = questions.filter((q) => q.type !== "text");
     const textQuestions = questions.filter((q) => q.type === "text");
-    
     const correctCount = autoGradedQuestions.filter(
       (q) => userAnswers[q.id] === q.correctAnswer
     ).length;
+    const score = autoGradedQuestions.length > 0
+      ? Math.round((correctCount / autoGradedQuestions.length) * 100)
+      : null;
+
+    // Find the next exercise in the same course
+    const currentIndex = siblingExercises.findIndex((ex) => ex.id === params?.id);
+    const nextExercise = currentIndex >= 0 && currentIndex < siblingExercises.length - 1
+      ? siblingExercises[currentIndex + 1]
+      : null;
+    const prevExercise = currentIndex > 0
+      ? siblingExercises[currentIndex - 1]
+      : null;
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
-        <Card className="max-w-md w-full p-8 text-center">
-          <CheckCircle className="w-16 h-16 text-amber-600 mx-auto mb-4" />
-          <h1 className="text-3xl font-bold mb-4 text-amber-900 dark:text-amber-200">Bravo!</h1>
-          <p className="text-lg mb-2">Vous avez complété l'exercice</p>
-          
-          {autoGradedQuestions.length > 0 && (
-            <p className="text-2xl font-bold text-amber-700 dark:text-amber-300 mb-2">
-              {correctCount}/{autoGradedQuestions.length} correct
-            </p>
+        <Card className="max-w-lg w-full p-8">
+          {/* Score header */}
+          <div className="text-center mb-6">
+            <CheckCircle className="w-14 h-14 text-amber-500 mx-auto mb-3" />
+            <h1 className="text-2xl font-bold text-foreground">Exercice terminé !</h1>
+            {score !== null && (
+              <div className="mt-3">
+                <span className="text-4xl font-extrabold text-amber-600 dark:text-amber-400">
+                  {score}%
+                </span>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {correctCount} bonne{correctCount !== 1 ? "s" : ""} réponse{correctCount !== 1 ? "s" : ""} sur {autoGradedQuestions.length}
+                </p>
+              </div>
+            )}
+            {textQuestions.length > 0 && (
+              <p className="text-sm text-muted-foreground mt-2">
+                {textQuestions.length} réponse{textQuestions.length > 1 ? "s" : ""} écrite{textQuestions.length > 1 ? "s" : ""} en attente de correction
+              </p>
+            )}
+          </div>
+
+          {/* Progress recap */}
+          {siblingExercises.length > 1 && (
+            <div className="mb-6">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                <span>Progression dans le cours</span>
+                <span>{currentIndex + 1} / {siblingExercises.length}</span>
+              </div>
+              <div className="flex gap-1">
+                {siblingExercises.map((ex, i) => (
+                  <div
+                    key={ex.id}
+                    className={`h-1.5 flex-1 rounded-full transition-colors ${
+                      i <= currentIndex
+                        ? "bg-amber-500"
+                        : "bg-secondary"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
           )}
-          
-          {textQuestions.length > 0 && (
-            <p className="text-sm text-muted-foreground mb-4">
-              {textQuestions.length} réponse{textQuestions.length > 1 ? "s" : ""} écrite{textQuestions.length > 1 ? "s" : ""} en attente d'évaluation
-            </p>
-          )}
-          
-          <Button
-            onClick={() => setLocation("/student-dashboard")}
-            className="w-full mt-4"
-            data-testid="button-back-dashboard"
-          >
-            Retour au tableau de bord
-          </Button>
+
+          {/* Navigation buttons */}
+          <div className="space-y-3">
+            {nextExercise && (
+              <Button
+                onClick={() => setLocation(`/exercise/${nextExercise.id}`)}
+                className="w-full"
+                data-testid="button-next-exercise"
+              >
+                Exercice suivant
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            )}
+
+            <div className="flex gap-3">
+              {prevExercise && (
+                <Button
+                  variant="outline"
+                  onClick={() => setLocation(`/exercise/${prevExercise.id}`)}
+                  className="flex-1"
+                  data-testid="button-prev-exercise"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Précédent
+                </Button>
+              )}
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setCompleted(false);
+                  setCurrentQuestionIndex(0);
+                  setUserAnswers({});
+                  setShowFeedback(false);
+                }}
+                className="flex-1"
+                data-testid="button-retry-exercise"
+              >
+                <RotateCcw className="w-4 h-4 mr-2" />
+                Recommencer
+              </Button>
+            </div>
+
+            {exercise?.courseId && (
+              <Button
+                variant="ghost"
+                onClick={() => setLocation(`/course/${exercise.courseId}`)}
+                className="w-full"
+                data-testid="button-back-course"
+              >
+                Retour au cours
+              </Button>
+            )}
+
+            <Button
+              variant="ghost"
+              onClick={() => setLocation("/student-dashboard")}
+              className="w-full text-muted-foreground"
+              data-testid="button-back-dashboard"
+            >
+              Tableau de bord
+            </Button>
+          </div>
         </Card>
       </div>
     );
