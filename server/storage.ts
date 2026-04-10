@@ -57,7 +57,9 @@ export interface IStorage {
   // Assignments
   getAssignmentsByStudent(studentId: string): Promise<Assignment[]>;
   getAssignmentsByTeacher(teacherId: string): Promise<Assignment[]>;
+  getAssignmentsByCourse(courseId: string): Promise<Assignment[]>;
   createAssignment(assignment: Omit<Assignment, "id">): Promise<Assignment>;
+  deleteAssignment(assignmentId: string): Promise<void>;
 
   // Teacher queries
   getStudentsByTeacher(teacherId: string): Promise<(User & { progressPercentage: number })[]>;
@@ -6507,11 +6509,21 @@ export class MemStorage implements IStorage {
     );
   }
 
+  async getAssignmentsByCourse(courseId: string): Promise<Assignment[]> {
+    return Array.from(this.assignments.values()).filter(
+      (a) => a.courseId === courseId
+    );
+  }
+
   async createAssignment(assignment: Omit<Assignment, "id">): Promise<Assignment> {
     const id = randomUUID();
     const newAssignment: Assignment = { ...assignment, id };
     this.assignments.set(id, newAssignment);
     return newAssignment;
+  }
+
+  async deleteAssignment(assignmentId: string): Promise<void> {
+    this.assignments.delete(assignmentId);
   }
 
   // Teacher queries

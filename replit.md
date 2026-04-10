@@ -105,6 +105,8 @@ Application web éducative complète pour l'enseignement du français aux élèv
 | `/student-dashboard` | Élève | Tableau de bord avec mes cours |
 | `/teacher-dashboard` | Enseignant | Gestion des cours et élèves |
 | `/teacher-reports` | Enseignant | Rapports détaillés de progression |
+| `/teacher/course/:id` | Enseignant | Gérer un cours: exercices + assignation élèves |
+| `/student-responses` | Enseignant | Réponses détaillées d'un élève |
 | `/course/:id` | Élève | Contenu du cours + liste exercices |
 | `/exercise/:id` | Élève | Exercice interactif |
 

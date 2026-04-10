@@ -230,6 +230,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Assignment Routes
+  app.get("/api/courses/:id/assignments", async (req, res) => {
+    try {
+      const assignments = await storage.getAssignmentsByCourse(req.params.id);
+      // Enrich with student info
+      const enriched = await Promise.all(
+        assignments.map(async (a) => {
+          const student = await storage.getUser(a.studentId);
+          return {
+            ...a,
+            student: student
+              ? { id: student.id, firstName: student.firstName, lastName: student.lastName }
+              : null,
+          };
+        })
+      );
+      res.json(enriched);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  app.post("/api/assignments", async (req, res) => {
+    try {
+      const { teacherId, studentId, courseId, dueDate } = req.body;
+      if (!teacherId || !studentId || !courseId) {
+        return res.status(400).send("Champs manquants: teacherId, studentId, courseId");
+      }
+      // Check if assignment already exists
+      const existing = await storage.getAssignmentsByCourse(courseId);
+      const duplicate = existing.find(
+        (a) => a.studentId === studentId && a.teacherId === teacherId
+      );
+      if (duplicate) {
+        return res.status(409).send("Ce cours est déjà assigné à cet élève");
+      }
+      const assignment = await storage.createAssignment({
+        teacherId,
+        studentId,
+        courseId,
+        dueDate: dueDate || null,
+        createdAt: new Date(),
+      });
+      res.json(assignment);
+    } catch (err) {
+      res.status(400).send("Erreur lors de la création de l'assignation");
+    }
+  });
+
+  app.delete("/api/assignments/:id", async (req, res) => {
+    try {
+      await storage.deleteAssignment(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
