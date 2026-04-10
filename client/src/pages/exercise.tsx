@@ -118,12 +118,16 @@ export default function Exercise() {
   // Check if this is a reading comprehension exercise (narrative or descriptive)
   const firstQuestion = questions[0];
   const isNarrativeExercise = firstQuestion && 
-    firstQuestion.title.toLowerCase().includes("histoire") && 
+    (firstQuestion.title.toLowerCase().includes("histoire") ||
+     exercise.title.toLowerCase().includes("narratif") ||
+     exercise.title.toLowerCase().includes("histoire")) && 
     firstQuestion.text.length > 500;
   
   // Check if this is a descriptive text exercise (title starts with "Description" and has long text)
   const isDescriptiveExercise = exercise &&
-    (exercise.title.startsWith("Description") || exercise.title.includes("Lecture:")) &&
+    (exercise.title.startsWith("Description") || 
+     exercise.title.includes("Lecture:") ||
+     exercise.title.toLowerCase().includes("descriptif")) &&
     firstQuestion &&
     firstQuestion.text.length > 200 &&
     !isNarrativeExercise;
@@ -393,11 +397,19 @@ export default function Exercise() {
             </h2>
             <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500">
               <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground">
-                {/* For descriptive exercises with long text, extract question from title */}
-                {isDescriptiveExercise && currentQuestion.text.length > 200 ? (
-                  currentQuestion.title.includes(":") 
-                    ? currentQuestion.title.split(":").slice(1).join(":").trim()
-                    : currentQuestion.title
+                {/* For reading exercises: if Q1 title starts with "Qn (" → extract question from title */}
+                {isReadingExercise && currentQuestion.text.length > 200 ? (
+                  currentQuestion.title.match(/^Q\d+\s*[\(（]/) ? (
+                    currentQuestion.title.includes(":")
+                      ? currentQuestion.title.split(":").slice(1).join(":").trim()
+                      : currentQuestion.title
+                  ) : (
+                    isDescriptiveExercise
+                      ? (currentQuestion.title.includes(":")
+                          ? currentQuestion.title.split(":").slice(1).join(":").trim()
+                          : currentQuestion.title)
+                      : currentQuestion.text
+                  )
                 ) : currentQuestion.text}
               </p>
             </div>

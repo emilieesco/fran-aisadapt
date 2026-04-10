@@ -12,6 +12,7 @@ interface Course {
   description: string;
   category: string;
   progressPercentage: number;
+  order?: number;
 }
 
 interface Exercise {
@@ -20,6 +21,7 @@ interface Exercise {
   description: string;
   type: string;
   courseId: string;
+  order?: number;
   courseName?: string;
   courseCategory?: string;
 }
@@ -511,56 +513,66 @@ export default function StudentDashboard() {
                 </TabsList>
 
                 {/* Narratif */}
-                <TabsContent value="narratif" className="space-y-4">
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                    {readingNarrativeExercises.map((exercise, index) => {
-                      const storyTitles = [
-                        "Histoire 1: Le Trésor de la Cave",
-                        "Histoire 2: Le Jour de l'Accident",
-                        "Histoire 3: La Fille qui Rêvait de Danser",
-                        "Histoire 4: L'Amitié Retrouvée",
-                        "Histoire 5: La Découverte Scientifique",
-                      ];
-                      const storyDescriptions = [
-                        "Léa découvre une clé mystérieuse qui change sa vie",
-                        "Marc apprend l'importance de la sécurité à vélo",
-                        "Sophie poursuit son rêve de danser malgré les obstacles",
-                        "Lucas et Thomas retrouvent leur amitié malgré la distance",
-                        "Emma fait une découverte scientifique extraordinaire",
-                      ];
-                      
+                <TabsContent value="narratif" className="space-y-6">
+                  {(() => {
+                    // Group narrative exercises by course (level)
+                    const narrativeCourses = courses
+                      .filter((c) => c.category === "lecture_reading")
+                      .sort((a, b) => a.order - b.order);
+                    const byCoursId: Record<string, typeof readingNarrativeExercises> = {};
+                    readingNarrativeExercises.forEach((ex) => {
+                      if (!byCoursId[ex.courseId]) byCoursId[ex.courseId] = [];
+                      byCoursId[ex.courseId].push(ex);
+                    });
+                    return narrativeCourses.map((course) => {
+                      const exs = (byCoursId[course.id] || []).sort((a, b) => a.order - b.order);
+                      if (exs.length === 0) return null;
                       return (
-                        <Card
-                          key={exercise.id}
-                          className="p-3 hover-elevate border-2 border-green-200 dark:border-green-800 cursor-pointer transition-all min-h-40 flex flex-col"
-                          data-testid={`card-narrative-${index}`}
-                          onClick={() => setLocation(`/exercise/${exercise.id}`)}
-                        >
-                          <div className="space-y-2 h-full flex flex-col justify-between">
-                            <div>
-                              <span className="text-xs font-semibold text-green-600 dark:text-green-300 uppercase">
-                                Histoire {index + 1}
-                              </span>
-                              <h3 className="text-sm font-bold text-foreground mt-1 leading-tight line-clamp-2">
-                                {storyTitles[index] || exercise.title}
-                              </h3>
-                            </div>
-                            
-                            <Button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setLocation(`/exercise/${exercise.id}`);
-                              }}
-                              className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 text-xs h-auto py-1"
-                              data-testid={`button-read-narrative-${index}`}
-                            >
-                              Lire
-                            </Button>
+                        <div key={course.id}>
+                          <h4 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
+                            {course.title}
+                          </h4>
+                          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            {exs.map((exercise, idx) => (
+                              <Card
+                                key={exercise.id}
+                                className="p-3 hover-elevate border-2 border-green-200 dark:border-green-800 cursor-pointer transition-all min-h-40 flex flex-col"
+                                data-testid={`card-narrative-${exercise.id}`}
+                                onClick={() => setLocation(`/exercise/${exercise.id}`)}
+                              >
+                                <div className="space-y-2 h-full flex flex-col justify-between">
+                                  <div>
+                                    <span className="text-xs font-semibold text-green-600 dark:text-green-300 uppercase">
+                                      Histoire {idx + 1}
+                                    </span>
+                                    <h3 className="text-sm font-bold text-foreground mt-1 leading-tight line-clamp-2">
+                                      {exercise.title}
+                                    </h3>
+                                    {exercise.description && (
+                                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                                        {exercise.description}
+                                      </p>
+                                    )}
+                                  </div>
+                                  <Button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setLocation(`/exercise/${exercise.id}`);
+                                    }}
+                                    className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 text-xs h-auto py-1"
+                                    data-testid={`button-read-narrative-${exercise.id}`}
+                                  >
+                                    Lire
+                                  </Button>
+                                </div>
+                              </Card>
+                            ))}
                           </div>
-                        </Card>
+                        </div>
                       );
-                    })}
-                  </div>
+                    });
+                  })()}
                 </TabsContent>
 
                 {/* Descriptif */}

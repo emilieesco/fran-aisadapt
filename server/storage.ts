@@ -6728,6 +6728,192 @@ export class MemStorage implements IStorage {
         }
       }
     }
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #1 =====
+    // "La Décision de Mia" — Secondaire 1 (12-13 ans)
+    // Thème : identité, pression des pairs, vraie amitié
+    const narratifSec1CourseId = randomUUID();
+    const narratifMia1ExId = randomUUID();
+
+    const narratifSec1Course: Course = {
+      id: narratifSec1CourseId,
+      title: "Textes narratifs — Secondaire 1",
+      description: "Histoires développées sur l'identité, le courage et la vie au secondaire (12-13 ans)",
+      category: "lecture_reading",
+      content: "<h2>Textes narratifs — Secondaire 1</h2><p>Ces histoires sont conçues pour les élèves de secondaire 1 (12-13 ans). Chaque texte aborde des thèmes liés à l'adolescence québécoise : identité, amitié, courage, appartenance. Les questions couvrent la compréhension, le schéma narratif, l'interprétation, la réaction personnelle et le jugement critique.</p>",
+      order: 100,
+    };
+    this.courses.set(narratifSec1CourseId, narratifSec1Course);
+
+    const narratifMia1Exercise: Exercise = {
+      id: narratifMia1ExId,
+      courseId: narratifSec1CourseId,
+      title: "La Décision de Mia",
+      description: "Identité et pression des pairs au secondaire — 12 questions",
+      type: "text",
+      order: 1,
+    };
+    this.exercises.set(narratifMia1ExId, narratifMia1Exercise);
+
+    const miaStory = `Mia Tremblay avait treize ans lorsqu'elle entra pour la première fois dans les couloirs bondés de l'école secondaire Des-Érables. C'était une fille réservée aux longs cheveux noirs, qui aimait lire des romans et dessiner dans ses carnets. Elle avait deux meilleures amies depuis la maternelle : Sofia, enjouée et généreuse, et Jade, calme et loyale. Ensemble, elles formaient un trio solide, nourri par sept années d'aventures partagées, de secrets chuchotés et de fous rires interminables. Mia n'imaginait pas sa vie autrement.
+
+Le premier matin de septembre fut une révélation. Les couloirs semblaient immenses, bruissant d'une énergie nouvelle. Mia observait tout avec curiosité quand une voix claire l'interpella : « Hé, toi ! Tu t'appelles comment ? » C'était Camille Bouchard, cheveux blond platine, vêtements parfaitement assortis, entourée de son groupe de cinq filles que tout le monde regardait avec admiration. « Viens manger avec nous ce midi, » dit-elle avec un sourire qui semblait une invitation royale. Quelque chose en Mia fut séduit par cette sensation d'être choisie, d'être vue.
+
+Les jours suivants, Mia commença à passer ses midis avec Camille et son groupe. Elle changeait sa façon de s'habiller, imitait leurs expressions, riait aux mêmes blagues qu'elle ne trouvait pas vraiment drôles. Elle répondait de plus en plus brièvement aux messages de Sofia et Jade, trouvant toujours une excuse pour ne pas les rejoindre. Dans le corridor, elle baissa les yeux quand elle croisa Sofia, qui la regardait avec une incompréhension silencieuse, les bras chargés de livres. Mia sentait bien que quelque chose clochait, mais elle repoussait ce malaise au fond d'elle-même.
+
+Un mardi froid d'octobre, pendant une période d'éducation physique, Sofia glissa sur le gymnase fraîchement ciré et se tordit la cheville avec un craquement qui fit grimacer tout le monde. Elle cria de douleur, les larmes aux joues. Mia, qui regardait de loin, sentit une vague de honte l'envahir. Camille, à côté d'elle, murmura : « Aïe. Maladroite, celle-là. » Le groupe ricana doucement. Quelque chose se brisa en Mia.
+
+Elle traversa le gymnase en trois enjambées et s'agenouilla près de Sofia. « Je suis là, » dit-elle simplement, mais ces deux mots contenaient une multitude de regrets. Sofia la regarda, surprise, puis éclata en sanglots. Ce n'était pas seulement la douleur à la cheville.
+
+Le lendemain, Mia s'assit à la table habituelle de Sofia et Jade à la cafétéria. Un silence pesant régna un moment. Jade posa enfin son sandwich et demanda : « T'es de retour ? » Mia hocha la tête. « Je m'excuse, » dit-elle, la gorge serrée. « J'ai essayé d'être quelqu'un que je suis pas. Ça n'a pas marché. » Sofia, jambe élevée sur une chaise, sourit malgré tout : « On le savait. »
+
+De loin, Mia sentit le regard de Camille sur elle. Elle ne se retourna pas.
+
+À partir de ce jour, Mia comprit que l'appartenance véritable ne s'achète pas au prix de soi-même. Elle retrouva ses carnets, ses romans, et ses amies qui la connaissaient avant les couloirs du secondaire. Elle n'était pas parfaite, mais elle était elle — et c'était suffisant.`;
+
+    const miaq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q1 (Compréhension) : Quel était le trait de personnalité principal de Mia au début de l'histoire?",
+      text: miaStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Extravertie et bruyante", "Réservée et aimant la lecture", "Sportive et compétitive", "Arrogante et indépendante"]),
+      correctAnswer: "Réservée et aimant la lecture",
+      order: 1,
+    };
+    this.questions.set(miaq1.id, miaq1);
+
+    const miaq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q2 (Compréhension)",
+      text: "Qui est Camille Bouchard dans cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La meilleure amie de Mia depuis la maternelle", "Une fille populaire qui invite Mia dans son groupe", "Une enseignante de l'école secondaire", "La cousine de Sofia"]),
+      correctAnswer: "Une fille populaire qui invite Mia dans son groupe",
+      order: 2,
+    };
+    this.questions.set(miaq2.id, miaq2);
+
+    const miaq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q3 (Compréhension)",
+      text: "Qu'arrive-t-il à Sofia lors de la période d'éducation physique?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle remporte un concours de danse", "Elle se dispute violemment avec Mia", "Elle glisse et se tord la cheville", "Elle quitte l'école définitivement"]),
+      correctAnswer: "Elle glisse et se tord la cheville",
+      order: 3,
+    };
+    this.questions.set(miaq3.id, miaq3);
+
+    const miaq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q4 (Schéma narratif — Situation initiale)",
+      text: "Qu'est-ce qui caractérise la situation initiale de cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Mia est seule et n'a pas d'amis", "Mia a deux meilleures amies depuis la maternelle et vit une vie stable", "Mia vient d'arriver au Québec et ne connaît personne", "Mia est la fille la plus populaire de l'école"]),
+      correctAnswer: "Mia a deux meilleures amies depuis la maternelle et vit une vie stable",
+      order: 4,
+    };
+    this.questions.set(miaq4.id, miaq4);
+
+    const miaq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q5 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement représente l'élément perturbateur de cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Sofia qui se blesse au gymnase", "Mia qui arrive à l'école secondaire pour la première fois", "Camille qui invite Mia à manger avec son groupe populaire", "Jade qui pose des questions difficiles à Mia"]),
+      correctAnswer: "Camille qui invite Mia à manger avec son groupe populaire",
+      order: 5,
+    };
+    this.questions.set(miaq5.id, miaq5);
+
+    const miaq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q6 (Schéma narratif — Dénouement)",
+      text: "Qu'est-ce qui représente le dénouement de cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Mia se retrouve seule et sans amis à la cafétéria", "Mia s'excuse auprès de Sofia et Jade et retourne s'asseoir avec elles", "Camille décide de s'excuser auprès de Mia", "Sofia décide de quitter l'école secondaire"]),
+      correctAnswer: "Mia s'excuse auprès de Sofia et Jade et retourne s'asseoir avec elles",
+      order: 6,
+    };
+    this.questions.set(miaq6.id, miaq6);
+
+    const miaq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q7 (Interprétation)",
+      text: "Pourquoi Mia a-t-elle rejoint le groupe de Camille, même si elle ne trouvait pas leurs blagues drôles?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Parce que Sofia et Jade l'avaient rejetée en premier", "Parce qu'elle voulait se sentir choisie et appartenir à un groupe admiré", "Parce que ses parents lui avaient demandé de faire de nouvelles amies", "Parce que Camille et elle partageaient les mêmes intérêts"]),
+      correctAnswer: "Parce qu'elle voulait se sentir choisie et appartenir à un groupe admiré",
+      order: 7,
+    };
+    this.questions.set(miaq7.id, miaq7);
+
+    const miaq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q8 (Vocabulaire en contexte)",
+      text: "Dans l'histoire, le groupe de Camille « ricana doucement » après l'accident de Sofia. Que signifie « ricaner » dans ce contexte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Rire doucement avec bienveillance", "Rire de façon moqueuse et méchante", "Applaudir pour encourager Sofia", "Pleurer de compassion"]),
+      correctAnswer: "Rire de façon moqueuse et méchante",
+      order: 8,
+    };
+    this.questions.set(miaq8.id, miaq8);
+
+    const miaq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q9 (Interprétation)",
+      text: "À la fin, Mia « ne se retourna pas » vers Camille. Que symbolise ce geste dans le contexte de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle n'avait pas entendu Camille l'appeler", "Elle avait définitivement choisi ses vraies amies et rejeté la pression sociale", "Elle avait peur de confronter Camille directement", "Elle prévoyait de retourner dans le groupe de Camille plus tard"]),
+      correctAnswer: "Elle avait définitivement choisi ses vraies amies et rejeté la pression sociale",
+      order: 9,
+    };
+    this.questions.set(miaq9.id, miaq9);
+
+    const miaq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q10 (Réaction personnelle)",
+      text: "Comment t'es-tu senti(e) en lisant la scène où Mia ignore Sofia dans le corridor? Explique ta réaction en faisant un lien avec un passage précis du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(miaq10.id, miaq10);
+
+    const miaq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q11 (Réaction — lien personnel)",
+      text: "As-tu déjà vécu une situation où tu as dû choisir entre être toi-même et plaire à un groupe? Raconte brièvement et fais un lien avec l'expérience de Mia dans le texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(miaq11.id, miaq11);
+
+    const miaq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMia1ExId,
+      title: "Q12 (Jugement critique)",
+      text: "Selon toi, l'auteur a-t-il réussi à montrer que la vraie amitié est plus précieuse que la popularité? Appuie ta réponse sur au moins un exemple précis tiré du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(miaq12.id, miaq12);
   }
 
   // Users
