@@ -58,62 +58,21 @@ export default function StudentDashboard() {
           return;
         }
 
-        const [coursesRes, badgesRes, userRes] = await Promise.all([
+        const [coursesRes, badgesRes, userRes, narrativeRes] = await Promise.all([
           fetch(`/api/students/${userId}/courses`, { credentials: "include" }),
           fetch(`/api/students/${userId}/badges`, { credentials: "include" }),
           fetch(`/api/users/${userId}`, { credentials: "include" }),
+          fetch(`/api/reading-narratives?userId=${userId}`, { credentials: "include" }),
         ]);
 
-        if (coursesRes.ok) {
-          const courseList = await coursesRes.json();
-          setCourses(courseList);
-
-          // Fetch all exercises for all courses
-          const allExercises: Exercise[] = [];
-          const allQuestions: Question[] = [];
-          
-          for (const course of courseList) {
-            const exRes = await fetch(`/api/courses/${course.id}/exercises`, {
-              credentials: "include",
-            });
-            if (exRes.ok) {
-              const exList = await exRes.json();
-              allExercises.push(
-                ...exList.map((ex: any) => ({
-                  ...ex,
-                  courseName: course.title,
-                }))
-              );
-
-              // Fetch questions for each exercise
-              for (const exercise of exList) {
-                const qRes = await fetch(`/api/exercises/${exercise.id}/questions`, {
-                  credentials: "include",
-                });
-                if (qRes.ok) {
-                  const qList = await qRes.json();
-                  allQuestions.push(...qList);
-                }
-              }
-            }
-          }
-          setExercises(allExercises);
-          setQuestions(allQuestions);
-        }
-
+        if (coursesRes.ok) setCourses(await coursesRes.json());
         if (badgesRes.ok) setBadges(await badgesRes.json());
-        
-        // Fetch reading narrative exercises
-        const narrativeRes = await fetch(`/api/reading-narratives?userId=${userId}`, {
-          credentials: "include",
-        });
-        if (narrativeRes.ok) {
-          setReadingNarrativeExercises(await narrativeRes.json());
-        }
-
         if (userRes.ok) {
           const user = await userRes.json();
           setStudentName(user.firstName);
+        }
+        if (narrativeRes.ok) {
+          setReadingNarrativeExercises(await narrativeRes.json());
         }
       } catch (err) {
         console.error("Erreur lors du chargement:", err);
