@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, CheckCircle, XCircle, Clock } from "lucide-react";
+import { useSearch } from "wouter/use-location";
 
 interface EnrichedResponse {
   id: string;
@@ -31,8 +32,8 @@ interface EnrichedResponse {
 
 export default function StudentResponses() {
   const [, setLocation] = useLocation();
-  const [studentName, setStudentName] = useState("");
-  const studentId = new URLSearchParams(window.location.search).get("studentId");
+  const search = useSearch();
+  const studentId = new URLSearchParams(search).get("studentId");
   const teacherId = localStorage.getItem("userId");
 
   const { data: responses = [], isLoading } = useQuery({
@@ -46,6 +47,10 @@ export default function StudentResponses() {
     }
   }, [teacherId, studentId, setLocation]);
 
+  if (!teacherId || !studentId) {
+    return null;
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -54,7 +59,6 @@ export default function StudentResponses() {
     );
   }
 
-  // Group responses by course/exercise
   const groupedResponses: { [key: string]: EnrichedResponse[] } = {};
   responses.forEach((response: EnrichedResponse) => {
     const key = `${response.course.id}|${response.exercise.id}`;
