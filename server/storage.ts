@@ -29,6 +29,7 @@ export interface IStorage {
   // Exercises
   getExercise(id: string): Promise<Exercise | undefined>;
   getExercisesByCourse(courseId: string): Promise<Exercise[]>;
+  getAllExercises(): Promise<Exercise[]>;
   createExercise(exercise: InsertExercise): Promise<Exercise>;
 
   // Questions
@@ -6461,6 +6462,10 @@ export class MemStorage implements IStorage {
     return Array.from(this.exercises.values()).filter(
       (e) => e.courseId === courseId
     );
+  }
+
+  async getAllExercises(): Promise<Exercise[]> {
+    return Array.from(this.exercises.values());
   }
 
   async createExercise(insertExercise: InsertExercise): Promise<Exercise> {

@@ -21,6 +21,7 @@ interface Exercise {
   type: string;
   courseId: string;
   courseName?: string;
+  courseCategory?: string;
 }
 
 interface Badge {
@@ -107,11 +108,12 @@ export default function StudentDashboard() {
           return;
         }
 
-        const [coursesRes, badgesRes, userRes, narrativeRes] = await Promise.all([
+        const [coursesRes, badgesRes, userRes, narrativeRes, exercisesRes] = await Promise.all([
           fetch(`/api/students/${userId}/courses`, { credentials: "include" }),
           fetch(`/api/students/${userId}/badges`, { credentials: "include" }),
           fetch(`/api/users/${userId}`, { credentials: "include" }),
           fetch(`/api/reading-narratives?userId=${userId}`, { credentials: "include" }),
+          fetch(`/api/students/${userId}/exercises`, { credentials: "include" }),
         ]);
 
         if (coursesRes.ok) setCourses(await coursesRes.json());
@@ -123,6 +125,7 @@ export default function StudentDashboard() {
         if (narrativeRes.ok) {
           setReadingNarrativeExercises(await narrativeRes.json());
         }
+        if (exercisesRes.ok) setExercises(await exercisesRes.json());
       } catch (err) {
         console.error("Erreur lors du chargement:", err);
       } finally {
@@ -220,7 +223,12 @@ export default function StudentDashboard() {
     );
   }
 
-  const writingExercises = exercises.filter((ex) => ex.type === "writing" || (ex.courseId && courses.find((c) => c.id === ex.courseId)?.category === "écriture"));
+  const writingExercises = exercises.filter(
+    (ex) =>
+      ex.type === "writing" ||
+      ex.courseCategory === "ecriture" ||
+      (ex.courseId && courses.find((c) => c.id === ex.courseId)?.category === "ecriture")
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">

@@ -167,6 +167,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/students/:id/exercises", async (req, res) => {
+    try {
+      const allExercises = await storage.getAllExercises();
+      const allCourses = await storage.getAllCourses();
+      const courseMap = new Map(allCourses.map((c) => [c.id, c]));
+
+      // Attach course info to each exercise
+      const enriched = allExercises.map((ex) => {
+        const course = courseMap.get(ex.courseId);
+        return {
+          ...ex,
+          courseName: course?.title || "",
+          courseCategory: course?.category || "",
+        };
+      });
+
+      res.json(enriched);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   app.get("/api/students/:id/badges", async (req, res) => {
     try {
       const badges = await storage.getBadgesByStudent(req.params.id);

@@ -3,6 +3,7 @@ import { useRoute, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw } from "lucide-react";
 
@@ -436,14 +437,22 @@ export default function Exercise() {
                 </Select>
               </div>
             ) : (
-              <textarea
-                value={currentAnswer}
-                onChange={(e) => handleAnswerChange(e.target.value)}
-                className="w-full p-4 border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500"
-                rows={4}
-                placeholder="Écrivez votre réponse..."
-                data-testid="textarea-answer"
-              />
+              <div className="mt-6 space-y-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <FileText className="w-4 h-4 text-amber-600" />
+                  Votre réponse
+                </label>
+                <Textarea
+                  value={currentAnswer}
+                  onChange={(e) => handleAnswerChange(e.target.value)}
+                  className="min-h-[160px] text-base bg-amber-50 dark:bg-amber-900/10 border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
+                  placeholder="Écrivez votre réponse ici…"
+                  data-testid="textarea-answer"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Réponse libre — elle sera lue et corrigée par votre enseignant.
+                </p>
+              </div>
             )}
           </div>
 
