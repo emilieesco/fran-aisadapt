@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, PenTool, Play, TrendingUp, LogOut, FileText } from "lucide-react";
+import { BookOpen, PenTool, Play, TrendingUp, LogOut, FileText, Search, X } from "lucide-react";
 
 interface Course {
   id: string;
@@ -39,6 +40,52 @@ interface Question {
   order: number;
 }
 
+function CourseCard({
+  course,
+  badgeColor,
+  label,
+  onStart,
+}: {
+  course: Course;
+  badgeColor: string;
+  label: string;
+  onStart: () => void;
+}) {
+  return (
+    <Card
+      className="p-5 hover-elevate cursor-pointer flex flex-col gap-4"
+      data-testid={`card-course-${course.id}`}
+    >
+      <div className="flex-1 space-y-2">
+        <span className={`inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${badgeColor}`}>
+          {label}
+        </span>
+        <h3 className="text-base font-bold text-foreground leading-snug">
+          {course.title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-2">
+          {course.description}
+        </p>
+      </div>
+      <div className="space-y-2">
+        <div className="flex justify-between text-xs">
+          <span className="font-medium">Progression</span>
+          <span className="text-muted-foreground">{course.progressPercentage ?? 0}%</span>
+        </div>
+        <div className="w-full bg-secondary rounded-full h-1.5">
+          <div
+            className="bg-amber-500 h-1.5 rounded-full transition-all duration-300"
+            style={{ width: `${course.progressPercentage ?? 0}%` }}
+          />
+        </div>
+      </div>
+      <Button onClick={onStart} className="w-full" data-testid={`button-start-${course.id}`}>
+        {(course.progressPercentage ?? 0) > 0 ? "Continuer" : "Commencer"}
+      </Button>
+    </Card>
+  );
+}
+
 export default function StudentDashboard() {
   const [, setLocation] = useLocation();
   const [courses, setCourses] = useState<Course[]>([]);
@@ -48,6 +95,8 @@ export default function StudentDashboard() {
   const [readingNarrativeExercises, setReadingNarrativeExercises] = useState<Exercise[]>([]);
   const [loading, setLoading] = useState(true);
   const [studentName, setStudentName] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("tous");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -115,19 +164,53 @@ export default function StudentDashboard() {
     }
   };
 
-  const getCategoryLabel = (category: string) => {
-    const labels: { [key: string]: string } = {
-      grammaire: "Grammaire",
-      orthographe: "Orthographe",
-      conjugaison: "Conjugaison",
-      ponctuation: "Ponctuation",
-      vocabulaire: "Vocabulaire",
-      textes: "Textes",
-      ecriture: "Écriture",
-      lecture_reading: "Lecture",
-    };
-    return labels[category] || category;
+  const CATEGORY_META: Record<string, { label: string; color: string }> = {
+    grammaire:         { label: "Grammaire",         color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
+    orthographe:       { label: "Orthographe",       color: "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300" },
+    conjugaison:       { label: "Conjugaison",       color: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300" },
+    ponctuation:       { label: "Ponctuation",       color: "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300" },
+    vocabulaire:       { label: "Vocabulaire",       color: "bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300" },
+    lecture_reading:   { label: "Lecture",           color: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300" },
+    ecriture:          { label: "Écriture",          color: "bg-rose-100 dark:bg-rose-900 text-rose-700 dark:text-rose-300" },
+    classes_de_mots:   { label: "Classes de mots",  color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
+    textes_narratifs:  { label: "Textes narratifs",  color: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300" },
+    textes_descriptifs:{ label: "Textes descriptifs",color: "bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300" },
   };
+
+  const getCategoryLabel = (category: string) =>
+    CATEGORY_META[category]?.label || category;
+
+  const getCategoryBadgeColor = (category: string) =>
+    CATEGORY_META[category]?.color || "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+
+  // Courses shown in the "Cours" tab (exclude lecture/ecriture which have their own tabs)
+  const COURS_CATEGORIES = ["grammaire", "orthographe", "conjugaison", "ponctuation", "vocabulaire", "classes_de_mots"];
+
+  const coursCourses = useMemo(
+    () => courses.filter((c) => COURS_CATEGORIES.includes(c.category)),
+    [courses]
+  );
+
+  const availableCategories = useMemo(
+    () => [...new Set(coursCourses.map((c) => c.category))],
+    [coursCourses]
+  );
+
+  const filteredCourses = useMemo(() => {
+    let list = coursCourses;
+    if (selectedCategory !== "tous") {
+      list = list.filter((c) => c.category === selectedCategory);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter(
+        (c) =>
+          c.title.toLowerCase().includes(q) ||
+          c.description.toLowerCase().includes(q)
+      );
+    }
+    return list;
+  }, [coursCourses, selectedCategory, searchQuery]);
 
   if (loading) {
     return (
@@ -191,90 +274,133 @@ export default function StudentDashboard() {
 
           {/* Cours Tab */}
           <TabsContent value="cours">
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold mb-2">Mes Cours</h2>
-                <p className="text-muted-foreground mb-6">
+                <h2 className="text-2xl font-bold mb-1">Mes Cours</h2>
+                <p className="text-muted-foreground">
                   Sélectionnez un cours pour accéder aux contenus et exercices
                 </p>
               </div>
 
-              {/* Group courses by category */}
-              {["grammaire", "orthographe", "conjugaison", "ponctuation", "vocabulaire"].map((category) => {
-                const categoryName = getCategoryLabel(category);
-                const categoryCourses = courses.filter(
-                  (c) =>
-                    c.category === category &&
-                    !c.category.includes("lecture") &&
-                    !c.category.includes("ecriture")
-                );
+              {/* Search + Filter */}
+              <div className="space-y-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Rechercher un cours..."
+                    className="pl-9 pr-9"
+                    data-testid="input-search-courses"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      data-testid="button-clear-search"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
 
-                if (categoryCourses.length === 0) return null;
+                {/* Category pills */}
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setSelectedCategory("tous")}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      selectedCategory === "tous"
+                        ? "bg-amber-500 text-white"
+                        : "bg-secondary text-muted-foreground hover:bg-amber-100 dark:hover:bg-amber-900 hover:text-amber-700 dark:hover:text-amber-300"
+                    }`}
+                    data-testid="filter-tous"
+                  >
+                    Tous ({coursCourses.length})
+                  </button>
+                  {availableCategories.map((cat) => {
+                    const count = coursCourses.filter((c) => c.category === cat).length;
+                    return (
+                      <button
+                        key={cat}
+                        onClick={() => setSelectedCategory(cat)}
+                        className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                          selectedCategory === cat
+                            ? "bg-amber-500 text-white"
+                            : "bg-secondary text-muted-foreground hover:bg-amber-100 dark:hover:bg-amber-900 hover:text-amber-700 dark:hover:text-amber-300"
+                        }`}
+                        data-testid={`filter-${cat}`}
+                      >
+                        {getCategoryLabel(cat)} ({count})
+                      </button>
+                    );
+                  })}
+                </div>
 
-                return (
-                  <div key={category} className="space-y-4">
-                    <div className="border-l-4 border-amber-500 pl-4">
-                      <h3 className="text-xl font-bold text-foreground mb-4">
-                        {categoryName}
-                      </h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {categoryCourses.map((course) => (
-                        <Card
-                          key={course.id}
-                          className="p-6 hover-elevate cursor-pointer transition-all"
-                          data-testid={`card-course-${course.id}`}
-                        >
-                          <div className="space-y-4">
-                            <div>
-                              <span
-                                className={`inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 text-xs font-semibold rounded-full mb-2 ${getCategoryColor(
-                                  course.category
-                                )}`}
-                              >
-                                {getCategoryLabel(course.category)}
-                              </span>
-                              <h3 className="text-lg font-bold text-foreground mt-2">
-                                {course.title}
-                              </h3>
-                              <p className="text-sm text-muted-foreground mt-2">
-                                {course.description}
-                              </p>
-                            </div>
+                {/* Result count when filtered */}
+                {(searchQuery || selectedCategory !== "tous") && (
+                  <p className="text-sm text-muted-foreground">
+                    {filteredCourses.length} cours trouvé{filteredCourses.length !== 1 ? "s" : ""}
+                    {searchQuery && ` pour « ${searchQuery} »`}
+                    {selectedCategory !== "tous" && ` dans ${getCategoryLabel(selectedCategory)}`}
+                  </p>
+                )}
+              </div>
 
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs">
-                                <span className="font-semibold">Progression</span>
-                                <span className="text-muted-foreground">
-                                  {course.progressPercentage}%
-                                </span>
-                              </div>
-                              <div className="w-full bg-secondary rounded-full h-2">
-                                <div
-                                  className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                                  style={{
-                                    width: `${course.progressPercentage}%`,
-                                  }}
-                                />
-                              </div>
-                            </div>
-
-                            <Button
-                              onClick={() => handleStartCourse(course.id)}
-                              className="w-full"
-                              data-testid={`button-start-${course.id}`}
-                            >
-                              {course.progressPercentage > 0
-                                ? "Continuer"
-                                : "Commencer"}
-                            </Button>
-                          </div>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+              {/* Course cards — grouped by category when no filter, flat when filtered */}
+              {filteredCourses.length === 0 ? (
+                <div className="text-center py-16 text-muted-foreground">
+                  <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                  <p className="font-medium">Aucun cours trouvé</p>
+                  <p className="text-sm mt-1">Essayez un autre mot-clé ou une autre catégorie</p>
+                </div>
+              ) : searchQuery || selectedCategory !== "tous" ? (
+                /* Flat list when filter is active */
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {filteredCourses.map((course) => (
+                    <CourseCard
+                      key={course.id}
+                      course={course}
+                      badgeColor={getCategoryBadgeColor(course.category)}
+                      label={getCategoryLabel(course.category)}
+                      onStart={() => handleStartCourse(course.id)}
+                    />
+                  ))}
+                </div>
+              ) : (
+                /* Grouped by category when no filter */
+                <div className="space-y-8">
+                  {availableCategories.map((category) => {
+                    const categoryCourses = filteredCourses.filter(
+                      (c) => c.category === category
+                    );
+                    if (categoryCourses.length === 0) return null;
+                    return (
+                      <div key={category}>
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="h-5 w-1 rounded-full bg-amber-500" />
+                          <h3 className="text-lg font-bold">
+                            {getCategoryLabel(category)}
+                          </h3>
+                          <span className="text-sm text-muted-foreground">
+                            {categoryCourses.length} cours
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                          {categoryCourses.map((course) => (
+                            <CourseCard
+                              key={course.id}
+                              course={course}
+                              badgeColor={getCategoryBadgeColor(course.category)}
+                              label={getCategoryLabel(course.category)}
+                              onStart={() => handleStartCourse(course.id)}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </TabsContent>
 
