@@ -1189,14 +1189,14 @@ export class MemStorage implements IStorage {
     const writingExercise6bId = randomUUID();
 
     const writingExercises: Exercise[] = [
-      { id: writingExercise1Id, courseId: writing1Id, title: "Exercice 1 — Description vivante", description: "Écrire une description sensorielle", type: "text", order: 1 },
-      { id: writingExercise2Id, courseId: writing2Id, title: "Exercice 1 — Écrire un dialogue", description: "Format et techniques du dialogue", type: "text", order: 1 },
-      { id: writingExercise3Id, courseId: writing3Id, title: "Exercice 1 — Histoire courte", description: "Structure narrative complète", type: "text", order: 1 },
-      { id: writingExercise4Id, courseId: writing4Id, title: "Exercice 1 — Résumer un texte", description: "Extraire l'essentiel", type: "text", order: 1 },
-      { id: writingExercise5Id, courseId: writing5Id, title: "Exercice 1 — Identifier les connecteurs", description: "Reconnaître et choisir les bons connecteurs", type: "multiple_choice", order: 1 },
-      { id: writingExercise5bId, courseId: writing5Id, title: "Exercice 2 — Écrire avec des connecteurs", description: "Production guidée avec connecteurs", type: "text", order: 2 },
-      { id: writingExercise6Id, courseId: writing6Id, title: "Exercice 1 — Reconnaître les techniques", description: "Identifier les techniques d'écriture", type: "multiple_choice", order: 1 },
-      { id: writingExercise6bId, courseId: writing6Id, title: "Exercice 2 — Appliquer les techniques", description: "Production guidée avec techniques avancées", type: "text", order: 2 },
+      { id: writingExercise1Id, courseId: writing1Id, title: "Description vivante", description: "Reconnaître et écrire une description sensorielle riche", type: "text", order: 1 },
+      { id: writingExercise2Id, courseId: writing2Id, title: "Écrire un dialogue", description: "Format français et verbes de parole variés", type: "text", order: 1 },
+      { id: writingExercise3Id, courseId: writing3Id, title: "Histoire courte — Structure narrative", description: "Planifier et rédiger une histoire complète", type: "text", order: 1 },
+      { id: writingExercise4Id, courseId: writing4Id, title: "Résumer un texte", description: "Extraire les idées principales dans ses propres mots", type: "text", order: 1 },
+      { id: writingExercise5Id, courseId: writing5Id, title: "Identifier les connecteurs", description: "Reconnaître et choisir le bon type de connecteur", type: "multiple_choice", order: 1 },
+      { id: writingExercise5bId, courseId: writing5Id, title: "Écrire avec des connecteurs", description: "Relier des phrases et rédiger un paragraphe structuré", type: "text", order: 2 },
+      { id: writingExercise6Id, courseId: writing6Id, title: "Reconnaître les techniques d'écriture", description: "Identifier montrer/dire, suspense, structure de phrases", type: "multiple_choice", order: 1 },
+      { id: writingExercise6bId, courseId: writing6Id, title: "Appliquer les techniques avancées", description: "Transformer et rédiger un passage avec les techniques vues", type: "text", order: 2 },
     ];
     writingExercises.forEach(ex => this.exercises.set(ex.id, ex));
 
