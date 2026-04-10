@@ -149,9 +149,7 @@ export default function Exercise() {
           studentId: userId,
           questionId: currentQuestion.id,
           answer: currentAnswer,
-          // For text questions, isCorrect is null (pending teacher review)
           isCorrect: isTextQuestion ? null : isCorrect,
-          createdAt: new Date().toISOString(),
         }),
         credentials: "include",
       });

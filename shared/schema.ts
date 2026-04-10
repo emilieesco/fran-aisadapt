@@ -57,7 +57,7 @@ export const studentResponses = pgTable("student_responses", {
   answer: text("answer").notNull(),
   isCorrect: boolean("is_correct"), // null = pending teacher review (for text questions)
   teacherComment: text("teacher_comment"),   // annotation de l'enseignant
-  createdAt: timestamp("created_at").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 // Student progress table
@@ -130,7 +130,6 @@ export const insertResponseSchema = createInsertSchema(studentResponses).pick({
   questionId: true,
   answer: true,
   isCorrect: true,
-  createdAt: true,
 });
 
 // Type exports

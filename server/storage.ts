@@ -6923,6 +6923,7 @@ export class MemStorage implements IStorage {
       ...response,
       id,
       teacherComment: null,
+      createdAt: new Date(),
     };
     this.responses.set(id, newResponse);
     return newResponse;
