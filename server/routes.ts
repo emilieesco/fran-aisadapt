@@ -147,6 +147,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/student-responses/:id/comment", async (req, res) => {
+    try {
+      const { comment } = req.body;
+      if (typeof comment !== "string") {
+        return res.status(400).send("Champ 'comment' requis");
+      }
+      const updated = await storage.updateResponseComment(req.params.id, comment);
+      if (!updated) return res.status(404).send("Réponse introuvable");
+      res.json(updated);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   // Student Progress Routes
   app.get("/api/students/:id/courses", async (req, res) => {
     try {

@@ -56,6 +56,7 @@ export const studentResponses = pgTable("student_responses", {
   questionId: varchar("question_id").notNull(),
   answer: text("answer").notNull(),
   isCorrect: boolean("is_correct"), // null = pending teacher review (for text questions)
+  teacherComment: text("teacher_comment"),   // annotation de l'enseignant
   createdAt: timestamp("created_at").notNull(),
 });
 

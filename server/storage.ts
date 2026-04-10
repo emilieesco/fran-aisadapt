@@ -41,6 +41,7 @@ export interface IStorage {
   createResponse(response: InsertStudentResponse): Promise<StudentResponse>;
   getResponsesByStudent(studentId: string): Promise<StudentResponse[]>;
   getResponsesByQuestion(questionId: string): Promise<StudentResponse[]>;
+  updateResponseComment(id: string, comment: string): Promise<StudentResponse | undefined>;
 
   // Student Progress
   getProgress(studentId: string, courseId: string): Promise<StudentProgress | undefined>;
@@ -6605,6 +6606,38 @@ export class MemStorage implements IStorage {
     }
 
     return reports;
+  }
+
+  // Student Responses
+  async createResponse(response: InsertStudentResponse): Promise<StudentResponse> {
+    const id = randomUUID();
+    const newResponse: StudentResponse = {
+      ...response,
+      id,
+      teacherComment: null,
+    };
+    this.responses.set(id, newResponse);
+    return newResponse;
+  }
+
+  async getResponsesByStudent(studentId: string): Promise<StudentResponse[]> {
+    return Array.from(this.responses.values()).filter(
+      (r) => r.studentId === studentId
+    );
+  }
+
+  async getResponsesByQuestion(questionId: string): Promise<StudentResponse[]> {
+    return Array.from(this.responses.values()).filter(
+      (r) => r.questionId === questionId
+    );
+  }
+
+  async updateResponseComment(id: string, comment: string): Promise<StudentResponse | undefined> {
+    const response = this.responses.get(id);
+    if (!response) return undefined;
+    const updated: StudentResponse = { ...response, teacherComment: comment };
+    this.responses.set(id, updated);
+    return updated;
   }
 
   async getReadingNarrativeExercises(studentId: string): Promise<Exercise[]> {
