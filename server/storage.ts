@@ -6914,6 +6914,179 @@ De loin, Mia sentit le regard de Camille sur elle. Elle ne se retourna pas.
       order: 12,
     };
     this.questions.set(miaq12.id, miaq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #2 =====
+    // "Le Cadeau de Marco" — Secondaire 1 (12-13 ans)
+    // Thème : créativité, fierté personnelle, valeur non matérielle
+    const narratifMarco2ExId = randomUUID();
+
+    const narratifMarco2Exercise: Exercise = {
+      id: narratifMarco2ExId,
+      courseId: narratifSec1CourseId,
+      title: "Le Cadeau de Marco",
+      description: "Créativité et fierté face aux difficultés — 12 questions",
+      type: "text",
+      order: 2,
+    };
+    this.exercises.set(narratifMarco2ExId, narratifMarco2Exercise);
+
+    const marcoStory = `Marco Vaillancourt avait treize ans et vivait avec sa mère dans un petit appartement du quartier Rosemont, à Montréal. Sa mère travaillait deux emplois pour payer le loyer et les épiceries. Ils n'avaient pas beaucoup d'argent, mais leur appartement était chaleureux, rempli de rires, de musique et des odeurs de sauce tomate qui mijotait longtemps. Marco ne se plaignait jamais. Il savait ce que sa mère sacrifiait chaque jour, et il lui en était reconnaissant.
+
+Un lundi de novembre, son enseignante de français, madame Roy, annonça une activité de Noël : un échange de cadeaux entre élèves. « Apportez quelque chose qui vaut entre quinze et vingt dollars, » dit-elle avec enthousiasme. Un murmure excité traversa la classe. Marco, lui, sentit son estomac se serrer. Quinze dollars. C'était presque la moitié de ce qu'il avait dans son compte d'épargne. Il regarda ses souliers et ne dit rien.
+
+Le soir, il parla à sa mère. Elle soupira doucement, puis hocha la tête. « Je vais voir ce que je peux faire, mon cœur. » Mais Marco voyait ses yeux fatigués, les factures sur le comptoir. Cette nuit-là, il ne dormit pas bien. Il se sentait coincé entre sa fierté et sa honte — honte de ne pas avoir d'argent, honte d'avoir honte. Le lendemain, il annonça à sa mère qu'il allait se débrouiller tout seul.
+
+Il passa plusieurs soirées à chercher une idée. Un soir, en feuilletant son carnet de dessins — il aimait dessiner des animaux, des paysages, des personnages inventés — il eut une idée. Il allait créer un cadeau unique, quelque chose que personne d'autre ne pouvait acheter en magasin. Il choisit comme destinataire le nom qu'il avait pris dans l'enveloppe lors du tirage : Camille, une fille tranquille qui aimait les chats. Il dessina une grande carte illustrée représentant Camille et son chat imaginaire dans un jardin féerique, avec des couleurs vives et des détails minutieux. Il y ajouta un petit chat en origami plié dans du papier doré, et une note écrite à la main : « Un cadeau fabriqué avec du temps et de l'attention — les deux choses les plus rares au monde. »
+
+Le jour de l'échange, Marco arriva en classe avec son enveloppe maison, le cœur battant. Il regardait les autres sortir des sacs brillants de boutiques, des boîtes enrubannées. Le sien semblait modeste. Quand Camille ouvrit l'enveloppe, il y eut d'abord un silence. Puis elle dit lentement : « Oh mon Dieu. C'est moi? Et le chat... » Elle rit doucement, les yeux brillants. « C'est le plus beau cadeau que j'aie jamais reçu. »
+
+Plusieurs élèves se penchèrent pour regarder. Quelqu'un dit : « T'as fait ça toi-même? T'es vraiment doué. » Marco sentit une chaleur se répandre dans sa poitrine. Madame Roy s'approcha et regarda la carte en silence, puis sourit en hochant la tête. Elle ne dit rien, mais son regard disait tout.
+
+Ce soir-là, Marco rentra à la maison avec une légèreté nouvelle. Il avait appris quelque chose d'important : que la valeur d'un cadeau ne se mesure pas à son prix, mais à l'attention qu'on y met. Il avait donné le meilleur de lui-même — et c'était plus que suffisant.`;
+
+    const marcoq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q1 (Compréhension) : Où vivait Marco avec sa mère?",
+      text: marcoStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Dans une grande maison de banlieue", "Dans un petit appartement du quartier Rosemont, à Montréal", "Dans une ferme à la campagne", "Dans un foyer pour étudiants"]),
+      correctAnswer: "Dans un petit appartement du quartier Rosemont, à Montréal",
+      order: 1,
+    };
+    this.questions.set(marcoq1.id, marcoq1);
+
+    const marcoq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q2 (Compréhension)",
+      text: "Qu'annonce madame Roy en novembre?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un voyage scolaire en région", "Un échange de cadeaux entre élèves", "Un concours de dessin", "Une collecte de fonds pour la classe"]),
+      correctAnswer: "Un échange de cadeaux entre élèves",
+      order: 2,
+    };
+    this.questions.set(marcoq2.id, marcoq2);
+
+    const marcoq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q3 (Compréhension)",
+      text: "Qu'est-ce que Marco crée comme cadeau pour Camille?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un livre de recettes illustré", "Une carte illustrée et un chat en origami", "Une boîte de chocolats maison", "Un tableau peint sur toile"]),
+      correctAnswer: "Une carte illustrée et un chat en origami",
+      order: 3,
+    };
+    this.questions.set(marcoq3.id, marcoq3);
+
+    const marcoq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q4 (Schéma narratif — Situation initiale)",
+      text: "Qu'est-ce qui caractérise la vie de Marco au début de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il est riche et très populaire à l'école", "Il vit pauvrement avec son père monoparental", "Il vit dans un appartement modeste avec sa mère, dans un foyer chaleureux, sans se plaindre", "Il vient d'arriver au Québec et ne parle pas français"]),
+      correctAnswer: "Il vit dans un appartement modeste avec sa mère, dans un foyer chaleureux, sans se plaindre",
+      order: 4,
+    };
+    this.questions.set(marcoq4.id, marcoq4);
+
+    const marcoq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q5 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement vient perturber la vie de Marco?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Sa mère perd son emploi principal", "Son enseignante annonce un échange de cadeaux de 15 à 20 dollars", "Il échoue un examen important en français", "Il se dispute avec sa meilleure amie"]),
+      correctAnswer: "Son enseignante annonce un échange de cadeaux de 15 à 20 dollars",
+      order: 5,
+    };
+    this.questions.set(marcoq5.id, marcoq5);
+
+    const marcoq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q6 (Schéma narratif — Péripéties)",
+      text: "Qu'est-ce que Marco fait après avoir annoncé qu'il allait se débrouiller tout seul?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il emprunte de l'argent à un camarade", "Il refuse de participer à l'échange", "Il passe plusieurs soirées à chercher une idée et décide de créer un cadeau artisanal", "Il demande à madame Roy de changer les règles"]),
+      correctAnswer: "Il passe plusieurs soirées à chercher une idée et décide de créer un cadeau artisanal",
+      order: 6,
+    };
+    this.questions.set(marcoq6.id, marcoq6);
+
+    const marcoq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q7 (Schéma narratif — Dénouement)",
+      text: "Comment se résout le problème de Marco lors de l'échange de cadeaux?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Personne n'aime son cadeau et il est humilié", "Sa mère lui remet de l'argent à la dernière minute", "Son cadeau artisanal est le plus apprécié de la classe", "Madame Roy annule l'activité"]),
+      correctAnswer: "Son cadeau artisanal est le plus apprécié de la classe",
+      order: 7,
+    };
+    this.questions.set(marcoq7.id, marcoq7);
+
+    const marcoq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q8 (Vocabulaire en contexte)",
+      text: "Dans le texte, le mot « minutieux » (dans « des détails minutieux ») signifie :",
+      type: "multiple_choice",
+      options: JSON.stringify(["Rapides et imprécis", "Très précis et soignés", "Colorés et vibrants", "Petits et invisibles"]),
+      correctAnswer: "Très précis et soignés",
+      order: 8,
+    };
+    this.questions.set(marcoq8.id, marcoq8);
+
+    const marcoq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q9 (Interprétation)",
+      text: "Pourquoi Marco « ne dormit pas bien » la nuit après avoir parlé à sa mère?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il avait oublié de faire ses devoirs", "Il était malade depuis quelques jours", "Il se sentait coincé entre sa fierté et la honte de sa situation financière", "Il avait peur de madame Roy"]),
+      correctAnswer: "Il se sentait coincé entre sa fierté et la honte de sa situation financière",
+      order: 9,
+    };
+    this.questions.set(marcoq9.id, marcoq9);
+
+    const marcoq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q10 (Réaction personnelle)",
+      text: "As-tu déjà reçu ou offert un cadeau fait à la main? Comment t'es-tu senti(e)? Si non, imagine comment tu te sentirais. Explique en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(marcoq10.id, marcoq10);
+
+    const marcoq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q11 (Réaction — lien personnel)",
+      text: "Marco ressent de la honte à cause de sa situation financière. As-tu déjà ressenti de la honte à propos de quelque chose dans ta vie? Comment as-tu surmonté ce sentiment? Écris deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(marcoq11.id, marcoq11);
+
+    const marcoq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifMarco2ExId,
+      title: "Q12 (Jugement critique)",
+      text: "À la fin de l'histoire, Marco apprend que « la valeur d'un cadeau ne se mesure pas à son prix, mais à l'attention qu'on y met ». Es-tu d'accord avec cette idée? Donne au moins deux arguments pour appuyer ton opinion.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(marcoq12.id, marcoq12);
   }
 
   // Users
