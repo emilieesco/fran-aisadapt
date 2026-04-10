@@ -7087,6 +7087,179 @@ Ce soir-là, Marco rentra à la maison avec une légèreté nouvelle. Il avait a
       order: 12,
     };
     this.questions.set(marcoq12.id, marcoq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #3 =====
+    // "La Voix de Samy" — Secondaire 1 (12-13 ans)
+    // Thème : timidité, courage, trouver sa voix
+    const narratifSamy3ExId = randomUUID();
+
+    const narratifSamy3Exercise: Exercise = {
+      id: narratifSamy3ExId,
+      courseId: narratifSec1CourseId,
+      title: "La Voix de Samy",
+      description: "Timidité, courage et confiance en soi — 12 questions",
+      type: "text",
+      order: 3,
+    };
+    this.exercises.set(narratifSamy3ExId, narratifSamy3Exercise);
+
+    const samyStory = `Samy Beaulieu avait treize ans et une passion secrète : écrire des poèmes. Depuis l'âge de neuf ans, il remplissait des carnets à couverture noire de vers maladroits d'abord, puis de plus en plus précis, comme des portraits tracés avec des mots. Ses poèmes parlaient du ciel gris de novembre, de l'odeur du café de sa grand-mère, de la solitude qui ressemble parfois à une pièce trop silencieuse. Mais personne ne les avait jamais lus. Samy était ainsi : un garçon qui observait beaucoup, parlait peu, et gardait l'essentiel pour lui.
+
+Un mardi matin de mars, madame Arsenault, son enseignante de français, fit une annonce qui fit bondir son cœur dans sa poitrine. « Cette année, notre école participe au Concours provincial de poésie jeunesse. Chaque élève qui le souhaite peut présenter un texte original, lu à voix haute devant le jury et les autres élèves dans l'auditorium. » Samy déglutit. L'auditorium. Trois cents élèves. Un micro. Il baissa la tête et fit semblant de prendre des notes.
+
+Ce soir-là, il relut ses carnets pendant deux heures. Un poème attira son regard — il parlait de son père parti travailler en Alberta, des appels vidéo chaque dimanche, et d'une écharpe bleue laissée sur le crochet du couloir. C'était honnête. C'était lui. Il décida de le soumettre sans trop réfléchir, avant que la peur ne change d'avis pour lui.
+
+Les semaines suivantes furent un supplice. Pendant les répétitions en classe, sa voix s'étranglait, ses mains tremblaient sur la feuille. Une fois, il perdit le fil au milieu du texte et dut s'arrêter complètement. Certains élèves eurent la délicatesse de ne pas rire. D'autres moins. La nuit avant le concours, Samy voulut annuler. Il chercha une excuse, un mal de ventre, une urgence quelconque. Sa petite sœur Inès, dix ans, entra dans sa chambre et vit son visage défait. Elle s'assit sur le bord du lit et dit simplement : « T'es le meilleur écrivain que je connais. Pis je connais plein de monde. » Samy rit malgré lui.
+
+Le lendemain, quand son nom fut appelé, Samy monta les marches de la scène les jambes molles. Les lumières de l'auditorium lui semblèrent aveugles. Il prit une grande inspiration, regarda sa feuille, et commença. Sa voix tremblait au premier vers. Au deuxième aussi. Mais au troisième, quelque chose se passa. Les mots étaient les siens, vraiment les siens, et ils avaient un poids. Il leva les yeux. Trois cents visages silencieux. Il continua jusqu'à la fin.
+
+Le silence qui suivit dura deux secondes — les deux secondes les plus longues de sa vie. Puis les applaudissements éclatèrent. Pas polis : sincères.
+
+Samy ne remporta pas le premier prix. Mais en descendant de scène, quelque chose avait changé en lui. Il comprit ce jour-là que le courage n'est pas l'absence de peur — c'est agir malgré elle. Et que parfois, la chose la plus courageuse qu'on puisse faire, c'est de laisser les autres entendre ce qu'on a de plus vrai en soi.`;
+
+    const samyq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q1 (Compréhension) : Quelle était la passion secrète de Samy?",
+      text: samyStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Jouer de la guitare et composer des chansons", "Écrire des poèmes dans des carnets à couverture noire", "Peindre des portraits de ses proches", "Lire des romans de science-fiction"]),
+      correctAnswer: "Écrire des poèmes dans des carnets à couverture noire",
+      order: 1,
+    };
+    this.questions.set(samyq1.id, samyq1);
+
+    const samyq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q2 (Compréhension)",
+      text: "À quel événement madame Arsenault invite-t-elle les élèves à participer?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un tournoi de débat oratoire", "Un concours provincial de poésie jeunesse", "Un voyage culturel à Québec", "Un atelier d'écriture en bibliothèque"]),
+      correctAnswer: "Un concours provincial de poésie jeunesse",
+      order: 2,
+    };
+    this.questions.set(samyq2.id, samyq2);
+
+    const samyq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q3 (Compréhension)",
+      text: "Qui aide Samy à ne pas abandonner la veille du concours?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Madame Arsenault, son enseignante", "Son père par appel vidéo", "Sa petite sœur Inès", "Un ami de classe"]),
+      correctAnswer: "Sa petite sœur Inès",
+      order: 3,
+    };
+    this.questions.set(samyq3.id, samyq3);
+
+    const samyq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q4 (Schéma narratif — Situation initiale)",
+      text: "Qu'est-ce qui caractérise la situation initiale de Samy?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il est extraverti et adore parler devant la classe", "Il n'a aucun intérêt pour la littérature ou l'écriture", "Il est timide, observe beaucoup et garde ses poèmes secrets depuis des années", "Il est nouveau à l'école et ne connaît personne"]),
+      correctAnswer: "Il est timide, observe beaucoup et garde ses poèmes secrets depuis des années",
+      order: 4,
+    };
+    this.questions.set(samyq4.id, samyq4);
+
+    const samyq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q5 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement vient perturber la vie tranquille de Samy?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Son père annonce qu'il ne reviendra pas d'Alberta", "Madame Arsenault annonce un concours de poésie à lire devant toute l'école", "Il perd tous ses carnets de poèmes", "Un camarade lit ses poèmes devant la classe sans permission"]),
+      correctAnswer: "Madame Arsenault annonce un concours de poésie à lire devant toute l'école",
+      order: 5,
+    };
+    this.questions.set(samyq5.id, samyq5);
+
+    const samyq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q6 (Schéma narratif — Péripéties)",
+      text: "Quelles difficultés Samy traverse-t-il pendant les répétitions?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il s'améliore rapidement et gagne en confiance chaque jour", "Sa voix s'étrangle, ses mains tremblent et il perd le fil une fois", "Madame Arsenault lui dit que son poème n'est pas assez bon", "Il décide de changer complètement son poème à la dernière minute"]),
+      correctAnswer: "Sa voix s'étrangle, ses mains tremblent et il perd le fil une fois",
+      order: 6,
+    };
+    this.questions.set(samyq6.id, samyq6);
+
+    const samyq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q7 (Schéma narratif — Dénouement)",
+      text: "Comment se passe la prestation de Samy lors du concours?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il abandonne au milieu du poème sous les rires", "Sa voix tremble au début mais il termine son poème et reçoit des applaudissements sincères", "Il remporte le premier prix sous une ovation", "Il lit son texte trop vite et personne n'entend les paroles"]),
+      correctAnswer: "Sa voix tremble au début mais il termine son poème et reçoit des applaudissements sincères",
+      order: 7,
+    };
+    this.questions.set(samyq7.id, samyq7);
+
+    const samyq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q8 (Vocabulaire en contexte)",
+      text: "Dans le texte, « Samy déglutit » (quand il entend parler de l'auditorium) exprime :",
+      type: "multiple_choice",
+      options: JSON.stringify(["Sa faim soudaine au moment de l'annonce", "Son enthousiasme et sa joie à l'idée de participer", "Sa nervosité et son inquiétude face à cette nouvelle", "Son indifférence totale pour le concours"]),
+      correctAnswer: "Sa nervosité et son inquiétude face à cette nouvelle",
+      order: 8,
+    };
+    this.questions.set(samyq8.id, samyq8);
+
+    const samyq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q9 (Interprétation)",
+      text: "Que veut dire la phrase finale : « le courage n'est pas l'absence de peur — c'est agir malgré elle »?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les gens courageux ne ressentent jamais de peur", "Il faut éliminer toute peur avant d'agir", "Être courageux, c'est faire ce qu'on doit faire même quand on a peur", "La peur est un signe qu'on ne devrait pas agir"]),
+      correctAnswer: "Être courageux, c'est faire ce qu'on doit faire même quand on a peur",
+      order: 9,
+    };
+    this.questions.set(samyq9.id, samyq9);
+
+    const samyq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q10 (Réaction personnelle)",
+      text: "As-tu déjà dû faire quelque chose qui te faisait peur (parler devant la classe, essayer une nouvelle activité, etc.)? Comment tu t'es senti(e) avant, pendant et après? Décris en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(samyq10.id, samyq10);
+
+    const samyq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q11 (Réaction — lien personnel)",
+      text: "Samy garde ses poèmes secrets par peur du jugement des autres. Toi aussi, as-tu quelque chose que tu gardes pour toi (un talent, une passion, une opinion) parce que tu as peur de ce que les autres pourraient penser? Explique en quelques phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(samyq11.id, samyq11);
+
+    const samyq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamy3ExId,
+      title: "Q12 (Jugement critique)",
+      text: "Samy ne remporte pas le premier prix, mais l'auteur dit qu'« il avait quand même changé ». Selon toi, peut-on considérer que Samy a réussi malgré tout? Donne au moins deux arguments pour défendre ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(samyq12.id, samyq12);
   }
 
   // Users
