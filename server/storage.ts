@@ -1180,12 +1180,25 @@ export class MemStorage implements IStorage {
 
     // Writing exercises
     const writingExercise1Id = randomUUID();
-
     const writingExercise2Id = randomUUID();
-
     const writingExercise3Id = randomUUID();
-
     const writingExercise4Id = randomUUID();
+    const writingExercise5Id = randomUUID();
+    const writingExercise5bId = randomUUID();
+    const writingExercise6Id = randomUUID();
+    const writingExercise6bId = randomUUID();
+
+    const writingExercises: Exercise[] = [
+      { id: writingExercise1Id, courseId: writing1Id, title: "Exercice 1 — Description vivante", description: "Écrire une description sensorielle", type: "text", order: 1 },
+      { id: writingExercise2Id, courseId: writing2Id, title: "Exercice 1 — Écrire un dialogue", description: "Format et techniques du dialogue", type: "text", order: 1 },
+      { id: writingExercise3Id, courseId: writing3Id, title: "Exercice 1 — Histoire courte", description: "Structure narrative complète", type: "text", order: 1 },
+      { id: writingExercise4Id, courseId: writing4Id, title: "Exercice 1 — Résumer un texte", description: "Extraire l'essentiel", type: "text", order: 1 },
+      { id: writingExercise5Id, courseId: writing5Id, title: "Exercice 1 — Identifier les connecteurs", description: "Reconnaître et choisir les bons connecteurs", type: "multiple_choice", order: 1 },
+      { id: writingExercise5bId, courseId: writing5Id, title: "Exercice 2 — Écrire avec des connecteurs", description: "Production guidée avec connecteurs", type: "text", order: 2 },
+      { id: writingExercise6Id, courseId: writing6Id, title: "Exercice 1 — Reconnaître les techniques", description: "Identifier les techniques d'écriture", type: "multiple_choice", order: 1 },
+      { id: writingExercise6bId, courseId: writing6Id, title: "Exercice 2 — Appliquer les techniques", description: "Production guidée avec techniques avancées", type: "text", order: 2 },
+    ];
+    writingExercises.forEach(ex => this.exercises.set(ex.id, ex));
 
 
     // Reading questions - NARRATIVE TEXTS with 4 dimensions de lecture
@@ -3801,44 +3814,309 @@ export class MemStorage implements IStorage {
     };
 
     // Writing questions
+    // ── WRITING EXERCISE 1 : Description vivante ────────────────────────────
+    const writQ1_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise1Id,
+      title: "Question 1 — Quel sens est utilisé?",
+      text: "Lis la phrase: «Une odeur délicieuse de pain frais sortait du four.»\nQuel sens est utilisé ici?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La vue", "L'ouïe", "L'odorat", "Le toucher"]),
+      correctAnswer: "L'odorat",
+      order: 1,
+    };
+    const writQ1_b: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise1Id,
+      title: "Question 2 — Comparaison ou métaphore?",
+      text: "Lis la phrase: «Ses yeux étaient des étoiles brillantes.»\nCette figure de style est...",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une comparaison (avec «comme»)", "Une métaphore (sans «comme»)", "Une énumération", "Une répétition"]),
+      correctAnswer: "Une métaphore (sans «comme»)",
+      order: 2,
+    };
+    const writQ1_c: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise1Id,
+      title: "Question 3 — Améliorer une phrase vague",
+      text: "La phrase «La maison était belle» est trop vague. Réécris-la en ajoutant au moins 3 détails précis (couleurs, formes, matières, etc.).",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 3,
+    };
     const writQ1: Question = {
       id: randomUUID(),
       exerciseId: writingExercise1Id,
-      title: "Exercice: Description vivante",
-      text: "Écrivez une description vivante (8-10 phrases) d'un lieu que vous aimez. Utilisez les 5 sens: vue, son, odeur, goût, toucher. Exemple: la salle de classe, votre chambre, un parc, etc.",
+      title: "Question 4 — Production: Description vivante",
+      text: "Écris une description vivante (8-10 phrases) d'un lieu que tu connais bien (ta chambre, le parc, la cour d'école, etc.).\n\nConsignes:\n• Utilise au moins 3 des 5 sens (vue, son, odeur, goût, toucher)\n• Inclus une comparaison (avec «comme») ou une métaphore\n• Utilise des adjectifs précis et expressifs",
       type: "text",
       correctAnswer: "réponse libre",
-      order: 1,
+      order: 4,
     };
 
+    // ── WRITING EXERCISE 2 : Écrire un dialogue ─────────────────────────────
+    const writQ2_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise2Id,
+      title: "Question 1 — Format du dialogue",
+      text: "En français, quelle ponctuation marque le début de chaque réplique dans un dialogue?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les guillemets « »", "Un tiret long —", "Un astérisque *", "Une parenthèse ( )"]),
+      correctAnswer: "Un tiret long —",
+      order: 1,
+    };
+    const writQ2_b: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise2Id,
+      title: "Question 2 — Verbes de parole",
+      text: "Pour montrer qu'un personnage parle doucement et en secret, quel verbe de parole choisir?",
+      type: "multiple_choice",
+      options: JSON.stringify(["cria", "chuchota", "déclara", "récita"]),
+      correctAnswer: "chuchota",
+      order: 2,
+    };
+    const writQ2_c: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise2Id,
+      title: "Question 3 — Corriger un dialogue",
+      text: "Réécris ce dialogue en corrigeant le format (ajoute les tirets, les changements de ligne et un verbe de parole varié):\n\n«Bonjour, dit Marie. Comment vas-tu? dit Jean. Je vais bien, dit Marie.»",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 3,
+    };
     const writQ2: Question = {
       id: randomUUID(),
       exerciseId: writingExercise2Id,
-      title: "Exercice: Dialogue",
-      text: "Écrivez un dialogue (10-15 lignes) entre deux personnages. Utilisez le format français avec les tirets (—), variez les verbes de parole (dit, cria, chuchota, etc.), et montrez les émotions.",
+      title: "Question 4 — Production: Écrire un dialogue",
+      text: "Écris un dialogue (10-12 répliques) entre deux amis qui décident quoi faire un samedi pluvieux.\n\nConsignes:\n• Utilise le format français avec les tirets (—)\n• Varie les verbes de parole (dit, répond, s'exclame, demande, soupire…)\n• Montre les émotions des personnages dans leurs paroles",
       type: "text",
       correctAnswer: "réponse libre",
-      order: 1,
+      order: 4,
     };
 
+    // ── WRITING EXERCISE 3 : Histoire courte ────────────────────────────────
+    const writQ3_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise3Id,
+      title: "Question 1 — Structure narrative",
+      text: "Quelle est la bonne ordre des étapes dans une histoire courte?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "Résolution → Situation initiale → Problème → Climax",
+        "Situation initiale → Problème → Climax → Résolution",
+        "Climax → Situation initiale → Résolution → Problème",
+        "Problème → Climax → Situation initiale → Résolution",
+      ]),
+      correctAnswer: "Situation initiale → Problème → Climax → Résolution",
+      order: 1,
+    };
+    const writQ3_b: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise3Id,
+      title: "Question 2 — Identifier la partie de l'histoire",
+      text: "Lis cet extrait: «Léa ouvrit la porte. Ce qu'elle vit la laissa sans voix: la pièce était remplie de lumière dorée et une créature brillante la regardait.»\nCette partie est...",
+      type: "multiple_choice",
+      options: JSON.stringify(["La situation initiale", "Le problème ou conflit", "Le climax", "La résolution"]),
+      correctAnswer: "Le climax",
+      order: 2,
+    };
+    const writQ3_c: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise3Id,
+      title: "Question 3 — Planifier avant d'écrire",
+      text: "Avant d'écrire ton histoire, planifie-la en 4 points:\n1. Personnage principal et lieu\n2. Le problème ou l'obstacle\n3. Le moment le plus intense (climax)\n4. Comment ça se termine\n\nNote tes 4 points ici en quelques mots chacun.",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 3,
+    };
     const writQ3: Question = {
       id: randomUUID(),
       exerciseId: writingExercise3Id,
-      title: "Exercice: Histoire courte",
-      text: "Écrivez une histoire courte (15-20 phrases) avec: 1) Situation initiale, 2) Problème/Conflit, 3) Climax, 4) Résolution. Invente une histoire originale!",
+      title: "Question 4 — Production: Histoire courte",
+      text: "Écris ton histoire courte (15-20 phrases) en suivant le plan que tu as fait à la question 3.\n\nConsignes:\n• Situation initiale claire (personnage + lieu + moment)\n• Un problème ou conflit qui crée de la tension\n• Un climax fort (le moment le plus intense)\n• Une résolution satisfaisante",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 4,
+    };
+
+    // ── WRITING EXERCISE 4 : Résumer efficacement ───────────────────────────
+    const writQ4_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise4Id,
+      title: "Question 1 — Qu'est-ce qu'un bon résumé?",
+      text: "Qu'est-ce qui définit un bon résumé?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "Recopier les phrases les plus longues du texte",
+        "Reprendre les idées principales dans ses propres mots",
+        "Donner son opinion personnelle sur le texte",
+        "Copier le début et la fin du texte",
+      ]),
+      correctAnswer: "Reprendre les idées principales dans ses propres mots",
+      order: 1,
+    };
+    const writQ4_b: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise4Id,
+      title: "Question 2 — Idée principale ou détail?",
+      text: "Lis ce texte: «Jean est un garçon de 12 ans. Il avait des cheveux bruns et des yeux verts. Il aimait jouer au soccer. Un jour, il découvrit une vieille carte au grenier de sa grand-mère.»\n\nQuelle phrase contient l'idée PRINCIPALE (à garder dans le résumé)?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "Il avait des cheveux bruns et des yeux verts.",
+        "Jean est un garçon de 12 ans.",
+        "Il aimait jouer au soccer.",
+        "Il découvrit une vieille carte au grenier de sa grand-mère.",
+      ]),
+      correctAnswer: "Il découvrit une vieille carte au grenier de sa grand-mère.",
+      order: 2,
+    };
+    const writQ4: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise4Id,
+      title: "Question 3 — Production: Résumer un texte",
+      text: "Lis ce texte et résume-le en 4-5 phrases dans tes propres mots:\n\n«Maëlle est une fille de 11 ans qui habite en ville. Elle n'a jamais vu la forêt. Un été, ses parents l'emmènent en camping dans les Laurentides. D'abord, Maëlle a peur des bruits de la nuit et des insectes. Mais peu à peu, elle apprend à identifier les oiseaux, à faire du feu et à naviguer à la boussole. À la fin du voyage, elle pleure en reprenant la route vers la ville. Elle demande à ses parents de revenir l'année suivante.»\n\nRappel: utilise tes propres mots, garde seulement l'essentiel.",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 3,
+    };
+
+    // ── WRITING EXERCISE 5 : Connecteurs textuels — QCM ─────────────────────
+    const writQ5_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise5Id,
+      title: "Question 1 — Connecteur d'addition",
+      text: "Quel connecteur exprime une ADDITION (ajouter une idée)?",
+      type: "multiple_choice",
+      options: JSON.stringify(["cependant", "de plus", "c'est pourquoi", "en revanche"]),
+      correctAnswer: "de plus",
+      order: 1,
+    };
+    const writQ5_b: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise5Id,
+      title: "Question 2 — Connecteur d'opposition",
+      text: "Quelle phrase utilise correctement un connecteur d'OPPOSITION?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "Il était fatigué. De plus, il s'endormit vite.",
+        "Il était fatigué. Cependant, il continua à travailler.",
+        "Il était fatigué. Donc, il continua à travailler.",
+        "Il était fatigué. Par exemple, il s'endormit vite.",
+      ]),
+      correctAnswer: "Il était fatigué. Cependant, il continua à travailler.",
+      order: 2,
+    };
+    const writQ5_c: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise5Id,
+      title: "Question 3 — Quel connecteur?",
+      text: "Complète: «Elle a beaucoup étudié. _____, elle a réussi son examen.»\nQuel connecteur de conséquence convient?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Cependant", "Par exemple", "C'est pourquoi", "D'abord"]),
+      correctAnswer: "C'est pourquoi",
+      order: 3,
+    };
+    const writQ5_d: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise5Id,
+      title: "Question 4 — Ordre chronologique",
+      text: "Quel groupe de connecteurs exprime bien une SÉQUENCE dans le temps (ordre chronologique)?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "bref, en résumé, finalement",
+        "d'abord, ensuite, finalement",
+        "cependant, pourtant, néanmoins",
+        "par exemple, notamment, entre autres",
+      ]),
+      correctAnswer: "d'abord, ensuite, finalement",
+      order: 4,
+    };
+
+    // ── WRITING EXERCISE 5b : Connecteurs — Production ──────────────────────
+    const writQ5b_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise5bId,
+      title: "Question 1 — Relier des phrases",
+      text: "Réécris ces phrases en les reliant avec un connecteur approprié:\n\n«Il pleuvait fort. Les enfants sortirent jouer.\nMarie étudie tous les soirs. Elle a de bonnes notes.\nJe voulais du chocolat. Le magasin était fermé.»\n\nChoisis des connecteurs différents pour chaque paire.",
       type: "text",
       correctAnswer: "réponse libre",
       order: 1,
     };
-
-    const writQ4: Question = {
+    const writQ5b_b: Question = {
       id: randomUUID(),
-      exerciseId: writingExercise4Id,
-      title: "Exercice: Résumé",
-      text: "Lisez ce texte et résumez-le en 5-7 phrases:\\n\\nAUTEUR: Jean est un enfant de 12 ans qui vivait dans un petit village montagneux. Un jour, il découvrit une vieille carte dans le grenier de sa grand-mère. La carte montrait un chemin menant à une grotte cachée. Avec ses deux meilleurs amis, Pierre et Marie, Jean décida d'explorer cette grotte mystérieuse. Après une longue marche, ils trouvèrent l'entrée de la grotte. À l'intérieur, ils découvrirent des cristaux brillants et des minéraux magnifiques. C'était une découverte extraordinaire et les trois enfants devinrent célèbres dans le village.",
+      exerciseId: writingExercise5bId,
+      title: "Question 2 — Production guidée",
+      text: "Écris un court paragraphe (5-7 phrases) qui décrit ta journée d'hier ou une journée typique à l'école.\n\nConsignes:\n• Utilise au moins 4 connecteurs différents\n• Varie les types: séquence (d'abord/ensuite), cause (parce que/car), opposition (mais/cependant)\n• Souligne ou mets en gras chaque connecteur utilisé",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 2,
+    };
+
+    // ── WRITING EXERCISE 6 : Techniques avancées — QCM ──────────────────────
+    const writQ6_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise6Id,
+      title: "Question 1 — Montrer plutôt que dire",
+      text: "Laquelle de ces phrases «montre» l'émotion plutôt que de simplement la «dire»?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "Il était très heureux.",
+        "Il sauta en l'air, serra ses amis dans ses bras et éclata de rire.",
+        "Il ressentait de la joie.",
+        "Il était content et joyeux.",
+      ]),
+      correctAnswer: "Il sauta en l'air, serra ses amis dans ses bras et éclata de rire.",
+      order: 1,
+    };
+    const writQ6_b: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise6Id,
+      title: "Question 2 — Créer du suspense",
+      text: "Lequel de ces extraits crée le mieux du suspense?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "La fille entra dans la maison. Elle alla dans sa chambre.",
+        "La fille entra. Tout était silencieux. Trop silencieux. Une ombre bougea derrière la porte...",
+        "La fille entra dans la grande maison bleue et alla dans sa chambre au deuxième étage.",
+        "La fille était courageuse. Elle entra sans avoir peur.",
+      ]),
+      correctAnswer: "La fille entra. Tout était silencieux. Trop silencieux. Une ombre bougea derrière la porte...",
+      order: 2,
+    };
+    const writQ6_c: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise6Id,
+      title: "Question 3 — Varier les structures",
+      text: "Quel groupe de phrases varie le mieux les structures?",
+      type: "multiple_choice",
+      options: JSON.stringify([
+        "Je me lève. Je mange. Je pars. J'arrive. J'étudie.",
+        "Je me lève tôt. Après avoir mangé, je pars à l'école. Là, j'étudie toute la journée.",
+        "Je me lève le matin. Je mange le matin. Je pars le matin.",
+        "Je me lève et je mange et je pars et j'arrive et j'étudie.",
+      ]),
+      correctAnswer: "Je me lève tôt. Après avoir mangé, je pars à l'école. Là, j'étudie toute la journée.",
+      order: 3,
+    };
+
+    // ── WRITING EXERCISE 6b : Techniques avancées — Production ──────────────
+    const writQ6b_a: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise6bId,
+      title: "Question 1 — Transformer «dire» en «montrer»",
+      text: "Réécris chacune de ces phrases vagues en «montrant» l'émotion ou l'état par des actions ou des détails concrets:\n\n1. «Elle était fatiguée.»\n2. «Il avait peur.»\n3. «Elle était fière.»",
       type: "text",
       correctAnswer: "réponse libre",
       order: 1,
+    };
+    const writQ6b_b: Question = {
+      id: randomUUID(),
+      exerciseId: writingExercise6bId,
+      title: "Question 2 — Production: Appliquer les techniques",
+      text: "Écris un court passage (8-10 phrases) qui décrit un personnage qui vient d'apprendre une nouvelle surprenante (bonne ou mauvaise).\n\nConsignes:\n• «Montre» ses émotions par des actions — n'utilise pas les mots «heureux», «triste», «surpris» ou «content»\n• Varie tes structures de phrases\n• Crée du suspense avec au moins une courte phrase percutante",
+      type: "text",
+      correctAnswer: "réponse libre",
+      order: 2,
     };
 
     this.questions.set(readQ1_1.id, readQ1_1);
@@ -4100,10 +4378,40 @@ export class MemStorage implements IStorage {
     this.questions.set(readQ20_react2.id, readQ20_react2);
     this.questions.set(readQ20_jug.id, readQ20_jug);
     
+    // Writing exercise 1 — Description vivante
+    this.questions.set(writQ1_a.id, writQ1_a);
+    this.questions.set(writQ1_b.id, writQ1_b);
+    this.questions.set(writQ1_c.id, writQ1_c);
     this.questions.set(writQ1.id, writQ1);
+    // Writing exercise 2 — Dialogue
+    this.questions.set(writQ2_a.id, writQ2_a);
+    this.questions.set(writQ2_b.id, writQ2_b);
+    this.questions.set(writQ2_c.id, writQ2_c);
     this.questions.set(writQ2.id, writQ2);
+    // Writing exercise 3 — Histoire courte
+    this.questions.set(writQ3_a.id, writQ3_a);
+    this.questions.set(writQ3_b.id, writQ3_b);
+    this.questions.set(writQ3_c.id, writQ3_c);
     this.questions.set(writQ3.id, writQ3);
+    // Writing exercise 4 — Résumé
+    this.questions.set(writQ4_a.id, writQ4_a);
+    this.questions.set(writQ4_b.id, writQ4_b);
     this.questions.set(writQ4.id, writQ4);
+    // Writing exercise 5 — Connecteurs (QCM)
+    this.questions.set(writQ5_a.id, writQ5_a);
+    this.questions.set(writQ5_b.id, writQ5_b);
+    this.questions.set(writQ5_c.id, writQ5_c);
+    this.questions.set(writQ5_d.id, writQ5_d);
+    // Writing exercise 5b — Connecteurs (Production)
+    this.questions.set(writQ5b_a.id, writQ5b_a);
+    this.questions.set(writQ5b_b.id, writQ5b_b);
+    // Writing exercise 6 — Techniques avancées (QCM)
+    this.questions.set(writQ6_a.id, writQ6_a);
+    this.questions.set(writQ6_b.id, writQ6_b);
+    this.questions.set(writQ6_c.id, writQ6_c);
+    // Writing exercise 6b — Techniques avancées (Production)
+    this.questions.set(writQ6b_a.id, writQ6b_a);
+    this.questions.set(writQ6b_b.id, writQ6b_b);
 
     // Register descriptive text questions
     this.questions.set(descQ1_1.id, descQ1_1);
