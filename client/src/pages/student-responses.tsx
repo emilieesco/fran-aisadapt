@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, CheckCircle, XCircle, Clock } from "lucide-react";
-import { useSearch } from "wouter/use-location";
 
 interface EnrichedResponse {
   id: string;
@@ -32,8 +31,7 @@ interface EnrichedResponse {
 
 export default function StudentResponses() {
   const [, setLocation] = useLocation();
-  const search = useSearch();
-  const studentId = new URLSearchParams(search).get("studentId");
+  const studentId = new URLSearchParams(window.location.search).get("studentId");
   const teacherId = localStorage.getItem("userId");
 
   const { data: responses = [], isLoading } = useQuery({
