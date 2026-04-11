@@ -9883,6 +9883,177 @@ Cependant, l'avenir de l'acériculture est menacé par les changements climatiqu
       order: 12,
     };
     this.questions.set(aceq12.id, aceq12);
+
+    // ===== INFORMATIF SEC 1 — TEXTE #4 =====
+    // "L'hydroélectricité au Québec" — barrages, Hydro-Québec, avantages, impacts, avenir
+    // Questions : pertinence du titre, exemple concret, vocabulaire technique, lien entre paragraphes,
+    //             comparer deux données, type d'information, point de vue critique, inférence ciblée,
+    //             rôle du paragraphe final, synthèse explicative, écriture autre énergie, débat avantages/inconvénients
+    const informatifSec1T4ExId = randomUUID();
+
+    const informatifSec1T4Exercise: Exercise = {
+      id: informatifSec1T4ExId,
+      courseId: informatifSec1CourseId,
+      title: "L'hydroélectricité au Québec",
+      description: "Texte informatif sur la production d'hydroélectricité — barrages, Hydro-Québec, enjeux environnementaux et avenir énergétique",
+      type: "text",
+      order: 4,
+    };
+    this.exercises.set(informatifSec1T4ExId, informatifSec1T4Exercise);
+
+    const hydroText = `Le Québec est l'une des régions du monde les mieux pourvues en eau douce, et il a su transformer cette richesse naturelle en une source d'énergie propre et abondante : l'hydroélectricité. Aujourd'hui, l'électricité d'origine hydraulique représente plus de 94 % de toute l'électricité produite dans la province. Cette proportion est exceptionnelle à l'échelle mondiale, où la majorité des pays dépendent encore largement des combustibles fossiles pour alimenter leurs réseaux électriques. Cette abondance d'énergie renouvelable est l'une des grandes forces du Québec dans le contexte de la transition énergétique mondiale.
+
+L'hydroélectricité est produite en exploitant la force de l'eau en mouvement. Le principe est relativement simple : on construit un barrage sur une rivière pour créer un réservoir, c'est-à-dire un grand lac artificiel. Quand l'eau est relâchée de façon contrôlée, elle descend par des conduites forcées et fait tourner des turbines. Ces turbines entraînent des générateurs qui transforment l'énergie mécanique en énergie électrique. Cette électricité est ensuite transportée par un vaste réseau de lignes à haute tension jusqu'aux maisons, aux écoles, aux usines et aux commerces. Le complexe La Grande, situé dans le nord du Québec, est l'un des plus grands systèmes hydroélectriques au monde, avec une capacité de plus de 16 000 mégawatts.
+
+La société d'État Hydro-Québec est responsable de la production, du transport et de la distribution de l'électricité dans la province. Fondée en 1944, elle possède aujourd'hui plus de 60 centrales hydroélectriques réparties sur l'ensemble du territoire. Ses installations lui permettent de produire suffisamment d'électricité pour alimenter tous les foyers du Québec tout en exportant un surplus important vers les provinces voisines et les États américains de la Nouvelle-Angleterre. Ces exportations génèrent des milliards de dollars de revenus chaque année et contribuent directement aux finances du gouvernement québécois, puisque Hydro-Québec verse des dividendes à son unique actionnaire : l'État québécois.
+
+Malgré ses avantages indéniables, la construction de grands barrages hydroélectriques entraîne des impacts environnementaux et sociaux importants. La mise en eau des réservoirs inonde de vastes territoires, détruisant des écosystèmes forestiers et perturbant les habitats d'espèces animales et végétales. Dans les années 1970 et 1980, la construction du complexe La Grande dans le territoire cri a provoqué le déplacement de communautés autochtones et l'inondation de millions d'hectares de terres ancestrales. Ces événements ont mis en lumière la nécessité de consulter les peuples autochtones avant d'entreprendre de tels projets, ce qui est désormais une obligation légale au Canada.
+
+Face aux défis énergétiques du XXI\u1D49 siècle, l'hydroélectricité québécoise est plus précieuse que jamais. La transition vers les véhicules électriques, le chauffage à la pompe à chaleur et l'électrification de l'industrie augmente considérablement la demande en électricité. Hydro-Québec prévoit d'ajouter de nouvelles capacités de production dans les prochaines décennies, en combinant de nouveaux projets hydroélectriques, de l'énergie éolienne et des partenariats avec les communautés autochtones. L'objectif est de rendre le Québec encore plus autosuffisant sur le plan énergétique et de contribuer à la réduction des émissions de gaz à effet de serre à l'échelle du continent nord-américain.`;
+
+    const hydroq1: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q1 (Pertinence du titre — pourquoi ce titre convient)",
+      text: hydroText,
+      type: "multiple_choice",
+      options: JSON.stringify(["Le titre est trop vague : il faudrait préciser « Les barrages du complexe La Grande »", "Le titre est pertinent parce qu'il annonce clairement le sujet du texte : l'hydroélectricité dans le contexte québécois spécifiquement", "Le titre devrait être « Hydro-Québec » car c'est la société la plus mentionnée", "Le titre est inexact car le texte parle aussi d'énergie éolienne"]),
+      correctAnswer: "Le titre est pertinent parce qu'il annonce clairement le sujet du texte : l'hydroélectricité dans le contexte québécois spécifiquement",
+      order: 1,
+    };
+    this.questions.set(hydroq1.id, hydroq1);
+
+    const hydroq2: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q2 (Exemple concret illustrant une idée)",
+      text: "Pour illustrer les impacts sociaux des grands barrages, l'auteur donne un exemple précis. Quel est cet exemple, et quelle idée abstraite vient-il illustrer?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Exemple : la construction du barrage Daniel-Johnson / Idée illustrée : les barrages créent des emplois dans les régions éloignées", "Exemple : la construction du complexe La Grande dans le territoire cri, qui a causé le déplacement de communautés et l'inondation de terres ancestrales / Idée illustrée : les barrages ont des impacts sociaux et environnementaux importants", "Exemple : les exportations d'Hydro-Québec vers les États-Unis / Idée illustrée : l'hydroélectricité est rentable économiquement", "Exemple : le principe de la turbine et du générateur / Idée illustrée : l'hydroélectricité est techniquement simple à comprendre"]),
+      correctAnswer: "Exemple : la construction du complexe La Grande dans le territoire cri, qui a causé le déplacement de communautés et l'inondation de terres ancestrales / Idée illustrée : les barrages ont des impacts sociaux et environnementaux importants",
+      order: 2,
+    };
+    this.questions.set(hydroq2.id, hydroq2);
+
+    const hydroq3: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q3 (Vocabulaire technique — « turbine » et « barrage »)",
+      text: "D'après le texte, quelle est la fonction d'un barrage et d'une turbine dans la production d'hydroélectricité?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le barrage filtre l'eau pour la rendre potable; la turbine réchauffe l'eau avant qu'elle soit utilisée", "Le barrage retient l'eau pour créer un réservoir; la turbine tourne sous l'effet de l'eau qui descend et entraîne un générateur produisant de l'électricité", "Le barrage bloque les inondations; la turbine pompe l'eau vers les villes", "Le barrage génère directement de l'électricité par frottement; la turbine contrôle le débit de l'eau"]),
+      correctAnswer: "Le barrage retient l'eau pour créer un réservoir; la turbine tourne sous l'effet de l'eau qui descend et entraîne un générateur produisant de l'électricité",
+      order: 3,
+    };
+    this.questions.set(hydroq3.id, hydroq3);
+
+    const hydroq4: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q4 (Lien logique entre deux paragraphes)",
+      text: "Le quatrième paragraphe commence par « Malgré ses avantages indéniables… ». Quel est le rôle de cette expression par rapport au troisième paragraphe?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle introduit une définition nouvelle qui n'avait pas encore été expliquée", "Elle marque une opposition : après avoir présenté les avantages d'Hydro-Québec au paragraphe 3, l'auteur présente maintenant les impacts négatifs des barrages", "Elle résume ce qui a été dit dans les trois paragraphes précédents", "Elle annonce que le texte va changer complètement de sujet pour parler d'autre chose"]),
+      correctAnswer: "Elle marque une opposition : après avoir présenté les avantages d'Hydro-Québec au paragraphe 3, l'auteur présente maintenant les impacts négatifs des barrages",
+      order: 4,
+    };
+    this.questions.set(hydroq4.id, hydroq4);
+
+    const hydroq5: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q5 (Comparer deux données statistiques du texte)",
+      text: "Le texte mentionne que l'hydroélectricité représente « plus de 94 % » de la production électrique du Québec. Il indique aussi que la majorité des pays dépendent encore des combustibles fossiles. Que peut-on conclure de cette comparaison?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le Québec consomme beaucoup plus d'électricité que les autres pays du monde", "La situation énergétique du Québec est remarquablement différente de celle de la plupart des pays : presque toute son électricité vient d'une source renouvelable, contrairement à la majorité des nations", "Le Québec utilise encore 6 % de combustibles fossiles, ce qui est trop élevé selon les experts", "Cette statistique prouve que l'hydroélectricité est moins efficace que les combustibles fossiles"]),
+      correctAnswer: "La situation énergétique du Québec est remarquablement différente de celle de la plupart des pays : presque toute son électricité vient d'une source renouvelable, contrairement à la majorité des nations",
+      order: 5,
+    };
+    this.questions.set(hydroq5.id, hydroq5);
+
+    const hydroq6: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q6 (Identifier le type d'information)",
+      text: "« Le complexe La Grande, situé dans le nord du Québec, est l'un des plus grands systèmes hydroélectriques au monde, avec une capacité de plus de 16 000 mégawatts. » Quel type d'information cette phrase présente-t-elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une opinion personnelle de l'auteur sur la grandeur du complexe La Grande", "Une statistique et une localisation géographique qui appuient et précisent une affirmation générale du texte", "Une définition du terme « mégawatt » destinée aux lecteurs non spécialisés", "Une hypothèse sur ce que pourrait devenir le complexe La Grande dans le futur"]),
+      correctAnswer: "Une statistique et une localisation géographique qui appuient et précisent une affirmation générale du texte",
+      order: 6,
+    };
+    this.questions.set(hydroq6.id, hydroq6);
+
+    const hydroq7: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q7 (Point de vue critique présent dans le texte informatif)",
+      text: "Bien que le texte soit informatif, il laisse entendre qu'une pratique passée était problématique. Laquelle, et comment l'auteur le signale-t-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La privatisation d'Hydro-Québec dans les années 1980 — l'auteur dit que c'était une erreur économique", "La construction de barrages sans consulter les peuples autochtones — l'auteur le signale en mentionnant que la consultation est « désormais une obligation légale », ce qui implique qu'elle ne l'était pas toujours", "L'exportation d'électricité vers les États-Unis — l'auteur juge que cela prive les Québécois d'énergie", "L'utilisation de lignes à haute tension dans les quartiers résidentiels — l'auteur soulève des risques pour la santé"]),
+      correctAnswer: "La construction de barrages sans consulter les peuples autochtones — l'auteur le signale en mentionnant que la consultation est « désormais une obligation légale », ce qui implique qu'elle ne l'était pas toujours",
+      order: 7,
+    };
+    this.questions.set(hydroq7.id, hydroq7);
+
+    const hydroq8: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q8 (Inférence ciblée sur une phrase précise)",
+      text: "Le texte précise qu'Hydro-Québec « verse des dividendes à son unique actionnaire : l'État québécois ». Qu'est-ce qu'on peut en déduire sur le lien entre Hydro-Québec et la population québécoise?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Hydro-Québec appartient à une entreprise privée américaine qui paie des impôts au Québec", "Puisque l'État québécois est l'actionnaire et que c'est le gouvernement élu par les citoyens, les profits d'Hydro-Québec bénéficient indirectement à l'ensemble de la population québécoise", "Les citoyens peuvent acheter des actions d'Hydro-Québec en bourse pour recevoir des dividendes personnels", "Les dividendes servent uniquement à payer les salaires des employés d'Hydro-Québec"]),
+      correctAnswer: "Puisque l'État québécois est l'actionnaire et que c'est le gouvernement élu par les citoyens, les profits d'Hydro-Québec bénéficient indirectement à l'ensemble de la population québécoise",
+      order: 8,
+    };
+    this.questions.set(hydroq8.id, hydroq8);
+
+    const hydroq9: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q9 (Rôle du paragraphe de conclusion)",
+      text: "Le cinquième et dernier paragraphe joue un rôle particulier dans le texte. Quel est ce rôle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Répéter mot pour mot les informations des paragraphes précédents pour les mémoriser", "Ouvrir sur l'avenir et les enjeux à venir, en montrant que l'hydroélectricité reste centrale dans la transition énergétique québécoise et nord-américaine", "Contredire toutes les affirmations positives faites dans le texte et conclure que l'hydroélectricité est nuisible", "Donner une liste de ressources bibliographiques pour que le lecteur puisse approfondir le sujet"]),
+      correctAnswer: "Ouvrir sur l'avenir et les enjeux à venir, en montrant que l'hydroélectricité reste centrale dans la transition énergétique québécoise et nord-américaine",
+      order: 9,
+    };
+    this.questions.set(hydroq9.id, hydroq9);
+
+    const hydroq10: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q10 (Synthèse explicative — vulgarisation)",
+      text: "Imagine que tu dois expliquer à un élève de 4e année (10 ans) comment fonctionne une centrale hydroélectrique. Écris une explication de 4 à 6 phrases simples, sans utiliser de termes techniques sans les expliquer. Appuie-toi sur ce que tu as lu dans le texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(hydroq10.id, hydroq10);
+
+    const hydroq11: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q11 (Écriture — texte informatif sur une autre source d'énergie)",
+      text: "Choisis une autre source d'énergie (éolienne, solaire, nucléaire, géothermique, marémotrice, biomasse…) et écris un court texte informatif de 5 à 7 phrases. Explique : comment cette énergie est produite, un avantage et un inconvénient. Reste objectif et utilise un vocabulaire précis.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(hydroq11.id, hydroq11);
+
+    const hydroq12: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T4ExId,
+      title: "Q12 (Débat — avantages et inconvénients, appuyés sur le texte)",
+      text: "En te basant sur le texte, dresse un bilan de l'hydroélectricité au Québec. Dans un paragraphe de 5 à 7 phrases, présente au moins deux avantages ET au moins un inconvénient. Pour chaque point, cite ou reformule un passage précis du texte. Termine par ta propre conclusion : penses-tu que les avantages l'emportent sur les inconvénients? Explique pourquoi.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(hydroq12.id, hydroq12);
   }
 
   // Users
