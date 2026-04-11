@@ -7606,6 +7606,182 @@ Jade refit sa valise le dimanche suivant avec la même efficacité habituelle. M
       order: 12,
     };
     this.questions.set(jadeq12.id, jadeq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #6 =====
+    // "La Carte Postale de Samuel" — Secondaire 1 (12-13 ans)
+    // Thème : deuil, mémoire, découvrir la vie cachée d'un proche
+    // Questions variées : analyse de personnage, procédé littéraire, symbole, point de vue, thème, prolongement créatif
+    const narratifSamuel6ExId = randomUUID();
+
+    const narratifSamuel6Exercise: Exercise = {
+      id: narratifSamuel6ExId,
+      courseId: narratifSec1CourseId,
+      title: "La Carte Postale de Samuel",
+      description: "Deuil, mémoire et les secrets de ceux qu'on aime — 12 questions variées",
+      type: "text",
+      order: 6,
+    };
+    this.exercises.set(narratifSamuel6ExId, narratifSamuel6Exercise);
+
+    const samuelStory = `Samuel Bérubé rangea les livres de son grand-père un par un, avec la délicatesse qu'on réserve aux objets qui ont appartenu à quelqu'un qu'on ne reverra plus. Pépère Marcel était décédé quinze jours plus tôt, à 81 ans, d'un cœur qui avait simplement dit « ça suffit ». Samuel avait treize ans, et c'était la première fois qu'il perdait quelqu'un. La maison sentait encore la pipe froide et le café trop fort — une odeur qui, il le savait, ne durerait pas.
+
+Au fond d'une vieille boîte de métal sous le lit, entre des photos jaunies et un billet de concert délavé, il trouva une carte postale. Le recto montrait une plage de la Gaspésie en été. Au verso, une écriture serrée, à l'encre bleue décolorée :
+
+« Isabelle — je pense à toi tous les jours depuis août. J'ai tant de choses à te dire. Si tu reçois ça, dis-moi que tu vas bien. Si tu ne le reçois pas, ça veut dire que j'ai encore manqué de courage. — Marcel. »
+
+Samuel lut la carte trois fois. Isabelle. Il n'avait jamais entendu ce nom dans la famille. Sa grand-mère s'appelait Pauline, et elle était morte avant lui, dix ans plus tôt. Qui était Isabelle?
+
+Il fouilla les albums photos avec la méthode d'un détective. Dans un vieux cahier de 1961, il trouva une photo en noir et blanc : son grand-père très jeune, souriant, assis à côté d'une femme aux cheveux bouclés. Au dos, une seule ligne : « Marcel et Isabelle, lac Beauport, juillet 1961. »
+
+Ce soir-là, Samuel montra la carte et la photo à sa mère. Elle les examina en silence, puis soupira doucement. « Je savais que cette boîte existait, dit-elle. Mais je n'ai jamais osé l'ouvrir. » Elle lui expliqua ce qu'elle avait appris des années plus tard : Marcel avait aimé une femme avant Pauline, une jeune institutrice rencontrée l'été de ses vingt ans. Ils s'étaient séparés à l'automne — les familles, les distances, la vie. Il avait voulu lui écrire. Mais il n'avait jamais posté la lettre.
+
+Samuel regarda la photo longtemps. Sur le cliché, son grand-père n'était pas encore « pépère Marcel » — il était juste Marcel, un garçon de vingt ans avec un sourire qu'il ne lui avait jamais vu. Quelqu'un qui avait eu peur. Qui avait aimé et n'avait pas su le dire à temps.
+
+Il remit la carte dans la boîte de métal avec plus de soin. Il comprit quelque chose ce soir-là : les gens qu'on aime ont toujours eu une vie avant nous. Et cette vie-là leur appartient, même après leur mort. Surtout après.`;
+
+    const samuelq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q1 (Compréhension directe) : Qu'est-ce que Samuel trouve dans la boîte de métal sous le lit?",
+      text: samuelStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Une médaille militaire et un livret de pension", "Une carte postale adressée à une certaine « Isabelle »", "Une liasse de billets cachés depuis des années", "Un carnet de recettes de cuisine écrit à la main"]),
+      correctAnswer: "Une carte postale adressée à une certaine « Isabelle »",
+      order: 1,
+    };
+    this.questions.set(samuelq1.id, samuelq1);
+
+    const samuelq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q2 (Analyse d'un personnage)",
+      text: "Que révèle la carte postale sur la personnalité du grand-père Marcel?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il était grand voyageur et envoyait des cartes à tout le monde", "Il avait du mal à exprimer ses émotions et a manqué de courage au bon moment", "Il était malhonnête envers sa femme Pauline depuis le début", "Il était écrivain professionnel et aimait les belles phrases"]),
+      correctAnswer: "Il avait du mal à exprimer ses émotions et a manqué de courage au bon moment",
+      order: 2,
+    };
+    this.questions.set(samuelq2.id, samuelq2);
+
+    const samuelq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q3 (Compréhension inférentielle — lire entre les lignes)",
+      text: "Pourquoi Marcel n'a-t-il jamais envoyé la carte postale à Isabelle? Appuie ta réponse sur un indice du texte.",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il avait perdu l'adresse d'Isabelle après leur séparation", "La carte postale le dit clairement : il a « encore manqué de courage »", "Le bureau de poste de son village était fermé cet automne-là", "Il avait décidé que ça ne valait plus la peine après avoir rencontré Pauline"]),
+      correctAnswer: "La carte postale le dit clairement : il a « encore manqué de courage »",
+      order: 3,
+    };
+    this.questions.set(samuelq3.id, samuelq3);
+
+    const samuelq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q4 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement vient changer le cours du rangement ordinaire de Samuel?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une photo tombe et se brise pendant qu'il range les livres", "Il découvre une carte postale adressée à une inconnue appelée Isabelle", "Sa mère lui annonce que la maison du grand-père sera vendue dès la semaine suivante", "Il trouve une grosse somme d'argent cachée sous le matelas"]),
+      correctAnswer: "Il découvre une carte postale adressée à une inconnue appelée Isabelle",
+      order: 4,
+    };
+    this.questions.set(samuelq4.id, samuelq4);
+
+    const samuelq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q5 (Procédé littéraire)",
+      text: "L'expression « d'un cœur qui avait simplement dit ça suffit » pour décrire la mort du grand-père est un exemple de :",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une comparaison (rapprocher deux éléments avec « comme » ou « tel »)", "Une énumération (liste d'éléments séparés par des virgules)", "Une personnification (donner des qualités humaines à quelque chose qui n'est pas humain)", "Une répétition (répéter le même mot pour créer un effet)"]),
+      correctAnswer: "Une personnification (donner des qualités humaines à quelque chose qui n'est pas humain)",
+      order: 5,
+    };
+    this.questions.set(samuelq5.id, samuelq5);
+
+    const samuelq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q6 (Analyse d'un objet symbolique)",
+      text: "Dans ce récit, que symbolise la carte postale non envoyée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un souvenir de vacances parmi d'autres dans la boîte", "Les mots qu'on n'a jamais dits et le courage qu'on n'a pas eu", "La preuve que Marcel cachait des secrets à toute sa famille", "Un devoir de français que Marcel n'avait pas terminé"]),
+      correctAnswer: "Les mots qu'on n'a jamais dits et le courage qu'on n'a pas eu",
+      order: 6,
+    };
+    this.questions.set(samuelq6.id, samuelq6);
+
+    const samuelq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q7 (Compréhension — suite des événements)",
+      text: "Que se passe-t-il après que Samuel montre la carte et la photo à sa mère?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Sa mère se met en colère et lui demande de tout jeter", "Sa mère lui explique l'histoire de Marcel et Isabelle, séparés à l'automne de 1961", "Sa mère contacte Isabelle pour lui annoncer la mort de Marcel", "Sa mère lui interdit de fouiller davantage dans les affaires du grand-père"]),
+      correctAnswer: "Sa mère lui explique l'histoire de Marcel et Isabelle, séparés à l'automne de 1961",
+      order: 7,
+    };
+    this.questions.set(samuelq7.id, samuelq7);
+
+    const samuelq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q8 (Point de vue et narration)",
+      text: "Le narrateur raconte l'histoire en suivant les pensées et les découvertes de Samuel. Quel effet cela crée-t-il pour le lecteur?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Cela rend l'histoire moins crédible et plus difficile à suivre", "Cela permet au lecteur de vivre les découvertes en même temps que Samuel et de s'identifier à lui", "Cela donne uniquement le point de vue du grand-père Marcel", "Cela empêche de comprendre les sentiments de la mère de Samuel"]),
+      correctAnswer: "Cela permet au lecteur de vivre les découvertes en même temps que Samuel et de s'identifier à lui",
+      order: 8,
+    };
+    this.questions.set(samuelq8.id, samuelq8);
+
+    const samuelq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q9 (Thème principal)",
+      text: "Quel est le thème principal de « La Carte Postale de Samuel »?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'importance de faire le ménage et de ranger après un décès", "Le regret de ne pas avoir dit les bonnes choses au bon moment, et la complexité des êtres qu'on aime", "Les dangers de garder des secrets dans une famille", "La difficulté de vivre à la campagne loin des grandes villes"]),
+      correctAnswer: "Le regret de ne pas avoir dit les bonnes choses au bon moment, et la complexité des êtres qu'on aime",
+      order: 9,
+    };
+    this.questions.set(samuelq9.id, samuelq9);
+
+    const samuelq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q10 (Prolongement créatif)",
+      text: "Imagine que tu es Marcel en 1961, juste après la séparation d'avec Isabelle. Écris les premières lignes de la carte postale que tu aurais voulu lui envoyer. Que lui aurais-tu dit? (Deux ou trois phrases suffisent.)",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(samuelq10.id, samuelq10);
+
+    const samuelq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q11 (Réaction personnelle)",
+      text: "Samuel découvre que son grand-père avait une vie entière — avec ses amours et ses regrets — avant d'être « pépère Marcel ». T'est-il déjà arrivé de voir un adulte de ta famille différemment après avoir appris quelque chose sur sa vie? Explique en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(samuelq11.id, samuelq11);
+
+    const samuelq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifSamuel6ExId,
+      title: "Q12 (Jugement critique)",
+      text: "Marcel n'a jamais eu le courage d'envoyer sa carte. À la fin, Samuel en retient une leçon sur l'importance de dire ce qu'on ressent. Crois-tu qu'il faut toujours exprimer ses sentiments aux gens qu'on aime, même si c'est difficile ou inconfortable? Donne au moins deux arguments pour défendre ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(samuelq12.id, samuelq12);
   }
 
   // Users
