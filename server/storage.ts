@@ -7782,6 +7782,182 @@ Il remit la carte dans la boîte de métal avec plus de soin. Il comprit quelque
       order: 12,
     };
     this.questions.set(samuelq12.id, samuelq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #7 =====
+    // "Les Deux Rives de Yasmine" — Secondaire 1 (12-13 ans)
+    // Thème : immigration, identité culturelle, construire sa place entre deux mondes
+    // Questions : évolution du personnage, cause/effet, expression-clé, intention de l'auteur, métaphore, lien titre/texte, mise en situation
+    const narratifYasmine7ExId = randomUUID();
+
+    const narratifYasmine7Exercise: Exercise = {
+      id: narratifYasmine7ExId,
+      courseId: narratifSec1CourseId,
+      title: "Les Deux Rives de Yasmine",
+      description: "Immigration, identité et appartenance — 12 questions variées",
+      type: "text",
+      order: 7,
+    };
+    this.exercises.set(narratifYasmine7ExId, narratifYasmine7Exercise);
+
+    const yasmineStory = `Yasmine Benali avait mis exactement quatre-vingt-sept jours à compter de son arrivée à Québec pour ne plus se retourner en entendant quelqu'un prononcer son prénom. En Tunisie, tout le monde connaissait Yasmine. Ici, les gens peinaient avec le « Ya » du début, l'étiraient parfois avec une hésitation au milieu, comme si le nom lui-même était une question. Elle ne les corrigeait pas. Elle avait d'autres batailles à mener.
+
+Son français était bon — meilleur que celui de certains élèves de sa classe, elle en était consciente sans s'en vanter. Mais c'était un français appris dans les livres, net et formel. Il ne contenait pas les « faque », les « c'est le boutte », les mots chuchotés derrière les casiers. Celui-là, elle le déchiffrait encore, comme un code qu'on ne lui avait pas remis à l'arrivée.
+
+Le lundi matin, madame Leclerc annonça le projet de décembre : chaque élève devait présenter devant la classe une tradition de « chez eux ». Dix minutes, avec des images si possible. La classe accueillit l'annonce avec un enthousiasme modéré. Yasmine, elle, sentit quelque chose se resserrer dans sa poitrine. Chez elle. L'expression flotta dans l'air comme une question sans réponse.
+
+Le soir, elle demanda à sa mère : « Qu'est-ce qu'on fait, nous, pour décembre? » Sa mère haussa les épaules avec ce sourire calme qui signifiait qu'elle avait pensé à la même chose. « On fait l'Aïd al-Adha au printemps. En décembre... » Elle s'arrêta, puis sourit franchement. « En décembre, on a commencé à faire la bûche de Noël l'an passé. Tu te souviens? Ton père avait brûlé la crème. »
+
+Yasmine rit malgré elle. C'était vrai. Son père, ingénieur de profession, avait raté la bûche trois fois avant d'en produire une présentable. Sur la table, à côté du gâteau maladroit, il y avait eu des dattes et des amandes grillées, comme chez la grand-mère à Tunis.
+
+Le jour de la présentation, Yasmine arriva avec deux assiettes. Elle parla des deux traditions : l'Aïd de son enfance, avec les tapis étendus dans la cour et l'odeur d'épices dans toute la maison; et la bûche de leur premier hiver canadien, brûlée et imparfaite, mais mangée en famille dans l'appartement qui sentait encore le neuf. Elle termina ainsi : « Je viens de deux rives. Je suis encore en train de construire le pont. »
+
+Il y eut un silence. Puis Émilie, assise au premier rang, leva la main : « C'est quoi les dattes? C'est sucré? »
+
+Ce soir-là, Yasmine ne compta pas les jours depuis son arrivée. Pour la première fois depuis quatre-vingt-sept jours, cela lui semblait sans importance.`;
+
+    const yasmineq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q1 (Compréhension directe) : Qu'est-ce qui distingue le français de Yasmine de celui de ses camarades de classe?",
+      text: yasmineStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle parle beaucoup trop vite et les autres ne la comprennent pas", "Son français est appris dans les livres : formel et net, sans les expressions familières québécoises", "Elle mélange les mots français et arabes dans ses phrases", "Elle refuse de parler en classe parce qu'elle a honte de son accent"]),
+      correctAnswer: "Son français est appris dans les livres : formel et net, sans les expressions familières québécoises",
+      order: 1,
+    };
+    this.questions.set(yasmineq1.id, yasmineq1);
+
+    const yasmineq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q2 (Évolution du personnage)",
+      text: "Comment Yasmine évolue-t-elle entre le début et la fin de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle reste aussi mal à l'aise qu'au début et décide de rentrer en Tunisie", "Elle passe de l'inconfort et la confusion identitaire à une acceptation de ses deux appartenances", "Elle abandonne ses traditions tunisiennes pour s'intégrer complètement au Québec", "Elle devient la meilleure amie d'Émilie grâce à la présentation"]),
+      correctAnswer: "Elle passe de l'inconfort et la confusion identitaire à une acceptation de ses deux appartenances",
+      order: 2,
+    };
+    this.questions.set(yasmineq2.id, yasmineq2);
+
+    const yasmineq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q3 (Cause et effet)",
+      text: "Pourquoi l'annonce du projet « une tradition de chez vous » fait-elle se « resserrer quelque chose dans la poitrine » de Yasmine?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle n'aime pas parler devant la classe depuis toujours", "Elle ne connaît aucune tradition ni québécoise ni tunisienne", "L'expression « chez elle » est floue pour elle : elle est entre deux cultures et ne sait pas laquelle présenter", "Elle a peur que sa mère ne l'aide pas à préparer la présentation"]),
+      correctAnswer: "L'expression « chez elle » est floue pour elle : elle est entre deux cultures et ne sait pas laquelle présenter",
+      order: 3,
+    };
+    this.questions.set(yasmineq3.id, yasmineq3);
+
+    const yasmineq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q4 (Expression-clé — sens profond)",
+      text: "Que veut dire Yasmine quand elle dit : « Je viens de deux rives. Je suis encore en train de construire le pont »?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle habite près d'un fleuve et doit traverser un pont tous les matins", "Son identité est partagée entre deux cultures, et elle est en train de trouver comment les relier en elle", "Elle pense que le Québec et la Tunisie sont séparés par un océan trop large", "Elle veut devenir ingénieure comme son père et construire de vrais ponts"]),
+      correctAnswer: "Son identité est partagée entre deux cultures, et elle est en train de trouver comment les relier en elle",
+      order: 4,
+    };
+    this.questions.set(yasmineq4.id, yasmineq4);
+
+    const yasmineq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q5 (Procédé littéraire — métaphore)",
+      text: "L'expression « comme un code qu'on ne lui avait pas remis à l'arrivée » pour décrire l'argot québécois est une :",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une personnification (donner des qualités humaines à quelque chose)", "Une énumération (une longue liste d'éléments)", "Une métaphore (comparer deux choses sans utiliser « comme » ni « tel »)", "Une comparaison (rapprocher deux éléments avec « comme »)"]),
+      correctAnswer: "Une comparaison (rapprocher deux éléments avec « comme »)",
+      order: 5,
+    };
+    this.questions.set(yasmineq5.id, yasmineq5);
+
+    const yasmineq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q6 (Intention de l'auteur)",
+      text: "Pourquoi l'auteur inclut-il le détail de la bûche de Noël brûlée par le père de Yasmine?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Pour montrer que le père de Yasmine est un mauvais cuisinier et que la famille souffre", "Pour introduire une note d'humour et montrer que la famille s'intègre avec maladresse mais avec bonne volonté", "Pour critiquer les traditions québécoises qui sont difficiles à réaliser", "Pour prouver que Yasmine aurait mieux fait de rester en Tunisie"]),
+      correctAnswer: "Pour introduire une note d'humour et montrer que la famille s'intègre avec maladresse mais avec bonne volonté",
+      order: 6,
+    };
+    this.questions.set(yasmineq6.id, yasmineq6);
+
+    const yasmineq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q7 (Lien entre le titre et le texte)",
+      text: "Comment le titre « Les Deux Rives de Yasmine » est-il lié au contenu de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il fait référence aux deux rivières qui bordent la ville de Québec", "Il symbolise les deux cultures entre lesquelles Yasmine se construit : la tunisienne et la québécoise", "Il décrit les deux maisons où Yasmine a habité dans sa vie", "Il parle des deux amies que Yasmine a rencontrées à son arrivée"]),
+      correctAnswer: "Il symbolise les deux cultures entre lesquelles Yasmine se construit : la tunisienne et la québécoise",
+      order: 7,
+    };
+    this.questions.set(yasmineq7.id, yasmineq7);
+
+    const yasmineq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q8 (Compréhension — détail significatif)",
+      text: "Quel détail montre que Yasmine commence à se sentir mieux à la toute fin de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle décide de corriger les gens qui prononcent mal son prénom", "Elle reçoit la meilleure note de la classe pour sa présentation", "Pour la première fois depuis 87 jours, elle ne compte plus les jours depuis son arrivée", "Elle s'inscrit à un club de français pour améliorer son accent québécois"]),
+      correctAnswer: "Pour la première fois depuis 87 jours, elle ne compte plus les jours depuis son arrivée",
+      order: 8,
+    };
+    this.questions.set(yasmineq8.id, yasmineq8);
+
+    const yasmineq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q9 (Message central)",
+      text: "Quel est le message principal que l'auteur veut transmettre dans cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il faut abandonner ses origines pour bien s'intégrer dans un nouveau pays", "Avoir des racines dans deux cultures est une richesse, non un manque", "Les présentations orales sont le meilleur moyen de faire des amis à l'école", "L'apprentissage d'une langue est toujours douloureux et prend des années"]),
+      correctAnswer: "Avoir des racines dans deux cultures est une richesse, non un manque",
+      order: 9,
+    };
+    this.questions.set(yasmineq9.id, yasmineq9);
+
+    const yasmineq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q10 (Mise en situation)",
+      text: "Si tu étais Yasmine, quelle tradition aurais-tu choisie de présenter et pourquoi? Est-ce que tu aurais fait le même choix qu'elle — présenter les deux à la fois? Explique ta réponse en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(yasmineq10.id, yasmineq10);
+
+    const yasmineq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q11 (Lien personnel)",
+      text: "As-tu déjà eu l'impression d'être « entre deux mondes » — entre deux groupes, deux cultures, deux façons de vivre? Comment tu t'es senti(e)? Comment tu t'en es sorti(e)? Explique en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(yasmineq11.id, yasmineq11);
+
+    const yasmineq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifYasmine7ExId,
+      title: "Q12 (Jugement critique)",
+      text: "Yasmine choisit de présenter ses deux traditions plutôt qu'une seule. Selon toi, est-ce qu'on devrait toujours garder les traditions de sa culture d'origine, même quand on s'installe dans un nouveau pays? Ou faut-il adopter les traditions du nouveau pays pour mieux s'intégrer? Donne au moins deux arguments pour défendre ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(yasmineq12.id, yasmineq12);
   }
 
   // Users
