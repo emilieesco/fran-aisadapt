@@ -8312,6 +8312,182 @@ En sortant de la classe, Léa n'était pas guérie. Les lettres dansaient encore
       order: 12,
     };
     this.questions.set(leaq12.id, leaq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #10 =====
+    // "Le Silence de Jérémy" — Secondaire 1 (12-13 ans)
+    // Thème : témoin d'intimidation, responsabilité morale, courage de dénoncer
+    // Questions : rôle du témoin, dilemme moral, antithèse, analyse d'une décision, rôle du doute, responsabilité collective, note anonyme (création), réflexion témoin
+    const narratifJeremy10ExId = randomUUID();
+
+    const narratifJeremy10Exercise: Exercise = {
+      id: narratifJeremy10ExId,
+      courseId: narratifSec1CourseId,
+      title: "Le Silence de Jérémy",
+      description: "Témoin d'intimidation, dilemme moral et courage discret — 12 questions variées",
+      type: "text",
+      order: 10,
+    };
+    this.exercises.set(narratifJeremy10ExId, narratifJeremy10Exercise);
+
+    const jeremyStory = `Jérémy était arrivé à cette école en septembre, donc il observait encore les règles non écrites : qui s'assoit où, qui rit de quoi, qui on ne regarde pas trop longtemps. Il avait appris rapidement que Mathis était dans la deuxième catégorie.
+
+Mathis mangeait seul ou presque. Il lisait des romans de science-fiction avec des couvertures brillantes qu'il posait à plat pour cacher le titre. Il marchait un peu trop lentement dans les couloirs. Des garçons — trois, toujours les mêmes — lui glissaient des commentaires en passant, rien de grave en apparence, juste le genre de mots qui s'accumulent et finissent par peser.
+
+Jérémy se disait que c'était pas ses affaires. Il était nouveau. Il ne connaissait pas Mathis. Ce n'était pas sa guerre.
+
+Un jeudi après-midi, dans les vestiaires après l'éducation physique, Jérémy vit quelque chose qu'il ne put pas ranger dans la catégorie « pas grave ». Le sac à dos de Mathis avait été jeté sous la douche. Ses cahiers, qu'il remplissait de dessins en marge depuis le début de l'année, trempaient sur le sol de ciment. Mathis les ramassait sans rien dire, les pages se déchirant au contact de ses doigts mouillés. Il n'a pas pleuré. Il n'a pas demandé pourquoi. Il a juste ramassé.
+
+Jérémy a fermé son casier et est parti.
+
+Ce soir-là, il ne dormit pas bien. Il rédigea mentalement cinq textos à cinq personnes différentes et n'en envoya aucun. Il chercha le nom de Mathis sur les réseaux et ne le trouva pas. Il pensa au visage de Mathis en ramassant ses cahiers — calme, précis, comme quelqu'un qui sait que ça ne sert à rien de crier.
+
+À deux heures du matin, il trouva sur le site de l'école un formulaire de signalement anonyme pour la vie scolaire. Il le remplit trois fois. L'effaça deux fois. La troisième fois, il le soumit.
+
+Le lundi suivant, il croisa Mathis dans le couloir. Mathis parlait avec la travailleuse sociale de l'école. Il leva les yeux une seconde, croisa ceux de Jérémy, puis continua. Jérémy ne sait pas si le formulaire a changé quoi que ce soit. Il ne sait pas si Mathis saura jamais. Il marcha vers sa classe avec, dans la poitrine, quelque chose de moins pesant qu'un secret — mais pas encore aussi léger qu'une bonne action.`;
+
+    const jeremyq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q1 (Compréhension directe) : Quel événement dans les vestiaires pousse Jérémy à changer d'attitude?",
+      text: jeremyStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Jérémy est lui-même victime d'intimidation dans le vestiaire", "Il voit le sac à dos et les cahiers dessinés de Mathis détrempés sous la douche sans que personne n'intervienne", "Il entend Mathis raconter à un ami ce qui lui arrive depuis le début de l'année", "Il reçoit un message anonyme lui demandant de défendre Mathis"]),
+      correctAnswer: "Il voit le sac à dos et les cahiers dessinés de Mathis détrempés sous la douche sans que personne n'intervienne",
+      order: 1,
+    };
+    this.questions.set(jeremyq1.id, jeremyq1);
+
+    const jeremyq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q2 (Analyse du rôle du témoin)",
+      text: "Au début de l'histoire, Jérémy se dit que c'est « pas ses affaires ». Qu'est-ce que ce raisonnement révèle sur le rôle difficile du témoin dans une situation d'intimidation?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que Jérémy est une personne égoïste qui ne pense qu'à lui-même", "Que le témoin peut se sentir impuissant et trouver des raisons de ne pas agir pour se protéger émotionnellement", "Que l'intimidation est un problème qui ne concerne que la victime et les intimidateurs", "Que Jérémy n'a pas encore réalisé que Mathis est victime d'intimidation"]),
+      correctAnswer: "Que le témoin peut se sentir impuissant et trouver des raisons de ne pas agir pour se protéger émotionnellement",
+      order: 2,
+    };
+    this.questions.set(jeremyq2.id, jeremyq2);
+
+    const jeremyq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q3 (Schéma narratif — Péripéties)",
+      text: "Après la scène des vestiaires, Jérémy traverse plusieurs péripéties intérieures avant d'agir. Lesquelles parmi ces éléments font partie de ses péripéties?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il confronte directement les trois garçons intimidateurs le lendemain matin", "Il rédige mentalement des textos sans les envoyer, cherche Mathis en ligne, et remplit le formulaire deux fois avant de l'effacer", "Il parle à son enseignant de classe le soir même par courriel", "Il demande à un ami commun de parler à Mathis à sa place"]),
+      correctAnswer: "Il rédige mentalement des textos sans les envoyer, cherche Mathis en ligne, et remplit le formulaire deux fois avant de l'effacer",
+      order: 3,
+    };
+    this.questions.set(jeremyq3.id, jeremyq3);
+
+    const jeremyq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q4 (Analyse d'un dilemme moral)",
+      text: "Jérémy fait face à un dilemme moral. Quels sont les deux pôles opposés de ce dilemme?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Vouloir punir les intimidateurs lui-même ou attendre que les adultes interviennent d'eux-mêmes", "Rester silencieux pour se protéger en tant que nouveau et ne pas attirer l'attention sur lui, ou agir pour Mathis en prenant un risque social", "Choisir de devenir ami avec Mathis ou de rejoindre le groupe des intimidateurs", "Parler à ses parents ce soir-là ou attendre la prochaine fois que ça arrive"]),
+      correctAnswer: "Rester silencieux pour se protéger en tant que nouveau et ne pas attirer l'attention sur lui, ou agir pour Mathis en prenant un risque social",
+      order: 4,
+    };
+    this.questions.set(jeremyq4.id, jeremyq4);
+
+    const jeremyq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q5 (Procédé littéraire — antithèse)",
+      text: "À la fin, Jérémy ressent « quelque chose de moins pesant qu'un secret — mais pas encore aussi léger qu'une bonne action ». Quel procédé littéraire est utilisé ici et quel effet produit-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une comparaison, pour expliquer que Jérémy porte maintenant un nouveau secret plus lourd", "Une antithèse (deux idées opposées), pour montrer que Jérémy est dans un état intermédiaire — ni tout à fait soulagé, ni tout à fait fier", "Une métaphore, pour décrire le poids réel que Jérémy ressent dans ses poumons", "Une énumération, pour lister tous les sentiments contradictoires de Jérémy"]),
+      correctAnswer: "Une antithèse (deux idées opposées), pour montrer que Jérémy est dans un état intermédiaire — ni tout à fait soulagé, ni tout à fait fier",
+      order: 5,
+    };
+    this.questions.set(jeremyq5.id, jeremyq5);
+
+    const jeremyq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q6 (Analyse de la réaction de Mathis)",
+      text: "Quand Mathis ramasse ses cahiers détrempés, le narrateur précise qu'il le fait « sans rien dire », « calme, précis, comme quelqu'un qui sait que ça ne sert à rien de crier ». Qu'est-ce que cette description révèle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que Mathis est indifférent et que la situation ne le dérange pas vraiment", "Que cette situation se produit suffisamment souvent pour que Mathis ait développé une façon de la traverser sans s'effondrer", "Que Mathis est en colère mais qu'il choisit de cacher ses émotions pour faire semblant d'être fort", "Que Mathis n'a pas remarqué que son sac avait été jeté sous la douche volontairement"]),
+      correctAnswer: "Que cette situation se produit suffisamment souvent pour que Mathis ait développé une façon de la traverser sans s'effondrer",
+      order: 6,
+    };
+    this.questions.set(jeremyq6.id, jeremyq6);
+
+    const jeremyq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q7 (Rôle du doute dans l'histoire)",
+      text: "Jérémy ne sait pas si son formulaire a changé quelque chose, et il ne saura peut-être jamais. Pourquoi l'auteur choisit-il de laisser cette incertitude à la fin plutôt que de montrer clairement que tout va mieux?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Parce que l'auteur n'a pas réfléchi à une fin satisfaisante pour l'histoire", "Parce que dans la vraie vie, ceux qui agissent discrètement voient rarement le résultat de leur geste, et agir malgré le doute est en soi un acte courageux", "Parce que l'auteur veut montrer que les signalements anonymes ne fonctionnent jamais", "Parce que Jérémy a finalement décidé de ne pas soumettre le formulaire"]),
+      correctAnswer: "Parce que dans la vraie vie, ceux qui agissent discrètement voient rarement le résultat de leur geste, et agir malgré le doute est en soi un acte courageux",
+      order: 7,
+    };
+    this.questions.set(jeremyq7.id, jeremyq7);
+
+    const jeremyq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q8 (Responsabilité collective)",
+      text: "L'histoire montre que l'intimidation n'implique pas seulement une victime et un intimidateur. Quel autre rôle essentiel est mis en lumière, et pourquoi est-il important?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le rôle des parents, qui auraient dû remarquer les signes avant l'école", "Le rôle du témoin, qui a le pouvoir d'agir ou de ne pas agir et dont le silence peut prolonger la situation", "Le rôle de la direction d'école, qui devrait surveiller les vestiaires en permanence", "Le rôle des autres victimes, qui devraient se regrouper pour se défendre ensemble"]),
+      correctAnswer: "Le rôle du témoin, qui a le pouvoir d'agir ou de ne pas agir et dont le silence peut prolonger la situation",
+      order: 8,
+    };
+    this.questions.set(jeremyq8.id, jeremyq8);
+
+    const jeremyq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q9 (Message central)",
+      text: "Quel est le message principal de cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il ne faut jamais intervenir dans les affaires des autres quand on est nouveau dans une école", "Agir pour les autres, même discrètement et sans certitude du résultat, est une forme de courage que le silence ne peut pas remplacer", "Les formulaires de signalement anonyme ne servent à rien dans les écoles secondaires", "Il faut toujours confronter directement les intimidateurs pour que les choses changent vraiment"]),
+      correctAnswer: "Agir pour les autres, même discrètement et sans certitude du résultat, est une forme de courage que le silence ne peut pas remplacer",
+      order: 9,
+    };
+    this.questions.set(jeremyq9.id, jeremyq9);
+
+    const jeremyq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q10 (Écriture créative — le formulaire)",
+      text: "Écris le message que Jérémy a finalement soumis dans le formulaire de signalement anonyme. Il doit inclure : ce qu'il a observé, depuis quand, qui est concerné (sans nommer les intimidateurs si tu veux), et ce qu'il demande à l'école de faire. Environ 6 à 9 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(jeremyq10.id, jeremyq10);
+
+    const jeremyq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q11 (Réflexion — le rôle de témoin)",
+      text: "Si tu avais été à la place de Jérémy dans les vestiaires, qu'est-ce que tu aurais fait? Aurais-tu agi sur le moment, attendu comme lui, ou fait autre chose? Explique honnêtement ton raisonnement en 4 à 6 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(jeremyq11.id, jeremyq11);
+
+    const jeremyq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJeremy10ExId,
+      title: "Q12 (Suite narrative)",
+      text: "Imagine la suite : deux semaines plus tard, Mathis croise Jérémy à la cafétéria et lui dit qu'il sait que c'est lui qui a soumis le formulaire. Écris la conversation entre les deux personnages. Comment réagit chacun? Qu'est-ce qui se dit — ou ne se dit pas? Minimum 8 répliques.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(jeremyq12.id, jeremyq12);
   }
 
   // Users
