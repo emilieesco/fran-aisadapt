@@ -7958,6 +7958,180 @@ Ce soir-là, Yasmine ne compta pas les jours depuis son arrivée. Pour la premi�
       order: 12,
     };
     this.questions.set(yasmineq12.id, yasmineq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #8 =====
+    // "Le Double Profil de Thomas" — Secondaire 1 (12-13 ans)
+    // Thème : identité en ligne, authenticité, réseaux sociaux
+    // Questions : conflit intérieur, inférence, conséquences, geste symbolique, comparaison, réaction inattendue, conseil, opinion
+    const narratifThomas8ExId = randomUUID();
+
+    const narratifThomas8Exercise: Exercise = {
+      id: narratifThomas8ExId,
+      courseId: narratifSec1CourseId,
+      title: "Le Double Profil de Thomas",
+      description: "Identité en ligne et authenticité — 12 questions variées",
+      type: "text",
+      order: 8,
+    };
+    this.exercises.set(narratifThomas8ExId, narratifThomas8Exercise);
+
+    const thomasStory = `Thomas Gagnon avait deux comptes Instagram. Le premier — @thomas.gnon, avec une photo de profil soigneusement choisie où il souriait les bras croisés — comptait 312 abonnés et ne contenait rien de vrai. Il y postait des mèmes repris d'autres comptes, des vidéos de hockey, et parfois une photo de lui à une fête où il avait l'air de s'amuser, même s'il s'ennuyait un peu. C'était le compte que ses camarades connaissaient.
+
+Le deuxième s'appelait @carnet_obscur. Zéro photo de profil. Trois abonnés, tous des inconnus rencontrés sur un forum de bande dessinée. Thomas y postait ses dessins : des planches de BD en noir et blanc qu'il faisait le soir dans sa chambre, des personnages aux expressions précises, des histoires courtes sur l'ennui, sur la solitude au milieu du monde, sur les choses qu'on ne dit pas. Ce compte, c'était lui — le vrai lui.
+
+Un mercredi soir de novembre, son téléphone vibra vingt-trois fois en quinze minutes. Raphaël, un gars populaire de sa classe, avait trouvé @carnet_obscur. Il avait pris une capture d'écran d'un dessin — une planche où un garçon assis seul à la cafétéria regardait les autres de loin — et l'avait partagée dans le groupe de classe avec le commentaire : « C'est Thomas ça? »
+
+Thomas éteignit son téléphone. Il le ralluma. L'éteignit encore. À 23 h, incapable de dormir, il rouvrit l'application. Il y avait 47 messages dans le groupe. Il en lut quelques-uns, le cœur serré. Puis un message d'une fille qu'il connaissait à peine, Chloé : « Je veux pas être weird, mais... tes dessins sont vraiment bons. Genre vraiment. »
+
+Le lendemain, Thomas arriva en classe le ventre noué. Raphaël ne dit rien — il avait l'air de trouver autre chose d'intéressant. Mais quatre personnes vinrent le voir à différents moments de la journée. Pas pour se moquer. Pour lui demander si c'était vraiment lui qui avait dessiné ça, et si oui, est-ce qu'il en avait d'autres.
+
+Ce soir-là, Thomas passa une heure à regarder ses deux comptes. L'un avec 312 abonnés qui ne le connaissaient pas vraiment. L'autre avec trois abonnés qui l'avaient vu pour de vrai. Il hésita longtemps, puis supprima @thomas.gnon. Il y avait quelque chose d'étrange et de léger dans ce geste — comme enlever un chandail trop serré qu'on portait depuis trop longtemps.
+
+Il ne sait toujours pas combien d'abonnés il a maintenant. Mais les seuls commentaires qu'il reçoit, ce sont des gens qui lui disent que ses dessins leur ressemblent. Et ça, ça lui suffit.`;
+
+    const thomasq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q1 (Compréhension directe) : Que représentent les deux comptes Instagram de Thomas?",
+      text: thomasStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Un compte pour ses amis et un autre pour sa famille", "Un compte public plein de mèmes sans profondeur, et un secret qui montre son vrai talent", "Deux pseudonymes différents pour ne pas être reconnu à l'école", "Un compte pour le dessin et un autre pour partager ses résultats scolaires"]),
+      correctAnswer: "Un compte public plein de mèmes sans profondeur, et un secret qui montre son vrai talent",
+      order: 1,
+    };
+    this.questions.set(thomasq1.id, thomasq1);
+
+    const thomasq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q2 (Analyse du conflit intérieur)",
+      text: "Quel est le conflit intérieur que vit Thomas tout au long de cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il hésite entre continuer le hockey ou se consacrer au dessin", "Il veut être aimé pour son image publique, mais son vrai soi reste caché par peur du jugement", "Il ne sait pas s'il doit s'excuser auprès de Raphaël pour l'avoir ignoré", "Il veut supprimer tous ses réseaux sociaux mais a peur de perdre ses amis"]),
+      correctAnswer: "Il veut être aimé pour son image publique, mais son vrai soi reste caché par peur du jugement",
+      order: 2,
+    };
+    this.questions.set(thomasq2.id, thomasq2);
+
+    const thomasq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q3 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement fait basculer la situation pour Thomas?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Thomas publie accidentellement un dessin sur son compte public", "Raphaël découvre @carnet_obscur et partage un dessin de Thomas dans le groupe de classe", "Thomas se fait voler son téléphone pendant l'entraînement de hockey", "L'enseignant de Thomas remarque ses dessins et les montre à la classe"]),
+      correctAnswer: "Raphaël découvre @carnet_obscur et partage un dessin de Thomas dans le groupe de classe",
+      order: 3,
+    };
+    this.questions.set(thomasq3.id, thomasq3);
+
+    const thomasq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q4 (Compréhension inférentielle)",
+      text: "Pourquoi Thomas éteint-il son téléphone, le rallume, puis l'éteint encore le soir où le groupe explose de messages?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Sa batterie était presque vide et il n'avait pas son chargeur", "Il est partagé entre la peur de lire les messages et l'impossibilité de ne pas le faire", "Il voulait appeler ses parents mais ne trouvait pas le bon moment", "Il testait si son téléphone fonctionnait correctement après une mise à jour"]),
+      correctAnswer: "Il est partagé entre la peur de lire les messages et l'impossibilité de ne pas le faire",
+      order: 4,
+    };
+    this.questions.set(thomasq4.id, thomasq4);
+
+    const thomasq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q5 (Procédé littéraire — comparaison)",
+      text: "À la fin, supprimer @thomas.gnon est décrit « comme enlever un chandail trop serré qu'on portait depuis trop longtemps ». Qu'est-ce que cette comparaison suggère?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que Thomas avait froid et voulait changer de vêtements", "Que supprimer ce compte a été douloureux et qu'il le regrette déjà", "Que maintenir cette fausse image était inconfortable, et s'en débarrasser apporte un soulagement", "Que Thomas était mal habillé à l'école et ses camarades se moquaient de lui"]),
+      correctAnswer: "Que maintenir cette fausse image était inconfortable, et s'en débarrasser apporte un soulagement",
+      order: 5,
+    };
+    this.questions.set(thomasq5.id, thomasq5);
+
+    const thomasq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q6 (Analyse d'une réaction inattendue)",
+      text: "Pourquoi la réaction de Chloé est-elle surprenante dans ce contexte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Chloé était la meilleure amie de Thomas et il ne s'attendait pas à la voir dans le groupe", "Au milieu des messages moqueurs possibles, Chloé offre une admiration sincère et inattendue", "Chloé avait déjà vu les dessins de Thomas et il pensait qu'elle ne dirait rien", "Chloé était habituellement très critique et Thomas ne l'aimait pas"]),
+      correctAnswer: "Au milieu des messages moqueurs possibles, Chloé offre une admiration sincère et inattendue",
+      order: 6,
+    };
+    this.questions.set(thomasq6.id, thomasq6);
+
+    const thomasq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q7 (Analyse des conséquences)",
+      text: "La divulgation de @carnet_obscur par Raphaël provoque des conséquences que Thomas n'avait pas prévues. Lesquelles?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Thomas est moqué pendant des semaines et décide de changer d'école", "Quatre camarades viennent lui exprimer leur admiration sincère pour ses dessins", "Raphaël s'excuse publiquement devant toute la classe le lendemain", "Thomas reçoit une convocation de la direction pour avoir posté des dessins en classe"]),
+      correctAnswer: "Quatre camarades viennent lui exprimer leur admiration sincère pour ses dessins",
+      order: 7,
+    };
+    this.questions.set(thomasq7.id, thomasq7);
+
+    const thomasq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q8 (Geste symbolique)",
+      text: "Que symbolise le geste de Thomas quand il supprime @thomas.gnon à la fin?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il décide d'arrêter complètement les réseaux sociaux pour se concentrer sur ses études", "Il rejette sa fausse identité pour n'assumer que son moi authentique", "Il est en colère contre Raphaël et veut disparaître d'Internet", "Il veut recommencer à zéro avec un troisième compte encore plus secret"]),
+      correctAnswer: "Il rejette sa fausse identité pour n'assumer que son moi authentique",
+      order: 8,
+    };
+    this.questions.set(thomasq8.id, thomasq8);
+
+    const thomasq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q9 (Message de l'auteur)",
+      text: "Quel message l'auteur veut-il nous transmettre à travers cette histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les réseaux sociaux sont dangereux et il vaut mieux ne pas en avoir", "Être authentique attire plus de vraies connexions qu'une image fabriquée pour plaire", "Il ne faut jamais partager ses créations personnelles sur Internet", "La popularité en ligne est plus importante que ce qu'on pense réellement"]),
+      correctAnswer: "Être authentique attire plus de vraies connexions qu'une image fabriquée pour plaire",
+      order: 9,
+    };
+    this.questions.set(thomasq9.id, thomasq9);
+
+    const thomasq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q10 (Opinion argumentée)",
+      text: "Crois-tu que c'est normal et acceptable de montrer une image différente de soi sur les réseaux sociaux? Ou est-ce que ça cause plus de mal que de bien? Donne deux arguments pour défendre ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(thomasq10.id, thomasq10);
+
+    const thomasq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q11 (Expérience personnelle)",
+      text: "As-tu déjà caché quelque chose de toi-même (un talent, une passion, une opinion) parce que tu avais peur du jugement des autres? Qu'est-ce qui t'en empêchait? Est-ce que tu le regrettes maintenant? Explique en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(thomasq11.id, thomasq11);
+
+    const thomasq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifThomas8ExId,
+      title: "Q12 (Conseil)",
+      text: "Si tu pouvais parler à Thomas au tout début de l'histoire — avant que Raphaël découvre son compte secret — quel conseil lui donnerais-tu? Explique pourquoi ce conseil aurait pu changer les choses.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(thomasq12.id, thomasq12);
   }
 
   // Users
