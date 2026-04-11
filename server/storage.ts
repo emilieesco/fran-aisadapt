@@ -9712,6 +9712,177 @@ Malgré son importance, le fleuve Saint-Laurent fait face à des défis environn
       order: 12,
     };
     this.questions.set(slq12.id, slq12);
+
+    // ===== INFORMATIF SEC 1 — TEXTE #3 =====
+    // "L'acériculture au Québec" — production de sirop d'érable, identité culturelle, économie, science
+    // Questions variées : structure d'intro, définition dans le texte, vocabulaire, séquence chronologique,
+    //                     chiffre clé, implicite vs explicite, effet→cause, reformulation, ce que le texte ne dit pas,
+    //                     schéma/tableau, écriture, connexion texte-monde
+    const informatifSec1T3ExId = randomUUID();
+
+    const informatifSec1T3Exercise: Exercise = {
+      id: informatifSec1T3ExId,
+      courseId: informatifSec1CourseId,
+      title: "L'acériculture au Québec",
+      description: "Texte informatif sur la production de sirop d'érable — culture québécoise, procédé de fabrication, importance économique et enjeux climatiques",
+      type: "text",
+      order: 3,
+    };
+    this.exercises.set(informatifSec1T3ExId, informatifSec1T3Exercise);
+
+    const acericultureText = `Au Québec, l'érable à sucre est bien plus qu'un arbre : c'est un symbole identitaire et une ressource économique d'une importance considérable. La province produit à elle seule environ 72 % de la production mondiale de sirop d'érable, ce qui en fait de loin le plus grand producteur de la planète. Cette industrie, qu'on appelle l'acériculture, génère chaque année des revenus dépassant le demi-milliard de dollars et fait travailler des milliers de producteurs, principalement dans les régions des Appalaches, des Laurentides et de Lanaudière.
+
+L'érable à sucre (Acer saccharum) pousse naturellement dans l'est de l'Amérique du Nord, dans des régions où les hivers sont froids et les printemps humides. Sa sève sucrée se produit grâce à un phénomène naturel : lorsque les températures oscillent entre des nuits sous zéro et des journées au-dessus du point de congélation, une pression se crée à l'intérieur de l'arbre et fait monter la sève vers les branches. C'est cette variation thermique, typique du printemps québécois, qui rend la récolte possible. La sève brute contient environ 2 % de sucre, une concentration qui varie selon l'arbre, l'âge, le sol et les conditions météorologiques.
+
+La transformation de la sève en sirop d'érable se déroule en plusieurs étapes. D'abord, au début du printemps — généralement entre la mi-mars et la mi-avril, selon les régions — les acériculteurs installent des entailles dans les érables et y fixent des chalumeaux reliés à un réseau de tubulures en plastique. Ce réseau, souvent long de plusieurs kilomètres dans les grandes érablières, achemine la sève par gravité ou par aspiration jusqu'à la cabane à sucre. Là, la sève est chauffée dans de grands évaporateurs jusqu'à ce que l'eau s'évapore et que la concentration en sucre atteigne environ 66 %. Il faut en moyenne 40 litres de sève pour produire 1 litre de sirop d'érable.
+
+L'acériculture est étroitement liée à la culture québécoise. Depuis des siècles, les peuples autochtones — notamment les Anishinabes et les Haudenosaunees — récoltaient la sève d'érable et la transformaient en sucre ou en sirop. Ils ont transmis ce savoir-faire aux premiers colons français, qui l'ont intégré à leurs pratiques agricoles. Aujourd'hui, la cabane à sucre est un lieu de rassemblement social très prisé : les familles s'y retrouvent chaque printemps pour déguster des œufs, du jambon, des fèves au lard et, bien sûr, de la tire d'érable sur neige.
+
+Cependant, l'avenir de l'acériculture est menacé par les changements climatiques. Des hivers moins froids et des printemps qui arrivent plus tôt perturbent le cycle naturel de montée de la sève. Des études scientifiques prévoient que la zone favorable à la croissance de l'érable à sucre se déplacera progressivement vers le nord au cours des prochaines décennies, réduisant ainsi la superficie des érablières productives dans certaines régions. Les producteurs s'adaptent en explorant de nouvelles variétés, en investissant dans des technologies plus efficaces et en faisant pression sur les gouvernements pour mieux lutter contre les émissions de gaz à effet de serre.`;
+
+    const aceq1: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q1 (Structure d'introduction — annonce du sujet)",
+      text: acericultureText,
+      type: "multiple_choice",
+      options: JSON.stringify(["L'érable à sucre est un symbole du Québec et le Québec produit 72 % du sirop d'érable mondial", "La cabane à sucre est un lieu de rassemblement social très populaire", "Les changements climatiques menacent la survie des érablières québécoises", "Jacques Cartier a découvert l'érable à sucre lors de son voyage de 1534"]),
+      correctAnswer: "L'érable à sucre est un symbole du Québec et le Québec produit 72 % du sirop d'érable mondial",
+      order: 1,
+    };
+    this.questions.set(aceq1.id, aceq1);
+
+    const aceq2: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q2 (Repérage d'une définition dans le texte)",
+      text: "Le texte donne une explication du phénomène naturel qui permet la montée de la sève. Quelle est cette explication?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La sève monte grâce aux racines qui pompent l'eau du sol en été", "Les alternances de nuits sous zéro et de journées au-dessus du point de congélation créent une pression qui fait monter la sève vers les branches", "L'arbre absorbe la pluie printanière et la transforme en sève sucrée en 48 heures", "La chaleur du soleil fait fondre la neige, ce qui hydrate les racines et produit la sève"]),
+      correctAnswer: "Les alternances de nuits sous zéro et de journées au-dessus du point de congélation créent une pression qui fait monter la sève vers les branches",
+      order: 2,
+    };
+    this.questions.set(aceq2.id, aceq2);
+
+    const aceq3: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q3 (Vocabulaire — « acériculture » et « érablière »)",
+      text: "Le texte utilise les termes « acériculture » et « érablière ». Quelle est la définition la plus précise de ces deux termes d'après le contexte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Acériculture = cuisine à base de sirop d'érable; érablière = épicerie qui vend des produits de l'érable", "Acériculture = industrie de production de sirop d'érable; érablière = forêt ou plantation composée principalement d'érables exploités pour leur sève", "Acériculture = science qui étudie les arbres en général; érablière = lieu où l'on fabrique du sucre d'érable en usine", "Acériculture = technique de greffe d'arbres fruitiers; érablière = terrain agricole où poussent différentes espèces d'érables"]),
+      correctAnswer: "Acériculture = industrie de production de sirop d'érable; érablière = forêt ou plantation composée principalement d'érables exploités pour leur sève",
+      order: 3,
+    };
+    this.questions.set(aceq3.id, aceq3);
+
+    const aceq4: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q4 (Séquence chronologique — étapes de production)",
+      text: "Le texte décrit les étapes de transformation de la sève en sirop. Remets ces étapes dans le BON ordre.",
+      type: "multiple_choice",
+      options: JSON.stringify(["(1) Chauffage dans l'évaporateur → (2) Installation des chalumeaux → (3) Collecte par les tubulures → (4) Entailles dans les érables", "(1) Entailles dans les érables → (2) Installation des chalumeaux et tubulures → (3) Acheminement de la sève vers la cabane → (4) Chauffage dans l'évaporateur jusqu'à 66 % de sucre", "(1) Collecte de la sève en été → (2) Réfrigération hivernale → (3) Filtrage → (4) Mise en pot", "(1) Récolte des feuilles d'érable → (2) Pressage pour extraire la sève → (3) Chauffage → (4) Emballage"]),
+      correctAnswer: "(1) Entailles dans les érables → (2) Installation des chalumeaux et tubulures → (3) Acheminement de la sève vers la cabane → (4) Chauffage dans l'évaporateur jusqu'à 66 % de sucre",
+      order: 4,
+    };
+    this.questions.set(aceq4.id, aceq4);
+
+    const aceq5: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q5 (Chiffre clé — proportion et ratio)",
+      text: "Le texte mentionne deux chiffres importants liés à la production. Lesquels sont-ils, et que représentent-ils?",
+      type: "multiple_choice",
+      options: JSON.stringify(["72 % = proportion de la production mondiale assurée par le Québec; 40 litres de sève = quantité nécessaire pour produire 1 litre de sirop", "72 % = taux de sucre dans la sève brute; 40 ans = âge minimum d'un érable pour produire de la sève", "72 % = superficie boisée du Québec; 40 litres = consommation annuelle de sirop par famille québécoise", "72 km = longueur moyenne des tubulures; 40 % = part des exportations vers les États-Unis"]),
+      correctAnswer: "72 % = proportion de la production mondiale assurée par le Québec; 40 litres de sève = quantité nécessaire pour produire 1 litre de sirop",
+      order: 5,
+    };
+    this.questions.set(aceq5.id, aceq5);
+
+    const aceq6: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q6 (Information implicite — ce que le texte laisse entendre sans le dire directement)",
+      text: "Le texte dit que la sève « contient environ 2 % de sucre » et qu'il faut « 40 litres de sève pour 1 litre de sirop ». Qu'est-ce que cela nous apprend implicitement sur la valeur du sirop d'érable?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le sirop d'érable est un produit de luxe parce qu'il est importé d'Europe", "La production de sirop d'érable est très intensive en ressources : il faut traiter de grandes quantités de sève pour obtenir un petit volume de produit fini, ce qui justifie son coût élevé", "Le sirop d'érable contient moins de sucre que les autres édulcorants, ce qui en fait un choix santé", "Les érables produisent tellement de sève qu'il serait facile d'en produire encore beaucoup plus"]),
+      correctAnswer: "La production de sirop d'érable est très intensive en ressources : il faut traiter de grandes quantités de sève pour obtenir un petit volume de produit fini, ce qui justifie son coût élevé",
+      order: 6,
+    };
+    this.questions.set(aceq6.id, aceq6);
+
+    const aceq7: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q7 (Effet → cause : un enjeu climatique)",
+      text: "Le texte explique que les changements climatiques menacent l'acériculture. Quel est l'effet décrit, et quelle en est la cause?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Effet : les érables produisent plus de sève / Cause : les printemps sont plus chauds et humides", "Effet : la zone favorable à l'érable à sucre se déplace vers le nord et certaines érablières deviennent moins productives / Cause : les hivers moins froids et les printemps précoces perturbent le cycle naturel de la sève", "Effet : les acériculteurs abandonnent leur production / Cause : le sirop d'érable est devenu trop peu rentable face à la concurrence étrangère", "Effet : les érables meurent en grande quantité / Cause : une maladie bactérienne importée des États-Unis"]),
+      correctAnswer: "Effet : la zone favorable à l'érable à sucre se déplace vers le nord et certaines érablières deviennent moins productives / Cause : les hivers moins froids et les printemps précoces perturbent le cycle naturel de la sève",
+      order: 7,
+    };
+    this.questions.set(aceq7.id, aceq7);
+
+    const aceq8: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q8 (Reformuler une information dans ses propres mots)",
+      text: "Reformule dans tes propres mots (2 à 3 phrases complètes) le rôle des peuples autochtones dans l'histoire de l'acériculture, tel qu'il est décrit dans le quatrième paragraphe. N'utilise pas les mêmes mots que le texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    this.questions.set(aceq8.id, aceq8);
+
+    const aceq9: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q9 (Ce que le texte ne dit pas — lacune d'information)",
+      text: "Un lecteur voudrait savoir combien d'érables sont nécessaires pour faire fonctionner une érablière commerciale moyenne. Est-ce que le texte répond à cette question? Que pourrait-il chercher comme source complémentaire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Oui, le texte précise qu'il faut exactement 500 érables par érablière", "Non, le texte ne donne pas cette information. Le lecteur pourrait consulter le site de la Fédération des producteurs acéricoles du Québec ou des rapports du ministère de l'Agriculture", "Oui, le texte dit qu'une petite érablière contient 40 arbres et une grande érablière 4 000 arbres", "Non, et cette information n'existe nulle part car chaque érablière est unique et impossible à quantifier"]),
+      correctAnswer: "Non, le texte ne donne pas cette information. Le lecteur pourrait consulter le site de la Fédération des producteurs acéricoles du Québec ou des rapports du ministère de l'Agriculture",
+      order: 9,
+    };
+    this.questions.set(aceq9.id, aceq9);
+
+    const aceq10: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q10 (Schéma ou tableau — organiser les informations)",
+      text: "Crée un tableau à deux colonnes : « Avantages / forces de l'acériculture québécoise » et « Défis / menaces ». Remplis chaque colonne avec au moins 3 éléments tirés du texte. Pour chaque élément, note dans quel paragraphe tu l'as trouvé.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(aceq10.id, aceq10);
+
+    const aceq11: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q11 (Écriture — texte informatif sur un produit typique d'une région)",
+      text: "Choisis un produit alimentaire typique d'une région du Québec ou du Canada (ex. : le cidre de glace, le fromage d'Oka, le bleuet du Lac-Saint-Jean, le homard de la Gaspésie, le canola des Prairies, etc.) et écris un court texte informatif de 5 à 8 phrases. Présente : d'où vient ce produit, comment il est produit (en termes simples), son importance économique ou culturelle. Utilise un vocabulaire précis et reste objectif.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(aceq11.id, aceq11);
+
+    const aceq12: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T3ExId,
+      title: "Q12 (Connexion texte-monde — opinion appuyée)",
+      text: "En t'appuyant sur ce que tu as lu ET sur tes connaissances personnelles, réponds à cette question en 4 à 6 phrases : Penses-tu que le gouvernement du Québec devrait investir davantage pour protéger l'industrie acéricole face aux changements climatiques? Donne au moins un argument tiré du texte et un argument de ton expérience ou de tes connaissances générales.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(aceq12.id, aceq12);
   }
 
   // Users
