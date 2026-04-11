@@ -794,8 +794,53 @@ export default function StudentDashboard() {
 
                 {/* Informatif */}
                 <TabsContent value="informatif" className="space-y-4">
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                     {exercises
+                      .filter(
+                        (e) =>
+                          courses.find((c) => c.id === e.courseId)?.category === "lecture_informatif" &&
+                          e.type === "text"
+                      )
+                      .sort((a, b) => a.order - b.order)
+                      .map((exercise, index) => (
+                        <Card
+                          key={exercise.id}
+                          className="p-3 hover-elevate border-2 border-purple-200 dark:border-purple-800 cursor-pointer transition-all min-h-40 flex flex-col"
+                          data-testid={`card-informatif-${index}`}
+                          onClick={() => setLocation(`/exercise/${exercise.id}`)}
+                        >
+                          <div className="space-y-2 h-full flex flex-col justify-between">
+                            <div>
+                              <span className="text-xs font-semibold text-purple-600 dark:text-purple-300 uppercase">
+                                Informatif {index + 1}
+                              </span>
+                              <h3 className="text-sm font-bold text-foreground mt-1 leading-tight line-clamp-2">
+                                {exercise.title}
+                              </h3>
+                              <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                                {exercise.description}
+                              </p>
+                            </div>
+                            <Button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setLocation(`/exercise/${exercise.id}`);
+                              }}
+                              className="w-full bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-800 text-xs h-auto py-1"
+                              data-testid={`button-read-informatif-${index}`}
+                            >
+                              Lire
+                            </Button>
+                          </div>
+                        </Card>
+                      ))}
+                  </div>
+                  {exercises.filter((e) => courses.find((c) => c.id === e.courseId)?.category === "lecture_informatif").length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <p>Aucun texte informatif disponible pour le moment.</p>
+                    </div>
+                  )}
+                  {false && exercises
                       .filter(
                         (e) =>
                           courses.find((c) => c.id === e.courseId)?.title ===
@@ -872,7 +917,6 @@ export default function StudentDashboard() {
                           </div>
                         </Card>
                       ))}
-                  </div>
                 </TabsContent>
               </Tabs>
             </div>

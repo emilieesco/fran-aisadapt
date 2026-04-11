@@ -9356,6 +9356,192 @@ C'est peut-être ça, une cabane à sucre : un endroit où le temps ralentit le 
       order: 12,
     };
     this.questions.set(cabaneq12.id, cabaneq12);
+
+    // ===================================================
+    // TEXTES INFORMATIFS — SECONDAIRE 1
+    // Nouveau cours avec 12 questions variées par texte
+    // Catégorie : lecture_informatif
+    // ===================================================
+    const informatifSec1CourseId = randomUUID();
+
+    const informatifSec1Course: Course = {
+      id: informatifSec1CourseId,
+      title: "Textes informatifs — Secondaire 1",
+      description: "Lire et analyser des textes informatifs : faits, organisation, vocabulaire spécialisé et idées principales",
+      category: "lecture_informatif",
+      content: "<h2>Textes informatifs — Secondaire 1</h2><p>Dans cette section, tu liras des textes informatifs variés et tu apprendras à repérer les idées principales, les faits importants et l'organisation de ce type de texte.</p>",
+      order: 102,
+    };
+    this.courses.set(informatifSec1CourseId, informatifSec1Course);
+
+    // ===== INFORMATIF SEC 1 — TEXTE #1 =====
+    // "La forêt boréale du Québec" — texte informatif sur l'environnement québécois
+    // Questions : idée principale vs secondaire, statistiques, vocabulaire technique, objectivité, lien entre informations, inférence, but du texte, fiche de lecture, sous-titres
+    const informatifSec1T1ExId = randomUUID();
+
+    const informatifSec1T1Exercise: Exercise = {
+      id: informatifSec1T1ExId,
+      courseId: informatifSec1CourseId,
+      title: "La forêt boréale du Québec",
+      description: "Texte informatif sur la forêt boréale — idées principales, faits, vocabulaire écologique et organisation",
+      type: "text",
+      order: 1,
+    };
+    this.exercises.set(informatifSec1T1ExId, informatifSec1T1Exercise);
+
+    const foretBorealeText = `La forêt boréale occupe une place immense dans le paysage québécois. Elle s'étend sur environ 72 % du territoire de la province, soit près de 1,2 million de kilomètres carrés, ce qui en fait l'une des plus grandes forêts tempérées froides au monde. Contrairement à ce qu'on pourrait croire, cette forêt n'est pas uniforme : elle se compose de plusieurs types de peuplements, qui varient selon l'altitude, la proximité des cours d'eau et la qualité des sols.
+
+Les arbres les plus caractéristiques de la forêt boréale québécoise sont l'épinette noire, le sapin baumier et le pin gris. Ces espèces, toutes conifères, sont adaptées aux hivers longs et rigoureux du Québec. Leur forme en cône, par exemple, permet à la neige de glisser le long des branches sans les briser. À mesure qu'on avance vers le nord, la forêt devient plus clairsemée et les arbres plus petits, jusqu'à atteindre la zone de transition qu'on appelle la taïga, où les arbres s'espacent et cèdent progressivement la place à la toundra.
+
+La forêt boréale joue un rôle écologique fondamental. Elle constitue un habitat pour des centaines d'espèces animales, dont le caribou des bois, le loup, l'orignal, le castor et de nombreuses espèces d'oiseaux migrateurs. Elle régule également le cycle de l'eau en retenant la pluie et en alimentant les rivières et les lacs. De plus, elle absorbe de grandes quantités de dioxyde de carbone (CO₂) et contribue ainsi à atténuer les effets des changements climatiques.
+
+Sur le plan économique, la forêt boréale est une ressource de première importance pour le Québec. L'industrie forestière génère des milliards de dollars par année et emploie directement ou indirectement des dizaines de milliers de personnes, notamment dans les régions éloignées où peu d'autres industries sont présentes. La coupe forestière, lorsqu'elle est pratiquée de façon responsable, est encadrée par des lois qui obligent les entreprises à reboiser les zones coupées.
+
+Cependant, la forêt boréale fait face à des menaces importantes. Les changements climatiques modifient les régimes de précipitations et augmentent la fréquence et l'intensité des incendies de forêt. En 2023, le Québec a connu une saison d'incendies exceptionnelle, avec plusieurs millions d'hectares brûlés. Les insectes ravageurs, comme la tordeuse des bourgeons de l'épinette, s'attaquent également aux épinettes et aux sapins sur de vastes superficies. Face à ces défis, les scientifiques et les gouvernements cherchent à mieux comprendre les mécanismes de résilience de la forêt boréale pour assurer sa survie à long terme.`;
+
+    const foretq1: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q1 (Compréhension directe — statistique clé) : Quelle proportion du territoire québécois la forêt boréale occupe-t-elle?",
+      text: foretBorealeText,
+      type: "multiple_choice",
+      options: JSON.stringify(["Environ 25 % du territoire", "Environ 50 % du territoire", "Environ 72 % du territoire", "La quasi-totalité du territoire, soit plus de 90 %"]),
+      correctAnswer: "Environ 72 % du territoire",
+      order: 1,
+    };
+    this.questions.set(foretq1.id, foretq1);
+
+    const foretq2: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q2 (Idée principale vs idée secondaire)",
+      text: "Parmi les énoncés suivants, lequel exprime l'idée PRINCIPALE du texte (et non un détail secondaire)?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'épinette noire a une forme en cône qui permet à la neige de glisser", "La forêt boréale est un écosystème immense et essentiel pour le Québec, autant sur les plans écologique et économique que climatique", "En 2023, le Québec a connu une saison d'incendies exceptionnelle", "Le caribou des bois vit dans la forêt boréale"]),
+      correctAnswer: "La forêt boréale est un écosystème immense et essentiel pour le Québec, autant sur les plans écologique et économique que climatique",
+      order: 2,
+    };
+    this.questions.set(foretq2.id, foretq2);
+
+    const foretq3: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q3 (Organisation du texte — aspect par aspect)",
+      text: "Ce texte informatif est organisé selon plusieurs aspects du sujet. Identifie l'ordre dans lequel ces aspects sont présentés.",
+      type: "multiple_choice",
+      options: JSON.stringify(["Menaces → Économie → Écologie → Description → Localisation", "Localisation et description → Types d'arbres → Rôle écologique → Importance économique → Menaces actuelles", "Histoire → Géographie → Faune → Flore → Avenir", "L'auteur présente les aspects dans un ordre aléatoire, sans logique apparente"]),
+      correctAnswer: "Localisation et description → Types d'arbres → Rôle écologique → Importance économique → Menaces actuelles",
+      order: 3,
+    };
+    this.questions.set(foretq3.id, foretq3);
+
+    const foretq4: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q4 (Vocabulaire technique — sens en contexte)",
+      text: "Dans le texte, le mot « peuplements » est utilisé. Quel est son sens dans ce contexte forestier?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Des villages ou communautés humaines établis dans la forêt", "Des groupes d'arbres de même espèce ou de composition similaire qui occupent une zone donnée", "Des espèces animales qui habitent dans la forêt boréale", "Des zones dénudées où la forêt a été coupée et n'a pas encore repoussé"]),
+      correctAnswer: "Des groupes d'arbres de même espèce ou de composition similaire qui occupent une zone donnée",
+      order: 4,
+    };
+    this.questions.set(foretq4.id, foretq4);
+
+    const foretq5: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q5 (Objectivité du texte informatif)",
+      text: "Un texte informatif doit présenter des faits de façon objective. Quelle phrase du texte serait la MOINS compatible avec cette objectivité?",
+      type: "multiple_choice",
+      options: JSON.stringify(["« Elle s'étend sur environ 72 % du territoire de la province »", "« Les arbres les plus caractéristiques de la forêt boréale québécoise sont l'épinette noire, le sapin baumier et le pin gris »", "« Il est absolument scandaleux que les gouvernements n'agissent pas plus vite pour protéger cette forêt magnifique »", "« En 2023, le Québec a connu une saison d'incendies exceptionnelle »"]),
+      correctAnswer: "« Il est absolument scandaleux que les gouvernements n'agissent pas plus vite pour protéger cette forêt magnifique »",
+      order: 5,
+    };
+    this.questions.set(foretq5.id, foretq5);
+
+    const foretq6: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q6 (Lien cause / effet dans un texte informatif)",
+      text: "Le texte explique que la forme en cône des conifères leur permet de survivre aux hivers québécois. Quel est le lien cause/effet présenté?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Cause : les hivers sont doux / Effet : les arbres poussent vite", "Cause : la neige est lourde et s'accumule sur les branches / Effet : la forme en cône permet à la neige de glisser et évite que les branches se brisent", "Cause : les arbres sont très grands / Effet : la neige ne les atteint pas", "Cause : il fait froid / Effet : les arbres perdent toutes leurs feuilles en hiver"]),
+      correctAnswer: "Cause : la neige est lourde et s'accumule sur les branches / Effet : la forme en cône permet à la neige de glisser et évite que les branches se brisent",
+      order: 6,
+    };
+    this.questions.set(foretq6.id, foretq6);
+
+    const foretq7: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q7 (Vocabulaire — taïga et toundra)",
+      text: "Le texte mentionne la « taïga » et la « toundra ». D'après le contexte, quelle est la différence entre ces deux zones?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La taïga est une forêt dense du sud; la toundra est une forêt dense du nord", "La taïga est une zone de transition où les arbres s'espacent et rétrécissent; la toundra est la zone sans arbres qui vient après", "La taïga est uniquement au Canada; la toundra est uniquement en Russie", "Ce sont deux mots différents pour désigner la même réalité géographique"]),
+      correctAnswer: "La taïga est une zone de transition où les arbres s'espacent et rétrécissent; la toundra est la zone sans arbres qui vient après",
+      order: 7,
+    };
+    this.questions.set(foretq7.id, foretq7);
+
+    const foretq8: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q8 (Inférence à partir d'une information)",
+      text: "Le texte précise que l'industrie forestière emploie surtout des gens « dans les régions éloignées où peu d'autres industries sont présentes ». Qu'est-ce qu'on peut en déduire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les gens des régions éloignées ne veulent pas travailler dans d'autres secteurs", "La fermeture ou la réduction de l'industrie forestière aurait des conséquences économiques particulièrement graves pour les communautés rurales et éloignées", "L'industrie forestière ne profite qu'aux grandes villes comme Montréal et Québec", "Il y a trop de travailleurs forestiers et l'industrie devrait réduire ses effectifs"]),
+      correctAnswer: "La fermeture ou la réduction de l'industrie forestière aurait des conséquences économiques particulièrement graves pour les communautés rurales et éloignées",
+      order: 8,
+    };
+    this.questions.set(foretq8.id, foretq8);
+
+    const foretq9: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q9 (But du texte informatif)",
+      text: "Quel est le but principal de ce texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Convaincre le lecteur de ne jamais couper d'arbres au Québec", "Informer le lecteur de façon objective sur la forêt boréale québécoise : sa nature, ses fonctions et ses défis actuels", "Raconter l'histoire d'un érablier qui travaille dans la forêt boréale", "Décrire les sensations qu'on ressent quand on se promène dans la forêt boréale"]),
+      correctAnswer: "Informer le lecteur de façon objective sur la forêt boréale québécoise : sa nature, ses fonctions et ses défis actuels",
+      order: 9,
+    };
+    this.questions.set(foretq9.id, foretq9);
+
+    const foretq10: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q10 (Fiche de lecture — résumé structuré)",
+      text: "Complète une fiche de lecture pour ce texte. Réponds aux quatre questions suivantes en une ou deux phrases chacune : (1) Quel est le sujet du texte? (2) Quelle est l'idée principale? (3) Cite deux faits importants que tu as appris. (4) Quelle question ce texte t'a-t-il donné envie d'approfondir?",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(foretq10.id, foretq10);
+
+    const foretq11: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q11 (Écriture — paragraphe informatif)",
+      text: "Choisis un animal sauvage québécois (orignal, castor, loup, caribou, lynx, ours noir, etc.) et écris un court texte informatif de 6 à 8 phrases à son sujet. Présente des faits objectifs : habitat, alimentation, comportement, particularités. N'exprime pas d'opinions. Utilise un vocabulaire précis.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(foretq11.id, foretq11);
+
+    const foretq12: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T1ExId,
+      title: "Q12 (Ajout de sous-titres — organisation visible)",
+      text: "Relis le texte et propose un sous-titre pour chacun des cinq paragraphes. Un sous-titre doit résumer l'idée principale du paragraphe en 3 à 6 mots. Explique brièvement pourquoi tu as choisi chaque sous-titre.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(foretq12.id, foretq12);
   }
 
   // Users
