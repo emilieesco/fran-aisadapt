@@ -9187,6 +9187,175 @@ Après, il y avait un silence étrange, rempli du bruit de l'eau qui coulait enc
       order: 12,
     };
     this.questions.set(orageq12.id, orageq12);
+
+    // ===== DESCRIPTIF SEC 1 — TEXTE #5 =====
+    // "La cabane à sucre en mars" — description d'une scène culturelle québécoise
+    // Questions : culture québécoise, champ lexical chaleur/vapeur, synesthésie, imparfait descriptif, lexique spécialisé, contraste chaud/froid, tradition familiale
+    const descriptifSec1T5ExId = randomUUID();
+
+    const descriptifSec1T5Exercise: Exercise = {
+      id: descriptifSec1T5ExId,
+      courseId: descriptifSec1CourseId,
+      title: "La cabane à sucre en mars",
+      description: "Description d'une tradition québécoise — lieu, processus artisanal, atmosphère sensorielle",
+      type: "text",
+      order: 5,
+    };
+    this.exercises.set(descriptifSec1T5ExId, descriptifSec1T5Exercise);
+
+    const cabaneStory = `En mars, quand la neige est encore haute dans les bois mais que le soleil commence à avoir de la force, les érables se réveillent. C'est à ce moment précis, dans cet entre-deux fragile, que la cabane à sucre prend vie.
+
+La cabane en elle-même n'est pas grande. Des murs de planches grises, un toit de tôle rouillée, deux petites fenêtres embués de l'intérieur. Mais dès qu'on pousse la porte, le monde bascule. La chaleur frappe d'abord — une chaleur dense, humide, presque végétale, bien différente de la sécheresse du chauffage électrique. Puis l'odeur : sucrée, boisée, caramélisée, mais pas artificielle. C'est l'odeur de quelque chose de vivant qui se transforme. L'eau d'érable qui bout dans les grandes évaporatrices de métal gris dégage une vapeur épaisse qui flotte vers le plafond de bois noirci et s'échappe par une trappe à claire-voie au sommet du toit. Les poutrelles sont luisantes d'humidité. Le plancher craque.
+
+L'évaporatrice occupe le centre de la cabane comme un autel. Longue, métallique, compartimentée, elle reçoit l'eau d'érable pâle et presque sans goût d'un côté, et la transforme en sirop riche et ambré de l'autre, par une lente cuisson que l'érablier surveille en plongeant une longue cuillère dans le liquide bouillonnant. Il faut quarante litres d'eau d'érable pour faire un seul litre de sirop. On ne voit pas ce calcul dans le liquide — on le comprend à la patience du geste.
+
+Dehors, les chalumeaux piqués dans l'écorce des érables laissent perler des gouttes régulières dans des seaux bleus accrochés au tronc. Le froid mord encore, net et propre, et la neige crisse sous les bottes. Puis quelqu'un arrive avec une casserole de sirop bouillant et le verse en longs rubans dorés sur la neige tassée. La tire d'érable durcit presque instantanément, collante, fondante, avec cette saveur dense qui n'existe nulle part ailleurs. Les enfants s'accroupissent avec leurs bâtonnets. Personne ne parle.
+
+C'est peut-être ça, une cabane à sucre : un endroit où le temps ralentit le temps d'une saison, juste assez pour qu'on remarque ce qui se passe.`;
+
+    const cabaneq1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q1 (Compréhension directe) : À quel moment de l'année se déroule la scène décrite?",
+      text: cabaneStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["En janvier, au cœur de l'hiver québécois", "En mars, quand la neige est encore haute mais que le soleil gagne en force", "En avril, quand toute la neige est fondue et que les arbres bourgeonnent", "En octobre, lors de la récolte d'automne dans les érablières"]),
+      correctAnswer: "En mars, quand la neige est encore haute mais que le soleil gagne en force",
+      order: 1,
+    };
+    this.questions.set(cabaneq1.id, cabaneq1);
+
+    const cabaneq2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q2 (Culture québécoise — contexte)",
+      text: "Quelle information sur la fabrication du sirop d'érable le texte nous donne-t-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il faut dix litres d'eau d'érable pour faire un litre de sirop", "Il faut quarante litres d'eau d'érable pour produire un seul litre de sirop", "Le sirop est produit directement dans les érables, sans évaporatrice", "La fabrication du sirop dure tout l'été, de mai à septembre"]),
+      correctAnswer: "Il faut quarante litres d'eau d'érable pour produire un seul litre de sirop",
+      order: 2,
+    };
+    this.questions.set(cabaneq2.id, cabaneq2);
+
+    const cabaneq3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q3 (Champ lexical — chaleur, vapeur et transformation)",
+      text: "Quel groupe de mots appartient au champ lexical de la chaleur, de la vapeur et de la transformation dans ce texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["neige, froid, bottes, seaux bleus, écorce", "chaleur, humide, bout, vapeur, cuisson, bouillant, fondante", "cabane, planches, tôle, fenêtres, poutrelles", "érables, chalumeaux, gouttes, tronc, bois"]),
+      correctAnswer: "chaleur, humide, bout, vapeur, cuisson, bouillant, fondante",
+      order: 3,
+    };
+    this.questions.set(cabaneq3.id, cabaneq3);
+
+    const cabaneq4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q4 (Procédé — synesthésie)",
+      text: "La synesthésie est un procédé qui mélange plusieurs sens dans une même image. Quel passage du texte illustre le mieux ce procédé?",
+      type: "multiple_choice",
+      options: JSON.stringify(["« La cabane en elle-même n'est pas grande »", "« une chaleur dense, humide, presque végétale » — qui mêle le toucher, l'humidité et une impression presque gustative/olfactive en même temps", "« Le plancher craque » — une description purement sonore", "« les érables se réveillent » — une personnification de la nature"]),
+      correctAnswer: "« une chaleur dense, humide, presque végétale » — qui mêle le toucher, l'humidité et une impression presque gustative/olfactive en même temps",
+      order: 4,
+    };
+    this.questions.set(cabaneq4.id, cabaneq4);
+
+    const cabaneq5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q5 (Contraste chaud / froid dans le texte)",
+      text: "L'auteur joue sur un contraste fort tout au long du texte. Lequel?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le contraste entre le passé (la tradition) et le présent (la modernité)", "Le contraste entre l'intérieur de la cabane (chaleur, vapeur, odeur) et l'extérieur (froid, neige, air net)", "Le contraste entre les enfants qui s'amusent et les adultes qui travaillent", "Le contraste entre le sirop sucré et l'eau d'érable sans goût"]),
+      correctAnswer: "Le contraste entre l'intérieur de la cabane (chaleur, vapeur, odeur) et l'extérieur (froid, neige, air net)",
+      order: 5,
+    };
+    this.questions.set(cabaneq5.id, cabaneq5);
+
+    const cabaneq6: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q6 (Lexique spécialisé — tire d'érable)",
+      text: "Le texte mentionne la « tire d'érable ». Comment est-elle décrite et qu'est-ce que ce passage nous apprend sur ce qu'elle est?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'est un bonbon dur vendu dans les épiceries, fabriqué industriellement", "C'est du sirop d'érable bouillant versé sur la neige, qui durcit rapidement en une confiserie collante et fondante", "C'est le nom donné à la sève brute des érables avant qu'elle soit chauffée", "C'est un outil utilisé par l'érablier pour vérifier la qualité du sirop"]),
+      correctAnswer: "C'est du sirop d'érable bouillant versé sur la neige, qui durcit rapidement en une confiserie collante et fondante",
+      order: 6,
+    };
+    this.questions.set(cabaneq6.id, cabaneq6);
+
+    const cabaneq7: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q7 (Analyse d'une métaphore)",
+      text: "L'auteur décrit l'évaporatrice comme « un autel ». Qu'est-ce que cette métaphore suggère?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que l'évaporatrice est décorée d'objets religieux comme dans une église", "Que l'évaporatrice est le centre sacré et incontournable de la cabane, autour duquel tout s'organise et auquel on voue une certaine révérence", "Que les érabliers sont très religieux et font des prières avant de commencer la production", "Que l'évaporatrice est trop haute et imposante pour être utilisée facilement"]),
+      correctAnswer: "Que l'évaporatrice est le centre sacré et incontournable de la cabane, autour duquel tout s'organise et auquel on voue une certaine révérence",
+      order: 7,
+    };
+    this.questions.set(cabaneq7.id, cabaneq7);
+
+    const cabaneq8: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q8 (Analyse de la dernière phrase)",
+      text: "Le texte se conclut par : « C'est peut-être ça, une cabane à sucre : un endroit où le temps ralentit le temps d'une saison, juste assez pour qu'on remarque ce qui se passe. » Que veut dire l'auteur?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que les horloges fonctionnent mal dans les cabanes à sucre à cause de l'humidité", "Que la cabane à sucre est un lieu et un moment hors du rythme habituel de la vie, où on peut s'arrêter et être vraiment présent", "Que les érabliers travaillent très lentement et que la production est inefficace", "Que la saison des sucres dure trop peu longtemps et que c'est une source de frustration"]),
+      correctAnswer: "Que la cabane à sucre est un lieu et un moment hors du rythme habituel de la vie, où on peut s'arrêter et être vraiment présent",
+      order: 8,
+    };
+    this.questions.set(cabaneq8.id, cabaneq8);
+
+    const cabaneq9: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q9 (Organisation de la description — du général au particulier)",
+      text: "Comment la description est-elle organisée dans ce texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Du particulier au général : on commence par un détail (la tire) et on termine par une vue d'ensemble de la forêt", "Du général au particulier et de l'extérieur vers l'intérieur : on commence par la saison et la forêt, puis on entre dans la cabane, puis on sort dehors pour la scène de tire", "Par ordre alphabétique des éléments décrits, pour faciliter la compréhension", "De façon aléatoire, sans logique apparente dans l'organisation des paragraphes"]),
+      correctAnswer: "Du général au particulier et de l'extérieur vers l'intérieur : on commence par la saison et la forêt, puis on entre dans la cabane, puis on sort dehors pour la scène de tire",
+      order: 9,
+    };
+    this.questions.set(cabaneq9.id, cabaneq9);
+
+    const cabaneq10: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q10 (Réaction et souvenir personnel)",
+      text: "Est-ce que tu as déjà vécu la cabane à sucre ou une tradition similaire en famille? Décris un souvenir sensoriel précis que tu gardes de cette expérience (une odeur, un goût, un son, une sensation). Si tu n'as jamais vécu cette tradition, décris une autre fête ou tradition familiale à travers au moins deux sens. (4 à 6 phrases)",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(cabaneq10.id, cabaneq10);
+
+    const cabaneq11: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q11 (Écriture — description d'une tradition ou d'un événement québécois)",
+      text: "Décris une tradition, une fête ou un événement québécois que tu connais (la Saint-Jean, le Carnaval de Québec, l'Halloween dans ton quartier, un repas de Noël en famille, le temps des sucres, etc.). Utilise les cinq sens et au moins un procédé littéraire. Montre le lieu ET l'atmosphère AND les personnes présentes. Minimum 10 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(cabaneq11.id, cabaneq11);
+
+    const cabaneq12: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T5ExId,
+      title: "Q12 (Transformation — la cabane à sucre en août)",
+      text: "Imagine et décris la même cabane à sucre, mais en plein mois d'août. Plus d'évaporatrice en marche, plus de tire sur la neige. Qu'est-ce qui reste? Qu'est-ce qui change? Comment l'atmosphère du lieu est-elle différente? Garde le même style d'écriture que l'auteur du texte original. Environ 8 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(cabaneq12.id, cabaneq12);
   }
 
   // Users
