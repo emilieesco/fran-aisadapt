@@ -8847,6 +8847,175 @@ Il y a dans l'école un banc dans la cour intérieure, peint chaque printemps d'
       order: 12,
     };
     this.questions.set(beauchampq12.id, beauchampq12);
+
+    // ===== DESCRIPTIF SEC 1 — TEXTE #3 =====
+    // "Le dépanneur de monsieur Khoury" — description d'ambiance (lieu animé + personnage intégré)
+    // Questions : sous-type mixte, champ lexical odorat/sons, hyperbole, adjectifs, atmosphère, accumulation, inférence lieu→propriétaire, vocabulaire québécois, description sensorielle restreinte
+    const descriptifSec1T3ExId = randomUUID();
+
+    const descriptifSec1T3Exercise: Exercise = {
+      id: descriptifSec1T3ExId,
+      courseId: descriptifSec1CourseId,
+      title: "Le dépanneur de monsieur Khoury",
+      description: "Description d'un lieu animé de quartier — atmosphère, sens, inférence et vocabulaire québécois",
+      type: "text",
+      order: 3,
+    };
+    this.exercises.set(descriptifSec1T3ExId, descriptifSec1T3Exercise);
+
+    const khouryStory = `Le dépanneur de monsieur Khoury occupe le coin de la rue des Érables et de l'avenue Principale depuis 1994. Il est petit, encombré, et absolument indispensable.
+
+La cloche au-dessus de la porte tinte à chaque entrée — un son court et un peu faux, comme une note de piano qui aurait besoin d'être accordée depuis des années. À l'intérieur, l'air sent le café réchauffé plusieurs fois, la gomme à mâcher à la cerise et, selon l'heure de la journée, les hot-dogs qui tournent lentement sur leurs rouleaux chromés depuis le matin. Ce mélange est reconnaissable entre tous. Les gens du quartier disent que l'odeur s'accroche aux manteaux.
+
+Les étagères montent jusqu'au plafond. On y trouve des chips en cinquante saveurs, des bonbons en vrac dans des bacs de plastique défraîchi, des batteries pour des télécommandes que personne ne vend plus, des magazines en français, en arabe et en anglais, et, tout en haut, une rangée de boîtes de conserve qui n'a probablement pas bougé depuis le gouvernement Charest. Le plancher est en linoléum à carreaux beige et brun, usé au centre par trente ans de va-et-vient, et parfaitement propre.
+
+Monsieur Khoury lui-même est assis derrière le comptoir, sur un tabouret haut. Il regarde un match de soccer sur un téléviseur pas plus grand qu'un écran d'ordinateur, posé en angle sur une étagère. Quand quelqu'un entre, il lève les yeux une seconde, fait un signe de tête, et retourne au match. Mais il a tout vu. Dix ans de clientèle, il connaît les habitudes de chacun : qui prend le journal du matin, qui achète des billets de loterie le vendredi, qui prend un café en double avec deux sucres et pas de lait.
+
+Le soir, quand le quartier se calme et que les lumières des maisons s'allument une à une, le dépanneur reste ouvert. Sa vitrine éclairée projette un rectangle jaune sur le trottoir mouillé. Les gens qui passent devant disent parfois que c'est rassurant, une lumière comme ça, à cette heure-là.`;
+
+    const khouryq1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q1 (Compréhension directe) : Depuis quand le dépanneur de monsieur Khoury est-il ouvert dans le quartier?",
+      text: khouryStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Depuis 1984", "Depuis 1994", "Depuis 2004", "Le texte ne précise pas l'année d'ouverture"]),
+      correctAnswer: "Depuis 1994",
+      order: 1,
+    };
+    this.questions.set(khouryq1.id, khouryq1);
+
+    const khouryq2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q2 (Sous-type de texte descriptif)",
+      text: "Ce texte descriptif est différent des deux premiers de la série. Comment le caractériser avec précision?",
+      type: "multiple_choice",
+      options: JSON.stringify(["C'est uniquement un portrait de personnage (monsieur Khoury)", "C'est uniquement une description de lieu (le dépanneur)", "C'est une description d'ambiance qui combine la description d'un lieu et celle d'un personnage qui y est intégré", "C'est un texte narratif déguisé en texte descriptif"]),
+      correctAnswer: "C'est une description d'ambiance qui combine la description d'un lieu et celle d'un personnage qui y est intégré",
+      order: 2,
+    };
+    this.questions.set(khouryq2.id, khouryq2);
+
+    const khouryq3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q3 (Champ lexical — odorat et ouïe)",
+      text: "Identifie les deux champs lexicaux sensoriels les plus développés dans ce texte (odorat et ouïe). Laquelle des réponses suivantes regroupe correctement des mots du texte pour ces deux sens?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Odorat : cloche, note, piano, sons. Ouïe : café, cerise, hot-dogs", "Odorat : café réchauffé, gomme à cerise, hot-dogs, odeur. Ouïe : cloche, tinte, son, bruit des clients", "Odorat : linoléum, carreaux, étagères. Ouïe : chips, bonbons, magazines", "Les deux sens ne sont pas du tout présents dans ce texte"]),
+      correctAnswer: "Odorat : café réchauffé, gomme à cerise, hot-dogs, odeur. Ouïe : cloche, tinte, son, bruit des clients",
+      order: 3,
+    };
+    this.questions.set(khouryq3.id, khouryq3);
+
+    const khouryq4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q4 (Procédé — hyperbole humoristique)",
+      text: "Le narrateur écrit : « tout en haut, une rangée de boîtes de conserve qui n'a probablement pas bougé depuis le gouvernement Charest ». Quel procédé est utilisé ici et quel effet produit-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une comparaison, pour montrer que le gouvernement Charest gérait les épiceries", "Une hyperbole humoristique, qui exagère pour faire sourire le lecteur tout en suggérant que le dépanneur est immuable depuis très longtemps", "Une métaphore, pour critiquer les politiques alimentaires du Québec", "Un fait historique vérifié, mentionné pour ancrer le texte dans la réalité québécoise"]),
+      correctAnswer: "Une hyperbole humoristique, qui exagère pour faire sourire le lecteur tout en suggérant que le dépanneur est immuable depuis très longtemps",
+      order: 4,
+    };
+    this.questions.set(khouryq4.id, khouryq4);
+
+    const khouryq5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q5 (Rôle des adjectifs dans la description)",
+      text: "Dans « un son court et un peu faux, comme une note de piano qui aurait besoin d'être accordée depuis des années », quels adjectifs sont utilisés et que révèlent-ils sur l'atmosphère du lieu?",
+      type: "multiple_choice",
+      options: JSON.stringify(["« court » et « faux » — ils suggèrent un lieu musical et artistique", "« court » et « faux » — ils décrivent un son imparfait et un peu décalé, ce qui renforce l'atmosphère vieillissante et familière du dépanneur", "« court » et « accordée » — ils montrent que la cloche est récente et bien entretenue", "Il n'y a pas d'adjectifs dans cette phrase, seulement des verbes d'action"]),
+      correctAnswer: "« court » et « faux » — ils décrivent un son imparfait et un peu décalé, ce qui renforce l'atmosphère vieillissante et familière du dépanneur",
+      order: 5,
+    };
+    this.questions.set(khouryq5.id, khouryq5);
+
+    const khouryq6: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q6 (Atmosphère du texte)",
+      text: "Quelle atmosphère générale se dégage de ce texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Une atmosphère froide et impersonnelle, comme un grand supermarché moderne", "Une atmosphère anxieuse et chaotique, le quartier étant en déclin", "Une atmosphère chaleureuse, familière et légèrement nostalgique — un endroit qui dure et qui rassure", "Une atmosphère mystérieuse et étrange, comme si quelque chose d'anormal se passait dans le dépanneur"]),
+      correctAnswer: "Une atmosphère chaleureuse, familière et légèrement nostalgique — un endroit qui dure et qui rassure",
+      order: 6,
+    };
+    this.questions.set(khouryq6.id, khouryq6);
+
+    const khouryq7: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q7 (Procédé — accumulation de détails hétéroclites)",
+      text: "Au troisième paragraphe, la description des étagères accumule des objets très différents. Quel effet cette accumulation produit-elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle montre que monsieur Khoury est désorganisé et ne sait pas gérer son inventaire", "Elle donne une impression de richesse hétéroclite et d'accumulation du temps — le dépanneur garde tout, pour tout le monde, depuis toujours", "Elle critique la surconsommation et le gaspillage dans les petits commerces de quartier", "Elle sert uniquement à allonger le texte avec des détails sans importance"]),
+      correctAnswer: "Elle donne une impression de richesse hétéroclite et d'accumulation du temps — le dépanneur garde tout, pour tout le monde, depuis toujours",
+      order: 7,
+    };
+    this.questions.set(khouryq7.id, khouryq7);
+
+    const khouryq8: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q8 (Inférence — ce que le lieu révèle du propriétaire)",
+      text: "Le plancher est décrit comme « usé au centre par trente ans de va-et-vient, et parfaitement propre ». Que révèle ce détail sur monsieur Khoury sans le dire directement?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Qu'il a les moyens de rénover mais qu'il choisit de ne pas le faire par avarice", "Qu'il est fier de son commerce, prend soin de ce qui lui appartient, même si le temps a laissé ses marques", "Que le dépanneur est trop petit et que le plancher a besoin d'être remplacé immédiatement", "Que beaucoup trop de clients passent dans ce commerce et que c'est épuisant"]),
+      correctAnswer: "Qu'il est fier de son commerce, prend soin de ce qui lui appartient, même si le temps a laissé ses marques",
+      order: 8,
+    };
+    this.questions.set(khouryq8.id, khouryq8);
+
+    const khouryq9: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q9 (Vocabulaire québécois)",
+      text: "Le mot « dépanneur » est un mot propre au Québec. Que désigne-t-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un réparateur d'appareils électroniques de quartier", "Un petit commerce de proximité ouvert de longues heures, équivalent d'une épicerie de quartier ou d'un « convenience store »", "Un centre de services communautaires pour personnes en difficulté", "Un mécanicien automobile spécialisé dans les urgences"]),
+      correctAnswer: "Un petit commerce de proximité ouvert de longues heures, équivalent d'une épicerie de quartier ou d'un « convenience store »",
+      order: 9,
+    };
+    this.questions.set(khouryq9.id, khouryq9);
+
+    const khouryq10: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q10 (Réaction personnelle)",
+      text: "Connais-tu un endroit dans ta vie (un commerce, un parc, une maison de famille) qui te donne la même impression que le dépanneur de monsieur Khoury — un sentiment de permanence, de chaleur, de familiarité? Décris-le brièvement et explique ce qui le rend spécial pour toi. (4 à 6 phrases)",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(khouryq10.id, khouryq10);
+
+    const khouryq11: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q11 (Écriture — description d'un lieu de quartier)",
+      text: "Décris un lieu de ton quartier ou de ta vie quotidienne (une école, une bibliothèque, un parc, une épicerie, un aréna). Utilise au moins trois sens différents, un adjectif précis pour chaque élément important, et termine par une phrase qui donne l'atmosphère générale du lieu. Minimum 8 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(khouryq11.id, khouryq11);
+
+    const khouryq12: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T3ExId,
+      title: "Q12 (Description sensorielle restreinte — les sons seulement)",
+      text: "Reprends le dépanneur de monsieur Khoury et décris-le uniquement à travers les sons. Tu n'as pas le droit d'utiliser la vue (couleurs, formes, lumières). Que peut-on entendre dans ce lieu — à différents moments de la journée? Sois précis et inventif. Environ 6 à 8 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(khouryq12.id, khouryq12);
   }
 
   // Users
