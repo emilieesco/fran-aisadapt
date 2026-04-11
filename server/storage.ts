@@ -8132,6 +8132,186 @@ Il ne sait toujours pas combien d'abonnés il a maintenant. Mais les seuls comme
       order: 12,
     };
     this.questions.set(thomasq12.id, thomasq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #9 =====
+    // "Les Mots de Léa" — Secondaire 1 (12-13 ans)
+    // Thème : dyslexie, troubles d'apprentissage, demander de l'aide
+    // Questions : stratégie d'adaptation, émotion complexe, procédé énumération, point de vue narrateur, cause profonde, lettre, changement de perspective
+    const narratifLea9ExId = randomUUID();
+
+    const narratifLea9Exercise: Exercise = {
+      id: narratifLea9ExId,
+      courseId: narratifSec1CourseId,
+      title: "Les Mots de Léa",
+      description: "Dyslexie, persévérance et demander de l'aide — 12 questions variées",
+      type: "text",
+      order: 9,
+    };
+    this.exercises.set(narratifLea9ExId, narratifLea9Exercise);
+
+    const leaStory = `Léa Tremblay avait une mémoire extraordinaire. Elle pouvait retenir une conversation mot pour mot, fredonner n'importe quelle chanson après l'avoir entendue une seule fois, et se souvenir exactement du visage d'une personne rencontrée en deuxième année du primaire. Cette mémoire était son arme secrète — parce que quand on lisait à voix haute, Léa, elle, écoutait. Et ensuite elle retournait dans sa tête, récrite, reconstituée, ce qu'elle n'avait pas pu voir.
+
+Léa était dyslexique. Les lettres se mélangaient, changeaient de place, dansaient sur la page. Elle avait appris à lire — mais lentement, doucement, seule dans sa chambre, à force de reprises. En classe, elle ne lisait pas. Elle s'arrangeait.
+
+Ce matin-là, madame Lavalée annonça quelque chose qui fit froid dans le dos de Léa : « On va lire le texte à voix haute, à tour de rôle. Je vais choisir les élèves au hasard. »
+
+Léa compta immédiatement. Vingt-quatre élèves. Elle était la septième. Elle chercha des yeux les sept premiers paragraphes — un par élève, environ huit à dix lignes chacun. Elle avait peut-être cinq minutes. Elle commença à lire en silence, les lèvres bougeant à peine, les yeux sautant d'un mot à l'autre, les reconstituant, les déplaçant. Trop vite. Trop de mots. La sueur commençait dans ses mains.
+
+Quand vint son tour, elle se leva. Elle lut. Lentement. Elle buta sur « brusquement », dit « brusqument », reprit. Elle buta sur « distinctement », s'arrêta une seconde de trop. Elle sentit quelqu'un ricaner à sa gauche — juste un petit bruit, peut-être rien. Elle finit son paragraphe, se rassit. Personne ne dit rien.
+
+Après la classe, madame Lavalée la retint. Léa s'attendait à des commentaires sur sa lecture. À la place, l'enseignante posa simplement la question : « Est-ce que c'est difficile pour toi, la lecture à voix haute? »
+
+Léa voulut dire non. Elle dit non pendant deux secondes dans sa tête. Puis elle dit : « Oui. »
+
+C'était la première fois de sa vie scolaire qu'elle répondait ça à une adulte.
+
+Madame Lavalée lui parla de l'orthopédagogue de l'école, de certains aménagements possibles — plus de temps, textes en format numérique, lecture préalable à la maison. Elle ne parla pas de déficit ni de diagnostic. Elle parla de stratégies. Elle parla comme si le problème avait des solutions.
+
+En sortant de la classe, Léa n'était pas guérie. Les lettres dansaient encore. Mais pour la première fois, elle avait l'impression qu'elle n'était pas seule à les regarder danser.`;
+
+    const leaq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q1 (Compréhension directe) : Quelle est la principale difficulté de Léa?",
+      text: leaStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle a du mal à retenir les informations car elle a une mauvaise mémoire", "Elle est dyslexique — les lettres se mélangent lorsqu'elle lit, surtout à voix haute", "Elle refuse de lire en classe parce qu'elle est trop timide", "Elle a un trouble de l'attention qui l'empêche de suivre les consignes"]),
+      correctAnswer: "Elle est dyslexique — les lettres se mélangent lorsqu'elle lit, surtout à voix haute",
+      order: 1,
+    };
+    this.questions.set(leaq1.id, leaq1);
+
+    const leaq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q2 (Analyse d'une stratégie d'adaptation)",
+      text: "Quelle stratégie Léa a-t-elle développée pour cacher ses difficultés en classe?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle demandait toujours à ses amis de lui résumer les textes avant le cours", "Elle utilisait son extraordinaire mémoire auditive pour écouter les autres et reconstituer l'information", "Elle copiait les réponses de sa voisine pendant les activités de lecture", "Elle faisait semblant d'être malade pour éviter les cours de français"]),
+      correctAnswer: "Elle utilisait son extraordinaire mémoire auditive pour écouter les autres et reconstituer l'information",
+      order: 2,
+    };
+    this.questions.set(leaq2.id, leaq2);
+
+    const leaq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q3 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement met en danger le système de Léa et crée une situation de crise pour elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un camarade de classe révèle à l'enseignante que Léa ne lit pas vraiment", "La maîtresse annonce une lecture à voix haute à tour de rôle, choisie au hasard", "Léa reçoit une mauvaise note dans un examen de lecture silencieuse", "L'orthopédagogue de l'école convoque Léa sans lui expliquer pourquoi"]),
+      correctAnswer: "La maîtresse annonce une lecture à voix haute à tour de rôle, choisie au hasard",
+      order: 3,
+    };
+    this.questions.set(leaq3.id, leaq3);
+
+    const leaq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q4 (Analyse d'une émotion — complexité)",
+      text: "Quand Léa répond « Oui » à madame Lavalée, l'auteure précise qu'elle « voulut dire non » et « dit non pendant deux secondes dans sa tête ». Qu'est-ce que cela révèle sur les émotions de Léa à ce moment?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Léa est confuse et ne sait pas si elle a une difficulté ou non", "Léa ressent un conflit intérieur entre l'habitude de cacher ses difficultés et le désir d'être enfin aidée", "Léa est en colère contre l'enseignante et choisit de lui répondre le contraire de ce qu'elle pense", "Léa ne comprend pas la question et répond au hasard pour ne pas paraître impolie"]),
+      correctAnswer: "Léa ressent un conflit intérieur entre l'habitude de cacher ses difficultés et le désir d'être enfin aidée",
+      order: 4,
+    };
+    this.questions.set(leaq4.id, leaq4);
+
+    const leaq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q5 (Procédé littéraire — accumulation)",
+      text: "Au paragraphe 4, Léa prépare sa lecture en urgence : « Elle commença à lire en silence, les lèvres bougeant à peine, les yeux sautant d'un mot à l'autre, les reconstituant, les déplaçant. Trop vite. Trop de mots. » Quel effet cette accumulation d'actions courtes et rapides crée-t-elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle montre que Léa est très efficace et organisée dans sa façon de travailler", "Elle reproduit dans l'écriture la panique et la précipitation que Léa vit intérieurement", "Elle prouve que Léa n'a pas réellement besoin d'aide puisqu'elle s'en sort", "Elle sert à alléger le texte avec des phrases courtes pour reposer le lecteur"]),
+      correctAnswer: "Elle reproduit dans l'écriture la panique et la précipitation que Léa vit intérieurement",
+      order: 5,
+    };
+    this.questions.set(leaq5.id, leaq5);
+
+    const leaq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q6 (Point de vue du narrateur)",
+      text: "Le narrateur décrit les pensées et les émotions de Léa de façon très précise. Quel point de vue est utilisé dans ce texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le point de vue externe : le narrateur ne connaît pas les pensées des personnages", "Le point de vue omniscient : le narrateur voit tout et connaît les pensées de Léa", "Le point de vue de madame Lavalée : c'est elle qui raconte l'histoire", "Le point de vue de la classe : les autres élèves observent Léa de l'extérieur"]),
+      correctAnswer: "Le point de vue omniscient : le narrateur voit tout et connaît les pensées de Léa",
+      order: 6,
+    };
+    this.questions.set(leaq6.id, leaq6);
+
+    const leaq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q7 (Importance d'un détail significatif)",
+      text: "L'auteure précise que madame Lavalée « ne parla pas de déficit ni de diagnostic » mais « de stratégies ». Pourquoi ce détail est-il important pour Léa?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Parce que Léa ne veut pas être officiellement diagnostiquée et a peur des étiquettes médicales", "Parce que parler de stratégies plutôt que de déficit montre que la difficulté est surmontable, pas une limite permanente", "Parce que madame Lavalée n'a pas le droit légal de parler de diagnostics à ses élèves", "Parce que Léa a déjà un diagnostic et l'enseignante le sait déjà"]),
+      correctAnswer: "Parce que parler de stratégies plutôt que de déficit montre que la difficulté est surmontable, pas une limite permanente",
+      order: 7,
+    };
+    this.questions.set(leaq7.id, leaq7);
+
+    const leaq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q8 (Cause profonde vs cause immédiate)",
+      text: "Quelle est la différence entre la cause immédiate de la crise de Léa (ce qui déclenche la panique) et la cause profonde (ce qui explique pourquoi la situation est si difficile)?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Cause immédiate : la dyslexie. Cause profonde : le ricanement d'un camarade", "Cause immédiate : l'annonce de la lecture à voix haute. Cause profonde : des années à cacher ses difficultés sans jamais demander d'aide", "Cause immédiate : la mauvaise mémoire de Léa. Cause profonde : l'attitude de ses anciens enseignants", "Cause immédiate : le fait que Léa n'a pas lu le texte à l'avance. Cause profonde : un manque de volonté"]),
+      correctAnswer: "Cause immédiate : l'annonce de la lecture à voix haute. Cause profonde : des années à cacher ses difficultés sans jamais demander d'aide",
+      order: 8,
+    };
+    this.questions.set(leaq8.id, leaq8);
+
+    const leaq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q9 (Valeur transmise)",
+      text: "Quelle valeur cette histoire cherche-t-elle principalement à transmettre au lecteur?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il vaut mieux cacher ses difficultés pour ne pas inquiéter les autres", "Demander de l'aide est un acte de courage, non une faiblesse", "Les élèves dyslexiques ne peuvent pas réussir sans un diagnostic médical officiel", "Les enseignants sont responsables de découvrir seuls les besoins de leurs élèves"]),
+      correctAnswer: "Demander de l'aide est un acte de courage, non une faiblesse",
+      order: 9,
+    };
+    this.questions.set(leaq9.id, leaq9);
+
+    const leaq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q10 (Écriture — lettre)",
+      text: "Imagine que tu es Léa. Écris une courte lettre (5 à 8 phrases) à madame Lavalée pour lui expliquer ta situation, ce que tu vis depuis longtemps et ce dont tu aurais besoin pour mieux réussir. Utilise le « je » et sois précis·e.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(leaq10.id, leaq10);
+
+    const leaq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q11 (Réflexion personnelle)",
+      text: "As-tu déjà vécu une situation où tu avais du mal avec quelque chose à l'école mais tu n'osais pas le dire? Qu'est-ce qui t'en empêchait? Si quelqu'un t'avait posé la même question que madame Lavalée, qu'est-ce que tu aurais répondu? Explique en quelques phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(leaq11.id, leaq11);
+
+    const leaq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifLea9ExId,
+      title: "Q12 (Changement de perspective)",
+      text: "Raconte le moment de la lecture à voix haute du point de vue de madame Lavalée. Qu'est-ce qu'elle observe chez Léa? Qu'est-ce qu'elle ressent ou pense pendant et après la lecture? Écris un court paragraphe (5 à 7 phrases) à la première personne (« je »).",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(leaq12.id, leaq12);
   }
 
   // Users
