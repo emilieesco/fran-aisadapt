@@ -7435,6 +7435,177 @@ Les Faucons de Sainte-Rose remportèrent la finale 4 à 2. Jordan marqua le dern
       order: 12,
     };
     this.questions.set(felixq12.id, felixq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #5 =====
+    // "Les Deux Maisons de Jade" — Secondaire 1 (12-13 ans)
+    // Thème : famille recomposée, appartenance, écriture comme refuge
+    const narratifJade5ExId = randomUUID();
+
+    const narratifJade5Exercise: Exercise = {
+      id: narratifJade5ExId,
+      courseId: narratifSec1CourseId,
+      title: "Les Deux Maisons de Jade",
+      description: "Famille recomposée, appartenance et écriture — 12 questions",
+      type: "text",
+      order: 5,
+    };
+    this.exercises.set(narratifJade5ExId, narratifJade5Exercise);
+
+    const jadeStory = `Jade Paquette avait deux chambres, deux garde-robes, deux boîtes de céréales avec son nom dessus — une chez sa mère, rue des Érables, une chez son père, avenue du Parc. Ses parents s'étaient séparés quand elle avait huit ans. Maintenant, à treize ans, elle avait appris à faire sa valise le dimanche soir avec la même efficacité qu'on range des chaussettes. Deux semaines ici, deux semaines là. Elle savait exactement quels livres elle laissait où, quel chandail survivrait mieux dans quel tiroir. Mais malgré cette organisation bien rodée, il y avait une chose qu'elle n'avait jamais réussi à emballer : le sentiment d'appartenir quelque part pour vrai.
+
+En octobre, madame Fortier donna à la classe un projet d'écriture : « Décrivez votre chez-vous. Ce que vous voyez, sentez, entendez. Ce qui vous fait dire : c'est là que je suis chez moi. » Jade regarda la feuille blanche pendant cinq minutes. Chez moi. Le mot lui semblait étranger, comme un vêtement qui aurait rétréci au lavage et qu'on essaierait encore d'enfiler malgré tout.
+
+Elle commença à écrire quand même. D'abord maladroitement, puis avec une étrange fluidité. Elle décrivit les deux maisons en même temps : l'odeur de café fort le matin chez sa mère, et le bruit du percolateur lent chez son père. La pile de magazines jamais rangés dans un salon, et les étagères parfaitement classées dans l'autre. Le chat tigré qui dormait sur ses pieds chez sa mère, et le silence des soirées calmes chez son père. Elle écrivit : « Je n'ai pas un chez-moi. J'en ai deux qui sont incomplets. Ensemble, ils formeraient peut-être quelque chose. Séparés, ils me ressemblent quand même. »
+
+Elle ne voulait pas remettre ce texte. C'était trop intime. Mais madame Fortier passa dans les rangées pendant que les élèves travaillaient et s'arrêta en lisant par-dessus son épaule. Elle ne dit rien. Juste un sourire silencieux, et un Post-it collé dans la marge : « Ce texte mérite d'être entendu. »
+
+Le lendemain, Jade lut son texte à voix haute. Sa voix trembla un peu à la phrase des deux maisons incomplètes. Quand elle termina, il y eut un moment de silence — pas gêné, pas vide. Plein. Puis Théo, un garçon tranquille assis au fond qu'elle connaissait à peine, leva la main et dit : « Moi aussi je vis comme ça. » Deux autres élèves hochèrent la tête.
+
+Jade refit sa valise le dimanche suivant avec la même efficacité habituelle. Mais quelque chose avait changé. Elle comprit que ses deux maisons n'étaient pas une erreur dans sa vie — elles étaient une partie de son histoire. Et que parfois, mettre des mots sur ce qu'on ressent, c'est la meilleure façon de ne plus se sentir seule.`;
+
+    const jadeq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q1 (Compréhension) : Comment la vie de Jade est-elle organisée depuis la séparation de ses parents?",
+      text: jadeStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle vit uniquement chez sa mère et voit son père les fins de semaine", "Elle vit deux semaines chez sa mère, deux semaines chez son père, en alternance", "Elle vit chez ses grands-parents depuis que ses parents se sont séparés", "Elle habite dans un appartement seule depuis l'âge de douze ans"]),
+      correctAnswer: "Elle vit deux semaines chez sa mère, deux semaines chez son père, en alternance",
+      order: 1,
+    };
+    this.questions.set(jadeq1.id, jadeq1);
+
+    const jadeq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q2 (Compréhension)",
+      text: "Quel est le sujet du projet d'écriture donné par madame Fortier?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Décrire une personne importante dans leur vie", "Écrire un poème sur les saisons d'automne", "Décrire leur chez-eux — ce qui leur donne le sentiment d'être chez eux", "Rédiger une lettre à quelqu'un qu'ils admirent"]),
+      correctAnswer: "Décrire leur chez-eux — ce qui leur donne le sentiment d'être chez eux",
+      order: 2,
+    };
+    this.questions.set(jadeq2.id, jadeq2);
+
+    const jadeq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q3 (Compréhension)",
+      text: "Que se passe-t-il quand Jade lit son texte à voix haute devant la classe?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La classe éclate de rire et Jade est humiliée", "Théo et deux autres élèves reconnaissent vivre la même situation", "Madame Fortier lui dit que le texte n'est pas assez développé", "Jade arrête de lire au milieu et s'enfuit en pleurant"]),
+      correctAnswer: "Théo et deux autres élèves reconnaissent vivre la même situation",
+      order: 3,
+    };
+    this.questions.set(jadeq3.id, jadeq3);
+
+    const jadeq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q4 (Schéma narratif — Situation initiale)",
+      text: "Comment Jade vit-elle sa situation au début de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle est parfaitement heureuse et ne manque de rien", "Elle a organisé sa vie entre deux maisons, mais n'a jamais réussi à emballer le sentiment d'appartenance", "Elle souffre ouvertement et en parle à tous ses amis", "Elle refuse de vivre en garde partagée et veut choisir une seule maison"]),
+      correctAnswer: "Elle a organisé sa vie entre deux maisons, mais n'a jamais réussi à emballer le sentiment d'appartenance",
+      order: 4,
+    };
+    this.questions.set(jadeq4.id, jadeq4);
+
+    const jadeq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q5 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement vient bousculer la routine de Jade?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ses parents annoncent une nouvelle séparation", "Madame Fortier donne un projet : décrire son chez-soi, un concept que Jade ne sait pas comment aborder", "Théo lui demande de sortir avec lui et elle ne sait pas quoi répondre", "Jade perd sa valise pendant un déménagement"]),
+      correctAnswer: "Madame Fortier donne un projet : décrire son chez-soi, un concept que Jade ne sait pas comment aborder",
+      order: 5,
+    };
+    this.questions.set(jadeq5.id, jadeq5);
+
+    const jadeq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q6 (Schéma narratif — Péripéties)",
+      text: "Qu'est-ce que Jade fait malgré son hésitation?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle refuse de remettre son texte et prend un zéro", "Elle écrit un texte fictif qui ne parle pas de sa vraie vie", "Elle commence à écrire maladroitement puis avec fluidité, décrivant ses deux maisons à la fois", "Elle demande à sa mère d'écrire le texte à sa place"]),
+      correctAnswer: "Elle commence à écrire maladroitement puis avec fluidité, décrivant ses deux maisons à la fois",
+      order: 6,
+    };
+    this.questions.set(jadeq6.id, jadeq6);
+
+    const jadeq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q7 (Schéma narratif — Dénouement)",
+      text: "Comment se résout le problème d'appartenance de Jade à la fin?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ses parents décident de se réconcilier", "En lisant son texte, elle découvre que d'autres élèves vivent la même chose et se sent moins seule", "Elle choisit de vivre uniquement chez son père", "Madame Fortier lui offre un prix pour le meilleur texte de la classe"]),
+      correctAnswer: "En lisant son texte, elle découvre que d'autres élèves vivent la même chose et se sent moins seule",
+      order: 7,
+    };
+    this.questions.set(jadeq7.id, jadeq7);
+
+    const jadeq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q8 (Vocabulaire en contexte)",
+      text: "Dans le texte, Jade décrit refaire sa valise avec « la même efficacité habituelle ». Que révèle cette expression sur son rapport à sa vie entre deux maisons?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle est triste et ne sait pas quoi emporter", "Elle a développé une routine bien rodée pour gérer les déplacements", "Elle est en colère contre ses parents à chaque déménagement", "Elle oublie toujours quelque chose d'important dans l'une des maisons"]),
+      correctAnswer: "Elle a développé une routine bien rodée pour gérer les déplacements",
+      order: 8,
+    };
+    this.questions.set(jadeq8.id, jadeq8);
+
+    const jadeq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q9 (Interprétation)",
+      text: "Que signifie la phrase de Jade : « Je n'ai pas un chez-moi. J'en ai deux qui sont incomplets. Ensemble, ils formeraient peut-être quelque chose »?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle veut que ses parents achètent une plus grande maison ensemble", "Elle exprime que ses deux maisons, chacune partielle, forment ensemble son identité complète", "Elle pense que ses deux maisons manquent de meubles et de confort", "Elle veut déménager dans un endroit entièrement nouveau"]),
+      correctAnswer: "Elle exprime que ses deux maisons, chacune partielle, forment ensemble son identité complète",
+      order: 9,
+    };
+    this.questions.set(jadeq9.id, jadeq9);
+
+    const jadeq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q10 (Réaction personnelle)",
+      text: "As-tu déjà eu de la difficulté à expliquer ta situation familiale (ou une autre situation personnelle) à quelqu'un? Comment tu t'es senti(e)? Est-ce que l'écriture ou une autre forme d'expression t'a déjà aidé(e)? Explique en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(jadeq10.id, jadeq10);
+
+    const jadeq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q11 (Réaction — lien personnel)",
+      text: "Jade se sent différente des autres à cause de sa garde partagée. As-tu déjà eu l'impression d'être différent(e) de tes camarades pour une raison quelconque? Comment as-tu géré ce sentiment? Raconte en quelques phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(jadeq11.id, jadeq11);
+
+    const jadeq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifJade5ExId,
+      title: "Q12 (Jugement critique)",
+      text: "À la fin, Jade comprend que ses deux maisons font partie de son histoire et que l'écriture l'a aidée à ne plus se sentir seule. Crois-tu que partager ce qu'on ressent (par l'écriture, la parole, ou autrement) peut vraiment aider à surmonter une difficulté? Donne au moins deux arguments pour défendre ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(jadeq12.id, jadeq12);
   }
 
   // Users
