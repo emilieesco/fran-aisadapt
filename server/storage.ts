@@ -9542,6 +9542,176 @@ Cependant, la forêt boréale fait face à des menaces importantes. Les changeme
       order: 12,
     };
     this.questions.set(foretq12.id, foretq12);
+
+    // ===== INFORMATIF SEC 1 — TEXTE #2 =====
+    // "Le fleuve Saint-Laurent" — géographie, histoire, écologie, économie
+    // Questions variées : chiffre précis, regrouper infos, vocabulaire, phrase-sujet, cause/conséquence,
+    //                     comparaison, idée principale, inférence, fait vs opinion, résumé, écriture, réflexion
+    const informatifSec1T2ExId = randomUUID();
+
+    const informatifSec1T2Exercise: Exercise = {
+      id: informatifSec1T2ExId,
+      courseId: informatifSec1CourseId,
+      title: "Le fleuve Saint-Laurent",
+      description: "Texte informatif sur le fleuve Saint-Laurent — géographie, rôle écologique, histoire et enjeux actuels",
+      type: "text",
+      order: 2,
+    };
+    this.exercises.set(informatifSec1T2ExId, informatifSec1T2Exercise);
+
+    const saintLaurentText = `Le fleuve Saint-Laurent est l'une des voies d'eau les plus importantes du continent nord-américain. Avec une longueur de près de 1 200 kilomètres depuis la sortie du lac Ontario jusqu'à son embouchure dans le golfe du Saint-Laurent, il draine un bassin versant d'environ 1,3 million de kilomètres carrés. Ce bassin comprend les Grands Lacs, qui représentent à eux seuls environ 20 % des réserves mondiales d'eau douce de surface. Le Saint-Laurent prend naissance à Kingston, en Ontario, et traverse le Québec d'ouest en est avant de se jeter dans l'Atlantique.
+
+Le fleuve change de caractère selon les régions qu'il traverse. Dans sa partie supérieure, entre Kingston et Québec, ses eaux sont relativement douces, et ses rives sont bordées de villes importantes comme Montréal, Trois-Rivières et Québec. Plus on avance vers l'est, plus le fleuve s'élargit et ses eaux se mélangent progressivement à l'eau salée de l'Atlantique. Cette zone de mélange, qu'on appelle l'estuaire, s'étend de la ville de Québec jusqu'à la pointe de Gaspé. Au-delà, c'est le golfe du Saint-Laurent, une mer intérieure partiellement fermée qui communique avec l'océan Atlantique.
+
+Sur le plan écologique, le Saint-Laurent héberge une biodiversité remarquable. Ses eaux accueillent plus de 100 espèces de poissons, dont l'anguille d'Amérique, l'esturgeon, le doré jaune et le saumon de l'Atlantique. Le fleuve est également un habitat essentiel pour plusieurs espèces de mammifères marins, dont le béluga, un petit cétacé blanc qui vit dans l'estuaire et qui est classé comme espèce en voie de disparition au Canada. Les bernaches du Canada et de nombreuses espèces de canards utilisent les rives et les îles du Saint-Laurent comme haltes migratoires chaque année.
+
+Depuis des siècles, le Saint-Laurent a joué un rôle central dans l'histoire humaine du Québec. Les peuples autochtones — Mohawks, Hurons-Wendats, Innus et Malécites, entre autres — vivaient sur ses rives et dépendaient de lui pour leur subsistance et leurs déplacements bien avant l'arrivée des Européens. C'est par le Saint-Laurent que Jacques Cartier a remonté en 1534 et 1535, ouvrant ainsi la voie à la colonisation française. Aujourd'hui encore, le fleuve est une artère économique vitale : les navires commerciaux empruntent la Voie maritime du Saint-Laurent pour relier les ports des Grands Lacs aux marchés internationaux, transportant des céréales, des minerais et des produits manufacturés.
+
+Malgré son importance, le fleuve Saint-Laurent fait face à des défis environnementaux sérieux. Des décennies d'industrialisation et d'agriculture intensive ont entraîné la contamination des sédiments du fond du fleuve par des métaux lourds et des produits chimiques persistants. Ces contaminants s'accumulent dans la chaîne alimentaire et affectent la santé des animaux qui vivent dans le fleuve, notamment le béluga. Des efforts importants ont été déployés depuis les années 1990 pour assainir le fleuve : la construction de stations d'épuration des eaux usées dans de nombreuses municipalités a permis de réduire considérablement les rejets de polluants. Cependant, les changements climatiques représentent une nouvelle menace, en modifiant les niveaux d'eau, la température et les régimes de glace hivernale.`;
+
+    const slq1: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q1 (Repérage d'un fait précis — chiffre)",
+      text: saintLaurentText,
+      type: "multiple_choice",
+      options: JSON.stringify(["Environ 500 kilomètres depuis le lac Érié", "Près de 1 200 kilomètres depuis le lac Ontario jusqu'au golfe", "Exactement 3 000 kilomètres depuis sa source aux Grands Lacs", "Environ 800 kilomètres, de Montréal jusqu'à l'Atlantique"]),
+      correctAnswer: "Près de 1 200 kilomètres depuis le lac Ontario jusqu'au golfe",
+      order: 1,
+    };
+    this.questions.set(slq1.id, slq1);
+
+    const slq2: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q2 (Regrouper des informations de plusieurs paragraphes)",
+      text: "En te basant sur plusieurs paragraphes du texte, quels sont les TROIS rôles principaux que le fleuve Saint-Laurent joue pour le Québec?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Rôle sportif (sports nautiques), rôle touristique (croisières), rôle agricole (irrigation)", "Rôle écologique (biodiversité), rôle historique et économique (transport et colonisation), rôle environnemental (enjeux de pollution)", "Rôle militaire (défense), rôle politique (frontière avec les États-Unis), rôle artistique (inspiration des peintres)", "Rôle religieux (baptêmes), rôle médical (eau thérapeutique), rôle culturel (festivals)"]),
+      correctAnswer: "Rôle écologique (biodiversité), rôle historique et économique (transport et colonisation), rôle environnemental (enjeux de pollution)",
+      order: 2,
+    };
+    this.questions.set(slq2.id, slq2);
+
+    const slq3: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q3 (Vocabulaire — « estuaire » et « embouchure » en contexte)",
+      text: "Le texte mentionne deux termes géographiques : « embouchure » et « estuaire ». En te basant sur le contexte, explique la différence entre ces deux réalités.",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'embouchure est la source du fleuve; l'estuaire est l'endroit où il est le plus large", "L'embouchure est l'endroit où le fleuve se jette dans la mer; l'estuaire est la zone de transition où l'eau douce et l'eau salée se mélangent", "Ce sont deux mots synonymes qui désignent la même réalité géographique", "L'embouchure est une baie; l'estuaire est un lac côtier"]),
+      correctAnswer: "L'embouchure est l'endroit où le fleuve se jette dans la mer; l'estuaire est la zone de transition où l'eau douce et l'eau salée se mélangent",
+      order: 3,
+    };
+    this.questions.set(slq3.id, slq3);
+
+    const slq4: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q4 (Phrase-sujet — idée de chaque paragraphe)",
+      text: "Dans un texte informatif bien structuré, chaque paragraphe commence souvent par une phrase qui annonce l'idée principale. Quelle est l'idée principale du TROISIÈME paragraphe (qui commence par « Sur le plan écologique… »)?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'histoire de l'exploration européenne du Saint-Laurent par Jacques Cartier", "La pollution du fleuve par les industries et l'agriculture", "Le fleuve Saint-Laurent est un milieu de vie riche pour de nombreuses espèces animales", "Le rôle économique du fleuve comme voie de transport commerciale"]),
+      correctAnswer: "Le fleuve Saint-Laurent est un milieu de vie riche pour de nombreuses espèces animales",
+      order: 4,
+    };
+    this.questions.set(slq4.id, slq4);
+
+    const slq5: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q5 (Cause → conséquence : pollution et béluga)",
+      text: "D'après le texte, quel est le lien cause → conséquence entre la contamination du fleuve et le béluga?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Cause : le béluga mange trop de poissons / Conséquence : les espèces de poissons disparaissent", "Cause : des décennies de pollution industrielle et agricole ont contaminé les sédiments / Conséquence : les contaminants s'accumulent dans la chaîne alimentaire et affectent la santé du béluga", "Cause : le béluga est chassé illégalement / Conséquence : sa population est en déclin", "Cause : les changements climatiques réchauffent l'eau / Conséquence : le béluga migre vers le nord"]),
+      correctAnswer: "Cause : des décennies de pollution industrielle et agricole ont contaminé les sédiments / Conséquence : les contaminants s'accumulent dans la chaîne alimentaire et affectent la santé du béluga",
+      order: 5,
+    };
+    this.questions.set(slq5.id, slq5);
+
+    const slq6: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q6 (Comparaison entre deux réalités du texte)",
+      text: "Le texte compare le Saint-Laurent dans sa partie supérieure (Québec occidental) et dans sa partie orientale. Quelle différence principale est mentionnée?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La partie supérieure est polluée; la partie orientale est pure et propre", "La partie supérieure est à eau douce, bordée de villes; la partie orientale voit les eaux se mélanger au sel marin et s'élargit en estuaire puis en golfe", "La partie supérieure est peu profonde et impraticable; la partie orientale est navigable pour les grands navires", "Il n'y a aucune différence notable entre les deux parties du fleuve"]),
+      correctAnswer: "La partie supérieure est à eau douce, bordée de villes; la partie orientale voit les eaux se mélanger au sel marin et s'élargit en estuaire puis en golfe",
+      order: 6,
+    };
+    this.questions.set(slq6.id, slq6);
+
+    const slq7: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q7 (Idée principale du texte entier)",
+      text: "Quelle phrase résume le mieux l'idée principale de l'ensemble du texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le béluga est une espèce en voie de disparition qui vit dans le Saint-Laurent", "Le fleuve Saint-Laurent est une réalité géographique, écologique, historique et économique fondamentale pour le Québec, mais il fait face à des défis environnementaux croissants", "Jacques Cartier a découvert le Saint-Laurent en 1534, ce qui a permis la colonisation de la Nouvelle-France", "La Voie maritime du Saint-Laurent est essentielle pour le commerce international des céréales et des minerais"]),
+      correctAnswer: "Le fleuve Saint-Laurent est une réalité géographique, écologique, historique et économique fondamentale pour le Québec, mais il fait face à des défis environnementaux croissants",
+      order: 7,
+    };
+    this.questions.set(slq7.id, slq7);
+
+    const slq8: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q8 (Inférence — ce qu'on peut déduire)",
+      text: "Le texte mentionne que « les peuples autochtones vivaient sur ses rives et dépendaient de lui pour leur subsistance et leurs déplacements bien avant l'arrivée des Européens ». Qu'est-ce qu'on peut en déduire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les peuples autochtones n'utilisaient pas le fleuve pour la pêche", "Le fleuve Saint-Laurent a une histoire humaine qui précède de très loin la colonisation européenne et était au cœur des sociétés autochtones", "Les peuples autochtones ont construit des navires commerciaux sur le Saint-Laurent", "La colonisation européenne a amélioré les conditions de vie des peuples autochtones des rives du fleuve"]),
+      correctAnswer: "Le fleuve Saint-Laurent a une histoire humaine qui précède de très loin la colonisation européenne et était au cœur des sociétés autochtones",
+      order: 8,
+    };
+    this.questions.set(slq8.id, slq8);
+
+    const slq9: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q9 (Distinguer un fait d'une opinion)",
+      text: "Dans un texte informatif, l'auteur présente des FAITS vérifiables. Laquelle de ces affirmations est une OPINION (et ne devrait donc pas figurer dans un texte purement informatif)?",
+      type: "multiple_choice",
+      options: JSON.stringify(["« Le fleuve Saint-Laurent mesure près de 1 200 kilomètres »", "« La zone de mélange entre eau douce et eau salée s'appelle l'estuaire »", "« C'est une honte que les gouvernements n'aient pas protégé le béluga bien plus tôt »", "« Des stations d'épuration ont été construites depuis les années 1990 »"]),
+      correctAnswer: "« C'est une honte que les gouvernements n'aient pas protégé le béluga bien plus tôt »",
+      order: 9,
+    };
+    this.questions.set(slq9.id, slq9);
+
+    const slq10: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q10 (Résumé structuré — 5 aspects)",
+      text: "Résume chacun des cinq paragraphes du texte en une phrase complète. Utilise tes propres mots — ne copie pas le texte mot pour mot. Commence chaque résumé par : « Dans ce paragraphe, l'auteur explique que… »",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(slq10.id, slq10);
+
+    const slq11: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q11 (Écriture d'un texte informatif — réalité géographique)",
+      text: "Choisis une autre réalité géographique ou naturelle du Québec (ex. : les Laurentides, le lac Saint-Jean, les Îles-de-la-Madeleine, la rivière des Outaouais, le mont Tremblant, etc.) et écris un court texte informatif de 5 à 8 phrases. Présente au moins un fait chiffré, une information sur l'importance de ce lieu et une caractéristique qui le distingue. Reste objectif.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(slq11.id, slq11);
+
+    const slq12: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T2ExId,
+      title: "Q12 (Réflexion personnelle appuyée sur le texte)",
+      text: "D'après ce que tu as lu, quelle information t'a le plus surpris ou marqué? Explique en 4 à 6 phrases pourquoi tu trouves cette information importante et quel lien tu peux faire avec ce que tu connais déjà du Québec. Appuie ta réflexion sur au moins un élément précis du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(slq12.id, slq12);
   }
 
   // Users
