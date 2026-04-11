@@ -8676,6 +8676,177 @@ Janvier n'embellit pas le Vieux-Port. Il le révèle.`;
       order: 12,
     };
     this.questions.set(descriptifq12.id, descriptifq12);
+
+    // ===== DESCRIPTIF SEC 1 — TEXTE #2 =====
+    // "Monsieur Beauchamp, le concierge" — portrait de personnage
+    // Questions : portrait physique vs moral, métaphore, inférence, énumération, registre, impression sur lecteur, portrait écrit
+    const descriptifSec1T2ExId = randomUUID();
+
+    const descriptifSec1T2Exercise: Exercise = {
+      id: descriptifSec1T2ExId,
+      courseId: descriptifSec1CourseId,
+      title: "Monsieur Beauchamp, le concierge",
+      description: "Portrait d'un personnage — description physique, comportementale et implicite",
+      type: "text",
+      order: 2,
+    };
+    this.exercises.set(descriptifSec1T2ExId, descriptifSec1T2Exercise);
+
+    const beauchampStory = `Monsieur Beauchamp travaille à l'école secondaire Saint-Émile depuis trente-huit ans. Il en connaît chaque fissure dans les murs, chaque porte qui coince à l'humidité, chaque robinet qui fuit au troisième étage les jours de grand froid. Si l'école était un corps, Monsieur Beauchamp en serait la mémoire.
+
+Il est grand, légèrement voûté — la courbure de quelqu'un qui a passé des décennies à se pencher sous des bureaux et au-dessus de tuyaux. Ses mains sont larges, avec des jointures marquées et des paumes calluses qui portent les traces de quarante ans de travail manuel. Son uniforme gris — toujours le même gris, toujours propre — porte parfois une tache de peinture au coude gauche ou une marque de graisse à la hauteur du genou. Il la remarque toujours trop tard.
+
+Son trousseau de clés est légendaire. Accroché à sa ceinture, il compte plus de soixante clés de formes et de tailles diverses, et il retrouve la bonne du premier coup, chaque fois, sans regarder. Les élèves ont fait le pari plusieurs fois. Il n'a jamais perdu.
+
+Il parle peu, mais quand il le fait, c'est utile. Il dit « bonjour » à chaque élève qu'il croise dans le couloir — pas un bonjour distrait, un vrai, avec un regard direct. Quand quelqu'un renverse sa boîte à lunch dans l'escalier, il arrive avec son balai avant même qu'on ait eu le temps de s'en vouloir. Il ne soupire pas. Il ramasse.
+
+Il y a dans l'école un banc dans la cour intérieure, peint chaque printemps d'un bleu légèrement différent selon la teinte que le magasin avait en stock. C'est Monsieur Beauchamp qui le repeint. Personne ne lui a jamais demandé de le faire. Il le fait parce que le banc était là avant lui et qu'il sera probablement là après.
+
+À la fin de juin, les élèves de cinquième secondaire signent leurs noms sur un grand tableau dans le couloir. Monsieur Beauchamp efface le tableau le lendemain de la collation des grades. Il a effacé trente-huit tableaux. Il n'a jamais gardé une photo.`;
+
+    const beauchampq1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q1 (Compréhension directe) : Depuis combien de temps Monsieur Beauchamp travaille-t-il à l'école?",
+      text: beauchampStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Depuis vingt ans", "Depuis trente-huit ans", "Depuis toute sa vie, il y est né dans le quartier", "Le texte ne le précise pas"]),
+      correctAnswer: "Depuis trente-huit ans",
+      order: 1,
+    };
+    this.questions.set(beauchampq1.id, beauchampq1);
+
+    const beauchampq2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q2 (Type de description — portrait de personnage)",
+      text: "Ce texte est un portrait de personnage. Quels deux types de description sont combinés pour décrire Monsieur Beauchamp?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La description géographique et la description historique", "La description physique (apparence, corps) et la description comportementale (actions, habitudes, façon d'être)", "La description psychologique et la description médicale", "La description de ses vêtements uniquement, et la description de son appartement"]),
+      correctAnswer: "La description physique (apparence, corps) et la description comportementale (actions, habitudes, façon d'être)",
+      order: 2,
+    };
+    this.questions.set(beauchampq2.id, beauchampq2);
+
+    const beauchampq3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q3 (Procédé — métaphore)",
+      text: "Dans le premier paragraphe, l'auteur écrit : « Si l'école était un corps, Monsieur Beauchamp en serait la mémoire. » Qu'est-ce que cette métaphore veut dire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Monsieur Beauchamp a une mémoire photographique et se souvient de tout", "Comme la mémoire dans un corps, Monsieur Beauchamp garde en lui toute l'histoire de l'école et lui permet de fonctionner", "Monsieur Beauchamp est vieux et son cerveau commence à lui faire défaut", "L'école est comme un être humain qui vieillit et qui a besoin de soins médicaux"]),
+      correctAnswer: "Comme la mémoire dans un corps, Monsieur Beauchamp garde en lui toute l'histoire de l'école et lui permet de fonctionner",
+      order: 3,
+    };
+    this.questions.set(beauchampq3.id, beauchampq3);
+
+    const beauchampq4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q4 (Inférence — ce que la description révèle)",
+      text: "L'auteur ne dit jamais directement que Monsieur Beauchamp est quelqu'un de dévoué et de discret. Comment le lecteur comprend-il quand même ces qualités?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Parce qu'un autre personnage le dit dans une conversation rapportée", "Parce que les actions décrites (repeindre le banc sans qu'on lui demande, ramasser sans soupirer, dire bonjour à chaque élève) montrent ces qualités sans les nommer", "Parce que l'auteur le décrit comme un saint à la fin du texte", "Parce que Monsieur Beauchamp parle de lui-même avec fierté dans un dialogue"]),
+      correctAnswer: "Parce que les actions décrites (repeindre le banc sans qu'on lui demande, ramasser sans soupirer, dire bonjour à chaque élève) montrent ces qualités sans les nommer",
+      order: 4,
+    };
+    this.questions.set(beauchampq4.id, beauchampq4);
+
+    const beauchampq5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q5 (Procédé — énumération)",
+      text: "Dans le paragraphe sur le trousseau de clés, l'auteur utilise une énumération. Quel effet cette énumération produit-elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Elle montre que Monsieur Beauchamp a trop de responsabilités et est débordé", "Elle crée une impression de richesse et de complexité, et renforce l'idée que Monsieur Beauchamp maîtrise un univers vaste et détaillé", "Elle sert à alléger le texte avec des détails amusants et sans importance", "Elle prouve que Monsieur Beauchamp est désorganisé et ne sait pas gérer son matériel"]),
+      correctAnswer: "Elle crée une impression de richesse et de complexité, et renforce l'idée que Monsieur Beauchamp maîtrise un univers vaste et détaillé",
+      order: 5,
+    };
+    this.questions.set(beauchampq5.id, beauchampq5);
+
+    const beauchampq6: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q6 (Analyse d'un détail révélateur)",
+      text: "L'auteur précise que le trousseau compte « plus de soixante clés » et que Monsieur Beauchamp « retrouve la bonne du premier coup, chaque fois, sans regarder ». Que révèle ce détail sur le personnage?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il a une très bonne vue malgré son âge avancé", "Il a une connaissance profonde et intuitive de son environnement, acquise par des années de pratique", "Il a des trucs magiques pour se souvenir de l'ordre des clés", "Il essaie d'impressionner les élèves pour qu'ils le respectent davantage"]),
+      correctAnswer: "Il a une connaissance profonde et intuitive de son environnement, acquise par des années de pratique",
+      order: 6,
+    };
+    this.questions.set(beauchampq6.id, beauchampq6);
+
+    const beauchampq7: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q7 (Analyse du détail final — le tableau effacé)",
+      text: "Le texte se termine sur cette phrase : « Il a effacé trente-huit tableaux. Il n'a jamais gardé une photo. » Quelle interprétation est la plus juste?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Monsieur Beauchamp est triste de ne pas avoir conservé de souvenirs et le regrette", "Monsieur Beauchamp fait son travail avec constance et humilité, sans chercher à être vu ou à garder une trace de son propre effacement", "Il n'a pas de téléphone et n'a jamais appris à prendre des photos", "Monsieur Beauchamp hait les élèves et est content d'effacer leur trace chaque année"]),
+      correctAnswer: "Monsieur Beauchamp fait son travail avec constance et humilité, sans chercher à être vu ou à garder une trace de son propre effacement",
+      order: 7,
+    };
+    this.questions.set(beauchampq7.id, beauchampq7);
+
+    const beauchampq8: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q8 (Vocabulaire — sens en contexte)",
+      text: "Dans la phrase « ses paumes calluses qui portent les traces de quarante ans de travail manuel », que signifie le mot « calluses »?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Très douces et soignées, comme celles d'un pianiste", "Durcies et épaissies par des années de frottement et d'effort physique", "Abîmées par des produits chimiques dangereux utilisés au travail", "Grandes et larges, adaptées à attraper des objets lourds"]),
+      correctAnswer: "Durcies et épaissies par des années de frottement et d'effort physique",
+      order: 8,
+    };
+    this.questions.set(beauchampq8.id, beauchampq8);
+
+    const beauchampq9: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q9 (Impression d'ensemble sur le lecteur)",
+      text: "Après avoir lu ce portrait, quelle impression globale Monsieur Beauchamp laisse-t-il?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Un homme amer et épuisé qui attend sa retraite avec impatience", "Un personnage banal et sans intérêt, décrit avec trop de détails inutiles", "Un homme discret, fiable et profondément ancré dans la vie de l'école, dont la valeur est souvent invisible mais essentielle", "Un personnage comique dont les habitudes sont exagérées pour amuser le lecteur"]),
+      correctAnswer: "Un homme discret, fiable et profondément ancré dans la vie de l'école, dont la valeur est souvent invisible mais essentielle",
+      order: 9,
+    };
+    this.questions.set(beauchampq9.id, beauchampq9);
+
+    const beauchampq10: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q10 (Réflexion personnelle)",
+      text: "Y a-t-il une personne dans ta vie (à l'école, dans ta famille, dans ton quartier) dont le travail est souvent invisible ou peu remarqué, mais qui est en réalité essentielle? Décris-la brièvement et explique pourquoi son rôle compte, à ton avis.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(beauchampq10.id, beauchampq10);
+
+    const beauchampq11: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q11 (Écriture — portrait de personnage)",
+      text: "Écris le portrait d'un personnage que tu connais (ou que tu inventes). Utilise les deux types de description vus dans le texte : description physique (apparence, gestes, voix) ET description comportementale (habitudes, façon de parler, actions révélatrices). Minimum 8 phrases. Ne dis jamais directement si le personnage est gentil, courageux ou triste — montre-le à travers ses actions et ses détails.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(beauchampq11.id, beauchampq11);
+
+    const beauchampq12: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T2ExId,
+      title: "Q12 (Réécriture — changement de point de vue)",
+      text: "Réécris le paragraphe 4 du texte (« Il parle peu, mais quand il le fait... Il ramasse. ») du point de vue d'un élève qui observe Monsieur Beauchamp pour la première fois. Utilise la première personne (« je ») et décris ce que cet élève voit, entend et ressent. Environ 6 à 8 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(beauchampq12.id, beauchampq12);
   }
 
   // Users
