@@ -7260,6 +7260,181 @@ Samy ne remporta pas le premier prix. Mais en descendant de scène, quelque chos
       order: 12,
     };
     this.questions.set(samyq12.id, samyq12);
+
+    // ===== TEXTES DÉVELOPPÉS PAR NIVEAU — NARRATIF #4 =====
+    // "Le Dernier Match de Félix" — Secondaire 1 (12-13 ans)
+    // Thème : courage moral, loyauté, honnêteté face à un dilemme
+    const narratifFelix4ExId = randomUUID();
+
+    const narratifFelix4Exercise: Exercise = {
+      id: narratifFelix4ExId,
+      courseId: narratifSec1CourseId,
+      title: "Le Dernier Match de Félix",
+      description: "Loyauté, honnêteté et courage moral — 12 questions",
+      type: "text",
+      order: 4,
+    };
+    this.exercises.set(narratifFelix4ExId, narratifFelix4Exercise);
+
+    const felixStory = `Félix Lapointe vivait pour le hockey. À treize ans, il connaissait déjà par cœur la liste de toutes les finales régionales des dix dernières années, et il rêvait depuis aussi longtemps d'en disputer une. Cette année, son rêve était à portée de main : son équipe, les Faucons de Sainte-Rose, avait gagné tous leurs matchs de la saison et se qualifiait pour la grande finale du samedi. Dans les corridors de l'école, on ne parlait que de ça.
+
+Son meilleur ami depuis la quatrième année, Jordan Mercier, était le meilleur joueur de l'équipe. Rapide, précis, instinctif. Félix et Jordan s'entraînaient ensemble depuis des années, partageaient les mêmes fous rires dans les vestiaires, les mêmes célébrations après les buts. Félix lui faisait une confiance totale.
+
+La veille de la finale, après l'entraînement, Félix revint dans le vestiaire chercher ses gants oubliés. La pièce était presque vide. Dans le coin, Jordan se tenait dos à lui, penché sur le sac d'un coéquipier. Félix s'immobilisa. Jordan glissa quelque chose dans sa poche de manteau. Un billet. Puis un autre. Il referma le sac doucement et se retourna. Leurs regards se croisèrent.
+
+Un silence lourd s'installa. Jordan pâlit. « Félix... » Sa voix était basse, presque suppliante. « C'est pas ce que tu crois. J'avais besoin d'argent pour... écoute, c'est compliqué. Dis rien à personne. Juste pour ce soir. Demain après la finale, je le remets, je te jure. »
+
+Félix ne dormit pas de la nuit. Il tournait et retournait la scène dans sa tête. S'il parlait, Jordan serait peut-être suspendu. La finale serait perdue. Toute la saison réduite à rien. Mais s'il se taisait, il devenait complice. Et le coéquipier, lui — William, le gardien de but tranquille qui travaillait les fins de semaine pour payer ses équipements — n'avait rien fait de mal.
+
+Le matin du match, Félix arriva tôt à l'arène. Avant que Jordan ne soit là, il trouva Mathieu, le capitaine de l'équipe, et lui dit ce qu'il avait vu. Sa voix tremblait. Mathieu l'écouta sans l'interrompre, puis hocha lentement la tête.
+
+La confrontation avec Jordan fut brève et silencieuse. Jordan rendit l'argent à William, les yeux baissés. L'entraîneur décida que Jordan pourrait jouer — mais qu'il y aurait des conséquences après le match.
+
+Les Faucons de Sainte-Rose remportèrent la finale 4 à 2. Jordan marqua le dernier but. Dans le vestiaire, au milieu des cris de joie, il s'approcha de Félix. « T'aurais pu te taire, » dit-il. « Je sais. » Félix le regarda. « Mais t'aurais pas aimé la personne que tu serais devenu. Moi non plus. » Jordan hocha la tête lentement. C'était suffisant.`;
+
+    const felixq1: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q1 (Compréhension) : Quel était le grand rêve de Félix au début de l'histoire?",
+      text: felixStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Devenir entraîneur de hockey professionnel", "Disputer une finale régionale avec son équipe", "Battre le record de buts de sa ville", "Rejoindre une équipe de hockey d'élite à Montréal"]),
+      correctAnswer: "Disputer une finale régionale avec son équipe",
+      order: 1,
+    };
+    this.questions.set(felixq1.id, felixq1);
+
+    const felixq2: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q2 (Compréhension)",
+      text: "Qu'est-ce que Félix voit Jordan faire dans le vestiaire la veille de la finale?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Jordan cache des équipements de hockey dans son sac", "Jordan fouille le sac d'un coéquipier et vole de l'argent", "Jordan brise le casque d'un autre joueur par accident", "Jordan lit des messages privés sur le téléphone de William"]),
+      correctAnswer: "Jordan fouille le sac d'un coéquipier et vole de l'argent",
+      order: 2,
+    };
+    this.questions.set(felixq2.id, felixq2);
+
+    const felixq3: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q3 (Compréhension)",
+      text: "À qui Félix décide-t-il de parler le matin du match?",
+      type: "multiple_choice",
+      options: JSON.stringify(["À l'entraîneur directement", "À William, le gardien de but", "À Mathieu, le capitaine de l'équipe", "À ses parents avant de partir pour l'arène"]),
+      correctAnswer: "À Mathieu, le capitaine de l'équipe",
+      order: 3,
+    };
+    this.questions.set(felixq3.id, felixq3);
+
+    const felixq4: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q4 (Schéma narratif — Situation initiale)",
+      text: "Qu'est-ce qui caractérise la situation de Félix au début de l'histoire?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il vit un conflit avec Jordan depuis plusieurs semaines", "Il doute de ses capacités et pense à quitter l'équipe", "Il rêve d'une finale depuis longtemps et son équipe est qualifiée pour y participer", "Il vient d'apprendre qu'il est le meilleur joueur de la région"]),
+      correctAnswer: "Il rêve d'une finale depuis longtemps et son équipe est qualifiée pour y participer",
+      order: 4,
+    };
+    this.questions.set(felixq4.id, felixq4);
+
+    const felixq5: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q5 (Schéma narratif — Élément perturbateur)",
+      text: "Quel événement vient perturber la tranquillité de Félix la veille de la finale?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Jordan lui annonce qu'il abandonne l'équipe", "Félix se blesse à l'entraînement et ne sait pas s'il pourra jouer", "Félix surprend Jordan en train de voler de l'argent dans le sac d'un coéquipier", "L'entraîneur retire Félix de l'équipe pour la finale"]),
+      correctAnswer: "Félix surprend Jordan en train de voler de l'argent dans le sac d'un coéquipier",
+      order: 5,
+    };
+    this.questions.set(felixq5.id, felixq5);
+
+    const felixq6: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q6 (Schéma narratif — Péripéties)",
+      text: "Quel est le dilemme vécu par Félix durant la nuit?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Choisir entre jouer au hockey ou arrêter le sport", "Choisir entre dénoncer Jordan et risquer la finale, ou se taire et devenir complice", "Décider s'il doit remplacer Jordan comme meilleur joueur", "Choisir entre rejoindre une autre équipe ou rester avec les Faucons"]),
+      correctAnswer: "Choisir entre dénoncer Jordan et risquer la finale, ou se taire et devenir complice",
+      order: 6,
+    };
+    this.questions.set(felixq6.id, felixq6);
+
+    const felixq7: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q7 (Schéma narratif — Dénouement)",
+      text: "Comment se résout la situation après que Félix a parlé à Mathieu?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Jordan est suspendu et l'équipe perd la finale", "Jordan rend l'argent, il joue quand même et l'équipe remporte la finale", "William porte plainte et la finale est annulée", "Félix est exclu de l'équipe pour avoir brisé la solidarité"]),
+      correctAnswer: "Jordan rend l'argent, il joue quand même et l'équipe remporte la finale",
+      order: 7,
+    };
+    this.questions.set(felixq7.id, felixq7);
+
+    const felixq8: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q8 (Vocabulaire en contexte)",
+      text: "Dans le texte, l'expression « Un silence lourd s'installa » (après que les regards se croisèrent) signifie :",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le vestiaire était insonorisé", "Un silence chargé de tension et de malaise s'établit entre eux", "Jordan ne voulait pas parler parce qu'il était fatigué", "Félix ne comprenait pas ce qu'il venait de voir"]),
+      correctAnswer: "Un silence chargé de tension et de malaise s'établit entre eux",
+      order: 8,
+    };
+    this.questions.set(felixq8.id, felixq8);
+
+    const felixq9: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q9 (Interprétation)",
+      text: "Que veut dire Félix quand il dit à Jordan : « T'aurais pas aimé la personne que tu serais devenu »?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il pense que Jordan aurait perdu ses amis s'il avait été découvert plus tard", "Il croit que Jordan serait devenu un joueur moins performant", "Il suggère que se taire face à l'injustice aurait nui au caractère de Jordan", "Il veut dire que Jordan aurait été expulsé de l'équipe définitivement"]),
+      correctAnswer: "Il suggère que se taire face à l'injustice aurait nui au caractère de Jordan",
+      order: 9,
+    };
+    this.questions.set(felixq9.id, felixq9);
+
+    const felixq10: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q10 (Réaction personnelle)",
+      text: "As-tu déjà été dans une situation où tu devais choisir entre garder un secret pour protéger un ami ou dire la vérité? Comment t'es-tu senti(e)? Qu'as-tu fait? Explique en deux ou trois phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(felixq10.id, felixq10);
+
+    const felixq11: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q11 (Réaction — lien personnel)",
+      text: "Félix hésite longuement avant de prendre sa décision. Selon toi, est-ce qu'il a bien fait de parler malgré le risque de perdre la finale? Qu'est-ce que tu aurais fait à sa place? Explique ta réponse.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(felixq11.id, felixq11);
+
+    const felixq12: Question = {
+      id: randomUUID(),
+      exerciseId: narratifFelix4ExId,
+      title: "Q12 (Jugement critique)",
+      text: "À la fin, Jordan remercie Félix même si c'est lui qui l'a dénoncé. Est-ce qu'une vraie amitié peut survivre à une trahison si elle est faite pour de bonnes raisons? Donne au moins deux arguments pour défendre ton point de vue.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(felixq12.id, felixq12);
   }
 
   // Users
