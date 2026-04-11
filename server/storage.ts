@@ -8488,6 +8488,194 @@ Le lundi suivant, il croisa Mathis dans le couloir. Mathis parlait avec la trava
       order: 12,
     };
     this.questions.set(jeremyq12.id, jeremyq12);
+
+    // ===================================================
+    // TEXTES DESCRIPTIFS — SECONDAIRE 1
+    // Nouveau cours avec 12 questions variées par texte
+    // Catégorie : lecture_descriptif
+    // ===================================================
+    const descriptifSec1CourseId = randomUUID();
+
+    const descriptifSec1Course: Course = {
+      id: descriptifSec1CourseId,
+      title: "Textes descriptifs — Secondaire 1",
+      description: "Lire et analyser des textes descriptifs : lieux, personnages et atmosphères — questions variées sur les procédés descriptifs",
+      category: "lecture_descriptif",
+      content: "<h2>Textes descriptifs — Secondaire 1</h2><p>Dans cette section, tu liras des textes descriptifs variés et tu exploreras les procédés utilisés pour créer des images précises dans l'esprit du lecteur.</p>",
+      order: 101,
+    };
+    this.courses.set(descriptifSec1CourseId, descriptifSec1Course);
+
+    // ===== DESCRIPTIF SEC 1 — TEXTE #1 =====
+    // "Le Vieux-Port de Québec en janvier" — lieu québécois en hiver
+    // Questions : champ lexical, sensations, comparaison, personnification, point de vue, organisation, adjectifs, vocabulaire en contexte, rédaction
+    const descriptifSec1T1ExId = randomUUID();
+
+    const descriptifSec1T1Exercise: Exercise = {
+      id: descriptifSec1T1ExId,
+      courseId: descriptifSec1CourseId,
+      title: "Le Vieux-Port de Québec en janvier",
+      description: "Description d'un lieu québécois en hiver — procédés descriptifs, champ lexical, sensations",
+      type: "text",
+      order: 1,
+    };
+    this.exercises.set(descriptifSec1T1ExId, descriptifSec1T1Exercise);
+
+    const vieuxPortStory = `En janvier, le Vieux-Port de Québec appartient au froid.
+
+Le fleuve Saint-Laurent s'étend à l'horizon comme un ruban d'argent mat, ni tout à fait liquide ni tout à fait solide, traversé de blocs de glace qui dérivent lentement vers le large. Sur les berges, la neige s'est accumulée en bourrelets compacts contre les murets de pierre grise. Elle n'est plus blanche comme au soir d'une première tempête — elle a pris la couleur du temps, un blanc jauni, presque beige, où les pas des passants ont dessiné des chemins irréguliers.
+
+Les vieux entrepôts de brique rouge longent la promenade. Leurs façades, mangées par des siècles de gel et de dégel, portent des cicatrices de mortier reposé. En été, leurs terrasses débordent de touristes et de parasols colorés. En janvier, leurs fenêtres sont fermées à double tour, et les panneaux suspendus au-dessus des portes se balancent dans le vent avec un grincement régulier, comme une horloge fatiguée.
+
+L'air est coupant. Il s'infiltre sous les foulards et dans les manches, et il porte une odeur particulière — cette combinaison de fleuve gelé, de bois mouillé et de fumée de foyer qui caractérise les villes du Québec en hiver. On ne la trouve nulle part ailleurs.
+
+Pourtant, le Vieux-Port n'est pas mort. Quelques promeneurs avancent la tête baissée contre le vent, les joues brûlées de rouge. Un chien tire sur sa laisse en direction des quais. Du côté du marché, une ou deux boutiques ont laissé leur lumière allumée, et leurs vitrines projettent des rectangles dorés sur la neige tassée du trottoir. Dans le clocher de la chapelle qui surplombe la promenade, une cloche sonne trois coups, claire et sèche dans l'air immobile.
+
+Janvier n'embellit pas le Vieux-Port. Il le révèle.`;
+
+    const descriptifq1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q1 (Compréhension directe) : Quel lieu est décrit dans ce texte et à quelle saison?",
+      text: vieuxPortStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Le marché Jean-Talon à Montréal, en automne", "Le Vieux-Port de Québec, en plein mois de janvier", "Les plaines d'Abraham à Québec, lors d'une tempête de neige", "Le port de Montréal au printemps, lors du dégel"]),
+      correctAnswer: "Le Vieux-Port de Québec, en plein mois de janvier",
+      order: 1,
+    };
+    this.questions.set(descriptifq1.id, descriptifq1);
+
+    const descriptifq2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q2 (Champ lexical du froid)",
+      text: "Parmi ces groupes de mots tirés du texte, lequel forme le champ lexical du froid et de l'hiver?",
+      type: "multiple_choice",
+      options: JSON.stringify(["parasols, terrasses, touristes, été", "froid, gel, dégel, gelé, coupant, foulards, brûlées de rouge", "brique rouge, mortier, façades, fenêtres fermées", "fleuve, quais, berges, promenade, chapelle"]),
+      correctAnswer: "froid, gel, dégel, gelé, coupant, foulards, brûlées de rouge",
+      order: 2,
+    };
+    this.questions.set(descriptifq2.id, descriptifq2);
+
+    const descriptifq3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q3 (Procédé descriptif — comparaison)",
+      text: "Le texte contient plusieurs comparaisons. Laquelle de ces phrases est une comparaison?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'air est coupant.", "Le fleuve s'étend à l'horizon comme un ruban d'argent mat.", "La neige s'est accumulée en bourrelets compacts contre les murets.", "Quelques promeneurs avancent la tête baissée contre le vent."]),
+      correctAnswer: "Le fleuve s'étend à l'horizon comme un ruban d'argent mat.",
+      order: 3,
+    };
+    this.questions.set(descriptifq3.id, descriptifq3);
+
+    const descriptifq4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q4 (Analyse des sensations)",
+      text: "Le texte fait appel à plusieurs sens pour rendre la description vivante. Parmi les sens suivants, lesquels sont présents dans le texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Seulement la vue et le goût", "La vue, l'ouïe, l'odorat et le toucher", "Seulement la vue et l'odorat", "La vue, le goût et le toucher"]),
+      correctAnswer: "La vue, l'ouïe, l'odorat et le toucher",
+      order: 4,
+    };
+    this.questions.set(descriptifq4.id, descriptifq4);
+
+    const descriptifq5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q5 (Procédé descriptif — personnification)",
+      text: "Trouvez un exemple de personnification dans ce texte. Une personnification donne des caractéristiques humaines à quelque chose qui n'est pas humain.",
+      type: "multiple_choice",
+      options: JSON.stringify(["« Le fleuve s'étend à l'horizon »", "« les panneaux se balancent dans le vent avec un grincement régulier, comme une horloge fatiguée »", "« La neige a pris la couleur du temps »", "« Une cloche sonne trois coups »"]),
+      correctAnswer: "« les panneaux se balancent dans le vent avec un grincement régulier, comme une horloge fatiguée »",
+      order: 5,
+    };
+    this.questions.set(descriptifq5.id, descriptifq5);
+
+    const descriptifq6: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q6 (Point de vue du descripteur)",
+      text: "Le point de vue du descripteur dans ce texte est surtout :",
+      type: "multiple_choice",
+      options: JSON.stringify(["Entièrement objectif et scientifique, sans aucune opinion ni émotion", "Subjectif et valorisant : le narrateur admire le lieu et cherche à le rendre beau", "Uniquement négatif : le narrateur déteste l'hiver et veut le montrer comme hostile", "Mixte : à la fois observateur précis et légèrement subjectif, avec une certaine affection pour le lieu"]),
+      correctAnswer: "Mixte : à la fois observateur précis et légèrement subjectif, avec une certaine affection pour le lieu",
+      order: 6,
+    };
+    this.questions.set(descriptifq6.id, descriptifq6);
+
+    const descriptifq7: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q7 (Organisation du texte descriptif — aspects)",
+      text: "Le texte descriptif est organisé selon plusieurs aspects du lieu. Dans quel ordre ces aspects sont-ils présentés?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les habitants → les bâtiments → le fleuve → le ciel", "Le fleuve et la neige → les vieux entrepôts → l'air et les odeurs → les signes de vie", "L'histoire du lieu → les saisons → les touristes → la musique", "Les odeurs → les couleurs → les sons → les textures"]),
+      correctAnswer: "Le fleuve et la neige → les vieux entrepôts → l'air et les odeurs → les signes de vie",
+      order: 7,
+    };
+    this.questions.set(descriptifq7.id, descriptifq7);
+
+    const descriptifq8: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q8 (Vocabulaire en contexte)",
+      text: "Dans la phrase « Leurs façades, mangées par des siècles de gel et de dégel, portent des cicatrices de mortier reposé », que signifie le mot « cicatrices » dans ce contexte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Des blessures laissées par des batailles historiques sur les murs", "Des marques et des traces laissées par les réparations répétées au fil du temps", "Des décorations artistiques typiques de l'architecture québécoise ancienne", "Des fissures dangereuses qui indiquent que les bâtiments vont s'effondrer"]),
+      correctAnswer: "Des marques et des traces laissées par les réparations répétées au fil du temps",
+      order: 8,
+    };
+    this.questions.set(descriptifq8.id, descriptifq8);
+
+    const descriptifq9: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q9 (Interprétation de la dernière phrase)",
+      text: "Le texte se termine par : « Janvier n'embellit pas le Vieux-Port. Il le révèle. » Que veut dire l'auteur par cette phrase?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'hiver dégrade le lieu et le rend moins intéressant à visiter", "L'hiver enlève les ornements touristiques et laisse voir la vraie nature du lieu, dans toute sa simplicité et sa solidité", "Le mois de janvier est meilleur que les autres mois pour faire des photos du Vieux-Port", "La neige cache les défauts du lieu et le rend plus beau qu'il ne l'est vraiment"]),
+      correctAnswer: "L'hiver enlève les ornements touristiques et laisse voir la vraie nature du lieu, dans toute sa simplicité et sa solidité",
+      order: 9,
+    };
+    this.questions.set(descriptifq9.id, descriptifq9);
+
+    const descriptifq10: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q10 (Réaction du lecteur)",
+      text: "Après avoir lu ce texte, quelle image du Vieux-Port de Québec en hiver as-tu? Est-ce que le texte t'a donné envie de le visiter, ou au contraire t'a-t-il découragé? Explique ta réaction en citant au moins deux éléments précis du texte qui ont influencé ton impression.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(descriptifq10.id, descriptifq10);
+
+    const descriptifq11: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q11 (Écriture descriptive — lieu québécois)",
+      text: "Décris un lieu que tu connais bien en hiver (ta rue, ton quartier, ta cour d'école, un parc, un lac). Utilise au moins trois sens différents (vue, ouïe, odorat, toucher) et une comparaison. Écris un paragraphe de 6 à 8 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(descriptifq11.id, descriptifq11);
+
+    const descriptifq12: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T1ExId,
+      title: "Q12 (Transformation — changement de saison)",
+      text: "Reprends le deuxième paragraphe du texte (qui commence par « Les vieux entrepôts de brique rouge... ») et réécris-le comme si c'était l'été. Garde la même structure de phrase, mais change tous les éléments liés à l'hiver par des éléments estivaux. Essaie de garder le même ton et le même style.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(descriptifq12.id, descriptifq12);
   }
 
   // Users
