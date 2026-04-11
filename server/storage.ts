@@ -9016,6 +9016,177 @@ Le soir, quand le quartier se calme et que les lumières des maisons s'allument 
       order: 12,
     };
     this.questions.set(khouryq12.id, khouryq12);
+
+    // ===== DESCRIPTIF SEC 1 — TEXTE #4 =====
+    // "L'orage de juillet" — description d'un phénomène naturel structurée par la progression temporelle
+    // Questions : progression temporelle, champ lexical lumière/couleurs, personnification nature, gradation, vocabulaire météo, subjectif/objectif, transformation perspective animale
+    const descriptifSec1T4ExId = randomUUID();
+
+    const descriptifSec1T4Exercise: Exercise = {
+      id: descriptifSec1T4ExId,
+      courseId: descriptifSec1CourseId,
+      title: "L'orage de juillet",
+      description: "Description d'un phénomène naturel en trois temps — avant, pendant et après l'orage",
+      type: "text",
+      order: 4,
+    };
+    this.exercises.set(descriptifSec1T4ExId, descriptifSec1T4Exercise);
+
+    const orageStory = `À quatorze heures, le ciel était encore bleu. Pas entièrement — une barre sombre s'était accumulée à l'horizon ouest, basse et lourde, du gris d'ardoise, comme si quelqu'un avait froissé un drap de métal au loin. Les cigales continuaient de chanter, mais les oiseaux s'étaient tus. La chaleur pesait différemment.
+
+Puis l'odeur est arrivée avant la pluie. Cette odeur particulière de l'asphalte chaud qui reçoit les premières gouttes — âcre, ferrée, presque métallique — que les gens du coin appellent « l'odeur de l'orage » et qui ne ressemble à rien d'autre. Le vent a commencé à plier les arbres dans la bonne direction, puis dans la mauvaise, puis dans toutes les directions à la fois. Les feuilles montraient leur dessous argenté, signe que le ciel allait éclater.
+
+Il a éclaté.
+
+Les premières gouttes étaient grosses et rares, s'écrasant sur le trottoir comme de petites bombes d'eau. Puis en trente secondes tout a changé : le ciel est devenu un rideau blanc, l'air une masse d'eau qui tombait horizontalement, l'asphalte une surface qui bouillonnait de milliers de petits cratères. On n'entendait plus rien sinon la pluie, partout, tout le temps, sur les toits, sur les voitures, sur les feuilles, sur les épaules des gens qui couraient sans savoir où aller. Un éclair a fendu le ciel du nord au sud en une fraction de seconde — une lumière impossible, blanche, trop blanche, qui a tout mis en négatif pendant un instant. Le tonnerre a suivi trois secondes plus tard, long et roulant, comme si le ciel se fracturait méthodiquement.
+
+L'orage a duré vingt-deux minutes.
+
+Après, il y avait un silence étrange, rempli du bruit de l'eau qui coulait encore partout — dans les gouttières, le long des bordures, dans les égouts débordants. L'air avait perdu dix degrés. Il sentait la terre retournée, l'herbe mouillée, la fraîcheur. Les flaques reflétaient un ciel qui redevenait bleu, d'abord par petits morceaux, puis plus vite. Une mésange a chanté depuis une branche encore dégoulinante. C'était le signal.`;
+
+    const orageq1: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q1 (Compréhension directe) : Combien de temps a duré l'orage?",
+      text: orageStory,
+      type: "multiple_choice",
+      options: JSON.stringify(["Environ deux heures", "Vingt-deux minutes", "Moins de cinq minutes, très violent mais bref", "Toute l'après-midi, de 14h à 18h"]),
+      correctAnswer: "Vingt-deux minutes",
+      order: 1,
+    };
+    this.questions.set(orageq1.id, orageq1);
+
+    const orageq2: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q2 (Structure temporelle du texte)",
+      text: "Ce texte descriptif est organisé selon une progression dans le temps. Quelles sont les trois grandes parties de cette structure?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Matin / midi / soir", "Avant l'orage (signes annonciateurs) / pendant l'orage / après l'orage", "Description du ciel / description des odeurs / description des sons", "L'orage vu de l'intérieur / de l'extérieur / de loin"]),
+      correctAnswer: "Avant l'orage (signes annonciateurs) / pendant l'orage / après l'orage",
+      order: 2,
+    };
+    this.questions.set(orageq2.id, orageq2);
+
+    const orageq3: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q3 (Champ lexical — lumière et couleurs)",
+      text: "Relevez les mots et expressions liés à la lumière et aux couleurs dans ce texte. Lequel des groupes suivants est le plus complet et le plus exact?",
+      type: "multiple_choice",
+      options: JSON.stringify(["bleu, gris d'ardoise, argenté, blanc, trop blanche, bleu (qui redevenait)", "sombre, froissé, lourde, pesait, rideau, surface", "cigales, oiseaux, mésange, feuilles, gouttières", "âcre, ferrée, métallique, fraîcheur, terre retournée"]),
+      correctAnswer: "bleu, gris d'ardoise, argenté, blanc, trop blanche, bleu (qui redevenait)",
+      order: 3,
+    };
+    this.questions.set(orageq3.id, orageq3);
+
+    const orageq4: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q4 (Procédé — personnification de la nature)",
+      text: "Relevez deux exemples de personnification dans ce texte (donner à la nature des caractéristiques humaines ou des actions humaines).",
+      type: "multiple_choice",
+      options: JSON.stringify(["« les feuilles montraient leur dessous argenté » et « le ciel se fracturait méthodiquement »", "« les cigales continuaient de chanter » et « l'asphalte chaud »", "« le ciel était encore bleu » et « la pluie tombait »", "« l'air avait perdu dix degrés » et « les flaques reflétaient le ciel »"]),
+      correctAnswer: "« les feuilles montraient leur dessous argenté » et « le ciel se fracturait méthodiquement »",
+      order: 4,
+    };
+    this.questions.set(orageq4.id, orageq4);
+
+    const orageq5: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q5 (Procédé — gradation / montée en intensité)",
+      text: "Dans le quatrième paragraphe, comment l'auteur crée-t-il une montée en intensité au moment du déclenchement de l'orage?",
+      type: "multiple_choice",
+      options: JSON.stringify(["En ralentissant le rythme avec de longues phrases descriptives", "En passant de gouttes grosses et rares à un rideau blanc total, en accélérant le rythme et en accumulant des images de plus en plus intenses", "En insérant un dialogue entre deux personnages surpris par la pluie", "En changeant de point de vue et en décrivant l'orage depuis l'intérieur d'une maison"]),
+      correctAnswer: "En passant de gouttes grosses et rares à un rideau blanc total, en accélérant le rythme et en accumulant des images de plus en plus intenses",
+      order: 5,
+    };
+    this.questions.set(orageq5.id, orageq5);
+
+    const orageq6: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q6 (Vocabulaire météorologique — sens précis)",
+      text: "Le texte mentionne « l'odeur de l'asphalte chaud qui reçoit les premières gouttes — âcre, ferrée, presque métallique ». Quel mot scientifique désigne cette odeur caractéristique de la pluie sur une surface sèche chaude?",
+      type: "multiple_choice",
+      options: JSON.stringify(["La chlorophylle", "Le pétrichor", "L'ozone", "L'évaporation"]),
+      correctAnswer: "Le pétrichor",
+      order: 6,
+    };
+    this.questions.set(orageq6.id, orageq6);
+
+    const orageq7: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q7 (Une phrase seule — effet stylistique)",
+      text: "Au milieu du texte, une phrase occupe tout un paragraphe à elle seule : « Il a éclaté. » Pourquoi l'auteur a-t-il fait ce choix?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Par erreur — le paragraphe devait être plus long mais l'auteur a oublié de continuer", "Pour créer un effet de rupture brusque : cette phrase courte imite la soudaineté du déclenchement de l'orage", "Pour signaler que le texte change de sujet et devient un texte narratif", "Pour reposer le lecteur après deux paragraphes de description dense"]),
+      correctAnswer: "Pour créer un effet de rupture brusque : cette phrase courte imite la soudaineté du déclenchement de l'orage",
+      order: 7,
+    };
+    this.questions.set(orageq7.id, orageq7);
+
+    const orageq8: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q8 (Description subjective ou objective?)",
+      text: "Ce texte est-il une description purement objective (sans émotions ni point de vue) ou y a-t-il des traces de subjectivité?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Purement objective : l'auteur ne donne jamais son opinion et se contente de faits mesurables", "Mixte : majoritairement descriptif et précis, mais avec des traces de subjectivité comme « une lumière impossible, trop blanche » ou la mésange comme « signal »", "Entièrement subjectif : l'auteur exprime sa peur et son inconfort tout au long du texte", "Impossible à déterminer car l'auteur est absent du texte"]),
+      correctAnswer: "Mixte : majoritairement descriptif et précis, mais avec des traces de subjectivité comme « une lumière impossible, trop blanche » ou la mésange comme « signal »",
+      order: 8,
+    };
+    this.questions.set(orageq8.id, orageq8);
+
+    const orageq9: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q9 (Fonction du dernier élément — la mésange)",
+      text: "Le texte se termine par : « Une mésange a chanté depuis une branche encore dégoulinante. C'était le signal. » Quel rôle joue cet élément dans la structure du texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Il annonce qu'un deuxième orage arrive bientôt", "Il referme la description en signalant symboliquement le retour à la normalité — la nature reprend sa voix après avoir été réduite au silence", "Il introduit un personnage narratif qui va raconter une histoire dans la suite", "Il sert uniquement à terminer le texte de façon agréable, sans signification particulière"]),
+      correctAnswer: "Il referme la description en signalant symboliquement le retour à la normalité — la nature reprend sa voix après avoir été réduite au silence",
+      order: 9,
+    };
+    this.questions.set(orageq9.id, orageq9);
+
+    const orageq10: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q10 (Réaction personnelle)",
+      text: "Quel moment du texte t'a semblé le plus vivant ou le plus évocateur? Pourquoi? Cite la phrase ou l'image qui t'a le plus frappé·e et explique l'effet qu'elle a produit sur toi. (4 à 6 phrases)",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(orageq10.id, orageq10);
+
+    const orageq11: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q11 (Écriture — phénomène naturel en progression)",
+      text: "Décris un phénomène naturel que tu as observé, en suivant la structure avant / pendant / après. Cela peut être une tempête de neige, un coucher de soleil, une journée de brouillard, une canicule, le dégel du printemps. Utilise au moins trois sens et un procédé littéraire (personnification, comparaison ou métaphore). Minimum 10 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(orageq11.id, orageq11);
+
+    const orageq12: Question = {
+      id: randomUUID(),
+      exerciseId: descriptifSec1T4ExId,
+      title: "Q12 (Transformation — point de vue d'un animal)",
+      text: "Réécris la scène de l'orage (pendant seulement) du point de vue d'un animal de ton choix — un chien dans une cour, un écureuil dans un arbre, un chat sur un rebord de fenêtre. Utilise la première personne (« je ») et décris ce que cet animal perçoit, ressent et fait pendant l'orage. Environ 8 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(orageq12.id, orageq12);
   }
 
   // Users
