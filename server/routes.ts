@@ -267,6 +267,63 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     }
   });
 
+  // Recalculer et sauvegarder la progression d'un élève sur un cours
+  app.post("/api/students/:id/progress", async (req, res) => {
+    try {
+      const studentId = req.params.id;
+      const { courseId } = req.body;
+      if (!courseId) return res.status(400).send("courseId requis");
+
+      // Récupérer tous les exercices du cours
+      const exercises = await storage.getExercisesByCourse(courseId);
+      if (exercises.length === 0) return res.json({ progressPercentage: 0, completed: false });
+
+      // Récupérer toutes les questions de ces exercices
+      let allQuestions: any[] = [];
+      for (const ex of exercises) {
+        const qs = await storage.getQuestionsByExercise(ex.id);
+        allQuestions = allQuestions.concat(qs);
+      }
+
+      const totalQuestions = allQuestions.length;
+      if (totalQuestions === 0) return res.json({ progressPercentage: 0, completed: false });
+
+      // Récupérer toutes les réponses de cet élève
+      const responses = await storage.getResponsesByStudent(studentId);
+      const questionIds = new Set(allQuestions.map((q) => q.id));
+
+      // Filtrer les réponses pour ce cours uniquement
+      const courseResponses = responses.filter((r) => questionIds.has(r.questionId));
+
+      // Compter les questions répondues (une seule réponse par question — la dernière)
+      const answeredSet = new Set(courseResponses.map((r) => r.questionId));
+      const answeredCount = answeredSet.size;
+
+      // Compter les bonnes réponses (isCorrect === true)
+      const correctSet = new Set(
+        courseResponses.filter((r) => r.isCorrect === true).map((r) => r.questionId)
+      );
+      const correctCount = correctSet.size;
+
+      const progressPercentage = Math.round((answeredCount / totalQuestions) * 100);
+      const completed = answeredCount >= totalQuestions;
+
+      const progress = await storage.updateProgress(
+        studentId,
+        courseId,
+        progressPercentage,
+        correctCount,
+        totalQuestions,
+        completed
+      );
+
+      res.json(progress);
+    } catch (err) {
+      console.error("Erreur mise à jour progression:", err);
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   app.get("/api/students/:id/exercises", async (req, res) => {
     try {
       const allExercises = await storage.getAllExercises();

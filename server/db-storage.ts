@@ -76,6 +76,23 @@ export class DatabaseStorage extends MemStorage {
 
   // ─── PROGRESSION ────────────────────────────────────────────────────────────
 
+  async getProgress(studentId: string, courseId: string): Promise<StudentProgress | undefined> {
+    const rows = await this.db.select().from(studentProgress)
+      .where(eq(studentProgress.studentId, studentId));
+    return rows.find((p) => p.courseId === courseId);
+  }
+
+  async updateProgress(
+    studentId: string,
+    courseId: string,
+    progressPercentage: number,
+    correctAnswers = 0,
+    totalQuestions = 0,
+    completed = false
+  ): Promise<StudentProgress> {
+    return this.upsertStudentProgress(studentId, courseId, progressPercentage, correctAnswers, totalQuestions, completed);
+  }
+
   async getAllStudentProgress(studentId: string): Promise<StudentProgress[]> {
     return this.db.select().from(studentProgress).where(eq(studentProgress.studentId, studentId));
   }

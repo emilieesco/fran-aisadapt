@@ -49,7 +49,10 @@ export interface IStorage {
   updateProgress(
     studentId: string,
     courseId: string,
-    progressPercentage: number
+    progressPercentage: number,
+    correctAnswers?: number,
+    totalQuestions?: number,
+    completed?: boolean
   ): Promise<StudentProgress>;
   getAllStudentProgress(studentId: string): Promise<StudentProgress[]>;
 
@@ -11192,6 +11195,48 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
     return Array.from(this.questions.values()).filter(
       (q) => q.exerciseId === exerciseId
     );
+  }
+
+  async getProgress(studentId: string, courseId: string): Promise<StudentProgress | undefined> {
+    return Array.from(this.progress.values()).find(
+      (p) => p.studentId === studentId && p.courseId === courseId
+    );
+  }
+
+  async updateProgress(
+    studentId: string,
+    courseId: string,
+    progressPercentage: number,
+    correctAnswers = 0,
+    totalQuestions = 0,
+    completed = false
+  ): Promise<StudentProgress> {
+    const existing = await this.getProgress(studentId, courseId);
+    if (existing) {
+      const updated: StudentProgress = {
+        ...existing,
+        progressPercentage,
+        correctAnswers,
+        totalQuestions,
+        completed,
+        updatedAt: new Date(),
+      };
+      this.progress.set(existing.id, updated);
+      return updated;
+    }
+    const id = randomUUID();
+    const newProgress: StudentProgress = {
+      id,
+      studentId,
+      courseId,
+      progressPercentage,
+      correctAnswers,
+      totalQuestions,
+      completed,
+      updatedAt: new Date(),
+    };
+    this.progress.set(id, newProgress);
+    return newProgress;
   }
 
   async getAllStudentProgress(studentId: string): Promise<StudentProgress[]> {

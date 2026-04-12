@@ -320,12 +320,25 @@ export default function Exercise() {
     }
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setShowFeedback(false);
     } else {
       setCompleted(true);
+      // Mettre à jour la progression de l'élève pour ce cours
+      const userId = localStorage.getItem("userId");
+      if (userId && exercise?.courseId) {
+        try {
+          await fetch(`/api/students/${userId}/progress`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ courseId: exercise.courseId }),
+          });
+        } catch (err) {
+          console.error("Erreur mise à jour progression:", err);
+        }
+      }
     }
   };
 
