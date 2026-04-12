@@ -15,6 +15,7 @@ import Exercise from "@/pages/exercise";
 import ReadingNarrative from "@/pages/reading-narrative";
 import AdminDashboard from "@/pages/admin-dashboard";
 import NotFound from "@/pages/not-found";
+import { AccessibilityWidget } from "@/components/accessibility-toolbar";
 
 function Router() {
   return (
@@ -41,6 +42,7 @@ function App() {
       <TooltipProvider>
         <Router />
         <Toaster />
+        <AccessibilityWidget />
       </TooltipProvider>
     </QueryClientProvider>
   );

@@ -286,3 +286,11 @@
     inset: -1px;
   }
 }
+
+/* ── Accessibilité : taille du texte ───────────────────────────── */
+:root[data-font-size="large"] {
+  font-size: 112%;
+}
+:root[data-font-size="xl"] {
+  font-size: 125%;
+}

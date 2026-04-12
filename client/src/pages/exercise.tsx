@@ -9,6 +9,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause } from "lucide-react";
+import { ReadAloudButton } from "@/components/accessibility-toolbar";
 
 interface Question {
   id: string;
@@ -98,70 +99,6 @@ function FillBlankInput({
         </span>
       ))}
     </div>
-  );
-}
-
-// ─── Accessibility: Read Aloud ────────────────────────────────────────────────
-function ReadAloudButton({ text, label, variant = "ghost", className = "" }: {
-  text: string;
-  label?: string;
-  variant?: "ghost" | "outline" | "secondary";
-  className?: string;
-}) {
-  const [speaking, setSpeaking] = useState(false);
-
-  const handleClick = () => {
-    if (!("speechSynthesis" in window)) return;
-    if (speaking) {
-      window.speechSynthesis.cancel();
-      setSpeaking(false);
-      return;
-    }
-    window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "fr-CA";
-    utter.rate = 0.88;
-    utter.pitch = 1;
-    utter.onstart = () => setSpeaking(true);
-    utter.onend = () => setSpeaking(false);
-    utter.onerror = () => setSpeaking(false);
-    window.speechSynthesis.speak(utter);
-  };
-
-  if (label) {
-    return (
-      <Button
-        type="button"
-        variant={variant}
-        size="sm"
-        onClick={handleClick}
-        className={`gap-1.5 ${className}`}
-        title={speaking ? "Arrêter la lecture" : "Lire à voix haute"}
-        data-testid="button-read-aloud"
-      >
-        {speaking
-          ? <><Pause className="w-3.5 h-3.5" /><span>{label}</span></>
-          : <><Volume2 className="w-3.5 h-3.5" /><span>{label}</span></>
-        }
-      </Button>
-    );
-  }
-
-  return (
-    <Button
-      type="button"
-      variant={variant}
-      size="icon"
-      onClick={handleClick}
-      title={speaking ? "Arrêter la lecture" : "Lire à voix haute"}
-      className={className}
-      data-testid="button-read-aloud"
-    >
-      {speaking
-        ? <Pause className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-        : <Volume2 className="w-4 h-4" />
-      }
-    </Button>
   );
 }
 
