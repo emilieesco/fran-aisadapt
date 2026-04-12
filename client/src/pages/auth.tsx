@@ -14,7 +14,7 @@ export default function Auth() {
   const [lastName, setLastName] = useState("");
   const [role, setRole] = useState<"teacher" | "student">("student");
   const [isLogin, setIsLogin] = useState(true);
-  const [adminCode, setAdminCode] = useState("");
+  const [inviteCode, setInviteCode] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Auth() {
       const endpoint = isLogin ? "/api/login" : "/api/register";
       const body = isLogin
         ? { username, password }
-        : { username, password, firstName, lastName, role, adminCode };
+        : { username, password, firstName, lastName, role, inviteCode };
 
       const res = await fetch(endpoint, {
         method: "POST",
@@ -52,7 +52,9 @@ export default function Auth() {
       localStorage.setItem("userId", data.id);
       localStorage.setItem("userRole", data.role);
 
-      setLocation(data.role === "teacher" ? "/teacher-dashboard" : "/student-dashboard");
+      if (data.role === "admin") setLocation("/admin-dashboard");
+      else if (data.role === "teacher") setLocation("/teacher-dashboard");
+      else setLocation("/student-dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erreur serveur");
     }
@@ -157,18 +159,18 @@ export default function Auth() {
 
                   {role === "teacher" && (
                     <div>
-                      <Label htmlFor="adminCode">Code administrateur</Label>
+                      <Label htmlFor="inviteCode">Code d'invitation</Label>
                       <Input
-                        id="adminCode"
-                        data-testid="input-admin-code"
-                        type="password"
-                        value={adminCode}
-                        onChange={(e) => setAdminCode(e.target.value)}
-                        placeholder="Entrez le code fourni par l'administrateur"
+                        id="inviteCode"
+                        data-testid="input-invite-code"
+                        type="text"
+                        value={inviteCode}
+                        onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
+                        placeholder="Ex: AB12CD-EF34"
                         required
                       />
                       <p className="text-xs text-muted-foreground mt-1">
-                        Ce code est fourni par l'administrateur de la plateforme.
+                        Ce code est généré par l'administrateur de la plateforme.
                       </p>
                     </div>
                   )}

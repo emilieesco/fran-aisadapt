@@ -7,6 +7,7 @@ import {
   studentProgress,
   studentBadges,
   assignments,
+  inviteCodes,
 } from "@shared/schema";
 import type {
   User,
@@ -16,6 +17,7 @@ import type {
   StudentProgress,
   StudentBadge,
   Assignment,
+  InviteCode,
 } from "@shared/schema";
 
 export class DatabaseStorage extends MemStorage {
@@ -38,6 +40,14 @@ export class DatabaseStorage extends MemStorage {
   async createUser(data: InsertUser): Promise<User> {
     const rows = await this.db.insert(users).values(data).returning();
     return rows[0];
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return this.db.select().from(users);
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    await this.db.delete(users).where(eq(users.id, id));
   }
 
   // ─── RÉPONSES ÉLÈVES ────────────────────────────────────────────────────────
@@ -134,7 +144,7 @@ export class DatabaseStorage extends MemStorage {
     await this.db.delete(assignments).where(eq(assignments.id, assignmentId));
   }
 
-  // ─── RAPPORTS (dépend des méthodes ci-dessus, héritage automatique) ──────────
+  // ─── RAPPORTS ───────────────────────────────────────────────────────────────
 
   async getStudentsByTeacher(teacherId: string): Promise<(User & { progressPercentage: number })[]> {
     const teacherAssignments = await this.getAssignmentsByTeacher(teacherId);
@@ -194,28 +204,53 @@ export class DatabaseStorage extends MemStorage {
     return reports;
   }
 
-  // ─── INITIALISATION: seed les comptes de test si la DB est vide ────────────
+  // ─── CODES D'INVITATION ──────────────────────────────────────────────────────
+
+  async getAllInviteCodes(): Promise<InviteCode[]> {
+    return this.db.select().from(inviteCodes);
+  }
+
+  async getInviteCode(code: string): Promise<InviteCode | undefined> {
+    const rows = await this.db.select().from(inviteCodes).where(eq(inviteCodes.code, code));
+    return rows[0];
+  }
+
+  async createInviteCode(data: { code: string; label?: string | null }): Promise<InviteCode> {
+    const rows = await this.db
+      .insert(inviteCodes)
+      .values({ code: data.code, label: data.label ?? null })
+      .returning();
+    return rows[0];
+  }
+
+  async useInviteCode(code: string, userId: string): Promise<void> {
+    await this.db
+      .update(inviteCodes)
+      .set({ usedBy: userId, usedAt: new Date() })
+      .where(eq(inviteCodes.code, code));
+  }
+
+  async deleteInviteCode(id: string): Promise<void> {
+    await this.db.delete(inviteCodes).where(eq(inviteCodes.id, id));
+  }
+
+  // ─── INITIALISATION ──────────────────────────────────────────────────────────
 
   async seedInitialUsers(): Promise<void> {
-    const existing = await this.db.select().from(users).where(eq(users.username, "enseignant"));
-    if (existing.length > 0) return; // Déjà seedé
+    const adminPassword = process.env.ADMIN_PASSWORD || "Admin2025!";
 
-    await this.db.insert(users).values([
-      {
-        username: "enseignant",
-        password: "password123",
-        firstName: "Marie",
-        lastName: "Dubois",
-        role: "teacher",
-      },
-      {
-        username: "eleve",
-        password: "password123",
-        firstName: "Jean",
-        lastName: "Martin",
-        role: "student",
-      },
-    ]);
-    console.log("[DB] Comptes de test créés (enseignant / eleve)");
+    const toSeed = [
+      { username: "admin", password: adminPassword, firstName: "Administrateur", lastName: "", role: "admin" },
+      { username: "enseignant", password: "password123", firstName: "Marie", lastName: "Dubois", role: "teacher" },
+      { username: "eleve", password: "password123", firstName: "Jean", lastName: "Martin", role: "student" },
+    ];
+
+    for (const userData of toSeed) {
+      const existing = await this.db.select().from(users).where(eq(users.username, userData.username));
+      if (existing.length === 0) {
+        await this.db.insert(users).values(userData);
+        console.log(`[DB] Compte créé: ${userData.username}`);
+      }
+    }
   }
 }

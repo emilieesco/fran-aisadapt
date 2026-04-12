@@ -90,6 +90,23 @@ export const assignments = pgTable("assignments", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Invite codes table (codes générés par l'admin pour les enseignants)
+export const inviteCodes = pgTable("invite_codes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  code: text("code").notNull().unique(),
+  label: text("label"), // ex: "Pour Marie Tremblay"
+  usedBy: varchar("used_by"), // userId de l'enseignant qui l'a utilisé
+  usedAt: timestamp("used_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export type InviteCode = typeof inviteCodes.$inferSelect;
+export const insertInviteCodeSchema = createInsertSchema(inviteCodes).pick({
+  code: true,
+  label: true,
+});
+export type InsertInviteCode = z.infer<typeof insertInviteCodeSchema>;
+
 // Schemas for insert operations
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,

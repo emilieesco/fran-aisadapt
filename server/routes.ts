@@ -4,27 +4,98 @@ import { storage } from "./storage";
 import { insertUserSchema, insertCourseSchema, insertExerciseSchema, insertQuestionSchema, insertResponseSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express, server: Server): Promise<Server> {
+  // ─── Middleware admin ────────────────────────────────────────────────────────
+  async function requireAdmin(req: any, res: any, next: any) {
+    const adminId = req.headers["x-admin-id"] as string;
+    if (!adminId) return res.status(401).send("Non autorisé");
+    const user = await storage.getUser(adminId);
+    if (!user || user.role !== "admin") return res.status(403).send("Accès refusé");
+    next();
+  }
+
   // Auth Routes
   app.post("/api/register", async (req, res) => {
     try {
       const data = insertUserSchema.parse(req.body);
 
-      // Les enseignants doivent fournir le code admin
+      // Les enseignants doivent fournir un code d'invitation valide et inutilisé
       if (data.role === "teacher") {
-        const adminCode = process.env.ADMIN_CODE || "FRANCAISADAPT2025";
-        if (req.body.adminCode !== adminCode) {
-          return res.status(403).send("Code administrateur invalide");
-        }
+        const inviteCode = req.body.inviteCode as string;
+        if (!inviteCode) return res.status(403).send("Un code d'invitation est requis");
+
+        const invite = await storage.getInviteCode(inviteCode);
+        if (!invite) return res.status(403).send("Code d'invitation invalide");
+        if (invite.usedBy) return res.status(403).send("Ce code d'invitation a déjà été utilisé");
       }
 
       const existingUser = await storage.getUserByUsername(data.username);
-      if (existingUser) {
-        return res.status(400).send("L'utilisateur existe déjà");
-      }
+      if (existingUser) return res.status(400).send("L'utilisateur existe déjà");
+
       const user = await storage.createUser(data);
+
+      // Marquer le code comme utilisé
+      if (data.role === "teacher") {
+        await storage.useInviteCode(req.body.inviteCode, user.id);
+      }
+
       res.json(user);
     } catch (err) {
       res.status(400).send("Erreur lors de l'inscription");
+    }
+  });
+
+  // ─── Routes Admin ─────────────────────────────────────────────────────────────
+
+  // Lister tous les utilisateurs
+  app.get("/api/admin/users", requireAdmin, async (req, res) => {
+    try {
+      const allUsers = await storage.getAllUsers();
+      res.json(allUsers.filter((u) => u.role !== "admin"));
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Supprimer un utilisateur
+  app.delete("/api/admin/users/:id", requireAdmin, async (req, res) => {
+    try {
+      await storage.deleteUser(req.params.id);
+      res.json({ ok: true });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Lister les codes d'invitation
+  app.get("/api/admin/invite-codes", requireAdmin, async (req, res) => {
+    try {
+      const codes = await storage.getAllInviteCodes();
+      res.json(codes);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Créer un code d'invitation
+  app.post("/api/admin/invite-codes", requireAdmin, async (req, res) => {
+    try {
+      const { label } = req.body;
+      const code = Math.random().toString(36).slice(2, 8).toUpperCase() + "-" +
+                   Math.random().toString(36).slice(2, 6).toUpperCase();
+      const invite = await storage.createInviteCode({ code, label: label || null });
+      res.json(invite);
+    } catch (err) {
+      res.status(500).send("Erreur lors de la création du code");
+    }
+  });
+
+  // Révoquer un code d'invitation
+  app.delete("/api/admin/invite-codes/:id", requireAdmin, async (req, res) => {
+    try {
+      await storage.deleteInviteCode(req.params.id);
+      res.json({ ok: true });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
     }
   });
 

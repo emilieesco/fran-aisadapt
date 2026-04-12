@@ -13,6 +13,7 @@ import type {
   StudentProgress,
   StudentBadge,
   Assignment,
+  InviteCode,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -66,6 +67,15 @@ export interface IStorage {
   // Teacher queries
   getStudentsByTeacher(teacherId: string): Promise<(User & { progressPercentage: number })[]>;
   getStudentReports(teacherId: string): Promise<any[]>;
+
+  // Admin
+  getAllUsers(): Promise<User[]>;
+  deleteUser(id: string): Promise<void>;
+  getAllInviteCodes(): Promise<InviteCode[]>;
+  getInviteCode(code: string): Promise<InviteCode | undefined>;
+  createInviteCode(data: { code: string; label?: string | null }): Promise<InviteCode>;
+  useInviteCode(code: string, userId: string): Promise<void>;
+  deleteInviteCode(id: string): Promise<void>;
 }
 
 export class MemStorage implements IStorage {
@@ -77,6 +87,7 @@ export class MemStorage implements IStorage {
   private progress: Map<string, StudentProgress> = new Map();
   private badges: Map<string, StudentBadge> = new Map();
   private assignments: Map<string, Assignment> = new Map();
+  private inviteCodesMap: Map<string, InviteCode> = new Map();
 
   constructor() {
     this.initializeSampleData();
@@ -11343,13 +11354,56 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
   }
 
   async getReadingNarrativeExercises(studentId: string): Promise<Exercise[]> {
-    // Get all exercises and filter for reading narrative exercises
     const allExercises = Array.from(this.exercises.values());
     const readingExercises = allExercises.filter((ex) => {
       const course = this.courses.get(ex.courseId);
       return course && course.category === "lecture_reading" && ex.type === "text";
     });
-    return readingExercises; // Return all 20 reading exercises
+    return readingExercises;
+  }
+
+  // ─── ADMIN ───────────────────────────────────────────────────────────────────
+
+  async getAllUsers(): Promise<User[]> {
+    return Array.from(this.users.values());
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    this.users.delete(id);
+  }
+
+  async getAllInviteCodes(): Promise<InviteCode[]> {
+    return Array.from(this.inviteCodesMap.values());
+  }
+
+  async getInviteCode(code: string): Promise<InviteCode | undefined> {
+    return Array.from(this.inviteCodesMap.values()).find((c) => c.code === code);
+  }
+
+  async createInviteCode(data: { code: string; label?: string | null }): Promise<InviteCode> {
+    const id = randomUUID();
+    const invite: InviteCode = {
+      id,
+      code: data.code,
+      label: data.label ?? null,
+      usedBy: null,
+      usedAt: null,
+      createdAt: new Date(),
+    };
+    this.inviteCodesMap.set(id, invite);
+    return invite;
+  }
+
+  async useInviteCode(code: string, userId: string): Promise<void> {
+    const invite = await this.getInviteCode(code);
+    if (invite) {
+      const updated: InviteCode = { ...invite, usedBy: userId, usedAt: new Date() };
+      this.inviteCodesMap.set(invite.id, updated);
+    }
+  }
+
+  async deleteInviteCode(id: string): Promise<void> {
+    this.inviteCodesMap.delete(id);
   }
 }
 
