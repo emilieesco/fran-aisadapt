@@ -7,8 +7,6 @@
   "deploy": {
     "startCommand": "npm run start",
     "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 3,
-    "healthcheckPath": "/api/courses",
-    "healthcheckTimeout": 60
+    "restartPolicyMaxRetries": 3
   }
 }
