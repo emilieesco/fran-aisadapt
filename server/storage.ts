@@ -10743,6 +10743,228 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       order: 12,
     };
     this.questions.set(immiq12.id, immiq12);
+
+    // ===== LACUNAIRES — CONJUGAISON AU PRÉSENT =====
+    // Exercices de type fill_blank : une phrase avec ___ à compléter
+    // correctAnswer : réponse(s) acceptée(s) séparées par | (insensible à la casse)
+
+    const lacunairesConjCourseId = randomUUID();
+    const lacunairesConjCourse: Course = {
+      id: lacunairesConjCourseId,
+      title: "Conjugaison au présent — Blancs à remplir",
+      description: "Complète les phrases en conjuguant le verbe au présent de l'indicatif. Le verbe à conjuguer est indiqué entre parenthèses.",
+      category: "fill_blank",
+      content: "Exercices lacunaires de conjugaison au présent de l'indicatif — verbes des trois groupes et verbes irréguliers courants.",
+      order: 200,
+    };
+    this.courses.set(lacunairesConjCourseId, lacunairesConjCourse);
+
+    // Exercice 1 : Verbes du 1er groupe (-ER)
+    const lacConj1ExId = randomUUID();
+    const lacConj1Exercise: Exercise = {
+      id: lacConj1ExId,
+      courseId: lacunairesConjCourseId,
+      title: "Verbes en -ER au présent",
+      description: "Conjugue les verbes du 1er groupe (-ER) au présent de l'indicatif.",
+      type: "fill_blank",
+      order: 1,
+    };
+    this.exercises.set(lacConj1ExId, lacConj1Exercise);
+
+    const lacConj1Qs: Array<{ text: string; correct: string; hint: string }> = [
+      { text: "Chaque matin, Lucas ___ son vélo jusqu'à l'école.", correct: "pédale", hint: "pédaler (il/elle)" },
+      { text: "Vous ___ trop vite pour que je vous comprenne.", correct: "parlez", hint: "parler (vous)" },
+      { text: "Nous ___ souvent des jeux de société le vendredi soir.", correct: "jouons", hint: "jouer (nous)" },
+      { text: "Les élèves ___ leurs cahiers avant de quitter la classe.", correct: "rangent", hint: "ranger (ils/elles)" },
+      { text: "Tu ___ une chanson magnifique sous la douche.", correct: "chantes", hint: "chanter (tu)" },
+      { text: "Ma sœur ___ de la guitare depuis trois ans.", correct: "joue", hint: "jouer (elle)" },
+      { text: "J'___ toujours mes devoirs avant le souper.", correct: "aide|termine|apporte|oublie|aime", hint: "aimer (je) — plusieurs réponses possibles selon le contexte; la réponse attendue : aime" },
+      { text: "Les chats ___ les souris dans la grange.", correct: "chassent", hint: "chasser (ils)" },
+      { text: "Tu ___ souvent à tes grands-parents pendant les vacances.", correct: "téléphones", hint: "téléphoner (tu)" },
+      { text: "Nous ___ notre maison avant l'hiver.", correct: "rénovons", hint: "rénover (nous)" },
+    ];
+
+    lacConj1Qs.forEach((q, i) => {
+      const question: Question = {
+        id: randomUUID(),
+        exerciseId: lacConj1ExId,
+        title: `Indice : ${q.hint}`,
+        text: q.text,
+        type: "fill_blank",
+        options: null,
+        correctAnswer: q.correct,
+        order: i + 1,
+      };
+      this.questions.set(question.id, question);
+    });
+
+    // Exercice 2 : Verbes avoir et être
+    const lacConj2ExId = randomUUID();
+    const lacConj2Exercise: Exercise = {
+      id: lacConj2ExId,
+      courseId: lacunairesConjCourseId,
+      title: "Avoir et être au présent",
+      description: "Conjugue les verbes avoir et être au présent de l'indicatif selon le sujet.",
+      type: "fill_blank",
+      order: 2,
+    };
+    this.exercises.set(lacConj2ExId, lacConj2Exercise);
+
+    const lacConj2Qs: Array<{ text: string; correct: string; hint: string }> = [
+      { text: "Mon chien ___ très obéissant.", correct: "est", hint: "être (il)" },
+      { text: "Nous ___ trois chats à la maison.", correct: "avons", hint: "avoir (nous)" },
+      { text: "Tu ___ l'air fatigué aujourd'hui.", correct: "as", hint: "avoir (tu)" },
+      { text: "Elles ___ contentes de leur résultat.", correct: "sont", hint: "être (elles)" },
+      { text: "J'___ faim depuis ce matin.", correct: "ai", hint: "avoir (je)" },
+      { text: "Vous ___ des amis formidables.", correct: "avez", hint: "avoir (vous)" },
+      { text: "Les enfants ___ dans la cour de récréation.", correct: "sont", hint: "être (ils)" },
+      { text: "Il ___ dix ans depuis son anniversaire en octobre.", correct: "a", hint: "avoir (il)" },
+      { text: "Nous ___ très chanceux de vivre ici.", correct: "sommes", hint: "être (nous)" },
+      { text: "Je ___ certain que tu réussiras.", correct: "suis", hint: "être (je)" },
+    ];
+
+    lacConj2Qs.forEach((q, i) => {
+      const question: Question = {
+        id: randomUUID(),
+        exerciseId: lacConj2ExId,
+        title: `Indice : ${q.hint}`,
+        text: q.text,
+        type: "fill_blank",
+        options: null,
+        correctAnswer: q.correct,
+        order: i + 1,
+      };
+      this.questions.set(question.id, question);
+    });
+
+    // Exercice 3 : Verbes irréguliers courants (aller, faire, prendre, vouloir, pouvoir, savoir)
+    const lacConj3ExId = randomUUID();
+    const lacConj3Exercise: Exercise = {
+      id: lacConj3ExId,
+      courseId: lacunairesConjCourseId,
+      title: "Verbes irréguliers courants au présent",
+      description: "Conjugue les verbes irréguliers au présent de l'indicatif. L'indice indique le verbe et la personne.",
+      type: "fill_blank",
+      order: 3,
+    };
+    this.exercises.set(lacConj3ExId, lacConj3Exercise);
+
+    const lacConj3Qs: Array<{ text: string; correct: string; hint: string }> = [
+      { text: "Nous ___ au parc chaque dimanche matin.", correct: "allons", hint: "aller (nous)" },
+      { text: "Tu ___ de la planche à neige en hiver?", correct: "fais", hint: "faire (tu)" },
+      { text: "Elle ___ ses clés chaque fois qu'elle sort.", correct: "perd|prend|oublie", hint: "perdre (elle) → perd" },
+      { text: "Ils ___ partir en voyage la semaine prochaine.", correct: "veulent", hint: "vouloir (ils)" },
+      { text: "Je ne ___ pas venir ce soir, j'ai trop de travail.", correct: "peux", hint: "pouvoir (je)" },
+      { text: "Vous ___ bien jouer de la guitare!", correct: "savez", hint: "savoir (vous)" },
+      { text: "Il ___ toujours du pain frais le matin.", correct: "prend", hint: "prendre (il)" },
+      { text: "Nous ne ___ pas où elle habite.", correct: "savons", hint: "savoir (nous)" },
+      { text: "Elles ___ tout leur possible pour réussir.", correct: "font", hint: "faire (elles)" },
+      { text: "Tu ___ où se trouve la bibliothèque municipale?", correct: "sais|vas", hint: "savoir (tu) → sais" },
+    ];
+
+    lacConj3Qs.forEach((q, i) => {
+      const question: Question = {
+        id: randomUUID(),
+        exerciseId: lacConj3ExId,
+        title: `Indice : ${q.hint}`,
+        text: q.text,
+        type: "fill_blank",
+        options: null,
+        correctAnswer: q.correct,
+        order: i + 1,
+      };
+      this.questions.set(question.id, question);
+    });
+
+    // ===== LACUNAIRES — HOMOPHONES COURANTS =====
+    const lacunairesHomophonesCourseId = randomUUID();
+    const lacunairesHomophonesCourse: Course = {
+      id: lacunairesHomophonesCourseId,
+      title: "Homophones courants — Blancs à remplir",
+      description: "Choisis le bon homophone pour compléter chaque phrase. Les homophones sont des mots qui se prononcent de la même façon mais qui s'écrivent différemment.",
+      category: "fill_blank",
+      content: "Exercices lacunaires sur les homophones les plus fréquents : a/à, ou/où, son/sont, ces/ses/c'est, mes/mais, on/ont, et/est, la/là/l'a.",
+      order: 201,
+    };
+    this.courses.set(lacunairesHomophonesCourseId, lacunairesHomophonesCourse);
+
+    // Exercice 1 : a/à — ou/où — et/est
+    const lacHom1ExId = randomUUID();
+    const lacHom1Exercise: Exercise = {
+      id: lacHom1ExId,
+      courseId: lacunairesHomophonesCourseId,
+      title: "a/à — ou/où — et/est",
+      description: "Complète chaque phrase avec le bon homophone : a/à, ou/où, et/est.",
+      type: "fill_blank",
+      order: 1,
+    };
+    this.exercises.set(lacHom1ExId, lacHom1Exercise);
+
+    const lacHom1Qs: Array<{ text: string; correct: string; hint: string }> = [
+      { text: "Mon frère ___ mangé toute la tarte sans m'en laisser.", correct: "a", hint: "a (verbe avoir) ou à (préposition)?" },
+      { text: "Je vais ___ l'épicerie chercher du lait.", correct: "à", hint: "a (verbe avoir) ou à (préposition)?" },
+      { text: "Tu veux du jus ___ de l'eau?", correct: "ou", hint: "ou (choix) ou où (lieu)?" },
+      { text: "___ habites-tu depuis que tu as déménagé?", correct: "Où", hint: "ou (choix) ou où (lieu)?" },
+      { text: "Le chat ___ couché sur le canapé depuis ce matin.", correct: "est", hint: "et (conjonction) ou est (verbe être)?" },
+      { text: "Elle aime lire ___ dessiner pendant ses temps libres.", correct: "et", hint: "et (conjonction) ou est (verbe être)?" },
+      { text: "Il ___ beaucoup de courage pour affronter ses peurs.", correct: "a", hint: "a (verbe avoir) ou à (préposition)?" },
+      { text: "Je t'attends ___ la sortie de l'école.", correct: "à", hint: "a (verbe avoir) ou à (préposition)?" },
+      { text: "Sais-tu ___ j'ai mis mes lunettes?", correct: "où", hint: "ou (choix) ou où (lieu)?" },
+      { text: "La neige ___ blanche et froide ce matin.", correct: "est", hint: "et (conjonction) ou est (verbe être)?" },
+    ];
+
+    lacHom1Qs.forEach((q, i) => {
+      const question: Question = {
+        id: randomUUID(),
+        exerciseId: lacHom1ExId,
+        title: `Indice : ${q.hint}`,
+        text: q.text,
+        type: "fill_blank",
+        options: null,
+        correctAnswer: q.correct,
+        order: i + 1,
+      };
+      this.questions.set(question.id, question);
+    });
+
+    // Exercice 2 : son/sont — on/ont — ces/ses/c'est — mes/mais
+    const lacHom2ExId = randomUUID();
+    const lacHom2Exercise: Exercise = {
+      id: lacHom2ExId,
+      courseId: lacunairesHomophonesCourseId,
+      title: "son/sont — on/ont — ces/ses — mes/mais",
+      description: "Complète chaque phrase avec le bon homophone parmi : son/sont, on/ont, ces/ses, mes/mais.",
+      type: "fill_blank",
+      order: 2,
+    };
+    this.exercises.set(lacHom2ExId, lacHom2Exercise);
+
+    const lacHom2Qs: Array<{ text: string; correct: string; hint: string }> = [
+      { text: "Les oiseaux ___ partis vers le sud pour l'hiver.", correct: "sont", hint: "son (déterminant) ou sont (verbe être)?" },
+      { text: "Lucas ___ chapeau est tombé dans la neige.", correct: "son", hint: "son (déterminant) ou sont (verbe être)?" },
+      { text: "___ m'a dit que l'école serait fermée demain.", correct: "On", hint: "on (pronom) ou ont (verbe avoir)?" },
+      { text: "Ils ___ reçu leurs bulletins hier matin.", correct: "ont", hint: "on (pronom) ou ont (verbe avoir)?" },
+      { text: "___ livres sont vraiment passionnants!", correct: "Ces", hint: "ces (déterminant démonstratif) ou ses (déterminant possessif)?" },
+      { text: "Emma a perdu ___ clés après l'entraînement.", correct: "ses", hint: "ces (déterminant démonstratif) ou ses (déterminant possessif)?" },
+      { text: "Je voudrais venir, ___ je suis trop fatigué.", correct: "mais", hint: "mes (déterminant possessif) ou mais (conjonction)?" },
+      { text: "J'ai oublié ___ gants dans l'autobus.", correct: "mes", hint: "mes (déterminant possessif) ou mais (conjonction)?" },
+      { text: "Les enfants ___ très contents de la sortie scolaire.", correct: "sont", hint: "son (déterminant) ou sont (verbe être)?" },
+      { text: "___ est vrai que les hivers au Québec sont longs.", correct: "C'est|c'est", hint: "ces, ses ou c'est?" },
+    ];
+
+    lacHom2Qs.forEach((q, i) => {
+      const question: Question = {
+        id: randomUUID(),
+        exerciseId: lacHom2ExId,
+        title: `Indice : ${q.hint}`,
+        text: q.text,
+        type: "fill_blank",
+        options: null,
+        correctAnswer: q.correct,
+        order: i + 1,
+      };
+      this.questions.set(question.id, question);
+    });
   }
 
   // Users

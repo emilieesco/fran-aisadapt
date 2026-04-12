@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useRoute, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine } from "lucide-react";
 
 interface Question {
   id: string;
@@ -26,6 +27,61 @@ interface Exercise {
   order?: number;
 }
 
+// Normalize and check fill_blank answer against one or more accepted answers (separated by |)
+function checkFillBlankAnswer(answer: string, correct: string): boolean {
+  const normalized = answer.trim().toLowerCase();
+  return correct.split("|").some((opt) => opt.trim().toLowerCase() === normalized);
+}
+
+// Render a sentence with ___ replaced by an inline input field
+function FillBlankInput({
+  text,
+  value,
+  onChange,
+  disabled,
+}: {
+  text: string;
+  value: string;
+  onChange: (v: string) => void;
+  disabled: boolean;
+}) {
+  const parts = text.split("___");
+  if (parts.length === 1) {
+    return (
+      <div className="space-y-3">
+        <p className="text-lg leading-relaxed text-foreground">{text}</p>
+        <Input
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
+          placeholder="Écris ta réponse…"
+          className="max-w-xs text-base border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
+          data-testid="input-fill-blank"
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="text-lg leading-relaxed text-foreground flex flex-wrap items-center gap-1">
+      {parts.map((part, i) => (
+        <span key={i} className="flex items-center gap-1 flex-wrap">
+          <span>{part}</span>
+          {i < parts.length - 1 && (
+            <Input
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              disabled={disabled}
+              placeholder="…"
+              className="inline-block w-36 text-base border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
+              data-testid="input-fill-blank"
+            />
+          )}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function Exercise() {
   const [match, params] = useRoute("/exercise/:id");
   const [, setLocation] = useLocation();
@@ -42,7 +98,6 @@ export default function Exercise() {
   useEffect(() => {
     if (!match || !params?.id) return;
 
-    // Reset state for the new exercise
     setCompleted(false);
     setCurrentQuestionIndex(0);
     setUserAnswers({});
@@ -66,12 +121,11 @@ export default function Exercise() {
           const qs = await questionsRes.json();
           const parsedQs = qs.map((q: Question) => ({
             ...q,
-            options: typeof q.options === 'string' ? JSON.parse(q.options) : q.options
+            options: typeof q.options === "string" ? JSON.parse(q.options) : q.options,
           }));
           setQuestions(parsedQs);
         }
 
-        // Fetch sibling exercises from the same course
         if (fetchedExercise?.courseId) {
           const siblingsRes = await fetch(
             `/api/courses/${fetchedExercise.courseId}/exercises`,
@@ -110,31 +164,49 @@ export default function Exercise() {
 
   const currentQuestion = questions[currentQuestionIndex];
   const currentAnswer = userAnswers[currentQuestion.id] || "";
-  
-  // For text questions, we don't evaluate correctness - it will be reviewed by the teacher
-  const isTextQuestion = currentQuestion.type === "text";
-  const isCorrect = isTextQuestion ? null : currentAnswer === currentQuestion.correctAnswer;
 
-  // Check if this is a reading comprehension exercise (narrative or descriptive)
+  const isTextQuestion = currentQuestion.type === "text";
+  const isFillBlankQuestion = currentQuestion.type === "fill_blank";
+  const isAutoGraded = !isTextQuestion;
+
+  const isCorrect = isTextQuestion
+    ? null
+    : isFillBlankQuestion
+    ? checkFillBlankAnswer(currentAnswer, currentQuestion.correctAnswer)
+    : currentAnswer === currentQuestion.correctAnswer;
+
   const firstQuestion = questions[0];
-  const isNarrativeExercise = firstQuestion && 
+  const isNarrativeExercise =
+    firstQuestion &&
     (firstQuestion.title.toLowerCase().includes("histoire") ||
-     exercise.title.toLowerCase().includes("narratif") ||
-     exercise.title.toLowerCase().includes("histoire")) && 
+      exercise.title.toLowerCase().includes("narratif") ||
+      exercise.title.toLowerCase().includes("histoire")) &&
     firstQuestion.text.length > 500;
-  
-  // Check if this is a descriptive text exercise (title starts with "Description" and has long text)
-  const isDescriptiveExercise = exercise &&
-    (exercise.title.startsWith("Description") || 
-     exercise.title.includes("Lecture:") ||
-     exercise.title.toLowerCase().includes("descriptif")) &&
+
+  const isDescriptiveExercise =
+    exercise &&
+    (exercise.title.startsWith("Description") ||
+      exercise.title.includes("Lecture:") ||
+      exercise.title.toLowerCase().includes("descriptif")) &&
     firstQuestion &&
     firstQuestion.text.length > 200 &&
     !isNarrativeExercise;
-  
-  // Extract story/text from the first question if this is a reading exercise
-  const storyText = (isNarrativeExercise || isDescriptiveExercise) ? firstQuestion.text : null;
+
+  const storyText = isNarrativeExercise || isDescriptiveExercise ? firstQuestion.text : null;
   const isReadingExercise = isNarrativeExercise || isDescriptiveExercise;
+
+  // For informatif texts — detected by long first-question text and "informatif" course category
+  const isInformatifExercise =
+    exercise &&
+    (exercise.title.toLowerCase().includes("informatif") ||
+      firstQuestion?.text?.length > 500) &&
+    !isNarrativeExercise &&
+    !isDescriptiveExercise;
+
+  const informatifText =
+    isInformatifExercise && firstQuestion && firstQuestion.text.length > 500
+      ? firstQuestion.text
+      : null;
 
   const handleAnswerChange = (answer: string) => {
     setUserAnswers({ ...userAnswers, [currentQuestion.id]: answer });
@@ -174,26 +246,27 @@ export default function Exercise() {
   if (completed) {
     const autoGradedQuestions = questions.filter((q) => q.type !== "text");
     const textQuestions = questions.filter((q) => q.type === "text");
-    const correctCount = autoGradedQuestions.filter(
-      (q) => userAnswers[q.id] === q.correctAnswer
-    ).length;
-    const score = autoGradedQuestions.length > 0
-      ? Math.round((correctCount / autoGradedQuestions.length) * 100)
-      : null;
+    const correctCount = autoGradedQuestions.filter((q) => {
+      if (q.type === "fill_blank") {
+        return checkFillBlankAnswer(userAnswers[q.id] || "", q.correctAnswer);
+      }
+      return userAnswers[q.id] === q.correctAnswer;
+    }).length;
+    const score =
+      autoGradedQuestions.length > 0
+        ? Math.round((correctCount / autoGradedQuestions.length) * 100)
+        : null;
 
-    // Find the next exercise in the same course
     const currentIndex = siblingExercises.findIndex((ex) => ex.id === params?.id);
-    const nextExercise = currentIndex >= 0 && currentIndex < siblingExercises.length - 1
-      ? siblingExercises[currentIndex + 1]
-      : null;
-    const prevExercise = currentIndex > 0
-      ? siblingExercises[currentIndex - 1]
-      : null;
+    const nextExercise =
+      currentIndex >= 0 && currentIndex < siblingExercises.length - 1
+        ? siblingExercises[currentIndex + 1]
+        : null;
+    const prevExercise = currentIndex > 0 ? siblingExercises[currentIndex - 1] : null;
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
         <Card className="max-w-lg w-full p-8">
-          {/* Score header */}
           <div className="text-center mb-6">
             <CheckCircle className="w-14 h-14 text-amber-500 mx-auto mb-3" />
             <h1 className="text-2xl font-bold text-foreground">Exercice terminé !</h1>
@@ -203,18 +276,19 @@ export default function Exercise() {
                   {score}%
                 </span>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {correctCount} bonne{correctCount !== 1 ? "s" : ""} réponse{correctCount !== 1 ? "s" : ""} sur {autoGradedQuestions.length}
+                  {correctCount} bonne{correctCount !== 1 ? "s" : ""} réponse
+                  {correctCount !== 1 ? "s" : ""} sur {autoGradedQuestions.length}
                 </p>
               </div>
             )}
             {textQuestions.length > 0 && (
               <p className="text-sm text-muted-foreground mt-2">
-                {textQuestions.length} réponse{textQuestions.length > 1 ? "s" : ""} écrite{textQuestions.length > 1 ? "s" : ""} en attente de correction
+                {textQuestions.length} réponse{textQuestions.length > 1 ? "s" : ""} écrite
+                {textQuestions.length > 1 ? "s" : ""} en attente de correction
               </p>
             )}
           </div>
 
-          {/* Progress recap */}
           {siblingExercises.length > 1 && (
             <div className="mb-6">
               <div className="flex justify-between text-xs text-muted-foreground mb-1">
@@ -226,9 +300,7 @@ export default function Exercise() {
                   <div
                     key={ex.id}
                     className={`h-1.5 flex-1 rounded-full transition-colors ${
-                      i <= currentIndex
-                        ? "bg-amber-500"
-                        : "bg-secondary"
+                      i <= currentIndex ? "bg-amber-500" : "bg-secondary"
                     }`}
                   />
                 ))}
@@ -236,7 +308,6 @@ export default function Exercise() {
             </div>
           )}
 
-          {/* Navigation buttons */}
           <div className="space-y-3">
             {nextExercise && (
               <Button
@@ -302,12 +373,27 @@ export default function Exercise() {
     );
   }
 
+  // Determine display text for reading exercises
+  const questionDisplayText = (() => {
+    if ((isReadingExercise || isInformatifExercise) && currentQuestion.text.length > 200) {
+      if (currentQuestion.title.match(/^Q\d+\s*[\(（]/)) {
+        return currentQuestion.title.includes(":")
+          ? currentQuestion.title.split(":").slice(1).join(":").trim()
+          : currentQuestion.title;
+      }
+      return currentQuestion.title.includes(":")
+        ? currentQuestion.title.split(":").slice(1).join(":").trim()
+        : currentQuestion.title;
+    }
+    return currentQuestion.text;
+  })();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header */}
       <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4 min-w-0">
             <Button
               variant="ghost"
               size="icon"
@@ -316,14 +402,14 @@ export default function Exercise() {
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
-            <div>
-              <h1 className="text-2xl font-bold">{exercise.title}</h1>
+            <div className="min-w-0">
+              <h1 className="text-2xl font-bold truncate">{exercise.title}</h1>
               <p className="text-sm text-muted-foreground">
                 Question {currentQuestionIndex + 1} sur {questions.length}
               </p>
             </div>
           </div>
-          <div className="w-32 bg-secondary rounded-full h-2">
+          <div className="w-32 shrink-0 bg-secondary rounded-full h-2">
             <div
               className="bg-blue-500 h-2 rounded-full transition-all"
               style={{
@@ -334,104 +420,154 @@ export default function Exercise() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Story/Text Panel for Reading Comprehension */}
-        {isReadingExercise && storyText && (
-          <>
-            {isDescriptiveExercise ? (
-              // For descriptive texts: show permanently at the top
-              <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700 mb-6">
-                <div className="flex items-start gap-3 mb-3">
-                  <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="font-semibold text-blue-800 dark:text-blue-200">
-                    Texte à lire
-                  </span>
+        {/* Reading text panel — informatif */}
+        {isInformatifExercise && informatifText && (
+          <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
+            <Card className="p-4 bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-300 dark:border-purple-700">
+              <CollapsibleTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-full flex items-center justify-between p-2"
+                  data-testid="button-toggle-story"
+                >
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                    <span className="font-semibold text-purple-800 dark:text-purple-200">
+                      Texte informatif
+                    </span>
+                  </div>
+                  {storyPanelOpen ? (
+                    <ChevronUp className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  )}
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="mt-4 max-h-80 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                  <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
+                    {informatifText}
+                  </p>
                 </div>
-                <div className="max-h-64 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
+        )}
+
+        {/* Reading text panel — descriptif (permanent) */}
+        {isDescriptiveExercise && storyText && (
+          <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700 mb-6">
+            <div className="flex items-start gap-3 mb-3">
+              <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <span className="font-semibold text-blue-800 dark:text-blue-200">Texte à lire</span>
+            </div>
+            <div className="max-h-64 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
+                {storyText}
+              </p>
+            </div>
+          </Card>
+        )}
+
+        {/* Reading text panel — narratif (collapsible) */}
+        {isNarrativeExercise && storyText && (
+          <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
+            <Card className="p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
+              <CollapsibleTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-full flex items-center justify-between p-2"
+                  data-testid="button-toggle-story"
+                >
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                    <span className="font-semibold text-amber-800 dark:text-amber-200">
+                      Texte de l'histoire
+                    </span>
+                  </div>
+                  {storyPanelOpen ? (
+                    <ChevronUp className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  )}
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="mt-4 max-h-80 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
                     {storyText}
                   </p>
                 </div>
-              </Card>
-            ) : (
-              // For narrative texts: collapsible panel
-              <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
-                <Card className="p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
-                  <CollapsibleTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="w-full flex items-center justify-between p-2 hover:bg-amber-100 dark:hover:bg-amber-900/30"
-                      data-testid="button-toggle-story"
-                    >
-                      <div className="flex items-center gap-2">
-                        <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                        <span className="font-semibold text-amber-800 dark:text-amber-200">
-                          Texte de l'histoire
-                        </span>
-                      </div>
-                      {storyPanelOpen ? (
-                        <ChevronUp className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                      )}
-                    </Button>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <div className="mt-4 max-h-80 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
-                      <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">
-                        {storyText}
-                      </p>
-                    </div>
-                  </CollapsibleContent>
-                </Card>
-              </Collapsible>
-            )}
-          </>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
         )}
 
         <Card className="p-8 mb-6">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 text-amber-900 dark:text-amber-200">
-              Question {currentQuestionIndex + 1}
-            </h2>
-            <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500">
-              <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground">
-                {/* For reading exercises: if Q1 title starts with "Qn (" → extract question from title */}
-                {isReadingExercise && currentQuestion.text.length > 200 ? (
-                  currentQuestion.title.match(/^Q\d+\s*[\(（]/) ? (
-                    currentQuestion.title.includes(":")
-                      ? currentQuestion.title.split(":").slice(1).join(":").trim()
-                      : currentQuestion.title
-                  ) : (
-                    isDescriptiveExercise
-                      ? (currentQuestion.title.includes(":")
-                          ? currentQuestion.title.split(":").slice(1).join(":").trim()
-                          : currentQuestion.title)
-                      : currentQuestion.text
-                  )
-                ) : currentQuestion.text}
-              </p>
+            <div className="flex items-center gap-2 mb-1">
+              <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-200">
+                Question {currentQuestionIndex + 1}
+              </h2>
+              {isFillBlankQuestion && (
+                <span className="text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-md border border-amber-200 dark:border-amber-700">
+                  Complète la phrase
+                </span>
+              )}
             </div>
 
-            {currentQuestion.type === "multiple_choice" ? (
+            {/* Question prompt */}
+            {!isFillBlankQuestion && (
+              <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500 mb-6">
+                <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground">
+                  {questionDisplayText}
+                </p>
+              </div>
+            )}
+
+            {/* Fill blank — sentence with inline input */}
+            {isFillBlankQuestion && (
+              <div className="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500 mb-6">
+                <FillBlankInput
+                  text={currentQuestion.text}
+                  value={currentAnswer}
+                  onChange={handleAnswerChange}
+                  disabled={showFeedback}
+                />
+                {currentQuestion.title && (
+                  <p className="text-sm text-muted-foreground mt-3 italic">
+                    {currentQuestion.title.includes(":")
+                      ? currentQuestion.title.split(":").slice(1).join(":").trim()
+                      : currentQuestion.title}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* Multiple choice */}
+            {currentQuestion.type === "multiple_choice" && (
               <div className="space-y-4 mt-6">
                 {(currentQuestion.options || []).map((option) => (
                   <button
                     key={option}
-                    onClick={() => handleAnswerChange(option)}
+                    onClick={() => !showFeedback && handleAnswerChange(option)}
                     className={`w-full p-4 text-left rounded-lg border-2 transition-all text-base ${
                       currentAnswer === option
                         ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
                         : "border-border bg-background"
                     } hover-elevate`}
                     data-testid={`button-option-${option}`}
+                    disabled={showFeedback}
                   >
                     <span className="font-medium">{option}</span>
                   </button>
                 ))}
               </div>
-            ) : currentQuestion.type === "select" ? (
+            )}
+
+            {/* Select */}
+            {currentQuestion.type === "select" && (
               <div className="mt-6">
                 <Select value={currentAnswer} onValueChange={handleAnswerChange}>
                   <SelectTrigger className="w-full" data-testid="select-answer">
@@ -439,14 +575,21 @@ export default function Exercise() {
                   </SelectTrigger>
                   <SelectContent>
                     {(currentQuestion.options || []).map((option) => (
-                      <SelectItem key={option} value={option} data-testid={`select-option-${option}`}>
+                      <SelectItem
+                        key={option}
+                        value={option}
+                        data-testid={`select-option-${option}`}
+                      >
                         {option}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
-            ) : (
+            )}
+
+            {/* Free text */}
+            {currentQuestion.type === "text" && (
               <div className="mt-6 space-y-2">
                 <label className="flex items-center gap-2 text-sm font-semibold text-foreground">
                   <FileText className="w-4 h-4 text-amber-600" />
@@ -470,7 +613,7 @@ export default function Exercise() {
             <Button
               onClick={handleSubmitAnswer}
               className="w-full"
-              disabled={!currentAnswer}
+              disabled={!currentAnswer.trim()}
               data-testid="button-submit-answer"
             >
               Valider ma réponse
@@ -480,7 +623,6 @@ export default function Exercise() {
           {showFeedback && (
             <div className="space-y-4">
               {isTextQuestion ? (
-                // For text questions, show "Answer recorded" message
                 <div className="p-4 rounded-lg bg-blue-100 dark:bg-blue-900 border-2 border-blue-500">
                   <div className="flex items-center gap-2 mb-2">
                     <FileText className="w-5 h-5 text-blue-600 dark:text-blue-300" />
@@ -493,7 +635,6 @@ export default function Exercise() {
                   </p>
                 </div>
               ) : (
-                // For multiple choice / select questions, show correct/incorrect
                 <div
                   className={`p-4 rounded-lg ${
                     isCorrect
@@ -506,7 +647,7 @@ export default function Exercise() {
                       <>
                         <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-300" />
                         <span className="font-bold text-green-700 dark:text-green-200">
-                          Correct!
+                          Correct !
                         </span>
                       </>
                     ) : (
@@ -520,7 +661,9 @@ export default function Exercise() {
                   </div>
                   {!isCorrect && (
                     <p className="text-sm">
-                      <strong>Bonne réponse:</strong> {currentQuestion.correctAnswer}
+                      <strong>Bonne réponse :</strong>{" "}
+                      {/* Show only the first accepted answer */}
+                      {currentQuestion.correctAnswer.split("|")[0]}
                     </p>
                   )}
                 </div>
