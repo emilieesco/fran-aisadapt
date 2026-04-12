@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, PenTool, Play, TrendingUp, LogOut, FileText, Search, X } from "lucide-react";
+import { BookOpen, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X } from "lucide-react";
 
 interface Course {
   id: string;
@@ -100,6 +100,7 @@ export default function StudentDashboard() {
   const [studentName, setStudentName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("tous");
+  const [selectedExType, setSelectedExType] = useState("tous");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -416,46 +417,137 @@ export default function StudentDashboard() {
 
           {/* Exercices Tab */}
           <TabsContent value="exercices">
-            <div className="space-y-4">
-              <div>
-                <h2 className="text-2xl font-bold mb-2">Tous les Exercices</h2>
-                <p className="text-muted-foreground mb-6">
-                  Pratiquez avec les exercices interactifs
-                </p>
+            <div className="space-y-6">
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <h2 className="text-2xl font-bold mb-1">Exercices interactifs</h2>
+                  <p className="text-muted-foreground text-sm">
+                    Pratiquez avec des exercices à choix multiple et des textes à trous
+                  </p>
+                </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {exercises
-                  .filter((ex) => ex.type !== "text")
-                  .map((exercise) => (
-                    <Card
-                      key={exercise.id}
-                      className="p-6 hover-elevate"
-                      data-testid={`card-exercise-${exercise.id}`}
-                    >
-                      <div className="space-y-3">
-                        <div>
-                          <span className="text-xs font-semibold text-muted-foreground">
-                            {exercise.courseName}
-                          </span>
-                          <h3 className="text-lg font-bold text-foreground mt-1">
-                            {exercise.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mt-1">
-                            {exercise.description}
-                          </p>
-                        </div>
-                        <Button
-                          onClick={() => handleStartExercise(exercise.id)}
-                          className="w-full"
-                          data-testid={`button-start-exercise-${exercise.id}`}
-                        >
-                          <Play className="w-3 h-3 mr-2" />
-                          Démarrer
-                        </Button>
+
+              {/* Type filter pills */}
+              {(() => {
+                const interactiveExercises = exercises.filter((ex) => ex.type !== "text");
+                const qcmCount   = interactiveExercises.filter((ex) => ex.type === "multiple_choice").length;
+                const fillCount  = interactiveExercises.filter((ex) => ex.type === "fill_blank").length;
+
+                const EX_TYPE_META: Record<string, { label: string; color: string; activeColor: string }> = {
+                  tous:            { label: "Tous",             color: "bg-muted text-muted-foreground", activeColor: "bg-foreground text-background" },
+                  multiple_choice: { label: "Choix multiple",   color: "bg-muted text-muted-foreground", activeColor: "bg-blue-600 text-white" },
+                  fill_blank:      { label: "Blancs à remplir", color: "bg-muted text-muted-foreground", activeColor: "bg-emerald-600 text-white" },
+                };
+
+                const filteredEx = selectedExType === "tous"
+                  ? interactiveExercises
+                  : interactiveExercises.filter((ex) => ex.type === selectedExType);
+
+                // Group by category
+                const grouped: Record<string, typeof filteredEx> = {};
+                filteredEx.forEach((ex) => {
+                  const cat = ex.courseCategory || "autre";
+                  if (!grouped[cat]) grouped[cat] = [];
+                  grouped[cat].push(ex);
+                });
+
+                const EX_BADGE: Record<string, { label: string; color: string }> = {
+                  multiple_choice: { label: "QCM",            color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
+                  fill_blank:      { label: "Blancs à remplir", color: "bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300" },
+                };
+
+                return (
+                  <>
+                    <div className="flex flex-wrap gap-2">
+                      {(["tous", "multiple_choice", "fill_blank"] as const).map((t) => {
+                        const count = t === "tous" ? interactiveExercises.length
+                          : t === "multiple_choice" ? qcmCount
+                          : fillCount;
+                        const meta = EX_TYPE_META[t];
+                        const active = selectedExType === t;
+                        return (
+                          <button
+                            key={t}
+                            onClick={() => setSelectedExType(t)}
+                            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${active ? meta.activeColor : meta.color + " hover-elevate"}`}
+                            data-testid={`filter-extype-${t}`}
+                          >
+                            {meta.label}
+                            <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${active ? "bg-white/20" : "bg-background/60"}`}>
+                              {count}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {filteredEx.length === 0 ? (
+                      <Card className="p-12 text-center text-muted-foreground">
+                        <p className="font-medium">Aucun exercice trouvé.</p>
+                      </Card>
+                    ) : (
+                      <div className="space-y-8">
+                        {Object.entries(grouped).map(([cat, exList]) => (
+                          <div key={cat}>
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="h-5 w-1 rounded-full bg-amber-500" />
+                              <h3 className="text-base font-bold capitalize">
+                                {CATEGORY_META[cat]?.label || cat}
+                              </h3>
+                              <span className="text-xs text-muted-foreground">
+                                {exList.length} exercice{exList.length > 1 ? "s" : ""}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                              {exList.map((exercise) => {
+                                const badge = EX_BADGE[exercise.type] || EX_BADGE.multiple_choice;
+                                return (
+                                  <Card
+                                    key={exercise.id}
+                                    className="p-5 hover-elevate flex flex-col gap-4"
+                                    data-testid={`card-exercise-${exercise.id}`}
+                                  >
+                                    <div className="flex-1 space-y-2">
+                                      <div className="flex items-center justify-between gap-2 flex-wrap">
+                                        <span className="text-xs font-semibold text-muted-foreground truncate max-w-[55%]">
+                                          {exercise.courseName}
+                                        </span>
+                                        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full shrink-0 ${badge.color}`}>
+                                          {badge.label}
+                                        </span>
+                                      </div>
+                                      <h3 className="text-base font-bold text-foreground leading-snug">
+                                        {exercise.title}
+                                      </h3>
+                                      {exercise.description && (
+                                        <p className="text-sm text-muted-foreground line-clamp-2">
+                                          {exercise.description}
+                                        </p>
+                                      )}
+                                    </div>
+                                    <Button
+                                      onClick={() => handleStartExercise(exercise.id)}
+                                      className="w-full"
+                                      data-testid={`button-start-exercise-${exercise.id}`}
+                                    >
+                                      {exercise.type === "fill_blank" ? (
+                                        <PenLine className="w-3 h-3 mr-2" />
+                                      ) : (
+                                        <Play className="w-3 h-3 mr-2" />
+                                      )}
+                                      Démarrer
+                                    </Button>
+                                  </Card>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    </Card>
-                  ))}
-              </div>
+                    )}
+                  </>
+                );
+              })()}
             </div>
           </TabsContent>
 
