@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRoute, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, BookOpen, Play, PenLine } from "lucide-react";
+import { ArrowLeft, BookOpen, Play, PenLine, Link2 } from "lucide-react";
 
 interface CourseData {
   id: string;
@@ -22,10 +22,11 @@ interface ExerciseData {
 }
 
 const EXERCISE_TYPE_LABELS: Record<string, { label: string; color: string; icon: string }> = {
-  multiple_choice: { label: "Choix multiple", color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300", icon: "QCM" },
+  multiple_choice: { label: "Choix multiple",  color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300",       icon: "QCM" },
   fill_blank:      { label: "Blancs à remplir", color: "bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300", icon: "Lacunaire" },
-  text:            { label: "Réponse ouverte", color: "bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300", icon: "Texte" },
-  select:          { label: "Sélection", color: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300", icon: "Choix" },
+  matching:        { label: "Association",      color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300", icon: "Association" },
+  text:            { label: "Réponse ouverte",  color: "bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300",    icon: "Texte" },
+  select:          { label: "Sélection",        color: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300", icon: "Choix" },
 };
 
 export default function Course() {
@@ -166,6 +167,8 @@ export default function Course() {
                     >
                       {ex.type === "fill_blank" ? (
                         <PenLine className="w-4 h-4 mr-2" />
+                      ) : ex.type === "matching" ? (
+                        <Link2 className="w-4 h-4 mr-2" />
                       ) : (
                         <Play className="w-4 h-4 mr-2" />
                       )}

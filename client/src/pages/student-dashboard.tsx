@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X } from "lucide-react";
+import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X } from "lucide-react";
 
 interface Course {
   id: string;
@@ -433,10 +433,13 @@ export default function StudentDashboard() {
                 const qcmCount   = interactiveExercises.filter((ex) => ex.type === "multiple_choice").length;
                 const fillCount  = interactiveExercises.filter((ex) => ex.type === "fill_blank").length;
 
+                const matchingCount = interactiveExercises.filter((ex) => ex.type === "matching").length;
+
                 const EX_TYPE_META: Record<string, { label: string; color: string; activeColor: string }> = {
                   tous:            { label: "Tous",             color: "bg-muted text-muted-foreground", activeColor: "bg-foreground text-background" },
                   multiple_choice: { label: "Choix multiple",   color: "bg-muted text-muted-foreground", activeColor: "bg-blue-600 text-white" },
                   fill_blank:      { label: "Blancs à remplir", color: "bg-muted text-muted-foreground", activeColor: "bg-emerald-600 text-white" },
+                  matching:        { label: "Association",      color: "bg-muted text-muted-foreground", activeColor: "bg-violet-600 text-white" },
                 };
 
                 const filteredEx = selectedExType === "tous"
@@ -452,17 +455,19 @@ export default function StudentDashboard() {
                 });
 
                 const EX_BADGE: Record<string, { label: string; color: string }> = {
-                  multiple_choice: { label: "QCM",            color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
+                  multiple_choice: { label: "QCM",              color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
                   fill_blank:      { label: "Blancs à remplir", color: "bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300" },
+                  matching:        { label: "Association",      color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300" },
                 };
 
                 return (
                   <>
                     <div className="flex flex-wrap gap-2">
-                      {(["tous", "multiple_choice", "fill_blank"] as const).map((t) => {
+                      {(["tous", "multiple_choice", "fill_blank", "matching"] as const).map((t) => {
                         const count = t === "tous" ? interactiveExercises.length
                           : t === "multiple_choice" ? qcmCount
-                          : fillCount;
+                          : t === "fill_blank" ? fillCount
+                          : matchingCount;
                         const meta = EX_TYPE_META[t];
                         const active = selectedExType === t;
                         return (
@@ -532,6 +537,8 @@ export default function StudentDashboard() {
                                     >
                                       {exercise.type === "fill_blank" ? (
                                         <PenLine className="w-3 h-3 mr-2" />
+                                      ) : exercise.type === "matching" ? (
+                                        <Link2 className="w-3 h-3 mr-2" />
                                       ) : (
                                         <Play className="w-3 h-3 mr-2" />
                                       )}

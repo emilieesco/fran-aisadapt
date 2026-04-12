@@ -10965,6 +10965,158 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       };
       this.questions.set(question.id, question);
     });
+
+    // ===== ASSOCIATION — CORRESPONDANCES =====
+    const assocCourseId = randomUUID();
+    const assocCourse: Course = {
+      id: assocCourseId,
+      title: "Association — Relier deux colonnes",
+      description: "Relie chaque élément de la colonne gauche à son correspondant dans la colonne droite. Homophones, classes de mots et temps verbaux.",
+      category: "grammaire",
+      content: "Exercices d'association : relie les mots de la colonne A aux definitions ou exemples de la colonne B.",
+      order: 202,
+    };
+    this.courses.set(assocCourseId, assocCourse);
+
+    // Exercise 1 — Homophones et sens
+    const assocEx1Id = randomUUID();
+    const assocEx1: Exercise = {
+      id: assocEx1Id,
+      courseId: assocCourseId,
+      title: "Homophones et sens",
+      description: "Relie chaque homophone a sa definition ou son exemple.",
+      type: "matching",
+      order: 1,
+    };
+    this.exercises.set(assocEx1Id, assocEx1);
+    {
+      const leftItems = ["a", "a (accent)", "ou", "ou (accent)", "son", "sont", "on", "ont"];
+      const correctPairs: Record<string, string> = {
+        "a": "verbe avoir — il a faim",
+        "a (accent)": "preposition — aller a Paris",
+        "ou": "conjonction de choix — chat ou chien",
+        "ou (accent)": "adverbe de lieu — la ou il vit",
+        "son": "determinant possessif — son livre",
+        "sont": "verbe etre 3e pl. — ils sont contents",
+        "on": "pronom indefini — on mange",
+        "ont": "verbe avoir 3e pl. — ils ont froid",
+      };
+      const assocQ1: Question = {
+        id: randomUUID(),
+        exerciseId: assocEx1Id,
+        title: "Associe chaque homophone a sa definition",
+        text: "Relie chaque homophone de la colonne A a sa definition dans la colonne B.",
+        type: "matching",
+        options: JSON.stringify(leftItems),
+        correctAnswer: JSON.stringify(correctPairs),
+        order: 1,
+      };
+      this.questions.set(assocQ1.id, assocQ1);
+    }
+
+    // Exercise 2 — Classes de mots et exemples
+    const assocEx2Id = randomUUID();
+    const assocEx2: Exercise = {
+      id: assocEx2Id,
+      courseId: assocCourseId,
+      title: "Classes de mots et exemples",
+      description: "Relie chaque classe de mots a ses exemples.",
+      type: "matching",
+      order: 2,
+    };
+    this.exercises.set(assocEx2Id, assocEx2);
+    {
+      const leftItems = ["Nom", "Verbe", "Adjectif", "Adverbe", "Determinant", "Pronom", "Preposition"];
+      const correctPairs: Record<string, string> = {
+        "Nom": "maison, chien, joie",
+        "Verbe": "courir, manger, etre",
+        "Adjectif": "grand, beau, rouge",
+        "Adverbe": "vite, souvent, tres",
+        "Determinant": "le, une, mon, ce",
+        "Pronom": "il, elle, nous, qui",
+        "Preposition": "dans, sur, pour, avec",
+      };
+      const assocQ2: Question = {
+        id: randomUUID(),
+        exerciseId: assocEx2Id,
+        title: "Associe chaque classe de mots a ses exemples",
+        text: "Relie chaque classe de mots (colonne A) aux exemples qui lui correspondent (colonne B).",
+        type: "matching",
+        options: JSON.stringify(leftItems),
+        correctAnswer: JSON.stringify(correctPairs),
+        order: 1,
+      };
+      this.questions.set(assocQ2.id, assocQ2);
+    }
+
+    // Exercise 3 — Temps verbaux et valeurs
+    const assocEx3Id = randomUUID();
+    const assocEx3: Exercise = {
+      id: assocEx3Id,
+      courseId: assocCourseId,
+      title: "Temps verbaux et valeurs",
+      description: "Relie chaque temps de verbe a son utilisation principale.",
+      type: "matching",
+      order: 3,
+    };
+    this.exercises.set(assocEx3Id, assocEx3);
+    {
+      const leftItems = ["Present de l'indicatif", "Imparfait", "Passe compose", "Futur simple", "Conditionnel present"];
+      const correctPairs: Record<string, string> = {
+        "Present de l'indicatif": "action en cours ou habituelle",
+        "Imparfait": "description ou action repetee dans le passe",
+        "Passe compose": "action accomplie et terminee dans le passe",
+        "Futur simple": "action a venir ou prediction",
+        "Conditionnel present": "hypothese, souhait ou politesse",
+      };
+      const assocQ3: Question = {
+        id: randomUUID(),
+        exerciseId: assocEx3Id,
+        title: "Associe chaque temps a sa valeur principale",
+        text: "Relie chaque temps verbal (colonne A) a son utilisation principale (colonne B).",
+        type: "matching",
+        options: JSON.stringify(leftItems),
+        correctAnswer: JSON.stringify(correctPairs),
+        order: 1,
+      };
+      this.questions.set(assocQ3.id, assocQ3);
+    }
+
+    // Exercise 4 — Marqueurs de relation et logique
+    const assocEx4Id = randomUUID();
+    const assocEx4: Exercise = {
+      id: assocEx4Id,
+      courseId: assocCourseId,
+      title: "Marqueurs de relation et logique",
+      description: "Relie chaque marqueur de relation a sa fonction logique.",
+      type: "matching",
+      order: 4,
+    };
+    this.exercises.set(assocEx4Id, assocEx4);
+    {
+      const leftItems = ["car", "donc", "mais", "puis", "alors", "pourtant", "cependant", "en effet"];
+      const correctPairs: Record<string, string> = {
+        "car": "exprimer la cause",
+        "donc": "exprimer la consequence",
+        "mais": "exprimer l'opposition",
+        "puis": "exprimer la succession",
+        "alors": "exprimer le resultat ou le temps",
+        "pourtant": "exprimer la concession",
+        "cependant": "exprimer la nuance ou l'opposition",
+        "en effet": "confirmer ou expliquer",
+      };
+      const assocQ4: Question = {
+        id: randomUUID(),
+        exerciseId: assocEx4Id,
+        title: "Associe chaque marqueur de relation a sa fonction",
+        text: "Relie chaque mot de liaison (colonne A) a sa fonction logique dans la phrase (colonne B).",
+        type: "matching",
+        options: JSON.stringify(leftItems),
+        correctAnswer: JSON.stringify(correctPairs),
+        order: 1,
+      };
+      this.questions.set(assocQ4.id, assocQ4);
+    }
   }
 
   // Users
