@@ -1,14 +1,9 @@
 import type { Express } from "express";
-import { createServer, type Server } from "http";
+import { type Server } from "http";
 import { storage } from "./storage";
 import { insertUserSchema, insertCourseSchema, insertExerciseSchema, insertQuestionSchema, insertResponseSchema } from "@shared/schema";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Health check — répond instantanément, sans dépendance DB
-  app.get("/api/health", (_req, res) => {
-    res.json({ status: "ok" });
-  });
-
+export async function registerRoutes(app: Express, server: Server): Promise<Server> {
   // Auth Routes
   app.post("/api/register", async (req, res) => {
     try {
@@ -334,6 +329,5 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  return server;
 }
