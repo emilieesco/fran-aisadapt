@@ -233,6 +233,51 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     }
   });
 
+  // Notation d'une réponse texte libre par l'enseignant
+  app.patch("/api/student-responses/:id/grade", async (req, res) => {
+    try {
+      const { isCorrect, comment } = req.body;
+      if (typeof isCorrect !== "boolean") return res.status(400).send("isCorrect (boolean) requis");
+      const updated = await storage.updateResponseGrade(req.params.id, isCorrect, comment);
+      if (!updated) return res.status(404).send("Réponse introuvable");
+      res.json(updated);
+    } catch (err) {
+      console.error("Erreur notation:", err);
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Statistiques des questions d'un exercice (taux de réussite par question)
+  app.get("/api/exercises/:id/stats", async (req, res) => {
+    try {
+      const questions = await storage.getQuestionsByExercise(req.params.id);
+      const stats = await Promise.all(
+        questions.map(async (q) => {
+          const responses = await storage.getResponsesByQuestion(q.id);
+          const autoGraded = responses.filter((r) => r.isCorrect !== null);
+          const correct = autoGraded.filter((r) => r.isCorrect === true).length;
+          const total = autoGraded.length;
+          const accuracy = total > 0 ? Math.round((correct / total) * 100) : null;
+          return {
+            questionId: q.id,
+            questionTitle: q.title,
+            questionText: q.text.length > 80 ? q.text.slice(0, 80) + "…" : q.text,
+            type: q.type,
+            totalResponses: total,
+            correctResponses: correct,
+            accuracy,
+          };
+        })
+      );
+      // Trier par taux de réussite croissant (questions difficiles en premier)
+      stats.sort((a, b) => (a.accuracy ?? 101) - (b.accuracy ?? 101));
+      res.json(stats);
+    } catch (err) {
+      console.error("Erreur stats exercice:", err);
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   app.patch("/api/student-responses/:id/comment", async (req, res) => {
     try {
       const { comment } = req.body;
@@ -250,14 +295,22 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
   // Student Progress Routes
   app.get("/api/students/:id/courses", async (req, res) => {
     try {
+      const studentId = req.params.id;
       const allCourses = await storage.getAllCourses();
-      const progress = await storage.getAllStudentProgress(req.params.id);
+      const progress = await storage.getAllStudentProgress(studentId);
+      const assignments = await storage.getAssignmentsByStudent(studentId);
+
+      const assignmentByCourse = new Map(assignments.map((a) => [a.courseId, a]));
 
       const courses = allCourses.map((course) => {
         const studentProgress = progress.find((p) => p.courseId === course.id);
+        const assignment = assignmentByCourse.get(course.id);
         return {
           ...course,
           progressPercentage: studentProgress?.progressPercentage || 0,
+          completed: studentProgress?.completed || false,
+          dueDate: assignment?.dueDate || null,
+          isAssigned: !!assignment,
         };
       });
 

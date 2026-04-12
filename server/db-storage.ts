@@ -65,6 +65,16 @@ export class DatabaseStorage extends MemStorage {
     return this.db.select().from(studentResponses).where(eq(studentResponses.questionId, questionId));
   }
 
+  async updateResponseGrade(id: string, isCorrect: boolean, comment?: string): Promise<StudentResponse | undefined> {
+    const updateData: Record<string, unknown> = { isCorrect };
+    if (comment !== undefined) updateData.teacherComment = comment;
+    const rows = await this.db.update(studentResponses)
+      .set(updateData)
+      .where(eq(studentResponses.id, id))
+      .returning();
+    return rows[0];
+  }
+
   async updateResponseComment(id: string, comment: string): Promise<StudentResponse | undefined> {
     const rows = await this.db
       .update(studentResponses)

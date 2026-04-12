@@ -43,6 +43,7 @@ export interface IStorage {
   getResponsesByStudent(studentId: string): Promise<StudentResponse[]>;
   getResponsesByQuestion(questionId: string): Promise<StudentResponse[]>;
   updateResponseComment(id: string, comment: string): Promise<StudentResponse | undefined>;
+  updateResponseGrade(id: string, isCorrect: boolean, comment?: string): Promise<StudentResponse | undefined>;
 
   // Student Progress
   getProgress(studentId: string, courseId: string): Promise<StudentProgress | undefined>;
@@ -11394,6 +11395,18 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
     const response = this.responses.get(id);
     if (!response) return undefined;
     const updated: StudentResponse = { ...response, teacherComment: comment };
+    this.responses.set(id, updated);
+    return updated;
+  }
+
+  async updateResponseGrade(id: string, isCorrect: boolean, comment?: string): Promise<StudentResponse | undefined> {
+    const response = this.responses.get(id);
+    if (!response) return undefined;
+    const updated: StudentResponse = {
+      ...response,
+      isCorrect,
+      teacherComment: comment !== undefined ? comment : response.teacherComment,
+    };
     this.responses.set(id, updated);
     return updated;
   }

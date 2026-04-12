@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X } from "lucide-react";
+import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle } from "lucide-react";
 
 interface Course {
   id: string;
@@ -12,6 +12,9 @@ interface Course {
   description: string;
   category: string;
   progressPercentage: number;
+  completed?: boolean;
+  dueDate?: string | null;
+  isAssigned?: boolean;
   order?: number;
 }
 
@@ -54,21 +57,43 @@ function CourseCard({
   label: string;
   onStart: () => void;
 }) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dueDateObj = course.dueDate ? new Date(course.dueDate) : null;
+  const isOverdue = dueDateObj && dueDateObj < today && !course.completed;
+  const isDueSoon = dueDateObj && !isOverdue && !course.completed && (dueDateObj.getTime() - today.getTime()) <= 3 * 24 * 60 * 60 * 1000;
+
   return (
     <Card
-      className="p-5 hover-elevate cursor-pointer flex flex-col gap-4"
+      className={`p-5 hover-elevate cursor-pointer flex flex-col gap-4 ${isOverdue ? "ring-1 ring-red-400 dark:ring-red-600" : ""}`}
       data-testid={`card-course-${course.id}`}
     >
       <div className="flex-1 space-y-2">
-        <span className={`inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${badgeColor}`}>
-          {label}
-        </span>
-        <h3 className="text-base font-bold text-foreground leading-snug">
-          {course.title}
-        </h3>
-        <p className="text-sm text-muted-foreground line-clamp-2">
-          {course.description}
-        </p>
+        <div className="flex items-start justify-between gap-2 flex-wrap">
+          <span className={`inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${badgeColor}`}>
+            {label}
+          </span>
+          {isOverdue && (
+            <span className="flex items-center gap-1 text-xs text-red-600 dark:text-red-400 font-semibold" data-testid={`badge-overdue-${course.id}`}>
+              <AlertCircle className="w-3.5 h-3.5" />
+              En retard
+            </span>
+          )}
+          {isDueSoon && !isOverdue && (
+            <span className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 font-semibold" data-testid={`badge-due-soon-${course.id}`}>
+              <Calendar className="w-3.5 h-3.5" />
+              Bientôt dû
+            </span>
+          )}
+        </div>
+        <h3 className="text-base font-bold text-foreground leading-snug">{course.title}</h3>
+        <p className="text-sm text-muted-foreground line-clamp-2">{course.description}</p>
+        {dueDateObj && (
+          <p className={`text-xs flex items-center gap-1 ${isOverdue ? "text-red-600 dark:text-red-400" : "text-muted-foreground"}`} data-testid={`text-due-date-${course.id}`}>
+            <Calendar className="w-3 h-3" />
+            Échéance : {dueDateObj.toLocaleDateString("fr-CA")}
+          </p>
+        )}
       </div>
       <div className="space-y-2">
         <div className="flex justify-between text-xs">
@@ -77,13 +102,18 @@ function CourseCard({
         </div>
         <div className="w-full bg-secondary rounded-full h-1.5">
           <div
-            className="bg-amber-500 h-1.5 rounded-full transition-all duration-300"
+            className={`h-1.5 rounded-full transition-all duration-300 ${course.completed ? "bg-green-500" : "bg-amber-500"}`}
             style={{ width: `${course.progressPercentage ?? 0}%` }}
           />
         </div>
       </div>
-      <Button onClick={onStart} className="w-full" data-testid={`button-start-${course.id}`}>
-        {(course.progressPercentage ?? 0) > 0 ? "Continuer" : "Commencer"}
+      <Button
+        onClick={onStart}
+        className="w-full"
+        variant={isOverdue ? "destructive" : "default"}
+        data-testid={`button-start-${course.id}`}
+      >
+        {course.completed ? "Revoir" : (course.progressPercentage ?? 0) > 0 ? "Continuer" : "Commencer"}
       </Button>
     </Card>
   );
