@@ -379,7 +379,14 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       if (!teacherId || !studentId || !courseId) {
         return res.status(400).send("Champs manquants: teacherId, studentId, courseId");
       }
-      // Check if assignment already exists
+      // Limite de 25 élèves par enseignant
+      const teacherAssignments = await storage.getAssignmentsByTeacher(teacherId);
+      const uniqueStudents = new Set(teacherAssignments.map((a) => a.studentId));
+      if (!uniqueStudents.has(studentId) && uniqueStudents.size >= 25) {
+        return res.status(403).send("Limite atteinte : un enseignant ne peut pas avoir plus de 25 élèves");
+      }
+
+      // Vérifier si l'assignation existe déjà
       const existing = await storage.getAssignmentsByCourse(courseId);
       const duplicate = existing.find(
         (a) => a.studentId === studentId && a.teacherId === teacherId
