@@ -1,298 +1,51 @@
 # Français Actif - Plateforme d'Apprentissage du Français
 
-## Vue d'ensemble
-Application web éducative complète pour l'enseignement du français aux élèves en adaptation scolaire et sociale. Couvre les classes de mots, textes narratifs, et écriture avec un système d'exercices interactifs, suivi de progression, et rapports détaillés pour les enseignants.
+## Overview
+Français Actif is a comprehensive web-based educational platform designed to teach French to students in specialized educational support programs. Its core purpose is to provide an interactive learning environment covering French grammar, narrative texts, and writing skills. The platform features interactive exercises, progression tracking, and detailed reporting for teachers. The project aims to enhance French language acquisition through an engaging and adaptive learning experience, fostering improved educational outcomes for students and providing educators with robust tools for monitoring and support.
 
-## Architecture
-- **Frontend**: React + Tailwind CSS + Shadcn UI + Wouter
-- **Backend**: Express.js + DatabaseStorage (PostgreSQL) avec fallback MemStorage
-- **Database**: PostgreSQL Railway (via Drizzle ORM + pg)
-- **Routing**: Wouter pour navigation côté client
+## User Preferences
+I prefer that the agent focuses on completing the project's core functionalities. I want detailed explanations when new features are implemented or significant changes are made. I value an iterative development approach where I can review and provide feedback on incremental progress. Please ensure all communication is clear and concise.
 
-## Configuration Base de Données
+## System Architecture
+The application follows a client-server architecture.
 
-### En développement (Replit)
-- `RAILWAY_DATABASE_URL` → pointe vers PostgreSQL Railway
-- Stockage hybride : contenu pédagogique en mémoire, données utilisateurs en PostgreSQL
+**Frontend:**
+-   **Framework:** React
+-   **Styling:** Tailwind CSS for utility-first styling, complemented by Shadcn UI components for a modern and accessible design.
+-   **Routing:** Wouter is used for client-side navigation.
+-   **UI/UX Decisions:**
+    -   Entirely in French.
+    -   Clean interfaces and clear visual hierarchy for accessibility.
+    -   Responsive design for mobile, tablet, and desktop.
+    -   Full dark mode support.
+    -   Immediate feedback for user actions.
+    -   Motivational elements include badges, visual progress bars, and encouraging messages.
 
-### En production (Railway)
-- `DATABASE_URL` → fourni automatiquement par Railway PostgreSQL
-- Même comportement hybride
+**Backend:**
+-   **Framework:** Express.js
+-   **Storage:** `DatabaseStorage` (PostgreSQL) is the primary storage solution, with a `MemStorage` fallback primarily for read-only pedagogical content.
+-   **Database ORM:** Drizzle ORM with `pg` for PostgreSQL interactions.
 
-### Fichiers DB
-- `server/db.ts` — connexion Drizzle + pg (pooling)
-- `server/db-storage.ts` — `DatabaseStorage` étend `MemStorage`, surcharge les méthodes dynamiques
-- `server/storage.ts` — détecte `RAILWAY_DATABASE_URL`/`DATABASE_URL` et instancie le bon stockage
-- `railway.json` — configuration déploiement Railway
+**Database Configuration (Hybrid Storage):**
+-   **Persistent Data (PostgreSQL):** User accounts, student responses, course progression, badges, and teacher-student assignments are stored here.
+-   **In-Memory Data (Read-only):** Over 88 pedagogical courses, 333 exercises, and all questions are loaded into memory for fast access.
 
-### Données persistantes (PostgreSQL)
-- Comptes utilisateurs (inscriptions)
-- Réponses des élèves
-- Progression par cours
-- Badges
-- Assignations enseignant → élève
+**Core Features:**
+-   **Authentication:** Login/registration for teachers and students with role-based access.
+-   **Student Dashboard:** Displays assigned courses with visual progress, interactive exercises (multiple-choice, free-text, dictation, fill-in-the-blank), progression tracking, and badge system.
+-   **Teacher Dashboard:** Manages courses and students, tracks individual student progress, creates courses, and generates detailed progress reports (including CSV export).
+-   **Content Types:** Covers grammar, orthography, conjugation, punctuation, reading comprehension, and writing, with specific modules for word classes, narrative texts, descriptive texts, and dictation.
+-   **Adaptive Learning:** Exercise flow adapts based on student performance, offering repetition for low scores and progressing to the next exercise for higher scores.
+-   **Interactive Dictation:** Features Web Speech API (fr-CA) with listen/re-listen/slow-play options and real-time word-by-word correction.
+-   **Enriched Exercise Summaries:** Provides colored scores, adaptive motivational messages, and detailed question-by-question review with correct answers.
 
-### Données en mémoire (lecture seule)
-- 88+ cours pédagogiques
-- 333+ exercices
-- Toutes les questions
-
-## Fonctionnalités MVP Complètes
-
-### Authentification ✅
-- Page de login/inscription (enseignants et élèves)
-- Rôles: "teacher" et "student"
-- Identifiants de test:
-  - Enseignant: `enseignant` / `password123`
-  - Élève: `eleve` / `password123`
-
-### Pour les Élèves ✅
-- **Dashboard**: Liste de tous les cours assignés avec progression visuelle
-- **Cours**: Affichage du contenu éducatif et liste des exercices associés
-- **Exercices Interactifs**:
-  - Questions à choix multiples (Classes de mots)
-  - Questions texte libre (Écriture, Réflexion)
-  - Rétroaction immédiate sur les réponses
-- **Progression**: Suivi en pourcentage avec barre de progression
-- **Badges**: Système de récompenses pour motivation
-- **Navigation**: Tabs pour "Mes Cours", "Progression", "Badges"
-
-### Pour les Enseignants ✅
-- **Dashboard**: Création et gestion des cours
-- **Gestion des Élèves**: Liste avec suivi de progression individuel
-- **Création de Cours**: Formulaire rapide avec titre, description, catégorie
-- **Rapports Détaillés**: 
-  - Statistiques globales par élève
-  - Précision moyenne des réponses
-  - Cours complétés
-  - Progression par catégorie
-  - Export CSV des rapports
-
-### Types de Contenu ✅
-- **Classes de mots**: Noms, verbes, adjectifs, etc.
-- **Textes narratifs**: 11 questions (5 structure narrative + 2 Compréhension + 1 Interprétation + 2 Réaction + 1 Jugement critique)
-- **Textes descriptifs**: 5 questions (3 Compréhension QCM + 2 Interprétation/Réaction texte)
-- **Écriture**: Exercices d'écriture guidée
-
-### Textes Descriptifs (5 exercices) ✅
-1. **La Forêt Enchantée** - Description d'une forêt mystérieuse
-2. **Le Vieux Pêcheur** - Portrait d'un pêcheur au bord de l'eau
-3. **La Maison de Grand-mère** - Description d'une maison ancienne
-4. **Le Marché du Dimanche** - Scène vivante d'un marché
-5. **La Montagne au Lever du Soleil** - Paysage montagneux
-
-## Structure des Données
-
-### Tables PostgreSQL
-- **users**: Authentification (username, password, firstName, lastName, role)
-- **courses**: Contenu éducatif par catégorie
-- **exercises**: Exercices associés aux cours
-- **questions**: Questions dans les exercices
-- **student_responses**: Réponses des élèves avec évaluation
-- **student_progress**: Suivi du pourcentage complété par cours
-- **student_badges**: Badges gagnés
-- **assignments**: Assignation des cours aux élèves
-
-## Routes API Complètes
-
-### Authentification
-- `POST /api/register` - Inscription
-- `POST /api/login` - Connexion
-
-### Utilisateurs
-- `GET /api/users/:id` - Récupérer infos utilisateur
-
-### Cours
-- `GET /api/courses` - Tous les cours
-- `GET /api/courses/:id` - Détails d'un cours
-- `POST /api/courses` - Créer cours (enseignants)
-- `GET /api/courses/:id/exercises` - Exercices d'un cours
-
-### Exercices
-- `GET /api/exercises/:id` - Détails exercice
-- `POST /api/exercises` - Créer exercice
-- `GET /api/exercises/:id/questions` - Questions de l'exercice
-
-### Questions
-- `POST /api/questions` - Créer question
-
-### Réponses Élèves
-- `POST /api/student-responses` - Soumettre réponse
-
-### Progression
-- `GET /api/students/:id/courses` - Cours assignés avec progression
-- `GET /api/students/:id/badges` - Badges gagnés
-- `GET /api/teachers/:id/students` - Élèves d'un enseignant
-- `GET /api/teachers/:id/reports` - Rapports détaillés de progression
-
-## Pages
-
-| Route | Rôle | Fonction |
-|-------|------|----------|
-| `/` | Tous | Authentification (login/register) |
-| `/student-dashboard` | Élève | Tableau de bord avec mes cours |
-| `/teacher-dashboard` | Enseignant | Gestion des cours et élèves |
-| `/teacher-reports` | Enseignant | Rapports détaillés de progression |
-| `/teacher/course/:id` | Enseignant | Gérer un cours: exercices + assignation élèves |
-| `/student-responses` | Enseignant | Réponses détaillées d'un élève |
-| `/course/:id` | Élève | Contenu du cours + liste exercices |
-| `/exercise/:id` | Élève | Exercice interactif |
-
-## Design & UX
-
-- **Langue**: Entièrement en français
-- **Accessibilité**: Interfaces épurées, hiérarchie visuelle claire
-- **Responsivité**: Mobile, tablet, desktop optimisés
-- **Dark Mode**: Support complet
-- **Rétroaction**: Feedback immédiat sur les actions
-- **Motivations**: Badges, progressions visuelles, encouragements
-
-## 50 Leçons Focalisées par Catégorie
-
-### Grammaire (9 leçons)
-1. Les Noms - Identificationet classification
-2. Les Verbes - Identification et fonctions
-3. Les Adjectifs - Description et modification
-4. Les Pronoms - Remplacement des noms
-5. Les Prépositions - Utilisation et sens
-6. Les Adverbes - Manière, temps, lieu, quantité
-7. Les Mots de Liaison - Et, ou, mais, car, donc
-8. Phrase Simple - Structure de base
-9. Phrase Complexe - Coordination et subordination
-10. Genres et classes de noms - Masculin/féminin
-11. Structure complète de phrase - Sujet, verbe, COD, COI, CC
-12. Voix active et passive - Transformation
-
-### Orthographe (10 leçons)
-1. Les règles de base - Majuscules, accents, ponctuation
-2. Accords: noms et adjectifs - Genre et nombre
-3. Les accords du verbe - Conjugaison correcte
-4. Les homophones - Mots qui se prononcent pareils
-5. Les pièges courants - Erreurs fréquentes
-6. Homophones courants - A/à, ou/où, son/sont, ce/se, mes/mais
-7. Autres homophones - Cher/chère, vers/vert, pair/père/paire, court/cour
-8. Pluriels spéciaux - Mots en -al, -eau, -au, -ail
-9. Accord du participe passé - Avec avoir/être
-10. Mots invariables et exceptions - Couleurs, adverbes
-
-### Conjugaison (9 leçons)
-1. Les verbes au présent - Groupes 1, 2, 3
-2. Le passé composé - Construction et utilisation
-3. L'imparfait - Formation et usage
-4. Le futur simple - Prédiction et événements
-5. Le conditionnel - Hypothèse et politesse
-6. Les temps composés - Plus-que-parfait, futur antérieur
-7. Temps composés avancés - Conditionnel passé, subjonctif passé
-8. Le subjonctif présent - Doute, incertitude, émotion
-9. L'imparfait - Comparaison avec passé composé
-
-### Ponctuation (5 leçons)
-1. Signes basiques - Point, virgule, ?, !
-2. Signes avancés - Tirets, guillemets, parenthèses, apostrophe
-3. Espaces et dialogue français - Règles d'espacement
-4. Tirets et pointillés avancés - Utilisations stylistiques
-5. Virgules dans propositions complexes - Placement correct
-
-### Lecture & Compréhension (8 leçons)
-1. Texte descriptif - Techniques de description
-2. Texte explicatif - Comment expliquer un phénomène
-3. Texte argumentatif - Persuasion et arguments
-4. Texte informatif - Informations factuelles
-5. Vocabulaire en contexte - Deviner sens des mots
-6. Compréhension écrite - Principal vs secondaire
-7. Questions de compréhension - Techniques de réponse
-8. Analyse de texte - Thème, messages, intentions
-
-## Données de Test Incluses
-
-### Utilisateurs
-- Enseignant: Marie Dubois (enseignant/password123)
-- Élève: Jean Martin (eleve/password123)
-
-### Exercices
-- Exercices à choix multiples pour validation immédiate
-- Exercices texte libre pour écriture
-- Tous les 50 cours ont des exercices associés
-
-## État du Projet
-
-✅ **Phase 1 - Complétée**: Schema + Frontend + Design
-✅ **Phase 2 - Complétée**: Backend + API Routes + Storage
-✅ **Phase 3 - Complétée**: Database PostgreSQL + Rapports + Données de test
-✅ **MVP Features** - TERMINÉ
-✅ **50 Leçons Focalisées** - AJOUTÉES (Janvier 2025)
-✅ **73+ Leçons Complètes** - AJOUTÉES 12 LEÇONS CRITIQUES (November 25, 2025)
-✅ **~97 Leçons Complètes** - AJOUTÉES 24 LEÇONS AVANCÉES (November 25, 2025):
-   - 16 Grammaire avancée: Substituts, Marqueurs de relation, Cohésion textuelle, Vocabulaire, Phrases transformées, Phrases à structure particulière, Négation, Adverbes avancés, Groupe infinitif, Séquences syntaxiques, Polysémie/Homonymie, Dérivation lexicale, Niveaux de langue
-   - 2 Ponctuation: Ponctuation avancée, Ponctuation contextuelle
-   - 2 Écriture: Connecteurs textuels, Techniques d'écriture avancées
-   - 2 Lecture: Types de textes, Compréhension fine/inférence
-   - 1 Conjugaison: Valeur des temps
-   - 1 Orthographe: Homophones avancés
-
-### Toutes les 24 Leçons Avancées (Nouvelle Grammaire)
-1. **Les substituts** - Pronominaux, nominaux, lexicaux, textuels
-2. **Les marqueurs de relation** - Connecteurs logiques (ajouter, contraster, expliquer, illustrer, résumer, temps)
-3. **La cohésion et cohérence textuelle** - Ordre logique, enchaînement, continuité, substituts
-4. **Le vocabulaire et champs lexicaux** - Domaines, niveaux de langue, synonymes, antonymes
-5. **Les phrases transformées** - Affirmative/négative, active/passive, neutre/emphatique
-6. **La ponctuation avancée** - Deux-points, parenthèses, crochets, tirets
-7. **Les types de textes** - Descriptif, narratif, informatif, explicatif, injonctif, dialogue, publicitaire
-8. **Phrases à structure particulière** - Impersonnelles, sans GN sujet, elliptiques
-9. **La négation (nouvelle grammaire)** - Encadrement ne...pas, variantes (jamais, plus, rien)
-10. **Les adverbes (plus complet)** - Manière, temps, lieu, opinion
-11. **Les verbes et la valeur des temps** - Présent, imparfait, futur, temps composés, aspect
-12. **Les homophones avancés** - leur/leurs, tout/tous, quel/quelle, infinitif/participe, là/la
-13. **Le groupe infinitif** - Reconnaissance, comme complément du verbe/phrase
-14. **Les séquences syntaxiques** - Sujet→action→objet, sujet→état→attribut, décrire une image
-15. **Les connecteurs textuels** - Utilisation dans l'écriture
-16. **Techniques d'écriture avancées** - Varier structures, montrer plutôt que dire, suspense
-17. **Ponctuation contextuelle avancée** - Énumération, incise, déplacement de CP
-18. **Dérivation lexicale** - Préfixes et suffixes
-19. **Les niveaux de langue** - Familier, standard, soutenu
-20. **Polysémie et homonymie** - Mots avec plusieurs sens, mots homophones
-21. **Compréhension fine et inférence** - Lire entre les lignes, déductions
-22. **Types de textes** - Approche grammaire + écriture (6 types)
-23. **Vocabulaire contexte** - Deviner sens dans contexte (révisé)
-24. **Mots de la même famille** - Dérivation et familles lexicales
-
-## Nouvelles Fonctionnalités (Janvier 2026)
-
-### Résumé de fin d'exercice enrichi ✅
-- Score affiché en couleur selon le résultat (vert ≥80%, bleu ≥60%, amber ≥40%, rouge <40%)
-- Message adaptatif : "Excellent !", "Bien !", "Continue !", "Persévère !"
-- Révision question par question :
-  - Icône verte ✓ ou rouge ✗ par question
-  - Badge "Correct", "Incorrect" ou "À corriger" (questions texte libre)
-  - Réponse de l'élève affichée (fond vert ou rouge)
-  - Bonne réponse affichée en vert si l'élève a fait une erreur
-  - Support des formats MCQ, fill_blank, matching et texte libre
-- Progression du cours (barre avec exercices complétés)
-
-### Exercices adaptatifs ✅
-- Si score < 40% : bouton primaire = "Recommencer l'exercice" (avec option d'avancer quand même)
-- Si score ≥ 40% : bouton primaire = "Exercice suivant"
-- Message de motivation personnalisé selon le niveau de réussite
-- Icône adaptative : Trophy (≥80%), TrendingUp (40-79%), RefreshCw (<40%)
-
-## Fonctionnalités Future (Non MVP)
-
-Ces fonctionnalités pourront être ajoutées ultérieurement:
-- Exercices adaptatifs avec ajustement de difficulté
-- Activités audio pour compréhension orale
-- Communication enseignant-élève via messages
-- Export multi-formats (PDF, Excel)
-- Quiz temporisés
-- Remise de devoirs
-
-## Instructions Déploiement
-
-L'application est prête pour la publication:
-1. Utilisez la base de données PostgreSQL configurée
-2. Toutes les routes API sont fonctionnelles
-3. Les données de test sont incluses
-4. Les rapports peuvent être téléchargés en CSV
-
-**Identifiants de test**:
-- Enseignant: `enseignant` / `password123`
-- Élève: `eleve` / `password123`
+## External Dependencies
+-   **PostgreSQL (via Railway):** Primary relational database for persistent user and progress data.
+-   **Drizzle ORM:** Used for type-safe interaction with PostgreSQL.
+-   **pg:** PostgreSQL client for Node.js.
+-   **React:** Frontend library.
+-   **Tailwind CSS:** Utility-first CSS framework.
+-   **Shadcn UI:** UI component library.
+-   **Wouter:** Lightweight React hook-based router.
+-   **Express.js:** Web application framework for Node.js.
+-   **Web Speech API:** Utilized for text-to-speech functionality in dictation exercises (specifically `fr-CA` locale).

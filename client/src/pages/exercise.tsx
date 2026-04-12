@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause } from "lucide-react";
 
 interface Question {
   id: string;
@@ -97,6 +97,178 @@ function FillBlankInput({
           )}
         </span>
       ))}
+    </div>
+  );
+}
+
+// ─── Dictée Word-diff ────────────────────────────────────────────────────────
+function normWord(w: string) {
+  return w.toLowerCase().replace(/[^a-zàâçéèêëîïôùûüÿœæ0-9]/g, "");
+}
+
+function DicteeCorrection({ userText, correctText }: { userText: string; correctText: string }) {
+  const correctWords = correctText.trim().split(/\s+/);
+  const userWords = userText.trim().split(/\s+/);
+
+  let cIdx = 0;
+  const tokens: { word: string; status: "correct" | "wrong" | "missing" }[] = [];
+
+  for (let i = 0; i < Math.max(correctWords.length, userWords.length); i++) {
+    const cw = correctWords[cIdx];
+    const uw = userWords[i];
+    if (!cw) break;
+    if (!uw) {
+      tokens.push({ word: cw, status: "missing" });
+      cIdx++;
+    } else if (normWord(uw) === normWord(cw)) {
+      tokens.push({ word: cw, status: "correct" });
+      cIdx++;
+    } else {
+      tokens.push({ word: uw, status: "wrong" });
+      cIdx++;
+    }
+  }
+
+  const correct = tokens.filter((t) => t.status === "correct").length;
+  const pct = Math.round((correct / correctWords.length) * 100);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-4 p-3 rounded-lg bg-secondary">
+        <div className={`text-2xl font-extrabold ${pct >= 80 ? "text-green-600" : pct >= 50 ? "text-amber-600" : "text-red-600"}`}>
+          {pct}%
+        </div>
+        <div className="text-sm text-muted-foreground">
+          <span className="font-medium">{correct}</span> mot{correct !== 1 ? "s" : ""} correct{correct !== 1 ? "s" : ""} sur <span className="font-medium">{correctWords.length}</span>
+        </div>
+      </div>
+
+      <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-border leading-loose">
+        {tokens.map((t, i) => (
+          <span key={i} className={`mr-1 px-0.5 rounded ${
+            t.status === "correct"
+              ? "text-green-700 dark:text-green-300"
+              : t.status === "wrong"
+              ? "bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 line-through"
+              : "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 italic"
+          }`}>{t.word}</span>
+        ))}
+      </div>
+
+      <div className="text-xs text-muted-foreground flex gap-4 flex-wrap">
+        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-green-200 inline-block" /> Correct</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-200 inline-block" /> Erreur (barré)</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-amber-200 inline-block" /> Mot manquant</span>
+      </div>
+
+      <div className="p-4 bg-green-50 dark:bg-green-900/10 rounded-lg border border-green-200 dark:border-green-800">
+        <p className="text-xs font-semibold text-green-800 dark:text-green-300 mb-1">Texte correct</p>
+        <p className="text-sm text-green-900 dark:text-green-200 leading-relaxed">{correctText}</p>
+      </div>
+    </div>
+  );
+}
+
+function DicteeInput({
+  correctText,
+  value,
+  onChange,
+  disabled,
+}: {
+  correctText: string;
+  value: string;
+  onChange: (v: string) => void;
+  disabled: boolean;
+}) {
+  const [speaking, setSpeaking] = useState(false);
+  const [hasPlayed, setHasPlayed] = useState(false);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  const speak = (text: string, rate = 0.85) => {
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "fr-CA";
+    utter.rate = rate;
+    utter.onstart = () => setSpeaking(true);
+    utter.onend = () => { setSpeaking(false); setHasPlayed(true); };
+    utter.onerror = () => setSpeaking(false);
+    utteranceRef.current = utter;
+    window.speechSynthesis.speak(utter);
+  };
+
+  const handlePlay = () => speak(correctText, 0.8);
+  const handleSlow = () => speak(correctText, 0.55);
+  const handleStop = () => { window.speechSynthesis.cancel(); setSpeaking(false); };
+
+  return (
+    <div className="space-y-5">
+      {/* Audio controls */}
+      <div className="p-5 rounded-xl bg-blue-50 dark:bg-blue-950/30 border-2 border-blue-200 dark:border-blue-800 space-y-4">
+        <div className="flex items-center gap-2">
+          <Volume2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <span className="font-semibold text-blue-800 dark:text-blue-200 text-sm">Écoute le texte</span>
+          {!("speechSynthesis" in window) && (
+            <span className="text-xs text-red-500 ml-2">Synthèse vocale non disponible dans ce navigateur</span>
+          )}
+        </div>
+
+        <div className="flex gap-2 flex-wrap">
+          <Button
+            type="button"
+            variant="default"
+            size="sm"
+            onClick={speaking ? handleStop : handlePlay}
+            disabled={disabled}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+            data-testid="button-dictee-play"
+          >
+            {speaking ? (
+              <><Pause className="w-4 h-4 mr-1.5" />Arrêter</>
+            ) : (
+              <><Volume2 className="w-4 h-4 mr-1.5" />{hasPlayed ? "Réécouter" : "Écouter"}</>
+            )}
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={handleSlow}
+            disabled={disabled || speaking}
+            className="border-blue-300 text-blue-700 dark:text-blue-300"
+            data-testid="button-dictee-slow"
+          >
+            <RotateCw className="w-3.5 h-3.5 mr-1.5" />
+            Lecture lente
+          </Button>
+        </div>
+
+        {speaking && (
+          <div className="flex items-center gap-2 text-xs text-blue-700 dark:text-blue-300">
+            <span className="inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            Lecture en cours…
+          </div>
+        )}
+      </div>
+
+      {/* Typing area */}
+      <div className="space-y-2">
+        <label className="flex items-center gap-2 text-sm font-semibold text-foreground">
+          <PenLine className="w-4 h-4 text-amber-600" />
+          Écris ce que tu as entendu
+        </label>
+        <Textarea
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
+          placeholder="Tape ici le texte que tu as entendu…"
+          className="min-h-[120px] text-base bg-amber-50 dark:bg-amber-900/10 border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
+          data-testid="textarea-dictee"
+        />
+        <p className="text-xs text-muted-foreground">
+          {hasPlayed ? "Écris le texte tel quel, avec la ponctuation." : "Écoute d'abord le texte avant d'écrire."}
+        </p>
+      </div>
     </div>
   );
 }
@@ -198,6 +370,7 @@ export default function Exercise() {
   const isTextQuestion    = currentQuestion.type === "text";
   const isFillBlankQuestion = currentQuestion.type === "fill_blank";
   const isMatchingQuestion  = currentQuestion.type === "matching";
+  const isDicteeQuestion  = currentQuestion.type === "dictee";
   const isAutoGraded = !isTextQuestion;
 
   // Parse matching data
@@ -239,8 +412,22 @@ export default function Exercise() {
     ? matchingLeftItems.every((l) => matchingConnections[l] !== undefined)
     : true;
 
+  const dicteePct = isDicteeQuestion && currentAnswer.trim()
+    ? (() => {
+        const cWords = currentQuestion.correctAnswer.trim().split(/\s+/);
+        const uWords = currentAnswer.trim().split(/\s+/);
+        let correct = 0;
+        for (let i = 0; i < cWords.length; i++) {
+          if (normWord(uWords[i] || "") === normWord(cWords[i])) correct++;
+        }
+        return Math.round((correct / cWords.length) * 100);
+      })()
+    : null;
+
   const isCorrect = isTextQuestion
     ? null
+    : isDicteeQuestion
+    ? (dicteePct !== null ? dicteePct >= 70 : null)
     : isMatchingQuestion
     ? checkMatchingAnswer(currentAnswer, currentQuestion.correctAnswer)
     : isFillBlankQuestion
@@ -353,6 +540,15 @@ export default function Exercise() {
       if (!isText) {
         if (q.type === "fill_blank") isCorrect = checkFillBlankAnswer(userAnswer, q.correctAnswer);
         else if (q.type === "matching") isCorrect = checkMatchingAnswer(userAnswer, q.correctAnswer);
+        else if (q.type === "dictee") {
+          const cWords = q.correctAnswer.trim().split(/\s+/);
+          const uWords = userAnswer.trim().split(/\s+/);
+          let correct = 0;
+          for (let i = 0; i < cWords.length; i++) {
+            if (normWord(uWords[i] || "") === normWord(cWords[i])) correct++;
+          }
+          isCorrect = (correct / cWords.length) >= 0.7;
+        }
         else isCorrect = userAnswer === q.correctAnswer;
       }
       return { q, userAnswer, isCorrect, isText };
@@ -761,10 +957,16 @@ export default function Exercise() {
                   Association
                 </span>
               )}
+              {isDicteeQuestion && (
+                <span className="text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-700">
+                  <Volume2 className="w-3 h-3 inline mr-1" />
+                  Dictée
+                </span>
+              )}
             </div>
 
-            {/* Question prompt — non-fill-blank, non-matching */}
-            {!isFillBlankQuestion && !isMatchingQuestion && (
+            {/* Question prompt — non-fill-blank, non-matching, non-dictée */}
+            {!isFillBlankQuestion && !isMatchingQuestion && !isDicteeQuestion && (
               <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500 mb-6">
                 <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground">
                   {questionDisplayText}
@@ -970,6 +1172,37 @@ export default function Exercise() {
                 <p className="text-xs text-muted-foreground">
                   Réponse libre — elle sera lue et corrigée par votre enseignant.
                 </p>
+              </div>
+            )}
+
+            {/* Dictée interactive */}
+            {isDicteeQuestion && !showFeedback && (
+              <div className="mt-6">
+                <DicteeInput
+                  correctText={currentQuestion.correctAnswer}
+                  value={currentAnswer}
+                  onChange={handleAnswerChange}
+                  disabled={showFeedback}
+                />
+              </div>
+            )}
+
+            {/* Dictée — correction après soumission */}
+            {isDicteeQuestion && showFeedback && (
+              <div className="mt-6 space-y-4">
+                <div className="flex items-center gap-2 mb-2">
+                  {(dicteePct ?? 0) >= 70
+                    ? <CheckCircle className="w-5 h-5 text-green-500" />
+                    : <XCircle className="w-5 h-5 text-red-500" />
+                  }
+                  <span className="font-semibold text-foreground">
+                    {(dicteePct ?? 0) >= 70 ? "Bonne dictée !" : "À améliorer"}
+                  </span>
+                </div>
+                <DicteeCorrection
+                  userText={currentAnswer}
+                  correctText={currentQuestion.correctAnswer}
+                />
               </div>
             )}
           </div>

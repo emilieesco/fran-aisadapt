@@ -11132,6 +11132,444 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       };
       this.questions.set(assocQ4.id, assocQ4);
     }
+
+    // ============================================================
+    // TEXTES NARRATIFS QUÉBÉCOIS — AUTEURS CLASSIQUES
+    // ============================================================
+
+    // ── 1. Le chandail de hockey — Roch Carrier ─────────────────
+    {
+      const courseId = randomUUID();
+      const exId = randomUUID();
+
+      const course: Course = {
+        id: courseId,
+        title: "Le chandail de hockey — Roch Carrier",
+        description: "Extrait du conte québécois classique : un garçon, un chandail et une question d'identité. Texte authentique adapté pour l'apprentissage.",
+        category: "lecture_reading",
+        content: "<h2>Le chandail de hockey — Roch Carrier</h2><p>Roch Carrier (né en 1937) est l'un des écrivains les plus aimés du Québec. Son conte <em>Le chandail de hockey</em> (1979) est devenu un symbole de l'identité québécoise. L'histoire relate, avec humour et nostalgie, le drame d'un jeune garçon qui reçoit un chandail des Maple Leafs de Toronto alors qu'il rêvait d'un chandail du Canadien de Montréal.</p><blockquote>Ce texte figure sur les billets de cinq dollars canadiens.</blockquote>",
+        order: 110,
+      };
+      this.courses.set(courseId, course);
+
+      const exercise: Exercise = {
+        id: exId,
+        courseId,
+        title: "Le chandail de hockey — Compréhension et analyse",
+        description: "Questions structurées : compréhension, schéma narratif, interprétation, réaction, jugement critique",
+        type: "text",
+        order: 1,
+      };
+      this.exercises.set(exId, exercise);
+
+      const storyText = `Les hivers de mon enfance étaient des saisons longues, longues. Nous vivions en trois lieux : l'école, l'église et la patinoire ; mais la vraie vie était sur la patinoire. Les vrais combats se gagnaient sur la patinoire. La vraie force apparaissait sur la patinoire. Les vrais chefs se manifestaient sur la patinoire. L'école était une sorte de punition. Les parents ont toujours envie de punir les enfants et l'école était leur façon la plus naturelle de nous emprisonner. De plus, l'école était un endroit tranquille où l'on pouvait préparer les prochaines parties de hockey, dessiner les prochaines stratégies. Quant à l'église, nous trouvions là le repos de Dieu : on y oubliait l'école et l'on rêvait à la prochaine partie de hockey. À travers nos trous de toques de laine, nous apercevions des héros qui étaient nos oies sauvages toujours en vol : les joueurs du Canadien de Montréal. Dans nos maisons, la photo de Maurice Richard était accrochée près du crucifix.
+
+Tous, nous portions le même chandail que lui, ce chandail rouge, blanc, bleu des Canadiens de Montréal ; tous les garçons de mon village portaient le même chandail, bien que l'équipe fût constituée de joueurs de diverses origines. Si nous portions tous ce chandail identique, ce n'était pas pour masquer nos personnalités ; au contraire, ce chandail était celui de notre identité. Peut-être même était-ce le chandail de notre religion ? Trop petit, mon chandail de hockey était devenu trop petit avant que les hivers ne changent de sens. Ma mère m'en avait commandé un nouveau dans le catalogue de la compagnie Eaton. Dans ce temps-là, le catalogue Eaton était la Bible des familles. On y trouvait tout : rêves et nécessités.
+
+Le chandail arriva. Je déchirai l'emballage. La honte m'envahit : au lieu du chandail rouge, blanc, bleu des Canadiens de Montréal, j'avais reçu un chandail bleu et blanc, avec la feuille d'érable au devant, le chandail des Maple Leafs de Toronto. J'avais une grande peine. Ma mère tenta de me consoler : « Avec ce beau chandail, tu vas être protégé du froid. Tu vas pouvoir jouer encore mieux au hockey. »
+
+Ma mère s'énervait : « Tu vas aller à l'église comme ça ? Les autres enfants vont rire de toi ! » Je ne pouvais supporter l'idée de porter ce chandail. Même si ma mère m'expliquait que Toronto était une belle ville, que les Leafs jouaient bien, que même des joueurs canadiens-français jouaient pour cette équipe, je refusais d'être traître à ma cause.
+
+À l'église, le curé m'invita à sortir. Dans la rue, avec ce chandail maudit, je ne pouvais pas pleurer. Je demandai à Dieu de m'envoyer immédiatement une vraie grosse tempête de neige qui enterrerait pour toujours le chandail des Maple Leafs. Le bon Dieu comprit ma douleur : dans la semaine qui suivit, il m'envoya tant de neige que nous dûmes garder la maison pendant de longs jours. Et l'hiver, finalement, s'en alla.
+
+— Roch Carrier, extrait adapté de « Le chandail de hockey », 1979`;
+
+      const qs: Omit<Question, "id">[] = [
+        {
+          exerciseId: exId, order: 1,
+          title: "Q1 — Compréhension : Les trois lieux de vie",
+          text: storyText,
+          type: "multiple_choice",
+          options: JSON.stringify(["L'école, la patinoire, le restaurant", "L'école, l'église et la patinoire", "L'école, la maison et la patinoire", "L'église, la maison et le marché"]),
+          correctAnswer: "L'école, l'église et la patinoire",
+        },
+        {
+          exerciseId: exId, order: 2,
+          title: "Q2 — Compréhension : La commande chez Eaton",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["La mère a commandé le mauvais chandail exprès", "La mère a reçu un chandail des Maple Leafs par erreur", "L'enfant a lui-même choisi le chandail de Toronto", "Le chandail du Canadien était épuisé dans le catalogue"]),
+          correctAnswer: "La mère a reçu un chandail des Maple Leafs par erreur",
+        },
+        {
+          exerciseId: exId, order: 3,
+          title: "Q3 — Schéma narratif : Situation initiale",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["L'enfant reçoit un mauvais chandail", "Les enfants du village jouent au hockey et admirent le Canadien de Montréal", "L'enfant est renvoyé de l'église", "La mère commande un nouveau chandail"]),
+          correctAnswer: "Les enfants du village jouent au hockey et admirent le Canadien de Montréal",
+        },
+        {
+          exerciseId: exId, order: 4,
+          title: "Q4 — Schéma narratif : Élément perturbateur",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["La tempête de neige arrive", "L'enfant est exclu du jeu par ses amis", "L'enfant reçoit un chandail des Maple Leafs de Toronto au lieu du Canadien", "Le curé le renvoie de l'église"]),
+          correctAnswer: "L'enfant reçoit un chandail des Maple Leafs de Toronto au lieu du Canadien",
+        },
+        {
+          exerciseId: exId, order: 5,
+          title: "Q5 — Schéma narratif : Péripéties (actions du personnage)",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["Il échange le chandail contre un Canadien", "Il refuse de le porter, est renvoyé de l'église, prie pour une tempête", "Il détruit le chandail dans un feu de joie", "Il finit par accepter d'être fan des Leafs"]),
+          correctAnswer: "Il refuse de le porter, est renvoyé de l'église, prie pour une tempête",
+        },
+        {
+          exerciseId: exId, order: 6,
+          title: "Q6 — Schéma narratif : Dénouement",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["La mère retourne le chandail à Eaton", "Une grosse tempête de neige oblige la famille à rester à la maison", "Le curé achète un chandail du Canadien au garçon", "Le garçon finit par porter le chandail avec fierté"]),
+          correctAnswer: "Une grosse tempête de neige oblige la famille à rester à la maison",
+        },
+        {
+          exerciseId: exId, order: 7,
+          title: "Q7 — Interprétation : Le chandail comme symbole",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "Le chandail du Canadien de Montréal représente l'identité québécoise, la fierté nationale et l'appartenance à une communauté. Porter le mauvais chandail, c'est être perçu comme un traître à sa culture.",
+        },
+        {
+          exerciseId: exId, order: 8,
+          title: "Q8 — Interprétation : Le rôle de la religion",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "La religion et le hockey sont présentés comme équivalents dans la vie des villageois. Le chandail est comparé à un vêtement religieux, Maurice Richard est évoqué près du crucifix — le hockey est une forme de religion locale.",
+        },
+        {
+          exerciseId: exId, order: 9,
+          title: "Q9 — Réaction personnelle : Comprends-tu la réaction de l'enfant?",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "Réponse personnelle attendue. L'élève doit exprimer s'il comprend ou non la honte de l'enfant et pourquoi, en lien avec des expériences d'appartenance ou d'identité.",
+        },
+        {
+          exerciseId: exId, order: 10,
+          title: "Q10 — Réaction personnelle : L'identité et les vêtements",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "Réponse personnelle. L'élève doit réfléchir à si un vêtement (logo, marque, couleur) peut représenter son identité ou son groupe d'appartenance aujourd'hui.",
+        },
+        {
+          exerciseId: exId, order: 11,
+          title: "Q11 — Jugement critique : La réaction de la mère est-elle juste?",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "Réponse argumentée attendue. La mère essaie d'être pragmatique (le chandail tient chaud, coûte de l'argent) mais ne comprend pas l'importance identitaire du chandail pour son fils. L'élève doit nuancer : qui a raison?",
+        },
+      ];
+
+      for (const q of qs) {
+        const question: Question = { id: randomUUID(), ...q, options: q.options as any };
+        this.questions.set(question.id, question);
+      }
+    }
+
+    // ── 2. Kamouraska (extrait) — Anne Hébert ───────────────────
+    {
+      const courseId = randomUUID();
+      const exId = randomUUID();
+
+      const course: Course = {
+        id: courseId,
+        title: "Poésie québécoise — Anne Hébert",
+        description: "Découverte de la poésie d'Anne Hébert, grande voix de la littérature québécoise. Analyse d'images poétiques, de thèmes et de style.",
+        category: "lecture_reading",
+        content: "<h2>Anne Hébert — Poète et romancière québécoise</h2><p>Anne Hébert (1916-2000) est l'une des plus grandes écrivaines québécoises. Son œuvre explore la liberté, la mémoire, la solitude et l'identité féminine. Ses poèmes, riches en images fortes, parlent souvent de la femme qui cherche sa place dans un monde figé.</p><p>Son recueil <em>Les songes en équilibre</em> (1942) et <em>Le tombeau des rois</em> (1953) sont des œuvres majeures de la littérature québécoise.</p>",
+        order: 111,
+      };
+      this.courses.set(courseId, course);
+
+      const exercise: Exercise = {
+        id: exId,
+        courseId,
+        title: "La fille maigre — Analyse poétique",
+        description: "Analyse d'un poème d'Anne Hébert : images, thèmes, interprétation, réaction",
+        type: "text",
+        order: 1,
+      };
+      this.exercises.set(exId, exercise);
+
+      const poemText = `LA FILLE MAIGRE
+par Anne Hébert (extrait du Tombeau des rois, 1953)
+
+Je suis une fille maigre
+Et j'ai de beaux os.
+
+J'ai pour eux des soins attentifs
+Et d'étranges tendresses ;
+Je les polis sans cesse
+Comme de vieux métaux.
+
+Les bijoux et les fleurs
+Sont hors de saison.
+
+Un jour je saisirai mon amant
+Pour en faire un reliquaire.
+
+Je referme mes doigts froids
+Sur de vieilles espérances.
+
+— Anne Hébert, extrait adapté, « La fille maigre », 1953`;
+
+      const qs: Omit<Question, "id">[] = [
+        {
+          exerciseId: exId, order: 1,
+          title: "Q1 — Compréhension : Quel objet la narratrice soigne-t-elle avec attention?",
+          text: poemText,
+          type: "multiple_choice",
+          options: JSON.stringify(["Ses bijoux", "Ses os", "Un reliquaire", "Ses fleurs"]),
+          correctAnswer: "Ses os",
+        },
+        {
+          exerciseId: exId, order: 2,
+          title: "Q2 — Compréhension : Que veut-elle faire de son amant?",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["L'épouser", "Le transformer en reliquaire", "L'oublier", "Le polir comme un métal"]),
+          correctAnswer: "Le transformer en reliquaire",
+        },
+        {
+          exerciseId: exId, order: 3,
+          title: "Q3 — Vocabulaire : Que signifie « reliquaire »?",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["Un collier précieux", "Un coffret contenant des reliques sacrées", "Un miroir ancien", "Un livre de poésie"]),
+          correctAnswer: "Un coffret contenant des reliques sacrées",
+        },
+        {
+          exerciseId: exId, order: 4,
+          title: "Q4 — Interprétation : Que représentent les « os » dans ce poème?",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "Les os représentent ce qui reste d'essentiel — la vérité dépouillée, l'intérieur caché. La narratrice ne garde que l'essentiel, rejetant les ornements superficiels (bijoux, fleurs).",
+        },
+        {
+          exerciseId: exId, order: 5,
+          title: "Q5 — Interprétation : Quel sentiment domine dans ce poème?",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["La joie et la légèreté", "La froideur et la désillusion amoureuse", "La colère et la révolte", "L'espoir et la tendresse"]),
+          correctAnswer: "La froideur et la désillusion amoureuse",
+        },
+        {
+          exerciseId: exId, order: 6,
+          title: "Q6 — Figures de style : « Je les polis sans cesse / Comme de vieux métaux »",
+          text: "",
+          type: "multiple_choice",
+          options: JSON.stringify(["Une métaphore", "Une comparaison", "Une personnification", "Une hyperbole"]),
+          correctAnswer: "Une comparaison",
+        },
+        {
+          exerciseId: exId, order: 7,
+          title: "Q7 — Réaction : Que ressens-tu en lisant ce poème?",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "Réponse personnelle attendue. L'élève doit décrire l'effet du poème sur lui (malaise, tristesse, admiration, curiosité) et expliquer pourquoi.",
+        },
+        {
+          exerciseId: exId, order: 8,
+          title: "Q8 — Jugement critique : Ce poème parle-t-il encore aux jeunes d'aujourd'hui?",
+          text: "",
+          type: "text",
+          options: null,
+          correctAnswer: "Réponse argumentée attendue. L'élève doit établir un lien entre le thème de la désillusion amoureuse, de l'identité intérieure et du monde contemporain.",
+        },
+      ];
+
+      for (const q of qs) {
+        const question: Question = { id: randomUUID(), ...q, options: q.options as any };
+        this.questions.set(question.id, question);
+      }
+    }
+
+    // ============================================================
+    // DICTÉE INTERACTIVE — 3 exercices progressifs
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Dictée interactive",
+        description: "Écoute et écris : exercices de dictée avec correction automatique. Du niveau débutant à avancé.",
+        category: "orthographe",
+        content: "<h2>Dictée interactive</h2><p>Dans ces exercices, tu vas écouter un texte lu à voix haute et taper ce que tu entends. La correction se fait automatiquement mot par mot.</p><p><strong>Consignes :</strong><br>1. Clique sur le bouton <em>Écouter</em> pour entendre le texte<br>2. Tape le texte dans la zone de saisie<br>3. Soumets ta réponse pour voir les corrections<br>4. Les mots corrects apparaissent en vert, les erreurs en rouge</p>",
+        order: 112,
+      };
+      this.courses.set(courseId, course);
+
+      const dictees = [
+        {
+          title: "Dictée 1 — La saison des pommes",
+          description: "Niveau débutant — phrases simples avec vocabulaire d'automne",
+          order: 1,
+          text: "À l'automne, les pommes rouges et jaunes sont prêtes à cueillir. Les enfants aident leurs parents dans le verger. L'air sent bon le cidre et la cannelle. C'est ma saison préférée.",
+        },
+        {
+          title: "Dictée 2 — Une journée à Montréal",
+          description: "Niveau intermédiaire — phrases variées avec ponctuation",
+          order: 2,
+          text: "Hier, ma famille et moi avons visité le Vieux-Montréal. Nous avons marché sur les pavés du Vieux-Port et admiré le fleuve Saint-Laurent. Mon frère a pris des photos, tandis que ma sœur mangeait une crème glacée. Le soir, nous étions tous fatigués mais heureux.",
+        },
+        {
+          title: "Dictée 3 — La nature en hiver",
+          description: "Niveau avancé — accord des verbes et des adjectifs",
+          order: 3,
+          text: "Les premiers flocons de neige tombaient doucement sur les toits endormis du village. Les enfants, emmitouflés dans leurs manteaux colorés, couraient dehors en poussant des cris de joie. La rivière, partiellement gelée, brillait sous la lumière blanche du soleil d'hiver. Tout semblait figé dans un silence paisible et bienfaisant.",
+        },
+      ];
+
+      for (const d of dictees) {
+        const exId = randomUUID();
+        const exercise: Exercise = {
+          id: exId,
+          courseId,
+          title: d.title,
+          description: d.description,
+          type: "dictee",
+          order: d.order,
+        };
+        this.exercises.set(exId, exercise);
+
+        const question: Question = {
+          id: randomUUID(),
+          exerciseId: exId,
+          title: "Dictée — Écoute et écris",
+          text: "Clique sur le bouton Écouter pour entendre le texte, puis écris exactement ce que tu as entendu.",
+          type: "dictee",
+          options: null,
+          correctAnswer: d.text,
+          order: 1,
+        };
+        this.questions.set(question.id, question);
+      }
+    }
+
+    // ============================================================
+    // CONJUGAISON — EXERCICES COMPLÉTER LES BLANCS
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Conjugaison — Compléter les verbes",
+        description: "Exercices pratiques : conjuguer les verbes au présent, imparfait et passé composé dans des phrases contextuelles.",
+        category: "conjugaison",
+        content: "<h2>Exercices de conjugaison</h2><p>Complète chaque phrase avec la bonne forme du verbe entre parenthèses.</p><div style='background:#dbeafe;padding:12px;border-radius:8px;margin:12px 0'><strong>Rappel :</strong><br>• <strong>Présent</strong> : action en cours ou habitude<br>• <strong>Imparfait</strong> : action passée habituelle ou description<br>• <strong>Passé composé</strong> : action passée terminée</div>",
+        order: 113,
+      };
+      this.courses.set(courseId, course);
+
+      // ── Exercice 1 : Présent de l'indicatif ──
+      {
+        const exId = randomUUID();
+        this.exercises.set(exId, {
+          id: exId, courseId,
+          title: "Présent de l'indicatif — Compléter",
+          description: "Conjugue les verbes au présent dans des phrases variées",
+          type: "fill_blank",
+          order: 1,
+        });
+
+        const questionsPresent: Omit<Question, "id">[] = [
+          { exerciseId: exId, order: 1, title: "Présent — être", text: "Elle ___ très courageuse dans les moments difficiles. (être)", type: "fill_blank", options: null, correctAnswer: "est" },
+          { exerciseId: exId, order: 2, title: "Présent — avoir", text: "Nous ___ un cours de français tous les mardis. (avoir)", type: "fill_blank", options: null, correctAnswer: "avons" },
+          { exerciseId: exId, order: 3, title: "Présent — aller", text: "Mes amis et moi ___ souvent au parc après l'école. (aller)", type: "fill_blank", options: null, correctAnswer: "allons" },
+          { exerciseId: exId, order: 4, title: "Présent — finir", text: "Tu ___ toujours tes devoirs avant de jouer. (finir)", type: "fill_blank", options: null, correctAnswer: "finis" },
+          { exerciseId: exId, order: 5, title: "Présent — vouloir", text: "Les élèves ___ comprendre la nouvelle grammaire. (vouloir)", type: "fill_blank", options: null, correctAnswer: "veulent" },
+          { exerciseId: exId, order: 6, title: "Présent — pouvoir", text: "Je ne ___ pas venir à la réunion ce soir. (pouvoir)", type: "fill_blank", options: null, correctAnswer: "peux" },
+          { exerciseId: exId, order: 7, title: "Présent — prendre", text: "Le matin, il ___ le bus numéro 12 pour aller au travail. (prendre)", type: "fill_blank", options: null, correctAnswer: "prend" },
+          { exerciseId: exId, order: 8, title: "Présent — venir", text: "Vous ___ souvent rendre visite à votre grand-mère le dimanche. (venir)", type: "fill_blank", options: null, correctAnswer: "venez" },
+        ];
+        questionsPresent.forEach((q) => {
+          const id = randomUUID();
+          this.questions.set(id, { id, ...q, options: null } as Question);
+        });
+      }
+
+      // ── Exercice 2 : Passé composé ──
+      {
+        const exId = randomUUID();
+        this.exercises.set(exId, {
+          id: exId, courseId,
+          title: "Passé composé — Compléter",
+          description: "Conjugue les verbes au passé composé — avec avoir ou être",
+          type: "fill_blank",
+          order: 2,
+        });
+
+        const questionsPC: Omit<Question, "id">[] = [
+          { exerciseId: exId, order: 1, title: "PC — manger", text: "Ce matin, nous ___ des crêpes au sirop d'érable. (manger, passé composé)", type: "fill_blank", options: null, correctAnswer: "avons mangé" },
+          { exerciseId: exId, order: 2, title: "PC — partir", text: "Hier soir, mes parents ___ au cinéma sans moi. (partir, passé composé)", type: "fill_blank", options: null, correctAnswer: "sont partis" },
+          { exerciseId: exId, order: 3, title: "PC — finir", text: "Tu ___ ton livre en seulement deux jours ! (finir, passé composé)", type: "fill_blank", options: null, correctAnswer: "as fini" },
+          { exerciseId: exId, order: 4, title: "PC — arriver", text: "Elle ___ en retard à cause de la tempête de neige. (arriver, passé composé)", type: "fill_blank", options: null, correctAnswer: "est arrivée" },
+          { exerciseId: exId, order: 5, title: "PC — voir", text: "J'___ un orignal au bord du chemin ce matin. (voir, passé composé)", type: "fill_blank", options: null, correctAnswer: "ai vu" },
+          { exerciseId: exId, order: 6, title: "PC — tomber", text: "Les feuilles ___ très tôt cette année. (tomber, passé composé)", type: "fill_blank", options: null, correctAnswer: "sont tombées" },
+          { exerciseId: exId, order: 7, title: "PC — écrire", text: "Vous ___ un excellent texte descriptif la semaine passée. (écrire, passé composé)", type: "fill_blank", options: null, correctAnswer: "avez écrit" },
+        ];
+        questionsPC.forEach((q) => {
+          const id = randomUUID();
+          this.questions.set(id, { id, ...q, options: null } as Question);
+        });
+      }
+
+      // ── Exercice 3 : Imparfait ──
+      {
+        const exId = randomUUID();
+        this.exercises.set(exId, {
+          id: exId, courseId,
+          title: "Imparfait — Compléter",
+          description: "Conjugue les verbes à l'imparfait — descriptions et habitudes passées",
+          type: "fill_blank",
+          order: 3,
+        });
+
+        const questionsImp: Omit<Question, "id">[] = [
+          { exerciseId: exId, order: 1, title: "Imparfait — jouer", text: "Quand j'étais petit, je ___ au hockey dans la ruelle tous les soirs. (jouer, imparfait)", type: "fill_blank", options: null, correctAnswer: "jouais" },
+          { exerciseId: exId, order: 2, title: "Imparfait — être", text: "Les étés de mon enfance ___ longs et chauds. (être, imparfait)", type: "fill_blank", options: null, correctAnswer: "étaient" },
+          { exerciseId: exId, order: 3, title: "Imparfait — faire", text: "Chaque matin, ma mère ___ des crêpes pour toute la famille. (faire, imparfait)", type: "fill_blank", options: null, correctAnswer: "faisait" },
+          { exerciseId: exId, order: 4, title: "Imparfait — avoir", text: "Ils ___ un grand chien brun qui gardait la maison. (avoir, imparfait)", type: "fill_blank", options: null, correctAnswer: "avaient" },
+          { exerciseId: exId, order: 5, title: "Imparfait — aller", text: "Nous ___ à la cabane à sucre chaque printemps avec nos grands-parents. (aller, imparfait)", type: "fill_blank", options: null, correctAnswer: "allions" },
+          { exerciseId: exId, order: 6, title: "Imparfait — vouloir", text: "Lorsqu'elle était jeune, elle ___ devenir vétérinaire. (vouloir, imparfait)", type: "fill_blank", options: null, correctAnswer: "voulait" },
+          { exerciseId: exId, order: 7, title: "Imparfait — savoir", text: "Vous ne ___ pas encore nager à cet âge-là. (savoir, imparfait)", type: "fill_blank", options: null, correctAnswer: "saviez" },
+        ];
+        questionsImp.forEach((q) => {
+          const id = randomUUID();
+          this.questions.set(id, { id, ...q, options: null } as Question);
+        });
+      }
+
+      // ── Exercice 4 : Mélange des temps ──
+      {
+        const exId = randomUUID();
+        this.exercises.set(exId, {
+          id: exId, courseId,
+          title: "Mélange des temps — Passé composé et imparfait",
+          description: "Choisir entre le passé composé et l'imparfait dans un contexte narratif",
+          type: "fill_blank",
+          order: 4,
+        });
+
+        const questionsMix: Omit<Question, "id">[] = [
+          { exerciseId: exId, order: 1, title: "Mix — description vs action", text: "Il ___ (neiger, imparfait) quand soudain le chien ___ (aboyer, passé composé) très fort.", type: "fill_blank", options: null, correctAnswer: "neigeait|a aboyé" },
+          { exerciseId: exId, order: 2, title: "Mix — habitude vs événement", text: "Chaque matin, je ___ (prendre, imparfait) le même autobus jusqu'au jour où il ___ (tomber en panne, passé composé).", type: "fill_blank", options: null, correctAnswer: "prenais|est tombé en panne" },
+          { exerciseId: exId, order: 3, title: "Mix — contexte", text: "Nous ___ (jouer, imparfait) dehors quand nos parents nous ___ (appeler, passé composé) pour souper.", type: "fill_blank", options: null, correctAnswer: "jouions|ont appelés|ont appelés" },
+          { exerciseId: exId, order: 4, title: "Mix — description", text: "La forêt ___ (être, imparfait) silencieuse. Tout à coup, un orignal ___ (surgir, passé composé) devant nous.", type: "fill_blank", options: null, correctAnswer: "était|a surgi" },
+        ];
+        questionsMix.forEach((q) => {
+          const id = randomUUID();
+          this.questions.set(id, { id, ...q, options: null } as Question);
+        });
+      }
+    }
   }
 
   // Users
