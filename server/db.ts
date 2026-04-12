@@ -12,7 +12,10 @@ export function getDb() {
     if (!url) {
       throw new Error("RAILWAY_DATABASE_URL ou DATABASE_URL est requis");
     }
-    const pool = new Pool({ connectionString: url });
+    const pool = new Pool({
+      connectionString: url,
+      ssl: { rejectUnauthorized: false },
+    });
     _db = drizzle(pool, { schema });
   }
   return _db;
