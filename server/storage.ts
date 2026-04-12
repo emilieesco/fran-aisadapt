@@ -10225,6 +10225,178 @@ La réconciliation entre les peuples autochtones et la société québécoise es
       order: 12,
     };
     this.questions.set(pnq12.id, pnq12);
+
+    // ===== INFORMATIF SEC 1 — TEXTE #6 =====
+    // "La langue française au Québec" — histoire, Charte, vitalité, défis, francophonie mondiale
+    // Questions : thèse du premier paragraphe, fonction d'un organisme, vocabulaire francophonie/bilinguisme,
+    //             analyser une statistique, phrase de concession, lien texte-réalité personnelle,
+    //             GN sujet nouvelle grammaire, reformuler une loi, tableau chronologique,
+    //             persuasif vs informatif, écriture langue menacée, réflexion langue et identité
+    const informatifSec1T6ExId = randomUUID();
+
+    const informatifSec1T6Exercise: Exercise = {
+      id: informatifSec1T6ExId,
+      courseId: informatifSec1CourseId,
+      title: "La langue française au Québec",
+      description: "Texte informatif sur le français au Québec — histoire, protection juridique, vitalité et place dans la francophonie mondiale",
+      type: "text",
+      order: 6,
+    };
+    this.exercises.set(informatifSec1T6ExId, informatifSec1T6Exercise);
+
+    const langueText = `La langue française occupe une place centrale dans l'identité québécoise. Le Québec est la seule province canadienne dont la majorité de la population est francophone : environ 80 % des Québécois déclarent le français comme langue maternelle. Sur le territoire du Canada, où l'anglais domine dans la très grande majorité des provinces et territoires, le Québec représente le principal foyer de la francophonie nord-américaine. C'est pourquoi la protection et la promotion du français constituent, depuis des décennies, une priorité politique et culturelle pour le gouvernement québécois.
+
+Le français est arrivé en Amérique du Nord avec les premiers explorateurs et colons français au XVIe siècle. Jacques Cartier, Samuel de Champlain et les missionnaires jésuites ont contribué à établir une présence française durable sur ce continent. Après la Conquête britannique de 1760, les francophones du Québec — alors appelés Canadiens — ont maintenu leur langue malgré des pressions considérables. La survie du français dans ce contexte est souvent décrite comme un exploit collectif remarquable. C'est en grande partie grâce à la transmission de la langue dans les familles, appuyée par l'Église catholique et les institutions scolaires, que le français a pu traverser les siècles.
+
+En 1977, le gouvernement du Québec a adopté la Charte de la langue française, aussi connue sous le nom de « loi 101 ». Cette loi a fait du français la seule langue officielle du Québec et a imposé son utilisation dans les commerces, les tribunaux, l'administration publique et les écoles. Elle oblige notamment les enfants d'immigrants à fréquenter l'école en français, ce qui favorise leur intégration à la société francophone. La loi 101 a profondément transformé le visage linguistique du Québec : le français est devenu la langue de travail dans des secteurs où l'anglais dominait auparavant, comme les entreprises et les institutions financières de Montréal.
+
+Malgré ces gains, la situation du français au Québec reste fragile, surtout à Montréal, où la diversité linguistique est très grande. Des études récentes montrent que l'usage du français à la maison et au travail y recule légèrement au profit de l'anglais et d'autres langues. L'attrait mondial de l'anglais, amplifié par Internet, les médias numériques et le monde des affaires internationales, exerce une pression constante sur les locuteurs francophones, surtout les jeunes. En réponse, le gouvernement québécois a adopté en 2022 la loi 96, qui renforce les dispositions de la Charte et cherche à contrebalancer le déclin du français dans les milieux urbains.
+
+À l'échelle mondiale, le français est une langue vivante et dynamique parlée par plus de 320 millions de personnes dans une soixantaine de pays. Il est l'une des six langues officielles de l'Organisation des Nations Unies et la langue de travail de nombreuses institutions internationales. L'Organisation internationale de la Francophonie (OIF), dont le Québec est membre à part entière, réunit les pays et gouvernements qui partagent l'usage du français et s'engage pour sa promotion. Le Québec joue un rôle actif dans cette communauté mondiale et exporte sa culture, sa littérature, sa musique et son cinéma aux quatre coins du globe francophone.`;
+
+    const langq1: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q1 (Thèse principale du premier paragraphe)",
+      text: langueText,
+      type: "multiple_choice",
+      options: JSON.stringify(["La majorité des Québécois parlent l'anglais à la maison", "Le français occupe une place centrale dans l'identité québécoise et le Québec est le principal foyer de la francophonie nord-américaine, ce qui justifie sa protection politique", "Le gouvernement québécois dépense trop d'argent pour protéger le français", "Le Canada est un pays entièrement bilingue où le français et l'anglais ont le même statut partout"]),
+      correctAnswer: "Le français occupe une place centrale dans l'identité québécoise et le Québec est le principal foyer de la francophonie nord-américaine, ce qui justifie sa protection politique",
+      order: 1,
+    };
+    this.questions.set(langq1.id, langq1);
+
+    const langq2: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q2 (Fonction d'un organisme mentionné dans le texte)",
+      text: "Le texte mentionne l'Organisation internationale de la Francophonie (OIF). Quelle est sa fonction d'après le texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Traduire les documents de l'ONU du français vers l'anglais", "Réglementer l'usage du français dans les commerces québécois", "Réunir les pays et gouvernements qui partagent l'usage du français et promouvoir cette langue à l'international", "Surveiller le respect de la loi 101 dans les entreprises montréalaises"]),
+      correctAnswer: "Réunir les pays et gouvernements qui partagent l'usage du français et promouvoir cette langue à l'international",
+      order: 2,
+    };
+    this.questions.set(langq2.id, langq2);
+
+    const langq3: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q3 (Vocabulaire — trois termes clés)",
+      text: "D'après le texte et son contexte, associe chaque terme à sa définition la plus précise : « langue maternelle », « langue officielle », « francophonie ».",
+      type: "multiple_choice",
+      options: JSON.stringify(["Langue maternelle = langue qu'on apprend à l'école / Langue officielle = langue parlée uniquement par les fonctionnaires / Francophonie = ensemble des pays qui ont déjà été colonisés par la France", "Langue maternelle = première langue apprise dans la famille / Langue officielle = langue reconnue par la loi pour les usages publics et gouvernementaux / Francophonie = ensemble des personnes, pays et institutions qui partagent l'usage du français", "Langue maternelle = langue qu'on parle avec sa mère uniquement / Langue officielle = langue qu'on doit parler en tout temps / Francophonie = mouvement politique pour l'indépendance du Québec", "Ces trois termes sont synonymes et désignent tous la même réalité linguistique"]),
+      correctAnswer: "Langue maternelle = première langue apprise dans la famille / Langue officielle = langue reconnue par la loi pour les usages publics et gouvernementaux / Francophonie = ensemble des personnes, pays et institutions qui partagent l'usage du français",
+      order: 3,
+    };
+    this.questions.set(langq3.id, langq3);
+
+    const langq4: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q4 (Analyser une statistique dans son contexte)",
+      text: "Le texte dit qu'« environ 80 % des Québécois déclarent le français comme langue maternelle ». Que signifie ce chiffre dans le contexte canadien, d'après le texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Que 80 % des Canadiens parlent français, ce qui est une majorité confortable à l'échelle du pays", "Que le Québec est exceptionnel au Canada, car c'est la seule province où une très grande majorité de la population est francophone, alors que le reste du pays est dominé par l'anglais", "Que 20 % des Québécois ne parlent aucune langue, ni le français ni l'anglais", "Que le français recule rapidement : il y a 50 ans, 100 % des Québécois étaient francophones"]),
+      correctAnswer: "Que le Québec est exceptionnel au Canada, car c'est la seule province où une très grande majorité de la population est francophone, alors que le reste du pays est dominé par l'anglais",
+      order: 4,
+    };
+    this.questions.set(langq4.id, langq4);
+
+    const langq5: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q5 (Repérer la phrase de concession dans le texte)",
+      text: "Une phrase de concession reconnaît d'abord une réalité positive ou une force, puis introduit un bémol ou une limite. Laquelle de ces phrases du texte joue ce rôle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["« Le Québec est la seule province canadienne dont la majorité de la population est francophone »", "« En 1977, le gouvernement du Québec a adopté la Charte de la langue française »", "« Malgré ces gains, la situation du français au Québec reste fragile, surtout à Montréal »", "« Le français est arrivé en Amérique du Nord avec les premiers explorateurs et colons français au XVIe siècle »"]),
+      correctAnswer: "« Malgré ces gains, la situation du français au Québec reste fragile, surtout à Montréal »",
+      order: 5,
+    };
+    this.questions.set(langq5.id, langq5);
+
+    const langq6: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q6 (Lien texte — réalité personnelle)",
+      text: "Le texte mentionne que la loi 101 oblige les enfants d'immigrants à fréquenter l'école en français. En 3 à 5 phrases, explique en quoi cette mesure peut avoir un impact sur la vie scolaire d'un élève. Tu peux faire référence à ce que tu connais de ton école, de ta classe ou de ta communauté. Appuie-toi sur au moins une information du texte.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 6,
+    };
+    this.questions.set(langq6.id, langq6);
+
+    const langq7: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q7 (Nouvelle grammaire — identifier le GN sujet)",
+      text: "Dans la phrase suivante, identifie le groupe nominal (GN) sujet et explique comment tu l'as trouvé : « La survie du français dans ce contexte est souvent décrite comme un exploit collectif remarquable. »",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le GN sujet est « un exploit collectif remarquable » car c'est le groupe le plus important de la phrase", "Le GN sujet est « La survie du français dans ce contexte » car c'est le groupe nominal qui commande le verbe « est décrite » — on peut le remplacer par « Elle »", "Le GN sujet est « dans ce contexte » car c'est un complément de phrase qui donne l'information principale", "Le GN sujet est « souvent » car c'est l'adverbe qui modifie le verbe"]),
+      correctAnswer: "Le GN sujet est « La survie du français dans ce contexte » car c'est le groupe nominal qui commande le verbe « est décrite » — on peut le remplacer par « Elle »",
+      order: 7,
+    };
+    this.questions.set(langq7.id, langq7);
+
+    const langq8: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q8 (Reformuler une mesure législative)",
+      text: "Dans tes propres mots, explique en 3 à 4 phrases ce qu'est la loi 101 (Charte de la langue française) et quelles ont été ses principales conséquences, d'après le texte. N'utilise pas de copier-coller — reformule avec tes propres expressions.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    this.questions.set(langq8.id, langq8);
+
+    const langq9: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q9 (Tableau chronologique — événements dans l'ordre)",
+      text: "Place ces quatre événements mentionnés dans le texte dans l'ordre chronologique correct, du plus ancien au plus récent.",
+      type: "multiple_choice",
+      options: JSON.stringify(["Loi 96 → Loi 101 → Conquête britannique → Arrivée de Jacques Cartier", "Arrivée de Jacques Cartier et des colons français (XVIe s.) → Conquête britannique (1760) → Adoption de la loi 101 (1977) → Adoption de la loi 96 (2022)", "Conquête britannique → Adoption de la loi 96 → Adoption de la loi 101 → Arrivée des colons français", "Adoption de la loi 101 → Conquête britannique → Arrivée de Jacques Cartier → Adoption de la loi 96"]),
+      correctAnswer: "Arrivée de Jacques Cartier et des colons français (XVIe s.) → Conquête britannique (1760) → Adoption de la loi 101 (1977) → Adoption de la loi 96 (2022)",
+      order: 9,
+    };
+    this.questions.set(langq9.id, langq9);
+
+    const langq10: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q10 (Persuasif ou informatif? — analyser le registre)",
+      text: "Ce texte est-il purement informatif, ou contient-il des éléments persuasifs? Justifie ta réponse en citant deux passages : un qui est clairement informatif (faits, chiffres, définitions) et un qui pourrait laisser entendre un point de vue. Explique en 4 à 6 phrases.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(langq10.id, langq10);
+
+    const langq11: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q11 (Écriture — texte informatif sur une langue menacée)",
+      text: "Dans le monde, des centaines de langues sont en danger de disparition. Choisis une langue minoritaire ou menacée (par exemple : le breton, le gallois, le wendat, l'inuktitut, le corse, le basque, le gaulois reconstruit, etc.) et écris un court texte informatif de 5 à 7 phrases. Présente : où elle est parlée, combien de locuteurs elle a (approximativement), pourquoi elle est menacée et si des efforts sont faits pour la préserver. Si tu ne connais pas une langue précise, écris sur ce que tu voudrais découvrir en formulant quatre questions de recherche précises.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(langq11.id, langq11);
+
+    const langq12: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T6ExId,
+      title: "Q12 (Réflexion — langue et identité personnelle)",
+      text: "Le texte affirme que la langue française est au cœur de l'identité québécoise. En 5 à 7 phrases, réfléchis à la place que la langue française occupe dans ta propre vie. Qu'est-ce que parler français signifie pour toi? Y a-t-il d'autres langues qui font partie de ton identité? Penses-tu qu'il est important de protéger une langue? Pourquoi? Utilise un registre de langue soutenu.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(langq12.id, langq12);
   }
 
   // Users
