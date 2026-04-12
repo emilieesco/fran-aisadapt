@@ -8,6 +8,7 @@ import {
   studentBadges,
   assignments,
   inviteCodes,
+  questions,
 } from "@shared/schema";
 import type {
   User,
@@ -18,6 +19,8 @@ import type {
   StudentBadge,
   Assignment,
   InviteCode,
+  Question,
+  InsertQuestion,
 } from "@shared/schema";
 
 export class DatabaseStorage extends MemStorage {
@@ -48,6 +51,15 @@ export class DatabaseStorage extends MemStorage {
 
   async deleteUser(id: string): Promise<void> {
     await this.db.delete(users).where(eq(users.id, id));
+  }
+
+  // ─── QUESTIONS ──────────────────────────────────────────────────────────────
+
+  async createQuestion(data: InsertQuestion): Promise<Question> {
+    const rows = await this.db.insert(questions).values(data).returning();
+    const question = rows[0];
+    this.questions.set(question.id, question);
+    return question;
   }
 
   // ─── RÉPONSES ÉLÈVES ────────────────────────────────────────────────────────

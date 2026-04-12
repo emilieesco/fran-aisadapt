@@ -83,13 +83,13 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User> = new Map();
-  private courses: Map<string, Course> = new Map();
-  private exercises: Map<string, Exercise> = new Map();
-  private questions: Map<string, Question> = new Map();
-  private responses: Map<string, StudentResponse> = new Map();
-  private progress: Map<string, StudentProgress> = new Map();
-  private badges: Map<string, StudentBadge> = new Map();
+  protected users: Map<string, User> = new Map();
+  protected courses: Map<string, Course> = new Map();
+  protected exercises: Map<string, Exercise> = new Map();
+  protected questions: Map<string, Question> = new Map();
+  protected responses: Map<string, StudentResponse> = new Map();
+  protected progress: Map<string, StudentProgress> = new Map();
+  protected badges: Map<string, StudentBadge> = new Map();
   private assignments: Map<string, Assignment> = new Map();
   private inviteCodesMap: Map<string, InviteCode> = new Map();
 
@@ -11624,6 +11624,13 @@ Sur de vieilles espérances.
     const exercise: Exercise = { ...insertExercise, id };
     this.exercises.set(id, exercise);
     return exercise;
+  }
+
+  async createQuestion(insertQuestion: InsertQuestion): Promise<Question> {
+    const id = randomUUID();
+    const question: Question = { ...insertQuestion, id, createdAt: new Date() };
+    this.questions.set(id, question);
+    return question;
   }
 
   async getQuestion(id: string): Promise<Question | undefined> {
