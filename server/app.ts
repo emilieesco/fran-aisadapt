@@ -78,16 +78,24 @@ export default async function runApp(
 ) {
   // Démarrer l'écoute IMMÉDIATEMENT — le healthcheck Railway peut répondre dès maintenant
   const port = parseInt(process.env.PORT || '5000', 10);
-  httpServer.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
+  await new Promise<void>((resolve, reject) => {
+    httpServer.listen(port, "0.0.0.0", () => {
+      log(`serving on port ${port}`);
+      resolve();
+    });
+    httpServer.on("error", (err) => {
+      console.error("[app] Erreur listen:", err);
+      reject(err);
+    });
   });
 
   // Initialiser la DB (peut prendre quelques secondes en production)
-  await storagePromise;
+  // Erreur non-fatale : repli sur MemStorage si la DB est indisponible
+  try {
+    await storagePromise;
+  } catch (err) {
+    console.error("[app] Erreur storage ignorée, MemStorage utilisé:", err);
+  }
 
   // Enregistrer toutes les routes API (le serveur écoute déjà)
   await registerRoutes(app, httpServer);

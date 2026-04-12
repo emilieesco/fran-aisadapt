@@ -5,6 +5,14 @@ import { type Server } from "node:http";
 import express, { type Express } from "express";
 import runApp from "./app";
 
+// Empêcher tout crash silencieux du processus
+process.on("uncaughtException", (err) => {
+  console.error("[prod] Exception non capturée:", err);
+});
+process.on("unhandledRejection", (reason) => {
+  console.error("[prod] Rejet non géré:", reason);
+});
+
 export async function serveStatic(app: Express, _server: Server) {
   const distPath = path.resolve(import.meta.dirname, "public");
 
@@ -23,5 +31,10 @@ export async function serveStatic(app: Express, _server: Server) {
 }
 
 (async () => {
-  await runApp(serveStatic);
+  try {
+    await runApp(serveStatic);
+  } catch (err) {
+    console.error("[prod] Erreur démarrage:", err);
+    // Ne pas quitter — le serveur écoute peut-être déjà
+  }
 })();

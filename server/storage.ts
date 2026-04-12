@@ -11355,11 +11355,16 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
 
 async function createStorage() {
   if (process.env.RAILWAY_DATABASE_URL || process.env.DATABASE_URL) {
-    const { DatabaseStorage } = await import("./db-storage");
-    const dbStorage = new DatabaseStorage();
-    await dbStorage.seedInitialUsers();
-    console.log("[storage] Mode PostgreSQL (Railway)");
-    return dbStorage;
+    try {
+      const { DatabaseStorage } = await import("./db-storage");
+      const dbStorage = new DatabaseStorage();
+      await dbStorage.seedInitialUsers();
+      console.log("[storage] Mode PostgreSQL (Railway)");
+      return dbStorage as unknown as MemStorage;
+    } catch (err) {
+      console.error("[storage] Connexion PostgreSQL échouée, repli sur MemStorage:", err);
+      return new MemStorage();
+    }
   }
   console.log("[storage] Mode mémoire (MemStorage)");
   return new MemStorage();
@@ -11367,4 +11372,6 @@ async function createStorage() {
 
 export const storagePromise = createStorage();
 export let storage: MemStorage = new MemStorage();
-storagePromise.then((s) => { storage = s; });
+storagePromise.then((s) => { storage = s; }).catch((err) => {
+  console.error("[storage] Erreur critique:", err);
+});
