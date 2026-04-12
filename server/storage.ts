@@ -10054,6 +10054,177 @@ Face aux défis énergétiques du XXI\u1D49 siècle, l'hydroélectricité québ�
       order: 12,
     };
     this.questions.set(hydroq12.id, hydroq12);
+
+    // ===== INFORMATIF SEC 1 — TEXTE #5 =====
+    // "Les Premières Nations du Québec" — identité, histoire, colonisation, situation actuelle, réconciliation
+    // Questions : intention de l'auteur, progression du texte, vocabulaire nations/peuples, catégorie d'information,
+    //             pluralisme des nations, inférence sur les droits, équilibre du propos, reformuler une notion complexe,
+    //             rôle d'un connecteur, schéma comparatif, écriture aspect culturel, réaction personnelle
+    const informatifSec1T5ExId = randomUUID();
+
+    const informatifSec1T5Exercise: Exercise = {
+      id: informatifSec1T5ExId,
+      courseId: informatifSec1CourseId,
+      title: "Les Premières Nations du Québec",
+      description: "Texte informatif sur les Premières Nations — identité, histoire, impact de la colonisation, réalités actuelles et réconciliation",
+      type: "text",
+      order: 5,
+    };
+    this.exercises.set(informatifSec1T5ExId, informatifSec1T5Exercise);
+
+    const premieresNationsText = `Le Québec est habité depuis des millénaires par des peuples autochtones qui ont développé des langues, des cultures et des modes de vie distincts, bien adaptés aux différents environnements de ce vaste territoire. On dénombre aujourd'hui onze nations autochtones au Québec : dix Premières Nations — les Abénaquis, les Algonquins, les Atikamekw, les Cris, les Hurons-Wendats, les Innus, les Malécites, les Micmacs, les Mohawks et les Naskapis — ainsi que le peuple inuit, qui vit principalement dans la région nordique du Nunavik. Chaque nation possède sa propre langue, ses propres traditions et ses propres gouvernements. Au total, la population autochtone du Québec s'élève à plus de 100 000 personnes réparties dans environ 60 communautés.
+
+Bien avant l'arrivée des Européens au XVᵉ et XVIᵉ siècle, les peuples autochtones occupaient le territoire en suivant des modes de vie qui variaient selon les régions. Les nations côtières, comme les Micmacs et les Malécites, vivaient principalement de la pêche, de la chasse et de la cueillette. Les nations de l'intérieur, comme les Cris et les Innus, suivaient les migrations du caribou sur de vastes territoires. Les Hurons-Wendats, quant à eux, pratiquaient l'agriculture, cultivant notamment le maïs, les haricots et les courges — ce qu'on appelle les « trois sœurs ». Ces peuples avaient développé des systèmes politiques sophistiqués, des réseaux commerciaux étendus et des savoirs écologiques profonds, transmis oralement de génération en génération.
+
+L'arrivée des colons européens a profondément bouleversé la vie des peuples autochtones. Les épidémies de maladies introduites par les Européens, contre lesquelles les autochtones n'avaient aucune immunité, ont décimé des populations entières. Au fil des siècles, des politiques coloniales ont dépossédé les nations autochtones de leurs terres, limité leurs droits et cherché à effacer leurs cultures. L'un des épisodes les plus douloureux de cette histoire est le système des pensionnats autochtones, dans lequel des enfants ont été arrachés à leurs familles et forcés d'abandonner leurs langues et leurs traditions entre le XIXᵉ siècle et 1996. En 2021, le gouvernement canadien a officiellement reconnu que ce système constituait un génocide culturel.
+
+Aujourd'hui, les nations autochtones du Québec connaissent une période de renouveau. Plusieurs nations négocient et concluent des ententes sur la gouvernance de leurs territoires, comme la Paix des Braves signée en 2002 entre le gouvernement du Québec et la nation crie. Les langues autochtones, dont plusieurs étaient en voie de disparition, font l'objet d'efforts importants de revitalisation dans les communautés et les écoles. De nombreux artistes, écrivains, musiciens et cinéastes autochtones font rayonner leurs cultures à l'échelle nationale et internationale. Des institutions comme les centres d'amitié autochtone accueillent les autochtones qui vivent en ville et leur offrent des services adaptés à leurs réalités.
+
+La réconciliation entre les peuples autochtones et la société québécoise est un processus long et exigeant qui requiert des efforts de tous les côtés. La Commission de vérité et réconciliation du Canada, qui a présenté son rapport en 2015, a formulé 94 appels à l'action à l'intention des gouvernements, des institutions et de la population en général. Ces appels couvrent des domaines aussi variés que l'éducation, la justice, la santé et la protection de l'enfance. Pour les jeunes Québécois et Québécoises, apprendre l'histoire et les réalités des Premières Nations n'est pas seulement une question de connaissance : c'est une condition nécessaire pour bâtir ensemble une société plus juste et plus respectueuse.`;
+
+    const pnq1: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q1 (Intention de l'auteur — pourquoi ce texte?)",
+      text: premieresNationsText,
+      type: "multiple_choice",
+      options: JSON.stringify(["Convaincre le lecteur que les peuples autochtones sont supérieurs aux autres peuples du Québec", "Critiquer sévèrement le gouvernement canadien pour ses politiques passées", "Informer le lecteur sur l'identité, l'histoire et la situation actuelle des nations autochtones du Québec, et souligner l'importance de cette connaissance pour la réconciliation", "Raconter la vie quotidienne d'une famille autochtone spécifique dans une communauté du nord du Québec"]),
+      correctAnswer: "Informer le lecteur sur l'identité, l'histoire et la situation actuelle des nations autochtones du Québec, et souligner l'importance de cette connaissance pour la réconciliation",
+      order: 1,
+    };
+    this.questions.set(pnq1.id, pnq1);
+
+    const pnq2: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q2 (Progression du texte — du passé au présent)",
+      text: "Le texte suit une progression temporelle. Associe chaque paragraphe à la période qu'il décrit principalement.",
+      type: "multiple_choice",
+      options: JSON.stringify(["P1: futur / P2: présent / P3: passé lointain / P4: passé récent / P5: époque préhistorique", "P1: présent (portrait actuel) / P2: avant l'arrivée européenne / P3: impact de la colonisation / P4: situation contemporaine et renouveau / P5: appels à l'action et avenir", "P1: colonisation / P2: réconciliation / P3: géographie / P4: économie / P5: culture", "Tous les paragraphes parlent uniquement du présent; il n'y a pas de progression temporelle"]),
+      correctAnswer: "P1: présent (portrait actuel) / P2: avant l'arrivée européenne / P3: impact de la colonisation / P4: situation contemporaine et renouveau / P5: appels à l'action et avenir",
+      order: 2,
+    };
+    this.questions.set(pnq2.id, pnq2);
+
+    const pnq3: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q3 (Vocabulaire — « nations », « peuples », « communautés »)",
+      text: "Le texte utilise trois termes distincts : « nations », « peuples » et « communautés ». D'après le contexte, quelle nuance de sens ces mots ont-ils?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ce sont trois synonymes parfaits qui s'utilisent de façon interchangeable dans le texte", "« Nations » désigne les grands groupes culturels distincts; « peuples » souligne leur caractère de sociétés organisées avec une identité propre; « communautés » désigne les villages ou regroupements locaux où ils vivent", "« Nations » = pays étrangers; « peuples » = groupes ethniques sans territoire; « communautés » = associations bénévoles", "« Nations » s'applique uniquement aux Inuit; « peuples » aux Premières Nations; « communautés » aux Métis"]),
+      correctAnswer: "« Nations » désigne les grands groupes culturels distincts; « peuples » souligne leur caractère de sociétés organisées avec une identité propre; « communautés » désigne les villages ou regroupements locaux où ils vivent",
+      order: 3,
+    };
+    this.questions.set(pnq3.id, pnq3);
+
+    const pnq4: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q4 (Catégorie d'information — classer une donnée)",
+      text: "La phrase suivante contient plusieurs types d'information : « Les Hurons-Wendats pratiquaient l'agriculture, cultivant notamment le maïs, les haricots et les courges — ce qu'on appelle les \u00ABtrois sœurs\u00BB. » Quelles catégories d'information cette phrase combine-t-elle?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Opinion et hypothèse", "Information culturelle (pratiques agricoles), information botanique (noms de plantes) et explication d'un concept traditionnel (les trois sœurs)", "Statistique et prévision", "Information géographique et économique"]),
+      correctAnswer: "Information culturelle (pratiques agricoles), information botanique (noms de plantes) et explication d'un concept traditionnel (les trois sœurs)",
+      order: 4,
+    };
+    this.questions.set(pnq4.id, pnq4);
+
+    const pnq5: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q5 (Pluralisme — plusieurs nations, pas une seule)",
+      text: "Le texte insiste sur le fait qu'il existe PLUSIEURS nations autochtones au Québec, chacune distincte. Pourquoi cette précision est-elle importante selon le texte?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Pour montrer qu'elles se font concurrence entre elles", "Parce que chaque nation possède sa propre langue, ses propres traditions et ses propres gouvernements : les regrouper toutes sous une seule identité serait inexact et effacerait leur diversité réelle", "Pour prouver que les autochtones forment une majorité démographique au Québec", "Parce que les gouvernements doivent créer une nation autochtone unique pour simplifier les négociations"]),
+      correctAnswer: "Parce que chaque nation possède sa propre langue, ses propres traditions et ses propres gouvernements : les regrouper toutes sous une seule identité serait inexact et effacerait leur diversité réelle",
+      order: 5,
+    };
+    this.questions.set(pnq5.id, pnq5);
+
+    const pnq6: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q6 (Inférence sur les droits — ce que le texte implique)",
+      text: "Le texte mentionne que la Paix des Braves (2002) est une entente sur « la gouvernance de leurs territoires ». Qu'est-ce que cela implique sur la relation entre les nations autochtones et le gouvernement québécois?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les nations autochtones ont renoncé à tous leurs droits territoriaux en signant cet accord", "Les nations autochtones revendiquent et obtiennent une forme de reconnaissance et d'autonomie sur leurs terres ancestrales, ce qui implique qu'elles ont des droits sur ces territoires que le gouvernement doit respecter et négocier", "Le gouvernement québécois a la pleine autorité sur tous les territoires autochtones sans négociation", "La Paix des Braves est uniquement un accord économique sur l'exploitation des ressources naturelles"]),
+      correctAnswer: "Les nations autochtones revendiquent et obtiennent une forme de reconnaissance et d'autonomie sur leurs terres ancestrales, ce qui implique qu'elles ont des droits sur ces territoires que le gouvernement doit respecter et négocier",
+      order: 6,
+    };
+    this.questions.set(pnq6.id, pnq6);
+
+    const pnq7: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q7 (Équilibre du propos — le texte est-il objectif?)",
+      text: "Un texte informatif doit présenter les faits de façon équilibrée. Est-ce le cas de ce texte? Justifie ta réponse en choisissant la meilleure analyse.",
+      type: "multiple_choice",
+      options: JSON.stringify(["Non, le texte est complètement partial : il ne présente que des aspects positifs des Premières Nations", "Non, le texte est une attaque directe contre le gouvernement canadien sans aucun fait pour appuyer ses critiques", "Oui, le texte présente des faits historiques (y compris des réalités difficiles comme les pensionnats) et des réalités positives (renouveau culturel, ententes), sans exagération ni discours partisan", "Le texte est totalement neutre car il n'exprime aucune position, même implicite"]),
+      correctAnswer: "Oui, le texte présente des faits historiques (y compris des réalités difficiles comme les pensionnats) et des réalités positives (renouveau culturel, ententes), sans exagération ni discours partisan",
+      order: 7,
+    };
+    this.questions.set(pnq7.id, pnq7);
+
+    const pnq8: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q8 (Reformuler une notion complexe — génocide culturel)",
+      text: "En 2021, le gouvernement canadien a reconnu que les pensionnats autochtones constituaient un « génocide culturel ». Dans tes propres mots (3 à 4 phrases), explique ce que ce terme signifie et pourquoi les pensionnats correspondent à cette définition, d'après ce que le texte explique.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 8,
+    };
+    this.questions.set(pnq8.id, pnq8);
+
+    const pnq9: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q9 (Rôle d'un connecteur — « quant à eux »)",
+      text: "Le texte emploie l'expression « Les Hurons-Wendats, quant à eux, pratiquaient l'agriculture… ». Quel est le rôle grammatical et logique de « quant à eux » dans cette phrase?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Introduire une conséquence directe de ce qui précède", "Marquer une opposition totale : les Hurons-Wendats faisaient exactement le contraire des autres nations", "Introduire un contraste ou une précision : après avoir parlé des nations de chasse et pêche, l'auteur signale que les Hurons-Wendats, eux, avaient un mode de vie différent (agriculture)", "Annoncer une conclusion générale pour l'ensemble du paragraphe"]),
+      correctAnswer: "Introduire un contraste ou une précision : après avoir parlé des nations de chasse et pêche, l'auteur signale que les Hurons-Wendats, eux, avaient un mode de vie différent (agriculture)",
+      order: 9,
+    };
+    this.questions.set(pnq9.id, pnq9);
+
+    const pnq10: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q10 (Schéma comparatif — deux nations côte à côte)",
+      text: "À partir du texte, complète un tableau comparatif entre les Cris (ou Innus) et les Hurons-Wendats. Ton tableau doit avoir trois rangées : (1) Territoire ou région principale, (2) Mode de vie traditionnel, (3) Une information tirée du texte sur leur situation au XXIᵉ siècle. Si le texte ne fournit pas une information, écris « non mentionné dans le texte ».",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(pnq10.id, pnq10);
+
+    const pnq11: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q11 (Écriture — texte informatif sur un aspect culturel autochtone)",
+      text: "Choisis un aspect de la culture d'une nation autochtone du Québec ou du Canada (ex. : la langue crie, les mocassins, le tikinagan, la chasse au caribou, le wampum, les pow-wow, la médecine traditionnelle, le lacrosse…) et écris un texte informatif de 5 à 7 phrases. Présente des faits précis, utilise un vocabulaire respectueux et reste objectif. Si tu ne connais pas le sujet, décris ce que tu aimerais apprendre et formule trois questions de recherche précises.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(pnq11.id, pnq11);
+
+    const pnq12: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T5ExId,
+      title: "Q12 (Réaction personnelle — ce texte et ma société)",
+      text: "La dernière phrase du texte dit : « apprendre l'histoire et les réalités des Premières Nations n'est pas seulement une question de connaissance : c'est une condition nécessaire pour bâtir ensemble une société plus juste et plus respectueuse. » En 5 à 7 phrases, donne ton avis sur cet énoncé. Es-tu d'accord? Pourquoi? Appuie-toi sur au moins un fait du texte ET sur ta propre expérience ou tes connaissances. Utilise un registre de langue soutenu.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(pnq12.id, pnq12);
   }
 
   // Users
