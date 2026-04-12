@@ -10570,6 +10570,179 @@ Cependant, réduire les émissions de gaz à effet de serre ne suffit plus à lu
       order: 12,
     };
     this.questions.set(climq12.id, climq12);
+
+    // ===== INFORMATIF SEC 1 — TEXTE #8 =====
+    // "L'immigration au Québec" — histoire, portraits, intégration, défis, diversité
+    // Questions INÉDITES : destinataire du texte, champ lexical, affirmation implicite vs explicite,
+    //                      distinguer deux types d'immigration, substitut pronominal (antécédent),
+    //                      information absente du texte, temps verbal dominant + effet,
+    //                      résumé d'un argument en choix multiple, question à l'auteur,
+    //                      réécriture de l'introduction, lettre informative, réflexion sur la diversité
+    const informatifSec1T8ExId = randomUUID();
+
+    const informatifSec1T8Exercise: Exercise = {
+      id: informatifSec1T8ExId,
+      courseId: informatifSec1CourseId,
+      title: "L'immigration au Québec",
+      description: "Texte informatif sur l'immigration — histoire, portraits des immigrants, intégration, contribution économique et culturelle, défis actuels",
+      type: "text",
+      order: 8,
+    };
+    this.exercises.set(informatifSec1T8ExId, informatifSec1T8Exercise);
+
+    const immigrationText = `Le Québec est une société qui s'est construite par l'apport successif de plusieurs vagues d'immigration. Après les premiers Français arrivés au XVIIe siècle, puis les Irlandais fuyant la Grande Famine dans les années 1840, la province a accueilli, au XXe siècle, des immigrants venus d'Italie, de Grèce, du Portugal et d'Europe de l'Est. Depuis les années 1980, les sources d'immigration se sont considérablement diversifiées : le Québec reçoit maintenant des personnes originaires du Maghreb, de l'Afrique subsaharienne, d'Haïti, de l'Amérique latine, du Moyen-Orient et de l'Asie du Sud et du Sud-Est. Chaque année, le Québec accueille entre 50 000 et 65 000 nouveaux immigrants permanents, dont la grande majorité s'installe à Montréal et dans sa région métropolitaine.
+
+L'immigration au Québec prend plusieurs formes. La catégorie des immigrants économiques regroupe les travailleurs qualifiés sélectionnés par le gouvernement du Québec en fonction de leur formation, de leurs compétences et de leur connaissance du français. Le Québec est la seule province canadienne à posséder ses propres critères de sélection des immigrants, ce qui lui permet de choisir des personnes susceptibles de s'intégrer à la société francophone. La catégorie du regroupement familial permet à des personnes déjà établies au Québec de faire venir des membres de leur famille proche. Enfin, la catégorie humanitaire accueille des réfugiés et des personnes en besoin de protection, qui fuient des conflits armés, des persécutions ou des catastrophes naturelles.
+
+L'intégration des nouveaux arrivants est un processus complexe qui touche plusieurs dimensions de la vie : l'apprentissage de la langue, la recherche d'emploi, la reconnaissance des diplômes étrangers, le logement et l'adaptation à un nouveau contexte culturel. Le gouvernement du Québec offre divers services pour faciliter cette intégration, notamment des cours de français gratuits pour adultes (les Centres d'éducation des adultes et les cours offerts par le MIFI), des programmes d'accompagnement à l'emploi et des organismes communautaires d'accueil. Malgré ces ressources, de nombreux immigrants vivent des défis importants : certains ont du mal à faire reconnaître leurs qualifications obtenues à l'étranger, d'autres font face à des formes de discrimination à l'embauche.
+
+La contribution des immigrants à la société québécoise est immense et touche autant l'économie que la culture. Sur le plan économique, ils représentent une part croissante de la main-d'œuvre dans des secteurs comme la santé, le génie, les technologies de l'information et la restauration. Démographiquement, dans un contexte de vieillissement de la population et de faible taux de natalité, l'immigration contribue à maintenir la population active et à financer les services publics comme les hôpitaux et les écoles. Sur le plan culturel, les immigrants enrichissent la société québécoise par leurs traditions culinaires, leurs arts, leurs langues et leurs visions du monde, créant une société de plus en plus plurielle.
+
+Cependant, l'immigration soulève aussi des questions importantes sur le plan de la cohésion sociale. Comment préserver la spécificité francophone du Québec tout en accueillant des personnes qui ne parlent pas toujours le français à leur arrivée? Comment combattre le racisme systémique et garantir à tous les nouveaux arrivants les mêmes chances de réussite? Le Québec cherche à répondre à ces défis par un modèle d'intégration qui valorise à la fois le respect des droits individuels, le partage de valeurs communes et l'apprentissage du français comme langue commune de la vie publique. Ce modèle, parfois appelé interculturalisme, est propre au Québec et se distingue du multiculturalisme canadien par son insistance sur la langue française comme pierre angulaire du vivre-ensemble.`;
+
+    const immiq1: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q1 (Destinataire du texte — pour qui est-il écrit?)",
+      text: immigrationText,
+      type: "multiple_choice",
+      options: JSON.stringify(["Ce texte s'adresse uniquement aux fonctionnaires qui traitent les demandes d'immigration au gouvernement du Québec", "Ce texte s'adresse à un lecteur général — probablement un jeune adulte ou un élève du secondaire — qui souhaite comprendre l'immigration au Québec de façon globale et équilibrée", "Ce texte est destiné exclusivement aux nouveaux immigrants qui veulent s'intégrer au Québec", "Ce texte s'adresse aux politiciens qui doivent voter des lois sur l'immigration"]),
+      correctAnswer: "Ce texte s'adresse à un lecteur général — probablement un jeune adulte ou un élève du secondaire — qui souhaite comprendre l'immigration au Québec de façon globale et équilibrée",
+      order: 1,
+    };
+    this.questions.set(immiq1.id, immiq1);
+
+    const immiq2: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q2 (Champ lexical — mots liés au même univers de sens)",
+      text: "Le texte appartient au champ lexical de l'intégration et du déplacement humain. Identifie QUATRE mots ou expressions du texte qui appartiennent à ce champ lexical (c'est-à-dire qui évoquent le fait de quitter un endroit ou de s'établir ailleurs).",
+      type: "multiple_choice",
+      options: JSON.stringify(["Diplôme, technologie, restauration, génie", "Immigration, réfugiés, accueil, intégration (et plusieurs autres : nouveaux arrivants, s'établir, vagues d'immigration, faire venir)", "Natalité, vieillissement, économie, démographie", "Francophonie, interculturalisme, multiculturalisme, cohésion"]),
+      correctAnswer: "Immigration, réfugiés, accueil, intégration (et plusieurs autres : nouveaux arrivants, s'établir, vagues d'immigration, faire venir)",
+      order: 2,
+    };
+    this.questions.set(immiq2.id, immiq2);
+
+    const immiq3: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q3 (Affirmation implicite vs explicite)",
+      text: "Le texte dit explicitement que l'immigration « enrichit la société québécoise ». Quelle affirmation est implicite — c'est-à-dire suggérée sans être dite directement — dans le cinquième paragraphe?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le Québec devrait fermer ses frontières à l'immigration pour protéger la langue française", "Sans immigrant, le Québec serait une société parfaite et sans problèmes", "L'intégration des immigrants est encore incomplète et inégale au Québec, et des efforts supplémentaires sont nécessaires pour combattre la discrimination et garantir l'égalité des chances", "Les immigrants ne veulent pas apprendre le français et refusent de s'intégrer"]),
+      correctAnswer: "L'intégration des immigrants est encore incomplète et inégale au Québec, et des efforts supplémentaires sont nécessaires pour combattre la discrimination et garantir l'égalité des chances",
+      order: 3,
+    };
+    this.questions.set(immiq3.id, immiq3);
+
+    const immiq4: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q4 (Distinguer deux types d'immigration — économique vs humanitaire)",
+      text: "D'après le deuxième paragraphe, quelle est la différence principale entre un immigrant économique et un réfugié (catégorie humanitaire)?",
+      type: "multiple_choice",
+      options: JSON.stringify(["L'immigrant économique parle déjà français; le réfugié ne parle aucune langue", "L'immigrant économique est sélectionné pour ses compétences professionnelles et choisit d'immigrer; le réfugié fuit une situation dangereuse (conflit, persécution, catastrophe) et a besoin de protection", "L'immigrant économique vient d'Europe; le réfugié vient toujours d'Afrique", "Il n'y a aucune différence : tous les immigrants ont les mêmes droits et reçoivent les mêmes services"]),
+      correctAnswer: "L'immigrant économique est sélectionné pour ses compétences professionnelles et choisit d'immigrer; le réfugié fuit une situation dangereuse (conflit, persécution, catastrophe) et a besoin de protection",
+      order: 4,
+    };
+    this.questions.set(immiq4.id, immiq4);
+
+    const immiq5: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q5 (Substitut pronominal — trouver l'antécédent)",
+      text: "Dans la phrase « certains ont du mal à faire reconnaître leurs qualifications obtenues à l'étranger, d'autres font face à des formes de discrimination à l'embauche », à qui renvoient les pronoms « certains » et « d'autres »? Comment le sait-on?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Ils renvoient aux fonctionnaires du gouvernement québécois — on le sait car la phrase précédente parle de programmes gouvernementaux", "Ils renvoient aux immigrants ou aux nouveaux arrivants — on le sait grâce au contexte du paragraphe qui traite des défis vécus par les personnes en processus d'intégration", "Ils renvoient aux employeurs québécois qui discriminent les immigrants", "Ils renvoient aux organismes communautaires d'accueil mentionnés plus tôt"]),
+      correctAnswer: "Ils renvoient aux immigrants ou aux nouveaux arrivants — on le sait grâce au contexte du paragraphe qui traite des défis vécus par les personnes en processus d'intégration",
+      order: 5,
+    };
+    this.questions.set(immiq5.id, immiq5);
+
+    const immiq6: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q6 (Information absente — ce qui manque pour être plus complet)",
+      text: "Un lecteur critique remarque qu'une information importante est absente du texte. Parmi ces lacunes possibles, laquelle est-elle la plus significative pour comprendre pleinement le sujet?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le texte ne mentionne pas la couleur préférée des immigrants québécois", "Le texte ne présente jamais le point de vue ou le témoignage direct d'un immigrant : il parle des immigrants sans jamais leur donner la parole, ce qui rend la présentation moins humaine et moins complète", "Le texte n'explique pas comment fonctionne le service des postes au Québec", "Le texte oublie de mentionner le nom du premier ministre du Québec"]),
+      correctAnswer: "Le texte ne présente jamais le point de vue ou le témoignage direct d'un immigrant : il parle des immigrants sans jamais leur donner la parole, ce qui rend la présentation moins humaine et moins complète",
+      order: 6,
+    };
+    this.questions.set(immiq6.id, immiq6);
+
+    const immiq7: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q7 (Temps verbal dominant — identifier et expliquer son effet)",
+      text: "Le premier paragraphe utilise principalement quel temps verbal, et quel est l'effet de ce choix sur le lecteur?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Le conditionnel présent — pour exprimer que l'immigration est hypothétique et incertaine", "Le futur simple — pour annoncer ce que le Québec fera dans les prochaines années en matière d'immigration", "Le passé composé et le présent de l'indicatif — le passé composé ancre les événements historiques (vagues successives), tandis que le présent donne les chiffres actuels, créant un pont entre l'histoire et la réalité d'aujourd'hui", "L'imparfait exclusivement — pour décrire une époque révolue où l'immigration était plus facile"]),
+      correctAnswer: "Le passé composé et le présent de l'indicatif — le passé composé ancre les événements historiques (vagues successives), tandis que le présent donne les chiffres actuels, créant un pont entre l'histoire et la réalité d'aujourd'hui",
+      order: 7,
+    };
+    this.questions.set(immiq7.id, immiq7);
+
+    const immiq8: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q8 (Résumer l'argument principal d'un paragraphe)",
+      text: "Quel énoncé résume le mieux l'argument central du quatrième paragraphe (qui commence par « La contribution des immigrants… »)?",
+      type: "multiple_choice",
+      options: JSON.stringify(["Les immigrants coûtent trop cher à l'État québécois en services sociaux", "Les immigrants n'ont d'impact que sur la restauration et les arts, pas sur l'économie", "Les immigrants apportent des contributions essentielles au Québec : ils comblent des besoins de main-d'œuvre, ralentissent le déclin démographique et enrichissent la culture québécoise", "La contribution des immigrants est trop faible pour compenser les défis qu'ils posent à la société"]),
+      correctAnswer: "Les immigrants apportent des contributions essentielles au Québec : ils comblent des besoins de main-d'œuvre, ralentissent le déclin démographique et enrichissent la culture québécoise",
+      order: 8,
+    };
+    this.questions.set(immiq8.id, immiq8);
+
+    const immiq9: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q9 (Question à l'auteur — esprit critique et curiosité intellectuelle)",
+      text: "Après avoir lu ce texte, formule une question précise et réfléchie que tu aimerais poser à l'auteur. Ta question doit porter sur quelque chose que le texte n'explique pas suffisamment, ou sur un angle que tu trouves important et qui est absent. Explique en 2 à 3 phrases pourquoi tu as choisi cette question.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 9,
+    };
+    this.questions.set(immiq9.id, immiq9);
+
+    const immiq10: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q10 (Réécrire l'introduction — reformuler avec un angle différent)",
+      text: "Le texte commence par l'angle historique (les vagues successives d'immigration). Réécris une introduction différente de 3 à 5 phrases pour ce même texte, mais en commençant par un angle différent de ton choix : une statistique frappante, un exemple concret de contribution d'un immigrant, une question rhétorique, ou une comparaison avec un autre pays. Indique quel angle tu as choisi et pourquoi.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 10,
+    };
+    this.questions.set(immiq10.id, immiq10);
+
+    const immiq11: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q11 (Écriture — lettre informative à quelqu'un qui n'a pas lu le texte)",
+      text: "Imagine que tu écris une lettre à un ami ou une amie qui vit dans une autre province canadienne et qui ne connaît pas du tout la situation de l'immigration au Québec. En 6 à 8 phrases, explique-lui les points les plus importants de ce que tu as appris. Ta lettre doit être informative (pas de jugements excessifs), précise (cite au moins deux faits du texte) et bien organisée. Commence par « Cher(e)… » ou « Allô… » selon le registre que tu choisis.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 11,
+    };
+    this.questions.set(immiq11.id, immiq11);
+
+    const immiq12: Question = {
+      id: randomUUID(),
+      exerciseId: informatifSec1T8ExId,
+      title: "Q12 (Réflexion sur la diversité dans ta propre vie)",
+      text: "Le texte parle de diversité culturelle et d'interculturalisme au Québec. En 5 à 7 phrases, réfléchis à la diversité culturelle dans ton propre environnement : à ton école, dans ton quartier, dans ta famille ou parmi tes amis. As-tu des contacts avec des personnes d'origines différentes de la tienne? Qu'est-ce que ces rencontres t'ont appris? Fais un lien avec au moins une idée du texte. Utilise un registre de langue soutenu.",
+      type: "text",
+      options: null,
+      correctAnswer: "",
+      order: 12,
+    };
+    this.questions.set(immiq12.id, immiq12);
   }
 
   // Users
