@@ -101,6 +101,70 @@ function FillBlankInput({
   );
 }
 
+// ─── Accessibility: Read Aloud ────────────────────────────────────────────────
+function ReadAloudButton({ text, label, variant = "ghost", className = "" }: {
+  text: string;
+  label?: string;
+  variant?: "ghost" | "outline" | "secondary";
+  className?: string;
+}) {
+  const [speaking, setSpeaking] = useState(false);
+
+  const handleClick = () => {
+    if (!("speechSynthesis" in window)) return;
+    if (speaking) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "fr-CA";
+    utter.rate = 0.88;
+    utter.pitch = 1;
+    utter.onstart = () => setSpeaking(true);
+    utter.onend = () => setSpeaking(false);
+    utter.onerror = () => setSpeaking(false);
+    window.speechSynthesis.speak(utter);
+  };
+
+  if (label) {
+    return (
+      <Button
+        type="button"
+        variant={variant}
+        size="sm"
+        onClick={handleClick}
+        className={`gap-1.5 ${className}`}
+        title={speaking ? "Arrêter la lecture" : "Lire à voix haute"}
+        data-testid="button-read-aloud"
+      >
+        {speaking
+          ? <><Pause className="w-3.5 h-3.5" /><span>{label}</span></>
+          : <><Volume2 className="w-3.5 h-3.5" /><span>{label}</span></>
+        }
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      type="button"
+      variant={variant}
+      size="icon"
+      onClick={handleClick}
+      title={speaking ? "Arrêter la lecture" : "Lire à voix haute"}
+      className={className}
+      data-testid="button-read-aloud"
+    >
+      {speaking
+        ? <Pause className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+        : <Volume2 className="w-4 h-4" />
+      }
+    </Button>
+  );
+}
+
 // ─── Dictée Word-diff ────────────────────────────────────────────────────────
 function normWord(w: string) {
   return w.toLowerCase().replace(/[^a-zàâçéèêëîïôùûüÿœæ0-9]/g, "");
@@ -346,6 +410,13 @@ export default function Exercise() {
   // Reset matching left selection when question changes
   useEffect(() => {
     setMatchingLeft(null);
+  }, [currentQuestionIndex]);
+
+  // Arrêter toute lecture vocale quand on change de question
+  useEffect(() => {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
   }, [currentQuestionIndex]);
 
   if (loading) {
@@ -886,15 +957,18 @@ export default function Exercise() {
         {isInformatifExercise && informatifText && (
           <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
             <Card className="p-4 bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-300 dark:border-purple-700">
-              <CollapsibleTrigger asChild>
-                <Button variant="ghost" className="w-full flex items-center justify-between p-2" data-testid="button-toggle-story">
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                    <span className="font-semibold text-purple-800 dark:text-purple-200">Texte informatif</span>
-                  </div>
-                  {storyPanelOpen ? <ChevronUp className="w-5 h-5 text-purple-600 dark:text-purple-400" /> : <ChevronDown className="w-5 h-5 text-purple-600 dark:text-purple-400" />}
-                </Button>
-              </CollapsibleTrigger>
+              <div className="flex items-center gap-2">
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" className="flex-1 flex items-center justify-between p-2" data-testid="button-toggle-story">
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      <span className="font-semibold text-purple-800 dark:text-purple-200">Texte informatif</span>
+                    </div>
+                    {storyPanelOpen ? <ChevronUp className="w-5 h-5 text-purple-600 dark:text-purple-400" /> : <ChevronDown className="w-5 h-5 text-purple-600 dark:text-purple-400" />}
+                  </Button>
+                </CollapsibleTrigger>
+                <ReadAloudButton text={informatifText} label="Lire" className="text-purple-700 dark:text-purple-300 shrink-0" />
+              </div>
               <CollapsibleContent>
                 <div className="mt-4 max-h-80 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">{informatifText}</p>
@@ -907,9 +981,10 @@ export default function Exercise() {
         {/* Reading panel — descriptif */}
         {isDescriptiveExercise && storyText && (
           <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700 mb-6">
-            <div className="flex items-start gap-3 mb-3">
-              <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-              <span className="font-semibold text-blue-800 dark:text-blue-200">Texte à lire</span>
+            <div className="flex items-center gap-3 mb-3">
+              <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+              <span className="font-semibold text-blue-800 dark:text-blue-200 flex-1">Texte à lire</span>
+              <ReadAloudButton text={storyText} label="Lire le texte" className="text-blue-700 dark:text-blue-300 shrink-0" />
             </div>
             <div className="max-h-64 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
               <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">{storyText}</p>
@@ -921,15 +996,18 @@ export default function Exercise() {
         {isNarrativeExercise && storyText && (
           <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
             <Card className="p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
-              <CollapsibleTrigger asChild>
-                <Button variant="ghost" className="w-full flex items-center justify-between p-2" data-testid="button-toggle-story">
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-                    <span className="font-semibold text-amber-800 dark:text-amber-200">Texte de l'histoire</span>
-                  </div>
-                  {storyPanelOpen ? <ChevronUp className="w-5 h-5 text-amber-600 dark:text-amber-400" /> : <ChevronDown className="w-5 h-5 text-amber-600 dark:text-amber-400" />}
-                </Button>
-              </CollapsibleTrigger>
+              <div className="flex items-center gap-2">
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" className="flex-1 flex items-center justify-between p-2" data-testid="button-toggle-story">
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                      <span className="font-semibold text-amber-800 dark:text-amber-200">Texte de l'histoire</span>
+                    </div>
+                    {storyPanelOpen ? <ChevronUp className="w-5 h-5 text-amber-600 dark:text-amber-400" /> : <ChevronDown className="w-5 h-5 text-amber-600 dark:text-amber-400" />}
+                  </Button>
+                </CollapsibleTrigger>
+                <ReadAloudButton text={storyText} label="Lire" className="text-amber-700 dark:text-amber-300 shrink-0" />
+              </div>
               <CollapsibleContent>
                 <div className="mt-4 max-h-80 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap text-foreground">{storyText}</p>
@@ -962,6 +1040,15 @@ export default function Exercise() {
                   <Volume2 className="w-3 h-3 inline mr-1" />
                   Dictée
                 </span>
+              )}
+              {/* Bouton lecture question — accessible à tous */}
+              {!isDicteeQuestion && (
+                <ReadAloudButton
+                  text={questionDisplayText.replace(/___/g, " quelque chose ")}
+                  label="Lire la question"
+                  variant="secondary"
+                  className="ml-auto text-xs"
+                />
               )}
             </div>
 
@@ -1118,21 +1205,25 @@ export default function Exercise() {
 
             {/* Multiple choice */}
             {currentQuestion.type === "multiple_choice" && (
-              <div className="space-y-4 mt-6">
+              <div className="space-y-3 mt-6">
                 {((currentQuestion.options as string[]) || []).map((option) => (
-                  <button
-                    key={option}
-                    onClick={() => !showFeedback && handleAnswerChange(option)}
-                    className={`w-full p-4 text-left rounded-lg border-2 transition-all text-base ${
-                      currentAnswer === option
-                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
-                        : "border-border bg-background"
-                    } hover-elevate`}
-                    data-testid={`button-option-${option}`}
-                    disabled={showFeedback}
-                  >
-                    <span className="font-medium">{option}</span>
-                  </button>
+                  <div key={option} className="relative group">
+                    <button
+                      onClick={() => !showFeedback && handleAnswerChange(option)}
+                      className={`w-full p-4 text-left rounded-lg border-2 transition-all text-base pr-12 ${
+                        currentAnswer === option
+                          ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
+                          : "border-border bg-background"
+                      } hover-elevate`}
+                      data-testid={`button-option-${option}`}
+                      disabled={showFeedback}
+                    >
+                      <span className="font-medium">{option}</span>
+                    </button>
+                    <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                      <ReadAloudButton text={option} />
+                    </div>
+                  </div>
                 ))}
               </div>
             )}
