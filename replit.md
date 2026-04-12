@@ -28,7 +28,7 @@ The application follows a client-server architecture.
 
 **Database Configuration (Hybrid Storage):**
 -   **Persistent Data (PostgreSQL):** User accounts, student responses, course progression, badges, and teacher-student assignments are stored here.
--   **In-Memory Data (Read-only):** Over 88 pedagogical courses, 333 exercises, and all questions are loaded into memory for fast access.
+-   **In-Memory Data (Read-only):** Over 95 pedagogical courses, 343+ exercises, and all questions are loaded into memory for fast access.
 
 **Core Features:**
 -   **Authentication:** Login/registration for teachers and students with role-based access.
