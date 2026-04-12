@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle } from "lucide-react";
+import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle, Mic, Volume2, CheckCircle } from "lucide-react";
 
 interface Course {
   id: string;
@@ -211,6 +211,7 @@ export default function StudentDashboard() {
     classes_de_mots:   { label: "Classes de mots",  color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
     textes_narratifs:  { label: "Textes narratifs",  color: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300" },
     textes_descriptifs:{ label: "Textes descriptifs",color: "bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300" },
+    dictee:            { label: "Dictée",            color: "bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300" },
   };
 
   const getCategoryLabel = (category: string) =>
@@ -290,7 +291,7 @@ export default function StudentDashboard() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
         <Tabs defaultValue="cours" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-8">
+          <TabsList className="grid w-full grid-cols-6 mb-8">
             <TabsTrigger value="cours" data-testid="tab-cours">
               <BookOpen className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Cours</span>
@@ -302,6 +303,10 @@ export default function StudentDashboard() {
             <TabsTrigger value="lecture" data-testid="tab-lecture">
               <FileText className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Lecture</span>
+            </TabsTrigger>
+            <TabsTrigger value="dictee" data-testid="tab-dictee">
+              <Mic className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">Dictée</span>
             </TabsTrigger>
             <TabsTrigger value="ecriture" data-testid="tab-ecriture">
               <PenTool className="w-4 h-4 mr-2" />
@@ -1051,7 +1056,109 @@ export default function StudentDashboard() {
             </div>
           </TabsContent>
 
-          {/* Écriture Tab */}
+          {/* Dictée Tab */}
+          <TabsContent value="dictee">
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-bold mb-1">Dictées interactives</h2>
+                <p className="text-muted-foreground">
+                  Écoute le texte, écris ce que tu entends et reçois une correction mot par mot.
+                </p>
+              </div>
+
+              {/* Explication */}
+              <Card className="p-5 bg-sky-50 dark:bg-sky-900/20 border-2 border-sky-200 dark:border-sky-800">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-sky-100 dark:bg-sky-900">
+                    <Volume2 className="w-6 h-6 text-sky-600 dark:text-sky-400" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-semibold text-sky-900 dark:text-sky-100">Comment ça marche ?</h3>
+                    <ol className="text-sm text-sky-800 dark:text-sky-200 space-y-0.5 list-decimal list-inside">
+                      <li>Clique sur <strong>Écouter</strong> pour entendre le texte en français</li>
+                      <li>Tape le texte dans la zone de saisie</li>
+                      <li>Clique sur <strong>Soumettre</strong> pour voir ta correction</li>
+                      <li>Les mots corrects apparaissent en <span className="text-green-600 font-medium">vert</span>, les erreurs en <span className="text-red-600 font-medium">rouge</span></li>
+                    </ol>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Dictée courses */}
+              {(() => {
+                const dicteeCourses = courses.filter((c) => c.category === "dictee");
+                if (dicteeCourses.length === 0) {
+                  return (
+                    <Card className="p-8 text-center">
+                      <Mic className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
+                      <p className="text-muted-foreground">Aucune dictée disponible pour le moment.</p>
+                      <p className="text-xs text-muted-foreground mt-1">L'enseignant peut t'en assigner une.</p>
+                    </Card>
+                  );
+                }
+                return dicteeCourses.map((course) => {
+                  const dicExercises = exercises.filter((ex) => ex.courseId === course.id);
+                  const niveaux = ["Niveau débutant", "Niveau intermédiaire", "Niveau avancé"];
+                  const niveauColors = [
+                    "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800",
+                    "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800",
+                    "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800",
+                  ];
+                  const niveauTextColors = [
+                    "text-green-700 dark:text-green-300",
+                    "text-amber-700 dark:text-amber-300",
+                    "text-red-700 dark:text-red-300",
+                  ];
+                  return (
+                    <div key={course.id} className="space-y-4">
+                      {course.progressPercentage > 0 && (
+                        <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                          <div className="flex-1 h-2 rounded-full bg-secondary">
+                            <div
+                              className="h-2 rounded-full bg-sky-500 transition-all"
+                              style={{ width: `${course.progressPercentage}%` }}
+                            />
+                          </div>
+                          <span>{course.progressPercentage}% complété</span>
+                        </div>
+                      )}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {dicExercises.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)).map((ex, idx) => (
+                          <Card
+                            key={ex.id}
+                            className={`p-5 border-2 hover-elevate ${niveauColors[idx] || niveauColors[2]}`}
+                            data-testid={`card-dictee-${ex.id}`}
+                          >
+                            <div className="space-y-3">
+                              <div className="flex items-center justify-between gap-2">
+                                <span className={`text-xs font-bold uppercase tracking-wider ${niveauTextColors[idx] || niveauTextColors[2]}`}>
+                                  {niveaux[idx] || `Niveau ${idx + 1}`}
+                                </span>
+                                <Mic className={`w-5 h-5 flex-shrink-0 ${niveauTextColors[idx] || niveauTextColors[2]}`} />
+                              </div>
+                              <div>
+                                <h3 className="font-bold text-foreground leading-snug">{ex.title}</h3>
+                                <p className="text-sm text-muted-foreground mt-1">{ex.description}</p>
+                              </div>
+                              <Button
+                                onClick={() => handleStartExercise(ex.id)}
+                                className="w-full gap-2"
+                                data-testid={`button-start-dictee-${ex.id}`}
+                              >
+                                <Volume2 className="w-4 h-4" />
+                                Commencer la dictée
+                              </Button>
+                            </div>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
+            </div>
+          </TabsContent>
+
           <TabsContent value="ecriture">
             <div className="space-y-6">
               <div>

@@ -11400,7 +11400,7 @@ Sur de vieilles espérances.
         id: courseId,
         title: "Dictée interactive",
         description: "Écoute et écris : exercices de dictée avec correction automatique. Du niveau débutant à avancé.",
-        category: "orthographe",
+        category: "dictee",
         content: "<h2>Dictée interactive</h2><p>Dans ces exercices, tu vas écouter un texte lu à voix haute et taper ce que tu entends. La correction se fait automatiquement mot par mot.</p><p><strong>Consignes :</strong><br>1. Clique sur le bouton <em>Écouter</em> pour entendre le texte<br>2. Tape le texte dans la zone de saisie<br>3. Soumets ta réponse pour voir les corrections<br>4. Les mots corrects apparaissent en vert, les erreurs en rouge</p>",
         order: 112,
       };
