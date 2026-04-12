@@ -5,9 +5,37 @@ Application web éducative complète pour l'enseignement du français aux élèv
 
 ## Architecture
 - **Frontend**: React + Tailwind CSS + Shadcn UI + Wouter
-- **Backend**: Express.js + MemStorage
-- **Database**: PostgreSQL (via Drizzle ORM)
+- **Backend**: Express.js + DatabaseStorage (PostgreSQL) avec fallback MemStorage
+- **Database**: PostgreSQL Railway (via Drizzle ORM + pg)
 - **Routing**: Wouter pour navigation côté client
+
+## Configuration Base de Données
+
+### En développement (Replit)
+- `RAILWAY_DATABASE_URL` → pointe vers PostgreSQL Railway
+- Stockage hybride : contenu pédagogique en mémoire, données utilisateurs en PostgreSQL
+
+### En production (Railway)
+- `DATABASE_URL` → fourni automatiquement par Railway PostgreSQL
+- Même comportement hybride
+
+### Fichiers DB
+- `server/db.ts` — connexion Drizzle + pg (pooling)
+- `server/db-storage.ts` — `DatabaseStorage` étend `MemStorage`, surcharge les méthodes dynamiques
+- `server/storage.ts` — détecte `RAILWAY_DATABASE_URL`/`DATABASE_URL` et instancie le bon stockage
+- `railway.json` — configuration déploiement Railway
+
+### Données persistantes (PostgreSQL)
+- Comptes utilisateurs (inscriptions)
+- Réponses des élèves
+- Progression par cours
+- Badges
+- Assignations enseignant → élève
+
+### Données en mémoire (lecture seule)
+- 88+ cours pédagogiques
+- 333+ exercices
+- Toutes les questions
 
 ## Fonctionnalités MVP Complètes
 

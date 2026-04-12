@@ -11353,4 +11353,18 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
   }
 }
 
-export const storage = new MemStorage();
+async function createStorage() {
+  if (process.env.RAILWAY_DATABASE_URL || process.env.DATABASE_URL) {
+    const { DatabaseStorage } = await import("./db-storage");
+    const dbStorage = new DatabaseStorage();
+    await dbStorage.seedInitialUsers();
+    console.log("[storage] Mode PostgreSQL (Railway)");
+    return dbStorage;
+  }
+  console.log("[storage] Mode mémoire (MemStorage)");
+  return new MemStorage();
+}
+
+export const storagePromise = createStorage();
+export let storage: MemStorage = new MemStorage();
+storagePromise.then((s) => { storage = s; });

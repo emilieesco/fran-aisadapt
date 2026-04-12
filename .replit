@@ -37,3 +37,8 @@ author = "agent"
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
+
+[userenv]
+
+[userenv.shared]
+RAILWAY_DATABASE_URL = "postgresql://postgres:ezwivYAXbHHjJHzRiJiHSLNKDgdbzHVz@metro.proxy.rlwy.net:22051/railway"
