@@ -14,20 +14,25 @@ process.on("unhandledRejection", (reason) => {
 });
 
 export async function serveStatic(app: Express, _server: Server) {
-  const distPath = path.resolve(import.meta.dirname, "public");
+  // process.cwd() = racine du projet sur Railway (/app)
+  // Le build crée toujours dist/public/ à cet endroit
+  const distPath = path.resolve(process.cwd(), "dist", "public");
+
+  console.log("[prod] Chemin statique:", distPath);
 
   if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
-    );
+    console.error("[prod] dist/public introuvable à:", distPath);
+    console.error("[prod] Contenu de dist/:", fs.readdirSync(path.resolve(process.cwd(), "dist")).join(", "));
+    return; // Ne pas crasher — API reste fonctionnelle
   }
 
   app.use(express.static(distPath));
 
-  // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
+
+  console.log("[prod] Fichiers statiques servis depuis:", distPath);
 }
 
 (async () => {
@@ -35,6 +40,5 @@ export async function serveStatic(app: Express, _server: Server) {
     await runApp(serveStatic);
   } catch (err) {
     console.error("[prod] Erreur démarrage:", err);
-    // Ne pas quitter — le serveur écoute peut-être déjà
   }
 })();
