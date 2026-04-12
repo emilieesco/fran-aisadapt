@@ -4,6 +4,11 @@ import { storage } from "./storage";
 import { insertUserSchema, insertCourseSchema, insertExerciseSchema, insertQuestionSchema, insertResponseSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check — répond instantanément, sans dépendance DB
+  app.get("/api/health", (_req, res) => {
+    res.json({ status: "ok" });
+  });
+
   // Auth Routes
   app.post("/api/register", async (req, res) => {
     try {
