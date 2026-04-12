@@ -11173,6 +11173,10 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
     return exercise;
   }
 
+  async getQuestion(id: string): Promise<Question | undefined> {
+    return this.questions.get(id);
+  }
+
   async getQuestionsByExercise(exerciseId: string): Promise<Question[]> {
     return Array.from(this.questions.values()).filter(
       (q) => q.exerciseId === exerciseId

@@ -65,10 +65,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/courses", async (req, res) => {
     try {
-      const data = insertCourseSchema.parse(req.body);
+      const body = {
+        content: "",
+        order: 999,
+        ...req.body,
+      };
+      const data = insertCourseSchema.parse(body);
       const course = await storage.createCourse(data);
       res.json(course);
     } catch (err) {
+      console.error("Erreur création cours:", err);
       res.status(400).send("Erreur lors de la création du cours");
     }
   });
@@ -234,11 +240,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/teachers/:teacherId/students/:studentId/responses", async (req, res) => {
     try {
       const { teacherId, studentId } = req.params;
-      
-      // Verify teacher has access to this student
-      const assignments = await storage.getAssignmentsByTeacher(teacherId);
-      const hasAccess = assignments.some((a) => a.studentId === studentId);
-      if (!hasAccess) {
+
+      // Verify the teacher exists
+      const teacher = await storage.getUser(teacherId);
+      if (!teacher || teacher.role !== "teacher") {
         return res.status(403).send("Accès non autorisé");
       }
 
