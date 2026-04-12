@@ -6,7 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw } from "lucide-react";
 
 interface Question {
   id: string;
@@ -343,132 +345,286 @@ export default function Exercise() {
   };
 
   if (completed) {
-    const autoGradedQuestions = questions.filter((q) => q.type !== "text");
-    const textQuestions = questions.filter((q) => q.type === "text");
-    const correctCount = autoGradedQuestions.filter((q) => {
-      if (q.type === "fill_blank") return checkFillBlankAnswer(userAnswers[q.id] || "", q.correctAnswer);
-      if (q.type === "matching")  return checkMatchingAnswer(userAnswers[q.id] || "", q.correctAnswer);
-      return userAnswers[q.id] === q.correctAnswer;
-    }).length;
-    const score =
-      autoGradedQuestions.length > 0
-        ? Math.round((correctCount / autoGradedQuestions.length) * 100)
-        : null;
+    // Compute per-question results
+    const results = questions.map((q) => {
+      const userAnswer = userAnswers[q.id] || "";
+      const isText = q.type === "text";
+      let isCorrect = false;
+      if (!isText) {
+        if (q.type === "fill_blank") isCorrect = checkFillBlankAnswer(userAnswer, q.correctAnswer);
+        else if (q.type === "matching") isCorrect = checkMatchingAnswer(userAnswer, q.correctAnswer);
+        else isCorrect = userAnswer === q.correctAnswer;
+      }
+      return { q, userAnswer, isCorrect, isText };
+    });
+
+    const autoGradedResults = results.filter((r) => !r.isText);
+    const textResults = results.filter((r) => r.isText);
+    const correctCount = autoGradedResults.filter((r) => r.isCorrect).length;
+    const score = autoGradedResults.length > 0
+      ? Math.round((correctCount / autoGradedResults.length) * 100)
+      : null;
 
     const currentIndex = siblingExercises.findIndex((ex) => ex.id === params?.id);
-    const nextExercise =
-      currentIndex >= 0 && currentIndex < siblingExercises.length - 1
-        ? siblingExercises[currentIndex + 1]
-        : null;
+    const nextExercise = currentIndex >= 0 && currentIndex < siblingExercises.length - 1
+      ? siblingExercises[currentIndex + 1]
+      : null;
     const prevExercise = currentIndex > 0 ? siblingExercises[currentIndex - 1] : null;
 
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
-        <Card className="max-w-lg w-full p-8">
-          <div className="text-center mb-6">
-            <CheckCircle className="w-14 h-14 text-amber-500 mx-auto mb-3" />
-            <h1 className="text-2xl font-bold text-foreground">Exercice terminé !</h1>
-            {score !== null && (
-              <div className="mt-3">
-                <span className="text-4xl font-extrabold text-amber-600 dark:text-amber-400">
-                  {score}%
-                </span>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {correctCount} bonne{correctCount !== 1 ? "s" : ""} réponse
-                  {correctCount !== 1 ? "s" : ""} sur {autoGradedQuestions.length}
-                </p>
-              </div>
-            )}
-            {textQuestions.length > 0 && (
-              <p className="text-sm text-muted-foreground mt-2">
-                {textQuestions.length} réponse{textQuestions.length > 1 ? "s" : ""} écrite
-                {textQuestions.length > 1 ? "s" : ""} en attente de correction
-              </p>
-            )}
-          </div>
+    // Adaptive recommendation
+    type AdaptiveLevel = "excellent" | "bien" | "continue" | "retry";
+    const adaptive: {
+      level: AdaptiveLevel;
+      Icon: typeof Trophy;
+      label: string;
+      msg: string;
+      scoreClass: string;
+      bgClass: string;
+      retryFirst: boolean;
+    } = score === null
+      ? { level: "bien", Icon: CheckCircle, label: "Terminé !", msg: "Tes réponses ont été enregistrées.", scoreClass: "text-amber-600 dark:text-amber-400", bgClass: "bg-amber-50 dark:bg-amber-950/40", retryFirst: false }
+      : score >= 80
+        ? { level: "excellent", Icon: Trophy, label: "Excellent !", msg: "Tu maîtrises très bien ce contenu. Passe à l'exercice suivant !", scoreClass: "text-green-600 dark:text-green-400", bgClass: "bg-green-50 dark:bg-green-950/40", retryFirst: false }
+        : score >= 60
+          ? { level: "bien", Icon: TrendingUp, label: "Bien !", msg: "Bonne progression. Relis tes erreurs et continue.", scoreClass: "text-blue-600 dark:text-blue-400", bgClass: "bg-blue-50 dark:bg-blue-950/40", retryFirst: false }
+          : score >= 40
+            ? { level: "continue", Icon: TrendingUp, label: "Continue !", msg: "Relis tes erreurs ci-dessous, puis passe à la suite.", scoreClass: "text-amber-600 dark:text-amber-400", bgClass: "bg-amber-50 dark:bg-amber-950/40", retryFirst: false }
+            : { level: "retry", Icon: RefreshCw, label: "Persévère !", msg: "Recommence l'exercice pour mieux assimiler le contenu.", scoreClass: "text-red-600 dark:text-red-400", bgClass: "bg-red-50 dark:bg-red-950/40", retryFirst: true };
 
-          {siblingExercises.length > 1 && (
-            <div className="mb-6">
-              <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                <span>Progression dans le cours</span>
-                <span>{currentIndex + 1} / {siblingExercises.length}</span>
+    const retryFn = () => {
+      setCompleted(false);
+      setCurrentQuestionIndex(0);
+      setUserAnswers({});
+      setShowFeedback(false);
+      setMatchingLeft(null);
+      shuffledRightRef.current = {};
+    };
+
+    // Display helpers for review
+    const displayUserAnswer = (q: Question, userAnswer: string): string => {
+      if (!userAnswer) return "(non répondu)";
+      if (q.type === "matching") {
+        try {
+          const map: Record<string, string> = JSON.parse(userAnswer);
+          return Object.entries(map).map(([k, v]) => `${k} → ${v}`).join("  •  ");
+        } catch { return userAnswer; }
+      }
+      return userAnswer;
+    };
+
+    const displayCorrectAnswer = (q: Question): string => {
+      if (q.type === "matching") {
+        try {
+          const map: Record<string, string> = JSON.parse(q.correctAnswer);
+          return Object.entries(map).map(([k, v]) => `${k} → ${v}`).join("  •  ");
+        } catch { return q.correctAnswer; }
+      }
+      if (q.type === "fill_blank") return q.correctAnswer.split("|").join(" ou ");
+      return q.correctAnswer;
+    };
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <div className="max-w-2xl mx-auto px-4 py-8 space-y-5">
+
+          {/* ── Score card ── */}
+          <Card className="p-8">
+            <div className="text-center">
+              <adaptive.Icon className={`w-12 h-12 mx-auto mb-3 ${adaptive.scoreClass}`} />
+              <h1 className="text-2xl font-bold text-foreground mb-1">{adaptive.label}</h1>
+              <p className="text-sm text-muted-foreground mb-4">{adaptive.msg}</p>
+
+              {score !== null && (
+                <div className={`inline-block rounded-md px-6 py-4 mb-4 ${adaptive.bgClass}`}>
+                  <span className={`text-5xl font-extrabold ${adaptive.scoreClass}`}>{score}%</span>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {correctCount} bonne{correctCount !== 1 ? "s" : ""} réponse
+                    {correctCount !== 1 ? "s" : ""} sur {autoGradedResults.length}
+                  </p>
+                </div>
+              )}
+
+              {textResults.length > 0 && (
+                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <FileText className="w-4 h-4" />
+                  <span>
+                    {textResults.length} réponse{textResults.length > 1 ? "s" : ""} écrite
+                    {textResults.length > 1 ? "s" : ""} en attente de correction par l'enseignant
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {siblingExercises.length > 1 && (
+              <div className="mt-6">
+                <div className="flex justify-between text-xs text-muted-foreground mb-2">
+                  <span>Progression dans le cours</span>
+                  <span>{currentIndex + 1} / {siblingExercises.length}</span>
+                </div>
+                <div className="flex gap-1">
+                  {siblingExercises.map((ex, i) => (
+                    <div
+                      key={ex.id}
+                      className={`h-1.5 flex-1 rounded-full transition-colors ${
+                        i <= currentIndex ? "bg-amber-500" : "bg-secondary"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="flex gap-1">
-                {siblingExercises.map((ex, i) => (
-                  <div
-                    key={ex.id}
-                    className={`h-1.5 flex-1 rounded-full transition-colors ${
-                      i <= currentIndex ? "bg-amber-500" : "bg-secondary"
-                    }`}
-                  />
+            )}
+          </Card>
+
+          {/* ── Question-by-question review ── */}
+          {results.length > 0 && (
+            <Card className="p-6">
+              <h2 className="text-base font-semibold text-foreground mb-4">
+                Révision des réponses
+              </h2>
+              <div className="space-y-4">
+                {results.map((r, i) => (
+                  <div key={r.q.id} data-testid={`review-question-${i}`}>
+                    {i > 0 && <Separator className="mb-4" />}
+                    <div className="flex items-start gap-3">
+                      {/* Status icon */}
+                      <div className="mt-0.5 shrink-0">
+                        {r.isText ? (
+                          <FileText className="w-5 h-5 text-muted-foreground" />
+                        ) : r.isCorrect ? (
+                          <CheckCircle className="w-5 h-5 text-green-500" />
+                        ) : (
+                          <XCircle className="w-5 h-5 text-red-500" />
+                        )}
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        {/* Question label */}
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <span className="text-xs font-medium text-muted-foreground">
+                            Question {i + 1}
+                          </span>
+                          {r.isText ? (
+                            <Badge variant="secondary" className="text-xs">À corriger</Badge>
+                          ) : r.isCorrect ? (
+                            <Badge className="text-xs bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">Correct</Badge>
+                          ) : (
+                            <Badge variant="destructive" className="text-xs">Incorrect</Badge>
+                          )}
+                        </div>
+
+                        {/* Question text (truncated) */}
+                        <p className="text-sm font-medium text-foreground mb-2 leading-snug">
+                          {r.q.text.length > 120
+                            ? r.q.title.replace(/^Question\s*\d*\s*:\s*/i, "").trim() || r.q.text.slice(0, 120) + "…"
+                            : r.q.text}
+                        </p>
+
+                        {/* Answers */}
+                        <div className="space-y-1 text-sm">
+                          {r.isText ? (
+                            <div className="bg-secondary/50 rounded-md px-3 py-2 text-muted-foreground italic">
+                              {r.userAnswer || "(aucune réponse)"}
+                            </div>
+                          ) : (
+                            <>
+                              {/* User answer */}
+                              <div className={`rounded-md px-3 py-1.5 ${
+                                r.isCorrect
+                                  ? "bg-green-50 dark:bg-green-950/30 text-green-800 dark:text-green-300"
+                                  : "bg-red-50 dark:bg-red-950/30 text-red-800 dark:text-red-300"
+                              }`}>
+                                <span className="font-medium">Ta réponse : </span>
+                                {displayUserAnswer(r.q, r.userAnswer)}
+                              </div>
+
+                              {/* Correct answer — only shown if wrong */}
+                              {!r.isCorrect && (
+                                <div className="bg-green-50 dark:bg-green-950/30 text-green-800 dark:text-green-300 rounded-md px-3 py-1.5">
+                                  <span className="font-medium">Bonne réponse : </span>
+                                  {displayCorrectAnswer(r.q)}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
-            </div>
+            </Card>
           )}
 
-          <div className="space-y-3">
-            {nextExercise && (
-              <Button
-                onClick={() => setLocation(`/exercise/${nextExercise.id}`)}
-                className="w-full"
-                data-testid="button-next-exercise"
-              >
-                Exercice suivant
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            )}
-
-            <div className="flex gap-3">
-              {prevExercise && (
+          {/* ── Navigation ── */}
+          <Card className="p-6 space-y-3">
+            {/* Primary adaptive CTA */}
+            {adaptive.retryFirst ? (
+              <>
+                <Button onClick={retryFn} className="w-full" data-testid="button-retry-exercise">
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  Recommencer l'exercice
+                </Button>
+                {nextExercise && (
+                  <Button
+                    variant="outline"
+                    onClick={() => setLocation(`/exercise/${nextExercise.id}`)}
+                    className="w-full"
+                    data-testid="button-next-exercise"
+                  >
+                    Exercice suivant quand même
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                )}
+              </>
+            ) : (
+              <>
+                {nextExercise && (
+                  <Button
+                    onClick={() => setLocation(`/exercise/${nextExercise.id}`)}
+                    className="w-full"
+                    data-testid="button-next-exercise"
+                  >
+                    Exercice suivant
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                )}
                 <Button
                   variant="outline"
-                  onClick={() => setLocation(`/exercise/${prevExercise.id}`)}
-                  className="flex-1"
-                  data-testid="button-prev-exercise"
+                  onClick={retryFn}
+                  className="w-full"
+                  data-testid="button-retry-exercise"
                 >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Précédent
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  Recommencer
+                </Button>
+              </>
+            )}
+
+            <Separator />
+
+            <div className="flex gap-3">
+              {exercise?.courseId && (
+                <Button
+                  variant="ghost"
+                  onClick={() => setLocation(`/course/${exercise.courseId}`)}
+                  className="flex-1"
+                  data-testid="button-back-course"
+                >
+                  Retour au cours
                 </Button>
               )}
               <Button
-                variant="outline"
-                onClick={() => {
-                  setCompleted(false);
-                  setCurrentQuestionIndex(0);
-                  setUserAnswers({});
-                  setShowFeedback(false);
-                  setMatchingLeft(null);
-                  shuffledRightRef.current = {};
-                }}
-                className="flex-1"
-                data-testid="button-retry-exercise"
+                variant="ghost"
+                onClick={() => setLocation("/student-dashboard")}
+                className="flex-1 text-muted-foreground"
+                data-testid="button-back-dashboard"
               >
-                <RotateCcw className="w-4 h-4 mr-2" />
-                Recommencer
+                Tableau de bord
               </Button>
             </div>
+          </Card>
 
-            {exercise?.courseId && (
-              <Button
-                variant="ghost"
-                onClick={() => setLocation(`/course/${exercise.courseId}`)}
-                className="w-full"
-                data-testid="button-back-course"
-              >
-                Retour au cours
-              </Button>
-            )}
-
-            <Button
-              variant="ghost"
-              onClick={() => setLocation("/student-dashboard")}
-              className="w-full text-muted-foreground"
-              data-testid="button-back-dashboard"
-            >
-              Tableau de bord
-            </Button>
-          </div>
-        </Card>
+        </div>
       </div>
     );
   }
@@ -761,7 +917,7 @@ export default function Exercise() {
             {/* Multiple choice */}
             {currentQuestion.type === "multiple_choice" && (
               <div className="space-y-4 mt-6">
-                {(currentQuestion.options || []).map((option) => (
+                {((currentQuestion.options as string[]) || []).map((option) => (
                   <button
                     key={option}
                     onClick={() => !showFeedback && handleAnswerChange(option)}
@@ -787,7 +943,7 @@ export default function Exercise() {
                     <SelectValue placeholder="Choisissez une réponse..." />
                   </SelectTrigger>
                   <SelectContent>
-                    {(currentQuestion.options || []).map((option) => (
+                    {((currentQuestion.options as string[]) || []).map((option) => (
                       <SelectItem key={option} value={option} data-testid={`select-option-${option}`}>
                         {option}
                       </SelectItem>

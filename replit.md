@@ -256,6 +256,25 @@ Application web éducative complète pour l'enseignement du français aux élèv
 23. **Vocabulaire contexte** - Deviner sens dans contexte (révisé)
 24. **Mots de la même famille** - Dérivation et familles lexicales
 
+## Nouvelles Fonctionnalités (Janvier 2026)
+
+### Résumé de fin d'exercice enrichi ✅
+- Score affiché en couleur selon le résultat (vert ≥80%, bleu ≥60%, amber ≥40%, rouge <40%)
+- Message adaptatif : "Excellent !", "Bien !", "Continue !", "Persévère !"
+- Révision question par question :
+  - Icône verte ✓ ou rouge ✗ par question
+  - Badge "Correct", "Incorrect" ou "À corriger" (questions texte libre)
+  - Réponse de l'élève affichée (fond vert ou rouge)
+  - Bonne réponse affichée en vert si l'élève a fait une erreur
+  - Support des formats MCQ, fill_blank, matching et texte libre
+- Progression du cours (barre avec exercices complétés)
+
+### Exercices adaptatifs ✅
+- Si score < 40% : bouton primaire = "Recommencer l'exercice" (avec option d'avancer quand même)
+- Si score ≥ 40% : bouton primaire = "Exercice suivant"
+- Message de motivation personnalisé selon le niveau de réussite
+- Icône adaptative : Trophy (≥80%), TrendingUp (40-79%), RefreshCw (<40%)
+
 ## Fonctionnalités Future (Non MVP)
 
 Ces fonctionnalités pourront être ajoutées ultérieurement:
