@@ -14,6 +14,7 @@ export default function Auth() {
   const [lastName, setLastName] = useState("");
   const [role, setRole] = useState<"teacher" | "student">("student");
   const [isLogin, setIsLogin] = useState(true);
+  const [adminCode, setAdminCode] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Auth() {
       const endpoint = isLogin ? "/api/login" : "/api/register";
       const body = isLogin
         ? { username, password }
-        : { username, password, firstName, lastName, role };
+        : { username, password, firstName, lastName, role, adminCode };
 
       const res = await fetch(endpoint, {
         method: "POST",
@@ -143,13 +144,34 @@ export default function Auth() {
                     <select
                       id="role"
                       value={role}
-                      onChange={(e) => setRole(e.target.value as "teacher" | "student")}
+                      onChange={(e) => {
+                        setRole(e.target.value as "teacher" | "student");
+                        setAdminCode("");
+                      }}
                       className="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground"
                     >
                       <option value="student">Élève</option>
                       <option value="teacher">Enseignant</option>
                     </select>
                   </div>
+
+                  {role === "teacher" && (
+                    <div>
+                      <Label htmlFor="adminCode">Code administrateur</Label>
+                      <Input
+                        id="adminCode"
+                        data-testid="input-admin-code"
+                        type="password"
+                        value={adminCode}
+                        onChange={(e) => setAdminCode(e.target.value)}
+                        placeholder="Entrez le code fourni par l'administrateur"
+                        required
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Ce code est fourni par l'administrateur de la plateforme.
+                      </p>
+                    </div>
+                  )}
                 </>
               )}
 

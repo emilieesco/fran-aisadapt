@@ -8,6 +8,15 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
   app.post("/api/register", async (req, res) => {
     try {
       const data = insertUserSchema.parse(req.body);
+
+      // Les enseignants doivent fournir le code admin
+      if (data.role === "teacher") {
+        const adminCode = process.env.ADMIN_CODE || "FRANCAISADAPT2025";
+        if (req.body.adminCode !== adminCode) {
+          return res.status(403).send("Code administrateur invalide");
+        }
+      }
+
       const existingUser = await storage.getUserByUsername(data.username);
       if (existingUser) {
         return res.status(400).send("L'utilisateur existe déjà");
