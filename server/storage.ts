@@ -10753,7 +10753,7 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       id: lacunairesConjCourseId,
       title: "Conjugaison au présent — Blancs à remplir",
       description: "Complète les phrases en conjuguant le verbe au présent de l'indicatif. Le verbe à conjuguer est indiqué entre parenthèses.",
-      category: "fill_blank",
+      category: "conjugaison",
       content: "Exercices lacunaires de conjugaison au présent de l'indicatif — verbes des trois groupes et verbes irréguliers courants.",
       order: 200,
     };
@@ -10882,7 +10882,7 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       id: lacunairesHomophonesCourseId,
       title: "Homophones courants — Blancs à remplir",
       description: "Choisis le bon homophone pour compléter chaque phrase. Les homophones sont des mots qui se prononcent de la même façon mais qui s'écrivent différemment.",
-      category: "fill_blank",
+      category: "orthographe",
       content: "Exercices lacunaires sur les homophones les plus fréquents : a/à, ou/où, son/sont, ces/ses/c'est, mes/mais, on/ont, et/est, la/là/l'a.",
       order: 201,
     };
