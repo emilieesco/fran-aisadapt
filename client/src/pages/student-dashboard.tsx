@@ -1096,45 +1096,79 @@ export default function StudentDashboard() {
                     </Card>
                   );
                 }
-                return dicteeCourses.map((course) => {
+                const getLevelTheme = (title: string) => {
+                  if (title.includes("Niveau 1") || title.includes("Découverte") || title.includes("découverte")) {
+                    return {
+                      badge: "Niveau 1 — Débutant",
+                      cardClass: "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800",
+                      textClass: "text-green-700 dark:text-green-300",
+                      barClass: "bg-green-500",
+                    };
+                  }
+                  if (title.includes("Niveau 2") || title.includes("Intermédiaire") || title.includes("intermédiaire")) {
+                    return {
+                      badge: "Niveau 2 — Intermédiaire",
+                      cardClass: "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800",
+                      textClass: "text-amber-700 dark:text-amber-300",
+                      barClass: "bg-amber-500",
+                    };
+                  }
+                  if (title.includes("Niveau 3") || title.includes("Avancé") || title.includes("avancé")) {
+                    return {
+                      badge: "Niveau 3 — Avancé",
+                      cardClass: "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800",
+                      textClass: "text-red-700 dark:text-red-300",
+                      barClass: "bg-red-500",
+                    };
+                  }
+                  return {
+                    badge: "Découverte",
+                    cardClass: "bg-sky-50 dark:bg-sky-900/20 border-sky-200 dark:border-sky-800",
+                    textClass: "text-sky-700 dark:text-sky-300",
+                    barClass: "bg-sky-500",
+                  };
+                };
+
+                const sortedDicteeCourses = [...dicteeCourses].sort((a, b) => (a.title < b.title ? -1 : 1));
+
+                return sortedDicteeCourses.map((course) => {
                   const dicExercises = exercises.filter((ex) => ex.courseId === course.id);
-                  const niveaux = ["Niveau débutant", "Niveau intermédiaire", "Niveau avancé"];
-                  const niveauColors = [
-                    "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800",
-                    "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800",
-                    "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800",
-                  ];
-                  const niveauTextColors = [
-                    "text-green-700 dark:text-green-300",
-                    "text-amber-700 dark:text-amber-300",
-                    "text-red-700 dark:text-red-300",
-                  ];
+                  const theme = getLevelTheme(course.title);
                   return (
-                    <div key={course.id} className="space-y-4">
-                      {course.progressPercentage > 0 && (
-                        <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                          <div className="flex-1 h-2 rounded-full bg-secondary">
-                            <div
-                              className="h-2 rounded-full bg-sky-500 transition-all"
-                              style={{ width: `${course.progressPercentage}%` }}
-                            />
-                          </div>
-                          <span>{course.progressPercentage}% complété</span>
+                    <div key={course.id} className="space-y-3">
+                      {/* En-tête du niveau */}
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                          <span className={`text-xs font-bold uppercase tracking-wider ${theme.textClass}`}>{theme.badge}</span>
+                          <h3 className="font-semibold text-foreground">{course.title}</h3>
+                          <p className="text-sm text-muted-foreground">{course.description}</p>
                         </div>
-                      )}
+                        {course.progressPercentage > 0 && (
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground min-w-32">
+                            <div className="flex-1 h-2 rounded-full bg-secondary">
+                              <div
+                                className={`h-2 rounded-full transition-all ${theme.barClass}`}
+                                style={{ width: `${course.progressPercentage}%` }}
+                              />
+                            </div>
+                            <span className="whitespace-nowrap">{course.progressPercentage}%</span>
+                          </div>
+                        )}
+                      </div>
+                      {/* Cartes des dictées */}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {dicExercises.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)).map((ex, idx) => (
                           <Card
                             key={ex.id}
-                            className={`p-5 border-2 hover-elevate ${niveauColors[idx] || niveauColors[2]}`}
+                            className={`p-5 border-2 hover-elevate ${theme.cardClass}`}
                             data-testid={`card-dictee-${ex.id}`}
                           >
                             <div className="space-y-3">
                               <div className="flex items-center justify-between gap-2">
-                                <span className={`text-xs font-bold uppercase tracking-wider ${niveauTextColors[idx] || niveauTextColors[2]}`}>
-                                  {niveaux[idx] || `Niveau ${idx + 1}`}
+                                <span className={`text-xs font-bold uppercase tracking-wider ${theme.textClass}`}>
+                                  Dictée {idx + 1}
                                 </span>
-                                <Mic className={`w-5 h-5 flex-shrink-0 ${niveauTextColors[idx] || niveauTextColors[2]}`} />
+                                <Mic className={`w-5 h-5 flex-shrink-0 ${theme.textClass}`} />
                               </div>
                               <div>
                                 <h3 className="font-bold text-foreground leading-snug">{ex.title}</h3>

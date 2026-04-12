@@ -11398,8 +11398,8 @@ Sur de vieilles espérances.
       const courseId = randomUUID();
       const course: Course = {
         id: courseId,
-        title: "Dictée interactive",
-        description: "Écoute et écris : exercices de dictée avec correction automatique. Du niveau débutant à avancé.",
+        title: "Dictées découverte",
+        description: "Découvre les dictées interactives avec 3 textes progressifs — du simple au plus complexe.",
         category: "dictee",
         content: "<h2>Dictée interactive</h2><p>Dans ces exercices, tu vas écouter un texte lu à voix haute et taper ce que tu entends. La correction se fait automatiquement mot par mot.</p><p><strong>Consignes :</strong><br>1. Clique sur le bouton <em>Écouter</em> pour entendre le texte<br>2. Tape le texte dans la zone de saisie<br>3. Soumets ta réponse pour voir les corrections<br>4. Les mots corrects apparaissent en vert, les erreurs en rouge</p>",
         order: 112,
@@ -11450,6 +11450,138 @@ Sur de vieilles espérances.
           order: 1,
         };
         this.questions.set(question.id, question);
+      }
+    }
+
+    // ============================================================
+    // DICTÉES — NIVEAU 1 : DÉBUTANT
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Dictées — Niveau 1 : Débutant",
+        description: "Phrases simples, vocabulaire du quotidien, présent de l'indicatif. Idéal pour commencer.",
+        category: "dictee",
+        content: "<h2>Dictées niveau débutant</h2><p>Ces dictées utilisent des phrases courtes avec du vocabulaire simple. Écoute bien chaque mot et écris ce que tu entends.</p>",
+        order: 113,
+      };
+      this.courses.set(courseId, course);
+
+      const dictees = [
+        {
+          title: "La maison de ma grand-mère",
+          description: "Phrases simples — famille et maison",
+          order: 1,
+          text: "Ma grand-mère habite une belle maison blanche avec un jardin fleuri. Elle a un chat gris qui s'appelle Minuit. Chaque mardi, je lui rends visite et nous buvons du thé chaud ensemble. J'aime beaucoup passer du temps avec elle.",
+        },
+        {
+          title: "Mon chien Caramel",
+          description: "Phrases simples — les animaux de compagnie",
+          order: 2,
+          text: "Mon chien s'appelle Caramel parce qu'il a le poil couleur de sucre. Il est très gentil et aime jouer dans la cour. Chaque matin, je lui donne à manger et de l'eau fraîche. Il agite la queue dès qu'il me voit.",
+        },
+        {
+          title: "Le marché du samedi",
+          description: "Phrases simples — les achats et la nourriture",
+          order: 3,
+          text: "Chaque samedi matin, ma mère va au marché avec moi. On achète des légumes frais, du fromage et du pain. Le vendeur de fruits nous donne toujours un échantillon gratuit. Je préfère les fraises et les pommes vertes.",
+        },
+      ];
+
+      for (const d of dictees) {
+        const exId = randomUUID();
+        const qId = randomUUID();
+        this.exercises.set(exId, { id: exId, courseId, title: d.title, description: d.description, type: "dictee", order: d.order } as Exercise);
+        this.questions.set(qId, { id: qId, exerciseId: exId, title: "Dictée — Écoute et écris", text: "Clique sur le bouton Écouter pour entendre le texte, puis écris exactement ce que tu as entendu.", type: "dictee", options: null, correctAnswer: d.text, order: 1 } as Question);
+      }
+    }
+
+    // ============================================================
+    // DICTÉES — NIVEAU 2 : INTERMÉDIAIRE
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Dictées — Niveau 2 : Intermédiaire",
+        description: "Phrases composées, accords, passé composé et imparfait. Pour consolider tes acquis.",
+        category: "dictee",
+        content: "<h2>Dictées niveau intermédiaire</h2><p>Ces dictées comportent des phrases plus longues avec le passé composé, l'imparfait et des accords à surveiller.</p>",
+        order: 114,
+      };
+      this.courses.set(courseId, course);
+
+      const dictees = [
+        {
+          title: "Une sortie en forêt",
+          description: "Passé composé et imparfait — promenade en nature",
+          order: 1,
+          text: "Samedi dernier, toute notre classe est allée en forêt pour observer les oiseaux. Il faisait un temps magnifique et le soleil brillait entre les feuilles des arbres. Nous avons marché pendant deux heures sur un sentier bordé de fougères. À notre retour, chacun a partagé ses découvertes avec enthousiasme.",
+        },
+        {
+          title: "Le festival de l'hiver",
+          description: "Description et récit — les fêtes québécoises",
+          order: 2,
+          text: "Le Carnaval de Québec est la fête d'hiver la plus célèbre du Canada. Des milliers de visiteurs viennent admirer les sculptures de glace et participer aux activités en plein air. L'année dernière, nous avons glissé sur la toboggan géante et bu du caribou chaud. Bonhomme Carnaval était là pour accueillir les familles avec son célèbre sourire.",
+        },
+        {
+          title: "Ma journée à l'école",
+          description: "Passé composé — les routines scolaires",
+          order: 3,
+          text: "Ce matin, je me suis levé tôt pour ne pas rater l'autobus. En classe, nous avons corrigé un exercice de mathématiques et commencé un nouveau chapitre de français. À la récréation, j'ai joué au ballon avec mes amis sous le ciel nuageux. L'après-midi s'est passé rapidement grâce à une activité d'art plastique que j'ai beaucoup appréciée.",
+        },
+      ];
+
+      for (const d of dictees) {
+        const exId = randomUUID();
+        const qId = randomUUID();
+        this.exercises.set(exId, { id: exId, courseId, title: d.title, description: d.description, type: "dictee", order: d.order } as Exercise);
+        this.questions.set(qId, { id: qId, exerciseId: exId, title: "Dictée — Écoute et écris", text: "Clique sur le bouton Écouter pour entendre le texte, puis écris exactement ce que tu as entendu.", type: "dictee", options: null, correctAnswer: d.text, order: 1 } as Question);
+      }
+    }
+
+    // ============================================================
+    // DICTÉES — NIVEAU 3 : AVANCÉ
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Dictées — Niveau 3 : Avancé",
+        description: "Textes plus longs, langage riche, phrases complexes et ponctuation avancée. Pour les élèves forts.",
+        category: "dictee",
+        content: "<h2>Dictées niveau avancé</h2><p>Ces dictées utilisent un vocabulaire riche, des structures syntaxiques complexes et une ponctuation variée. Concentre-toi bien sur chaque détail.</p>",
+        order: 115,
+      };
+      this.courses.set(courseId, course);
+
+      const dictees = [
+        {
+          title: "Le lac des hérons",
+          description: "Description littéraire — nature et vocabulaire soutenu",
+          order: 1,
+          text: "Le lac des hérons s'étend entre deux collines boisées, immobile comme un miroir que le vent n'aurait pas encore troublé. Des hérons cendrés, immobiles sur leurs longues pattes grêles, observent les eaux transparentes avec une patience infinie. À l'aube, une légère brume flotte au-dessus de la surface, puis se dissipe lentement sous les premiers rayons du soleil. Ce lieu, ignoré de la plupart des promeneurs, demeure l'un des endroits les plus paisibles de toute la région.",
+        },
+        {
+          title: "La tempête de verglas",
+          description: "Récit historique — concordance des temps",
+          order: 2,
+          text: "En janvier 1998, une terrible tempête de verglas a frappé le Québec et laissé des traces durables dans la mémoire des habitants. Pendant plusieurs jours, une pluie verglaçante s'est abattue sur les villes et les campagnes, recouvrant chaque surface d'une épaisse couche de glace. Des centaines de milliers de personnes se sont retrouvées sans électricité dans le froid mordant de l'hiver. Malgré l'adversité, les Québécois ont fait preuve d'une solidarité remarquable, s'entraidant pour traverser cette épreuve difficile.",
+        },
+        {
+          title: "Lettre à mon ami",
+          description: "Expression personnelle — langage soutenu et ponctuation",
+          order: 3,
+          text: "Mon cher Antoine, cela fait maintenant plusieurs mois que tu vis à Lyon, et ta présence me manque énormément. Ici, à Montréal, les feuilles d'automne colorent les rues de rouge et d'or, mais quelque chose semble différent sans toi. Je t'écris pour te raconter nos dernières aventures ; hier soir, nous sommes allés au théâtre voir une pièce de Michel Tremblay qui nous a tous beaucoup émus. J'espère que tu trouveras bientôt l'occasion de revenir nous rendre visite, car nos amis te réservent une belle surprise.",
+        },
+      ];
+
+      for (const d of dictees) {
+        const exId = randomUUID();
+        const qId = randomUUID();
+        this.exercises.set(exId, { id: exId, courseId, title: d.title, description: d.description, type: "dictee", order: d.order } as Exercise);
+        this.questions.set(qId, { id: qId, exerciseId: exId, title: "Dictée — Écoute et écris", text: "Clique sur le bouton Écouter pour entendre le texte, puis écris exactement ce que tu as entendu.", type: "dictee", options: null, correctAnswer: d.text, order: 1 } as Question);
       }
     }
 
