@@ -90,6 +90,32 @@ export const assignments = pgTable("assignments", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Student documents table
+export const studentDocuments = pgTable("student_documents", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  studentId: varchar("student_id").notNull(),
+  title: text("title").notNull(),
+  fileName: text("file_name").notNull(),
+  fileType: text("file_type").notNull(),
+  fileSize: integer("file_size").notNull(),
+  fileData: text("file_data").notNull(), // base64 encoded
+  uploadedAt: timestamp("uploaded_at").defaultNow(),
+  teacherComment: text("teacher_comment"),
+  teacherReviewed: boolean("teacher_reviewed").notNull().default(false),
+  reviewedAt: timestamp("reviewed_at"),
+});
+
+export type StudentDocument = typeof studentDocuments.$inferSelect;
+export const insertStudentDocumentSchema = createInsertSchema(studentDocuments).pick({
+  studentId: true,
+  title: true,
+  fileName: true,
+  fileType: true,
+  fileSize: true,
+  fileData: true,
+});
+export type InsertStudentDocument = z.infer<typeof insertStudentDocumentSchema>;
+
 // Invite codes table (codes générés par l'admin pour les enseignants)
 export const inviteCodes = pgTable("invite_codes", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),

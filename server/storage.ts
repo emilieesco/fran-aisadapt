@@ -14,6 +14,8 @@ import type {
   StudentBadge,
   Assignment,
   InviteCode,
+  StudentDocument,
+  InsertStudentDocument,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -80,6 +82,14 @@ export interface IStorage {
   createInviteCode(data: { code: string; label?: string | null }): Promise<InviteCode>;
   useInviteCode(code: string, userId: string): Promise<void>;
   deleteInviteCode(id: string): Promise<void>;
+
+  // Student Documents
+  getDocument(id: string): Promise<StudentDocument | undefined>;
+  getDocumentsByStudent(studentId: string): Promise<StudentDocument[]>;
+  getDocumentsByTeacher(teacherId: string): Promise<StudentDocument[]>;
+  createDocument(doc: InsertStudentDocument): Promise<StudentDocument>;
+  updateDocumentComment(id: string, comment: string, reviewed: boolean): Promise<StudentDocument | undefined>;
+  deleteDocument(id: string): Promise<void>;
 }
 
 export class MemStorage implements IStorage {
