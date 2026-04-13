@@ -588,9 +588,20 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
   // Commenter / valider un document (enseignant)
   app.patch("/api/documents/:id/comment", async (req, res) => {
     try {
-      const { comment, reviewed } = req.body;
+      const { comment, reviewed, teacherId } = req.body;
+      const docBefore = await storage.getDocument(req.params.id);
       const doc = await storage.updateDocumentComment(req.params.id, comment ?? "", reviewed ?? false);
       if (!doc) return res.status(404).send("Document introuvable");
+      // Créer une notification si le document vient d'être marqué corrigé
+      if (reviewed && docBefore && !docBefore.teacherReviewed) {
+        await storage.createNotification({
+          userId: doc.studentId,
+          type: "document_reviewed",
+          title: "Document corrigé",
+          message: `Votre document "${doc.title}" a été corrigé par votre enseignant${comment ? " avec un commentaire" : ""}.`,
+          relatedId: doc.id,
+        });
+      }
       res.json(doc);
     } catch (err) {
       res.status(500).send("Erreur serveur");
@@ -601,6 +612,111 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
   app.delete("/api/documents/:id", async (req, res) => {
     try {
       await storage.deleteDocument(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Trouver l'enseignant d'un élève (via ses assignments)
+  app.get("/api/students/:id/teacher", async (req, res) => {
+    try {
+      const assignments = await storage.getAssignmentsByStudent(req.params.id);
+      if (assignments.length === 0) return res.json(null);
+      const teacher = await storage.getUser(assignments[0].teacherId);
+      if (!teacher) return res.json(null);
+      const { password, ...safeTeacher } = teacher;
+      res.json(safeTeacher);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // ─── MESSAGES ────────────────────────────────────────────────────────────────
+
+  // Envoyer un message
+  app.post("/api/messages", async (req, res) => {
+    try {
+      const { senderId, receiverId, content } = req.body;
+      if (!senderId || !receiverId || !content?.trim()) {
+        return res.status(400).send("Champs manquants");
+      }
+      const msg = await storage.sendMessage({ senderId, receiverId, content: content.trim() });
+      // Notifier le destinataire
+      const sender = await storage.getUser(senderId);
+      if (sender) {
+        await storage.createNotification({
+          userId: receiverId,
+          type: "new_message",
+          title: "Nouveau message",
+          message: `${sender.firstName} ${sender.lastName} vous a envoyé un message.`,
+          relatedId: senderId,
+        });
+      }
+      res.json(msg);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Récupérer la conversation entre deux utilisateurs
+  app.get("/api/messages/:userId1/:userId2", async (req, res) => {
+    try {
+      const msgs = await storage.getMessages(req.params.userId1, req.params.userId2);
+      // Marquer les messages du destinataire comme lus
+      await storage.markMessagesRead(req.params.userId1, req.params.userId2);
+      res.json(msgs);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Nombre de messages non lus
+  app.get("/api/messages/unread/:userId", async (req, res) => {
+    try {
+      const count = await storage.getUnreadCount(req.params.userId);
+      res.json({ count });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // ─── NOTIFICATIONS ────────────────────────────────────────────────────────────
+
+  // Récupérer les notifications d'un utilisateur
+  app.get("/api/notifications/:userId", async (req, res) => {
+    try {
+      const notifs = await storage.getNotifications(req.params.userId);
+      res.json(notifs);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Nombre de notifications non lues
+  app.get("/api/notifications/:userId/unread-count", async (req, res) => {
+    try {
+      const count = await storage.getUnreadNotificationCount(req.params.userId);
+      res.json({ count });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Marquer une notification comme lue
+  app.patch("/api/notifications/:id/read", async (req, res) => {
+    try {
+      await storage.markNotificationRead(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Marquer toutes les notifications comme lues
+  app.patch("/api/notifications/:userId/read-all", async (req, res) => {
+    try {
+      await storage.markAllNotificationsRead(req.params.userId);
       res.json({ success: true });
     } catch (err) {
       res.status(500).send("Erreur serveur");

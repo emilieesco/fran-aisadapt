@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle, Mic, Volume2, CheckCircle, Upload, Trash2, Download, MessageSquare } from "lucide-react";
+import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle, Mic, Volume2, CheckCircle, Upload, Trash2, Download, MessageSquare, Bell, Send, MessageCircle } from "lucide-react";
 
 interface Course {
   id: string;
@@ -149,6 +149,46 @@ export default function StudentDashboard() {
   const [docFile, setDocFile] = useState<File | null>(null);
   const [docUploading, setDocUploading] = useState(false);
   const [docError, setDocError] = useState("");
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const [teacher, setTeacher] = useState<{ id: string; firstName: string; lastName: string } | null>(null);
+  const [chatMessages, setChatMessages] = useState<any[]>([]);
+  const [msgDraft, setMsgDraft] = useState("");
+  const [msgSending, setMsgSending] = useState(false);
+
+  const loadNotifications = async (userId: string) => {
+    const res = await fetch(`/api/notifications/${userId}`, { credentials: "include" });
+    if (res.ok) setNotifications(await res.json());
+  };
+
+  const loadMessages = async (userId: string, teacherId: string) => {
+    const res = await fetch(`/api/messages/${userId}/${teacherId}`, { credentials: "include" });
+    if (res.ok) setChatMessages(await res.json());
+  };
+
+  const handleSendMessage = async () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId || !teacher || !msgDraft.trim()) return;
+    setMsgSending(true);
+    const res = await fetch("/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ senderId: userId, receiverId: teacher.id, content: msgDraft.trim() }),
+    });
+    setMsgSending(false);
+    if (res.ok) {
+      setMsgDraft("");
+      loadMessages(userId, teacher.id);
+    }
+  };
+
+  const handleMarkAllRead = async () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+    await fetch(`/api/notifications/${userId}/read-all`, { method: "PATCH", credentials: "include" });
+    loadNotifications(userId);
+  };
 
   const loadDocuments = async (userId: string) => {
     const res = await fetch(`/api/documents/student/${userId}`, {
@@ -229,6 +269,16 @@ export default function StudentDashboard() {
         }
         if (exercisesRes.ok) setExercises(await exercisesRes.json());
         loadDocuments(userId);
+        loadNotifications(userId);
+        // Charger l'enseignant et les messages
+        const teacherRes = await fetch(`/api/students/${userId}/teacher`, { credentials: "include" });
+        if (teacherRes.ok) {
+          const t = await teacherRes.json();
+          if (t) {
+            setTeacher(t);
+            loadMessages(userId, t.id);
+          }
+        }
       } catch (err) {
         console.error("Erreur lors du chargement:", err);
       } finally {
@@ -338,7 +388,7 @@ export default function StudentDashboard() {
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header */}
       <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center gap-2 flex-wrap">
           <div>
             <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               Bienvenue, {studentName}!
@@ -347,21 +397,61 @@ export default function StudentDashboard() {
               Plateforme d'apprentissage du français
             </p>
           </div>
-          <Button
-            variant="ghost"
-            onClick={handleLogout}
-            data-testid="button-logout"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Déconnexion
-          </Button>
+          <div className="flex items-center gap-2 relative">
+            {/* Cloche de notifications */}
+            <div className="relative">
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => setNotifOpen(!notifOpen)}
+                data-testid="button-notifications"
+              >
+                <Bell className="w-5 h-5" />
+              </Button>
+              {notifications.filter(n => !n.isRead).length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center pointer-events-none">
+                  {notifications.filter(n => !n.isRead).length}
+                </span>
+              )}
+              {/* Panneau notifications */}
+              {notifOpen && (
+                <div className="absolute right-0 top-10 w-80 bg-white dark:bg-slate-900 border border-border rounded-md shadow-lg z-50 max-h-96 overflow-y-auto">
+                  <div className="flex items-center justify-between p-3 border-b border-border">
+                    <span className="font-semibold text-sm">Notifications</span>
+                    <Button size="sm" variant="ghost" onClick={handleMarkAllRead} className="text-xs">
+                      Tout marquer lu
+                    </Button>
+                  </div>
+                  {notifications.length === 0 ? (
+                    <p className="text-sm text-muted-foreground text-center py-6">Aucune notification</p>
+                  ) : (
+                    notifications.map(n => (
+                      <div key={n.id} className={`p-3 border-b border-border text-sm ${!n.isRead ? "bg-blue-50 dark:bg-blue-950" : ""}`} data-testid={`notif-${n.id}`}>
+                        <p className="font-medium">{n.title}</p>
+                        <p className="text-muted-foreground text-xs mt-0.5">{n.message}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{new Date(n.createdAt).toLocaleDateString("fr-CA")}</p>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+            <Button
+              variant="ghost"
+              onClick={handleLogout}
+              data-testid="button-logout"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              Déconnexion
+            </Button>
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
         <Tabs defaultValue="cours" className="w-full">
-          <TabsList className="grid w-full grid-cols-7 mb-8">
+          <TabsList className="grid w-full grid-cols-8 mb-8">
             <TabsTrigger value="cours" data-testid="tab-cours">
               <BookOpen className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Cours</span>
@@ -389,6 +479,10 @@ export default function StudentDashboard() {
             <TabsTrigger value="documents" data-testid="tab-documents">
               <Upload className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Documents</span>
+            </TabsTrigger>
+            <TabsTrigger value="messages" data-testid="tab-messages">
+              <MessageCircle className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">Messages</span>
             </TabsTrigger>
           </TabsList>
 
@@ -1523,6 +1617,74 @@ export default function StudentDashboard() {
                   </div>
                 )}
               </Card>
+            </div>
+          </TabsContent>
+
+          {/* Messages Tab */}
+          <TabsContent value="messages">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-1">Messages</h2>
+              <p className="text-muted-foreground mb-6">
+                {teacher
+                  ? `Conversation avec ${teacher.firstName} ${teacher.lastName}`
+                  : "Aucun enseignant assigné pour le moment."}
+              </p>
+              {teacher ? (
+                <Card className="flex flex-col" style={{ minHeight: "24rem" }}>
+                  {/* Liste des messages */}
+                  <div className="flex-1 overflow-y-auto p-4 space-y-3" style={{ maxHeight: "28rem" }}>
+                    {chatMessages.length === 0 ? (
+                      <p className="text-sm text-muted-foreground text-center mt-8">Aucun message. Commencez la conversation!</p>
+                    ) : (
+                      chatMessages.map((m: any) => {
+                        const isMe = m.senderId === localStorage.getItem("userId");
+                        return (
+                          <div
+                            key={m.id}
+                            className={`flex ${isMe ? "justify-end" : "justify-start"}`}
+                            data-testid={`msg-${m.id}`}
+                          >
+                            <div
+                              className={`max-w-xs px-3 py-2 rounded-md text-sm ${
+                                isMe
+                                  ? "bg-blue-600 text-white"
+                                  : "bg-muted text-foreground"
+                              }`}
+                            >
+                              <p>{m.content}</p>
+                              <p className={`text-xs mt-1 ${isMe ? "text-blue-200" : "text-muted-foreground"}`}>
+                                {new Date(m.createdAt).toLocaleString("fr-CA")}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })
+                    )}
+                  </div>
+                  {/* Zone de saisie */}
+                  <div className="border-t border-border p-4 flex gap-2">
+                    <Input
+                      value={msgDraft}
+                      onChange={e => setMsgDraft(e.target.value)}
+                      placeholder="Écrire un message…"
+                      onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendMessage(); } }}
+                      data-testid="input-message"
+                    />
+                    <Button
+                      onClick={handleSendMessage}
+                      disabled={msgSending || !msgDraft.trim()}
+                      data-testid="button-send-message"
+                    >
+                      <Send className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </Card>
+              ) : (
+                <Card className="p-8 text-center">
+                  <MessageCircle className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
+                  <p className="text-muted-foreground">Votre enseignant n'a pas encore assigné de cours. La messagerie sera disponible une fois un cours assigné.</p>
+                </Card>
+              )}
             </div>
           </TabsContent>
         </Tabs>

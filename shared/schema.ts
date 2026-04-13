@@ -116,6 +116,46 @@ export const insertStudentDocumentSchema = createInsertSchema(studentDocuments).
 });
 export type InsertStudentDocument = z.infer<typeof insertStudentDocumentSchema>;
 
+// Messages privés table
+export const messages = pgTable("messages", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  senderId: varchar("sender_id").notNull(),
+  receiverId: varchar("receiver_id").notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  readAt: timestamp("read_at"),
+});
+
+export type Message = typeof messages.$inferSelect;
+export const insertMessageSchema = createInsertSchema(messages).pick({
+  senderId: true,
+  receiverId: true,
+  content: true,
+});
+export type InsertMessage = z.infer<typeof insertMessageSchema>;
+
+// Notifications table
+export const notifications = pgTable("notifications", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull(),
+  type: text("type").notNull(), // "document_reviewed" | "assignment_due" | "new_message"
+  title: text("title").notNull(),
+  message: text("message").notNull(),
+  isRead: boolean("is_read").notNull().default(false),
+  relatedId: varchar("related_id"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export type Notification = typeof notifications.$inferSelect;
+export const insertNotificationSchema = createInsertSchema(notifications).pick({
+  userId: true,
+  type: true,
+  title: true,
+  message: true,
+  relatedId: true,
+});
+export type InsertNotification = z.infer<typeof insertNotificationSchema>;
+
 // Invite codes table (codes générés par l'admin pour les enseignants)
 export const inviteCodes = pgTable("invite_codes", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),

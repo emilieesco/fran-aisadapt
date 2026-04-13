@@ -1,4 +1,4 @@
-import { eq, inArray } from "drizzle-orm";
+import { eq, inArray, or, and, isNull } from "drizzle-orm";
 import { getDb } from "./db";
 import { MemStorage } from "./storage";
 import {
@@ -10,6 +10,8 @@ import {
   inviteCodes,
   questions,
   studentDocuments,
+  messages,
+  notifications,
 } from "@shared/schema";
 import type {
   User,
@@ -24,6 +26,10 @@ import type {
   InsertQuestion,
   StudentDocument,
   InsertStudentDocument,
+  Message,
+  InsertMessage,
+  Notification,
+  InsertNotification,
 } from "@shared/schema";
 
 export class DatabaseStorage extends MemStorage {
@@ -311,6 +317,57 @@ export class DatabaseStorage extends MemStorage {
 
   async deleteDocument(id: string): Promise<void> {
     await this.db.delete(studentDocuments).where(eq(studentDocuments.id, id));
+  }
+
+  // ─── MESSAGES ────────────────────────────────────────────────────────────────
+
+  async getMessages(userId1: string, userId2: string): Promise<Message[]> {
+    return this.db.select().from(messages).where(
+      or(
+        and(eq(messages.senderId, userId1), eq(messages.receiverId, userId2)),
+        and(eq(messages.senderId, userId2), eq(messages.receiverId, userId1))
+      )
+    );
+  }
+
+  async sendMessage(msg: InsertMessage): Promise<Message> {
+    const rows = await this.db.insert(messages).values(msg).returning();
+    return rows[0];
+  }
+
+  async markMessagesRead(receiverId: string, senderId: string): Promise<void> {
+    await this.db.update(messages)
+      .set({ readAt: new Date() })
+      .where(and(eq(messages.receiverId, receiverId), eq(messages.senderId, senderId), isNull(messages.readAt)));
+  }
+
+  async getUnreadCount(userId: string): Promise<number> {
+    const rows = await this.db.select().from(messages).where(and(eq(messages.receiverId, userId), isNull(messages.readAt)));
+    return rows.length;
+  }
+
+  // ─── NOTIFICATIONS ────────────────────────────────────────────────────────────
+
+  async getNotifications(userId: string): Promise<Notification[]> {
+    return this.db.select().from(notifications).where(eq(notifications.userId, userId));
+  }
+
+  async createNotification(notif: InsertNotification): Promise<Notification> {
+    const rows = await this.db.insert(notifications).values(notif).returning();
+    return rows[0];
+  }
+
+  async markNotificationRead(id: string): Promise<void> {
+    await this.db.update(notifications).set({ isRead: true }).where(eq(notifications.id, id));
+  }
+
+  async markAllNotificationsRead(userId: string): Promise<void> {
+    await this.db.update(notifications).set({ isRead: true }).where(eq(notifications.userId, userId));
+  }
+
+  async getUnreadNotificationCount(userId: string): Promise<number> {
+    const rows = await this.db.select().from(notifications).where(and(eq(notifications.userId, userId), eq(notifications.isRead, false)));
+    return rows.length;
   }
 
   // ─── INITIALISATION ──────────────────────────────────────────────────────────

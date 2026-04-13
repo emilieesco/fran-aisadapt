@@ -16,6 +16,10 @@ import type {
   InviteCode,
   StudentDocument,
   InsertStudentDocument,
+  Message,
+  InsertMessage,
+  Notification,
+  InsertNotification,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -90,6 +94,19 @@ export interface IStorage {
   createDocument(doc: InsertStudentDocument): Promise<StudentDocument>;
   updateDocumentComment(id: string, comment: string, reviewed: boolean): Promise<StudentDocument | undefined>;
   deleteDocument(id: string): Promise<void>;
+
+  // Messages
+  getMessages(userId1: string, userId2: string): Promise<Message[]>;
+  sendMessage(msg: InsertMessage): Promise<Message>;
+  markMessagesRead(receiverId: string, senderId: string): Promise<void>;
+  getUnreadCount(userId: string): Promise<number>;
+
+  // Notifications
+  getNotifications(userId: string): Promise<Notification[]>;
+  createNotification(notif: InsertNotification): Promise<Notification>;
+  markNotificationRead(id: string): Promise<void>;
+  markAllNotificationsRead(userId: string): Promise<void>;
+  getUnreadNotificationCount(userId: string): Promise<number>;
 }
 
 export class MemStorage implements IStorage {
@@ -103,6 +120,8 @@ export class MemStorage implements IStorage {
   private assignments: Map<string, Assignment> = new Map();
   private inviteCodesMap: Map<string, InviteCode> = new Map();
   protected documents: Map<string, StudentDocument> = new Map();
+  protected messagesMap: Map<string, Message> = new Map();
+  protected notificationsMap: Map<string, Notification> = new Map();
 
   constructor() {
     this.initializeSampleData();
@@ -13815,6 +13834,63 @@ Sur de vieilles espérances.
 
   async deleteDocument(id: string): Promise<void> {
     this.documents.delete(id);
+  }
+
+  // ─── MESSAGES ────────────────────────────────────────────────────────────────
+
+  async getMessages(userId1: string, userId2: string): Promise<Message[]> {
+    return Array.from(this.messagesMap.values())
+      .filter(m => (m.senderId === userId1 && m.receiverId === userId2) || (m.senderId === userId2 && m.receiverId === userId1))
+      .sort((a, b) => new Date(a.createdAt!).getTime() - new Date(b.createdAt!).getTime());
+  }
+
+  async sendMessage(msg: InsertMessage): Promise<Message> {
+    const id = randomUUID();
+    const newMsg: Message = { id, ...msg, createdAt: new Date(), readAt: null };
+    this.messagesMap.set(id, newMsg);
+    return newMsg;
+  }
+
+  async markMessagesRead(receiverId: string, senderId: string): Promise<void> {
+    for (const [id, msg] of this.messagesMap) {
+      if (msg.receiverId === receiverId && msg.senderId === senderId && !msg.readAt) {
+        this.messagesMap.set(id, { ...msg, readAt: new Date() });
+      }
+    }
+  }
+
+  async getUnreadCount(userId: string): Promise<number> {
+    return Array.from(this.messagesMap.values()).filter(m => m.receiverId === userId && !m.readAt).length;
+  }
+
+  // ─── NOTIFICATIONS ────────────────────────────────────────────────────────────
+
+  async getNotifications(userId: string): Promise<Notification[]> {
+    return Array.from(this.notificationsMap.values())
+      .filter(n => n.userId === userId)
+      .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime());
+  }
+
+  async createNotification(notif: InsertNotification): Promise<Notification> {
+    const id = randomUUID();
+    const newNotif: Notification = { id, ...notif, isRead: false, relatedId: notif.relatedId ?? null, createdAt: new Date() };
+    this.notificationsMap.set(id, newNotif);
+    return newNotif;
+  }
+
+  async markNotificationRead(id: string): Promise<void> {
+    const n = this.notificationsMap.get(id);
+    if (n) this.notificationsMap.set(id, { ...n, isRead: true });
+  }
+
+  async markAllNotificationsRead(userId: string): Promise<void> {
+    for (const [id, n] of this.notificationsMap) {
+      if (n.userId === userId) this.notificationsMap.set(id, { ...n, isRead: true });
+    }
+  }
+
+  async getUnreadNotificationCount(userId: string): Promise<number> {
+    return Array.from(this.notificationsMap.values()).filter(n => n.userId === userId && !n.isRead).length;
   }
 }
 
