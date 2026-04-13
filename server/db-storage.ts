@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 import { getDb } from "./db";
 import { MemStorage } from "./storage";
 import {
@@ -9,6 +9,7 @@ import {
   assignments,
   inviteCodes,
   questions,
+  studentDocuments,
 } from "@shared/schema";
 import type {
   User,
@@ -21,6 +22,8 @@ import type {
   InviteCode,
   Question,
   InsertQuestion,
+  StudentDocument,
+  InsertStudentDocument,
 } from "@shared/schema";
 
 export class DatabaseStorage extends MemStorage {
@@ -271,6 +274,43 @@ export class DatabaseStorage extends MemStorage {
 
   async deleteInviteCode(id: string): Promise<void> {
     await this.db.delete(inviteCodes).where(eq(inviteCodes.id, id));
+  }
+
+  // ─── DOCUMENTS ÉLÈVES ────────────────────────────────────────────────────────
+
+  async getDocument(id: string): Promise<StudentDocument | undefined> {
+    const rows = await this.db.select().from(studentDocuments).where(eq(studentDocuments.id, id));
+    return rows[0];
+  }
+
+  async getDocumentsByStudent(studentId: string): Promise<StudentDocument[]> {
+    return this.db.select().from(studentDocuments).where(eq(studentDocuments.studentId, studentId));
+  }
+
+  async getDocumentsByTeacher(teacherId: string): Promise<StudentDocument[]> {
+    // Get students assigned to this teacher, then their documents
+    const students = await this.getStudentsByTeacher(teacherId);
+    if (students.length === 0) return [];
+    const studentIds = students.map(s => s.id);
+    return this.db.select().from(studentDocuments).where(inArray(studentDocuments.studentId, studentIds));
+  }
+
+  async createDocument(doc: InsertStudentDocument): Promise<StudentDocument> {
+    const rows = await this.db.insert(studentDocuments).values(doc).returning();
+    return rows[0];
+  }
+
+  async updateDocumentComment(id: string, comment: string, reviewed: boolean): Promise<StudentDocument | undefined> {
+    const rows = await this.db
+      .update(studentDocuments)
+      .set({ teacherComment: comment, teacherReviewed: reviewed, reviewedAt: reviewed ? new Date() : null })
+      .where(eq(studentDocuments.id, id))
+      .returning();
+    return rows[0];
+  }
+
+  async deleteDocument(id: string): Promise<void> {
+    await this.db.delete(studentDocuments).where(eq(studentDocuments.id, id));
   }
 
   // ─── INITIALISATION ──────────────────────────────────────────────────────────

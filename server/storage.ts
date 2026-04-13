@@ -102,6 +102,7 @@ export class MemStorage implements IStorage {
   protected badges: Map<string, StudentBadge> = new Map();
   private assignments: Map<string, Assignment> = new Map();
   private inviteCodesMap: Map<string, InviteCode> = new Map();
+  protected documents: Map<string, StudentDocument> = new Map();
 
   constructor() {
     this.initializeSampleData();
@@ -13773,6 +13774,47 @@ Sur de vieilles espérances.
 
   async deleteInviteCode(id: string): Promise<void> {
     this.inviteCodesMap.delete(id);
+  }
+
+  // ─── DOCUMENTS ÉLÈVES ────────────────────────────────────────────────────────
+
+  async getDocument(id: string): Promise<StudentDocument | undefined> {
+    return this.documents.get(id);
+  }
+
+  async getDocumentsByStudent(studentId: string): Promise<StudentDocument[]> {
+    return Array.from(this.documents.values()).filter(d => d.studentId === studentId);
+  }
+
+  async getDocumentsByTeacher(teacherId: string): Promise<StudentDocument[]> {
+    // MemStorage: return all (not filtered by teacher assignment)
+    return Array.from(this.documents.values());
+  }
+
+  async createDocument(doc: InsertStudentDocument): Promise<StudentDocument> {
+    const id = randomUUID();
+    const newDoc: StudentDocument = {
+      id,
+      ...doc,
+      uploadedAt: new Date(),
+      teacherComment: null,
+      teacherReviewed: false,
+      reviewedAt: null,
+    };
+    this.documents.set(id, newDoc);
+    return newDoc;
+  }
+
+  async updateDocumentComment(id: string, comment: string, reviewed: boolean): Promise<StudentDocument | undefined> {
+    const doc = this.documents.get(id);
+    if (!doc) return undefined;
+    const updated = { ...doc, teacherComment: comment, teacherReviewed: reviewed, reviewedAt: reviewed ? new Date() : doc.reviewedAt };
+    this.documents.set(id, updated);
+    return updated;
+  }
+
+  async deleteDocument(id: string): Promise<void> {
+    this.documents.delete(id);
   }
 }
 

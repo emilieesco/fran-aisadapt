@@ -5,7 +5,21 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Users, BookOpen, Plus, LogOut } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Users, BookOpen, Plus, LogOut, FileText, Download, CheckCircle, MessageSquare, Clock } from "lucide-react";
+
+interface StudentDoc {
+  id: string;
+  studentId: string;
+  title: string;
+  fileName: string;
+  fileType: string;
+  fileSize: number;
+  uploadedAt: string;
+  teacherComment: string | null;
+  teacherReviewed: boolean;
+  reviewedAt: string | null;
+}
 
 interface Student {
   id: string;
@@ -27,11 +41,10 @@ export default function TeacherDashboard() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [teacherName, setTeacherName] = useState("");
-  const [newCourse, setNewCourse] = useState({
-    title: "",
-    description: "",
-    category: "grammaire",
-  });
+  const [newCourse, setNewCourse] = useState({ title: "", description: "", category: "grammaire" });
+  const [documents, setDocuments] = useState<StudentDoc[]>([]);
+  const [commentDraft, setCommentDraft] = useState<{ [id: string]: string }>({});
+  const [savingComment, setSavingComment] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +67,15 @@ export default function TeacherDashboard() {
           const user = await userRes.json();
           setTeacherName(user.firstName);
         }
+        // Charger les documents des élèves
+        const docsRes = await fetch(`/api/documents/teacher/${userId}`, { credentials: "include" });
+        if (docsRes.ok) {
+          const docs: StudentDoc[] = await docsRes.json();
+          setDocuments(docs);
+          const drafts: { [id: string]: string } = {};
+          docs.forEach(d => { drafts[d.id] = d.teacherComment ?? ""; });
+          setCommentDraft(drafts);
+        }
       } catch (err) {
         console.error("Erreur:", err);
       } finally {
@@ -63,6 +85,21 @@ export default function TeacherDashboard() {
 
     fetchData();
   }, [setLocation]);
+
+  const handleSaveComment = async (docId: string, reviewed: boolean) => {
+    setSavingComment(docId);
+    const res = await fetch(`/api/documents/${docId}/comment`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ comment: commentDraft[docId] ?? "", reviewed }),
+    });
+    if (res.ok) {
+      const updated: StudentDoc = await res.json();
+      setDocuments(prev => prev.map(d => d.id === docId ? { ...updated } : d));
+    }
+    setSavingComment(null);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("userId");
@@ -134,7 +171,7 @@ export default function TeacherDashboard() {
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-8">
         <Tabs defaultValue="courses" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="courses" data-testid="tab-courses">
               <BookOpen className="w-4 h-4 mr-2" />
               Cours
@@ -142,6 +179,15 @@ export default function TeacherDashboard() {
             <TabsTrigger value="students" data-testid="tab-students">
               <Users className="w-4 h-4 mr-2" />
               Élèves ({students.length})
+            </TabsTrigger>
+            <TabsTrigger value="documents" data-testid="tab-documents">
+              <FileText className="w-4 h-4 mr-2" />
+              Documents
+              {documents.filter(d => !d.teacherReviewed).length > 0 && (
+                <span className="ml-2 bg-amber-500 text-white text-xs rounded-full px-1.5 py-0.5">
+                  {documents.filter(d => !d.teacherReviewed).length}
+                </span>
+              )}
             </TabsTrigger>
           </TabsList>
 
@@ -275,6 +321,95 @@ export default function TeacherDashboard() {
                 ))}
               </div>
             </Card>
+          </TabsContent>
+
+          {/* Documents Tab */}
+          <TabsContent value="documents">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <h2 className="text-xl font-bold">Documents déposés par les élèves</h2>
+                <span className="text-sm text-muted-foreground">
+                  {documents.filter(d => !d.teacherReviewed).length} en attente · {documents.filter(d => d.teacherReviewed).length} corrigés
+                </span>
+              </div>
+              {documents.length === 0 ? (
+                <Card className="p-8 text-center text-muted-foreground">
+                  Aucun document déposé par vos élèves pour l'instant.
+                </Card>
+              ) : (
+                <div className="space-y-4">
+                  {documents.map((doc) => {
+                    const student = students.find(s => s.id === doc.studentId);
+                    return (
+                      <Card key={doc.id} className="p-5" data-testid={`card-doc-${doc.id}`}>
+                        <div className="flex items-start justify-between gap-2 flex-wrap mb-3">
+                          <div>
+                            <p className="font-semibold">{doc.title}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {student ? `${student.firstName} ${student.lastName}` : "Élève inconnu"} · {doc.fileName} · {(doc.fileSize / 1024).toFixed(1)} Ko
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              Déposé le {new Date(doc.uploadedAt).toLocaleDateString("fr-CA")}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {doc.teacherReviewed ? (
+                              <span className="flex items-center gap-1 text-xs text-green-700 dark:text-green-400 font-semibold">
+                                <CheckCircle className="w-4 h-4" />
+                                Corrigé
+                              </span>
+                            ) : (
+                              <span className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400">
+                                <Clock className="w-4 h-4" />
+                                En attente
+                              </span>
+                            )}
+                            <a href={`/api/documents/${doc.id}/download`} download={doc.fileName}>
+                              <Button size="icon" variant="outline" data-testid={`button-doc-download-${doc.id}`}>
+                                <Download className="w-4 h-4" />
+                              </Button>
+                            </a>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-1 text-sm font-medium">
+                            <MessageSquare className="w-4 h-4" />
+                            Commentaire pour l'élève
+                          </label>
+                          <Textarea
+                            value={commentDraft[doc.id] ?? ""}
+                            onChange={(e) => setCommentDraft(prev => ({ ...prev, [doc.id]: e.target.value }))}
+                            placeholder="Écrire un commentaire…"
+                            rows={2}
+                            data-testid={`textarea-comment-${doc.id}`}
+                          />
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleSaveComment(doc.id, false)}
+                              disabled={savingComment === doc.id}
+                              data-testid={`button-save-comment-${doc.id}`}
+                            >
+                              Sauvegarder
+                            </Button>
+                            <Button
+                              size="sm"
+                              onClick={() => handleSaveComment(doc.id, true)}
+                              disabled={savingComment === doc.id}
+                              data-testid={`button-mark-reviewed-${doc.id}`}
+                            >
+                              <CheckCircle className="w-4 h-4 mr-1" />
+                              Marquer comme corrigé
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </TabsContent>
         </Tabs>
       </main>

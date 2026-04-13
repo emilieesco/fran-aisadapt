@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle, Mic, Volume2, CheckCircle } from "lucide-react";
+import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle, Mic, Volume2, CheckCircle, Upload, Trash2, Download, MessageSquare } from "lucide-react";
 
 interface Course {
   id: string;
@@ -44,6 +44,19 @@ interface Question {
   options?: string;
   correctAnswer: string;
   order: number;
+}
+
+interface StudentDoc {
+  id: string;
+  studentId: string;
+  title: string;
+  fileName: string;
+  fileType: string;
+  fileSize: number;
+  uploadedAt: string;
+  teacherComment: string | null;
+  teacherReviewed: boolean;
+  reviewedAt: string | null;
 }
 
 function CourseCard({
@@ -131,6 +144,59 @@ export default function StudentDashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("tous");
   const [selectedExType, setSelectedExType] = useState("tous");
+  const [documents, setDocuments] = useState<StudentDoc[]>([]);
+  const [docTitle, setDocTitle] = useState("");
+  const [docFile, setDocFile] = useState<File | null>(null);
+  const [docUploading, setDocUploading] = useState(false);
+  const [docError, setDocError] = useState("");
+
+  const loadDocuments = async (userId: string) => {
+    const res = await fetch(`/api/documents/student/${userId}`, { credentials: "include" });
+    if (res.ok) setDocuments(await res.json());
+  };
+
+  const handleDocUpload = async () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId || !docFile || !docTitle.trim()) return;
+    if (docFile.size > 5 * 1024 * 1024) {
+      setDocError("Fichier trop volumineux (max 5 Mo)");
+      return;
+    }
+    setDocUploading(true);
+    setDocError("");
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64 = (e.target?.result as string).split(",")[1];
+      const res = await fetch("/api/documents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          studentId: userId,
+          title: docTitle.trim(),
+          fileName: docFile.name,
+          fileType: docFile.type || "application/octet-stream",
+          fileSize: docFile.size,
+          fileData: base64,
+        }),
+      });
+      setDocUploading(false);
+      if (res.ok) {
+        setDocTitle("");
+        setDocFile(null);
+        loadDocuments(userId);
+      } else {
+        setDocError(await res.text());
+      }
+    };
+    reader.readAsDataURL(docFile);
+  };
+
+  const handleDocDelete = async (docId: string) => {
+    const userId = localStorage.getItem("userId");
+    await fetch(`/api/documents/${docId}`, { method: "DELETE", credentials: "include" });
+    if (userId) loadDocuments(userId);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -159,6 +225,7 @@ export default function StudentDashboard() {
           setReadingNarrativeExercises(await narrativeRes.json());
         }
         if (exercisesRes.ok) setExercises(await exercisesRes.json());
+        loadDocuments(userId);
       } catch (err) {
         console.error("Erreur lors du chargement:", err);
       } finally {
@@ -291,7 +358,7 @@ export default function StudentDashboard() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
         <Tabs defaultValue="cours" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 mb-8">
+          <TabsList className="grid w-full grid-cols-7 mb-8">
             <TabsTrigger value="cours" data-testid="tab-cours">
               <BookOpen className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Cours</span>
@@ -315,6 +382,10 @@ export default function StudentDashboard() {
             <TabsTrigger value="progres" data-testid="tab-progres">
               <TrendingUp className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Progrès</span>
+            </TabsTrigger>
+            <TabsTrigger value="documents" data-testid="tab-documents">
+              <Upload className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">Documents</span>
             </TabsTrigger>
           </TabsList>
 
@@ -1346,6 +1417,107 @@ export default function StudentDashboard() {
                   <p className="text-center text-muted-foreground py-8">
                     Complétez des exercices pour gagner des badges!
                   </p>
+                )}
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* Documents Tab */}
+          <TabsContent value="documents">
+            <div className="space-y-6 max-w-2xl mx-auto">
+              {/* Formulaire de dépôt */}
+              <Card className="p-6">
+                <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <Upload className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  Déposer un document
+                </h2>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Titre du document</label>
+                    <Input
+                      value={docTitle}
+                      onChange={(e) => setDocTitle(e.target.value)}
+                      placeholder="Ex: Rédaction sur les saisons"
+                      data-testid="input-doc-title"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Fichier (max 5 Mo — PDF, Word, image, texte)</label>
+                    <input
+                      type="file"
+                      accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
+                      onChange={(e) => setDocFile(e.target.files?.[0] ?? null)}
+                      className="block w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-amber-100 file:text-amber-700 hover:file:bg-amber-200 dark:file:bg-amber-900 dark:file:text-amber-200"
+                      data-testid="input-doc-file"
+                    />
+                  </div>
+                  {docError && (
+                    <p className="text-sm text-red-600 dark:text-red-400" data-testid="text-doc-error">{docError}</p>
+                  )}
+                  <Button
+                    onClick={handleDocUpload}
+                    disabled={!docFile || !docTitle.trim() || docUploading}
+                    data-testid="button-doc-upload"
+                  >
+                    <Upload className="w-4 h-4 mr-2" />
+                    {docUploading ? "Envoi en cours…" : "Envoyer le document"}
+                  </Button>
+                </div>
+              </Card>
+
+              {/* Liste des documents */}
+              <Card className="p-6">
+                <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  Mes documents déposés ({documents.length})
+                </h2>
+                {documents.length === 0 ? (
+                  <p className="text-sm text-muted-foreground text-center py-6">Aucun document déposé pour l'instant.</p>
+                ) : (
+                  <div className="space-y-3">
+                    {documents.map((doc) => (
+                      <div key={doc.id} className="border border-border rounded-md p-4 space-y-2" data-testid={`card-doc-${doc.id}`}>
+                        <div className="flex items-start justify-between gap-2 flex-wrap">
+                          <div>
+                            <p className="font-semibold">{doc.title}</p>
+                            <p className="text-xs text-muted-foreground">{doc.fileName} — {(doc.fileSize / 1024).toFixed(1)} Ko</p>
+                            <p className="text-xs text-muted-foreground">
+                              Déposé le {new Date(doc.uploadedAt).toLocaleDateString("fr-CA")}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {doc.teacherReviewed ? (
+                              <span className="flex items-center gap-1 text-xs text-green-700 dark:text-green-400 font-semibold">
+                                <CheckCircle className="w-4 h-4" />
+                                Corrigé
+                              </span>
+                            ) : (
+                              <span className="text-xs text-muted-foreground">En attente</span>
+                            )}
+                            <a href={`/api/documents/${doc.id}/download`} download={doc.fileName}>
+                              <Button size="icon" variant="outline" data-testid={`button-doc-download-${doc.id}`}>
+                                <Download className="w-4 h-4" />
+                              </Button>
+                            </a>
+                            <Button
+                              size="icon"
+                              variant="outline"
+                              onClick={() => handleDocDelete(doc.id)}
+                              data-testid={`button-doc-delete-${doc.id}`}
+                            >
+                              <Trash2 className="w-4 h-4 text-red-500" />
+                            </Button>
+                          </div>
+                        </div>
+                        {doc.teacherComment && (
+                          <div className="bg-amber-50 dark:bg-amber-950 rounded-md p-3 flex gap-2">
+                            <MessageSquare className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+                            <p className="text-sm">{doc.teacherComment}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 )}
               </Card>
             </div>

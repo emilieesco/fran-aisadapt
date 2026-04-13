@@ -526,5 +526,81 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     }
   });
 
+  // ─── DOCUMENTS ÉLÈVES ────────────────────────────────────────────────────────
+
+  // Déposer un document (élève)
+  app.post("/api/documents", async (req, res) => {
+    try {
+      const { studentId, title, fileName, fileType, fileSize, fileData } = req.body;
+      if (!studentId || !title || !fileName || !fileType || !fileSize || !fileData) {
+        return res.status(400).send("Champs manquants");
+      }
+      if (fileSize > 5 * 1024 * 1024) {
+        return res.status(400).send("Fichier trop volumineux (max 5 Mo)");
+      }
+      const doc = await storage.createDocument({ studentId, title, fileName, fileType, fileSize, fileData });
+      res.json(doc);
+    } catch (err) {
+      res.status(500).send("Erreur lors du dépôt du document");
+    }
+  });
+
+  // Lister les documents d'un élève
+  app.get("/api/documents/student/:studentId", async (req, res) => {
+    try {
+      const docs = await storage.getDocumentsByStudent(req.params.studentId);
+      // Ne pas renvoyer fileData dans la liste (trop lourd)
+      res.json(docs.map(({ fileData, ...rest }) => rest));
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Lister les documents des élèves d'un enseignant
+  app.get("/api/documents/teacher/:teacherId", async (req, res) => {
+    try {
+      const docs = await storage.getDocumentsByTeacher(req.params.teacherId);
+      res.json(docs.map(({ fileData, ...rest }) => rest));
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Télécharger un document (renvoie fileData)
+  app.get("/api/documents/:id/download", async (req, res) => {
+    try {
+      const doc = await storage.getDocument(req.params.id);
+      if (!doc) return res.status(404).send("Document introuvable");
+      const buffer = Buffer.from(doc.fileData, "base64");
+      res.setHeader("Content-Type", doc.fileType);
+      res.setHeader("Content-Disposition", `attachment; filename="${doc.fileName}"`);
+      res.send(buffer);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Commenter / valider un document (enseignant)
+  app.patch("/api/documents/:id/comment", async (req, res) => {
+    try {
+      const { comment, reviewed } = req.body;
+      const doc = await storage.updateDocumentComment(req.params.id, comment ?? "", reviewed ?? false);
+      if (!doc) return res.status(404).send("Document introuvable");
+      res.json(doc);
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
+  // Supprimer un document (élève)
+  app.delete("/api/documents/:id", async (req, res) => {
+    try {
+      await storage.deleteDocument(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   return server;
 }
