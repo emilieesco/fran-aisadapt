@@ -11614,6 +11614,128 @@ Sur de vieilles espérances.
     }
 
     // ============================================================
+    // ÉCRITURE — SCHÉMA NARRATIF 5 ÉTAPES (QUÉBEC)
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Schéma narratif — Les 5 étapes",
+        description: "Comprendre et identifier les 5 étapes du schéma narratif selon le programme québécois",
+        category: "ecriture",
+        content: "<h2>Le Schéma Narratif — 5 Étapes</h2><p>Au Québec, on analyse les textes narratifs en <strong>5 étapes</strong>. Ce schéma s'applique à tous les récits : contes, nouvelles, romans.</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ LES 5 ÉTAPES :</strong><br>1. <b>Situation initiale</b> — L'état d'équilibre au début<br>2. <b>Élément déclencheur</b> — Ce qui brise l'équilibre<br>3. <b>Péripéties</b> — Les actions du personnage pour réagir<br>4. <b>Dénouement</b> — La résolution du problème<br>5. <b>Situation finale</b> — Le nouvel état d'équilibre</div><h3>Détail de chaque étape</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>1. Situation initiale</strong><br>Présente les personnages, le lieu, l'époque. Tout est stable et calme.<br><em>Mots clés : «Il était une fois», «Autrefois», «Dans ce village...»</em></div><div style='background:#fee2e2;padding:10px;margin:10px 0;border-radius:4px;'><strong>2. Élément déclencheur (perturbateur)</strong><br>Un événement vient briser l'équilibre. C'est le début du problème.<br><em>Mots clés : «Soudain», «Un jour», «Tout à coup», «Mais voilà que...»</em></div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px;'><strong>3. Péripéties (développement)</strong><br>Le ou les personnages font face au problème et tentent de le résoudre. C'est la partie la plus longue du récit.<br><em>Mots clés : «Alors», «Il décida de», «Elle essaya de», «Malgré»</em></div><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px;'><strong>4. Dénouement</strong><br>Le problème est résolu (ou ne peut pas l'être). L'action principale se termine.<br><em>Mots clés : «Finalement», «À la fin», «Grâce à», «Après de nombreux efforts»</em></div><div style='background:#fce7f3;padding:10px;margin:10px 0;border-radius:4px;'><strong>5. Situation finale</strong><br>Nouvel équilibre. On voit comment les personnages ont changé ou ce qu'ils ont appris.<br><em>Mots clés : «Depuis ce jour», «Désormais», «Il vécut heureux», «Elle comprit que»</em></div>",
+        order: 78,
+      };
+      this.courses.set(courseId, course);
+
+      // Exercice 1 — Reconnaître et nommer les 5 étapes
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Reconnaître les 5 étapes du schéma narratif", description: "Identifie à quelle étape du schéma narratif correspond chaque extrait", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "L'ordre des étapes", type: "multiple_choice",
+          text: "Quel est le bon ordre des 5 étapes du schéma narratif québécois ?",
+          options: JSON.stringify([
+            "Élément déclencheur → Péripéties → Situation initiale → Dénouement → Situation finale",
+            "Situation initiale → Élément déclencheur → Péripéties → Dénouement → Situation finale",
+            "Situation initiale → Péripéties → Élément déclencheur → Dénouement → Situation finale",
+            "Péripéties → Situation initiale → Dénouement → Élément déclencheur → Situation finale",
+          ]),
+          correctAnswer: "Situation initiale → Élément déclencheur → Péripéties → Dénouement → Situation finale",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Étape 1 — Situation initiale", type: "multiple_choice",
+          text: "Lis cet extrait : «Dans un petit village de montagne, vivait une famille heureuse. Le père était forgeron et la mère tisserande. Leurs deux enfants couraient librement dans les prés.»\nQuelle étape du schéma narratif est-ce ?",
+          options: JSON.stringify(["Élément déclencheur", "Péripéties", "Situation initiale", "Dénouement"]),
+          correctAnswer: "Situation initiale",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Étape 2 — Élément déclencheur", type: "multiple_choice",
+          text: "Lis cet extrait : «Soudain, un matin d'hiver, le père disparut sans laisser de trace. La mère et les enfants cherchèrent partout, mais en vain.»\nQuelle étape du schéma narratif est-ce ?",
+          options: JSON.stringify(["Situation initiale", "Élément déclencheur", "Dénouement", "Situation finale"]),
+          correctAnswer: "Élément déclencheur",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Étape 3 — Péripéties", type: "multiple_choice",
+          text: "Lis cet extrait : «L'aîné décida de partir à la recherche de son père. Il traversa des forêts sombres, affronta des tempêtes et interrogea des dizaines de villageois. Malgré les obstacles, il continua sa route.»\nQuelle étape du schéma narratif est-ce ?",
+          options: JSON.stringify(["Situation initiale", "Élément déclencheur", "Péripéties", "Situation finale"]),
+          correctAnswer: "Péripéties",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Étape 4 — Dénouement", type: "multiple_choice",
+          text: "Lis cet extrait : «Finalement, l'aîné retrouva son père dans une cabane isolée au sommet de la montagne. Le père avait perdu la mémoire après une chute, mais la présence de son fils lui permit de se souvenir peu à peu.»\nQuelle étape du schéma narratif est-ce ?",
+          options: JSON.stringify(["Péripéties", "Dénouement", "Situation initiale", "Élément déclencheur"]),
+          correctAnswer: "Dénouement",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Étape 5 — Situation finale", type: "multiple_choice",
+          text: "Lis cet extrait : «Depuis ce jour, la famille vécut réunie. L'aîné devint guide de montagne pour aider les voyageurs perdus. Il n'oublia jamais ce voyage qui l'avait rendu plus courageux.»\nQuelle étape du schéma narratif est-ce ?",
+          options: JSON.stringify(["Dénouement", "Péripéties", "Situation finale", "Élément déclencheur"]),
+          correctAnswer: "Situation finale",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      // Exercice 2 — Comprendre les rôles et les marqueurs de chaque étape
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Rôles et marqueurs de chaque étape", description: "Comprends le rôle de chaque étape et les mots qui les annoncent", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Rôle de la situation initiale", type: "multiple_choice",
+          text: "Quel est le rôle de la situation initiale dans un récit ?",
+          options: JSON.stringify([
+            "Résoudre le problème principal",
+            "Présenter les personnages, le lieu et l'époque — état d'équilibre",
+            "Introduire l'élément qui brise l'équilibre",
+            "Décrire les actions du personnage"
+          ]),
+          correctAnswer: "Présenter les personnages, le lieu et l'époque — état d'équilibre",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Marqueur de l'élément déclencheur", type: "multiple_choice",
+          text: "Lequel de ces marqueurs annonce souvent un élément déclencheur ?",
+          options: JSON.stringify(["Depuis ce jour", "Il était une fois", "Soudain / Un jour / Tout à coup", "Finalement"]),
+          correctAnswer: "Soudain / Un jour / Tout à coup",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "La partie la plus longue", type: "multiple_choice",
+          text: "Quelle est généralement la partie la plus longue d'un récit ?",
+          options: JSON.stringify(["La situation initiale", "L'élément déclencheur", "Les péripéties", "La situation finale"]),
+          correctAnswer: "Les péripéties",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Dénouement vs Situation finale", type: "multiple_choice",
+          text: "Quelle est la différence entre le dénouement et la situation finale ?",
+          options: JSON.stringify([
+            "Il n'y a pas de différence, ce sont la même étape",
+            "Le dénouement résout le problème ; la situation finale montre le nouvel équilibre",
+            "La situation finale résout le problème ; le dénouement montre le nouvel équilibre",
+            "Le dénouement est toujours heureux, la situation finale peut être triste",
+          ]),
+          correctAnswer: "Le dénouement résout le problème ; la situation finale montre le nouvel équilibre",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Marqueur de la situation finale", type: "multiple_choice",
+          text: "Lequel de ces marqueurs annonce souvent la situation finale ?",
+          options: JSON.stringify(["Soudain", "Malgré", "Depuis ce jour / Désormais / Il vécut heureux", "Alors il décida de"]),
+          correctAnswer: "Depuis ce jour / Désormais / Il vécut heureux",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Bilan — Schéma narratif complet", type: "multiple_choice",
+          text: "Un ami dit : «Le schéma narratif a 3 étapes : début, milieu et fin.» Quelle est la bonne réponse selon le programme québécois ?",
+          options: JSON.stringify([
+            "Il a raison, il y a 3 étapes.",
+            "Il a raison, mais on peut aussi en compter 4.",
+            "Il a tort : il y a 5 étapes (situation initiale, élément déclencheur, péripéties, dénouement, situation finale).",
+            "Il a tort : il y a 6 étapes."
+          ]),
+          correctAnswer: "Il a tort : il y a 5 étapes (situation initiale, élément déclencheur, péripéties, dénouement, situation finale).",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
     // GRAMMAIRE QUÉBÉCOISE — CD : COMPLÉMENT DIRECT DU VERBE
     // ============================================================
     {
