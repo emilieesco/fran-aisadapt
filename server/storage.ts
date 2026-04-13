@@ -12425,6 +12425,515 @@ Sur de vieilles espérances.
     }
 
     // ============================================================
+    // LECTURE — ARTICLE DE JOURNAL : SPORT
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Article de journal — Le sport au Québec",
+        description: "Lire et comprendre un article journalistique sur une athlète québécoise qui se démarque sur la scène internationale",
+        category: "lecture_reading",
+        content: `<h2>Lire un article de journal</h2>
+<p>Lis attentivement cet article journalistique, puis réponds aux questions de compréhension, de vocabulaire et d'analyse.</p>
+<hr/>
+<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:15px 0;font-family:Georgia,serif;'>
+  <p style='color:#64748b;font-size:0.85em;margin:0 0 6px 0;'>LE JOURNAL DE MONTRÉAL — Sports — 22 janvier 2024</p>
+  <h3 style='margin:0 0 10px 0;font-size:1.3em;'>Marie-Philip Poulin : la capitaine qui inspire une génération</h3>
+  <p style='color:#475569;font-size:0.9em;font-style:italic;border-left:3px solid #f59e0b;padding-left:10px;margin-bottom:14px;'>À 32 ans, la hockeyeuse beauceronne est bien plus qu'une championne : elle est devenue le symbole du hockey féminin canadien et un modèle pour des milliers de jeunes Québécoises.</p>
+  <p>Originaire de Beauceville, en Beauce, Marie-Philip Poulin a marqué deux buts décisifs lors de la finale olympique de 2014 contre les États-Unis. Ce soir-là, à Sotchi, elle est entrée dans l'histoire du hockey mondial. Depuis, son numéro 29 est devenu un symbole dans les arénas du Québec.</p>
+  <p>Pourtant, le chemin n'a pas toujours été facile. Quand Poulin avait 10 ans, il n'existait presque pas d'équipes féminines organisées dans sa région. Elle s'entraînait souvent avec des garçons, ce qui lui a permis de développer une robustesse physique et mentale hors du commun.</p>
+  <p>«Au début, certaines personnes pensaient que le hockey féminin n'était pas sérieux», se souvient-elle dans une entrevue accordée à Radio-Canada. «Aujourd'hui, les petites filles ont des idoles. Et ça, c'est la plus belle des victoires.»</p>
+  <p>En 2024, Poulin a conduit l'équipe canadienne à une nouvelle médaille d'or aux Championnats du monde. Elle a terminé la compétition meilleure pointeuse — c'est-à-dire la joueuse ayant accumulé le plus de points grâce à ses buts et ses passes. À ce jour, elle a remporté quatre médailles olympiques, dont trois en or.</p>
+  <p>Son impact dépasse le rectangle de glace. Dans les écoles québécoises, son nom est cité comme exemple de persévérance, de leadership et d'humilité. La Ligue nationale de hockey féminin (LNHF), créée en 2024, lui doit en partie son existence : ses exploits ont convaincu les investisseurs que le hockey féminin pouvait remplir des arénas.</p>
+  <p style='color:#64748b;font-size:0.82em;margin-top:12px;'>— Texte adapté à des fins pédagogiques</p>
+</div>`,
+        order: 114,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Compréhension — Marie-Philip Poulin", description: "Réponds aux questions sur l'article «Marie-Philip Poulin : la capitaine qui inspire une génération»", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "Idée principale", type: "multiple_choice",
+          text: "Quel est le sujet principal de cet article ?",
+          options: JSON.stringify([
+            "La création de la Ligue nationale de hockey masculin",
+            "Marie-Philip Poulin et son influence sur le hockey féminin au Québec",
+            "Les Jeux olympiques de 2014 à Sotchi",
+            "La ville de Beauceville et sa région",
+          ]),
+          correctAnswer: "Marie-Philip Poulin et son influence sur le hockey féminin au Québec",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Information précise", type: "multiple_choice",
+          text: "Combien de médailles olympiques Marie-Philip Poulin a-t-elle remportées selon l'article ?",
+          options: JSON.stringify(["Deux médailles", "Trois médailles", "Quatre médailles, dont trois en or", "Cinq médailles d'or"]),
+          correctAnswer: "Quatre médailles, dont trois en or",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Obstacle surmonté", type: "multiple_choice",
+          text: "Quel obstacle Poulin a-t-elle dû surmonter dans sa jeunesse ?",
+          options: JSON.stringify([
+            "Elle était trop petite pour jouer au hockey",
+            "Il n'existait presque pas d'équipes féminines organisées dans sa région",
+            "Ses parents ne voulaient pas qu'elle joue au hockey",
+            "Elle a subi une blessure grave à l'âge de 10 ans",
+          ]),
+          correctAnswer: "Il n'existait presque pas d'équipes féminines organisées dans sa région",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Inférence — impact", type: "multiple_choice",
+          text: "L'auteur dit que Poulin «a convaincu les investisseurs que le hockey féminin pouvait remplir des arénas». Qu'est-ce que cela signifie ?",
+          options: JSON.stringify([
+            "Poulin a investi son propre argent dans la ligue",
+            "Ses performances ont démontré que le hockey féminin attire du public et peut être rentable",
+            "Elle a construit de nouveaux arénas au Québec",
+            "Elle a obligé les investisseurs à payer pour ses équipements",
+          ]),
+          correctAnswer: "Ses performances ont démontré que le hockey féminin attire du public et peut être rentable",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Valeurs véhiculées", type: "multiple_choice",
+          text: "Quelles valeurs l'auteur associe-t-il à Marie-Philip Poulin dans l'article ?",
+          options: JSON.stringify([
+            "Arrogance, vitesse et force physique",
+            "Persévérance, leadership et humilité",
+            "Richesse, célébrité et compétition",
+            "Obéissance, discrétion et patience",
+          ]),
+          correctAnswer: "Persévérance, leadership et humilité",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "But de l'article", type: "multiple_choice",
+          text: "Quel est le but principal de cet article ?",
+          options: JSON.stringify([
+            "Critiquer le manque de soutien envers le hockey féminin",
+            "Informer et inspirer les lecteurs en présentant le parcours d'une athlète remarquable",
+            "Annoncer la retraite de Marie-Philip Poulin",
+            "Comparer le hockey féminin et masculin pour déterminer lequel est supérieur",
+          ]),
+          correctAnswer: "Informer et inspirer les lecteurs en présentant le parcours d'une athlète remarquable",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Vocabulaire et analyse — Article sportif", description: "Analyser le vocabulaire, les faits et la structure de l'article sur Poulin", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Vocabulaire — «pointeuse»", type: "multiple_choice",
+          text: "L'article explique que Poulin a terminé «meilleure pointeuse — c'est-à-dire la joueuse ayant accumulé le plus de points». Que signifie «pointeuse» dans ce contexte ?",
+          options: JSON.stringify([
+            "La joueuse qui marque le plus de buts uniquement",
+            "La joueuse qui accumule le plus de points (buts + passes)",
+            "La gardienne de but de l'équipe",
+            "La joueuse la plus populaire auprès des partisans",
+          ]),
+          correctAnswer: "La joueuse qui accumule le plus de points (buts + passes)",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Vocabulaire — «robustesse»", type: "multiple_choice",
+          text: "L'article dit que s'entraîner avec des garçons «lui a permis de développer une robustesse physique et mentale». Que veut dire «robustesse» ici ?",
+          options: JSON.stringify([
+            "Une grande timidité face aux adversaires",
+            "Une solidité et une résistance face aux défis physiques et mentaux",
+            "Une technique parfaite de patinage",
+            "Une célébrité précoce dès l'enfance",
+          ]),
+          correctAnswer: "Une solidité et une résistance face aux défis physiques et mentaux",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Fait ou opinion ?", type: "multiple_choice",
+          text: "Laquelle de ces phrases est un FAIT (vérifiable) et non une opinion ?",
+          options: JSON.stringify([
+            "«Marie-Philip Poulin est la meilleure hockeyeuse de tous les temps.»",
+            "«Elle a remporté quatre médailles olympiques, dont trois en or.»",
+            "«Le hockey féminin est plus intéressant que le hockey masculin.»",
+            "«Beauceville est la plus belle ville du Québec.»",
+          ]),
+          correctAnswer: "«Elle a remporté quatre médailles olympiques, dont trois en or.»",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Rôle de la citation", type: "multiple_choice",
+          text: "La citation de Poulin («Aujourd'hui, les petites filles ont des idoles...») sert à :",
+          options: JSON.stringify([
+            "Prouver qu'elle est arrogante",
+            "Humaniser l'athlète et montrer sa conscience de son impact social",
+            "Critiquer les médias sportifs québécois",
+            "Annoncer sa retraite prochaine",
+          ]),
+          correctAnswer: "Humaniser l'athlète et montrer sa conscience de son impact social",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Structure — ordre des infos", type: "multiple_choice",
+          text: "L'auteur commence l'article par les faits les plus marquants (les buts à Sotchi). Pourquoi commence-t-on souvent ainsi dans un article de journal ?",
+          options: JSON.stringify([
+            "Pour respecter l'ordre chronologique des événements",
+            "Pour accrocher le lecteur dès le début avec l'information la plus percutante",
+            "Parce que c'est la règle imposée par les journaux",
+            "Pour que l'article soit plus facile à écrire",
+          ]),
+          correctAnswer: "Pour accrocher le lecteur dès le début avec l'information la plus percutante",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Impact hors du sport", type: "multiple_choice",
+          text: "En quoi l'impact de Poulin dépasse-t-il le domaine du sport selon l'article ?",
+          options: JSON.stringify([
+            "Elle a financé des hôpitaux au Québec",
+            "Son exemple est cité dans les écoles pour enseigner la persévérance et le leadership",
+            "Elle a créé une fondation pour les enfants malades",
+            "Elle a traduit des livres en langue des signes",
+          ]),
+          correctAnswer: "Son exemple est cité dans les écoles pour enseigner la persévérance et le leadership",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // LECTURE — ARTICLE DE JOURNAL : HISTOIRE QUÉBÉCOISE
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Article de journal — L'histoire du Québec",
+        description: "Lire et comprendre un article journalistique sur un événement fondateur de l'histoire québécoise",
+        category: "lecture_reading",
+        content: `<h2>Lire un article de journal</h2>
+<p>Lis attentivement cet article journalistique adapté, puis réponds aux questions.</p>
+<hr/>
+<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:15px 0;font-family:Georgia,serif;'>
+  <p style='color:#64748b;font-size:0.85em;margin:0 0 6px 0;'>LE SOLEIL — Histoire et société — 3 juillet 2024</p>
+  <h3 style='margin:0 0 10px 0;font-size:1.3em;'>La Grande Paix de Montréal : quand les peuples choisirent la parole plutôt que les armes</h3>
+  <p style='color:#475569;font-size:0.9em;font-style:italic;border-left:3px solid #8b5cf6;padding-left:10px;margin-bottom:14px;'>Il y a plus de 320 ans, 39 nations autochtones et les autorités françaises signaient l'un des traités de paix les plus remarquables de l'histoire nord-américaine.</p>
+  <p>En août 1701, la ville de Montréal accueillit un événement extraordinaire. Pendant plusieurs jours, des délégués représentant 39 nations autochtones — dont les Hurons-Wendat, les Anishinabés, les Haudenosaunee et bien d'autres — se réunirent avec le gouverneur français Louis-Hector de Callière pour signer un traité de paix.</p>
+  <p>Ce traité, connu sous le nom de <em>Grande Paix de Montréal</em>, mettait fin à des décennies de conflits armés qui avaient ravagé la région des Grands Lacs et la vallée du Saint-Laurent. Des milliers de personnes avaient péri dans ces guerres. Le traité permettait aux peuples de commercer librement, de libérer leurs prisonniers et de régler leurs différends par la négociation plutôt que par la violence.</p>
+  <p>«C'est l'un des documents diplomatiques les plus importants jamais signés en Amérique du Nord», affirme l'historienne Denise Arsenault de l'Université de Montréal. «Il montre que les nations autochtones étaient des acteurs politiques sophistiqués, capables de diplomatie complexe.»</p>
+  <p>Le traité fut signé avec des signatures très particulières : chaque chef autochtone apposa son totem — un dessin représentant son clan (tortue, ours, castor...) — plutôt qu'une signature écrite. Ces totems témoignent encore aujourd'hui de la diversité et de la richesse des cultures autochtones de l'époque.</p>
+  <p>Aujourd'hui, la Grande Paix de Montréal est célébrée comme un modèle de coexistence pacifique. Des cérémonies commémoratives réunissent chaque année des représentants des nations autochtones et des gouvernements québécois et canadien pour honorer cet héritage de paix.</p>
+  <p style='color:#64748b;font-size:0.82em;margin-top:12px;'>— Texte adapté à des fins pédagogiques</p>
+</div>`,
+        order: 115,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Compréhension — La Grande Paix de Montréal", description: "Réponds aux questions sur l'article «La Grande Paix de Montréal»", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "Idée principale", type: "multiple_choice",
+          text: "De quoi parle principalement cet article ?",
+          options: JSON.stringify([
+            "De la fondation de la ville de Montréal par les Français",
+            "D'un traité de paix signé en 1701 entre 39 nations autochtones et les Français",
+            "Des guerres entre la France et l'Angleterre au Canada",
+            "De la vie quotidienne des Hurons-Wendat au XVIIe siècle",
+          ]),
+          correctAnswer: "D'un traité de paix signé en 1701 entre 39 nations autochtones et les Français",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Information précise", type: "multiple_choice",
+          text: "Combien de nations autochtones participèrent à la Grande Paix de Montréal ?",
+          options: JSON.stringify(["12 nations", "25 nations", "39 nations", "50 nations"]),
+          correctAnswer: "39 nations",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Cause du traité", type: "multiple_choice",
+          text: "Pourquoi ce traité de paix fut-il nécessaire en 1701 ?",
+          options: JSON.stringify([
+            "Pour permettre aux Français de conquérir toutes les terres autochtones",
+            "Pour mettre fin à des décennies de conflits armés meurtriers dans la région",
+            "Pour créer une nouvelle langue commune entre les peuples",
+            "Pour organiser un grand marché commercial annuel",
+          ]),
+          correctAnswer: "Pour mettre fin à des décennies de conflits armés meurtriers dans la région",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Détail original — les totems", type: "multiple_choice",
+          text: "Comment les chefs autochtones ont-ils signé le traité ?",
+          options: JSON.stringify([
+            "En écrivant leur nom en français",
+            "En apposant leur totem (dessin de leur clan) plutôt qu'une signature écrite",
+            "En utilisant un sceau officiel royal",
+            "En envoyant une lettre séparée à chaque nation",
+          ]),
+          correctAnswer: "En apposant leur totem (dessin de leur clan) plutôt qu'une signature écrite",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Point de vue de l'historienne", type: "multiple_choice",
+          text: "Selon Denise Arsenault, qu'est-ce que ce traité démontre au sujet des nations autochtones ?",
+          options: JSON.stringify([
+            "Qu'elles étaient dominées par les Français",
+            "Qu'elles n'avaient pas de système politique organisé",
+            "Qu'elles étaient des acteurs politiques sophistiqués, capables de diplomatie complexe",
+            "Qu'elles refusaient tout contact avec les Européens",
+          ]),
+          correctAnswer: "Qu'elles étaient des acteurs politiques sophistiqués, capables de diplomatie complexe",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Inférence — titre de l'article", type: "multiple_choice",
+          text: "Le titre dit «quand les peuples choisirent la parole plutôt que les armes». Que veut dire l'auteur ?",
+          options: JSON.stringify([
+            "Les peuples avaient perdu toutes leurs armes dans une bataille",
+            "Les peuples ont préféré négocier et dialoguer plutôt que continuer à se battre",
+            "Les armes étaient interdites lors de la cérémonie de signature",
+            "La parole était considérée comme une arme dans cette culture",
+          ]),
+          correctAnswer: "Les peuples ont préféré négocier et dialoguer plutôt que continuer à se battre",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Vocabulaire et réflexion — Article historique", description: "Travailler le vocabulaire en contexte et analyser la portée de cet événement historique", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Vocabulaire — «ravagé»", type: "multiple_choice",
+          text: "L'article dit que les conflits «avaient ravagé la région». Que signifie «ravager» ?",
+          options: JSON.stringify([
+            "Améliorer et développer une région",
+            "Détruire et dévaster complètement",
+            "Explorer et cartographier un territoire",
+            "Peupler et coloniser une région",
+          ]),
+          correctAnswer: "Détruire et dévaster complètement",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Vocabulaire — «coexistence»", type: "multiple_choice",
+          text: "L'article dit que la Grande Paix est un «modèle de coexistence pacifique». Que veut dire «coexistence» ?",
+          options: JSON.stringify([
+            "La domination d'un peuple sur les autres",
+            "Le fait de vivre ensemble sans se combattre",
+            "L'isolement complet de chaque groupe",
+            "La fusion de plusieurs cultures en une seule",
+          ]),
+          correctAnswer: "Le fait de vivre ensemble sans se combattre",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Vocabulaire — «commémoratives»", type: "multiple_choice",
+          text: "L'article parle de «cérémonies commémoratives». Que signifie «commémoratif» ?",
+          options: JSON.stringify([
+            "Qui sert à oublier un événement douloureux",
+            "Qui sert à se souvenir et à honorer un événement important du passé",
+            "Qui annonce un événement futur",
+            "Qui critique un événement historique",
+          ]),
+          correctAnswer: "Qui sert à se souvenir et à honorer un événement important du passé",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Fait ou opinion ?", type: "multiple_choice",
+          text: "Laquelle de ces phrases tirées de l'article est un FAIT vérifiable ?",
+          options: JSON.stringify([
+            "«C'est l'un des documents diplomatiques les plus importants jamais signés.»",
+            "«Les nations autochtones étaient meilleures diplomates que les Français.»",
+            "«En août 1701, des délégués de 39 nations autochtones se réunirent à Montréal.»",
+            "«La Grande Paix est l'événement le plus important de l'histoire canadienne.»",
+          ]),
+          correctAnswer: "«En août 1701, des délégués de 39 nations autochtones se réunirent à Montréal.»",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Pertinence aujourd'hui", type: "multiple_choice",
+          text: "Pourquoi l'auteur mentionne-t-il les cérémonies commémoratives actuelles à la fin de l'article ?",
+          options: JSON.stringify([
+            "Pour montrer que cet événement est encore pertinent et honoré de nos jours",
+            "Pour critiquer le gouvernement canadien actuel",
+            "Pour annoncer un prochain traité de paix entre les nations",
+            "Pour indiquer que les conflits ont repris récemment",
+          ]),
+          correctAnswer: "Pour montrer que cet événement est encore pertinent et honoré de nos jours",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Lien texte-société", type: "multiple_choice",
+          text: "Quelle leçon générale peut-on tirer de la Grande Paix de Montréal selon l'article ?",
+          options: JSON.stringify([
+            "La guerre est la seule façon de résoudre les conflits entre peuples",
+            "Il vaut mieux éviter tout contact entre des cultures différentes",
+            "La diplomatie et le dialogue peuvent mettre fin aux conflits même les plus longs",
+            "Seuls les gouvernements européens savent négocier des traités",
+          ]),
+          correctAnswer: "La diplomatie et le dialogue peuvent mettre fin aux conflits même les plus longs",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // LECTURE — ARTICLE DE JOURNAL : CULTURE QUÉBÉCOISE
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Article de journal — La culture québécoise",
+        description: "Lire et comprendre un article journalistique sur la langue et la culture québécoise",
+        category: "lecture_reading",
+        content: `<h2>Lire un article de journal</h2>
+<p>Lis attentivement cet article journalistique adapté, puis réponds aux questions.</p>
+<hr/>
+<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:15px 0;font-family:Georgia,serif;'>
+  <p style='color:#64748b;font-size:0.85em;margin:0 0 6px 0;'>LE DEVOIR — Culture — 15 octobre 2024</p>
+  <h3 style='margin:0 0 10px 0;font-size:1.3em;'>Le français québécois : une langue bien vivante qui s'adapte au monde</h3>
+  <p style='color:#475569;font-size:0.9em;font-style:italic;border-left:3px solid #ec4899;padding-left:10px;margin-bottom:14px;'>À l'heure des réseaux sociaux et de l'intelligence artificielle, le français parlé au Québec continue d'évoluer, de surprendre et de résister — à sa façon bien particulière.</p>
+  <p>Qui n'a jamais souri en entendant un ami dire «c'est le boutte !» pour signifier que quelque chose est excellent, ou «magasiner» au lieu de «faire du shopping» ? Ces expressions, bien québécoises, font partie d'une langue vivante et inventive que parlent 8 millions de personnes en Amérique du Nord.</p>
+  <p>Le français québécois n'est pas une version «incorrecte» du français de France. C'est une variété linguistique à part entière, avec sa propre histoire, ses propres expressions et même ses propres emprunts aux langues autochtones. Des mots comme «atoca» (canneberge), «ouaouaron» (grenouille-taureau) et «achigan» (perche noire) viennent directement des langues algonquines.</p>
+  <p>«Les jeunes Québécois naviguent entre plusieurs registres de langue», explique la sociolinguiste Chantal Bouchard de l'Université McGill. «Ils parlent en joual avec leurs amis, en français standard à l'école, et ils jonglent parfois avec l'anglais dans certains contextes. C'est une forme d'intelligence linguistique.»</p>
+  <p>Les réseaux sociaux jouent aujourd'hui un rôle important dans l'évolution du français québécois. Des créateurs de contenu popularisent des expressions nouvelles, inventent des mots et redécouvrent des archaïsmes — de vieux mots français oubliés en France mais toujours utilisés au Québec. Le mot «maganer» (abîmer, épuiser) en est un bon exemple.</p>
+  <p>Loin d'être menacé, le français québécois est reconnu sur la scène internationale. Des auteurs comme Michel Tremblay ont fait du joual une langue littéraire respectée. Et la Loi 101, adoptée en 1977, continue de protéger le statut du français comme langue officielle du Québec.</p>
+  <p style='color:#64748b;font-size:0.82em;margin-top:12px;'>— Texte adapté à des fins pédagogiques</p>
+</div>`,
+        order: 116,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Compréhension — Le français québécois", description: "Réponds aux questions sur l'article «Le français québécois : une langue bien vivante»", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "Idée principale", type: "multiple_choice",
+          text: "Quelle est l'idée principale de cet article ?",
+          options: JSON.stringify([
+            "Le français québécois est une mauvaise version du français de France",
+            "Le français québécois est une langue vivante, unique et en constante évolution",
+            "Les jeunes Québécois parlent de moins en moins français",
+            "La Loi 101 interdit aux Québécois de parler anglais",
+          ]),
+          correctAnswer: "Le français québécois est une langue vivante, unique et en constante évolution",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Origine de certains mots", type: "multiple_choice",
+          text: "D'où viennent des mots comme «atoca», «ouaouaron» et «achigan» ?",
+          options: JSON.stringify([
+            "Du vieux français médiéval",
+            "De l'anglais britannique",
+            "Des langues autochtones algonquines",
+            "De l'espagnol d'Amérique latine",
+          ]),
+          correctAnswer: "Des langues autochtones algonquines",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Rôle des réseaux sociaux", type: "multiple_choice",
+          text: "Quel rôle les réseaux sociaux jouent-ils dans l'évolution du français québécois selon l'article ?",
+          options: JSON.stringify([
+            "Ils remplacent le français par l'anglais chez les jeunes",
+            "Ils n'ont aucun effet sur la langue",
+            "Ils popularisent des expressions, inventent des mots et redécouvrent des archaïsmes",
+            "Ils appauvrissent le vocabulaire des jeunes",
+          ]),
+          correctAnswer: "Ils popularisent des expressions, inventent des mots et redécouvrent des archaïsmes",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Point de vue de la linguiste", type: "multiple_choice",
+          text: "Selon Chantal Bouchard, le fait que les jeunes naviguent entre le joual, le français standard et l'anglais est :",
+          options: JSON.stringify([
+            "Une preuve que les jeunes ne maîtrisent aucune langue correctement",
+            "Un problème grave pour l'avenir du français québécois",
+            "Une forme d'intelligence linguistique",
+            "Une influence néfaste des réseaux sociaux",
+          ]),
+          correctAnswer: "Une forme d'intelligence linguistique",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Inférence — archaïsmes", type: "multiple_choice",
+          text: "L'article dit que les Québécois utilisent encore des «archaïsmes — de vieux mots français oubliés en France». Qu'est-ce que cela révèle sur le français québécois ?",
+          options: JSON.stringify([
+            "Les Québécois parlent un français plus ancien et plus pur que celui de France",
+            "Le québécois est en retard par rapport au français de France",
+            "Les Québécois refusent de moderniser leur langue",
+            "Les archaïsmes viennent principalement de l'anglais",
+          ]),
+          correctAnswer: "Les Québécois parlent un français plus ancien et plus pur que celui de France",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Ton de l'article", type: "multiple_choice",
+          text: "Quelle est l'attitude de l'auteur envers le français québécois ?",
+          options: JSON.stringify([
+            "Critique — il pense que le québécois devrait ressembler davantage au français de France",
+            "Indifférent — il ne porte aucun jugement",
+            "Valorisant et positif — il présente le français québécois comme une richesse",
+            "Inquiet — il pense que le français québécois est en danger",
+          ]),
+          correctAnswer: "Valorisant et positif — il présente le français québécois comme une richesse",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Vocabulaire et analyse — Article culturel", description: "Analyser le vocabulaire spécialisé et la structure de l'article sur la langue québécoise", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Vocabulaire — «registres»", type: "multiple_choice",
+          text: "La sociolinguiste parle de «registres de langue». D'après le contexte, un registre de langue c'est :",
+          options: JSON.stringify([
+            "Un carnet où on écrit les nouvelles expressions",
+            "Un niveau ou une variété de langue utilisée selon le contexte (formel, familier, etc.)",
+            "Une liste officielle de mots acceptés par l'Académie française",
+            "Un dialecte totalement différent d'une autre langue",
+          ]),
+          correctAnswer: "Un niveau ou une variété de langue utilisée selon le contexte (formel, familier, etc.)",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Vocabulaire — «variété linguistique»", type: "multiple_choice",
+          text: "L'article dit que le québécois est «une variété linguistique à part entière». Que signifie cette expression ?",
+          options: JSON.stringify([
+            "Le québécois est une langue incorrecte et inférieure",
+            "Le québécois est une forme complète et légitime de langue, pas juste un dialecte inférieur",
+            "Le québécois est exactement identique au français de France",
+            "Le québécois n'est parlé que par une minorité",
+          ]),
+          correctAnswer: "Le québécois est une forme complète et légitime de langue, pas juste un dialecte inférieur",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Fait ou opinion ?", type: "multiple_choice",
+          text: "Laquelle de ces affirmations est un FAIT vérifiable ?",
+          options: JSON.stringify([
+            "«Le français québécois est plus beau que le français de France.»",
+            "«La Loi 101 a été adoptée en 1977.»",
+            "«Les jeunes Québécois parlent mieux que les jeunes Français.»",
+            "«Le joual est une forme inférieure du français.»",
+          ]),
+          correctAnswer: "«La Loi 101 a été adoptée en 1977.»",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Le joual comme langue littéraire", type: "multiple_choice",
+          text: "L'article mentionne que Michel Tremblay «a fait du joual une langue littéraire respectée». Qu'est-ce que cela signifie ?",
+          options: JSON.stringify([
+            "Tremblay a inventé le joual en écrivant ses livres",
+            "Il a prouvé que le joual pouvait servir à créer des œuvres littéraires de valeur reconnue",
+            "Il a traduit des œuvres classiques en joual",
+            "Il a interdit d'utiliser le joual dans les écoles",
+          ]),
+          correctAnswer: "Il a prouvé que le joual pouvait servir à créer des œuvres littéraires de valeur reconnue",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Structure de l'article", type: "multiple_choice",
+          text: "L'auteur structure l'article de la façon suivante. Quel est le bon ordre ?",
+          options: JSON.stringify([
+            "Loi 101 → réseaux sociaux → mots autochtones → exemples amusants",
+            "Exemples concrets du québécois → légitimité de la langue → influences autochtones → rôle des jeunes/médias → protection",
+            "Critique du joual → défense du français standard → conclusion négative",
+            "Histoire de la Loi 101 → réseaux sociaux → Michel Tremblay",
+          ]),
+          correctAnswer: "Exemples concrets du québécois → légitimité de la langue → influences autochtones → rôle des jeunes/médias → protection",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Message général", type: "multiple_choice",
+          text: "Quel message l'auteur veut-il transmettre au lecteur avec cet article ?",
+          options: JSON.stringify([
+            "Le français québécois est menacé et va disparaître",
+            "Il faut abandonner le joual et parler uniquement le français standard",
+            "Le français québécois est une richesse culturelle vivante dont les Québécois peuvent être fiers",
+            "Les jeunes devraient arrêter d'utiliser les réseaux sociaux pour préserver la langue",
+          ]),
+          correctAnswer: "Le français québécois est une richesse culturelle vivante dont les Québécois peuvent être fiers",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
     // ÉCRITURE — SCHÉMA NARRATIF 5 ÉTAPES (QUÉBEC)
     // ============================================================
     {
