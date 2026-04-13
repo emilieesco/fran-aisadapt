@@ -151,7 +151,10 @@ export default function StudentDashboard() {
   const [docError, setDocError] = useState("");
 
   const loadDocuments = async (userId: string) => {
-    const res = await fetch(`/api/documents/student/${userId}`, { credentials: "include" });
+    const res = await fetch(`/api/documents/student/${userId}`, {
+      credentials: "include",
+      headers: { "x-user-id": userId },
+    });
     if (res.ok) setDocuments(await res.json());
   };
 

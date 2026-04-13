@@ -545,9 +545,14 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     }
   });
 
-  // Lister les documents d'un élève
+  // Lister les documents d'un élève (l'élève ne peut voir que les siens)
   app.get("/api/documents/student/:studentId", async (req, res) => {
     try {
+      const requesterId = req.headers["x-user-id"] as string;
+      // Si un x-user-id est fourni, vérifier qu'il correspond au studentId demandé
+      if (requesterId && requesterId !== req.params.studentId) {
+        return res.status(403).send("Accès refusé");
+      }
       const docs = await storage.getDocumentsByStudent(req.params.studentId);
       // Ne pas renvoyer fileData dans la liste (trop lourd)
       res.json(docs.map(({ fileData, ...rest }) => rest));
