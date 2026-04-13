@@ -11614,6 +11614,481 @@ Sur de vieilles espérances.
     }
 
     // ============================================================
+    // GRAMMAIRE — GROUPES SYNTAXIQUES : GN, GV, GPrép
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Groupes syntaxiques — GN, GV et GPrép",
+        description: "Identifier les groupes syntaxiques de base (GN, GV, GPrép) et leurs expansions selon la nouvelle grammaire québécoise",
+        category: "grammaire",
+        content: "<h2>Les Groupes Syntaxiques</h2><p>En nouvelle grammaire québécoise, toute phrase est composée de <strong>groupes syntaxiques</strong>. Chaque groupe a un mot-noyau autour duquel s'organisent des expansions.</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ LES 3 GROUPES PRINCIPAUX :</strong><br>1. <b>GN</b> — Groupe du Nom : noyau = nom<br>2. <b>GV</b> — Groupe du Verbe : noyau = verbe conjugué<br>3. <b>GPrép</b> — Groupe Prépositionnel : commence par une préposition</div><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>1. GN — Groupe du Nom</strong><br>Noyau = nom ; peut contenir : déterminant, adjectif, complément du nom, subordonnée relative<br><em>Exemples : «le chien», «un grand chien noir», «le chien de ma voisine»</em></div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px;'><strong>2. GV — Groupe du Verbe</strong><br>Noyau = verbe conjugué ; peut contenir : CD, CI, attribut, CP<br><em>Exemples : «mange une pomme», «est arrivée», «semble fatiguée»</em></div><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px;'><strong>3. GPrép — Groupe Prépositionnel</strong><br>Commence toujours par une préposition (à, de, en, par, pour, avec...)<br><em>Exemples : «dans la forêt», «à son ami», «de bonne humeur»</em></div><div style='background:#fee2e2;padding:10px;margin:10px 0;border-radius:4px;'><strong>Structure de la phrase de base :</strong><br>Sujet (GN) + Prédicat (GV) + [CP facultatif]<br>«[Les enfants] [jouent dans la cour] [depuis une heure].»<br>&nbsp;&nbsp;&nbsp;&nbsp;GN sujet &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV prédicat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CP</div>",
+        order: 206,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Identifier les groupes syntaxiques (GN, GV, GPrép)", description: "Dans chaque phrase, identifie le groupe syntaxique demandé", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "Noyau du GN", type: "multiple_choice",
+          text: "Dans «la belle maison bleue», quel est le mot-noyau du GN ?",
+          options: JSON.stringify(["la", "belle", "maison", "bleue"]),
+          correctAnswer: "maison",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Trouver le GN sujet", type: "multiple_choice",
+          text: "Dans «Les petits oiseaux chantent dans le jardin.», quel est le GN sujet ?",
+          options: JSON.stringify(["chantent", "dans le jardin", "les petits oiseaux", "le jardin"]),
+          correctAnswer: "les petits oiseaux",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Trouver le GV", type: "multiple_choice",
+          text: "Dans «Marie mange une pomme rouge.», quel est le GV (prédicat) ?",
+          options: JSON.stringify(["Marie", "une pomme rouge", "mange une pomme rouge", "pomme rouge"]),
+          correctAnswer: "mange une pomme rouge",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Reconnaître le GPrép", type: "multiple_choice",
+          text: "Lequel de ces groupes est un GPrép ?",
+          options: JSON.stringify(["les enfants heureux", "courent vite", "dans la forêt sombre", "une belle journée"]),
+          correctAnswer: "dans la forêt sombre",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Début du GPrép", type: "multiple_choice",
+          text: "Par quoi commence toujours un GPrép ?",
+          options: JSON.stringify(["Un nom", "Un adjectif", "Un verbe conjugué", "Une préposition (à, de, en, par...)"]),
+          correctAnswer: "Une préposition (à, de, en, par...)",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Structure sujet + prédicat", type: "multiple_choice",
+          text: "Dans la phrase de base, le sujet est toujours un _____ et le prédicat est toujours un _____ .",
+          options: JSON.stringify(["GV / GN", "GN / GV", "GPrép / GN", "GN / GPrép"]),
+          correctAnswer: "GN / GV",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Expansions du GN et rôles des groupes", description: "Identifier les expansions du GN et le rôle de chaque groupe dans la phrase", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Expansion adjectivale", type: "multiple_choice",
+          text: "Dans «un livre passionnant», «passionnant» est une expansion du nom «livre». De quel type est cette expansion ?",
+          options: JSON.stringify(["Un GPrép", "Un adjectif (expansion adjectivale)", "Un GV", "Une subordonnée relative"]),
+          correctAnswer: "Un adjectif (expansion adjectivale)",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Expansion par GPrép", type: "multiple_choice",
+          text: "Dans «le chat de ma voisine», «de ma voisine» est une expansion du nom «chat». De quel type est-elle ?",
+          options: JSON.stringify(["Un adjectif", "Une subordonnée relative", "Un GPrép complément du nom", "Un GV"]),
+          correctAnswer: "Un GPrép complément du nom",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Expansion par subordonnée relative", type: "multiple_choice",
+          text: "Dans «le garçon qui chante», «qui chante» est une expansion du nom «garçon». De quel type est-elle ?",
+          options: JSON.stringify(["Un GPrép", "Un adjectif", "Une subordonnée relative (qui, que, dont, où)", "Un GN"]),
+          correctAnswer: "Une subordonnée relative (qui, que, dont, où)",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Rôle du GPrép dans la phrase", type: "multiple_choice",
+          text: "Dans «Il part à Montréal.», «à Montréal» est un GPrép. Quel est son rôle dans la phrase ?",
+          options: JSON.stringify(["GN sujet", "GV prédicat", "CI du verbe «partir»", "CD du verbe «partir»"]),
+          correctAnswer: "CI du verbe «partir»",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "GPrép CP ou CI ?", type: "multiple_choice",
+          text: "Dans «Elle travaille dans sa chambre.», «dans sa chambre» est un GPrép. Quel est son rôle ?",
+          options: JSON.stringify(["CI — car il est obligatoire après le verbe", "CD — car il répond à «quoi ?»", "CP — car on peut le déplacer et l'effacer", "Sujet de la phrase"]),
+          correctAnswer: "CP — car on peut le déplacer et l'effacer",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Récapitulatif GN / GV / GPrép", type: "multiple_choice",
+          text: "Dans «[Les élèves] [lisent un roman] [depuis ce matin].», quel groupe est entre crochets [] au milieu ?",
+          options: JSON.stringify(["GN sujet", "GPrép", "GV prédicat (contenant un CD)", "CP de temps"]),
+          correctAnswer: "GV prédicat (contenant un CD)",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // GRAMMAIRE — SUBORDONNÉE RELATIVE (qui, que, dont, où)
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Subordonnée relative — qui, que, dont, où",
+        description: "Comprendre et utiliser les pronoms relatifs pour enrichir le GN : qui, que, dont, où",
+        category: "grammaire",
+        content: "<h2>La Subordonnée Relative</h2><p>La <strong>subordonnée relative</strong> est une expansion du nom (du GN). Elle est introduite par un <strong>pronom relatif</strong> et sert à préciser ou enrichir un nom appelé l'<strong>antécédent</strong>.</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ LES 4 PRONOMS RELATIFS PRINCIPAUX :</strong><br><b>qui</b> — sujet de la subordonnée (remplace une personne ou une chose)<br><b>que</b> — CD de la subordonnée (remplace une personne ou une chose)<br><b>dont</b> — complément introduit par «de» (appartenance, manière)<br><b>où</b> — lieu ou temps</div><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>QUI — sujet</strong><br>«Le chien <u>qui aboie</u> est le mien.» → «qui» est sujet du verbe «aboie»<br>«La femme <u>qui chante</u> est ma tante.» → «qui» est sujet du verbe «chante»</div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px;'><strong>QUE — CD</strong><br>«Le livre <u>que je lis</u> est passionnant.» → «que» est CD du verbe «lis» (je lis quoi ? → que)<br>«La chanson <u>qu'elle chante</u> est belle.» → «que» est CD du verbe «chante»</div><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px;'><strong>DONT — complément de «de»</strong><br>«Le film <u>dont je parle</u> est célèbre.» → je parle <em>de</em> quoi ? → du film<br>«La fille <u>dont tu connais le frère</u> est partie.» → le frère <em>de</em> qui ? → de la fille</div><div style='background:#fce7f3;padding:10px;margin:10px 0;border-radius:4px;'><strong>OÙ — lieu ou temps</strong><br>«La ville <u>où j'habite</u> est belle.» → lieu<br>«Le jour <u>où elle est arrivée</u> était pluvieux.» → temps</div>",
+        order: 207,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Choisir le bon pronom relatif", description: "Complète avec qui, que, dont ou où selon le sens de la phrase", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "qui ou que — sujet", type: "multiple_choice",
+          text: "«L'élève ___ a réussi son examen est très content.» — Quel pronom relatif convient ?",
+          options: JSON.stringify(["que", "dont", "où", "qui"]),
+          correctAnswer: "qui",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "que — CD", type: "multiple_choice",
+          text: "«Le film ___ nous avons regardé était excellent.» — Quel pronom relatif convient ?",
+          options: JSON.stringify(["qui", "dont", "où", "que"]),
+          correctAnswer: "que",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "dont — complément de «de»", type: "multiple_choice",
+          text: "«C'est le livre ___ tu m'avais parlé.» — Quel pronom relatif convient ? (tu m'avais parlé <em>de</em> quoi ?)",
+          options: JSON.stringify(["qui", "que", "dont", "où"]),
+          correctAnswer: "dont",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "où — lieu", type: "multiple_choice",
+          text: "«Le parc ___ les enfants jouent est magnifique.» — Quel pronom relatif convient ?",
+          options: JSON.stringify(["qui", "que", "dont", "où"]),
+          correctAnswer: "où",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "qui — chose", type: "multiple_choice",
+          text: "«La voiture ___ est garée devant la maison appartient à mon oncle.» — Quel pronom relatif convient ?",
+          options: JSON.stringify(["que", "dont", "où", "qui"]),
+          correctAnswer: "qui",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "où — temps", type: "multiple_choice",
+          text: "«Je me souviens du jour ___ nous nous sommes rencontrés.» — Quel pronom relatif convient ?",
+          options: JSON.stringify(["qui", "que", "dont", "où"]),
+          correctAnswer: "où",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Analyser la subordonnée relative", description: "Identifier l'antécédent, le pronom relatif et sa fonction dans la subordonnée", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Antécédent de «qui»", type: "multiple_choice",
+          text: "Dans «La chanteuse qui monte sur scène est très populaire.», quel est l'antécédent du pronom relatif «qui» ?",
+          options: JSON.stringify(["scène", "monte", "populaire", "chanteuse"]),
+          correctAnswer: "chanteuse",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Fonction de «qui»", type: "multiple_choice",
+          text: "Dans «Le chat qui dort sur le canapé est à moi.», «qui» est :",
+          options: JSON.stringify(["CD du verbe «dort»", "Sujet du verbe «dort»", "CP du verbe «dort»", "Attribut du sujet"]),
+          correctAnswer: "Sujet du verbe «dort»",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Fonction de «que»", type: "multiple_choice",
+          text: "Dans «Le gâteau que tu as préparé est délicieux.», «que» est :",
+          options: JSON.stringify(["Sujet du verbe «as préparé»", "CD du verbe «as préparé»", "CP de la subordonnée", "Antécédent de «gâteau»"]),
+          correctAnswer: "CD du verbe «as préparé»",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Rôle de la subordonnée relative", type: "multiple_choice",
+          text: "Quel est le rôle principal d'une subordonnée relative dans une phrase ?",
+          options: JSON.stringify([
+            "Remplacer le verbe principal",
+            "Être le sujet de la phrase",
+            "Enrichir (préciser) le GN en ajoutant de l'information sur le nom",
+            "Indiquer le temps ou le lieu de l'action principale",
+          ]),
+          correctAnswer: "Enrichir (préciser) le GN en ajoutant de l'information sur le nom",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Qui vs Que — test", type: "multiple_choice",
+          text: "Pour choisir entre «qui» et «que», le test le plus fiable est :",
+          options: JSON.stringify([
+            "«qui» s'utilise pour les personnes, «que» pour les choses",
+            "«qui» est sujet du verbe qui suit ; «que» est CD du verbe qui suit",
+            "«qui» s'utilise au singulier, «que» au pluriel",
+            "«qui» est toujours suivi d'un nom ; «que» est toujours suivi d'un verbe",
+          ]),
+          correctAnswer: "«qui» est sujet du verbe qui suit ; «que» est CD du verbe qui suit",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Dont — test «de»", type: "multiple_choice",
+          text: "Pour savoir si on doit utiliser «dont», on vérifie si :",
+          options: JSON.stringify([
+            "Le verbe de la subordonnée est suivi de «à»",
+            "Le verbe ou le nom dans la subordonnée est normalement suivi de «de»",
+            "L'antécédent est un lieu",
+            "L'antécédent est une personne",
+          ]),
+          correctAnswer: "Le verbe ou le nom dans la subordonnée est normalement suivi de «de»",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // ÉCRITURE — TEXTE DESCRIPTIF (5 COMPOSANTES)
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Texte descriptif — Structure et composantes",
+        description: "Comprendre la structure du texte descriptif québécois : sujet, aspects, sous-aspects, exemples et organisateurs",
+        category: "ecriture",
+        content: "<h2>Le Texte Descriptif</h2><p>Le texte descriptif présente les caractéristiques d'un sujet (personne, animal, lieu, objet, phénomène) en les organisant en <strong>aspects</strong> et <strong>sous-aspects</strong>.</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ STRUCTURE EN 5 COMPOSANTES :</strong><br>1. <b>Sujet</b> — Ce dont on parle (la tortue, le Québec, l'automne...)<br>2. <b>Aspects</b> — Les grandes caractéristiques du sujet<br>3. <b>Sous-aspects</b> — Les détails de chaque aspect<br>4. <b>Exemples / Illustrations</b> — Les preuves concrètes<br>5. <b>Organisateurs textuels</b> — Les mots qui structurent (premièrement, de plus, enfin...)</div><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>Exemple — Sujet : «Le castor, animal emblématique du Canada»</strong><br>• Aspect 1 : Son apparence physique<br>&nbsp;&nbsp;&nbsp;→ Sous-aspect : Sa fourrure brun foncé imperméable<br>&nbsp;&nbsp;&nbsp;→ Sous-aspect : Sa grande queue plate en forme de pagaie<br>• Aspect 2 : Son mode de vie<br>&nbsp;&nbsp;&nbsp;→ Sous-aspect : Il construit des barrages avec des branches<br>&nbsp;&nbsp;&nbsp;→ Sous-aspect : Il vit en famille dans un terrier aquatique</div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px;'><strong>Organisateurs textuels courants :</strong><br>Premièrement / Deuxièmement / Troisièmement<br>D'abord / Ensuite / De plus / Par ailleurs / Enfin<br>En ce qui concerne / Quant à / Pour ce qui est de</div><div style='background:#fee2e2;padding:10px;margin:10px 0;border-radius:4px;'><strong>Différence texte descriptif vs narratif :</strong><br>• Descriptif : pas d'action, pas de chronologie — on décrit des caractéristiques<br>• Narratif : des personnages vivent des événements dans le temps<br>• Le descriptif répond à «Comment est ?» ; le narratif répond à «Que s'est-il passé ?»</div>",
+        order: 79,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Reconnaître la structure du texte descriptif", description: "Identifier les composantes (sujet, aspects, sous-aspects) dans un texte descriptif", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "But du texte descriptif", type: "multiple_choice",
+          text: "Quel est le but principal d'un texte descriptif ?",
+          options: JSON.stringify([
+            "Raconter une histoire avec des personnages et des événements",
+            "Convaincre le lecteur d'adopter un point de vue",
+            "Présenter les caractéristiques d'un sujet de façon organisée",
+            "Expliquer comment faire quelque chose étape par étape",
+          ]),
+          correctAnswer: "Présenter les caractéristiques d'un sujet de façon organisée",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Identifier le sujet", type: "multiple_choice",
+          text: "Dans un texte descriptif intitulé «La forêt boréale québécoise», quel est le sujet ?",
+          options: JSON.stringify(["Les animaux de la forêt", "La forêt boréale québécoise", "Les arbres en général", "Le Québec"]),
+          correctAnswer: "La forêt boréale québécoise",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Identifier un aspect", type: "multiple_choice",
+          text: "Dans un texte sur «Le loup», l'auteur parle de son alimentation, de son habitat et de ses comportements sociaux. Ces trois thèmes sont des :",
+          options: JSON.stringify(["Sous-aspects", "Exemples", "Aspects du sujet", "Organisateurs textuels"]),
+          correctAnswer: "Aspects du sujet",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Identifier un sous-aspect", type: "multiple_choice",
+          text: "Dans le texte sur le loup, sous l'aspect «alimentation», on lit : «Le loup chasse principalement le cerf et l'orignal.» C'est un :",
+          options: JSON.stringify(["Aspect principal", "Sujet du texte", "Sous-aspect de l'aspect «alimentation»", "Organisateur textuel"]),
+          correctAnswer: "Sous-aspect de l'aspect «alimentation»",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Organisateurs textuels", type: "multiple_choice",
+          text: "Lequel de ces groupes contient uniquement des organisateurs textuels typiques du texte descriptif ?",
+          options: JSON.stringify([
+            "Soudain, puis, mais voilà que, finalement",
+            "Premièrement, de plus, en ce qui concerne, enfin",
+            "Il était une fois, un jour, depuis ce jour",
+            "Parce que, donc, c'est pourquoi, ainsi",
+          ]),
+          correctAnswer: "Premièrement, de plus, en ce qui concerne, enfin",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Descriptif vs Narratif", type: "multiple_choice",
+          text: "Lequel de ces textes est un texte DESCRIPTIF ?",
+          options: JSON.stringify([
+            "«Un matin, Léo trouva une lettre mystérieuse sous sa porte.»",
+            "«Le béluga est un mammifère marin blanc vivant dans le Saint-Laurent.»",
+            "«Pour faire une omelette, casse d'abord deux œufs dans un bol.»",
+            "«Je pense que nous devrions protéger davantage notre environnement.»",
+          ]),
+          correctAnswer: "«Le béluga est un mammifère marin blanc vivant dans le Saint-Laurent.»",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Organiser et enrichir un texte descriptif", description: "Choisir les bons organisateurs et distinguer aspects, sous-aspects et exemples", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Quel organisateur ?", type: "multiple_choice",
+          text: "Tu veux introduire le deuxième aspect de ton texte descriptif. Quel organisateur est le mieux approprié ?",
+          options: JSON.stringify(["Soudain", "Deuxièmement / En ce qui concerne", "Il était une fois", "C'est pourquoi"]),
+          correctAnswer: "Deuxièmement / En ce qui concerne",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Classer l'information", type: "multiple_choice",
+          text: "Dans un texte sur «La baleine bleue», l'information «Elle peut mesurer jusqu'à 30 mètres de long» est :",
+          options: JSON.stringify(["Le sujet du texte", "Un aspect principal", "Un exemple/sous-aspect illustrant l'aspect «taille»", "Un organisateur textuel"]),
+          correctAnswer: "Un exemple/sous-aspect illustrant l'aspect «taille»",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Ordre logique", type: "multiple_choice",
+          text: "Dans un texte descriptif, dans quel ordre présente-t-on généralement l'information ?",
+          options: JSON.stringify([
+            "Du plus petit détail au sujet général",
+            "Du sujet général → aspects → sous-aspects / exemples",
+            "En ordre chronologique (passé, présent, futur)",
+            "De l'avis le moins important au plus important",
+          ]),
+          correctAnswer: "Du sujet général → aspects → sous-aspects / exemples",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Introduction d'un texte descriptif", type: "multiple_choice",
+          text: "Quelle est la meilleure introduction pour un texte descriptif sur «Le caribou» ?",
+          options: JSON.stringify([
+            "«Un jour, un caribou perdit sa harde dans une tempête de neige.»",
+            "«Je pense que le caribou est le plus bel animal du Québec.»",
+            "«Le caribou est un grand cervidé qui vit dans les régions nordiques du Québec.»",
+            "«Pour observer le caribou, il faut d'abord préparer son équipement.»",
+          ]),
+          correctAnswer: "«Le caribou est un grand cervidé qui vit dans les régions nordiques du Québec.»",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Aspect ou exemple ?", type: "multiple_choice",
+          text: "Dans un texte sur «Les ours polaires», «leur régime alimentaire» est un _____ et «ils mangent principalement des phoques» est un _____ .",
+          options: JSON.stringify(["exemple / aspect", "aspect / exemple (sous-aspect)", "sujet / aspect", "organisateur / sujet"]),
+          correctAnswer: "aspect / exemple (sous-aspect)",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Combien d'aspects ?", type: "multiple_choice",
+          text: "Combien d'aspects principaux recommande-t-on généralement dans un texte descriptif scolaire ?",
+          options: JSON.stringify(["1 seul aspect très détaillé", "2 à 4 aspects bien développés", "8 à 10 aspects courts", "Le nombre d'aspects n'a pas d'importance"]),
+          correctAnswer: "2 à 4 aspects bien développés",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // ÉCRITURE — TEXTE INFORMATIF / EXPLICATIF
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Texte informatif et explicatif — Structure",
+        description: "Comprendre la structure du texte informatif/explicatif : problème, explication, causes et effets",
+        category: "ecriture",
+        content: "<h2>Le Texte Informatif et Explicatif</h2><p>Le texte informatif transmet des faits. Le texte explicatif va plus loin : il explique <em>pourquoi</em> ou <em>comment</em> quelque chose se produit.</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ DEUX GRANDES STRUCTURES :</strong><br><b>Cause → Effet :</b> On part de ce qui provoque pour aller vers ce qui se produit<br><b>Problème → Solution :</b> On présente un problème et on propose des solutions</div><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>Structure CAUSE → EFFET</strong><br>Exemple : «Pourquoi les rivières gèlent-elles en hiver ?»<br>• Cause : Les températures descendent sous 0 °C<br>• Effet : L'eau se transforme en glace<br>Marqueurs : <em>parce que, car, puisque, en raison de, à cause de, c'est pourquoi, donc, ainsi, par conséquent</em></div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px;'><strong>Structure PROBLÈME → SOLUTION</strong><br>Exemple : «Comment réduire les déchets plastiques ?»<br>• Problème : Les déchets plastiques polluent les océans<br>• Solution 1 : Utiliser des sacs réutilisables<br>• Solution 2 : Bannir les plastiques à usage unique<br>Marqueurs : <em>afin de, pour que, dans le but de, grâce à, il est possible de, une solution consiste à</em></div><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px;'><strong>Caractéristiques du texte explicatif :</strong><br>• Langage objectif, neutre (pas d'opinion personnelle)<br>• Vocabulaire précis, technique si nécessaire<br>• Présent de vérité générale ou présent de l'indicatif<br>• Organisateurs logiques (cause-effet) plutôt que temporels (narratif)</div><div style='background:#fee2e2;padding:10px;margin:10px 0;border-radius:4px;'><strong>Différences entre les 3 types :</strong><br>• Narratif : «Que s'est-il passé ?» (événements)<br>• Descriptif : «Comment est ?» (caractéristiques)<br>• Explicatif : «Pourquoi / Comment cela fonctionne ?» (causes, mécanismes)</div>",
+        order: 80,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Reconnaître et analyser le texte explicatif", description: "Identifier la structure cause-effet ou problème-solution et les marqueurs logiques", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "But du texte explicatif", type: "multiple_choice",
+          text: "Quel est le but principal d'un texte explicatif ?",
+          options: JSON.stringify([
+            "Raconter une histoire imaginaire",
+            "Décrire les caractéristiques physiques d'un sujet",
+            "Expliquer pourquoi ou comment quelque chose se produit",
+            "Convaincre le lecteur d'adopter un comportement",
+          ]),
+          correctAnswer: "Expliquer pourquoi ou comment quelque chose se produit",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Structure cause-effet", type: "multiple_choice",
+          text: "Dans «Les forêts sont détruites à cause de la déforestation. Par conséquent, de nombreuses espèces animales disparaissent.», quelle est la cause ?",
+          options: JSON.stringify([
+            "La disparition des espèces animales",
+            "La déforestation (destruction des forêts)",
+            "Les espèces menacées",
+            "La nature"
+          ]),
+          correctAnswer: "La déforestation (destruction des forêts)",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Marqueur de cause", type: "multiple_choice",
+          text: "Lequel de ces mots introduit une CAUSE ?",
+          options: JSON.stringify(["donc", "par conséquent", "ainsi", "parce que"]),
+          correctAnswer: "parce que",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Marqueur d'effet", type: "multiple_choice",
+          text: "Lequel de ces marqueurs introduit un EFFET (conséquence) ?",
+          options: JSON.stringify(["car", "puisque", "en raison de", "c'est pourquoi"]),
+          correctAnswer: "c'est pourquoi",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Structure problème-solution", type: "multiple_choice",
+          text: "Dans un texte intitulé «Comment lutter contre le gaspillage alimentaire ?», quelle est la structure utilisée ?",
+          options: JSON.stringify(["Cause → Effet", "Problème → Solution", "Situation initiale → Dénouement", "Aspect → Sous-aspect"]),
+          correctAnswer: "Problème → Solution",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Reconnaître le type de texte", type: "multiple_choice",
+          text: "Lequel de ces textes est un texte EXPLICATIF ?",
+          options: JSON.stringify([
+            "«Le castor est un mammifère semi-aquatique à la fourrure brune.»",
+            "«Soudain, une tempête éclata et les villageois durent se réfugier.»",
+            "«Le verglas se forme lorsque la pluie tombe sur des surfaces dont la température est en dessous de 0 °C.»",
+            "«Faites d'abord chauffer l'eau, puis ajoutez les pâtes.»",
+          ]),
+          correctAnswer: "«Le verglas se forme lorsque la pluie tombe sur des surfaces dont la température est en dessous de 0 °C.»",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Comparer les types de textes", description: "Distinguer texte narratif, descriptif et explicatif et choisir les bons marqueurs", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Langue et ton", type: "multiple_choice",
+          text: "Dans un texte explicatif, le langage doit être :",
+          options: JSON.stringify([
+            "Subjectif, avec beaucoup d'opinions personnelles",
+            "Objectif et neutre, sans opinion personnelle",
+            "Imaginatif, avec des métaphores et des comparaisons",
+            "Familier, comme dans une conversation entre amis",
+          ]),
+          correctAnswer: "Objectif et neutre, sans opinion personnelle",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Quel type de texte ?", type: "multiple_choice",
+          text: "«La fonte des glaciers est causée par le réchauffement climatique. En conséquence, le niveau des mers monte.» — Quel type de texte est-ce ?",
+          options: JSON.stringify(["Narratif", "Descriptif", "Explicatif (cause-effet)", "Injonctif (consignes)"]),
+          correctAnswer: "Explicatif (cause-effet)",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Quel marqueur choisir ?", type: "multiple_choice",
+          text: "Tu écris : «La pollution de l'air augmente. ___ , les maladies respiratoires sont plus fréquentes.» Quel marqueur convient ?",
+          options: JSON.stringify(["Il était une fois", "En ce qui concerne", "Par conséquent", "Premièrement"]),
+          correctAnswer: "Par conséquent",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Narratif, descriptif ou explicatif ?", type: "multiple_choice",
+          text: "Associe correctement : «Pourquoi les feuilles changent-elles de couleur en automne ?»",
+          options: JSON.stringify([
+            "Texte narratif — car il parle des saisons",
+            "Texte descriptif — car il décrit les feuilles",
+            "Texte explicatif — car il cherche à expliquer un phénomène",
+            "Texte injonctif — car il donne des instructions",
+          ]),
+          correctAnswer: "Texte explicatif — car il cherche à expliquer un phénomène",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Problème ou cause ?", type: "multiple_choice",
+          text: "Dans la structure «Problème → Solution», quel est le rôle de la partie «Problème» ?",
+          options: JSON.stringify([
+            "Proposer une liste de solutions",
+            "Présenter la situation difficile qui nécessite une action",
+            "Décrire les caractéristiques du sujet",
+            "Raconter l'histoire du problème",
+          ]),
+          correctAnswer: "Présenter la situation difficile qui nécessite une action",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Récapitulatif des 3 types", type: "multiple_choice",
+          text: "Quelle association est CORRECTE ?",
+          options: JSON.stringify([
+            "Narratif → «Comment est ce sujet ?» / Descriptif → «Pourquoi ?» / Explicatif → «Que s'est-il passé ?»",
+            "Narratif → «Que s'est-il passé ?» / Descriptif → «Comment est ce sujet ?» / Explicatif → «Pourquoi / Comment ?»",
+            "Narratif → «Pourquoi ?» / Descriptif → «Que s'est-il passé ?» / Explicatif → «Comment est ?»",
+            "Tous les types répondent à la même question : «Quoi ?»",
+          ]),
+          correctAnswer: "Narratif → «Que s'est-il passé ?» / Descriptif → «Comment est ce sujet ?» / Explicatif → «Pourquoi / Comment ?»",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
     // ÉCRITURE — SCHÉMA NARRATIF 5 ÉTAPES (QUÉBEC)
     // ============================================================
     {
