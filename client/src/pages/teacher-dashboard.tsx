@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Users, BookOpen, Plus, LogOut, FileText, Download, CheckCircle, MessageSquare, Clock, Bell, MessageCircle, Send, PenLine, X, ThumbsUp, ThumbsDown, ChevronDown, ChevronRight } from "lucide-react";
+import { Users, BookOpen, Plus, LogOut, FileText, Download, CheckCircle, MessageSquare, Clock, Bell, MessageCircle, Send, PenLine, X, ThumbsUp, ThumbsDown, ChevronDown, ChevronRight, FileDown } from "lucide-react";
 
 interface StudentDoc {
   id: string;
@@ -467,15 +467,26 @@ export default function TeacherDashboard() {
                         <span className="text-sm text-muted-foreground">{student.progressPercentage}%</span>
                       </div>
                     </div>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleOpenAnnotations(student)}
-                      data-testid={`button-annotate-${student.id}`}
-                    >
-                      <PenLine className="w-4 h-4 mr-1" />
-                      Annoter exercices
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleOpenAnnotations(student)}
+                        data-testid={`button-annotate-${student.id}`}
+                      >
+                        <PenLine className="w-4 h-4 mr-1" />
+                        Annoter
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => window.open(`/teacher/student-report/${student.id}`, "_blank")}
+                        data-testid={`button-report-${student.id}`}
+                      >
+                        <FileDown className="w-4 h-4 mr-1" />
+                        Rapport PDF
+                      </Button>
+                    </div>
                   </div>
                 ))}
               </div>
