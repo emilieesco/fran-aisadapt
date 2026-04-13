@@ -151,6 +151,7 @@ export default function StudentDashboard() {
   const [docError, setDocError] = useState("");
   const [notifications, setNotifications] = useState<any[]>([]);
   const [notifOpen, setNotifOpen] = useState(false);
+  const [annotatedResponses, setAnnotatedResponses] = useState<any[]>([]);
   const [teacher, setTeacher] = useState<{ id: string; firstName: string; lastName: string } | null>(null);
   const [chatMessages, setChatMessages] = useState<any[]>([]);
   const [msgDraft, setMsgDraft] = useState("");
@@ -270,6 +271,11 @@ export default function StudentDashboard() {
         if (exercisesRes.ok) setExercises(await exercisesRes.json());
         loadDocuments(userId);
         loadNotifications(userId);
+        // Charger les réponses annotées par l'enseignant
+        fetch(`/api/students/${userId}/annotated-responses`, { credentials: "include" })
+          .then(r => r.ok ? r.json() : [])
+          .then(data => setAnnotatedResponses(data))
+          .catch(() => {});
         // Charger l'enseignant et les messages
         const teacherRes = await fetch(`/api/students/${userId}/teacher`, { credentials: "include" });
         if (teacherRes.ok) {
@@ -1491,6 +1497,40 @@ export default function StudentDashboard() {
                   ))}
                 </div>
               </Card>
+
+              {/* Corrections de l'enseignant */}
+              {annotatedResponses.length > 0 && (
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold mb-4">Corrections de l'enseignant</h3>
+                  <div className="space-y-4">
+                    {annotatedResponses.map((r: any) => (
+                      <div key={r.id} className="border border-border rounded-md p-4 space-y-2" data-testid={`correction-${r.id}`}>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-xs bg-secondary px-2 py-0.5 rounded text-muted-foreground">{r.course?.title ?? "Cours"}</span>
+                          <span className="text-xs text-muted-foreground">›</span>
+                          <span className="text-xs text-muted-foreground">{r.exercise?.title ?? "Exercice"}</span>
+                        </div>
+                        <p className="text-sm font-medium">{r.question?.text}</p>
+                        <div className={`text-sm px-3 py-2 rounded-md ${
+                          r.isCorrect === true ? "bg-green-50 dark:bg-green-950 text-green-800 dark:text-green-200" :
+                          r.isCorrect === false ? "bg-red-50 dark:bg-red-950 text-red-800 dark:text-red-200" :
+                          "bg-muted"
+                        }`}>
+                          <span className="font-medium">Ta réponse : </span>{r.answer}
+                          {r.isCorrect === true && <span className="ml-2 text-xs font-semibold text-green-700 dark:text-green-300"> ✓ Correct</span>}
+                          {r.isCorrect === false && <span className="ml-2 text-xs font-semibold text-red-700 dark:text-red-300"> ✗ Incorrect</span>}
+                        </div>
+                        {r.teacherComment && (
+                          <div className="flex gap-2 bg-amber-50 dark:bg-amber-950 px-3 py-2 rounded-md">
+                            <MessageSquare className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                            <p className="text-sm">{r.teacherComment}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              )}
 
               {/* Badges Section */}
               <Card className="p-6">

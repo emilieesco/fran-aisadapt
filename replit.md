@@ -38,6 +38,8 @@ The application follows a client-server architecture.
 -   **Adaptive Learning:** Exercise flow adapts based on student performance, offering repetition for low scores and progressing to the next exercise for higher scores.
 -   **Interactive Dictation:** Features Web Speech API (fr-CA) with listen/re-listen/slow-play options and real-time word-by-word correction.
 -   **Enriched Exercise Summaries:** Provides colored scores, adaptive motivational messages, and detailed question-by-question review with correct answers.
+-   **Messagerie privée:** Tables `messages` + `notifications` en PostgreSQL; routes API complètes; interface chat élève↔enseignant; cloche de notifications dans les deux tableaux de bord; notification auto lors de correction de document.
+-   **Annotation d'exercices:** L'enseignant peut annoter chaque réponse d'élève (commentaire textuel + notation Correct/Incorrect pour texte libre) via un panneau latéral dans l'onglet Élèves. Les annotations sont visibles par l'élève dans l'onglet Progrès (section "Corrections de l'enseignant").
 
 ## External Dependencies
 -   **PostgreSQL (via Railway):** Primary relational database for persistent user and progress data.

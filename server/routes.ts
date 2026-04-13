@@ -618,6 +618,25 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     }
   });
 
+  // Réponses annotées d'un élève (commentaires ou notations de l'enseignant)
+  app.get("/api/students/:id/annotated-responses", async (req, res) => {
+    try {
+      const responses = await storage.getResponsesByStudent(req.params.id);
+      const annotated = responses.filter(r => r.teacherComment || r.isCorrect !== null);
+      const enriched = await Promise.all(
+        annotated.map(async (r) => {
+          const question = await storage.getQuestion(r.questionId);
+          const exercise = question ? await storage.getExercise(question.exerciseId) : null;
+          const course = exercise ? await storage.getCourse(exercise.courseId) : null;
+          return { ...r, question: question ? { id: question.id, text: question.text, type: question.type } : null, exercise: exercise ? { id: exercise.id, title: exercise.title } : null, course: course ? { id: course.id, title: course.title } : null };
+        })
+      );
+      res.json(enriched.filter(r => r.question));
+    } catch (err) {
+      res.status(500).send("Erreur serveur");
+    }
+  });
+
   // Trouver l'enseignant d'un élève (via ses assignments)
   app.get("/api/students/:id/teacher", async (req, res) => {
     try {

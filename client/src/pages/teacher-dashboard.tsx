@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Users, BookOpen, Plus, LogOut, FileText, Download, CheckCircle, MessageSquare, Clock, Bell, MessageCircle, Send } from "lucide-react";
+import { Users, BookOpen, Plus, LogOut, FileText, Download, CheckCircle, MessageSquare, Clock, Bell, MessageCircle, Send, PenLine, X, ThumbsUp, ThumbsDown, ChevronDown, ChevronRight } from "lucide-react";
 
 interface StudentDoc {
   id: string;
@@ -51,6 +51,13 @@ export default function TeacherDashboard() {
   const [chatMessages, setChatMessages] = useState<any[]>([]);
   const [msgDraft, setMsgDraft] = useState("");
   const [msgSending, setMsgSending] = useState(false);
+  // Annotation d'exercices
+  const [annotatingStudent, setAnnotatingStudent] = useState<Student | null>(null);
+  const [studentResponses, setStudentResponses] = useState<any[]>([]);
+  const [loadingResponses, setLoadingResponses] = useState(false);
+  const [annotationDrafts, setAnnotationDrafts] = useState<Record<string, string>>({});
+  const [savingAnnotation, setSavingAnnotation] = useState<string | null>(null);
+  const [expandedExercises, setExpandedExercises] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -137,6 +144,59 @@ export default function TeacherDashboard() {
     if (res.ok) {
       setMsgDraft("");
       loadMessages(selectedStudentMsg.id);
+    }
+  };
+
+  const handleOpenAnnotations = async (student: Student) => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+    setAnnotatingStudent(student);
+    setStudentResponses([]);
+    setAnnotationDrafts({});
+    setExpandedExercises({});
+    setLoadingResponses(true);
+    const res = await fetch(`/api/teachers/${userId}/students/${student.id}/responses`, { credentials: "include" });
+    if (res.ok) {
+      const data = await res.json();
+      setStudentResponses(data);
+      const drafts: Record<string, string> = {};
+      data.forEach((r: any) => { drafts[r.id] = r.teacherComment ?? ""; });
+      setAnnotationDrafts(drafts);
+      // Déplier tous les exercices par défaut
+      const expanded: Record<string, boolean> = {};
+      data.forEach((r: any) => { if (r.exercise?.id) expanded[r.exercise.id] = true; });
+      setExpandedExercises(expanded);
+    }
+    setLoadingResponses(false);
+  };
+
+  const handleSaveAnnotation = async (responseId: string) => {
+    setSavingAnnotation(responseId);
+    const comment = annotationDrafts[responseId] ?? "";
+    await fetch(`/api/student-responses/${responseId}/comment`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ comment }),
+    });
+    setSavingAnnotation(null);
+    setStudentResponses(prev => prev.map(r => r.id === responseId ? { ...r, teacherComment: comment } : r));
+  };
+
+  const handleGradeResponse = async (responseId: string, isCorrect: boolean) => {
+    const comment = annotationDrafts[responseId] ?? "";
+    setSavingAnnotation(responseId);
+    const res = await fetch(`/api/student-responses/${responseId}/grade`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ isCorrect, comment }),
+    });
+    setSavingAnnotation(null);
+    if (res.ok) {
+      const updated = await res.json();
+      setStudentResponses(prev => prev.map(r => r.id === responseId ? { ...r, ...updated } : r));
+      setAnnotationDrafts(prev => ({ ...prev, [responseId]: updated.teacherComment ?? "" }));
     }
   };
 
@@ -385,30 +445,204 @@ export default function TeacherDashboard() {
             <Card className="p-6">
               <h2 className="text-xl font-bold mb-4">Mes Élèves</h2>
               <div className="space-y-3">
-                {students.map((student) => (
+                {students.length === 0 ? (
+                  <p className="text-muted-foreground text-sm text-center py-4">Aucun élève assigné pour l'instant.</p>
+                ) : students.map((student) => (
                   <div
                     key={student.id}
-                    className="flex items-center justify-between p-4 bg-secondary rounded-lg hover-elevate"
+                    className="flex items-center justify-between gap-4 p-4 bg-secondary rounded-lg flex-wrap"
                     data-testid={`row-student-${student.id}`}
                   >
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <p className="font-semibold">
                         {student.firstName} {student.lastName}
                       </p>
-                      <p className="text-sm text-muted-foreground">
-                        Progression: {student.progressPercentage}%
-                      </p>
+                      <div className="flex items-center gap-3 mt-1">
+                        <div className="w-32 bg-background rounded-full h-2">
+                          <div
+                            className="bg-blue-500 h-2 rounded-full"
+                            style={{ width: `${student.progressPercentage}%` }}
+                          />
+                        </div>
+                        <span className="text-sm text-muted-foreground">{student.progressPercentage}%</span>
+                      </div>
                     </div>
-                    <div className="w-24 bg-background rounded-full h-2">
-                      <div
-                        className="bg-blue-500 h-2 rounded-full"
-                        style={{ width: `${student.progressPercentage}%` }}
-                      />
-                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleOpenAnnotations(student)}
+                      data-testid={`button-annotate-${student.id}`}
+                    >
+                      <PenLine className="w-4 h-4 mr-1" />
+                      Annoter exercices
+                    </Button>
                   </div>
                 ))}
               </div>
             </Card>
+
+            {/* Panneau d'annotation — overlay latéral */}
+            {annotatingStudent && (
+              <div className="fixed inset-0 z-50 flex">
+                {/* Fond semi-transparent */}
+                <div
+                  className="flex-1 bg-black/40"
+                  onClick={() => setAnnotatingStudent(null)}
+                />
+                {/* Panneau */}
+                <div className="w-full max-w-2xl bg-background border-l border-border flex flex-col h-full shadow-xl overflow-hidden">
+                  {/* En-tête */}
+                  <div className="flex items-center justify-between p-5 border-b border-border">
+                    <div>
+                      <h2 className="text-lg font-bold">
+                        Exercices de {annotatingStudent.firstName} {annotatingStudent.lastName}
+                      </h2>
+                      <p className="text-sm text-muted-foreground">{studentResponses.length} réponse(s) enregistrée(s)</p>
+                    </div>
+                    <Button size="icon" variant="ghost" onClick={() => setAnnotatingStudent(null)} data-testid="button-close-annotations">
+                      <X className="w-5 h-5" />
+                    </Button>
+                  </div>
+
+                  {/* Corps */}
+                  <div className="flex-1 overflow-y-auto p-5 space-y-6">
+                    {loadingResponses ? (
+                      <p className="text-center text-muted-foreground py-12">Chargement des réponses…</p>
+                    ) : studentResponses.length === 0 ? (
+                      <div className="text-center py-12">
+                        <PenLine className="w-10 h-10 mx-auto mb-3 text-muted-foreground opacity-40" />
+                        <p className="text-muted-foreground">Cet élève n'a pas encore répondu à des exercices.</p>
+                      </div>
+                    ) : (() => {
+                      // Grouper par cours puis par exercice
+                      const byCourse: Record<string, { courseTitle: string; courseCategory: string; byExercise: Record<string, { exTitle: string; responses: any[] }> }> = {};
+                      studentResponses.forEach((r: any) => {
+                        const courseId = r.course?.id ?? "inconnu";
+                        const courseTitle = r.course?.title ?? "Cours inconnu";
+                        const courseCategory = r.course?.category ?? "";
+                        const exId = r.exercise?.id ?? "inconnu";
+                        const exTitle = r.exercise?.title ?? "Exercice inconnu";
+                        if (!byCourse[courseId]) byCourse[courseId] = { courseTitle, courseCategory, byExercise: {} };
+                        if (!byCourse[courseId].byExercise[exId]) byCourse[courseId].byExercise[exId] = { exTitle, responses: [] };
+                        byCourse[courseId].byExercise[exId].responses.push(r);
+                      });
+
+                      return Object.entries(byCourse).map(([courseId, courseData]) => (
+                        <div key={courseId}>
+                          <h3 className="text-base font-bold mb-3 text-blue-700 dark:text-blue-400 uppercase tracking-wide text-xs">
+                            {courseData.courseTitle}
+                          </h3>
+                          <div className="space-y-3">
+                            {Object.entries(courseData.byExercise).map(([exId, exData]) => {
+                              const isExpanded = expandedExercises[exId] ?? true;
+                              const pendingCount = exData.responses.filter(r => r.question?.type !== "multiple_choice" && r.isCorrect === null).length;
+                              return (
+                                <div key={exId} className="border border-border rounded-md overflow-hidden">
+                                  {/* En-tête exercice (cliquable pour réduire) */}
+                                  <button
+                                    onClick={() => setExpandedExercises(prev => ({ ...prev, [exId]: !isExpanded }))}
+                                    className="w-full flex items-center justify-between p-3 bg-muted/50 text-left hover-elevate"
+                                    data-testid={`button-toggle-exercise-${exId}`}
+                                  >
+                                    <span className="font-semibold text-sm">{exData.exTitle}</span>
+                                    <div className="flex items-center gap-2">
+                                      {pendingCount > 0 && (
+                                        <span className="bg-amber-500 text-white text-xs rounded-full px-2 py-0.5">{pendingCount} à corriger</span>
+                                      )}
+                                      {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                                    </div>
+                                  </button>
+
+                                  {/* Réponses */}
+                                  {isExpanded && (
+                                    <div className="divide-y divide-border">
+                                      {exData.responses.map((r: any) => (
+                                        <div key={r.id} className="p-4 space-y-3" data-testid={`annotation-card-${r.id}`}>
+                                          {/* Question */}
+                                          <div>
+                                            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Question</p>
+                                            <p className="text-sm font-medium">{r.question?.text ?? "Question inconnue"}</p>
+                                          </div>
+
+                                          {/* Réponse de l'élève */}
+                                          <div>
+                                            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Réponse de l'élève</p>
+                                            <div className={`text-sm px-3 py-2 rounded-md ${
+                                              r.isCorrect === true ? "bg-green-50 dark:bg-green-950 text-green-800 dark:text-green-200" :
+                                              r.isCorrect === false ? "bg-red-50 dark:bg-red-950 text-red-800 dark:text-red-200" :
+                                              "bg-muted"
+                                            }`}>
+                                              {r.answer ?? <span className="italic text-muted-foreground">Aucune réponse</span>}
+                                              {r.isCorrect === true && <span className="ml-2 text-xs font-semibold text-green-700 dark:text-green-300">✓ Correct</span>}
+                                              {r.isCorrect === false && <span className="ml-2 text-xs font-semibold text-red-700 dark:text-red-300">✗ Incorrect</span>}
+                                            </div>
+                                          </div>
+
+                                          {/* Boutons Correct/Incorrect pour les textes libres non notés */}
+                                          {r.question?.type !== "multiple_choice" && r.isCorrect === null && (
+                                            <div className="flex gap-2">
+                                              <Button
+                                                size="sm"
+                                                variant="outline"
+                                                onClick={() => handleGradeResponse(r.id, true)}
+                                                disabled={savingAnnotation === r.id}
+                                                className="text-green-700 dark:text-green-400"
+                                                data-testid={`button-correct-${r.id}`}
+                                              >
+                                                <ThumbsUp className="w-3 h-3 mr-1" />
+                                                Correct
+                                              </Button>
+                                              <Button
+                                                size="sm"
+                                                variant="outline"
+                                                onClick={() => handleGradeResponse(r.id, false)}
+                                                disabled={savingAnnotation === r.id}
+                                                className="text-red-700 dark:text-red-400"
+                                                data-testid={`button-incorrect-${r.id}`}
+                                              >
+                                                <ThumbsDown className="w-3 h-3 mr-1" />
+                                                Incorrect
+                                              </Button>
+                                            </div>
+                                          )}
+
+                                          {/* Annotation enseignant */}
+                                          <div>
+                                            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Annotation (commentaire)</p>
+                                            <div className="flex gap-2 items-start">
+                                              <Textarea
+                                                rows={2}
+                                                value={annotationDrafts[r.id] ?? ""}
+                                                onChange={e => setAnnotationDrafts(prev => ({ ...prev, [r.id]: e.target.value }))}
+                                                placeholder="Ajouter un commentaire pour l'élève…"
+                                                className="flex-1 text-sm"
+                                                data-testid={`textarea-annotation-${r.id}`}
+                                              />
+                                              <Button
+                                                size="sm"
+                                                onClick={() => handleSaveAnnotation(r.id)}
+                                                disabled={savingAnnotation === r.id}
+                                                data-testid={`button-save-annotation-${r.id}`}
+                                              >
+                                                {savingAnnotation === r.id ? "…" : "Sauv."}
+                                              </Button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ));
+                    })()}
+                  </div>
+                </div>
+              </div>
+            )}
           </TabsContent>
 
           {/* Documents Tab */}
