@@ -279,7 +279,6 @@ export default function Exercise() {
   const [, setLocation] = useLocation();
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<{ [key: string]: string }>({});
   const [showFeedback, setShowFeedback] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -288,18 +287,19 @@ export default function Exercise() {
   const [articlePanelOpen, setArticlePanelOpen] = useState(true);
   const [course, setCourse] = useState<{ id: string; title: string; category: string; content: string } | null>(null);
   const [siblingExercises, setSiblingExercises] = useState<Exercise[]>([]);
+  const [submitted, setSubmitted] = useState(false);
 
-  // Matching-specific state
-  const [matchingLeft, setMatchingLeft] = useState<string | null>(null);
+  // Matching-specific state: which left item is selected in which question
+  const [matchingLeft, setMatchingLeft] = useState<{ qId: string; item: string } | null>(null);
   const shuffledRightRef = useRef<Record<string, string[]>>({});
 
   useEffect(() => {
     if (!match || !params?.id) return;
 
     setCompleted(false);
-    setCurrentQuestionIndex(0);
     setUserAnswers({});
     setShowFeedback(false);
+    setSubmitted(false);
     setLoading(true);
     setSiblingExercises([]);
     setMatchingLeft(null);
@@ -349,17 +349,6 @@ export default function Exercise() {
     fetchExercise();
   }, [match, params?.id]);
 
-  // Reset matching left selection when question changes
-  useEffect(() => {
-    setMatchingLeft(null);
-  }, [currentQuestionIndex]);
-
-  // Arrêter toute lecture vocale quand on change de question
-  useEffect(() => {
-    if ("speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-    }
-  }, [currentQuestionIndex]);
 
   if (loading) {
     return (
@@ -377,23 +366,17 @@ export default function Exercise() {
     );
   }
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const currentAnswer = userAnswers[currentQuestion.id] || "";
+  // ── Per-question helpers ─────────────────────────────────────
+  const getQAnswer = (qId: string) => userAnswers[qId] || "";
 
-  const isTextQuestion    = currentQuestion.type === "text";
-  const isFillBlankQuestion = currentQuestion.type === "fill_blank";
-  const isMatchingQuestion  = currentQuestion.type === "matching";
-  const isDicteeQuestion  = currentQuestion.type === "dictee";
-  const isAutoGraded = !isTextQuestion;
+  const getMatchConns = (q: Question): Record<string, string> => {
+    const ans = getQAnswer(q.id);
+    try { return ans ? JSON.parse(ans) : {}; } catch { return {}; }
+  };
 
-  // Parse matching data
-  const matchingCorrectMap: Record<string, string> = isMatchingQuestion
-    ? (() => { try { return JSON.parse(currentQuestion.correctAnswer); } catch { return {}; } })()
-    : {};
-
-  const matchingLeftItems: string[] = isMatchingQuestion
-    ? (currentQuestion.options as string[] || [])
-    : [];
+  const getMatchCorrectMap = (q: Question): Record<string, string> => {
+    try { return JSON.parse(q.correctAnswer); } catch { return {}; }
+  };
 
   // Stable shuffled right column (per question id)
   const getShuffledRight = (qId: string, correctMap: Record<string, string>): string[] => {
@@ -404,48 +387,23 @@ export default function Exercise() {
     return shuffledRightRef.current[qId];
   };
 
-  const matchingRightItems: string[] = isMatchingQuestion
-    ? getShuffledRight(currentQuestion.id, matchingCorrectMap)
-    : [];
-
-  const matchingConnections: Record<string, string> = isMatchingQuestion
-    ? (() => { try { return currentAnswer ? JSON.parse(currentAnswer) : {}; } catch { return {}; } })()
-    : {};
-
-  const matchingRightToLeft: Record<string, string> = {};
-  Object.entries(matchingConnections).forEach(([l, r]) => { matchingRightToLeft[r] = l; });
-
-  // Color index for each left item (by its position in leftItems)
-  const getMatchColor = (leftItem: string) => {
-    const idx = matchingLeftItems.indexOf(leftItem);
+  const getMatchColor = (leftItem: string, leftItems: string[]) => {
+    const idx = leftItems.indexOf(leftItem);
     return MATCH_COLORS[idx % MATCH_COLORS.length];
   };
 
-  const isMatchingComplete = isMatchingQuestion
-    ? matchingLeftItems.every((l) => matchingConnections[l] !== undefined)
-    : true;
+  const isQAnswered = (q: Question): boolean => {
+    const ans = getQAnswer(q.id);
+    if (q.type === "matching") {
+      const conns = getMatchConns(q);
+      const correctMap = getMatchCorrectMap(q);
+      return Object.keys(correctMap).every((k) => conns[k] !== undefined);
+    }
+    return ans.trim().length > 0;
+  };
 
-  const dicteePct = isDicteeQuestion && currentAnswer.trim()
-    ? (() => {
-        const cWords = currentQuestion.correctAnswer.trim().split(/\s+/);
-        const uWords = currentAnswer.trim().split(/\s+/);
-        let correct = 0;
-        for (let i = 0; i < cWords.length; i++) {
-          if (normWord(uWords[i] || "") === normWord(cWords[i])) correct++;
-        }
-        return Math.round((correct / cWords.length) * 100);
-      })()
-    : null;
-
-  const isCorrect = isTextQuestion
-    ? null
-    : isDicteeQuestion
-    ? (dicteePct !== null ? dicteePct >= 70 : null)
-    : isMatchingQuestion
-    ? checkMatchingAnswer(currentAnswer, currentQuestion.correctAnswer)
-    : isFillBlankQuestion
-    ? checkFillBlankAnswer(currentAnswer, currentQuestion.correctAnswer)
-    : currentAnswer === currentQuestion.correctAnswer;
+  const answeredCount = questions.filter((q) => isQAnswered(q)).length;
+  const allAnswered = answeredCount === questions.length;
 
   const firstQuestion = questions[0];
   const isNarrativeExercise =
@@ -482,68 +440,74 @@ export default function Exercise() {
   const isLectureReadingExercise = course?.category === "lecture_reading";
   const articleContent = isLectureReadingExercise ? course?.content ?? null : null;
 
-  const handleAnswerChange = (answer: string) => {
-    setUserAnswers({ ...userAnswers, [currentQuestion.id]: answer });
-    setShowFeedback(false);
+  const handleAnswerChange = (qId: string, answer: string) => {
+    setUserAnswers((prev) => ({ ...prev, [qId]: answer }));
   };
 
-  // Matching click handlers
-  const handleMatchingLeftClick = (left: string) => {
-    if (showFeedback) return;
-    setMatchingLeft(matchingLeft === left ? null : left);
-  };
-
-  const handleMatchingRightClick = (right: string) => {
-    if (showFeedback || !matchingLeft) return;
-    const newConns = { ...matchingConnections };
-    const existingLeft = matchingRightToLeft[right];
-    if (existingLeft) delete newConns[existingLeft];
-    delete newConns[matchingLeft];
-    newConns[matchingLeft] = right;
-    setMatchingLeft(null);
-    handleAnswerChange(JSON.stringify(newConns));
-  };
-
-  const handleSubmitAnswer = async () => {
-    setShowFeedback(true);
-
-    try {
-      const userId = localStorage.getItem("userId");
-      await fetch("/api/student-responses", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          studentId: userId,
-          questionId: currentQuestion.id,
-          answer: currentAnswer,
-          isCorrect: isTextQuestion ? null : isCorrect,
-        }),
-        credentials: "include",
-      });
-    } catch (err) {
-      console.error("Erreur:", err);
+  // Matching click handlers (per-question)
+  const handleMatchingLeftClick = (qId: string, left: string) => {
+    if (submitted) return;
+    if (matchingLeft?.qId === qId && matchingLeft?.item === left) {
+      setMatchingLeft(null);
+    } else {
+      setMatchingLeft({ qId, item: left });
     }
   };
 
-  const handleNextQuestion = async () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setShowFeedback(false);
-    } else {
-      setCompleted(true);
-      // Mettre à jour la progression de l'élève pour ce cours
-      const userId = localStorage.getItem("userId");
-      if (userId && exercise?.courseId) {
-        try {
-          await fetch(`/api/students/${userId}/progress`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ courseId: exercise.courseId }),
-          });
-        } catch (err) {
-          console.error("Erreur mise à jour progression:", err);
+  const handleMatchingRightClick = (qId: string, right: string) => {
+    if (submitted || !matchingLeft || matchingLeft.qId !== qId) return;
+    const q = questions.find((x) => x.id === qId);
+    if (!q) return;
+    const conns = getMatchConns(q);
+    const rightToLeft: Record<string, string> = {};
+    Object.entries(conns).forEach(([l, r]) => { rightToLeft[r] = l; });
+    const newConns = { ...conns };
+    const existingLeft = rightToLeft[right];
+    if (existingLeft) delete newConns[existingLeft];
+    delete newConns[matchingLeft.item];
+    newConns[matchingLeft.item] = right;
+    setMatchingLeft(null);
+    handleAnswerChange(qId, JSON.stringify(newConns));
+  };
+
+  const handleSubmitAll = async () => {
+    setSubmitted(true);
+    setCompleted(true);
+    const userId = localStorage.getItem("userId");
+    try {
+      for (const q of questions) {
+        const ans = getQAnswer(q.id);
+        const isText = q.type === "text";
+        let correct = false;
+        if (!isText) {
+          if (q.type === "fill_blank") correct = checkFillBlankAnswer(ans, q.correctAnswer);
+          else if (q.type === "matching") correct = checkMatchingAnswer(ans, q.correctAnswer);
+          else if (q.type === "dictee") {
+            const cWords = q.correctAnswer.trim().split(/\s+/);
+            const uWords = ans.trim().split(/\s+/);
+            let corr = 0;
+            for (let i = 0; i < cWords.length; i++) {
+              if (normWord(uWords[i] || "") === normWord(cWords[i])) corr++;
+            }
+            correct = corr / cWords.length >= 0.7;
+          } else correct = ans === q.correctAnswer;
         }
+        await fetch("/api/student-responses", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ studentId: userId, questionId: q.id, answer: ans, isCorrect: isText ? null : correct }),
+          credentials: "include",
+        });
       }
+      if (userId && exercise?.courseId) {
+        await fetch(`/api/students/${userId}/progress`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ courseId: exercise.courseId }),
+        });
+      }
+    } catch (err) {
+      console.error("Erreur:", err);
     }
   };
 
@@ -605,7 +569,7 @@ export default function Exercise() {
 
     const retryFn = () => {
       setCompleted(false);
-      setCurrentQuestionIndex(0);
+      setSubmitted(false);
       setUserAnswers({});
       setShowFeedback(false);
       setMatchingLeft(null);
@@ -841,36 +805,247 @@ export default function Exercise() {
     );
   }
 
-  const questionDisplayText = (() => {
-    if ((isReadingExercise || isInformatifExercise) && currentQuestion.text.length > 200) {
-      return currentQuestion.title.includes(":")
-        ? currentQuestion.title.split(":").slice(1).join(":").trim()
-        : currentQuestion.title;
-    }
-    return currentQuestion.text;
-  })();
+  // ── Question card renderer ────────────────────────────────────
+  const renderQuestion = (q: Question, index: number) => {
+    const ans = getQAnswer(q.id);
+    const isText = q.type === "text";
+    const isFill = q.type === "fill_blank";
+    const isMatch = q.type === "matching";
+    const isDictee = q.type === "dictee";
+    const isReadingQ = (isReadingExercise || isInformatifExercise) && q.text.length > 200;
 
-  // Matching feedback: per-pair result
-  const matchingFeedbackPairs: { left: string; userRight: string; correctRight: string; ok: boolean }[] =
-    showFeedback && isMatchingQuestion
-      ? matchingLeftItems.map((l) => ({
-          left: l,
-          userRight: matchingConnections[l] || "(non répondu)",
-          correctRight: matchingCorrectMap[l] || "",
-          ok: matchingConnections[l] === matchingCorrectMap[l],
-        }))
-      : [];
+    const questionDisplayText = isReadingQ
+      ? (q.title.includes(":") ? q.title.split(":").slice(1).join(":").trim() : q.title)
+      : q.text;
 
-  const canSubmit = isMatchingQuestion
-    ? isMatchingComplete
-    : currentAnswer.trim().length > 0;
+    // Matching state for this question
+    const conns = isMatch ? getMatchConns(q) : {};
+    const correctMap = isMatch ? getMatchCorrectMap(q) : {};
+    const leftItems: string[] = isMatch ? (q.options as string[] || []) : [];
+    const rightItems: string[] = isMatch ? getShuffledRight(q.id, correctMap) : [];
+    const rightToLeft: Record<string, string> = {};
+    if (isMatch) Object.entries(conns).forEach(([l, r]) => { rightToLeft[r] = l; });
+    const activeLeft = matchingLeft?.qId === q.id ? matchingLeft.item : null;
+
+    const answered = isQAnswered(q);
+
+    return (
+      <Card key={q.id} className={`p-6 transition-all ${answered ? "border-green-300 dark:border-green-700" : ""}`} data-testid={`question-card-${index}`}>
+        {/* Question header */}
+        <div className="flex items-center gap-2 mb-4 flex-wrap">
+          <span className={`text-lg font-bold ${answered ? "text-green-700 dark:text-green-400" : "text-amber-900 dark:text-amber-200"}`}>
+            {answered ? <CheckCircle className="w-5 h-5 inline mr-1 text-green-500" /> : null}
+            Question {index + 1}
+          </span>
+          {isFill && (
+            <span className="text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-md border border-amber-200 dark:border-amber-700">
+              <PenLine className="w-3 h-3 inline mr-1" />Complète la phrase
+            </span>
+          )}
+          {isMatch && (
+            <span className="text-xs font-medium bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-700">
+              <Link2 className="w-3 h-3 inline mr-1" />Association
+            </span>
+          )}
+          {isDictee && (
+            <span className="text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-700">
+              <Volume2 className="w-3 h-3 inline mr-1" />Dictée
+            </span>
+          )}
+          {!isDictee && (
+            <ReadAloudButton
+              text={questionDisplayText.replace(/___/g, " quelque chose ")}
+              label="Lire"
+              variant="secondary"
+              className="ml-auto text-xs"
+            />
+          )}
+        </div>
+
+        {/* Question prompt */}
+        {!isFill && !isMatch && !isDictee && (
+          <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-lg border-l-4 border-amber-400 mb-4">
+            <p className="text-base leading-relaxed whitespace-pre-wrap text-foreground">{questionDisplayText}</p>
+          </div>
+        )}
+
+        {/* Fill-blank */}
+        {isFill && (
+          <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-lg border-l-4 border-amber-400 mb-4">
+            <FillBlankInput
+              text={q.text}
+              value={ans}
+              onChange={(val) => handleAnswerChange(q.id, val)}
+              disabled={submitted}
+            />
+            {q.title && (
+              <p className="text-sm text-muted-foreground mt-2 italic">
+                {q.title.includes(":") ? q.title.split(":").slice(1).join(":").trim() : q.title}
+              </p>
+            )}
+          </div>
+        )}
+
+        {/* Matching */}
+        {isMatch && (
+          <div className="space-y-3">
+            <div className="bg-emerald-50 dark:bg-emerald-900/10 p-3 rounded-lg border-l-4 border-emerald-500">
+              <p className="text-sm font-medium text-foreground">{q.text}</p>
+              {!submitted && (
+                <p className="text-xs text-muted-foreground mt-1">
+                  {activeLeft
+                    ? "Clique maintenant sur la bonne réponse à droite."
+                    : "Clique sur un élément à gauche, puis sur sa correspondance à droite."}
+                </p>
+              )}
+            </div>
+            {!submitted && (
+              <p className="text-xs text-muted-foreground text-right">
+                {Object.keys(conns).length} / {leftItems.length} paires reliées
+              </p>
+            )}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground pb-1 border-b border-border">Colonne A</p>
+                {leftItems.map((left) => {
+                  const connected = conns[left] !== undefined;
+                  const isSelected = activeLeft === left;
+                  const color = getMatchColor(left, leftItems);
+                  return (
+                    <button
+                      key={left}
+                      onClick={() => handleMatchingLeftClick(q.id, left)}
+                      disabled={submitted}
+                      data-testid={`matching-left-${left}`}
+                      className={`w-full p-2.5 text-left rounded-lg border-2 font-semibold text-sm transition-all ${
+                        isSelected
+                          ? "border-blue-500 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 ring-2 ring-blue-300"
+                          : connected
+                          ? `${color.bg} ${color.border} ${color.text}`
+                          : "border-border bg-background hover-elevate"
+                      }`}
+                    >
+                      {left}
+                      {connected && !isSelected && (
+                        <span className="float-right opacity-60 text-xs font-normal">{conns[left]}</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground pb-1 border-b border-border">Colonne B</p>
+                {rightItems.map((right) => {
+                  const pairedLeft = rightToLeft[right];
+                  const isPaired = pairedLeft !== undefined;
+                  const color = isPaired ? getMatchColor(pairedLeft, leftItems) : null;
+                  const isTarget = !!activeLeft && !isPaired;
+                  return (
+                    <button
+                      key={right}
+                      onClick={() => handleMatchingRightClick(q.id, right)}
+                      disabled={submitted || (!activeLeft && !isPaired)}
+                      data-testid={`matching-right-${right}`}
+                      className={`w-full p-2.5 text-left rounded-lg border-2 text-sm transition-all ${
+                        isPaired && color
+                          ? `${color.bg} ${color.border} ${color.text} font-semibold`
+                          : isTarget
+                          ? "border-dashed border-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 text-foreground hover-elevate cursor-pointer"
+                          : "border-border bg-background"
+                      }`}
+                    >
+                      {right}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Multiple choice */}
+        {q.type === "multiple_choice" && (
+          <div className="space-y-2 mt-2">
+            {((q.options as string[]) || []).map((option) => (
+              <div key={option} className="relative group">
+                <button
+                  onClick={() => !submitted && handleAnswerChange(q.id, option)}
+                  className={`w-full p-3.5 text-left rounded-lg border-2 transition-all text-sm pr-10 ${
+                    ans === option
+                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
+                      : "border-border bg-background"
+                  } hover-elevate`}
+                  data-testid={`button-option-${option}`}
+                  disabled={submitted}
+                >
+                  <span className="font-medium">{option}</span>
+                </button>
+                <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                  <ReadAloudButton text={option} />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Select */}
+        {q.type === "select" && (
+          <div className="mt-2">
+            <Select value={ans} onValueChange={(val) => handleAnswerChange(q.id, val)} disabled={submitted}>
+              <SelectTrigger className="w-full" data-testid="select-answer">
+                <SelectValue placeholder="Choisissez une réponse..." />
+              </SelectTrigger>
+              <SelectContent>
+                {((q.options as string[]) || []).map((option) => (
+                  <SelectItem key={option} value={option} data-testid={`select-option-${option}`}>
+                    {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+
+        {/* Free text */}
+        {isText && (
+          <div className="mt-2 space-y-2">
+            <label className="flex items-center gap-2 text-sm font-semibold text-foreground">
+              <FileText className="w-4 h-4 text-amber-600" />
+              Votre réponse
+            </label>
+            <Textarea
+              value={ans}
+              onChange={(e) => handleAnswerChange(q.id, e.target.value)}
+              disabled={submitted}
+              className="min-h-[140px] text-base bg-amber-50 dark:bg-amber-900/10 border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
+              placeholder="Écrivez votre réponse ici…"
+              data-testid={`textarea-answer-${index}`}
+            />
+            <p className="text-xs text-muted-foreground">Réponse libre — corrigée par votre enseignant.</p>
+          </div>
+        )}
+
+        {/* Dictée */}
+        {isDictee && (
+          <div className="mt-2">
+            <DicteeInput
+              correctText={q.correctAnswer}
+              value={ans}
+              onChange={(val) => handleAnswerChange(q.id, val)}
+              disabled={submitted}
+            />
+          </div>
+        )}
+      </Card>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Header */}
-      <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4 min-w-0">
+      <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 min-w-0">
             <Button
               variant="ghost"
               size="icon"
@@ -880,39 +1055,33 @@ export default function Exercise() {
               <ArrowLeft className="w-5 h-5" />
             </Button>
             <div className="min-w-0">
-              <h1 className="text-2xl font-bold truncate">{exercise.title}</h1>
-              <p className="text-sm text-muted-foreground">
-                Question {currentQuestionIndex + 1} sur {questions.length}
+              <h1 className="text-lg font-bold truncate">{exercise.title}</h1>
+              <p className="text-xs text-muted-foreground">
+                {answeredCount} / {questions.length} réponses saisies
               </p>
             </div>
           </div>
-          <div className="w-32 shrink-0 bg-secondary rounded-full h-2">
-            <div
-              className="bg-blue-500 h-2 rounded-full transition-all"
-              style={{
-                width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
-              }}
-            />
+          <div className="shrink-0 flex items-center gap-2">
+            <div className="w-24 bg-secondary rounded-full h-2">
+              <div
+                className="bg-blue-500 h-2 rounded-full transition-all"
+                style={{ width: `${(answeredCount / questions.length) * 100}%` }}
+              />
+            </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Reading panel — article de journal (lecture_reading) */}
+      <main className="max-w-4xl mx-auto px-4 py-6 space-y-4">
+        {/* Reading panel — article de journal */}
         {isLectureReadingExercise && articleContent && (
-          <Collapsible open={articlePanelOpen} onOpenChange={setArticlePanelOpen} className="mb-6">
+          <Collapsible open={articlePanelOpen} onOpenChange={setArticlePanelOpen}>
             <Card className="p-4 bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700">
               <CollapsibleTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full flex items-center justify-between p-2"
-                  data-testid="button-toggle-article"
-                >
+                <Button variant="ghost" className="w-full flex items-center justify-between p-2" data-testid="button-toggle-article">
                   <div className="flex items-center gap-2">
                     <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="font-semibold text-emerald-800 dark:text-emerald-200">
-                      Article — à garder visible pendant les questions
-                    </span>
+                    <span className="font-semibold text-emerald-800 dark:text-emerald-200">Article — visible pendant les questions</span>
                   </div>
                   {articlePanelOpen
                     ? <ChevronUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -931,7 +1100,7 @@ export default function Exercise() {
 
         {/* Reading panel — informatif */}
         {isInformatifExercise && informatifText && (
-          <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
+          <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen}>
             <Card className="p-4 bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-300 dark:border-purple-700">
               <div className="flex items-center gap-2">
                 <CollapsibleTrigger asChild>
@@ -956,7 +1125,7 @@ export default function Exercise() {
 
         {/* Reading panel — descriptif */}
         {isDescriptiveExercise && storyText && (
-          <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700 mb-6">
+          <Card className="p-4 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700">
             <div className="flex items-center gap-3 mb-3">
               <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
               <span className="font-semibold text-blue-800 dark:text-blue-200 flex-1">Texte à lire</span>
@@ -970,7 +1139,7 @@ export default function Exercise() {
 
         {/* Reading panel — narratif */}
         {isNarrativeExercise && storyText && (
-          <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
+          <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen}>
             <Card className="p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700">
               <div className="flex items-center gap-2">
                 <CollapsibleTrigger asChild>
@@ -993,348 +1162,27 @@ export default function Exercise() {
           </Collapsible>
         )}
 
-        <Card className="p-8 mb-6">
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-200">
-                Question {currentQuestionIndex + 1}
-              </h2>
-              {isFillBlankQuestion && (
-                <span className="text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-md border border-amber-200 dark:border-amber-700">
-                  <PenLine className="w-3 h-3 inline mr-1" />
-                  Complète la phrase
-                </span>
-              )}
-              {isMatchingQuestion && (
-                <span className="text-xs font-medium bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-700">
-                  <Link2 className="w-3 h-3 inline mr-1" />
-                  Association
-                </span>
-              )}
-              {isDicteeQuestion && (
-                <span className="text-xs font-medium bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-700">
-                  <Volume2 className="w-3 h-3 inline mr-1" />
-                  Dictée
-                </span>
-              )}
-              {/* Bouton lecture question — accessible à tous */}
-              {!isDicteeQuestion && (
-                <ReadAloudButton
-                  text={questionDisplayText.replace(/___/g, " quelque chose ")}
-                  label="Lire la question"
-                  variant="secondary"
-                  className="ml-auto text-xs"
-                />
-              )}
-            </div>
+        {/* All questions */}
+        {questions.map((q, i) => renderQuestion(q, i))}
 
-            {/* Question prompt — non-fill-blank, non-matching, non-dictée */}
-            {!isFillBlankQuestion && !isMatchingQuestion && !isDicteeQuestion && (
-              <div className="prose prose-sm dark:prose-invert max-w-none bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500 mb-6">
-                <p className="text-lg leading-relaxed whitespace-pre-wrap text-foreground">
-                  {questionDisplayText}
-                </p>
-              </div>
-            )}
-
-            {/* Fill blank */}
-            {isFillBlankQuestion && (
-              <div className="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg border-l-4 border-amber-500 mb-6">
-                <FillBlankInput
-                  text={currentQuestion.text}
-                  value={currentAnswer}
-                  onChange={handleAnswerChange}
-                  disabled={showFeedback}
-                />
-                {currentQuestion.title && (
-                  <p className="text-sm text-muted-foreground mt-3 italic">
-                    {currentQuestion.title.includes(":")
-                      ? currentQuestion.title.split(":").slice(1).join(":").trim()
-                      : currentQuestion.title}
-                  </p>
-                )}
-              </div>
-            )}
-
-            {/* ─── MATCHING ─── */}
-            {isMatchingQuestion && (
-              <div className="space-y-4">
-                <div className="bg-emerald-50 dark:bg-emerald-900/10 p-4 rounded-lg border-l-4 border-emerald-500">
-                  <p className="text-base font-medium text-foreground">{currentQuestion.text}</p>
-                  {!showFeedback && (
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {matchingLeft
-                        ? "Maintenant clique sur la bonne réponse dans la colonne de droite."
-                        : "Clique d'abord sur un élément de la colonne gauche, puis sur sa correspondance à droite."}
-                    </p>
-                  )}
-                </div>
-
-                {/* Progress indicator */}
-                {!showFeedback && (
-                  <p className="text-xs text-muted-foreground text-right">
-                    {Object.keys(matchingConnections).length} / {matchingLeftItems.length} paires reliées
-                  </p>
-                )}
-
-                <div className="grid grid-cols-2 gap-4">
-                  {/* LEFT column */}
-                  <div className="space-y-2">
-                    <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground pb-1 border-b border-border">
-                      Colonne A
-                    </p>
-                    {matchingLeftItems.map((left) => {
-                      const connected = matchingConnections[left] !== undefined;
-                      const isSelected = matchingLeft === left;
-                      const color = getMatchColor(left);
-                      return (
-                        <button
-                          key={left}
-                          onClick={() => handleMatchingLeftClick(left)}
-                          disabled={showFeedback}
-                          data-testid={`matching-left-${left}`}
-                          className={`w-full p-3 text-left rounded-lg border-2 font-semibold text-sm transition-all ${
-                            isSelected
-                              ? "border-blue-500 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 ring-2 ring-blue-300"
-                              : connected
-                              ? `${color.bg} ${color.border} ${color.text}`
-                              : "border-border bg-background hover-elevate"
-                          }`}
-                        >
-                          {left}
-                          {connected && !isSelected && (
-                            <span className="float-right opacity-60 text-xs font-normal">
-                              {matchingConnections[left]}
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* RIGHT column */}
-                  <div className="space-y-2">
-                    <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground pb-1 border-b border-border">
-                      Colonne B
-                    </p>
-                    {matchingRightItems.map((right) => {
-                      const pairedLeft = matchingRightToLeft[right];
-                      const isPaired = pairedLeft !== undefined;
-                      const color = isPaired ? getMatchColor(pairedLeft) : null;
-                      const isTarget = !!matchingLeft && !isPaired;
-                      return (
-                        <button
-                          key={right}
-                          onClick={() => handleMatchingRightClick(right)}
-                          disabled={showFeedback || (!matchingLeft && !isPaired)}
-                          data-testid={`matching-right-${right}`}
-                          className={`w-full p-3 text-left rounded-lg border-2 text-sm transition-all ${
-                            isPaired && color
-                              ? `${color.bg} ${color.border} ${color.text} font-semibold`
-                              : isTarget
-                              ? "border-dashed border-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 text-foreground hover-elevate cursor-pointer"
-                              : "border-border bg-background"
-                          }`}
-                        >
-                          {right}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Feedback: per-pair results */}
-                {showFeedback && matchingFeedbackPairs.length > 0 && (
-                  <div className="space-y-2 mt-4">
-                    <p className="text-sm font-semibold text-foreground">Résultats :</p>
-                    {matchingFeedbackPairs.map(({ left, userRight, correctRight, ok }) => (
-                      <div
-                        key={left}
-                        className={`flex items-start gap-3 p-3 rounded-lg text-sm ${
-                          ok
-                            ? "bg-green-50 dark:bg-green-900/20 border border-green-300 dark:border-green-700"
-                            : "bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700"
-                        }`}
-                      >
-                        {ok
-                          ? <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                          : <XCircle   className="w-4 h-4 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                        }
-                        <div className="min-w-0">
-                          <span className="font-bold">{left}</span>
-                          {" → "}
-                          {ok ? (
-                            <span className="text-green-700 dark:text-green-300">{userRight}</span>
-                          ) : (
-                            <>
-                              <span className="text-red-500 line-through mr-2">{userRight}</span>
-                              <span className="text-green-700 dark:text-green-300 font-semibold">{correctRight}</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Multiple choice */}
-            {currentQuestion.type === "multiple_choice" && (
-              <div className="space-y-3 mt-6">
-                {((currentQuestion.options as string[]) || []).map((option) => (
-                  <div key={option} className="relative group">
-                    <button
-                      onClick={() => !showFeedback && handleAnswerChange(option)}
-                      className={`w-full p-4 text-left rounded-lg border-2 transition-all text-base pr-12 ${
-                        currentAnswer === option
-                          ? "border-blue-500 bg-blue-50 dark:bg-blue-900"
-                          : "border-border bg-background"
-                      } hover-elevate`}
-                      data-testid={`button-option-${option}`}
-                      disabled={showFeedback}
-                    >
-                      <span className="font-medium">{option}</span>
-                    </button>
-                    <div className="absolute right-2 top-1/2 -translate-y-1/2">
-                      <ReadAloudButton text={option} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Select */}
-            {currentQuestion.type === "select" && (
-              <div className="mt-6">
-                <Select value={currentAnswer} onValueChange={handleAnswerChange}>
-                  <SelectTrigger className="w-full" data-testid="select-answer">
-                    <SelectValue placeholder="Choisissez une réponse..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {((currentQuestion.options as string[]) || []).map((option) => (
-                      <SelectItem key={option} value={option} data-testid={`select-option-${option}`}>
-                        {option}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
-
-            {/* Free text */}
-            {currentQuestion.type === "text" && (
-              <div className="mt-6 space-y-2">
-                <label className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <FileText className="w-4 h-4 text-amber-600" />
-                  Votre réponse
-                </label>
-                <Textarea
-                  value={currentAnswer}
-                  onChange={(e) => handleAnswerChange(e.target.value)}
-                  className="min-h-[160px] text-base bg-amber-50 dark:bg-amber-900/10 border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
-                  placeholder="Écrivez votre réponse ici…"
-                  data-testid="textarea-answer"
-                />
-                <p className="text-xs text-muted-foreground">
-                  Réponse libre — elle sera lue et corrigée par votre enseignant.
-                </p>
-              </div>
-            )}
-
-            {/* Dictée interactive */}
-            {isDicteeQuestion && !showFeedback && (
-              <div className="mt-6">
-                <DicteeInput
-                  correctText={currentQuestion.correctAnswer}
-                  value={currentAnswer}
-                  onChange={handleAnswerChange}
-                  disabled={showFeedback}
-                />
-              </div>
-            )}
-
-            {/* Dictée — correction après soumission */}
-            {isDicteeQuestion && showFeedback && (
-              <div className="mt-6 space-y-4">
-                <div className="flex items-center gap-2 mb-2">
-                  {(dicteePct ?? 0) >= 70
-                    ? <CheckCircle className="w-5 h-5 text-green-500" />
-                    : <XCircle className="w-5 h-5 text-red-500" />
-                  }
-                  <span className="font-semibold text-foreground">
-                    {(dicteePct ?? 0) >= 70 ? "Bonne dictée !" : "À améliorer"}
-                  </span>
-                </div>
-                <DicteeCorrection
-                  userText={currentAnswer}
-                  correctText={currentQuestion.correctAnswer}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Submit button */}
-          {!showFeedback && (
+        {/* Submit */}
+        <Card className="p-4">
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            <p className="text-sm text-muted-foreground">
+              {allAnswered
+                ? "Toutes les réponses sont saisies. Tu peux soumettre."
+                : `${questions.length - answeredCount} réponse${questions.length - answeredCount > 1 ? "s" : ""} manquante${questions.length - answeredCount > 1 ? "s" : ""}`}
+            </p>
             <Button
-              onClick={handleSubmitAnswer}
-              className="w-full"
-              disabled={!canSubmit}
+              onClick={handleSubmitAll}
+              disabled={!allAnswered}
+              className="flex-1 sm:flex-none"
               data-testid="button-submit-answer"
             >
-              {isMatchingQuestion && !isMatchingComplete
-                ? `Relie toutes les paires (${Object.keys(matchingConnections).length}/${matchingLeftItems.length})`
-                : "Valider ma réponse"}
+              <CheckCircle className="w-4 h-4 mr-2" />
+              Soumettre mes réponses
             </Button>
-          )}
-
-          {/* Feedback panel */}
-          {showFeedback && (
-            <div className="space-y-4 mt-4">
-              {isTextQuestion ? (
-                <div className="p-4 rounded-lg bg-blue-100 dark:bg-blue-900 border-2 border-blue-500">
-                  <div className="flex items-center gap-2 mb-2">
-                    <FileText className="w-5 h-5 text-blue-600 dark:text-blue-300" />
-                    <span className="font-bold text-blue-700 dark:text-blue-200">Réponse enregistrée</span>
-                  </div>
-                  <p className="text-sm text-blue-600 dark:text-blue-300">
-                    Votre réponse sera évaluée par le professeur.
-                  </p>
-                </div>
-              ) : isMatchingQuestion ? (
-                <div className={`p-4 rounded-lg border-2 ${isCorrect ? "bg-green-100 dark:bg-green-900 border-green-500" : "bg-red-100 dark:bg-red-900 border-red-500"}`}>
-                  <div className="flex items-center gap-2">
-                    {isCorrect
-                      ? <><CheckCircle className="w-5 h-5 text-green-600 dark:text-green-300" /><span className="font-bold text-green-700 dark:text-green-200">Toutes les paires sont correctes !</span></>
-                      : <><XCircle   className="w-5 h-5 text-red-600 dark:text-red-300"   /><span className="font-bold text-red-700 dark:text-red-200">Certaines paires sont incorrectes.</span></>
-                    }
-                  </div>
-                </div>
-              ) : (
-                <div className={`p-4 rounded-lg ${isCorrect ? "bg-green-100 dark:bg-green-900 border-2 border-green-500" : "bg-red-100 dark:bg-red-900 border-2 border-red-500"}`}>
-                  <div className="flex items-center gap-2 mb-2">
-                    {isCorrect
-                      ? <><CheckCircle className="w-5 h-5 text-green-600 dark:text-green-300" /><span className="font-bold text-green-700 dark:text-green-200">Correct !</span></>
-                      : <><XCircle   className="w-5 h-5 text-red-600 dark:text-red-300"   /><span className="font-bold text-red-700 dark:text-red-200">Incorrect</span></>
-                    }
-                  </div>
-                  {!isCorrect && (
-                    <p className="text-sm">
-                      <strong>Bonne réponse :</strong> {currentQuestion.correctAnswer.split("|")[0]}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              <Button
-                onClick={handleNextQuestion}
-                className="w-full"
-                data-testid="button-next-question"
-              >
-                {currentQuestionIndex === questions.length - 1 ? "Terminer l'exercice" : "Prochaine question"}
-              </Button>
-            </div>
-          )}
+          </div>
         </Card>
       </main>
     </div>
