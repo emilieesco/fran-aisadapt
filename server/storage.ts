@@ -12089,6 +12089,342 @@ Sur de vieilles espérances.
     }
 
     // ============================================================
+    // LECTURE — ARTICLE DE JOURNAL : ENVIRONNEMENT
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Article de journal — L'environnement au Québec",
+        description: "Lire et comprendre un article journalistique sur la protection de l'environnement québécois",
+        category: "lecture_reading",
+        content: `<h2>Lire un article de journal</h2>
+<p>Un article de journal présente des faits réels, organisés avec un <strong>titre</strong>, un <strong>chapeau</strong> (introduction) et des <strong>paragraphes</strong>. Lis l'article suivant, puis réponds aux questions.</p>
+<hr/>
+<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:15px 0;font-family:Georgia,serif;'>
+  <p style='color:#64748b;font-size:0.85em;margin:0 0 6px 0;'>LE DEVOIR JEUNESSE — 14 mars 2024</p>
+  <h3 style='margin:0 0 10px 0;font-size:1.3em;'>Le fleuve Saint-Laurent : un trésor à protéger</h3>
+  <p style='color:#475569;font-size:0.9em;font-style:italic;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:14px;'>Les scientifiques tirent la sonnette d'alarme : la qualité de l'eau du Saint-Laurent s'améliore, mais les espèces menacées ont encore besoin de notre aide.</p>
+  <p>Le fleuve Saint-Laurent est l'un des plus grands fleuves d'Amérique du Nord. Long de plus de 1 200 kilomètres, il traverse le Québec d'ouest en est avant de se jeter dans l'Atlantique. Des millions de personnes dépendent de ses eaux pour leur eau potable, leur alimentation et leurs loisirs.</p>
+  <p>Depuis les années 1970, des efforts importants ont été déployés pour nettoyer le fleuve. Les usines rejettent aujourd'hui beaucoup moins de polluants dans l'eau. Résultat : plusieurs espèces de poissons, comme le doré et l'esturgeon jaune, sont revenues dans des zones où elles avaient disparu.</p>
+  <p>Cependant, tout n'est pas réglé. La population de bélugas — ces dauphins blancs qui vivent dans l'estuaire du Saint-Laurent — reste fragile. On en compte environ 900 individus, contre plusieurs milliers il y a un siècle. Le bruit des bateaux, la pollution et la raréfaction de leurs proies perturbent leur reproduction.</p>
+  <p>«Nous avons prouvé que nos actions peuvent faire une différence», affirme la biologiste Marie Tremblay, chercheuse à l'Université du Québec. «Mais il faut continuer. Chaque geste compte, même celui de ne pas jeter ses déchets près des berges.»</p>
+  <p>Des organismes comme le Groupe de recherche et d'éducation sur les mammifères marins (GREMM) sensibilisent chaque année des milliers d'élèves à la protection du Saint-Laurent. Car si le fleuve est un héritage précieux, il est aussi une responsabilité collective.</p>
+  <p style='color:#64748b;font-size:0.82em;margin-top:12px;'>— Texte adapté à des fins pédagogiques</p>
+</div>`,
+        order: 112,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Compréhension de l'article — Le Saint-Laurent", description: "Réponds aux questions de compréhension sur l'article «Le fleuve Saint-Laurent : un trésor à protéger»", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "Idée principale", type: "multiple_choice",
+          text: "Quelle est l'idée principale de cet article ?",
+          options: JSON.stringify([
+            "Le Saint-Laurent est trop pollué pour être sauvé.",
+            "Le Saint-Laurent s'améliore grâce aux efforts humains, mais des espèces restent menacées.",
+            "Les bélugas ont complètement disparu du Saint-Laurent.",
+            "Il ne faut plus utiliser le fleuve pour les loisirs.",
+          ]),
+          correctAnswer: "Le Saint-Laurent s'améliore grâce aux efforts humains, mais des espèces restent menacées.",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Information précise", type: "multiple_choice",
+          text: "Combien de bélugas reste-t-il environ dans l'estuaire du Saint-Laurent selon l'article ?",
+          options: JSON.stringify(["Plusieurs milliers", "Environ 900", "Moins de 100", "Plus de 5 000"]),
+          correctAnswer: "Environ 900",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Cause et effet", type: "multiple_choice",
+          text: "Selon l'article, pourquoi la population de bélugas reste-t-elle fragile ?",
+          options: JSON.stringify([
+            "Parce que les bélugas ne se reproduisent plus du tout",
+            "À cause du bruit des bateaux, de la pollution et du manque de nourriture",
+            "Parce que les pêcheurs les chassent illégalement",
+            "Parce qu'ils migrent vers d'autres fleuves",
+          ]),
+          correctAnswer: "À cause du bruit des bateaux, de la pollution et du manque de nourriance",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Point de vue de l'auteur", type: "multiple_choice",
+          text: "Quelle est l'attitude générale de l'auteur de cet article ?",
+          options: JSON.stringify([
+            "Pessimiste — il pense que la situation est sans espoir",
+            "Neutre — il ne donne aucune information positive ou négative",
+            "Prudent mais encourageant — il reconnaît les progrès tout en appelant à continuer les efforts",
+            "Alarmiste — il veut créer la peur chez les lecteurs",
+          ]),
+          correctAnswer: "Prudent mais encourageant — il reconnaît les progrès tout en appelant à continuer les efforts",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Rôle du chapeau", type: "multiple_choice",
+          text: "Le chapeau (texte en italique juste sous le titre) sert à :",
+          options: JSON.stringify([
+            "Raconter toute l'histoire du Saint-Laurent en détail",
+            "Résumer l'essentiel de l'article en quelques lignes pour donner envie de lire",
+            "Indiquer le nom du journaliste qui a écrit l'article",
+            "Présenter la conclusion de l'article",
+          ]),
+          correctAnswer: "Résumer l'essentiel de l'article en quelques lignes pour donner envie de lire",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Inférence", type: "multiple_choice",
+          text: "L'article dit : «si le fleuve est un héritage précieux, il est aussi une responsabilité collective». Que veut dire l'auteur ?",
+          options: JSON.stringify([
+            "Seulement le gouvernement doit protéger le fleuve",
+            "Le fleuve appartient à une seule personne",
+            "Tout le monde a un rôle à jouer dans la protection du Saint-Laurent",
+            "Le fleuve est trop grand pour être protégé",
+          ]),
+          correctAnswer: "Tout le monde a un rôle à jouer dans la protection du Saint-Laurent",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Vocabulaire et structure de l'article", description: "Travailler le vocabulaire en contexte et reconnaître les composantes d'un article de journal", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Vocabulaire — «estuaire»", type: "multiple_choice",
+          text: "Dans l'article, on lit «les bélugas qui vivent dans l'estuaire du Saint-Laurent». D'après le contexte, un estuaire est :",
+          options: JSON.stringify([
+            "Une montagne près du fleuve",
+            "La partie du fleuve proche de la mer, où l'eau douce et l'eau salée se mélangent",
+            "Un lac situé dans les terres",
+            "Un barrage construit par les humains",
+          ]),
+          correctAnswer: "La partie du fleuve proche de la mer, où l'eau douce et l'eau salée se mélangent",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Vocabulaire — «sensibilisent»", type: "multiple_choice",
+          text: "«Des organismes sensibilisent chaque année des milliers d'élèves.» Que signifie «sensibiliser» ici ?",
+          options: JSON.stringify([
+            "Effrayer les élèves avec de mauvaises nouvelles",
+            "Rendre les élèves conscients d'un problème pour qu'ils y portent attention",
+            "Obliger les élèves à agir immédiatement",
+            "Enseigner les mathématiques aux élèves",
+          ]),
+          correctAnswer: "Rendre les élèves conscients d'un problème pour qu'ils y portent attention",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Composante — la source", type: "multiple_choice",
+          text: "L'article cite Marie Tremblay, biologiste à l'Université du Québec. Pourquoi cite-t-on une experte dans un article de journal ?",
+          options: JSON.stringify([
+            "Pour rendre l'article plus long",
+            "Pour donner de la crédibilité à l'information grâce à l'opinion d'une spécialiste",
+            "Pour remplacer les faits par des opinions",
+            "Parce que les journalistes n'ont pas le droit d'écrire eux-mêmes",
+          ]),
+          correctAnswer: "Pour donner de la crédibilité à l'information grâce à l'opinion d'une spécialiste",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Composante — le titre", type: "multiple_choice",
+          text: "Le titre «Le fleuve Saint-Laurent : un trésor à protéger» utilise le mot «trésor» de façon imagée. Que veut dire l'auteur ?",
+          options: JSON.stringify([
+            "Il y a de l'or caché dans le fleuve",
+            "Le fleuve est une richesse précieuse qu'on doit préserver",
+            "Le fleuve est dangereux comme un coffre-fort",
+            "Seuls les riches ont accès au fleuve",
+          ]),
+          correctAnswer: "Le fleuve est une richesse précieuse qu'on doit préserver",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Type de texte", type: "multiple_choice",
+          text: "Cet article de journal est principalement un texte :",
+          options: JSON.stringify([
+            "Narratif — car il raconte une histoire fictive",
+            "Injonctif — car il donne des ordres au lecteur",
+            "Informatif et explicatif — car il présente des faits et explique des causes",
+            "Poétique — car il utilise beaucoup de métaphores",
+          ]),
+          correctAnswer: "Informatif et explicatif — car il présente des faits et explique des causes",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Réaction personnelle fondée", type: "multiple_choice",
+          text: "D'après l'article, lequel de ces gestes est recommandé pour aider le Saint-Laurent ?",
+          options: JSON.stringify([
+            "Arrêter complètement toute navigation sur le fleuve",
+            "Ne pas jeter ses déchets près des berges",
+            "Interdire la pêche dans tout le fleuve",
+            "Déplacer les bélugas vers l'océan Atlantique",
+          ]),
+          correctAnswer: "Ne pas jeter ses déchets près des berges",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // LECTURE — ARTICLE DE JOURNAL : SCIENCE ET DÉCOUVERTE
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "Article de journal — Une découverte scientifique",
+        description: "Lire et comprendre un article journalistique sur une découverte scientifique réalisée par des chercheurs québécois",
+        category: "lecture_reading",
+        content: `<h2>Lire un article de journal</h2>
+<p>Lis attentivement cet article journalistique adapté, puis réponds aux questions de compréhension, de vocabulaire et d'analyse.</p>
+<hr/>
+<div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:15px 0;font-family:Georgia,serif;'>
+  <p style='color:#64748b;font-size:0.85em;margin:0 0 6px 0;'>LA PRESSE — Sciences — 7 février 2024</p>
+  <h3 style='margin:0 0 10px 0;font-size:1.3em;'>Des chercheurs québécois percent le mystère du sommeil des ours</h3>
+  <p style='color:#475569;font-size:0.9em;font-style:italic;border-left:3px solid #10b981;padding-left:10px;margin-bottom:14px;'>Une équipe de l'Université Laval a découvert comment les ours noirs peuvent dormir sans manger pendant six mois — une avancée qui pourrait un jour aider les astronautes.</p>
+  <p>Pendant l'hiver, l'ours noir québécois s'endort dans sa tanière et n'en sort qu'au printemps. Pendant ces six mois de sommeil, il ne mange pas, ne boit presque pas et pourtant il survit. Comment fait-il ? C'est ce qu'une équipe de chercheurs de l'Université Laval, à Québec, a étudié pendant trois ans.</p>
+  <p>Les scientifiques ont découvert que le corps de l'ours ralentit ses fonctions vitales de façon spectaculaire. Son cœur, qui bat normalement 50 fois par minute, ne bat plus que 8 à 10 fois par minute durant l'hibernation. Sa température corporelle baisse légèrement, mais contrairement à d'autres animaux, l'ours se réveille facilement si on le dérange.</p>
+  <p>«L'ours n'est pas vraiment dans un sommeil profond comme une marmotte», explique le professeur Jean-François Ouellet, responsable de l'étude. «Il est dans un état intermédiaire que nous appelons la torpeur. Son cerveau reste partiellement actif.»</p>
+  <p>Cette découverte intéresse vivement les agences spatiales. En effet, lors d'un long voyage vers Mars, qui durerait entre six et neuf mois, les astronautes devraient dormir pendant une grande partie du trajet pour économiser l'oxygène et la nourriture. Comprendre comment l'ours gère son énergie pourrait inspirer les technologies du futur.</p>
+  <p>L'étude a été publiée dans la revue scientifique <em>Nature Ecology</em> et a reçu une bourse de 2,3 millions de dollars du Conseil de recherches en sciences naturelles et en génie du Canada.</p>
+  <p style='color:#64748b;font-size:0.82em;margin-top:12px;'>— Texte adapté à des fins pédagogiques</p>
+</div>`,
+        order: 113,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Compréhension de l'article — Le sommeil des ours", description: "Réponds aux questions de compréhension sur l'article «Des chercheurs québécois percent le mystère du sommeil des ours»", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex1Id, order: 1, title: "Idée principale", type: "multiple_choice",
+          text: "Quel est le sujet principal de cet article ?",
+          options: JSON.stringify([
+            "La disparition des ours noirs au Québec",
+            "Une découverte sur le sommeil hivernal des ours, utile pour l'exploration spatiale",
+            "Un voyage d'astronautes vers la planète Mars",
+            "Les dangers de l'hibernation pour les animaux sauvages",
+          ]),
+          correctAnswer: "Une découverte sur le sommeil hivernal des ours, utile pour l'exploration spatiale",
+        },
+        {
+          exerciseId: ex1Id, order: 2, title: "Information précise — rythme cardiaque", type: "multiple_choice",
+          text: "Selon l'article, à combien de battements par minute descend le cœur de l'ours en hibernation ?",
+          options: JSON.stringify(["50 fois par minute", "Entre 8 et 10 fois par minute", "Moins de 2 fois par minute", "30 fois par minute"]),
+          correctAnswer: "Entre 8 et 10 fois par minute",
+        },
+        {
+          exerciseId: ex1Id, order: 3, title: "Cause et effet", type: "multiple_choice",
+          text: "Pourquoi les agences spatiales s'intéressent-elles à cette découverte sur les ours ?",
+          options: JSON.stringify([
+            "Pour envoyer des ours dans l'espace",
+            "Parce que les ours sont présents sur Mars",
+            "Pour aider les astronautes à dormir longuement et économiser ressources lors de longs voyages spatiaux",
+            "Parce que l'ours est l'animal officiel des astronautes québécois",
+          ]),
+          correctAnswer: "Pour aider les astronautes à dormir longuement et économiser ressources lors de longs voyages spatiaux",
+        },
+        {
+          exerciseId: ex1Id, order: 4, title: "Différence ours / marmotte", type: "multiple_choice",
+          text: "Selon le professeur Ouellet, quelle est la différence entre l'hibernation de l'ours et celle d'une marmotte ?",
+          options: JSON.stringify([
+            "L'ours dort plus profondément que la marmotte",
+            "L'ours est dans un état de torpeur intermédiaire et peut se réveiller facilement ; la marmotte est dans un sommeil plus profond",
+            "La marmotte ne dort que 2 mois, l'ours 6 mois",
+            "Il n'y a aucune différence entre les deux",
+          ]),
+          correctAnswer: "L'ours est dans un état de torpeur intermédiaire et peut se réveiller facilement ; la marmotte est dans un sommeil plus profond",
+        },
+        {
+          exerciseId: ex1Id, order: 5, title: "Inférence — fiabilité de l'article", type: "multiple_choice",
+          text: "L'article mentionne que l'étude a été publiée dans la revue <em>Nature Ecology</em> et financée par une bourse de 2,3 M$. Pourquoi l'auteur précise-t-il ces détails ?",
+          options: JSON.stringify([
+            "Pour rendre l'article plus long et impressionner le lecteur",
+            "Pour montrer que la recherche est sérieuse, reconnue et financée officiellement",
+            "Pour critiquer le gaspillage d'argent public",
+            "Parce que c'est obligatoire dans tout article de journal",
+          ]),
+          correctAnswer: "Pour montrer que la recherche est sérieuse, reconnue et financée officiellement",
+        },
+        {
+          exerciseId: ex1Id, order: 6, title: "Lien entre paragraphes", type: "multiple_choice",
+          text: "Comment l'auteur passe-t-il de la description du sommeil des ours à la mention des astronautes ?",
+          options: JSON.stringify([
+            "Il change complètement de sujet sans transition",
+            "Il établit un lien : comprendre la torpeur de l'ours pourrait inspirer la technologie pour les voyages spatiaux",
+            "Il indique que les astronautes étudient les ours depuis des années",
+            "Il cite une loi du gouvernement qui oblige les scientifiques à travailler pour la NASA",
+          ]),
+          correctAnswer: "Il établit un lien : comprendre la torpeur de l'ours pourrait inspirer la technologie pour les voyages spatiaux",
+        },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "Vocabulaire, inférence et structure journalistique", description: "Analyser le vocabulaire en contexte et la structure de l'article scientifique", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        {
+          exerciseId: ex2Id, order: 1, title: "Vocabulaire — «torpeur»", type: "multiple_choice",
+          text: "Le professeur Ouellet parle d'un état de «torpeur». D'après le contexte, la torpeur est :",
+          options: JSON.stringify([
+            "Un sommeil très profond dont on ne peut pas se réveiller",
+            "Un état intermédiaire entre le sommeil et l'éveil, avec une activité réduite",
+            "Une maladie grave des ours en hiver",
+            "Un médicament donné aux ours pour les endormir",
+          ]),
+          correctAnswer: "Un état intermédiaire entre le sommeil et l'éveil, avec une activité réduite",
+        },
+        {
+          exerciseId: ex2Id, order: 2, title: "Vocabulaire — «avancée»", type: "multiple_choice",
+          text: "Le chapeau dit : «une avancée qui pourrait un jour aider les astronautes.» Que signifie «avancée» ici ?",
+          options: JSON.stringify([
+            "Un recul scientifique",
+            "Un progrès, une découverte qui fait progresser la science",
+            "Un départ en voyage",
+            "Une erreur de calcul des chercheurs",
+          ]),
+          correctAnswer: "Un progrès, une découverte qui fait progresser la science",
+        },
+        {
+          exerciseId: ex2Id, order: 3, title: "Rôle de la citation", type: "multiple_choice",
+          text: "L'article cite directement le professeur Ouellet : «L'ours n'est pas vraiment dans un sommeil profond...». Quel est le rôle de cette citation ?",
+          options: JSON.stringify([
+            "Remplacer les faits par une simple opinion",
+            "Apporter l'explication d'un expert et rendre l'article plus crédible",
+            "Critiquer les travaux d'autres scientifiques",
+            "Remplir l'espace pour que l'article soit plus long",
+          ]),
+          correctAnswer: "Apporter l'explication d'un expert et rendre l'article plus crédible",
+        },
+        {
+          exerciseId: ex2Id, order: 4, title: "Structure de l'article", type: "multiple_choice",
+          text: "Dans quel ordre l'auteur présente-t-il les informations dans cet article ?",
+          options: JSON.stringify([
+            "Voyage vers Mars → sommeil des ours → financement de la recherche",
+            "Financement → conclusions → question de départ",
+            "Question de départ sur l'ours → découvertes → application possible dans l'espace",
+            "Critique de la recherche → résultats → contexte",
+          ]),
+          correctAnswer: "Question de départ sur l'ours → découvertes → application possible dans l'espace",
+        },
+        {
+          exerciseId: ex2Id, order: 5, title: "Fait ou opinion ?", type: "multiple_choice",
+          text: "Laquelle de ces phrases de l'article est un FAIT vérifiable (et non une opinion) ?",
+          options: JSON.stringify([
+            "«L'ours est l'animal le plus fascinant du Québec.»",
+            "«Son cœur ne bat plus que 8 à 10 fois par minute durant l'hibernation.»",
+            "«Comprendre l'ours est plus important que d'aller sur Mars.»",
+            "«Les ours sont trop dangereux pour être étudiés de près.»",
+          ]),
+          correctAnswer: "«Son cœur ne bat plus que 8 à 10 fois par minute durant l'hibernation.»",
+        },
+        {
+          exerciseId: ex2Id, order: 6, title: "Portée de la découverte", type: "multiple_choice",
+          text: "Selon l'article, en quoi cette découverte sur les ours va-t-elle au-delà de la simple biologie animale ?",
+          options: JSON.stringify([
+            "Elle permet de créer de nouveaux médicaments contre le rhume",
+            "Elle pourrait inspirer des technologies pour les voyages spatiaux de longue durée",
+            "Elle prouve que les ours sont plus intelligents que les humains",
+            "Elle montre que le Québec a le plus grand nombre d'ours en Amérique",
+          ]),
+          correctAnswer: "Elle pourrait inspirer des technologies pour les voyages spatiaux de longue durée",
+        },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
     // ÉCRITURE — SCHÉMA NARRATIF 5 ÉTAPES (QUÉBEC)
     // ============================================================
     {
