@@ -11614,6 +11614,128 @@ Sur de vieilles espérances.
     }
 
     // ============================================================
+    // GRAMMAIRE QUÉBÉCOISE — CD : COMPLÉMENT DIRECT DU VERBE
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "CD — Complément Direct du verbe",
+        description: "Identifier et manipuler le complément direct (CD) selon la nouvelle grammaire québécoise",
+        category: "grammaire",
+        content: "<h2>Le Complément Direct du Verbe (CD)</h2><p>En nouvelle grammaire québécoise, on appelle <strong>Complément Direct (CD)</strong> ce qu'on appelait autrefois le complément d'objet direct (COD).</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ COMMENT RECONNAÎTRE LE CD ?</strong><br>1. Il répond à la question <em>Quoi?</em> ou <em>Qui?</em> posée après le verbe<br>2. Il n'est PAS introduit par une préposition (pas de «à», «de», «par»...)<br>3. On peut le remplacer par <em>le, la, les</em></div><h3>Exemples</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>«Je mange une pomme.»</strong><br>→ Je mange <em>quoi?</em> → une pomme = CD<br>→ Test : «Je <u>la</u> mange.» ✓</div><div style='background:#fee2e2;padding:10px;margin:10px 0;border-radius:4px;'><strong>Attention — pas un CD si :</strong><br>«Il parle <u>à</u> Marie.» → préposition «à» = CI, pas CD<br>«Elle court <u>dans</u> le parc.» → complément de phrase, pas CD</div>",
+        order: 203,
+      };
+      this.courses.set(courseId, course);
+
+      // Exercice 1 — Identifier le CD
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Identifier le Complément Direct (CD)", description: "Dans chaque phrase, repère le groupe qui est le CD du verbe", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        { exerciseId: ex1Id, order: 1, title: "Phrase 1", text: "Dans «Je mange une pomme.», quel est le Complément Direct (CD) du verbe «mange» ?", type: "multiple_choice", options: JSON.stringify(["Je", "mange", "une pomme", "chaque matin"]), correctAnswer: "une pomme" },
+        { exerciseId: ex1Id, order: 2, title: "Phrase 2", text: "Dans «Il regarde la télévision.», quel est le CD du verbe «regarde» ?", type: "multiple_choice", options: JSON.stringify(["Il", "regarde", "la télévision", "souvent"]), correctAnswer: "la télévision" },
+        { exerciseId: ex1Id, order: 3, title: "Phrase 3", text: "Dans «Les élèves écrivent leur texte.», quel est le CD ?", type: "multiple_choice", options: JSON.stringify(["Les élèves", "écrivent", "leur texte", "depuis une heure"]), correctAnswer: "leur texte" },
+        { exerciseId: ex1Id, order: 4, title: "Quelle question trouver le CD ?", text: "Quelle question pose-t-on après le verbe pour trouver le CD ?", type: "multiple_choice", options: JSON.stringify(["Où ? / Quand ?", "Quoi ? / Qui ? (sans préposition)", "À qui ? / De quoi ?", "Comment ? / Pourquoi ?"]), correctAnswer: "Quoi ? / Qui ? (sans préposition)" },
+        { exerciseId: ex1Id, order: 5, title: "Test pronominal", text: "Dans «Elle aime ses parents.», on remplace le CD par un pronom. Quelle transformation est correcte ?", type: "multiple_choice", options: JSON.stringify(["Elle leur aime.", "Elle les aime.", "Elle y aime.", "Elle en aime."]), correctAnswer: "Elle les aime." },
+        { exerciseId: ex1Id, order: 6, title: "Repérer le CD parmi d'autres", text: "Laquelle de ces phrases contient un CD ?", type: "multiple_choice", options: JSON.stringify(["Elle pense à toi.", "Il téléphone à sa mère.", "Nous regardons ce film.", "Tu ressembles à ton père."]), correctAnswer: "Nous regardons ce film." },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      // Exercice 2 — CD et pronoms / distinction CD vs CI
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "CD ou pas CD ? — Distinguer et manipuler", description: "Distingue le CD des autres compléments et pratique la pronominalisation", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        { exerciseId: ex2Id, order: 1, title: "Quel pronom ?", text: "Dans «Je vois mon ami.», quel pronom remplace le CD «mon ami» ?", type: "multiple_choice", options: JSON.stringify(["lui", "leur", "le", "y"]), correctAnswer: "le" },
+        { exerciseId: ex2Id, order: 2, title: "Transformation correcte ?", text: "Quelle transformation par pronom est correcte ?", type: "multiple_choice", options: JSON.stringify(["Je parle à Marie → Je la parle.", "Il mange la soupe → Il la mange.", "Elle pense à ses amis → Elle les pense.", "Tu cours vite → Tu le cours."]), correctAnswer: "Il mange la soupe → Il la mange." },
+        { exerciseId: ex2Id, order: 3, title: "CD ou CI ?", text: "«Tu lis un roman.» — «un roman» est :", type: "multiple_choice", options: JSON.stringify(["CI — car il répond à «à quoi ?»", "CD — car il répond à «quoi ?» sans préposition", "CP — car il peut se déplacer", "Sujet — car il commande le verbe"]), correctAnswer: "CD — car il répond à «quoi ?» sans préposition" },
+        { exerciseId: ex2Id, order: 4, title: "Pas un CD", text: "Dans «Il obéit à ses parents.», pourquoi «à ses parents» N'EST PAS un CD ?", type: "multiple_choice", options: JSON.stringify(["Parce qu'il est placé après le verbe", "Parce qu'il est introduit par la préposition «à»", "Parce qu'il désigne des personnes", "Parce qu'il peut se déplacer en début de phrase"]), correctAnswer: "Parce qu'il est introduit par la préposition «à»" },
+        { exerciseId: ex2Id, order: 5, title: "Trouver le CD dans une phrase complète", text: "Dans «Marie apporte les cahiers à la classe.», quel est le CD ?", type: "multiple_choice", options: JSON.stringify(["Marie", "à la classe", "les cahiers", "apporte"]), correctAnswer: "les cahiers" },
+        { exerciseId: ex2Id, order: 6, title: "Récapitulatif CD", text: "Laquelle de ces affirmations est VRAIE concernant le CD ?", type: "multiple_choice", options: JSON.stringify(["Le CD est toujours introduit par une préposition.", "Le CD répond à «quoi ?» ou «qui ?» directement après le verbe.", "Le CD peut toujours être déplacé en début de phrase.", "Le CD est toujours un pronom."]), correctAnswer: "Le CD répond à «quoi ?» ou «qui ?» directement après le verbe." },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // GRAMMAIRE QUÉBÉCOISE — CI : COMPLÉMENT INDIRECT DU VERBE
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "CI — Complément Indirect du verbe",
+        description: "Identifier et manipuler le complément indirect (CI) selon la nouvelle grammaire québécoise",
+        category: "grammaire",
+        content: "<h2>Le Complément Indirect du Verbe (CI)</h2><p>En nouvelle grammaire québécoise, on appelle <strong>Complément Indirect (CI)</strong> ce qu'on appelait autrefois le complément d'objet indirect (COI).</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ COMMENT RECONNAÎTRE LE CI ?</strong><br>1. Il répond à <em>À qui ? De quoi ? Pour qui ?</em> posée après le verbe<br>2. Il est toujours introduit par une préposition (<em>à, de, pour, sur...</em>)<br>3. On peut le remplacer par <em>lui, leur, y, en</em></div><h3>Exemples</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>«Il parle à Marie.»</strong><br>→ Il parle <em>à qui?</em> → à Marie = CI<br>→ Test : «Il <u>lui</u> parle.» ✓</div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px;'><strong>«Je rêve de vacances.»</strong><br>→ Je rêve <em>de quoi?</em> → de vacances = CI<br>→ Test : «J'<u>en</u> rêve.» ✓</div>",
+        order: 204,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Identifier le Complément Indirect (CI)", description: "Dans chaque phrase, repère le groupe qui est le CI du verbe", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        { exerciseId: ex1Id, order: 1, title: "Phrase 1", text: "Dans «Il parle à Marie.», quel est le Complément Indirect (CI) du verbe «parle» ?", type: "multiple_choice", options: JSON.stringify(["Il", "parle", "à Marie", "souvent"]), correctAnswer: "à Marie" },
+        { exerciseId: ex1Id, order: 2, title: "Phrase 2", text: "Dans «Je donne un cadeau à mon ami.», quel est le CI ?", type: "multiple_choice", options: JSON.stringify(["Je", "un cadeau", "à mon ami", "donne"]), correctAnswer: "à mon ami" },
+        { exerciseId: ex1Id, order: 3, title: "Quelle question trouver le CI ?", text: "Quelle question pose-t-on pour trouver le CI ?", type: "multiple_choice", options: JSON.stringify(["Quoi ? / Qui ? (sans préposition)", "À qui ? / De quoi ? (avec préposition)", "Où ? / Quand ?", "Comment ? / Pourquoi ?"]), correctAnswer: "À qui ? / De quoi ? (avec préposition)" },
+        { exerciseId: ex1Id, order: 4, title: "Test pronominal CI", text: "Dans «Elle téléphone à ses parents.», quel pronom remplace «à ses parents» ?", type: "multiple_choice", options: JSON.stringify(["les", "la", "leur", "y"]), correctAnswer: "leur" },
+        { exerciseId: ex1Id, order: 5, title: "CI avec «de»", text: "Dans «Elle rêve de partir en voyage.», quel est le CI ?", type: "multiple_choice", options: JSON.stringify(["Elle", "rêve", "de partir en voyage", "en voyage"]), correctAnswer: "de partir en voyage" },
+        { exerciseId: ex1Id, order: 6, title: "Repérer le CI", text: "Laquelle de ces phrases contient un CI ?", type: "multiple_choice", options: JSON.stringify(["Je mange une pomme.", "Elle lit un roman.", "Il ressemble à son père.", "Nous regardons ce film."]), correctAnswer: "Il ressemble à son père." },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "CD ou CI ? — Distinguer les deux compléments", description: "Identifie si le complément est un CD ou un CI dans chaque phrase", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        { exerciseId: ex2Id, order: 1, title: "«Je regarde le film.»", text: "Dans «Je regarde le film.», «le film» est :", type: "multiple_choice", options: JSON.stringify(["CI — introduit par une préposition", "CD — répond à «quoi ?» sans préposition", "CP — peut être déplacé", "Sujet de la phrase"]), correctAnswer: "CD — répond à «quoi ?» sans préposition" },
+        { exerciseId: ex2Id, order: 2, title: "«Elle parle à son professeur.»", text: "Dans «Elle parle à son professeur.», «à son professeur» est :", type: "multiple_choice", options: JSON.stringify(["CD — répond à «quoi ?»", "CI — introduit par «à»", "CP — peut être effacé", "Attribut du sujet"]), correctAnswer: "CI — introduit par «à»" },
+        { exerciseId: ex2Id, order: 3, title: "«Nous pensons à nos vacances.»", text: "Dans «Nous pensons à nos vacances.», «à nos vacances» est :", type: "multiple_choice", options: JSON.stringify(["CD — car «penser» est un verbe d'action", "CI — car il est introduit par «à»", "CP — car il indique un moment", "Sujet du verbe «penser»"]), correctAnswer: "CI — car il est introduit par «à»" },
+        { exerciseId: ex2Id, order: 4, title: "«Il prend son manteau.»", text: "Dans «Il prend son manteau.», «son manteau» est :", type: "multiple_choice", options: JSON.stringify(["CI — car il répond à «à qui ?»", "CP — car il peut se déplacer", "CD — car il répond à «quoi ?» sans préposition", "Attribut du sujet"]), correctAnswer: "CD — car il répond à «quoi ?» sans préposition" },
+        { exerciseId: ex2Id, order: 5, title: "Paire CD + CI", text: "Dans «Elle donne une pomme à Lucie.», quelle paire est correcte ?", type: "multiple_choice", options: JSON.stringify(["CD = «à Lucie», CI = «une pomme»", "CD = «une pomme», CI = «à Lucie»", "Les deux sont des CD", "Les deux sont des CI"]), correctAnswer: "CD = «une pomme», CI = «à Lucie»" },
+        { exerciseId: ex2Id, order: 6, title: "Test décisif", text: "Pour différencier un CD d'un CI, le test le plus fiable est :", type: "multiple_choice", options: JSON.stringify(["Regarder si le groupe est long ou court", "Vérifier si une préposition (à, de...) est présente : oui = CI, non = CD", "Voir si le groupe est placé avant ou après le verbe", "Compter le nombre de mots dans le groupe"]), correctAnswer: "Vérifier si une préposition (à, de...) est présente : oui = CI, non = CD" },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
+    // GRAMMAIRE QUÉBÉCOISE — CP : COMPLÉMENT DE PHRASE
+    // ============================================================
+    {
+      const courseId = randomUUID();
+      const course: Course = {
+        id: courseId,
+        title: "CP — Complément de Phrase",
+        description: "Identifier et déplacer le complément de phrase (CP) selon la nouvelle grammaire québécoise",
+        category: "grammaire",
+        content: "<h2>Le Complément de Phrase (CP)</h2><p>En nouvelle grammaire québécoise, le <strong>Complément de Phrase (CP)</strong> remplace les anciens «compléments circonstanciels» (de temps, de lieu, de manière...).</p><div style='background:#fef08a;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px;'><strong>⭐ COMMENT RECONNAÎTRE LE CP ?</strong><br>1. Il peut être <em>déplacé</em> en début ou fin de phrase<br>2. Il peut être <em>effacé</em> sans que la phrase devienne incorrecte<br>3. Il répond à : <em>Où ? Quand ? Comment ? Pourquoi ?</em></div><h3>Exemples</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px;'><strong>«Hier, elle a mangé une pomme.»</strong><br>→ «Hier» = CP (peut se déplacer : «Elle a mangé une pomme hier.» ✓)<br>→ «Hier» = CP (peut s'effacer : «Elle a mangé une pomme.» ✓)</div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px;'><strong>«Les enfants jouent dans le jardin.»</strong><br>→ «dans le jardin» = CP (peut se déplacer : «Dans le jardin, les enfants jouent.» ✓)</div>",
+        order: 205,
+      };
+      this.courses.set(courseId, course);
+
+      const ex1Id = randomUUID();
+      this.exercises.set(ex1Id, { id: ex1Id, courseId, title: "Identifier le Complément de Phrase (CP)", description: "Dans chaque phrase, repère le groupe qui est le CP", type: "multiple_choice", order: 1 } as Exercise);
+      const qs1: Omit<Question,"id">[] = [
+        { exerciseId: ex1Id, order: 1, title: "Phrase 1", text: "Dans «Hier, elle a mangé une pomme.», quel est le Complément de Phrase (CP) ?", type: "multiple_choice", options: JSON.stringify(["elle", "une pomme", "Hier", "a mangé"]), correctAnswer: "Hier" },
+        { exerciseId: ex1Id, order: 2, title: "Phrase 2", text: "Dans «Les enfants jouent dans le jardin.», quel est le CP ?", type: "multiple_choice", options: JSON.stringify(["Les enfants", "jouent", "dans le jardin", "le jardin"]), correctAnswer: "dans le jardin" },
+        { exerciseId: ex1Id, order: 3, title: "Test du déplacement", text: "Comment reconnaît-on un CP par le test du déplacement ?", type: "multiple_choice", options: JSON.stringify(["On le met à la fin et la phrase devient fausse", "On peut le déplacer en début ou fin de phrase sans que ça devienne incorrect", "On le supprime et la phrase change complètement de sens", "On ne peut jamais le déplacer"]), correctAnswer: "On peut le déplacer en début ou fin de phrase sans que ça devienne incorrect" },
+        { exerciseId: ex1Id, order: 4, title: "Phrase avec CP de temps", text: "Dans «Depuis deux semaines, Marie étudie le français.», quel est le CP ?", type: "multiple_choice", options: JSON.stringify(["Marie", "le français", "Depuis deux semaines", "étudie"]), correctAnswer: "Depuis deux semaines" },
+        { exerciseId: ex1Id, order: 5, title: "Déplacement correct", text: "Laquelle de ces transformations montre correctement le déplacement d'un CP ?", type: "multiple_choice", options: JSON.stringify(["Elle mange toujours → Toujours mange elle.", "Il court dans la forêt → Dans la forêt, il court. ✓", "À Marie je parle → Je à Marie parle.", "Un livre je lis → Je lis un livre."]), correctAnswer: "Il court dans la forêt → Dans la forêt, il court. ✓" },
+        { exerciseId: ex1Id, order: 6, title: "Effacement du CP", text: "Quelle phrase montre qu'on peut effacer le CP sans rendre la phrase incorrecte ?", type: "multiple_choice", options: JSON.stringify(["«Elle mange le soir.» → «Elle mange.» ✓", "«Elle aime les chats.» → «Elle aime.» (phrase incomplète)", "«Il voit son ami.» → «Il voit.» (phrase incomplète)", "«Je donne à Pierre.» → «Je donne.» (phrase incomplète)"]), correctAnswer: "«Elle mange le soir.» → «Elle mange.» ✓" },
+      ];
+      qs1.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+
+      const ex2Id = randomUUID();
+      this.exercises.set(ex2Id, { id: ex2Id, courseId, title: "CD, CI ou CP ? — Récapitulatif des trois compléments", description: "Identifie le type de complément dans chaque phrase : CD, CI ou CP", type: "multiple_choice", order: 2 } as Exercise);
+      const qs2: Omit<Question,"id">[] = [
+        { exerciseId: ex2Id, order: 1, title: "«ce soir»", text: "Dans «Je mange une pomme ce soir.», «ce soir» est :", type: "multiple_choice", options: JSON.stringify(["CD", "CI", "CP", "Sujet"]), correctAnswer: "CP" },
+        { exerciseId: ex2Id, order: 2, title: "«à sa cousine»", text: "Dans «Elle écrit à sa cousine.», «à sa cousine» est :", type: "multiple_choice", options: JSON.stringify(["CD", "CI", "CP", "Attribut"]), correctAnswer: "CI" },
+        { exerciseId: ex2Id, order: 3, title: "«ce film»", text: "Dans «Tu regardes ce film en salle.», «ce film» est :", type: "multiple_choice", options: JSON.stringify(["CD", "CI", "CP", "Sujet"]), correctAnswer: "CD" },
+        { exerciseId: ex2Id, order: 4, title: "«pendant les examens»", text: "Dans «Il travaille dur pendant les examens.», «pendant les examens» est :", type: "multiple_choice", options: JSON.stringify(["CD", "CI", "CP", "Sujet"]), correctAnswer: "CP" },
+        { exerciseId: ex2Id, order: 5, title: "«des fleurs»", text: "Dans «Nous offrons des fleurs à notre mère.», «des fleurs» est :", type: "multiple_choice", options: JSON.stringify(["CD", "CI", "CP", "Attribut du sujet"]), correctAnswer: "CD" },
+        { exerciseId: ex2Id, order: 6, title: "«à notre mère»", text: "Dans «Nous offrons des fleurs à notre mère.», «à notre mère» est :", type: "multiple_choice", options: JSON.stringify(["CD", "CI", "CP", "Sujet"]), correctAnswer: "CI" },
+      ];
+      qs2.forEach(q => { const id = randomUUID(); this.questions.set(id, { id, ...q, options: q.options ?? null } as Question); });
+    }
+
+    // ============================================================
     // DICTÉES — NIVEAU 1 : DÉBUTANT
     // ============================================================
     {
