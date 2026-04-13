@@ -285,6 +285,8 @@ export default function Exercise() {
   const [loading, setLoading] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [storyPanelOpen, setStoryPanelOpen] = useState(true);
+  const [articlePanelOpen, setArticlePanelOpen] = useState(true);
+  const [course, setCourse] = useState<{ id: string; title: string; category: string; content: string } | null>(null);
   const [siblingExercises, setSiblingExercises] = useState<Exercise[]>([]);
 
   // Matching-specific state
@@ -325,13 +327,16 @@ export default function Exercise() {
         }
 
         if (fetchedExercise?.courseId) {
-          const siblingsRes = await fetch(
-            `/api/courses/${fetchedExercise.courseId}/exercises`,
-            { credentials: "include" }
-          );
+          const [siblingsRes, courseRes] = await Promise.all([
+            fetch(`/api/courses/${fetchedExercise.courseId}/exercises`, { credentials: "include" }),
+            fetch(`/api/courses/${fetchedExercise.courseId}`, { credentials: "include" }),
+          ]);
           if (siblingsRes.ok) {
             const siblings: Exercise[] = await siblingsRes.json();
             setSiblingExercises(siblings.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
+          }
+          if (courseRes.ok) {
+            setCourse(await courseRes.json());
           }
         }
       } catch (err) {
@@ -473,6 +478,9 @@ export default function Exercise() {
     isInformatifExercise && firstQuestion && firstQuestion.text.length > 500
       ? firstQuestion.text
       : null;
+
+  const isLectureReadingExercise = course?.category === "lecture_reading";
+  const articleContent = isLectureReadingExercise ? course?.content ?? null : null;
 
   const handleAnswerChange = (answer: string) => {
     setUserAnswers({ ...userAnswers, [currentQuestion.id]: answer });
@@ -890,6 +898,37 @@ export default function Exercise() {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-8">
+        {/* Reading panel — article de journal (lecture_reading) */}
+        {isLectureReadingExercise && articleContent && (
+          <Collapsible open={articlePanelOpen} onOpenChange={setArticlePanelOpen} className="mb-6">
+            <Card className="p-4 bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700">
+              <CollapsibleTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-full flex items-center justify-between p-2"
+                  data-testid="button-toggle-article"
+                >
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    <span className="font-semibold text-emerald-800 dark:text-emerald-200">
+                      Article — à garder visible pendant les questions
+                    </span>
+                  </div>
+                  {articlePanelOpen
+                    ? <ChevronUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    : <ChevronDown className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />}
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div
+                  className="mt-3 max-h-96 overflow-y-auto bg-white dark:bg-slate-800 p-4 rounded-lg border border-emerald-200 dark:border-emerald-800 prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: articleContent }}
+                />
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
+        )}
+
         {/* Reading panel — informatif */}
         {isInformatifExercise && informatifText && (
           <Collapsible open={storyPanelOpen} onOpenChange={setStoryPanelOpen} className="mb-6">
