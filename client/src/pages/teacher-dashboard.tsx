@@ -6,7 +6,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Users, BookOpen, Plus, LogOut, FileText, Download, CheckCircle, MessageSquare, Clock, Bell, MessageCircle, Send, PenLine, X, ThumbsUp, ThumbsDown, ChevronDown, ChevronRight, FileDown } from "lucide-react";
+import { Users, BookOpen, Plus, LogOut, FileText, Download, CheckCircle, MessageSquare, Clock, Bell, MessageCircle, Send, PenLine, X, ThumbsUp, ThumbsDown, ChevronDown, ChevronRight, FileDown, Layers, Pencil, Trash2, UserPlus, UserMinus } from "lucide-react";
+
+interface StudentGroup {
+  id: string;
+  teacherId: string;
+  name: string;
+  description: string | null;
+  color: string | null;
+  createdAt: string;
+}
 
 interface StudentDoc {
   id: string;
@@ -58,6 +67,14 @@ export default function TeacherDashboard() {
   const [annotationDrafts, setAnnotationDrafts] = useState<Record<string, string>>({});
   const [savingAnnotation, setSavingAnnotation] = useState<string | null>(null);
   const [expandedExercises, setExpandedExercises] = useState<Record<string, boolean>>({});
+  // Groupes d'élèves
+  const [groups, setGroups] = useState<StudentGroup[]>([]);
+  const [groupMembers, setGroupMembers] = useState<Record<string, string[]>>({});
+  const [selectedGroup, setSelectedGroup] = useState<StudentGroup | null>(null);
+  const [newGroupForm, setNewGroupForm] = useState({ name: "", description: "", color: "#6366f1" });
+  const [editingGroup, setEditingGroup] = useState<StudentGroup | null>(null);
+  const [savingGroup, setSavingGroup] = useState(false);
+  const [groupsLoaded, setGroupsLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,6 +109,19 @@ export default function TeacherDashboard() {
         // Charger les notifications
         const notifRes = await fetch(`/api/notifications/${userId}`, { credentials: "include" });
         if (notifRes.ok) setNotifications(await notifRes.json());
+        // Charger les groupes
+        const grpRes = await fetch(`/api/groups/teacher/${userId}`, { credentials: "include" });
+        if (grpRes.ok) {
+          const grps: StudentGroup[] = await grpRes.json();
+          setGroups(grps);
+          const membersMap: Record<string, string[]> = {};
+          await Promise.all(grps.map(async g => {
+            const mRes = await fetch(`/api/groups/${g.id}/members`, { credentials: "include" });
+            if (mRes.ok) { const ms = await mRes.json(); membersMap[g.id] = ms.map((m: any) => m.studentId); }
+          }));
+          setGroupMembers(membersMap);
+          setGroupsLoaded(true);
+        }
       } catch (err) {
         console.error("Erreur:", err);
       } finally {
@@ -234,6 +264,82 @@ export default function TeacherDashboard() {
     }
   };
 
+  const reloadGroups = async (userId: string) => {
+    const grpRes = await fetch(`/api/groups/teacher/${userId}`, { credentials: "include" });
+    if (grpRes.ok) {
+      const grps: StudentGroup[] = await grpRes.json();
+      setGroups(grps);
+      const membersMap: Record<string, string[]> = {};
+      await Promise.all(grps.map(async g => {
+        const mRes = await fetch(`/api/groups/${g.id}/members`, { credentials: "include" });
+        if (mRes.ok) { const ms = await mRes.json(); membersMap[g.id] = ms.map((m: any) => m.studentId); }
+      }));
+      setGroupMembers(membersMap);
+    }
+  };
+
+  const handleCreateGroup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const userId = localStorage.getItem("userId");
+    if (!userId || !newGroupForm.name.trim()) return;
+    setSavingGroup(true);
+    try {
+      const res = await fetch("/api/groups", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ teacherId: userId, name: newGroupForm.name, description: newGroupForm.description, color: newGroupForm.color }),
+      });
+      if (res.ok) {
+        setNewGroupForm({ name: "", description: "", color: "#6366f1" });
+        await reloadGroups(userId);
+      }
+    } finally { setSavingGroup(false); }
+  };
+
+  const handleUpdateGroup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingGroup) return;
+    const userId = localStorage.getItem("userId");
+    setSavingGroup(true);
+    try {
+      const res = await fetch(`/api/groups/${editingGroup.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name: editingGroup.name, description: editingGroup.description, color: editingGroup.color }),
+      });
+      if (res.ok) {
+        setEditingGroup(null);
+        if (userId) await reloadGroups(userId);
+      }
+    } finally { setSavingGroup(false); }
+  };
+
+  const handleDeleteGroup = async (groupId: string) => {
+    if (!confirm("Supprimer ce groupe ? Les élèves ne seront pas supprimés.")) return;
+    const userId = localStorage.getItem("userId");
+    await fetch(`/api/groups/${groupId}`, { method: "DELETE", credentials: "include" });
+    if (selectedGroup?.id === groupId) setSelectedGroup(null);
+    if (userId) await reloadGroups(userId);
+  };
+
+  const handleToggleMember = async (groupId: string, studentId: string) => {
+    const userId = localStorage.getItem("userId");
+    const inGroup = (groupMembers[groupId] || []).includes(studentId);
+    if (inGroup) {
+      await fetch(`/api/groups/${groupId}/members/${studentId}`, { method: "DELETE", credentials: "include" });
+    } else {
+      await fetch(`/api/groups/${groupId}/members`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ studentId }),
+      });
+    }
+    if (userId) await reloadGroups(userId);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -315,7 +421,7 @@ export default function TeacherDashboard() {
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-8">
         <Tabs defaultValue="courses" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="courses" data-testid="tab-courses">
               <BookOpen className="w-4 h-4 mr-2" />
               Cours
@@ -332,6 +438,10 @@ export default function TeacherDashboard() {
                   {documents.filter(d => !d.teacherReviewed).length}
                 </span>
               )}
+            </TabsTrigger>
+            <TabsTrigger value="groups" data-testid="tab-groups">
+              <Layers className="w-4 h-4 mr-2" />
+              Groupes ({groups.length})
             </TabsTrigger>
             <TabsTrigger value="messages" data-testid="tab-messages-teacher">
               <MessageCircle className="w-4 h-4 mr-2" />
@@ -742,6 +852,159 @@ export default function TeacherDashboard() {
                   })}
                 </div>
               )}
+            </div>
+          </TabsContent>
+
+          {/* Groupes Tab */}
+          <TabsContent value="groups">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Colonne gauche : liste des groupes + formulaire création */}
+              <div className="space-y-4">
+                {/* Créer un groupe */}
+                <Card className="p-4">
+                  <h3 className="font-semibold mb-3 flex items-center gap-2">
+                    <Plus className="w-4 h-4" /> Nouveau groupe
+                  </h3>
+                  {editingGroup ? (
+                    <form onSubmit={handleUpdateGroup} className="space-y-2">
+                      <Input
+                        value={editingGroup.name}
+                        onChange={e => setEditingGroup({ ...editingGroup, name: e.target.value })}
+                        placeholder="Nom du groupe"
+                        required
+                        data-testid="input-edit-group-name"
+                      />
+                      <Textarea
+                        value={editingGroup.description ?? ""}
+                        onChange={e => setEditingGroup({ ...editingGroup, description: e.target.value })}
+                        placeholder="Description (facultatif)"
+                        className="min-h-[60px]"
+                      />
+                      <div className="flex items-center gap-2">
+                        <label className="text-sm text-muted-foreground">Couleur :</label>
+                        <input type="color" value={editingGroup.color ?? "#6366f1"} onChange={e => setEditingGroup({ ...editingGroup, color: e.target.value })} className="w-8 h-8 rounded cursor-pointer border border-border" />
+                      </div>
+                      <div className="flex gap-2">
+                        <Button type="submit" size="sm" disabled={savingGroup} data-testid="button-save-group">
+                          Enregistrer
+                        </Button>
+                        <Button type="button" size="sm" variant="outline" onClick={() => setEditingGroup(null)}>
+                          Annuler
+                        </Button>
+                      </div>
+                    </form>
+                  ) : (
+                    <form onSubmit={handleCreateGroup} className="space-y-2">
+                      <Input
+                        value={newGroupForm.name}
+                        onChange={e => setNewGroupForm({ ...newGroupForm, name: e.target.value })}
+                        placeholder="Nom du groupe"
+                        required
+                        data-testid="input-new-group-name"
+                      />
+                      <Textarea
+                        value={newGroupForm.description}
+                        onChange={e => setNewGroupForm({ ...newGroupForm, description: e.target.value })}
+                        placeholder="Description (facultatif)"
+                        className="min-h-[60px]"
+                      />
+                      <div className="flex items-center gap-2">
+                        <label className="text-sm text-muted-foreground">Couleur :</label>
+                        <input type="color" value={newGroupForm.color} onChange={e => setNewGroupForm({ ...newGroupForm, color: e.target.value })} className="w-8 h-8 rounded cursor-pointer border border-border" />
+                      </div>
+                      <Button type="submit" size="sm" disabled={savingGroup || !newGroupForm.name.trim()} data-testid="button-create-group">
+                        <Plus className="w-4 h-4 mr-1" /> Créer
+                      </Button>
+                    </form>
+                  )}
+                </Card>
+
+                {/* Liste des groupes */}
+                <div className="space-y-2">
+                  {groups.length === 0 ? (
+                    <Card className="p-4 text-center text-muted-foreground text-sm">
+                      Aucun groupe pour l'instant.
+                    </Card>
+                  ) : (
+                    groups.map(g => (
+                      <Card
+                        key={g.id}
+                        className={`p-3 cursor-pointer transition-all hover-elevate ${selectedGroup?.id === g.id ? "ring-2 ring-primary" : ""}`}
+                        onClick={() => setSelectedGroup(selectedGroup?.id === g.id ? null : g)}
+                        data-testid={`card-group-${g.id}`}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: g.color ?? "#6366f1" }} />
+                            <div className="min-w-0">
+                              <p className="font-medium truncate text-sm">{g.name}</p>
+                              <p className="text-xs text-muted-foreground">{(groupMembers[g.id] ?? []).length} élève(s)</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-1 flex-shrink-0" onClick={e => e.stopPropagation()}>
+                            <Button size="icon" variant="ghost" onClick={() => { setEditingGroup(g); setSelectedGroup(null); }} data-testid={`button-edit-group-${g.id}`}>
+                              <Pencil className="w-3 h-3" />
+                            </Button>
+                            <Button size="icon" variant="ghost" onClick={() => handleDeleteGroup(g.id)} data-testid={`button-delete-group-${g.id}`}>
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              {/* Colonne droite : membres du groupe sélectionné */}
+              <div className="md:col-span-2">
+                {selectedGroup ? (
+                  <Card className="p-5">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="w-4 h-4 rounded-full" style={{ backgroundColor: selectedGroup.color ?? "#6366f1" }} />
+                      <div>
+                        <h3 className="font-semibold text-lg">{selectedGroup.name}</h3>
+                        {selectedGroup.description && <p className="text-sm text-muted-foreground">{selectedGroup.description}</p>}
+                      </div>
+                    </div>
+                    <p className="text-sm font-medium mb-3 text-muted-foreground">
+                      Gérer les membres ({(groupMembers[selectedGroup.id] ?? []).length} / {students.length} élèves)
+                    </p>
+                    <div className="space-y-2">
+                      {students.map(s => {
+                        const inGroup = (groupMembers[selectedGroup.id] ?? []).includes(s.id);
+                        return (
+                          <div key={s.id} className="flex items-center justify-between gap-2 py-1.5 border-b border-border last:border-0">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white ${inGroup ? "bg-primary" : "bg-muted"}`}>
+                                {s.firstName[0]}{s.lastName[0]}
+                              </div>
+                              <span className="text-sm">{s.firstName} {s.lastName}</span>
+                            </div>
+                            <Button
+                              size="sm"
+                              variant={inGroup ? "outline" : "default"}
+                              onClick={() => handleToggleMember(selectedGroup.id, s.id)}
+                              data-testid={`button-toggle-member-${s.id}`}
+                            >
+                              {inGroup ? (
+                                <><UserMinus className="w-3 h-3 mr-1" />Retirer</>
+                              ) : (
+                                <><UserPlus className="w-3 h-3 mr-1" />Ajouter</>
+                              )}
+                            </Button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </Card>
+                ) : (
+                  <Card className="p-8 text-center text-muted-foreground h-full flex flex-col items-center justify-center gap-3">
+                    <Layers className="w-10 h-10 mx-auto opacity-40" />
+                    <p>Sélectionnez un groupe pour gérer ses membres.</p>
+                  </Card>
+                )}
+              </div>
             </div>
           </TabsContent>
 

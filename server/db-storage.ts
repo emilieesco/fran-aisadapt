@@ -12,6 +12,8 @@ import {
   studentDocuments,
   messages,
   notifications,
+  studentGroups,
+  groupMembers,
 } from "@shared/schema";
 import type {
   User,
@@ -30,6 +32,9 @@ import type {
   InsertMessage,
   Notification,
   InsertNotification,
+  StudentGroup,
+  InsertStudentGroup,
+  GroupMember,
 } from "@shared/schema";
 
 export class DatabaseStorage extends MemStorage {
@@ -368,6 +373,46 @@ export class DatabaseStorage extends MemStorage {
   async getUnreadNotificationCount(userId: string): Promise<number> {
     const rows = await this.db.select().from(notifications).where(and(eq(notifications.userId, userId), eq(notifications.isRead, false)));
     return rows.length;
+  }
+
+  // Groupes d'eleves
+
+  async getGroupsByTeacher(teacherId: string): Promise<StudentGroup[]> {
+    return this.db.select().from(studentGroups).where(eq(studentGroups.teacherId, teacherId));
+  }
+
+  async createGroup(group: InsertStudentGroup): Promise<StudentGroup> {
+    const rows = await this.db.insert(studentGroups).values(group).returning();
+    return rows[0];
+  }
+
+  async updateGroup(id: string, name: string, description: string, color: string): Promise<StudentGroup | undefined> {
+    const rows = await this.db.update(studentGroups).set({ name, description, color }).where(eq(studentGroups.id, id)).returning();
+    return rows[0];
+  }
+
+  async deleteGroup(id: string): Promise<void> {
+    await this.db.delete(studentGroups).where(eq(studentGroups.id, id));
+  }
+
+  async getGroupMembers(groupId: string): Promise<GroupMember[]> {
+    return this.db.select().from(groupMembers).where(eq(groupMembers.groupId, groupId));
+  }
+
+  async addGroupMember(groupId: string, studentId: string): Promise<GroupMember> {
+    const rows = await this.db.insert(groupMembers).values({ groupId, studentId }).returning();
+    return rows[0];
+  }
+
+  async removeGroupMember(groupId: string, studentId: string): Promise<void> {
+    await this.db.delete(groupMembers).where(and(eq(groupMembers.groupId, groupId), eq(groupMembers.studentId, studentId)));
+  }
+
+  async getStudentGroups(studentId: string): Promise<StudentGroup[]> {
+    const members = await this.db.select().from(groupMembers).where(eq(groupMembers.studentId, studentId));
+    if (members.length === 0) return [];
+    const groupIds = members.map(m => m.groupId);
+    return this.db.select().from(studentGroups).where(inArray(studentGroups.id, groupIds));
   }
 
   // ─── INITIALISATION ──────────────────────────────────────────────────────────

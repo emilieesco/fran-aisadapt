@@ -742,5 +742,69 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     }
   });
 
+  // ── GROUPES D'ÉLÈVES ─────────────────────────────────────────────────────────
+
+  app.get('/api/groups/teacher/:teacherId', async (req, res) => {
+    try {
+      const groups = await storage.getGroupsByTeacher(req.params.teacherId);
+      res.json(groups);
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  app.post('/api/groups', async (req, res) => {
+    try {
+      const { teacherId, name, description, color } = req.body;
+      if (!teacherId || !name) return res.status(400).json({ error: 'Champs obligatoires manquants' });
+      const group = await storage.createGroup({ teacherId, name, description: description || null, color: color || '#6366f1' });
+      res.json(group);
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  app.patch('/api/groups/:id', async (req, res) => {
+    try {
+      const { name, description, color } = req.body;
+      const group = await storage.updateGroup(req.params.id, name, description || '', color || '#6366f1');
+      if (!group) return res.status(404).json({ error: 'Groupe introuvable' });
+      res.json(group);
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  app.delete('/api/groups/:id', async (req, res) => {
+    try {
+      await storage.deleteGroup(req.params.id);
+      res.json({ success: true });
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  app.get('/api/groups/:groupId/members', async (req, res) => {
+    try {
+      const members = await storage.getGroupMembers(req.params.groupId);
+      res.json(members);
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  app.post('/api/groups/:groupId/members', async (req, res) => {
+    try {
+      const { studentId } = req.body;
+      if (!studentId) return res.status(400).json({ error: 'studentId requis' });
+      const member = await storage.addGroupMember(req.params.groupId, studentId);
+      res.json(member);
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  app.delete('/api/groups/:groupId/members/:studentId', async (req, res) => {
+    try {
+      await storage.removeGroupMember(req.params.groupId, req.params.studentId);
+      res.json({ success: true });
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  app.get('/api/groups/student/:studentId', async (req, res) => {
+    try {
+      const groups = await storage.getStudentGroups(req.params.studentId);
+      res.json(groups);
+    } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
   return server;
 }

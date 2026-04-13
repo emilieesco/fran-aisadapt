@@ -20,6 +20,9 @@ import type {
   InsertMessage,
   Notification,
   InsertNotification,
+  StudentGroup,
+  InsertStudentGroup,
+  GroupMember,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -107,6 +110,15 @@ export interface IStorage {
   markNotificationRead(id: string): Promise<void>;
   markAllNotificationsRead(userId: string): Promise<void>;
   getUnreadNotificationCount(userId: string): Promise<number>;
+  // Groupes d'élèves
+  getGroupsByTeacher(teacherId: string): Promise<StudentGroup[]>;
+  createGroup(group: InsertStudentGroup): Promise<StudentGroup>;
+  updateGroup(id: string, name: string, description: string, color: string): Promise<StudentGroup | undefined>;
+  deleteGroup(id: string): Promise<void>;
+  getGroupMembers(groupId: string): Promise<GroupMember[]>;
+  addGroupMember(groupId: string, studentId: string): Promise<GroupMember>;
+  removeGroupMember(groupId: string, studentId: string): Promise<void>;
+  getStudentGroups(studentId: string): Promise<StudentGroup[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -13891,6 +13903,46 @@ Sur de vieilles espérances.
 
   async getUnreadNotificationCount(userId: string): Promise<number> {
     return Array.from(this.notificationsMap.values()).filter(n => n.userId === userId && !n.isRead).length;
+  }
+
+  // ── Groupes (stubs MemStorage — DB seulement) ─────────────────────────────
+  private groups: Map<string, StudentGroup> = new Map();
+  private groupMembersMap: Map<string, GroupMember> = new Map();
+
+  async getGroupsByTeacher(teacherId: string): Promise<StudentGroup[]> {
+    return Array.from(this.groups.values()).filter(g => g.teacherId === teacherId);
+  }
+  async createGroup(group: InsertStudentGroup): Promise<StudentGroup> {
+    const g: StudentGroup = { id: randomUUID(), createdAt: new Date(), description: null, color: "#6366f1", ...group };
+    this.groups.set(g.id, g);
+    return g;
+  }
+  async updateGroup(id: string, name: string, description: string, color: string): Promise<StudentGroup | undefined> {
+    const g = this.groups.get(id);
+    if (!g) return undefined;
+    const updated = { ...g, name, description, color };
+    this.groups.set(id, updated);
+    return updated;
+  }
+  async deleteGroup(id: string): Promise<void> {
+    this.groups.delete(id);
+    Array.from(this.groupMembersMap.values()).filter(m => m.groupId === id).forEach(m => this.groupMembersMap.delete(m.id));
+  }
+  async getGroupMembers(groupId: string): Promise<GroupMember[]> {
+    return Array.from(this.groupMembersMap.values()).filter(m => m.groupId === groupId);
+  }
+  async addGroupMember(groupId: string, studentId: string): Promise<GroupMember> {
+    const m: GroupMember = { id: randomUUID(), groupId, studentId, addedAt: new Date() };
+    this.groupMembersMap.set(m.id, m);
+    return m;
+  }
+  async removeGroupMember(groupId: string, studentId: string): Promise<void> {
+    const entry = Array.from(this.groupMembersMap.values()).find(m => m.groupId === groupId && m.studentId === studentId);
+    if (entry) this.groupMembersMap.delete(entry.id);
+  }
+  async getStudentGroups(studentId: string): Promise<StudentGroup[]> {
+    const memberEntries = Array.from(this.groupMembersMap.values()).filter(m => m.studentId === studentId);
+    return memberEntries.map(m => this.groups.get(m.groupId)).filter(Boolean) as StudentGroup[];
   }
 }
 

@@ -156,6 +156,33 @@ export const insertNotificationSchema = createInsertSchema(notifications).pick({
 });
 export type InsertNotification = z.infer<typeof insertNotificationSchema>;
 
+// Groupes d'élèves
+export const studentGroups = pgTable("student_groups", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  teacherId: varchar("teacher_id").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  color: varchar("color", { length: 20 }).default("#6366f1"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+export type StudentGroup = typeof studentGroups.$inferSelect;
+export const insertStudentGroupSchema = createInsertSchema(studentGroups).pick({
+  teacherId: true, name: true, description: true, color: true,
+});
+export type InsertStudentGroup = z.infer<typeof insertStudentGroupSchema>;
+
+export const groupMembers = pgTable("group_members", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  groupId: varchar("group_id").notNull(),
+  studentId: varchar("student_id").notNull(),
+  addedAt: timestamp("added_at").defaultNow(),
+});
+export type GroupMember = typeof groupMembers.$inferSelect;
+export const insertGroupMemberSchema = createInsertSchema(groupMembers).pick({
+  groupId: true, studentId: true,
+});
+export type InsertGroupMember = z.infer<typeof insertGroupMemberSchema>;
+
 // Invite codes table (codes générés par l'admin pour les enseignants)
 export const inviteCodes = pgTable("invite_codes", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
