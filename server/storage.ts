@@ -137,6 +137,7 @@ export class MemStorage implements IStorage {
 
   constructor() {
     this.initializeSampleData();
+    this.seedFptCourses();
   }
 
   private initializeSampleData() {
@@ -13468,6 +13469,100 @@ Sur de vieilles espérances.
         });
       }
     }
+  }
+
+  // ── COURS FRANÇAIS FPT ─────────────────────────────────────────────────────
+
+  private seedFptCourses() {
+    // ── Cours 1 : Rédiger un CV ──────────────────────────────────────────────
+    const fpt1Id = randomUUID();
+    this.courses.set(fpt1Id, {
+      id: fpt1Id,
+      title: "Rédiger un CV",
+      description: "Apprends à créer un curriculum vitae clair et professionnel pour trouver un emploi",
+      category: "francais_fpt",
+      content: "<h2>Rédiger un CV (Curriculum Vitae)</h2><p>Le CV est un document qui présente qui tu es et ce que tu sais faire.</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Un bon CV doit répondre à 3 questions :</strong><br>1. Qui es-tu ? (coordonnées, nom)<br>2. Qu'as-tu fait ? (expériences, formation)<br>3. Qu'est-ce que tu sais faire ? (compétences)</div><h3>Les sections du CV</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>1. COORDONNÉES</strong><br>Ton prénom et nom<br>Ton numéro de téléphone<br>Ton adresse courriel<br>Ta ville</div><div style='background:#dcfce7;padding:10px;margin:10px 0;border-radius:4px'><strong>2. OBJECTIF (optionnel)</strong><br>Une phrase qui dit ce que tu cherches.<br>Exemple : Je cherche un emploi à temps partiel dans la restauration.</div><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px'><strong>3. EXPÉRIENCES DE TRAVAIL</strong><br>Indique tes emplois ou bénévolats passés.<br>Poste occupé — Nom de l'entreprise — Année</div><div style='background:#fee2e2;padding:10px;margin:10px 0;border-radius:4px'><strong>4. FORMATION</strong><br>L'école que tu fréquentes ou que tu as fréquentée.<br>Ex : École secondaire Montcalm, programme FPT, 2023-2025</div><div style='background:#ffedd5;padding:10px;margin:10px 0;border-radius:4px'><strong>5. COMPÉTENCES</strong><br>Ce que tu sais faire. Ex :<br>Ponctuel et fiable<br>Travail en équipe<br>Permis de conduire<br>Bilinguisme (français/anglais)</div><h3>Conseils importants</h3><p>Maximum 1 page pour un premier emploi. Pas de fautes d'orthographe. Police de caractères lisible (Arial, Calibri). Pas de photo sauf si demandée.</p>",
+      order: 200,
+    } as any);
+
+    const fpt1ex1Id = randomUUID();
+    this.exercises.set(fpt1ex1Id, { id: fpt1ex1Id, courseId: fpt1Id, title: "Les sections du CV", description: "Identifie les bonnes sections du curriculum vitae", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Rôle du CV", text:"Quel est le but principal du curriculum vitae ?", options:JSON.stringify(["Raconter ta vie en détail","Présenter qui tu es et ce que tu sais faire à un employeur","Expliquer pourquoi tu veux quitter ton emploi actuel","Décrire tes loisirs et hobbies"]), correctAnswer:"Présenter qui tu es et ce que tu sais faire à un employeur" },
+      { order:2, title:"Coordonnées du CV", text:"Parmi ces éléments, lequel NE doit PAS apparaître dans les coordonnées du CV ?", options:JSON.stringify(["Ton numéro de téléphone","Ton adresse courriel","Ton mot de passe courriel","Ton nom complet"]), correctAnswer:"Ton mot de passe courriel" },
+      { order:3, title:"Longueur du CV", text:"Pour un premier emploi, quelle est la longueur idéale du CV ?", options:JSON.stringify(["5 pages pour tout expliquer en détail","3 pages avec photos","Maximum 1 page, clair et concis","2 pages avec une photo"]), correctAnswer:"Maximum 1 page, clair et concis" },
+      { order:4, title:"Section expériences", text:"Dans la section Expériences, que doit-on indiquer ?", options:JSON.stringify(["Seulement les emplois payants","Les emplois ET les bénévolats (travail non payé)","Uniquement les expériences de plus de 6 mois","Seulement ce que l'employeur a demandé"]), correctAnswer:"Les emplois ET les bénévolats (travail non payé)" },
+      { order:5, title:"Les compétences", text:"Laquelle de ces compétences est appropriée à mettre dans un CV pour un premier emploi ?", options:JSON.stringify(["Savoir faire 100 recettes compliquées","Être ponctuel, fiable et capable de travailler en équipe","Avoir voyagé dans 10 pays","Connaître des célébrités"]), correctAnswer:"Être ponctuel, fiable et capable de travailler en équipe" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt1ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    const fpt1ex2Id = randomUUID();
+    this.exercises.set(fpt1ex2Id, { id: fpt1ex2Id, courseId: fpt1Id, title: "Compléter les informations du CV", description: "Complète les parties manquantes du CV", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Section coordonnées", text:"Dans un CV, la section ___ contient ton nom, ton numéro de téléphone et ton adresse courriel.", type:"fill_blank", options:null, correctAnswer:"coordonnées" },
+      { order:2, title:"Objectif professionnel", text:"L'objectif professionnel est une courte ___ qui explique ce que tu cherches comme emploi.", type:"fill_blank", options:null, correctAnswer:"phrase" },
+      { order:3, title:"Formation scolaire", text:"Dans la section ___, tu inscris le nom de ton école et ton programme d'études.", type:"fill_blank", options:null, correctAnswer:"formation" },
+      { order:4, title:"Police de caractères", text:"Pour qu'un CV soit facile à lire, il faut choisir une police de caractères ___ comme Arial ou Calibri.", type:"fill_blank", options:null, correctAnswer:"lisible" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt1ex2Id, ...q } as any); });
+
+    // ── Cours 2 : Comprendre une offre d'emploi ──────────────────────────────
+    const fpt2Id = randomUUID();
+    this.courses.set(fpt2Id, {
+      id: fpt2Id,
+      title: "Comprendre une offre d'emploi",
+      description: "Apprends à lire et analyser une offre d'emploi pour mieux cibler tes candidatures",
+      category: "francais_fpt",
+      content: "<h2>Comprendre une offre d'emploi</h2><p>Une offre d'emploi est une annonce publiée par une entreprise qui cherche un nouvel employé. Savoir la lire correctement t'aide à décider si tu es qualifié(e) et quoi mettre dans ton CV.</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Les mots importants à connaître :</strong><br><strong>Poste :</strong> le titre du travail offert<br><strong>Tâches / responsabilités :</strong> ce que tu devras faire<br><strong>Qualifications requises :</strong> ce que tu DOIS avoir<br><strong>Qualifications souhaitées :</strong> ce qui serait un avantage<br><strong>Horaire :</strong> quand tu travaillerais (temps plein, partiel, soir, fin de semaine)<br><strong>Salaire :</strong> combien tu seras payé(e)<br><strong>Postuler :</strong> comment envoyer ta candidature</div><h3>Exemple d'offre d'emploi</h3><div style='background:#f0fdf4;padding:12px;margin:10px 0;border-radius:4px'><strong>CAISSIER / CAISSIÈRE — Épicerie Montcalm</strong><br><br><strong>Tâches :</strong><br>Accueillir les clients avec le sourire<br>Scanner les articles et encaisser les paiements<br>Garder sa caisse propre et ordonnée<br><br><strong>Qualifications requises :</strong><br>Avoir 16 ans ou plus<br>Être disponible les fins de semaine<br>Être fiable et ponctuel(le)<br><br><strong>Atout :</strong> expérience en service à la clientèle<br><br><strong>Horaire :</strong> temps partiel, 15-20 heures/semaine<br><strong>Salaire :</strong> 15,25 $/heure<br><br>Envoyer votre CV à : emploi@epiceriemontcalm.ca</div><h3>Comment analyser une offre</h3><p>Avant de postuler, pose-toi ces questions :<br>1. Est-ce que je réponds aux qualifications requises ?<br>2. L'horaire me convient-il ?<br>3. Les tâches m'intéressent-elles ?<br>4. Comment dois-je postuler (courriel, en personne, en ligne) ?</p>",
+      order: 201,
+    } as any);
+
+    const fpt2ex1Id = randomUUID();
+    this.exercises.set(fpt2ex1Id, { id: fpt2ex1Id, courseId: fpt2Id, title: "Vocabulaire des offres d'emploi", description: "Comprends le vocabulaire utilisé dans les offres d'emploi", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Qualifications requises", text:"Dans une offre d'emploi, les qualifications requises désignent :", options:JSON.stringify(["Ce qui serait un avantage mais pas obligatoire","Ce que tu DOIS absolument avoir pour postuler","Les tâches que tu devras effectuer","L'horaire de travail proposé"]), correctAnswer:"Ce que tu DOIS absolument avoir pour postuler" },
+      { order:2, title:"Postuler", text:"Que signifie postuler pour un emploi ?", options:JSON.stringify(["Commencer à travailler immédiatement","Envoyer sa candidature (CV et lettre) pour un poste","Refuser une offre d'emploi","Négocier son salaire"]), correctAnswer:"Envoyer sa candidature (CV et lettre) pour un poste" },
+      { order:3, title:"Temps partiel", text:"Un emploi à temps partiel signifie généralement :", options:JSON.stringify(["Travailler 40 heures par semaine","Travailler moins de 30 heures par semaine","Travailler seulement les nuits","Travailler seulement l'été"]), correctAnswer:"Travailler moins de 30 heures par semaine" },
+      { order:4, title:"Atout", text:"Dans une offre d'emploi, une expérience souhaitée (atout) signifie :", options:JSON.stringify(["Tu dois absolument avoir cette expérience","C'est une qualité avantageuse mais pas obligatoire","Tu seras refusé(e) si tu n'as pas cette expérience","C'est une erreur dans l'offre d'emploi"]), correctAnswer:"C'est une qualité avantageuse mais pas obligatoire" },
+      { order:5, title:"Lecture d'offre", text:"Dans l'offre d'emploi de caissier/caissière de l'exemple, quel est le salaire offert ?", options:JSON.stringify(["12,50 $/heure","15,25 $/heure","18,00 $/heure","20,00 $/heure"]), correctAnswer:"15,25 $/heure" },
+      { order:6, title:"Candidature", text:"Selon l'offre d'exemple, comment doit-on postuler pour le poste de caissier/caissière ?", options:JSON.stringify(["En se présentant en personne","Par téléphone seulement","En envoyant son CV par courriel à emploi@epiceriemontcalm.ca","En remplissant un formulaire en ligne"]), correctAnswer:"En envoyant son CV par courriel à emploi@epiceriemontcalm.ca" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt2ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    const fpt2ex2Id = randomUUID();
+    this.exercises.set(fpt2ex2Id, { id: fpt2ex2Id, courseId: fpt2Id, title: "Analyser une offre d'emploi", description: "Identifie les informations clés dans une offre d'emploi", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Le poste offert", text:"Dans une offre d'emploi, le ___ indique le titre du travail que l'on cherche à combler.", type:"fill_blank", options:null, correctAnswer:"poste" },
+      { order:2, title:"Les responsabilités", text:"La section ___ décrit ce que tu devras faire chaque jour au travail.", type:"fill_blank", options:null, correctAnswer:"tâches" },
+      { order:3, title:"Disponibilité", text:"Si une offre dit être disponible les fins de semaine, cela fait partie des qualifications ___.", type:"fill_blank", options:null, correctAnswer:"requises" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt2ex2Id, ...q } as any); });
+
+    // ── Cours 3 : La lettre de présentation ─────────────────────────────────
+    const fpt3Id = randomUUID();
+    this.courses.set(fpt3Id, {
+      id: fpt3Id,
+      title: "La lettre de présentation",
+      description: "Rédige une lettre de présentation convaincante pour accompagner ton CV",
+      category: "francais_fpt",
+      content: "<h2>La lettre de présentation</h2><p>La lettre de présentation accompagne ton CV. Elle explique POURQUOI tu veux ce travail et POURQUOI tu es la bonne personne pour ce poste.</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>La lettre de présentation doit :</strong><br>Faire maximum 1 page<br>Être adressée à la bonne personne si possible<br>Mentionner le poste que tu vises<br>Expliquer pourquoi TU es le bon choix<br>Terminer par une formule de politesse</div><h3>La structure en 4 parties</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>1. L'EN-TÊTE</strong><br>Tes coordonnées (nom, tél., courriel) + date + coordonnées de l'entreprise</div><div style='background:#dcfce7;padding:10px;margin:10px 0;border-radius:4px'><strong>2. L'INTRODUCTION</strong><br>Indique le poste visé et où tu as vu l'offre.<br>Exemple : Je vous écris afin de postuler au poste de caissier annoncé sur Indeed.</div><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px'><strong>3. LE DÉVELOPPEMENT</strong><br>Parle de tes forces, expériences et qualités en lien avec le poste.<br>Exemple : Je suis ponctuel, fiable et j'ai de l'expérience en service à la clientèle lors de mon bénévolat à la bibliothèque.</div><div style='background:#ffedd5;padding:10px;margin:10px 0;border-radius:4px'><strong>4. LA CONCLUSION et FORMULE DE POLITESSE</strong><br>Exemple : Je serais disponible pour une entrevue à votre convenance.<br>Formule de politesse : Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.<br>Signature : ton nom</div><h3>Formules utiles</h3><p>Pour l'introduction : Je vous soumets ma candidature pour le poste de ___<br>Pour la conclusion : Dans l'attente de votre réponse, je reste disponible pour un entretien.<br>Je vous remercie de l'attention portée à ma candidature.</p>",
+      order: 202,
+    } as any);
+
+    const fpt3ex1Id = randomUUID();
+    this.exercises.set(fpt3ex1Id, { id: fpt3ex1Id, courseId: fpt3Id, title: "Structure de la lettre de présentation", description: "Identifie les parties de la lettre de présentation", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"But de la lettre", text:"Quel est le but principal de la lettre de présentation ?", options:JSON.stringify(["Remplacer le CV","Expliquer pourquoi tu veux le poste et pourquoi tu es le bon candidat","Lister toutes tes expériences de travail","Donner des références"]), correctAnswer:"Expliquer pourquoi tu veux le poste et pourquoi tu es le bon candidat" },
+      { order:2, title:"L'introduction", text:"Que doit contenir l'introduction de la lettre de présentation ?", options:JSON.stringify(["Tes qualifications détaillées","Le poste visé et où tu as vu l'offre","Une liste de tes anciens emplois","Tes trois plus grandes forces"]), correctAnswer:"Le poste visé et où tu as vu l'offre" },
+      { order:3, title:"La formule de politesse", text:"Où place-t-on la formule de politesse dans la lettre de présentation ?", options:JSON.stringify(["Au début, avant le nom de l'entreprise","À la fin, avant ta signature","Dans le milieu du développement","Dans l'en-tête"]), correctAnswer:"À la fin, avant ta signature" },
+      { order:4, title:"Longueur de la lettre", text:"Quelle est la longueur recommandée pour une lettre de présentation ?", options:JSON.stringify(["5 pages détaillées","Maximum 1 page","2 à 3 pages","Aussi longue que nécessaire"]), correctAnswer:"Maximum 1 page" },
+      { order:5, title:"Le développement", text:"Dans la section développement de la lettre, on parle surtout de :", options:JSON.stringify(["L'histoire de l'entreprise","Tes forces, expériences et qualités en lien avec le poste","Tes conditions de travail souhaitées","Tes loisirs et passe-temps"]), correctAnswer:"Tes forces, expériences et qualités en lien avec le poste" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt3ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    const fpt3ex2Id = randomUUID();
+    this.exercises.set(fpt3ex2Id, { id: fpt3ex2Id, courseId: fpt3Id, title: "Formules de la lettre", description: "Complète les formules utilisées dans une lettre de présentation", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Introduction", text:"Pour commencer une lettre de présentation, on peut écrire : Je vous soumets ma ___ pour le poste de caissier.", type:"fill_blank", options:null, correctAnswer:"candidature" },
+      { order:2, title:"Formule de politesse", text:"La lettre se termine par une formule de ___, par exemple : Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.", type:"fill_blank", options:null, correctAnswer:"politesse" },
+      { order:3, title:"Disponibilité entrevue", text:"Pour proposer une entrevue, on peut écrire : Je serais disponible pour une ___ à votre convenance.", type:"fill_blank", options:null, correctAnswer:"entrevue" },
+      { order:4, title:"L'en-tête", text:"L'en-tête de la lettre contient tes ___, comme ton nom, ton téléphone et ton courriel.", type:"fill_blank", options:null, correctAnswer:"coordonnées" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt3ex2Id, ...q } as any); });
   }
 
   // Users
