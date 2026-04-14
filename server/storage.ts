@@ -13630,6 +13630,40 @@ Sur de vieilles espérances.
       { order:4, title:"Dorée", text:"Les muffins sont prêts quand leur surface est ___ et qu'un cure-dent ressort propre.", type:"fill_blank", options:null, correctAnswer:"dorée" },
       { order:5, title:"Poudre à pâte", text:"La ___ à pâte est un ingrédient qui fait lever les muffins pendant la cuisson.", type:"fill_blank", options:null, correctAnswer:"poudre" },
     ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt5ex2Id, ...q } as any); });
+
+    // ── Cours 6 : Lire un horaire de travail ─────────────────────────────────
+    const fpt6Id = randomUUID();
+    this.courses.set(fpt6Id, {
+      id: fpt6Id,
+      title: "Lire un horaire de travail",
+      description: "Apprends à lire et comprendre un horaire de travail : quarts, abréviations, heures et jours",
+      category: "francais_fpt",
+      content: "<h2>Lire un horaire de travail</h2><p>Dans beaucoup d'emplois, ton employeur t'affiche un horaire chaque semaine. Savoir le lire correctement t'évite d'arriver en retard ou de manquer ton quart !</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Mots importants :</strong><br><strong>Quart de travail :</strong> la période pendant laquelle tu travailles (ex : quart du matin, quart du soir)<br><strong>Congé / Jour off :</strong> une journée où tu ne travailles pas<br><strong>Disponibilité :</strong> les jours et heures où tu peux travailler<br><strong>Temps et demi :</strong> salaire majoré de 50 % pour les heures supplémentaires<br><strong>Roulement :</strong> les quarts qui changent d'une semaine à l'autre</div><h3>Les abréviations courantes</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'>Lun. = Lundi | Mar. = Mardi | Mer. = Mercredi<br>Jeu. = Jeudi | Ven. = Vendredi | Sam. = Samedi | Dim. = Dimanche<br>AM = avant-midi (matin) | PM = après-midi ou soir<br>Congé / OFF = journée de repos<br>TP = temps partiel | TF = temps plein<br>Ferm. = fermeture (dernier quart de la journée)</div><h3>Exemple d'horaire — Semaine du 14 au 20 avril</h3><div style='background:#f0fdf4;padding:12px;margin:10px 0;border-radius:4px;font-family:monospace;font-size:0.9em'><strong>Employé(e) : Léa Tremblay</strong><br><br>Lun. 14 : 8 h 00 – 14 h 00 (quart du matin)<br>Mar. 15 : CONGÉ<br>Mer. 16 : 14 h 00 – 22 h 00 (quart du soir)<br>Jeu. 17 : 14 h 00 – 22 h 00 (quart du soir)<br>Ven. 18 : CONGÉ<br>Sam. 19 : 9 h 00 – 17 h 00 (quart de jour)<br>Dim. 20 : 9 h 00 – 17 h 00 (quart de jour)<br><br><strong>Total :</strong> 38 heures</div><h3>Comment calculer ses heures</h3><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px'><strong>Exemple :</strong> Quart de 8 h 00 à 14 h 00<br>14 h – 8 h = <strong>6 heures</strong> de travail<br><br><strong>Exemple 2 :</strong> Quart de 14 h 00 à 22 h 00<br>22 h – 14 h = <strong>8 heures</strong> de travail<br><br><strong>Astuce :</strong> Si l'heure de fin est en PM (ex : 6 h PM = 18 h), convertis en format 24 heures pour calculer facilement.<br>6 h PM = 18 h 00 | 10 h PM = 22 h 00 | 11 h 30 PM = 23 h 30</div><h3>Tes responsabilités</h3><p>Consulter ton horaire chaque semaine.<br>Aviser ton employeur à l'avance si tu ne peux pas venir (appel ou message).<br>Chercher un remplaçant si nécessaire.<br>Respecter l'heure d'arrivée — être là 5 minutes avant ton quart.</p>",
+      order: 205,
+    } as any);
+
+    const fpt6ex1Id = randomUUID();
+    this.exercises.set(fpt6ex1Id, { id: fpt6ex1Id, courseId: fpt6Id, title: "Comprendre l'horaire de Léa", description: "Réponds aux questions de compréhension sur l'horaire de travail de Léa Tremblay", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Jour de congé", text:"Selon l'horaire, quels jours Léa Tremblay ne travaille-t-elle pas ?", options:JSON.stringify(["Lundi et mercredi","Mardi et vendredi","Samedi et dimanche","Jeudi et vendredi"]), correctAnswer:"Mardi et vendredi" },
+      { order:2, title:"Quart du lundi", text:"À quelle heure Léa commence-t-elle son quart le lundi 14 avril ?", options:JSON.stringify(["6 h 00","8 h 00","9 h 00","14 h 00"]), correctAnswer:"8 h 00" },
+      { order:3, title:"Heures lundi", text:"Combien d'heures Léa travaille-t-elle le lundi 14 avril (quart de 8 h 00 à 14 h 00) ?", options:JSON.stringify(["4 heures","5 heures","6 heures","8 heures"]), correctAnswer:"6 heures" },
+      { order:4, title:"Quart du soir", text:"À quelle heure se termine le quart du soir (14 h 00 – 22 h 00) ?", options:JSON.stringify(["20 h 00","21 h 00","22 h 00","23 h 00"]), correctAnswer:"22 h 00" },
+      { order:5, title:"Nombre de jours travaillés", text:"Combien de jours Léa travaille-t-elle durant la semaine du 14 au 20 avril ?", options:JSON.stringify(["3 jours","4 jours","5 jours","6 jours"]), correctAnswer:"5 jours" },
+      { order:6, title:"Total d'heures", text:"Quel est le total d'heures de travail de Léa pour la semaine ?", options:JSON.stringify(["30 heures","34 heures","38 heures","40 heures"]), correctAnswer:"38 heures" },
+      { order:7, title:"Abréviation CONGÉ", text:"Sur un horaire de travail, que signifie le mot CONGÉ à côté d'une journée ?", options:JSON.stringify(["Tu travailles ce jour-là","Tu es en retard","Tu ne travailles pas ce jour-là","Tu travailles la moitié de la journée"]), correctAnswer:"Tu ne travailles pas ce jour-là" },
+      { order:8, title:"Responsabilité de l'employé", text:"Que doit faire un(e) employé(e) s'il/elle ne peut pas venir travailler ?", options:JSON.stringify(["Ne rien faire et ne pas se présenter","Aviser l'employeur à l'avance par appel ou message","Attendre que l'employeur le remarque","Envoyer un courriel après le quart manqué"]), correctAnswer:"Aviser l'employeur à l'avance par appel ou message" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt6ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    const fpt6ex2Id = randomUUID();
+    this.exercises.set(fpt6ex2Id, { id: fpt6ex2Id, courseId: fpt6Id, title: "Vocabulaire des horaires", description: "Complète les phrases avec les bons termes liés aux horaires de travail", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Quart de travail", text:"La période pendant laquelle tu travailles s'appelle un ___ de travail.", type:"fill_blank", options:null, correctAnswer:"quart" },
+      { order:2, title:"Abréviation jours", text:"Sur un horaire, Sam. est l'abréviation de ___.", type:"fill_blank", options:null, correctAnswer:"samedi" },
+      { order:3, title:"Convertir l'heure", text:"Sur un horaire, 10 h PM correspond à ___ h 00 en format 24 heures.", type:"fill_blank", options:null, correctAnswer:"22" },
+      { order:4, title:"Calcul d'heures", text:"Un quart de travail qui commence à 9 h 00 et se termine à 17 h 00 représente ___ heures de travail.", type:"fill_blank", options:null, correctAnswer:"8" },
+      { order:5, title:"Avant le quart", text:"Il est recommandé d'arriver ___ minutes avant le début de son quart de travail.", type:"fill_blank", options:null, correctAnswer:"5" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt6ex2Id, ...q } as any); });
   }
 
   // Users
