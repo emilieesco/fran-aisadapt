@@ -13563,6 +13563,73 @@ Sur de vieilles espérances.
       { order:3, title:"Disponibilité entrevue", text:"Pour proposer une entrevue, on peut écrire : Je serais disponible pour une ___ à votre convenance.", type:"fill_blank", options:null, correctAnswer:"entrevue" },
       { order:4, title:"L'en-tête", text:"L'en-tête de la lettre contient tes ___, comme ton nom, ton téléphone et ton courriel.", type:"fill_blank", options:null, correctAnswer:"coordonnées" },
     ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt3ex2Id, ...q } as any); });
+
+    // ── Cours 4 : Lire et comprendre une recette ─────────────────────────────
+    const fpt4Id = randomUUID();
+    this.courses.set(fpt4Id, {
+      id: fpt4Id,
+      title: "Lire et comprendre une recette",
+      description: "Apprends à lire une recette, comprendre ses sections et suivre des instructions de cuisine",
+      category: "francais_fpt",
+      content: "<h2>Lire et comprendre une recette</h2><p>Une recette est un texte qui explique comment préparer un plat. C'est un texte qu'on lit dans la vraie vie, que ce soit au travail en cuisine ou à la maison.</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Les 5 parties d'une recette :</strong><br>1. Le TITRE — le nom du plat<br>2. Le NOMBRE DE PORTIONS — pour combien de personnes<br>3. Le TEMPS DE PRÉPARATION et de CUISSON<br>4. Les INGRÉDIENTS — ce dont tu as besoin (quantités incluses)<br>5. Les ÉTAPES DE PRÉPARATION — les instructions à suivre dans l'ordre</div><h3>Exemple de recette : Macaroni au fromage maison</h3><div style='background:#f0fdf4;padding:12px;margin:10px 0;border-radius:4px'><strong>Portions :</strong> 4 personnes<br><strong>Temps de préparation :</strong> 10 minutes<br><strong>Temps de cuisson :</strong> 20 minutes<br><br><strong>Ingrédients :</strong><br>- 350 g de macaroni<br>- 2 tasses de lait<br>- 2 tasses de fromage cheddar râpé<br>- 2 c. à soupe de beurre<br>- 2 c. à soupe de farine<br>- Sel et poivre au goût<br><br><strong>Préparation :</strong><br>1. Faire bouillir de l'eau salée dans une grande casserole.<br>2. Cuire les macaronis selon les instructions de l'emballage. Égoutter.<br>3. Dans une autre casserole, faire fondre le beurre à feu moyen.<br>4. Ajouter la farine et mélanger pendant 1 minute.<br>5. Verser le lait graduellement en remuant constamment jusqu'à épaississement.<br>6. Retirer du feu. Incorporer le fromage jusqu'à ce qu'il soit fondu.<br>7. Mélanger la sauce avec les macaronis. Saler et poivrer. Servir chaud.</div><h3>Vocabulaire de cuisine</h3><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>Verbes courants dans les recettes :</strong><br>Égoutter : enlever le liquide (ex : les pâtes cuites)<br>Incorporer : mélanger doucement un ingrédient<br>Remuer : mélanger avec une cuillère<br>Faire bouillir : chauffer jusqu'à ce que l'eau fasse des bulles<br>Faire fondre : chauffer jusqu'à ce qu'un solide devienne liquide<br>Râper : réduire en petits morceaux (ex : fromage)<br>Graduellement : peu à peu, petit à petit</div><h3>Les mesures</h3><div style='background:#f3e8ff;padding:10px;margin:10px 0;border-radius:4px'>c. à soupe = cuillère à soupe (15 ml)<br>c. à thé = cuillère à thé (5 ml)<br>tasse = 250 ml<br>g = grammes<br>kg = kilogrammes</div>",
+      order: 203,
+    } as any);
+
+    const fpt4ex1Id = randomUUID();
+    this.exercises.set(fpt4ex1Id, { id: fpt4ex1Id, courseId: fpt4Id, title: "Comprendre la recette de macaroni", description: "Réponds aux questions de compréhension sur la recette de macaroni au fromage", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Les parties d'une recette", text:"Combien y a-t-il de parties principales dans une recette ?", options:JSON.stringify(["3 parties (titre, ingrédients, préparation)","4 parties (titre, portions, ingrédients, préparation)","5 parties (titre, portions, temps, ingrédients, étapes de préparation)","6 parties"]), correctAnswer:"5 parties (titre, portions, temps, ingrédients, étapes de préparation)" },
+      { order:2, title:"Nombre de portions", text:"Pour combien de personnes est prévue la recette de macaroni au fromage maison ?", options:JSON.stringify(["2 personnes","4 personnes","6 personnes","8 personnes"]), correctAnswer:"4 personnes" },
+      { order:3, title:"Temps total", text:"Quel est le temps TOTAL (préparation + cuisson) pour faire le macaroni au fromage maison ?", options:JSON.stringify(["10 minutes","20 minutes","30 minutes","45 minutes"]), correctAnswer:"30 minutes" },
+      { order:4, title:"Premier ingrédient", text:"Quelle quantité de macaroni faut-il pour cette recette ?", options:JSON.stringify(["250 g","350 g","500 g","1 kg"]), correctAnswer:"350 g" },
+      { order:5, title:"Ordre des étapes", text:"Quelle est la PREMIÈRE étape de la préparation du macaroni au fromage ?", options:JSON.stringify(["Râper le fromage","Faire fondre le beurre","Faire bouillir de l'eau salée dans une grande casserole","Verser le lait graduellement"]), correctAnswer:"Faire bouillir de l'eau salée dans une grande casserole" },
+      { order:6, title:"Vocabulaire - égoutter", text:"Dans la recette, on dit d'égoutter les macaronis. Que signifie égoutter ?", options:JSON.stringify(["Ajouter plus d'eau","Enlever le liquide des pâtes cuites","Mélanger avec une cuillère","Faire chauffer à nouveau"]), correctAnswer:"Enlever le liquide des pâtes cuites" },
+      { order:7, title:"Vocabulaire - graduellement", text:"Dans la recette, on dit de verser le lait graduellement. Que signifie graduellement ?", options:JSON.stringify(["Très rapidement, d'un coup","Peu à peu, petit à petit","En remuant fort","En chauffant d'abord le lait"]), correctAnswer:"Peu à peu, petit à petit" },
+      { order:8, title:"Mesures", text:"Dans une recette québécoise, que représente c. à soupe ?", options:JSON.stringify(["Cuillère à soupe (15 ml)","Cuillère à thé (5 ml)","Tasse (250 ml)","Gramme"]), correctAnswer:"Cuillère à soupe (15 ml)" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt4ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    const fpt4ex2Id = randomUUID();
+    this.exercises.set(fpt4ex2Id, { id: fpt4ex2Id, courseId: fpt4Id, title: "Vocabulaire de la cuisine", description: "Complète les phrases avec le bon terme culinaire", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Égoutter", text:"Après la cuisson des pâtes, on doit les ___ pour enlever l'eau.", type:"fill_blank", options:null, correctAnswer:"égoutter" },
+      { order:2, title:"Remuer", text:"Pour éviter que la sauce colle au fond, on doit ___ constamment avec une cuillère.", type:"fill_blank", options:null, correctAnswer:"remuer" },
+      { order:3, title:"Incorporer", text:"Pour mélanger doucement le fromage dans la sauce, on doit l'___.", type:"fill_blank", options:null, correctAnswer:"incorporer" },
+      { order:4, title:"Portions", text:"La section ___ d'une recette indique pour combien de personnes le plat est prévu.", type:"fill_blank", options:null, correctAnswer:"portions" },
+      { order:5, title:"Ingrédients", text:"Avant de commencer à cuisiner, on lit d'abord la liste des ___ pour savoir ce qu'il faut acheter.", type:"fill_blank", options:null, correctAnswer:"ingrédients" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt4ex2Id, ...q } as any); });
+
+    // ── Cours 5 : Lire une recette de boulangerie ─────────────────────────────
+    const fpt5Id = randomUUID();
+    this.courses.set(fpt5Id, {
+      id: fpt5Id,
+      title: "Lire une recette de boulangerie",
+      description: "Lis et comprends une recette de muffins aux bleuets — vocabulaire et compréhension de texte",
+      category: "francais_fpt",
+      content: "<h2>Lire une recette de boulangerie</h2><p>En boulangerie, les recettes sont très précises. Chaque quantité et chaque étape sont importantes. Une erreur peut changer complètement le résultat !</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Mots importants en boulangerie :</strong><br>Préchauffer : chauffer le four AVANT d'y mettre la préparation<br>Tamiser : passer la farine dans un tamis pour enlever les grumeaux<br>Plier : mélanger délicatement sans trop travailler la pâte<br>Graisser : mettre du beurre ou de l'huile dans un moule pour que ça ne colle pas<br>Grumeaux : petits morceaux de farine non mélangés<br>Dorée : quand la pâte est cuite et a pris une couleur brun doré</div><h3>Recette : Muffins aux bleuets</h3><div style='background:#f0fdf4;padding:12px;margin:10px 0;border-radius:4px'><strong>Donne :</strong> 12 muffins<br><strong>Temps de préparation :</strong> 15 minutes<br><strong>Temps de cuisson :</strong> 22 à 25 minutes<br><strong>Température du four :</strong> 190 °C (375 °F)<br><br><strong>Ingrédients secs :</strong><br>- 2 tasses de farine<br>- 3/4 tasse de sucre<br>- 2 c. à thé de poudre à pâte<br>- 1/4 c. à thé de sel<br><br><strong>Ingrédients humides :</strong><br>- 2 oeufs<br>- 3/4 tasse de lait<br>- 1/3 tasse d'huile végétale<br>- 1 c. à thé de vanille<br><br><strong>Garniture :</strong><br>- 1 tasse de bleuets frais ou congelés<br><br><strong>Préparation :</strong><br>1. Préchauffer le four à 190 °C. Graisser un moule à 12 muffins.<br>2. Dans un grand bol, mélanger la farine, le sucre, la poudre à pâte et le sel.<br>3. Dans un autre bol, battre les oeufs. Ajouter le lait, l'huile et la vanille.<br>4. Verser les ingrédients humides dans les ingrédients secs. Plier délicatement jusqu'à ce que ce soit à peine mélangé. Ne pas trop mélanger !<br>5. Incorporer les bleuets doucement.<br>6. Remplir chaque cavité du moule aux 3/4.<br>7. Cuire 22 à 25 minutes, jusqu'à ce que les muffins soient dorés et qu'un cure-dent inséré au centre en ressorte propre.<br>8. Laisser refroidir 5 minutes avant de démouler.</div>",
+      order: 204,
+    } as any);
+
+    const fpt5ex1Id = randomUUID();
+    this.exercises.set(fpt5ex1Id, { id: fpt5ex1Id, courseId: fpt5Id, title: "Compréhension — Muffins aux bleuets", description: "Réponds aux questions sur la recette de muffins aux bleuets", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Quantité produite", text:"Combien de muffins donne cette recette ?", options:JSON.stringify(["6 muffins","9 muffins","12 muffins","18 muffins"]), correctAnswer:"12 muffins" },
+      { order:2, title:"Température du four", text:"À quelle température doit-on préchauffer le four pour cette recette ?", options:JSON.stringify(["160 °C (325 °F)","175 °C (350 °F)","190 °C (375 °F)","220 °C (425 °F)"]), correctAnswer:"190 °C (375 °F)" },
+      { order:3, title:"Préchauffer", text:"Pourquoi préchauffer le four AVANT d'y mettre les muffins ?", options:JSON.stringify(["Pour que les muffins cuisent de façon uniforme dès le début","Pour économiser l'électricité","Pour que la cuisine soit plus chaude","Ce n'est pas nécessaire, c'est optionnel"]), correctAnswer:"Pour que les muffins cuisent de façon uniforme dès le début" },
+      { order:4, title:"Plier la pâte", text:"Pourquoi dit-on de plier délicatement la pâte et de ne pas trop mélanger ?", options:JSON.stringify(["Pour que les muffins soient plus sucrés","Pour éviter que les muffins soient trop denses et durs","Pour que la pâte soit plus liquide","Pour que les bleuets ne colorent pas la pâte"]), correctAnswer:"Pour éviter que les muffins soient trop denses et durs" },
+      { order:5, title:"Vérifier la cuisson", text:"Comment sait-on que les muffins sont cuits selon la recette ?", options:JSON.stringify(["Quand la cuisine sent bon","Quand le minuteur sonne après exactement 22 minutes","Quand un cure-dent inséré au centre en ressort propre","Quand les muffins ont doublé de taille"]), correctAnswer:"Quand un cure-dent inséré au centre en ressort propre" },
+      { order:6, title:"Remplir le moule", text:"Jusqu'à quel niveau doit-on remplir chaque cavité du moule à muffins ?", options:JSON.stringify(["À moitié (1/2)","Au tiers (1/3)","Aux trois quarts (3/4)","Complètement plein"]), correctAnswer:"Aux trois quarts (3/4)" },
+      { order:7, title:"Ordre des étapes", text:"Quelle est la DERNIÈRE étape de la recette de muffins ?", options:JSON.stringify(["Préchauffer le four","Incorporer les bleuets","Cuire 22 à 25 minutes","Laisser refroidir 5 minutes avant de démouler"]), correctAnswer:"Laisser refroidir 5 minutes avant de démouler" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt5ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    const fpt5ex2Id = randomUUID();
+    this.exercises.set(fpt5ex2Id, { id: fpt5ex2Id, courseId: fpt5Id, title: "Vocabulaire de boulangerie", description: "Complète les définitions des termes de boulangerie", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Préchauffer", text:"On doit ___ le four avant d'y mettre la pâte pour que la cuisson soit uniforme dès le départ.", type:"fill_blank", options:null, correctAnswer:"préchauffer" },
+      { order:2, title:"Graisser", text:"On ___ le moule avec du beurre pour que les muffins n'y collent pas.", type:"fill_blank", options:null, correctAnswer:"graisse|graissait" },
+      { order:3, title:"Grumeaux", text:"On tamise la farine pour éviter les ___, des petits morceaux de farine non dissous.", type:"fill_blank", options:null, correctAnswer:"grumeaux" },
+      { order:4, title:"Dorée", text:"Les muffins sont prêts quand leur surface est ___ et qu'un cure-dent ressort propre.", type:"fill_blank", options:null, correctAnswer:"dorée" },
+      { order:5, title:"Poudre à pâte", text:"La ___ à pâte est un ingrédient qui fait lever les muffins pendant la cuisson.", type:"fill_blank", options:null, correctAnswer:"poudre" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fpt5ex2Id, ...q } as any); });
   }
 
   // Users
