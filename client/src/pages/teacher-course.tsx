@@ -40,6 +40,7 @@ const categoryLabels: Record<string, string> = {
   classes_de_mots: "Classes de mots", textes_narratifs: "Textes narratifs",
   textes_descriptifs: "Textes descriptifs", vocabulaire: "Vocabulaire",
   lecture_reading: "Lecture — cours",
+  francais_fpt: "Français FPT",
 };
 
 const categoryColors: Record<string, string> = {
@@ -52,6 +53,7 @@ const categoryColors: Record<string, string> = {
   classes_de_mots: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200",
   textes_narratifs: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-200",
   textes_descriptifs: "bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-200",
+  francais_fpt: "bg-fuchsia-100 dark:bg-fuchsia-900 text-fuchsia-700 dark:text-fuchsia-200",
 };
 
 // Accuracy bar color

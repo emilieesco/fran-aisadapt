@@ -509,6 +509,9 @@ export default function TeacherDashboard() {
                       <optgroup label="Écriture">
                         <option value="ecriture">Écriture</option>
                       </optgroup>
+                      <optgroup label="Programme FPT">
+                        <option value="francais_fpt">Français FPT</option>
+                      </optgroup>
                     </select>
                   </div>
 

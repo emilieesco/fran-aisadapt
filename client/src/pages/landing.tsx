@@ -40,6 +40,7 @@ const SUBJECTS = [
   { icon: FileText, label: "Textes narratifs", desc: "Compréhension et production selon le schéma narratif en 5 étapes", color: "amber" },
   { icon: Layers, label: "Textes descriptifs", desc: "Structure, organisation et cohérence du texte descriptif", color: "orange" },
   { icon: Mic, label: "Dictée", desc: "Pratique de l'écriture spontanée avec écoute et correction guidée", color: "yellow" },
+  { icon: Award, label: "Français FPT", desc: "Contenus adaptés au programme de Formation Préparatoire au Travail (FPT)", color: "orange" },
 ];
 
 function ColorDot({ color }: { color: string }) {

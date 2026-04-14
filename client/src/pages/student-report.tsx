@@ -43,6 +43,7 @@ const CATEGORY_LABEL: Record<string, string> = {
   textes_descriptifs: "Textes descriptifs",
   dictee: "Dictée",
   ecriture: "Écriture",
+  francais_fpt: "Français FPT",
 };
 
 function groupByCourse(responses: ResponseEntry[]) {

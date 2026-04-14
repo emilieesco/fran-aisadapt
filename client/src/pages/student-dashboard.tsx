@@ -338,6 +338,7 @@ export default function StudentDashboard() {
     textes_narratifs:  { label: "Textes narratifs",  color: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300" },
     textes_descriptifs:{ label: "Textes descriptifs",color: "bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300" },
     dictee:            { label: "Dictée",            color: "bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300" },
+    francais_fpt:      { label: "Français FPT",      color: "bg-fuchsia-100 dark:bg-fuchsia-900 text-fuchsia-700 dark:text-fuchsia-300" },
   };
 
   const getCategoryLabel = (category: string) =>
@@ -347,7 +348,7 @@ export default function StudentDashboard() {
     CATEGORY_META[category]?.color || "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
 
   // Courses shown in the "Cours" tab (exclude lecture/ecriture which have their own tabs)
-  const COURS_CATEGORIES = ["grammaire", "orthographe", "conjugaison", "ponctuation", "vocabulaire", "classes_de_mots"];
+  const COURS_CATEGORIES = ["grammaire", "orthographe", "conjugaison", "ponctuation", "vocabulaire", "classes_de_mots", "francais_fpt"];
 
   const coursCourses = useMemo(
     () => courses.filter((c) => COURS_CATEGORIES.includes(c.category)),
