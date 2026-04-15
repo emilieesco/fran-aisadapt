@@ -11220,6 +11220,123 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       this.questions.set(qId, { id: qId, exerciseId: matchNar5ExId, title: "Questions du lecteur et étapes narratives", text: "Relie chaque étape du schéma narratif (colonne A) à la question qu'un lecteur se pose en lisant cette partie du texte (colonne B).", type: "matching", options: JSON.stringify(leftItems5), correctAnswer: JSON.stringify(correctPairs5), order: 1 } as any);
     }
 
+    // ===== LACUNAIRES — PONCTUATION =====
+
+    // Cours 1 : Signes de fin de phrase (. ? !)
+    const lacPonct1CourseId = randomUUID();
+    this.courses.set(lacPonct1CourseId, {
+      id: lacPonct1CourseId,
+      title: "Signes de fin de phrase — Blancs à remplir",
+      description: "Complète chaque phrase avec le bon signe de ponctuation finale : point (.), point d'interrogation (?) ou point d'exclamation (!). Attention au type de phrase !",
+      category: "ponctuation",
+      content: "Exercices lacunaires — signes de fin de phrase : point (.), point d'interrogation (?), point d'exclamation (!). On choisit le signe selon le type de phrase (déclarative, interrogative, exclamative, impérative).",
+      order: 205,
+    } as any);
+
+    const lacPonct1ExId = randomUUID();
+    this.exercises.set(lacPonct1ExId, { id: lacPonct1ExId, courseId: lacPonct1CourseId, title: "Point, ? ou !", description: "Écris le bon signe de fin de phrase : . (point), ? (interrogation) ou ! (exclamation ou ordre).", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "Est-ce que tu as terminé ton devoir de mathématiques ___", correct: "?", hint: "Phrase interrogative → ?" },
+      { text: "Le soleil se lève à l'est et se couche à l'ouest ___", correct: ".", hint: "Phrase déclarative → ." },
+      { text: "Attention, ne touche pas à ça ___ C'est très dangereux ___", correct: "!|.", hint: "Ordre → ! puis information → ." },
+      { text: "Quelle belle surprise de te voir ici ___", correct: "!", hint: "Phrase exclamative → !" },
+      { text: "Pourquoi as-tu oublié ton lunch à la maison ___", correct: "?", hint: "Phrase interrogative → ?" },
+      { text: "Les élèves ont remis leurs travaux avant la date limite ___", correct: ".", hint: "Phrase déclarative → ." },
+      { text: "Viens immédiatement à la maison ___", correct: "!", hint: "Phrase impérative (ordre urgent) → !" },
+      { text: "Quel courage tu as eu pour affronter cette situation difficile ___", correct: "!", hint: "Phrase exclamative → !" },
+      { text: "Sais-tu à quelle heure part le prochain autobus ___", correct: "?", hint: "Phrase interrogative → ?" },
+      { text: "Ma mère prépare toujours une soupe chaude les soirs d'hiver ___", correct: ".", hint: "Phrase déclarative → ." },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacPonct1ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    // Cours 2 : La virgule
+    const lacPonct2CourseId = randomUUID();
+    this.courses.set(lacPonct2CourseId, {
+      id: lacPonct2CourseId,
+      title: "La virgule — Blancs à remplir",
+      description: "Place les virgules manquantes dans les phrases. La virgule s'utilise dans les énumérations, après un complément de phrase en tête, et pour isoler un mot mis en apposition.",
+      category: "ponctuation",
+      content: "Exercices lacunaires — la virgule : énumérations, compléments de phrase déplacés en tête, mots mis en apposition, subordonnées en tête de phrase.",
+      order: 206,
+    } as any);
+
+    const lacPonct2Ex1Id = randomUUID();
+    this.exercises.set(lacPonct2Ex1Id, { id: lacPonct2Ex1Id, courseId: lacPonct2CourseId, title: "Virgule dans l'énumération", description: "Complète avec une virgule (,) ou le mot manquant pour bien séparer les éléments de l'énumération.", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "Pour faire une omelette, il faut des œufs ___ du beurre ___ du sel et du poivre.", correct: ",|,", hint: "Virgule entre chaque élément de l'énumération (sauf avant 'et')" },
+      { text: "Dans mon sac ___ j'ai mon ordinateur ___ mes notes de cours et mon lunch.", correct: ",|,", hint: "Virgule après le CP déplacé en tête, puis entre les éléments" },
+      { text: "Léa aime le ski ___ la raquette ___ le patin et la randonnée en hiver.", correct: ",|,", hint: "Virgule entre chaque activité de l'énumération" },
+      { text: "Le matin ___ je fais du café ___ je mange des rôties et je lis les nouvelles.", correct: ",|,", hint: "Virgule après le CP de temps, puis entre les actions" },
+      { text: "Ce magasin vend des vêtements ___ des chaussures ___ des accessoires et des bijoux.", correct: ",|,", hint: "Virgule entre chaque catégorie d'articles" },
+      { text: "Pour réussir cet examen ___ tu dois étudier ___ bien dormir et arriver à l'heure.", correct: ",|,", hint: "Virgule après la subordonnée en tête, puis entre les conseils" },
+      { text: "Marc ___ mon meilleur ami ___ habite à Québec depuis deux ans.", correct: ",|,", hint: "Virgule pour isoler l'apposition (info supplémentaire sur Marc)" },
+      { text: "Hier ___ après le cours de français ___ nous sommes allés au café du coin.", correct: ",|,", hint: "Virgule après chaque complément de phrase en tête" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacPonct2Ex1Id, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    const lacPonct2Ex2Id = randomUUID();
+    this.exercises.set(lacPonct2Ex2Id, { id: lacPonct2Ex2Id, courseId: lacPonct2CourseId, title: "Virgule ou pas — complément de phrase déplacé", description: "Complète avec une virgule (,) si nécessaire, ou écris RIEN si la virgule n'est pas requise.", type: "fill_blank", order: 2 } as any);
+    [
+      { text: "Chaque matin ___ les élèves arrivent en classe à 8 h 30.", correct: ",", hint: "Complément de temps en tête de phrase → virgule obligatoire" },
+      { text: "Les élèves arrivent en classe ___ chaque matin à 8 h 30.", correct: "", hint: "Complément de temps en fin de phrase → pas de virgule" },
+      { text: "Au printemps ___ les fleurs commencent à pousser dans les jardins.", correct: ",", hint: "Complément de lieu/temps en tête → virgule" },
+      { text: "Elle a réussi son examen ___ grâce à ses efforts.", correct: "", hint: "Complément de cause en fin de phrase → pas de virgule" },
+      { text: "Grâce à ses efforts ___ elle a réussi son examen.", correct: ",", hint: "Complément de cause déplacé en tête → virgule" },
+      { text: "Dans ce quartier animé ___ on trouve de nombreux restaurants.", correct: ",", hint: "Complément de lieu en tête → virgule" },
+      { text: "On trouve de nombreux restaurants dans ce quartier animé ___", correct: ".", hint: "Phrase déclarative normale en fin → point" },
+      { text: "Pour cette raison ___ nous avons décidé de reporter la réunion.", correct: ",", hint: "Complément de cause en tête → virgule" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacPonct2Ex2Id, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    // Cours 3 : Les deux-points et le point-virgule
+    const lacPonct3CourseId = randomUUID();
+    this.courses.set(lacPonct3CourseId, {
+      id: lacPonct3CourseId,
+      title: "Deux-points et point-virgule — Blancs à remplir",
+      description: "Complète les phrases avec le bon signe de ponctuation : deux-points (:) pour introduire une liste ou une explication, point-virgule (;) pour séparer deux idées liées.",
+      category: "ponctuation",
+      content: "Exercices lacunaires — deux-points (:) et point-virgule (;) : introduire une liste, annoncer une explication, séparer des propositions indépendantes liées.",
+      order: 207,
+    } as any);
+
+    const lacPonct3ExId = randomUUID();
+    this.exercises.set(lacPonct3ExId, { id: lacPonct3ExId, courseId: lacPonct3CourseId, title: "Deux-points (:) ou point-virgule (;) ?", description: "Écris : (deux-points) ou ; (point-virgule) selon le contexte de la phrase.", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "Il manque trois ingrédients ___ des œufs, du lait et de la farine.", correct: ":", hint: "Les deux-points (:) introduisent une liste ou une énumération" },
+      { text: "Elle travaillait fort ___ elle voulait réussir son examen.", correct: ";", hint: "Point-virgule (;) entre deux propositions indépendantes liées par le sens" },
+      { text: "Voici les consignes ___ lisez le texte, répondez aux questions et remettez votre feuille.", correct: ":", hint: "Les deux-points (:) introduisent des instructions" },
+      { text: "Le ciel était gris ___ la pluie allait tomber d'un moment à l'autre.", correct: ";", hint: "Point-virgule (;) entre deux propositions dont la seconde explique la première" },
+      { text: "Mon professeur a dit ___ « N'oubliez pas votre dictionnaire demain. »", correct: ":", hint: "Les deux-points (:) introduisent une citation ou une parole rapportée" },
+      { text: "Les uns rangeaient la salle ___ les autres lavaient la vaisselle.", correct: ";", hint: "Point-virgule (;) entre deux actions parallèles" },
+      { text: "La recette est simple ___ trois étapes suffisent pour réussir ce plat.", correct: ":", hint: "Les deux-points (:) introduisent une explication ou un résumé" },
+      { text: "Il ne voulait pas partir ___ la soirée était encore trop agréable.", correct: ";", hint: "Point-virgule (;) entre deux propositions liées par le sens" },
+      { text: "Pour s'inscrire, vous devez fournir ___ une pièce d'identité et un justificatif de domicile.", correct: ":", hint: "Les deux-points (:) introduisent les documents requis" },
+      { text: "Certains aiment la montagne ___ d'autres préfèrent la mer.", correct: ";", hint: "Point-virgule (;) entre deux préférences opposées mais liées" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacPonct3ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    // Cours 4 : Les guillemets et le tiret dans le dialogue
+    const lacPonct4CourseId = randomUUID();
+    this.courses.set(lacPonct4CourseId, {
+      id: lacPonct4CourseId,
+      title: "Guillemets et dialogues — Blancs à remplir",
+      description: "Complète les extraits de dialogues en plaçant les bons signes de ponctuation : guillemets (« »), tirets (—), virgules et deux-points pour les incises.",
+      category: "ponctuation",
+      content: "Exercices lacunaires — ponctuation du dialogue : guillemets (« »), tiret de dialogue (—), deux-points avant la parole, virgule avant l'incise, majuscule après la ponctuation forte.",
+      order: 208,
+    } as any);
+
+    const lacPonct4ExId = randomUUID();
+    this.exercises.set(lacPonct4ExId, { id: lacPonct4ExId, courseId: lacPonct4CourseId, title: "Ponctuation du dialogue", description: "Complète les dialogues avec le bon signe : « (guillemet ouvrant), » (guillemet fermant), — (tiret), : (deux-points) ou , (virgule).", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "Léa demanda ___ « Pouvez-vous me dire où se trouve la bibliothèque ? »", correct: ":", hint: "Deux-points (:) avant la parole rapportée entre guillemets" },
+      { text: "« Je ne sais pas encore ___ répondit-il ___ mais je vais me renseigner. »", correct: ",|,", hint: "Virgule avant et après l'incise (répondit-il)" },
+      { text: "___ Bonjour ! dit la voisine. Es-tu nouvelle dans l'immeuble ?", correct: "—", hint: "Tiret (—) au début d'une réplique de dialogue (sans guillemets)" },
+      { text: "Ma mère m'a dit ___ « N'oublie pas ton rendez-vous chez le dentiste. »", correct: ":", hint: "Deux-points (:) avant les guillemets ouvrants" },
+      { text: "« Nous partons demain matin ___ annonça-t-il. Préparez vos bagages ce soir. »", correct: ",", hint: "Virgule après la parole, avant l'incise annonça-t-il" },
+      { text: "___ Est-ce que tu viens au cinéma ce soir ? demanda Samuel.", correct: "—", hint: "Tiret (—) pour introduire une réplique de dialogue" },
+      { text: "Elle s'écria ___ « Attention ! La voiture ! »", correct: ":", hint: "Deux-points (:) avant la parole entre guillemets" },
+      { text: "« J'ai réussi mon examen ___ dit-elle avec un grand sourire ___ Je suis tellement soulagée ! »", correct: ",|,", hint: "Virgule avant et après l'incise (dit-elle avec un grand sourire)" },
+      { text: "___ Bonne chance pour ta présentation ___ lui souffla son ami.", correct: "—|,", hint: "Tiret pour la réplique, virgule avant l'incise" },
+      { text: "Le professeur expliqua ___ « Cette règle s'applique dans tous les cas sans exception. »", correct: ":", hint: "Deux-points (:) avant la parole rapportée" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacPonct4ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
     // ===== LACUNAIRES — HOMOPHONES COURANTS =====
     const lacunairesHomophonesCourseId = randomUUID();
     const lacunairesHomophonesCourse: Course = {
