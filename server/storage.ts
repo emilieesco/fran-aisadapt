@@ -11220,6 +11220,181 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       this.questions.set(qId, { id: qId, exerciseId: matchNar5ExId, title: "Questions du lecteur et étapes narratives", text: "Relie chaque étape du schéma narratif (colonne A) à la question qu'un lecteur se pose en lisant cette partie du texte (colonne B).", type: "matching", options: JSON.stringify(leftItems5), correctAnswer: JSON.stringify(correctPairs5), order: 1 } as any);
     }
 
+    // ===== MATCHING — CLASSES DE MOTS =====
+
+    // Cours 1 : Identifier la classe grammaticale d'un mot
+    const matchCdm1CourseId = randomUUID();
+    this.courses.set(matchCdm1CourseId, {
+      id: matchCdm1CourseId,
+      title: "Classes de mots — Identifier la classe grammaticale",
+      description: "Associe chaque mot à sa classe grammaticale : nom, déterminant, adjectif, pronom, verbe, adverbe, préposition, conjonction. Exercices progressifs du plus simple au plus complexe.",
+      category: "classes_de_mots",
+      content: "<h2>Les classes de mots (nature des mots)</h2><p>En nouvelle grammaire québécoise, chaque mot appartient à une <strong>classe grammaticale</strong>. Connaître la classe d'un mot, c'est savoir ce qu'il <em>est</em> — peu importe son rôle dans la phrase.</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Les 8 classes de mots :</strong><br>1. <strong>Nom</strong> — désigne un être, un objet, un lieu, une idée (chien, Montréal, bonheur)<br>2. <strong>Déterminant</strong> — accompagne le nom et le détermine (le, une, mon, ce, trois)<br>3. <strong>Adjectif</strong> — décrit ou qualifie un nom (grand, rouge, fatigué)<br>4. <strong>Pronom</strong> — remplace un nom ou un groupe nominal (il, elle, celui-ci, qui, en)<br>5. <strong>Verbe</strong> — exprime une action ou un état, se conjugue (manger, être, courir)<br>6. <strong>Adverbe</strong> — modifie un verbe, un adjectif ou un autre adverbe, invariable (vite, très, souvent)<br>7. <strong>Préposition</strong> — unit deux éléments et introduit un complément, invariable (à, de, pour, dans, avec)<br>8. <strong>Conjonction</strong> — relie des mots ou des propositions (et, ou, mais, que, parce que)</div>",
+      order: 70,
+    } as any);
+
+    // Exercice 1 : Mots courants → classe
+    const matchCdm1Ex1Id = randomUUID();
+    this.exercises.set(matchCdm1Ex1Id, { id: matchCdm1Ex1Id, courseId: matchCdm1CourseId, title: "Mot → Classe grammaticale (niveau 1)", description: "Relie chaque mot à sa classe grammaticale. Les mots sont présentés seuls, sans contexte.", type: "matching", order: 1 } as any);
+    {
+      const left1 = ["rapidement", "chien", "courir", "beau", "le"];
+      const pairs1: Record<string,string> = {
+        "rapidement": "Adverbe",
+        "chien":      "Nom",
+        "courir":     "Verbe",
+        "beau":       "Adjectif",
+        "le":         "Déterminant",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm1Ex1Id, title: "Mots courants — classe grammaticale", text: "Relie chaque mot (colonne A) à sa classe grammaticale (colonne B).", type: "matching", options: JSON.stringify(left1), correctAnswer: JSON.stringify(pairs1), order: 1 } as any);
+    }
+
+    // Exercice 2 : Mots courants → classe (niveau 2 — pronoms, prépositions, conjonctions)
+    const matchCdm1Ex2Id = randomUUID();
+    this.exercises.set(matchCdm1Ex2Id, { id: matchCdm1Ex2Id, courseId: matchCdm1CourseId, title: "Mot → Classe grammaticale (niveau 2)", description: "Relie chaque mot à sa classe grammaticale : pronoms, prépositions et conjonctions inclus.", type: "matching", order: 2 } as any);
+    {
+      const left2 = ["elle", "avec", "mais", "souvent", "maison"];
+      const pairs2: Record<string,string> = {
+        "elle":    "Pronom",
+        "avec":    "Préposition",
+        "mais":    "Conjonction",
+        "souvent": "Adverbe",
+        "maison":  "Nom",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm1Ex2Id, title: "Pronoms, prépositions et conjonctions", text: "Relie chaque mot (colonne A) à sa classe grammaticale (colonne B).", type: "matching", options: JSON.stringify(left2), correctAnswer: JSON.stringify(pairs2), order: 1 } as any);
+    }
+
+    // Exercice 3 : Mots en contexte → classe (le même mot peut changer selon le contexte)
+    const matchCdm1Ex3Id = randomUUID();
+    this.exercises.set(matchCdm1Ex3Id, { id: matchCdm1Ex3Id, courseId: matchCdm1CourseId, title: "Mot en contexte → Classe grammaticale", description: "Relie chaque mot souligné dans sa phrase à sa classe grammaticale. Attention : le contexte est important !", type: "matching", order: 3 } as any);
+    {
+      const left3 = [
+        "« Elle mange une pomme. » — mange",
+        "« Cette maison est grande. » — Cette",
+        "« Il court très vite. » — vite",
+        "« Nous partons demain. » — Nous",
+        "« Elle a un beau manteau rouge. » — rouge",
+      ];
+      const pairs3: Record<string,string> = {
+        "« Elle mange une pomme. » — mange":                   "Verbe",
+        "« Cette maison est grande. » — Cette":                "Déterminant",
+        "« Il court très vite. » — vite":                      "Adverbe",
+        "« Nous partons demain. » — Nous":                     "Pronom",
+        "« Elle a un beau manteau rouge. » — rouge":           "Adjectif",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm1Ex3Id, title: "Identifier la classe en contexte", text: "Relie chaque mot souligné dans sa phrase (colonne A) à sa classe grammaticale (colonne B).", type: "matching", options: JSON.stringify(left3), correctAnswer: JSON.stringify(pairs3), order: 1 } as any);
+    }
+
+    // Cours 2 : Sous-classes et exemples
+    const matchCdm2CourseId = randomUUID();
+    this.courses.set(matchCdm2CourseId, {
+      id: matchCdm2CourseId,
+      title: "Sous-classes de mots — Exercices d'association",
+      description: "Associe chaque mot à sa sous-classe : type de déterminant (article, possessif, démonstratif…), type de pronom (personnel, relatif, indéfini…) ou type de nom (commun, propre).",
+      category: "classes_de_mots",
+      content: "<h2>Les sous-classes de mots</h2><p>Au sein de chaque grande classe, il existe des <strong>sous-classes</strong> qui précisent encore davantage la nature du mot.</p><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>Sous-classes des déterminants :</strong><br>• Article défini : le, la, les<br>• Article indéfini : un, une, des<br>• Article partitif : du, de la, de l'<br>• Déterminant possessif : mon, ta, ses, notre, vos<br>• Déterminant démonstratif : ce, cette, ces<br>• Déterminant numéral : deux, cent, mille<br>• Déterminant indéfini : chaque, tout, aucun, plusieurs</div><div style='background:#fce7f3;padding:10px;margin:10px 0;border-radius:4px'><strong>Sous-classes des pronoms :</strong><br>• Pronom personnel : je, tu, il, elle, nous, vous, ils, elles, me, te, lui, y, en…<br>• Pronom relatif : qui, que, dont, où, lequel…<br>• Pronom démonstratif : celui, celle, ceci, cela, ça<br>• Pronom possessif : le mien, la tienne, les siens…<br>• Pronom indéfini : on, quelqu'un, tout, rien, personne…<br>• Pronom interrogatif : qui ?, que ?, lequel ?</div>",
+      order: 71,
+    } as any);
+
+    // Exercice 1 : Sous-classe des déterminants
+    const matchCdm2Ex1Id = randomUUID();
+    this.exercises.set(matchCdm2Ex1Id, { id: matchCdm2Ex1Id, courseId: matchCdm2CourseId, title: "Sous-classe des déterminants", description: "Relie chaque déterminant à sa sous-classe : article défini, indéfini, possessif, démonstratif ou numéral.", type: "matching", order: 1 } as any);
+    {
+      const leftD = ["les", "une", "mon", "ces", "trois"];
+      const pairsD: Record<string,string> = {
+        "les":   "Article défini",
+        "une":   "Article indéfini",
+        "mon":   "Déterminant possessif",
+        "ces":   "Déterminant démonstratif",
+        "trois": "Déterminant numéral",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm2Ex1Id, title: "Associe chaque déterminant à sa sous-classe", text: "Relie chaque déterminant (colonne A) à sa sous-classe (colonne B).", type: "matching", options: JSON.stringify(leftD), correctAnswer: JSON.stringify(pairsD), order: 1 } as any);
+    }
+
+    // Exercice 2 : Sous-classe des pronoms
+    const matchCdm2Ex2Id = randomUUID();
+    this.exercises.set(matchCdm2Ex2Id, { id: matchCdm2Ex2Id, courseId: matchCdm2CourseId, title: "Sous-classe des pronoms", description: "Relie chaque pronom à sa sous-classe : personnel, relatif, démonstratif, indéfini ou interrogatif.", type: "matching", order: 2 } as any);
+    {
+      const leftP = ["qui (dans : la fille qui chante)", "cela", "on", "lequel ?", "tu"];
+      const pairsP: Record<string,string> = {
+        "qui (dans : la fille qui chante)": "Pronom relatif",
+        "cela":    "Pronom démonstratif",
+        "on":      "Pronom indéfini",
+        "lequel ?":"Pronom interrogatif",
+        "tu":      "Pronom personnel",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm2Ex2Id, title: "Associe chaque pronom à sa sous-classe", text: "Relie chaque pronom (colonne A) à sa sous-classe (colonne B).", type: "matching", options: JSON.stringify(leftP), correctAnswer: JSON.stringify(pairsP), order: 1 } as any);
+    }
+
+    // Exercice 3 : Nom commun vs nom propre
+    const matchCdm2Ex3Id = randomUUID();
+    this.exercises.set(matchCdm2Ex3Id, { id: matchCdm2Ex3Id, courseId: matchCdm2CourseId, title: "Nom commun ou nom propre ?", description: "Relie chaque nom à sa sous-classe : nom commun (désigne une catégorie) ou nom propre (désigne un individu unique, commence par une majuscule).", type: "matching", order: 3 } as any);
+    {
+      const leftN = ["Montréal", "chien", "Marie Curie", "rivière", "France"];
+      const pairsN: Record<string,string> = {
+        "Montréal":    "Nom propre",
+        "chien":       "Nom commun",
+        "Marie Curie": "Nom propre",
+        "rivière":     "Nom commun",
+        "France":      "Nom propre",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm2Ex3Id, title: "Nom commun ou nom propre ?", text: "Relie chaque nom (colonne A) à sa sous-classe : nom commun ou nom propre (colonne B).", type: "matching", options: JSON.stringify(leftN), correctAnswer: JSON.stringify(pairsN), order: 1 } as any);
+    }
+
+    // Cours 3 : Fonction vs classe — ne pas confondre
+    const matchCdm3CourseId = randomUUID();
+    this.courses.set(matchCdm3CourseId, {
+      id: matchCdm3CourseId,
+      title: "Classe vs Fonction — Ne pas confondre",
+      description: "La classe d'un mot (ce qu'il est) est différente de sa fonction (le rôle qu'il joue dans la phrase). Associe chaque exemple à la bonne distinction.",
+      category: "classes_de_mots",
+      content: "<h2>Classe grammaticale vs Fonction syntaxique</h2><p>En nouvelle grammaire québécoise, il est essentiel de distinguer <strong>la classe d'un mot</strong> (sa nature) et <strong>sa fonction</strong> (son rôle dans la phrase).</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Classe = ce qu'est le mot (toujours)</strong><br><strong>Fonction = le rôle du mot dans cette phrase</strong></div><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>Exemple :</strong><br>Dans « <em>Le chat dort.</em> »<br>• <em>chat</em> → Classe : <strong>nom commun</strong> · Fonction : <strong>sujet</strong><br>• <em>Le</em> → Classe : <strong>déterminant (article défini)</strong> · Fonction : <strong>déterminant du nom chat</strong></div><div style='background:#fee2e2;padding:10px;margin:10px 0;border-radius:4px'><strong>Autre exemple :</strong><br>Dans « <em>Elle mange une pomme rouge.</em> »<br>• <em>rouge</em> → Classe : <strong>adjectif</strong> · Fonction : <strong>complément du nom pomme</strong><br>• <em>pomme</em> → Classe : <strong>nom commun</strong> · Fonction : <strong>complément direct (CD)</strong></div>",
+      order: 72,
+    } as any);
+
+    // Exercice 1 : Classe ou Fonction ?
+    const matchCdm3Ex1Id = randomUUID();
+    this.exercises.set(matchCdm3Ex1Id, { id: matchCdm3Ex1Id, courseId: matchCdm3CourseId, title: "Classe ou Fonction ?", description: "Relie chaque terme à la bonne catégorie : est-ce une classe grammaticale ou une fonction syntaxique ?", type: "matching", order: 1 } as any);
+    {
+      const leftCF = ["Nom", "Sujet", "Adverbe", "Complément direct (CD)", "Déterminant"];
+      const pairsCF: Record<string,string> = {
+        "Nom":                       "Classe grammaticale",
+        "Sujet":                     "Fonction syntaxique",
+        "Adverbe":                   "Classe grammaticale",
+        "Complément direct (CD)":    "Fonction syntaxique",
+        "Déterminant":               "Classe grammaticale",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm3Ex1Id, title: "Classe grammaticale ou fonction syntaxique ?", text: "Relie chaque terme (colonne A) à sa catégorie : classe grammaticale ou fonction syntaxique (colonne B).", type: "matching", options: JSON.stringify(leftCF), correctAnswer: JSON.stringify(pairsCF), order: 1 } as any);
+    }
+
+    // Exercice 2 : Mot souligné → classe ET fonction
+    const matchCdm3Ex2Id = randomUUID();
+    this.exercises.set(matchCdm3Ex2Id, { id: matchCdm3Ex2Id, courseId: matchCdm3CourseId, title: "Classe + Fonction d'un mot souligné", description: "Pour chaque phrase, relie le mot souligné à sa description complète (classe + fonction).", type: "matching", order: 2 } as any);
+    {
+      const leftCF2 = [
+        "« Les élèves écoutent. » — Les",
+        "« Le chien mord le facteur. » — facteur",
+        "« Elle chante bien. » — bien",
+        "« Marc offre des fleurs à Sara. » — Sara",
+        "« Cette robe verte est jolie. » — verte",
+      ];
+      const pairsCF2: Record<string,string> = {
+        "« Les élèves écoutent. » — Les":             "Déterminant (article défini) · déterminant du nom élèves",
+        "« Le chien mord le facteur. » — facteur":    "Nom commun · complément direct (CD)",
+        "« Elle chante bien. » — bien":               "Adverbe · modificateur du verbe",
+        "« Marc offre des fleurs à Sara. » — Sara":   "Nom propre · complément indirect (CI)",
+        "« Cette robe verte est jolie. » — verte":    "Adjectif · complément du nom robe",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchCdm3Ex2Id, title: "Classe et fonction d'un mot en contexte", text: "Relie chaque mot souligné dans sa phrase (colonne A) à sa description classe + fonction (colonne B).", type: "matching", options: JSON.stringify(leftCF2), correctAnswer: JSON.stringify(pairsCF2), order: 1 } as any);
+    }
+
     // ===== LACUNAIRES — PONCTUATION =====
 
     // Cours 1 : Signes de fin de phrase (. ? !)
