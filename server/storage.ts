@@ -11098,6 +11098,128 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       { text: "Si vous vouliez apprendre le français rapidement, vous ___ chaque jour. (pratiquer)", correct: "pratiquerions|pratiqueraient", hint: "pratiquer (vous) → conditionnel présent" },
     ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacCond2ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
 
+    // ===== MATCHING — SCHÉMA NARRATIF (5 étapes) =====
+    const matchNarratifCourseId = randomUUID();
+    this.courses.set(matchNarratifCourseId, {
+      id: matchNarratifCourseId,
+      title: "Schéma narratif — Exercices d'association",
+      description: "Associe chaque étape du schéma narratif à sa définition, à un extrait de texte ou à ses marqueurs temporels. Idéal pour mémoriser les 5 étapes de la nouvelle grammaire québécoise.",
+      category: "ecriture",
+      content: "<h2>Le schéma narratif en 5 étapes</h2><p>En nouvelle grammaire québécoise, tout texte narratif (conte, roman, nouvelle) suit un <strong>schéma narratif en 5 étapes</strong>. Ces 5 étapes forment la structure de l'histoire, du début à la fin.</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Les 5 étapes dans l'ordre :</strong><br>1. Situation initiale → 2. Élément perturbateur → 3. Péripéties → 4. Dénouement → 5. Situation finale</div><h3>Rappel des définitions</h3><ul><li><strong>Situation initiale :</strong> L'équilibre du début. On présente le personnage, le lieu, le moment et la vie quotidienne avant que quelque chose ne change.</li><li><strong>Élément perturbateur :</strong> L'événement qui brise cet équilibre. C'est le déclencheur de l'histoire — un problème, un danger, une découverte inattendue.</li><li><strong>Péripéties :</strong> Les actions et réactions du personnage face au problème. C'est la partie la plus longue : tentatives, obstacles, rebondissements.</li><li><strong>Dénouement :</strong> La résolution. Le problème est réglé (bien ou mal). La situation change définitivement.</li><li><strong>Situation finale :</strong> Le nouvel équilibre. On voit la vie du personnage après l'aventure — comment il a changé.</li></ul>",
+      order: 65,
+    } as any);
+
+    // Exercice 1 : Étape ↔ Définition
+    const matchNar1ExId = randomUUID();
+    this.exercises.set(matchNar1ExId, {
+      id: matchNar1ExId, courseId: matchNarratifCourseId,
+      title: "Étape ↔ Définition",
+      description: "Relie chaque étape du schéma narratif à sa définition.",
+      type: "matching", order: 1,
+    } as any);
+    {
+      const leftItems = ["Situation initiale", "Élément perturbateur", "Péripéties", "Dénouement", "Situation finale"];
+      const correctPairs: Record<string, string> = {
+        "Situation initiale":    "On présente le personnage, le lieu et la vie quotidienne — l'équilibre d'avant",
+        "Élément perturbateur":  "Un événement inattendu brise l'équilibre et déclenche l'histoire",
+        "Péripéties":            "Les actions et obstacles que le personnage affronte pour résoudre le problème",
+        "Dénouement":            "Le problème est résolu (ou aggravé) — la situation change définitivement",
+        "Situation finale":      "Le nouvel équilibre — on voit comment la vie du personnage a changé",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchNar1ExId, title: "Relie chaque étape à sa définition", text: "Relie chaque étape du schéma narratif (colonne A) à sa définition (colonne B).", type: "matching", options: JSON.stringify(leftItems), correctAnswer: JSON.stringify(correctPairs), order: 1 } as any);
+    }
+
+    // Exercice 2 : Étape ↔ Extrait de texte
+    const matchNar2ExId = randomUUID();
+    this.exercises.set(matchNar2ExId, {
+      id: matchNar2ExId, courseId: matchNarratifCourseId,
+      title: "Étape ↔ Extrait de texte",
+      description: "Lis chaque extrait et relie-le à l'étape du schéma narratif qu'il représente.",
+      type: "matching", order: 2,
+    } as any);
+    {
+      const leftItems2 = [
+        "« Léa vivait seule dans un petit appartement de Montréal. Chaque matin, elle prenait le métro pour aller travailler. »",
+        "« Un mardi, en rentrant chez elle, Léa trouva la porte grande ouverte. Quelqu'un était entré. »",
+        "« Elle appela la police, chercha ses affaires et interrogea ses voisins pendant des heures. »",
+        "« Le lendemain, on retrouva son ordinateur dans la cave — c'était le concierge. »",
+        "« Désormais, Léa changeait ses serrures chaque année et saluait ses voisins chaque jour. »",
+      ];
+      const correctPairs2: Record<string, string> = {
+        "« Léa vivait seule dans un petit appartement de Montréal. Chaque matin, elle prenait le métro pour aller travailler. »": "Situation initiale",
+        "« Un mardi, en rentrant chez elle, Léa trouva la porte grande ouverte. Quelqu'un était entré. »": "Élément perturbateur",
+        "« Elle appela la police, chercha ses affaires et interrogea ses voisins pendant des heures. »": "Péripéties",
+        "« Le lendemain, on retrouva son ordinateur dans la cave — c'était le concierge. »": "Dénouement",
+        "« Désormais, Léa changeait ses serrures chaque année et saluait ses voisins chaque jour. »": "Situation finale",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchNar2ExId, title: "Relie chaque extrait à son étape", text: "Lis chaque extrait du texte (colonne A) et associe-le à l'étape du schéma narratif (colonne B).", type: "matching", options: JSON.stringify(leftItems2), correctAnswer: JSON.stringify(correctPairs2), order: 1 } as any);
+    }
+
+    // Exercice 3 : Marqueurs temporels ↔ Étape
+    const matchNar3ExId = randomUUID();
+    this.exercises.set(matchNar3ExId, {
+      id: matchNar3ExId, courseId: matchNarratifCourseId,
+      title: "Marqueur temporel ↔ Étape",
+      description: "Relie chaque marqueur temporel ou organisateur textuel à l'étape du schéma narratif avec laquelle il est le plus souvent associé.",
+      type: "matching", order: 3,
+    } as any);
+    {
+      const leftItems3 = ["Il était une fois… / À cette époque,", "Soudain, / Un jour, / Tout à coup,", "Alors, / Ensuite, / Malgré tout,", "Finalement, / Heureusement, / C'est ainsi que", "Depuis ce jour, / Désormais, / Pour toujours,"];
+      const correctPairs3: Record<string, string> = {
+        "Il était une fois… / À cette époque,":         "Situation initiale",
+        "Soudain, / Un jour, / Tout à coup,":           "Élément perturbateur",
+        "Alors, / Ensuite, / Malgré tout,":             "Péripéties",
+        "Finalement, / Heureusement, / C'est ainsi que":"Dénouement",
+        "Depuis ce jour, / Désormais, / Pour toujours,":"Situation finale",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchNar3ExId, title: "Marqueurs et étapes du schéma narratif", text: "Relie chaque marqueur temporel ou organisateur textuel (colonne A) à l'étape du schéma narratif à laquelle il correspond le mieux (colonne B).", type: "matching", options: JSON.stringify(leftItems3), correctAnswer: JSON.stringify(correctPairs3), order: 1 } as any);
+    }
+
+    // Exercice 4 : Rôle du personnage ↔ Définition narratologique
+    const matchNar4ExId = randomUUID();
+    this.exercises.set(matchNar4ExId, {
+      id: matchNar4ExId, courseId: matchNarratifCourseId,
+      title: "Rôle des personnages ↔ Définition",
+      description: "Relie chaque type de personnage (actant) à sa définition dans le récit.",
+      type: "matching", order: 4,
+    } as any);
+    {
+      const leftItems4 = ["Héros / Protagoniste", "Opposant / Antagoniste", "Adjuvant", "Destinateur", "Objet de quête"];
+      const correctPairs4: Record<string, string> = {
+        "Héros / Protagoniste": "Le personnage principal qui agit pour résoudre le problème",
+        "Opposant / Antagoniste": "Le personnage ou la force qui crée des obstacles au héros",
+        "Adjuvant": "Le personnage qui aide le héros dans sa quête",
+        "Destinateur": "Celui qui confie la mission ou le but au héros",
+        "Objet de quête": "Ce que le héros cherche à obtenir ou à accomplir",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchNar4ExId, title: "Les actants du schéma narratif", text: "Relie chaque type de personnage narratif (colonne A) à sa définition dans le récit (colonne B).", type: "matching", options: JSON.stringify(leftItems4), correctAnswer: JSON.stringify(correctPairs4), order: 1 } as any);
+    }
+
+    // Exercice 5 : Étape ↔ Question de compréhension associée
+    const matchNar5ExId = randomUUID();
+    this.exercises.set(matchNar5ExId, {
+      id: matchNar5ExId, courseId: matchNarratifCourseId,
+      title: "Étape ↔ Question de lecteur",
+      description: "Relie chaque étape du schéma narratif à la question qu'un lecteur se pose naturellement en lisant cette partie.",
+      type: "matching", order: 5,
+    } as any);
+    {
+      const leftItems5 = ["Situation initiale", "Élément perturbateur", "Péripéties", "Dénouement", "Situation finale"];
+      const correctPairs5: Record<string, string> = {
+        "Situation initiale":   "Qui est le personnage ? Où et quand se passe l'histoire ?",
+        "Élément perturbateur": "Qu'est-ce qui a changé ? Quel est le problème ?",
+        "Péripéties":           "Que fait le personnage pour s'en sortir ? Quels obstacles rencontre-t-il ?",
+        "Dénouement":           "Comment le problème se règle-t-il ? Qui gagne ou qui perd ?",
+        "Situation finale":     "Comment la vie du personnage a-t-elle changé après l'aventure ?",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: matchNar5ExId, title: "Questions du lecteur et étapes narratives", text: "Relie chaque étape du schéma narratif (colonne A) à la question qu'un lecteur se pose en lisant cette partie du texte (colonne B).", type: "matching", options: JSON.stringify(leftItems5), correctAnswer: JSON.stringify(correctPairs5), order: 1 } as any);
+    }
+
     // ===== LACUNAIRES — HOMOPHONES COURANTS =====
     const lacunairesHomophonesCourseId = randomUUID();
     const lacunairesHomophonesCourse: Course = {
