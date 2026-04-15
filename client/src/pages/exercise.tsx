@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid } from "lucide-react";
 import { ReadAloudButton } from "@/components/accessibility-toolbar";
 
 interface Question {
@@ -44,6 +44,40 @@ function checkMatchingAnswer(userAnswer: string, correctAnswer: string): boolean
     return Object.keys(correctMap).every((k) => userMap[k] === correctMap[k]);
   } catch {
     return false;
+  }
+}
+
+// Parse sorting question options: { categories, items }
+function parseSortingOptions(options: string | string[] | undefined): { categories: string[]; items: string[] } {
+  try {
+    const parsed = JSON.parse(typeof options === "string" ? options : JSON.stringify(options));
+    return { categories: parsed.categories || [], items: parsed.items || [] };
+  } catch {
+    return { categories: [], items: [] };
+  }
+}
+
+// Check a sorting answer: userAnswer is JSON { [item]: category }, correctAnswer is JSON { [item]: category }
+function checkSortingAnswer(userAnswer: string, correctAnswer: string): boolean {
+  try {
+    const correct: Record<string, string> = JSON.parse(correctAnswer);
+    const user: Record<string, string> = userAnswer ? JSON.parse(userAnswer) : {};
+    return Object.keys(correct).every((item) => user[item] === correct[item]);
+  } catch {
+    return false;
+  }
+}
+
+// Count correct items in a sorting answer
+function countSortingCorrect(userAnswer: string, correctAnswer: string): { correct: number; total: number } {
+  try {
+    const correct: Record<string, string> = JSON.parse(correctAnswer);
+    const user: Record<string, string> = userAnswer ? JSON.parse(userAnswer) : {};
+    const total = Object.keys(correct).length;
+    const correctCount = Object.keys(correct).filter((item) => user[item] === correct[item]).length;
+    return { correct: correctCount, total };
+  } catch {
+    return { correct: 0, total: 0 };
   }
 }
 
@@ -293,6 +327,9 @@ export default function Exercise() {
   const [matchingLeft, setMatchingLeft] = useState<{ qId: string; item: string } | null>(null);
   const shuffledRightRef = useRef<Record<string, string[]>>({});
 
+  // Sorting-specific state: which item is currently selected (per question)
+  const [sortingSelected, setSortingSelected] = useState<Record<string, string | null>>({});
+
   useEffect(() => {
     if (!match || !params?.id) return;
 
@@ -392,12 +429,59 @@ export default function Exercise() {
     return MATCH_COLORS[idx % MATCH_COLORS.length];
   };
 
+  // Sorting placement helpers
+  const getSortingPlacements = (qId: string): Record<string, string> => {
+    const ans = userAnswers[qId] || "";
+    try { return ans ? JSON.parse(ans) : {}; } catch { return {}; }
+  };
+
+  const handleSortingPlace = (qId: string, item: string, category: string) => {
+    const placements = getSortingPlacements(qId);
+    // If item is already in this category, remove it (toggle)
+    if (placements[item] === category) {
+      const next = { ...placements };
+      delete next[item];
+      handleAnswerChange(qId, JSON.stringify(next));
+    } else {
+      const next = { ...placements, [item]: category };
+      handleAnswerChange(qId, JSON.stringify(next));
+    }
+    setSortingSelected((prev) => ({ ...prev, [qId]: null }));
+  };
+
+  const handleSortingItemClick = (qId: string, item: string) => {
+    setSortingSelected((prev) => ({
+      ...prev,
+      [qId]: prev[qId] === item ? null : item,
+    }));
+  };
+
+  const handleSortingCategoryClick = (qId: string, category: string) => {
+    const selected = sortingSelected[qId];
+    if (selected) {
+      handleSortingPlace(qId, selected, category);
+    }
+  };
+
+  const handleSortingRemoveItem = (qId: string, item: string) => {
+    const placements = getSortingPlacements(qId);
+    const next = { ...placements };
+    delete next[item];
+    handleAnswerChange(qId, JSON.stringify(next));
+    setSortingSelected((prev) => ({ ...prev, [qId]: null }));
+  };
+
   const isQAnswered = (q: Question): boolean => {
     const ans = getQAnswer(q.id);
     if (q.type === "matching") {
       const conns = getMatchConns(q);
       const correctMap = getMatchCorrectMap(q);
       return Object.keys(correctMap).every((k) => conns[k] !== undefined);
+    }
+    if (q.type === "sorting") {
+      const { items } = parseSortingOptions(q.options);
+      const placements = getSortingPlacements(q.id);
+      return items.length > 0 && items.every((item) => placements[item] !== undefined);
     }
     return ans.trim().length > 0;
   };
@@ -482,6 +566,7 @@ export default function Exercise() {
         if (!isText) {
           if (q.type === "fill_blank") correct = checkFillBlankAnswer(ans, q.correctAnswer);
           else if (q.type === "matching") correct = checkMatchingAnswer(ans, q.correctAnswer);
+          else if (q.type === "sorting") correct = checkSortingAnswer(ans, q.correctAnswer);
           else if (q.type === "dictee") {
             const cWords = q.correctAnswer.trim().split(/\s+/);
             const uWords = ans.trim().split(/\s+/);
@@ -520,6 +605,7 @@ export default function Exercise() {
       if (!isText) {
         if (q.type === "fill_blank") isCorrect = checkFillBlankAnswer(userAnswer, q.correctAnswer);
         else if (q.type === "matching") isCorrect = checkMatchingAnswer(userAnswer, q.correctAnswer);
+        else if (q.type === "sorting") isCorrect = checkSortingAnswer(userAnswer, q.correctAnswer);
         else if (q.type === "dictee") {
           const cWords = q.correctAnswer.trim().split(/\s+/);
           const uWords = userAnswer.trim().split(/\s+/);
@@ -585,6 +671,12 @@ export default function Exercise() {
           return Object.entries(map).map(([k, v]) => `${k} → ${v}`).join("  •  ");
         } catch { return userAnswer; }
       }
+      if (q.type === "sorting") {
+        try {
+          const map: Record<string, string> = JSON.parse(userAnswer);
+          return Object.entries(map).map(([item, cat]) => `${item} → ${cat}`).join("  •  ");
+        } catch { return userAnswer; }
+      }
       return userAnswer;
     };
 
@@ -593,6 +685,18 @@ export default function Exercise() {
         try {
           const map: Record<string, string> = JSON.parse(q.correctAnswer);
           return Object.entries(map).map(([k, v]) => `${k} → ${v}`).join("  •  ");
+        } catch { return q.correctAnswer; }
+      }
+      if (q.type === "sorting") {
+        try {
+          const map: Record<string, string> = JSON.parse(q.correctAnswer);
+          // Group by category for clarity
+          const byCategory: Record<string, string[]> = {};
+          Object.entries(map).forEach(([item, cat]) => {
+            if (!byCategory[cat]) byCategory[cat] = [];
+            byCategory[cat].push(item);
+          });
+          return Object.entries(byCategory).map(([cat, items]) => `${cat} : ${items.join(", ")}`).join("  |  ");
         } catch { return q.correctAnswer; }
       }
       if (q.type === "fill_blank") return q.correctAnswer.split("|").join(" ou ");
@@ -812,6 +916,7 @@ export default function Exercise() {
     const isFill = q.type === "fill_blank";
     const isMatch = q.type === "matching";
     const isDictee = q.type === "dictee";
+    const isSorting = q.type === "sorting";
     const isReadingQ = (isReadingExercise || isInformatifExercise) && q.text.length > 200;
 
     const questionDisplayText = isReadingQ
@@ -852,6 +957,11 @@ export default function Exercise() {
               <Volume2 className="w-3 h-3 inline mr-1" />Dictée
             </span>
           )}
+          {isSorting && (
+            <span className="text-xs font-medium bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 px-2 py-0.5 rounded-md border border-violet-200 dark:border-violet-700">
+              <LayoutGrid className="w-3 h-3 inline mr-1" />Classement
+            </span>
+          )}
           {!isDictee && (
             <ReadAloudButton
               text={questionDisplayText.replace(/___/g, " quelque chose ")}
@@ -863,7 +973,7 @@ export default function Exercise() {
         </div>
 
         {/* Question prompt */}
-        {!isFill && !isMatch && !isDictee && (
+        {!isFill && !isMatch && !isDictee && !isSorting && (
           <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-lg border-l-4 border-amber-400 mb-4">
             <p className="text-base leading-relaxed whitespace-pre-wrap text-foreground">{questionDisplayText}</p>
           </div>
@@ -962,6 +1072,144 @@ export default function Exercise() {
             </div>
           </div>
         )}
+
+        {/* Sorting — Classer par catégorie */}
+        {isSorting && (() => {
+          const { categories, items } = parseSortingOptions(q.options);
+          const placements = getSortingPlacements(q.id);
+          const selectedItem = sortingSelected[q.id] || null;
+          const unplaced = items.filter((item) => placements[item] === undefined);
+          const placedCount = items.filter((item) => placements[item] !== undefined).length;
+
+          // Category color palette
+          const CAT_COLORS = [
+            { header: "bg-blue-100 dark:bg-blue-900/40 border-blue-300 dark:border-blue-600 text-blue-800 dark:text-blue-200", body: "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700", chip: "bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100 border-blue-300 dark:border-blue-600" },
+            { header: "bg-emerald-100 dark:bg-emerald-900/40 border-emerald-300 dark:border-emerald-600 text-emerald-800 dark:text-emerald-200", body: "bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-700", chip: "bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 border-emerald-300 dark:border-emerald-600" },
+            { header: "bg-violet-100 dark:bg-violet-900/40 border-violet-300 dark:border-violet-600 text-violet-800 dark:text-violet-200", body: "bg-violet-50 dark:bg-violet-900/20 border-violet-200 dark:border-violet-700", chip: "bg-violet-200 dark:bg-violet-800 text-violet-900 dark:text-violet-100 border-violet-300 dark:border-violet-600" },
+            { header: "bg-amber-100 dark:bg-amber-900/40 border-amber-300 dark:border-amber-600 text-amber-800 dark:text-amber-200", body: "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-700", chip: "bg-amber-200 dark:bg-amber-800 text-amber-900 dark:text-amber-100 border-amber-300 dark:border-amber-600" },
+            { header: "bg-rose-100 dark:bg-rose-900/40 border-rose-300 dark:border-rose-600 text-rose-800 dark:text-rose-200", body: "bg-rose-50 dark:bg-rose-900/20 border-rose-200 dark:border-rose-700", chip: "bg-rose-200 dark:bg-rose-800 text-rose-900 dark:text-rose-100 border-rose-300 dark:border-rose-600" },
+          ];
+
+          return (
+            <div className="space-y-4">
+              {/* Instruction */}
+              <div className="bg-violet-50 dark:bg-violet-900/10 p-3 rounded-lg border-l-4 border-violet-500">
+                <p className="text-sm font-medium text-foreground">{q.text}</p>
+                {!submitted && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {selectedItem
+                      ? <><strong>«{selectedItem}»</strong> est sélectionné — clique sur une colonne pour le placer, ou clique à nouveau sur ce mot pour le désélectionner.</>
+                      : "Clique sur un mot pour le sélectionner, puis clique sur la colonne où il appartient."}
+                  </p>
+                )}
+              </div>
+
+              {/* Progress */}
+              {!submitted && (
+                <p className="text-xs text-muted-foreground text-right">{placedCount} / {items.length} mots placés</p>
+              )}
+
+              {/* Unplaced items pool */}
+              {!submitted && unplaced.length > 0 && (
+                <div className="border-2 border-dashed border-border rounded-lg p-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Mots à classer</p>
+                  <div className="flex flex-wrap gap-2">
+                    {unplaced.map((item) => (
+                      <button
+                        key={item}
+                        onClick={() => handleSortingItemClick(q.id, item)}
+                        disabled={submitted}
+                        className={`px-3 py-1.5 rounded-md border-2 text-sm font-medium transition-all hover-elevate ${
+                          selectedItem === item
+                            ? "bg-violet-200 dark:bg-violet-800 border-violet-500 text-violet-900 dark:text-violet-100 ring-2 ring-violet-400"
+                            : "bg-background border-border text-foreground"
+                        }`}
+                        data-testid={`button-sort-item-${item}`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Category columns */}
+              <div className={`grid gap-3 ${categories.length === 2 ? "grid-cols-2" : categories.length === 3 ? "grid-cols-3" : categories.length >= 4 ? "grid-cols-2" : "grid-cols-2"}`}>
+                {categories.map((cat, catIdx) => {
+                  const colors = CAT_COLORS[catIdx % CAT_COLORS.length];
+                  const itemsInCat = items.filter((item) => placements[item] === cat);
+                  const isClickableTarget = !submitted && !!selectedItem;
+
+                  return (
+                    <div key={cat} className="space-y-1">
+                      {/* Column header */}
+                      <button
+                        onClick={() => !submitted && handleSortingCategoryClick(q.id, cat)}
+                        disabled={submitted || !selectedItem}
+                        className={`w-full text-center px-3 py-2 rounded-md border-2 font-bold text-sm transition-all ${colors.header} ${isClickableTarget ? "hover-elevate cursor-pointer ring-2 ring-violet-400 ring-offset-1" : "cursor-default"}`}
+                        data-testid={`button-sort-category-${cat}`}
+                      >
+                        {cat}
+                        {isClickableTarget && <span className="ml-1 text-xs opacity-70">▼ Placer ici</span>}
+                      </button>
+
+                      {/* Items in this category */}
+                      <div className={`min-h-[60px] rounded-md border-2 p-2 space-y-1.5 transition-all ${colors.body} ${isClickableTarget ? "border-dashed" : "border-solid"}`}>
+                        {itemsInCat.length === 0 && !submitted && (
+                          <p className="text-xs text-muted-foreground text-center py-2 opacity-60">vide</p>
+                        )}
+                        {itemsInCat.map((item) => {
+                          const isCorrect = submitted ? (placements[item] === (() => { try { return JSON.parse(q.correctAnswer)[item]; } catch { return null; } })()) : null;
+                          return (
+                            <div key={item} className="flex items-center gap-1">
+                              {submitted ? (
+                                <span className={`flex-1 px-2 py-1 rounded border text-sm font-medium flex items-center gap-1 ${
+                                  isCorrect
+                                    ? "bg-green-100 dark:bg-green-900/30 border-green-400 text-green-800 dark:text-green-200"
+                                    : "bg-red-100 dark:bg-red-900/30 border-red-400 text-red-800 dark:text-red-200"
+                                }`}>
+                                  {isCorrect ? <CheckCircle className="w-3 h-3 shrink-0" /> : <XCircle className="w-3 h-3 shrink-0" />}
+                                  {item}
+                                </span>
+                              ) : (
+                                <button
+                                  onClick={() => handleSortingRemoveItem(q.id, item)}
+                                  className={`flex-1 px-2 py-1 rounded border text-sm font-medium text-left hover-elevate ${colors.chip}`}
+                                  data-testid={`button-sort-placed-${item}`}
+                                  title="Cliquer pour retirer"
+                                >
+                                  {item} <span className="text-xs opacity-60 ml-1">✕</span>
+                                </button>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* After submit: show correct categorization for wrong items */}
+              {submitted && (() => {
+                const correct: Record<string, string> = (() => { try { return JSON.parse(q.correctAnswer); } catch { return {}; } })();
+                const wrongItems = items.filter((item) => placements[item] !== correct[item]);
+                if (wrongItems.length === 0) return null;
+                return (
+                  <div className="bg-amber-50 dark:bg-amber-900/10 rounded-lg p-3 border border-amber-200 dark:border-amber-700">
+                    <p className="text-xs font-bold text-amber-800 dark:text-amber-200 mb-1">Corrections :</p>
+                    {wrongItems.map((item) => (
+                      <p key={item} className="text-xs text-foreground">
+                        <span className="font-medium">«{item}»</span> → <span className="text-green-700 dark:text-green-400 font-semibold">{correct[item]}</span>
+                        {placements[item] && <span className="text-muted-foreground"> (tu avais mis : {placements[item]})</span>}
+                      </p>
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+          );
+        })()}
 
         {/* Multiple choice */}
         {q.type === "multiple_choice" && (

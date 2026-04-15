@@ -137,6 +137,7 @@ export class MemStorage implements IStorage {
 
   constructor() {
     this.initializeSampleData();
+    this.seedSortingCourses();
     this.seedFptCourses();
   }
 
@@ -14046,6 +14047,219 @@ Sur de vieilles espérances.
           this.questions.set(id, { id, ...q, options: null } as Question);
         });
       }
+    }
+  }
+
+  // ===== CLASSER PAR CATÉGORIE (sorting) =====
+
+  // Cours 1 : Classer les classes de mots
+  private seedSortingCourses() {
+    // ─── Cours 1 : Classes de mots — Classer des mots dans la bonne colonne ───
+    const sort1CourseId = randomUUID();
+    this.courses.set(sort1CourseId, {
+      id: sort1CourseId,
+      title: "Classes de mots — Classer par catégorie",
+      description: "Classe chaque mot dans la bonne colonne : Nom, Verbe, Adjectif, Adverbe, Déterminant, Pronom, Préposition ou Conjonction. Exercices progressifs.",
+      category: "classes_de_mots",
+      content: "<h2>Classer les mots par catégorie</h2><p>Dans ces exercices, tu dois trier des mots dans les bonnes colonnes selon leur <strong>classe grammaticale</strong>. Pour chaque mot, demande-toi : est-ce un nom ? un verbe ? un adjectif ? un adverbe ? un déterminant ? un pronom ? une préposition ? une conjonction ?</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Rappel rapide :</strong><br>• <b>Nom</b> → désigne un être, un lieu, une chose, une idée<br>• <b>Verbe</b> → exprime une action ou un état, se conjugue<br>• <b>Adjectif</b> → qualifie ou décrit un nom<br>• <b>Adverbe</b> → modifie un verbe, un adjectif ou un autre adverbe ; invariable<br>• <b>Déterminant</b> → introduit un nom (le, un, mon, ce…)<br>• <b>Pronom</b> → remplace un nom ou un GN<br>• <b>Préposition</b> → relie deux éléments (à, de, pour, dans…)<br>• <b>Conjonction</b> → relie des mots ou des propositions (et, ou, mais, que…)</div>",
+      order: 73,
+    } as any);
+
+    // Exercice 1 : Nom / Verbe / Adjectif (niveau débutant)
+    const sort1Ex1Id = randomUUID();
+    this.exercises.set(sort1Ex1Id, { id: sort1Ex1Id, courseId: sort1CourseId, title: "Classer : Nom / Verbe / Adjectif", description: "Classe chaque mot dans la bonne colonne : Nom, Verbe ou Adjectif.", type: "sorting", order: 1 } as any);
+    {
+      const categories = ["Nom", "Verbe", "Adjectif"];
+      const items = ["maison", "courir", "beau", "chien", "chanter", "grand", "liberté", "être", "petit", "école", "sauter", "rouge"];
+      const correctAnswer: Record<string,string> = {
+        "maison": "Nom", "courir": "Verbe", "beau": "Adjectif",
+        "chien": "Nom", "chanter": "Verbe", "grand": "Adjectif",
+        "liberté": "Nom", "être": "Verbe", "petit": "Adjectif",
+        "école": "Nom", "sauter": "Verbe", "rouge": "Adjectif",
+      };
+      const qId = randomUUID();
+      this.questions.set(qId, { id: qId, exerciseId: sort1Ex1Id, title: "Classe chaque mot dans la bonne colonne", text: "Place chaque mot dans la bonne colonne : Nom, Verbe ou Adjectif.", type: "sorting", options: JSON.stringify({ categories, items }), correctAnswer: JSON.stringify(correctAnswer), order: 1 } as any);
+    }
+
+    // Exercice 2 : Nom / Verbe / Adjectif / Adverbe (niveau intermédiaire)
+    const sort1Ex2Id = randomUUID();
+    this.exercises.set(sort1Ex2Id, { id: sort1Ex2Id, courseId: sort1CourseId, title: "Classer : Nom / Verbe / Adjectif / Adverbe", description: "Ajoute les adverbes à la classification. Attention : les adverbes ne se conjuguent pas et sont invariables.", type: "sorting", order: 2 } as any);
+    {
+      const categories2 = ["Nom", "Verbe", "Adjectif", "Adverbe"];
+      const items2 = ["rapidement", "bonheur", "dormir", "gentil", "toujours", "parc", "manger", "heureux", "souvent", "soleil", "écrire", "fort"];
+      const correctAnswer2: Record<string,string> = {
+        "rapidement": "Adverbe", "bonheur": "Nom", "dormir": "Verbe", "gentil": "Adjectif",
+        "toujours": "Adverbe", "parc": "Nom", "manger": "Verbe", "heureux": "Adjectif",
+        "souvent": "Adverbe", "soleil": "Nom", "écrire": "Verbe", "fort": "Adverbe",
+      };
+      const qId2 = randomUUID();
+      this.questions.set(qId2, { id: qId2, exerciseId: sort1Ex2Id, title: "Classe chaque mot (Nom / Verbe / Adjectif / Adverbe)", text: "Place chaque mot dans la bonne colonne. Attention : « fort » est ici utilisé comme adverbe (courir fort).", type: "sorting", options: JSON.stringify({ categories: categories2, items: items2 }), correctAnswer: JSON.stringify(correctAnswer2), order: 1 } as any);
+    }
+
+    // Exercice 3 : Déterminant / Pronom / Préposition / Conjonction (niveau avancé)
+    const sort1Ex3Id = randomUUID();
+    this.exercises.set(sort1Ex3Id, { id: sort1Ex3Id, courseId: sort1CourseId, title: "Classer : Dét. / Pronom / Prép. / Conj.", description: "Classe les mots qui accompagnent ou relient les noms et les propositions.", type: "sorting", order: 3 } as any);
+    {
+      const categories3 = ["Déterminant", "Pronom", "Préposition", "Conjonction"];
+      const items3 = ["le", "elle", "avec", "mais", "un", "qui", "dans", "et", "ces", "on", "pour", "ou"];
+      const correctAnswer3: Record<string,string> = {
+        "le": "Déterminant", "elle": "Pronom", "avec": "Préposition", "mais": "Conjonction",
+        "un": "Déterminant", "qui": "Pronom", "dans": "Préposition", "et": "Conjonction",
+        "ces": "Déterminant", "on": "Pronom", "pour": "Préposition", "ou": "Conjonction",
+      };
+      const qId3 = randomUUID();
+      this.questions.set(qId3, { id: qId3, exerciseId: sort1Ex3Id, title: "Classe les déterminants, pronoms, prépositions et conjonctions", text: "Place chaque mot dans la bonne colonne : Déterminant, Pronom, Préposition ou Conjonction.", type: "sorting", options: JSON.stringify({ categories: categories3, items: items3 }), correctAnswer: JSON.stringify(correctAnswer3), order: 1 } as any);
+    }
+
+    // ─── Cours 2 : Groupes de mots — GN / GV / GPrép ───
+    const sort2CourseId = randomUUID();
+    this.courses.set(sort2CourseId, {
+      id: sort2CourseId,
+      title: "Groupes syntaxiques — Classer les groupes",
+      description: "Classe chaque groupe de mots dans la bonne colonne : GN (groupe du nom), GV (groupe du verbe) ou GPrép (groupe prépositionnel).",
+      category: "grammaire",
+      content: "<h2>Les groupes syntaxiques</h2><p>En nouvelle grammaire québécoise, la phrase est organisée en <strong>groupes syntaxiques</strong>. Chaque groupe a un mot-noyau.</p><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>GN — Groupe du Nom</strong> : noyau = nom<br>Exemples : <em>le chien</em>, <em>une belle maison verte</em>, <em>les élèves de la classe</em></div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px'><strong>GV — Groupe du Verbe</strong> : noyau = verbe conjugué<br>Exemples : <em>mange une pomme</em>, <em>est fatiguée</em>, <em>court très vite</em></div><div style='background:#fce7f3;padding:10px;margin:10px 0;border-radius:4px'><strong>GPrép — Groupe Prépositionnel</strong> : commence par une préposition<br>Exemples : <em>dans la maison</em>, <em>pour ses parents</em>, <em>à Montréal</em></div>",
+      order: 74,
+    } as any);
+
+    // Exercice 1 : GN / GV / GPrép
+    const sort2Ex1Id = randomUUID();
+    this.exercises.set(sort2Ex1Id, { id: sort2Ex1Id, courseId: sort2CourseId, title: "GN, GV ou GPrép ?", description: "Classe chaque groupe de mots dans la bonne colonne selon son type syntaxique.", type: "sorting", order: 1 } as any);
+    {
+      const catGrp = ["GN", "GV", "GPrép"];
+      const itemsGrp = [
+        "le grand chien",
+        "court très vite",
+        "dans la maison",
+        "une belle journée",
+        "mange une pomme",
+        "pour ses amis",
+        "les élèves attentifs",
+        "est arrivée hier",
+        "à Montréal",
+      ];
+      const correctGrp: Record<string,string> = {
+        "le grand chien": "GN",
+        "court très vite": "GV",
+        "dans la maison": "GPrép",
+        "une belle journée": "GN",
+        "mange une pomme": "GV",
+        "pour ses amis": "GPrép",
+        "les élèves attentifs": "GN",
+        "est arrivée hier": "GV",
+        "à Montréal": "GPrép",
+      };
+      const qIdGrp = randomUUID();
+      this.questions.set(qIdGrp, { id: qIdGrp, exerciseId: sort2Ex1Id, title: "Classe chaque groupe syntaxique", text: "Place chaque groupe de mots dans la bonne colonne : GN, GV ou GPrép.", type: "sorting", options: JSON.stringify({ categories: catGrp, items: itemsGrp }), correctAnswer: JSON.stringify(correctGrp), order: 1 } as any);
+    }
+
+    // ─── Cours 3 : Fonctions syntaxiques — Sujet / CD / CI / CP ───
+    const sort3CourseId = randomUUID();
+    this.courses.set(sort3CourseId, {
+      id: sort3CourseId,
+      title: "Fonctions syntaxiques — Classer par rôle",
+      description: "Classe chaque groupe souligné selon sa fonction dans la phrase : Sujet, Complément direct (CD), Complément indirect (CI) ou Complément de phrase (CP).",
+      category: "grammaire",
+      content: "<h2>Les fonctions syntaxiques</h2><p>Dans la phrase, chaque groupe joue un <strong>rôle (fonction)</strong>. En nouvelle grammaire québécoise :</p><div style='background:#fef9c3;padding:10px;margin:10px 0;border-radius:4px'><strong>Sujet</strong> : fait l'action ou est décrit par le verbe. Test : <em>Qui est-ce qui … ?</em><br>Exemple : <em><u>Le chat</u> dort.</em></div><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>CD — Complément direct</strong> : complète le verbe sans préposition. Test : <em>Qui ? Quoi ?</em><br>Exemple : <em>Elle mange <u>une pomme</u>.</em></div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px'><strong>CI — Complément indirect</strong> : complète le verbe avec préposition. Test : <em>À qui ? De quoi ?</em><br>Exemple : <em>Il parle <u>à sa mère</u>.</em></div><div style='background:#fce7f3;padding:10px;margin:10px 0;border-radius:4px'><strong>CP — Complément de phrase</strong> : peut être déplacé ou supprimé. Test : déplacer en début de phrase.<br>Exemple : <em>Elle chante <u>le soir</u>.</em> → <em><u>Le soir</u>, elle chante.</em></div>",
+      order: 75,
+    } as any);
+
+    // Exercice 1 : Identifier la fonction par le groupe souligné
+    const sort3Ex1Id = randomUUID();
+    this.exercises.set(sort3Ex1Id, { id: sort3Ex1Id, courseId: sort3CourseId, title: "Sujet, CD, CI ou CP ?", description: "Classe chaque groupe souligné selon sa fonction : Sujet, CD, CI ou CP.", type: "sorting", order: 1 } as any);
+    {
+      const catFonc = ["Sujet", "CD", "CI", "CP"];
+      const itemsFonc = [
+        "« Les élèves → Les élèves écoutent. »",
+        "« une pomme → Elle mange une pomme. »",
+        "« à sa mère → Il parle à sa mère. »",
+        "« le matin → Elle court le matin. »",
+        "« Mon chien → Mon chien aboie. »",
+        "« ce livre → Tu lis ce livre. »",
+        "« de musique → Elle parle de musique. »",
+        "« pendant l'été → Il travaille pendant l'été. »",
+      ];
+      const correctFonc: Record<string,string> = {
+        "« Les élèves → Les élèves écoutent. »":             "Sujet",
+        "« une pomme → Elle mange une pomme. »":              "CD",
+        "« à sa mère → Il parle à sa mère. »":               "CI",
+        "« le matin → Elle court le matin. »":               "CP",
+        "« Mon chien → Mon chien aboie. »":                  "Sujet",
+        "« ce livre → Tu lis ce livre. »":                   "CD",
+        "« de musique → Elle parle de musique. »":           "CI",
+        "« pendant l'été → Il travaille pendant l'été. »":   "CP",
+      };
+      const qIdFonc = randomUUID();
+      this.questions.set(qIdFonc, { id: qIdFonc, exerciseId: sort3Ex1Id, title: "Classe chaque groupe selon sa fonction", text: "Chaque entrée montre un groupe souligné et sa phrase. Classe ce groupe selon sa fonction syntaxique : Sujet, CD, CI ou CP.", type: "sorting", options: JSON.stringify({ categories: catFonc, items: itemsFonc }), correctAnswer: JSON.stringify(correctFonc), order: 1 } as any);
+    }
+
+    // ─── Cours 4 : Homophones — à/a, ou/où, son/sont, ces/ses/c'est ───
+    const sort4CourseId = randomUUID();
+    this.courses.set(sort4CourseId, {
+      id: sort4CourseId,
+      title: "Homophones — Classer les phrases",
+      description: "Classe chaque phrase dans la bonne colonne selon l'homophone utilisé. Distingue à/a, ou/où, son/sont, ces/ses/c'est.",
+      category: "orthographe",
+      content: "<h2>Les homophones grammaticaux</h2><p>Les <strong>homophones</strong> se prononcent de la même façon mais s'écrivent différemment selon leur rôle dans la phrase.</p><div style='background:#fef9c3;padding:10px;margin:10px 0;border-radius:4px'><strong>à / a</strong><br>• <em>à</em> = préposition (pas de sens en passant au passé) → Elle habite <em>à</em> Montréal.<br>• <em>a</em> = verbe avoir (peut être remplacé par «avait») → Elle <em>a</em> mangé.</div><div style='background:#dbeafe;padding:10px;margin:10px 0;border-radius:4px'><strong>ou / où</strong><br>• <em>ou</em> = conjonction (peut être remplacé par «ou bien») → Café <em>ou</em> thé ?<br>• <em>où</em> = pronom relatif / interrogatif (lieu) → <em>Où</em> vas-tu ?</div><div style='background:#f0fdf4;padding:10px;margin:10px 0;border-radius:4px'><strong>son / sont</strong><br>• <em>son</em> = déterminant possessif → Elle aime <em>son</em> chien.<br>• <em>sont</em> = verbe être (peuvent être remplacé) → Ils <em>sont</em> partis.</div>",
+      order: 76,
+    } as any);
+
+    // Exercice 1 : à vs a
+    const sort4Ex1Id = randomUUID();
+    this.exercises.set(sort4Ex1Id, { id: sort4Ex1Id, courseId: sort4CourseId, title: "à ou a ?", description: "Classe chaque phrase selon que l'homophone est « à » (préposition) ou « a » (verbe avoir).", type: "sorting", order: 1 } as any);
+    {
+      const catAa = ["à (préposition)", "a (verbe avoir)"];
+      const itemsAa = [
+        "Il habite à Québec.",
+        "Elle a mangé une pomme.",
+        "Je vais à l'école.",
+        "Il a acheté un livre.",
+        "Il pense à ses parents.",
+        "Le chien a couru toute la journée.",
+        "Elle tient à lui.",
+        "Marc a terminé son travail.",
+      ];
+      const correctAa: Record<string,string> = {
+        "Il habite à Québec.": "à (préposition)",
+        "Elle a mangé une pomme.": "a (verbe avoir)",
+        "Je vais à l'école.": "à (préposition)",
+        "Il a acheté un livre.": "a (verbe avoir)",
+        "Il pense à ses parents.": "à (préposition)",
+        "Le chien a couru toute la journée.": "a (verbe avoir)",
+        "Elle tient à lui.": "à (préposition)",
+        "Marc a terminé son travail.": "a (verbe avoir)",
+      };
+      const qIdAa = randomUUID();
+      this.questions.set(qIdAa, { id: qIdAa, exerciseId: sort4Ex1Id, title: "Classer à vs a", text: "Place chaque phrase dans la bonne colonne selon l'homophone utilisé : « à » (préposition) ou « a » (verbe avoir).", type: "sorting", options: JSON.stringify({ categories: catAa, items: itemsAa }), correctAnswer: JSON.stringify(correctAa), order: 1 } as any);
+    }
+
+    // Exercice 2 : son / sont
+    const sort4Ex2Id = randomUUID();
+    this.exercises.set(sort4Ex2Id, { id: sort4Ex2Id, courseId: sort4CourseId, title: "son ou sont ?", description: "Classe chaque phrase selon que l'homophone est « son » (déterminant possessif) ou « sont » (verbe être).", type: "sorting", order: 2 } as any);
+    {
+      const catSon = ["son (déterminant)", "sont (verbe être)"];
+      const itemsSon = [
+        "Elle aime son chat.",
+        "Ils sont partis tôt.",
+        "Il a perdu son manteau.",
+        "Les enfants sont fatigués.",
+        "Son idée est bonne.",
+        "Ses amis sont gentils.",
+        "Il lit son livre.",
+        "Les fleurs sont belles.",
+      ];
+      const correctSon: Record<string,string> = {
+        "Elle aime son chat.": "son (déterminant)",
+        "Ils sont partis tôt.": "sont (verbe être)",
+        "Il a perdu son manteau.": "son (déterminant)",
+        "Les enfants sont fatigués.": "sont (verbe être)",
+        "Son idée est bonne.": "son (déterminant)",
+        "Ses amis sont gentils.": "sont (verbe être)",
+        "Il lit son livre.": "son (déterminant)",
+        "Les fleurs sont belles.": "sont (verbe être)",
+      };
+      const qIdSon = randomUUID();
+      this.questions.set(qIdSon, { id: qIdSon, exerciseId: sort4Ex2Id, title: "Classer son vs sont", text: "Place chaque phrase dans la bonne colonne selon l'homophone utilisé : « son » (déterminant possessif) ou « sont » (verbe être).", type: "sorting", options: JSON.stringify({ categories: catSon, items: itemsSon }), correctAnswer: JSON.stringify(correctSon), order: 1 } as any);
     }
   }
 

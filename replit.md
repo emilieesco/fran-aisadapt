@@ -41,6 +41,7 @@ The application follows a client-server architecture.
 -   **Messagerie privée:** Tables `messages` + `notifications` en PostgreSQL; routes API complètes; interface chat élève↔enseignant; cloche de notifications dans les deux tableaux de bord; notification auto lors de correction de document.
 -   **Annotation d'exercices:** L'enseignant peut annoter chaque réponse d'élève (commentaire textuel + notation Correct/Incorrect pour texte libre) via un panneau latéral dans l'onglet Élèves. Les annotations sont visibles par l'élève dans l'onglet Progrès (section "Corrections de l'enseignant").
 -   **Groupes d'élèves:** Tables `student_groups` + `group_members` en PostgreSQL (Railway). Routes API CRUD complètes (8 endpoints). Interface enseignant : 5e onglet "Groupes" avec création/modification/suppression de groupes, sélecteur de couleur, gestion des membres (ajouter/retirer) via panneau interactif.
+-   **Exercices de classement (`sorting`):** Nouveau type d'exercice interactif — l'élève clique sur un mot pour le sélectionner puis clique sur la colonne cible pour le placer. Correction immédiate item par item après soumission. 4 cours ajoutés : classes de mots (3 niveaux), groupes syntaxiques GN/GV/GPrép, fonctions syntaxiques Sujet/CD/CI/CP, homophones à/a et son/sont.
 
 ## External Dependencies
 -   **PostgreSQL (via Railway):** Primary relational database for persistent user and progress data.
