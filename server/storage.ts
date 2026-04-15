@@ -10934,6 +10934,170 @@ Cependant, l'immigration soulève aussi des questions importantes sur le plan de
       this.questions.set(question.id, question);
     });
 
+    // ===== LACUNAIRES — L'IMPARFAIT =====
+    const lacImpCourseId = randomUUID();
+    this.courses.set(lacImpCourseId, {
+      id: lacImpCourseId,
+      title: "L'imparfait — Blancs à remplir",
+      description: "Complète les phrases en conjuguant le verbe à l'imparfait de l'indicatif. L'imparfait exprime une habitude passée ou une description dans le passé.",
+      category: "conjugaison",
+      content: "Exercices lacunaires — imparfait de l'indicatif : habitudes passées, descriptions, actions en cours dans le passé.",
+      order: 201,
+    } as any);
+
+    const lacImp1ExId = randomUUID();
+    this.exercises.set(lacImp1ExId, { id: lacImp1ExId, courseId: lacImpCourseId, title: "Verbes réguliers à l'imparfait", description: "Conjugue les verbes réguliers (-ER, -IR, -RE) à l'imparfait selon le sujet indiqué.", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "Quand il ___ enfant, il adorait grimper aux arbres. (être)", correct: "était", hint: "être (il) → imparfait" },
+      { text: "Nous ___ au parc tous les étés quand nous étions petits. (aller)", correct: "allions", hint: "aller (nous) → imparfait" },
+      { text: "Elle ___ toujours ses devoirs avant de regarder la télé. (finir)", correct: "finissait", hint: "finir (elle) → imparfait" },
+      { text: "Vous ___ souvent du pain frais chez le boulanger du quartier. (acheter)", correct: "achetiez", hint: "acheter (vous) → imparfait" },
+      { text: "Les enfants ___ dans la cour à la récréation chaque jour. (jouer)", correct: "jouaient", hint: "jouer (ils) → imparfait" },
+      { text: "Tu ___ très bien la guitare quand tu avais dix ans. (jouer)", correct: "jouais", hint: "jouer (tu) → imparfait" },
+      { text: "Je ___ toujours les fenêtres avant de dormir en été. (ouvrir)", correct: "ouvrais", hint: "ouvrir (je) → imparfait" },
+      { text: "Mon grand-père ___ des histoires incroyables de sa jeunesse. (raconter)", correct: "racontait", hint: "raconter (il) → imparfait" },
+      { text: "Nous ___ de longs repas en famille le dimanche midi. (prendre)", correct: "prenions", hint: "prendre (nous) → imparfait" },
+      { text: "Les élèves ___ en silence pendant les examens. (travailler)", correct: "travaillaient", hint: "travailler (ils) → imparfait" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacImp1ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    const lacImp2ExId = randomUUID();
+    this.exercises.set(lacImp2ExId, { id: lacImp2ExId, courseId: lacImpCourseId, title: "Verbes irréguliers à l'imparfait", description: "Conjugue avoir, être, faire, aller, vouloir, pouvoir, venir et savoir à l'imparfait.", type: "fill_blank", order: 2 } as any);
+    [
+      { text: "Il ___ très chaud dans la salle de classe cet après-midi-là. (faire)", correct: "faisait", hint: "faire (il) → imparfait" },
+      { text: "J'___ de l'aide pour terminer ce projet compliqué. (avoir)", correct: "avais", hint: "avoir (je) → imparfait" },
+      { text: "Nous ___ toujours en retard le lundi matin. (être)", correct: "étions", hint: "être (nous) → imparfait" },
+      { text: "Tu ne ___ pas pourquoi elle pleurait. (savoir)", correct: "savais", hint: "savoir (tu) → imparfait" },
+      { text: "Ils ___ jouer au soccer mais le terrain était mouillé. (vouloir)", correct: "voulaient", hint: "vouloir (ils) → imparfait" },
+      { text: "Vous ___ souvent chez vos cousins pendant les vacances. (aller)", correct: "alliez", hint: "aller (vous) → imparfait" },
+      { text: "Elle ne ___ pas dormir à cause du bruit dans la rue. (pouvoir)", correct: "pouvait", hint: "pouvoir (elle) → imparfait" },
+      { text: "Mes parents ___ un café chaud chaque matin avant le travail. (faire)", correct: "faisaient", hint: "faire (ils) → imparfait" },
+      { text: "Je ___ souvent les rendre visite le week-end. (venir)", correct: "venais", hint: "venir (je) → imparfait" },
+      { text: "Tu ___ toujours de bonnes idées pour animer les soirées. (avoir)", correct: "avais", hint: "avoir (tu) → imparfait" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacImp2ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    // ===== LACUNAIRES — LE PASSÉ COMPOSÉ =====
+    const lacPCCourseId = randomUUID();
+    this.courses.set(lacPCCourseId, {
+      id: lacPCCourseId,
+      title: "Le passé composé — Blancs à remplir",
+      description: "Complète les phrases en conjuguant le verbe au passé composé. Le passé composé exprime une action passée et terminée.",
+      category: "conjugaison",
+      content: "Exercices lacunaires — passé composé : auxiliaire avoir ou être + participe passé, actions passées complètement terminées.",
+      order: 202,
+    } as any);
+
+    const lacPC1ExId = randomUUID();
+    this.exercises.set(lacPC1ExId, { id: lacPC1ExId, courseId: lacPCCourseId, title: "Passé composé avec avoir", description: "Conjugue les verbes au passé composé avec l'auxiliaire avoir. Écris la forme complète (ex. : j'ai mangé).", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "Hier soir, nous ___ une excellente pizza maison. (manger)", correct: "avons mangé", hint: "avoir (nous) + participe de manger" },
+      { text: "Elle ___ la nouvelle en lisant le journal ce matin. (apprendre)", correct: "a appris", hint: "avoir (elle) + participe d'apprendre" },
+      { text: "Tu ___ beaucoup de courage pour monter sur scène. (montrer)", correct: "as montré", hint: "avoir (tu) + participe de montrer" },
+      { text: "Ils ___ toute la nuit pour préparer la présentation. (travailler)", correct: "ont travaillé", hint: "avoir (ils) + participe de travailler" },
+      { text: "J'___ mes clés dans le fond de mon sac finalement. (trouver)", correct: "ai trouvé", hint: "avoir (je) + participe de trouver" },
+      { text: "Vous ___ le film recommandé par votre professeur? (voir)", correct: "avez vu", hint: "avoir (vous) + participe de voir" },
+      { text: "Il ___ un message important sur son téléphone. (recevoir)", correct: "a reçu", hint: "avoir (il) + participe de recevoir" },
+      { text: "Nous ___ les exercices en trente minutes. (finir)", correct: "avons fini", hint: "avoir (nous) + participe de finir" },
+      { text: "Les élèves ___ leurs réponses au tableau. (écrire)", correct: "ont écrit", hint: "avoir (ils) + participe d'écrire" },
+      { text: "Tu ___ trop vite et tu n'as pas compris la question. (lire)", correct: "as lu", hint: "avoir (tu) + participe de lire" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacPC1ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    const lacPC2ExId = randomUUID();
+    this.exercises.set(lacPC2ExId, { id: lacPC2ExId, courseId: lacPCCourseId, title: "Passé composé avec être", description: "Conjugue les verbes au passé composé avec l'auxiliaire être. N'oublie pas l'accord du participe passé avec le sujet.", type: "fill_blank", order: 2 } as any);
+    [
+      { text: "Léa ___ à Montréal il y a trois ans. (arriver)", correct: "est arrivée", hint: "être (elle) + participe d'arriver, accordé féminin singulier" },
+      { text: "Mes parents ___ en voyage le mois dernier. (partir)", correct: "sont partis", hint: "être (ils) + participe de partir, accordé masculin pluriel" },
+      { text: "Je ___ au cinéma avec mes amis samedi soir. (aller)", correct: "suis allé|suis allée", hint: "être (je) + participe d'aller (accordé selon le genre)" },
+      { text: "Les enfants ___ à la maison avant la tempête. (rentrer)", correct: "sont rentrés", hint: "être (ils) + participe de rentrer, accordé masculin pluriel" },
+      { text: "Elle ___ très tôt pour attraper le premier bus. (se lever)", correct: "s'est levée", hint: "être (elle) + participe de se lever, accordé féminin singulier" },
+      { text: "Nous ___ en ville pour faire des courses. (descendre)", correct: "sommes descendus|sommes descendues", hint: "être (nous) + participe de descendre" },
+      { text: "Tu ___ quand j'ai frappé à la porte? (sortir)", correct: "étais sorti|étais sortie|es sorti|es sortie", hint: "être (tu) + participe de sortir" },
+      { text: "Il ___ dans l'escalier et s'est blessé au genou. (tomber)", correct: "est tombé", hint: "être (il) + participe de tomber, accordé masculin singulier" },
+      { text: "Vous ___ très poliment quand on vous a accueillis. (se comporter)", correct: "vous êtes comportés|vous êtes comportées", hint: "être (vous) + participe de se comporter" },
+      { text: "Elles ___ en France pour les vacances de mars. (aller)", correct: "sont allées", hint: "être (elles) + participe d'aller, accordé féminin pluriel" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacPC2ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    // ===== LACUNAIRES — LE FUTUR =====
+    const lacFutCourseId = randomUUID();
+    this.courses.set(lacFutCourseId, {
+      id: lacFutCourseId,
+      title: "Le futur — Blancs à remplir",
+      description: "Complète les phrases en conjuguant le verbe au futur simple ou au futur proche selon le contexte.",
+      category: "conjugaison",
+      content: "Exercices lacunaires — futur simple et futur proche : actions qui auront lieu dans l'avenir.",
+      order: 203,
+    } as any);
+
+    const lacFut1ExId = randomUUID();
+    this.exercises.set(lacFut1ExId, { id: lacFut1ExId, courseId: lacFutCourseId, title: "Futur simple", description: "Conjugue les verbes au futur simple. Le futur simple exprime une certitude ou une promesse dans l'avenir.", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "L'année prochaine, nous ___ dans un appartement plus grand. (déménager)", correct: "déménagerons", hint: "déménager (nous) → futur simple" },
+      { text: "Tu ___ la réponse quand tu ___ le chapitre en entier. (savoir / lire)", correct: "sauras", hint: "savoir (tu) → futur simple" },
+      { text: "Elles ___ le premier prix si elles s'entraînent assez. (gagner)", correct: "gagneront", hint: "gagner (elles) → futur simple" },
+      { text: "Demain matin, il ___ beau et ensoleillé selon la météo. (faire)", correct: "fera", hint: "faire (il) → futur simple irrégulier" },
+      { text: "Vous ___ en mesure de comprendre ce texte après ce cours. (être)", correct: "serez", hint: "être (vous) → futur simple irrégulier" },
+      { text: "Je t'___ dès que j'aurai de ses nouvelles. (appeler)", correct: "appellerai", hint: "appeler (je) → futur simple (double l)" },
+      { text: "Ils ___ au Québec pour la première fois cet été. (venir)", correct: "viendront", hint: "venir (ils) → futur simple irrégulier" },
+      { text: "Elle ___ ses études en médecine dans cinq ans. (finir)", correct: "finira", hint: "finir (elle) → futur simple" },
+      { text: "Nous ___ toujours de bons souvenirs de ce voyage. (avoir)", correct: "aurons", hint: "avoir (nous) → futur simple irrégulier" },
+      { text: "Tu ne ___ pas le regretter si tu fais des efforts maintenant. (pouvoir)", correct: "pourras", hint: "pouvoir (tu) → futur simple irrégulier" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacFut1ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    const lacFut2ExId = randomUUID();
+    this.exercises.set(lacFut2ExId, { id: lacFut2ExId, courseId: lacFutCourseId, title: "Futur proche", description: "Conjugue les verbes au futur proche (aller + infinitif). Le futur proche exprime une action très prochaine ou planifiée.", type: "fill_blank", order: 2 } as any);
+    [
+      { text: "Dépêche-toi ! Le film ___ commencer dans cinq minutes. (aller)", correct: "va", hint: "futur proche : aller (il) + infinitif → va commencer" },
+      { text: "Nous ___ visiter le musée ce week-end. (aller)", correct: "allons", hint: "futur proche : aller (nous) + infinitif → allons visiter" },
+      { text: "Je ___ préparer le souper pendant que tu mets la table. (aller)", correct: "vais", hint: "futur proche : aller (je) + infinitif → vais préparer" },
+      { text: "Tu ___ avoir besoin d'un manteau, il fait très froid ce soir. (aller)", correct: "vas", hint: "futur proche : aller (tu) + infinitif → vas avoir" },
+      { text: "Elles ___ présenter leur projet devant toute la classe lundi. (aller)", correct: "vont", hint: "futur proche : aller (elles) + infinitif → vont présenter" },
+      { text: "Il ___ pleuvoir cet après-midi selon les prévisions. (aller)", correct: "va", hint: "futur proche : aller (il) + infinitif → va pleuvoir" },
+      { text: "Vous ___ adorer ce restaurant, la nourriture est excellente ! (aller)", correct: "allez", hint: "futur proche : aller (vous) + infinitif → allez adorer" },
+      { text: "Je ___ téléphoner à ma mère dès que je rentre à la maison. (aller)", correct: "vais", hint: "futur proche : aller (je) + infinitif → vais téléphoner" },
+      { text: "Les élèves ___ remettre leur travail avant vendredi. (aller)", correct: "vont", hint: "futur proche : aller (ils) + infinitif → vont remettre" },
+      { text: "Nous ___ manquer le bus si on ne part pas maintenant. (aller)", correct: "allons", hint: "futur proche : aller (nous) + infinitif → allons manquer" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacFut2ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    // ===== LACUNAIRES — LE CONDITIONNEL PRÉSENT =====
+    const lacCondCourseId = randomUUID();
+    this.courses.set(lacCondCourseId, {
+      id: lacCondCourseId,
+      title: "Le conditionnel présent — Blancs à remplir",
+      description: "Complète les phrases en conjuguant le verbe au conditionnel présent. Le conditionnel exprime une hypothèse, une politesse ou un souhait.",
+      category: "conjugaison",
+      content: "Exercices lacunaires — conditionnel présent : hypothèses (si…), politesse, souhait, conseil.",
+      order: 204,
+    } as any);
+
+    const lacCond1ExId = randomUUID();
+    this.exercises.set(lacCond1ExId, { id: lacCond1ExId, courseId: lacCondCourseId, title: "Conditionnel — politesse et souhait", description: "Conjugue les verbes au conditionnel présent pour exprimer une demande polie, un souhait ou un conseil.", type: "fill_blank", order: 1 } as any);
+    [
+      { text: "___ -vous me dire où se trouve la bibliothèque, s'il vous plaît ? (pouvoir)", correct: "Pourriez", hint: "pouvoir (vous) → conditionnel présent, forme interrogative" },
+      { text: "J'___ voyager au Japon un jour. C'est mon grand rêve. (aimer)", correct: "aimerais", hint: "aimer (je) → conditionnel présent" },
+      { text: "Tu ___ faire moins de bruit, les voisins dorment. (pouvoir)", correct: "pourrais", hint: "pouvoir (tu) → conditionnel présent" },
+      { text: "Il ___ mieux étudier s'il voulait réussir ses examens. (devoir)", correct: "devrait", hint: "devoir (il) → conditionnel présent" },
+      { text: "Nous ___ une table pour quatre personnes, s'il vous plaît. (vouloir)", correct: "voudrions", hint: "vouloir (nous) → conditionnel présent" },
+      { text: "Elle ___ partir plus tôt pour éviter les embouteillages. (aimer)", correct: "aimerait", hint: "aimer (elle) → conditionnel présent" },
+      { text: "Vous ___ de l'aide pour porter ces boîtes ? (avoir)", correct: "auriez", hint: "avoir (vous) → conditionnel présent" },
+      { text: "Ce ___ une bonne idée de préparer les sandwichs à l'avance. (être)", correct: "serait", hint: "être (ce) → conditionnel présent" },
+      { text: "Ils ___ bien un café chaud par ce temps froid. (prendre)", correct: "prendraient", hint: "prendre (ils) → conditionnel présent" },
+      { text: "Tu ___ penser à apporter ton passeport demain matin. (devoir)", correct: "devrais", hint: "devoir (tu) → conditionnel présent" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacCond1ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    const lacCond2ExId = randomUUID();
+    this.exercises.set(lacCond2ExId, { id: lacCond2ExId, courseId: lacCondCourseId, title: "Conditionnel — structures Si + imparfait", description: "Complète les phrases avec le conditionnel présent dans les structures hypothétiques (si + imparfait, + conditionnel).", type: "fill_blank", order: 2 } as any);
+    [
+      { text: "Si j'avais plus de temps, je ___ davantage de sport. (faire)", correct: "ferais", hint: "faire (je) → conditionnel présent" },
+      { text: "Si elle habitait plus près, elle ___ te rendre visite chaque semaine. (pouvoir)", correct: "pourrait", hint: "pouvoir (elle) → conditionnel présent" },
+      { text: "Si nous avions un jardin, nous ___ des légumes. (planter)", correct: "planterions", hint: "planter (nous) → conditionnel présent" },
+      { text: "Si tu te couchais plus tôt, tu ne ___ pas si fatigué. (être)", correct: "serais", hint: "être (tu) → conditionnel présent" },
+      { text: "S'ils étudiaient sérieusement, ils ___ leurs examens. (réussir)", correct: "réussiraient", hint: "réussir (ils) → conditionnel présent" },
+      { text: "Si vous parliez plus lentement, je vous ___ mieux. (comprendre)", correct: "comprendrais", hint: "comprendre (je) → conditionnel présent" },
+      { text: "Si le ciel était dégagé, on ___ les étoiles ce soir. (voir)", correct: "verrait|verrait", hint: "voir (on) → conditionnel présent" },
+      { text: "Si j'avais de l'argent, j'___ un voyage en Europe. (organiser)", correct: "organiserais", hint: "organiser (je) → conditionnel présent" },
+      { text: "Si elle savait cuisiner, elle ___ le repas elle-même. (préparer)", correct: "préparerait", hint: "préparer (elle) → conditionnel présent" },
+      { text: "Si vous vouliez apprendre le français rapidement, vous ___ chaque jour. (pratiquer)", correct: "pratiquerions|pratiqueraient", hint: "pratiquer (vous) → conditionnel présent" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: lacCond2ExId, title: `Indice : ${q.hint}`, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
     // ===== LACUNAIRES — HOMOPHONES COURANTS =====
     const lacunairesHomophonesCourseId = randomUUID();
     const lacunairesHomophonesCourse: Course = {
