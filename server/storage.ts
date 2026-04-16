@@ -138,6 +138,7 @@ export class MemStorage implements IStorage {
   constructor() {
     this.initializeSampleData();
     this.seedSortingCourses();
+    this.seedTrueFalseCourses();
     this.seedFptCourses();
   }
 
@@ -14261,6 +14262,124 @@ Sur de vieilles espérances.
       const qIdSon = randomUUID();
       this.questions.set(qIdSon, { id: qIdSon, exerciseId: sort4Ex2Id, title: "Classer son vs sont", text: "Place chaque phrase dans la bonne colonne selon l'homophone utilisé : « son » (déterminant possessif) ou « sont » (verbe être).", type: "sorting", options: JSON.stringify({ categories: catSon, items: itemsSon }), correctAnswer: JSON.stringify(correctSon), order: 1 } as any);
     }
+  }
+
+  // ===== VRAI OU FAUX (true_false) =====
+
+  private seedTrueFalseCourses() {
+    const tfOpts = JSON.stringify(["Vrai", "Faux"]);
+
+    // ─── Cours 1 : Classes de mots — Vrai ou Faux ───
+    const tf1Id = randomUUID();
+    this.courses.set(tf1Id, {
+      id: tf1Id,
+      title: "Classes de mots — Vrai ou Faux",
+      description: "Lis chaque affirmation sur les classes grammaticales et détermine si elle est vraie ou fausse. Une explication est fournie après chaque réponse.",
+      category: "classes_de_mots",
+      content: "<h2>Vrai ou Faux — Classes de mots</h2><p>Certaines affirmations sur les classes de mots sont vraies, d'autres contiennent une erreur fréquente. Lis bien chaque affirmation et choisis <strong>Vrai</strong> ou <strong>Faux</strong>.</p><div style='background:#fef9c3;border-left:4px solid #eab308;padding:12px;margin:15px 0;border-radius:4px'><strong>Rappel :</strong> La classe d'un mot (nom, verbe, adjectif…) est <em>stable</em> — elle ne change pas selon la phrase. La <em>fonction</em> (sujet, CD, CI…) peut varier selon la phrase.</div>",
+      order: 77,
+    } as any);
+
+    const tf1ExId = randomUUID();
+    this.exercises.set(tf1ExId, { id: tf1ExId, courseId: tf1Id, title: "Classes de mots — Affirmations vraies ou fausses", description: "Détermine si chaque affirmation grammaticale est vraie ou fausse.", type: "true_false", order: 1 } as any);
+    const tf1Qs = [
+      { text: "Un adverbe est invariable : il ne s'accorde ni en genre ni en nombre.", correct: "Vrai", explication: "C'est exact. Les adverbes (vite, souvent, très, jamais…) sont toujours invariables — on ne peut pas écrire « vites » ou « souventES »." },
+      { text: "Le mot « le » est toujours un article défini.", correct: "Faux", explication: "Non : « le » peut aussi être un pronom personnel (ex. : « Je le vois »). La classe d'un mot dépend donc parfois du contexte." },
+      { text: "Un nom propre commence toujours par une majuscule.", correct: "Vrai", explication: "C'est la règle : Montréal, Marie, France, Toyota… Les noms propres désignent un individu unique et prennent la majuscule." },
+      { text: "Un verbe peut être utilisé comme sujet dans une phrase.", correct: "Vrai", explication: "Oui : un verbe à l'infinitif peut occuper la fonction de sujet. Ex. : « Manger des légumes est important. » — le sujet est ici le GVerbe « manger des légumes »." },
+      { text: "La conjonction « mais » peut être remplacée par la virgule dans tous les cas.", correct: "Faux", explication: "Faux. « Mais » est une conjonction de coordination qui exprime une opposition ; la virgule seule ne peut pas la remplacer — elle remplirait un rôle différent." },
+      { text: "Les prépositions les plus courantes en français sont : à, de, par, pour, en, dans, sur, sous, avec.", correct: "Vrai", explication: "Oui, ces prépositions sont les plus fréquentes. Elles sont toutes invariables et servent à relier des groupes de mots." },
+      { text: "Un pronom relatif remplace toujours un nom qui vient juste avant lui dans la phrase.", correct: "Vrai", explication: "C'est sa définition : le pronom relatif reprend l'antécédent (nom ou GN) qui précède la subordonnée relative. Ex. : « le chien qui aboie » → « qui » reprend « chien »." },
+      { text: "Le mot « fort » est toujours un adjectif.", correct: "Faux", explication: "Non : « fort » peut être un adjectif (« un homme fort ») ou un adverbe (« Elle court fort »). Sa classe dépend de son usage dans la phrase." },
+    ];
+    tf1Qs.forEach((q, i) => {
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: tf1ExId, title: q.explication, text: q.text, type: "true_false", options: tfOpts, correctAnswer: q.correct, order: i + 1 } as any);
+    });
+
+    // ─── Cours 2 : Conjugaison — Vrai ou Faux ───
+    const tf2Id = randomUUID();
+    this.courses.set(tf2Id, {
+      id: tf2Id,
+      title: "Conjugaison — Vrai ou Faux",
+      description: "Affirmations sur les règles de conjugaison : accord du participe passé, temps verbaux, auxiliaires. Vrai ou Faux avec explication.",
+      category: "conjugaison",
+      content: "<h2>Vrai ou Faux — Conjugaison</h2><p>Ces affirmations portent sur les règles de conjugaison les plus importantes et les plus fréquemment mal comprises. Lis chaque affirmation et choisis Vrai ou Faux.</p>",
+      order: 78,
+    } as any);
+
+    const tf2ExId = randomUUID();
+    this.exercises.set(tf2ExId, { id: tf2ExId, courseId: tf2Id, title: "Conjugaison — Affirmations vraies ou fausses", description: "Détermine si chaque règle de conjugaison est vraie ou fausse.", type: "true_false", order: 1 } as any);
+    const tf2Qs = [
+      { text: "Avec l'auxiliaire « avoir », le participe passé s'accorde toujours avec le sujet.", correct: "Faux", explication: "Faux. Avec « avoir », le participe passé s'accorde avec le complément direct (CD) seulement si celui-ci est placé AVANT le verbe. Ex. : « Les fleurs qu'il a cueillies » (CD « fleurs » avant le verbe → accord)." },
+      { text: "Avec l'auxiliaire « être », le participe passé s'accorde en genre et en nombre avec le sujet.", correct: "Vrai", explication: "Oui. Avec « être », le participe passé s'accorde avec le sujet. Ex. : « Elle est arrivée. » / « Ils sont partis. »" },
+      { text: "Au conditionnel présent, tous les verbes du 1er groupe se terminent par -rait à la 3e personne du singulier.", correct: "Vrai", explication: "Exact. La terminaison du conditionnel présent à la 3e personne du singulier est -rait pour tous les verbes réguliers : il mangerait, elle parlerait, il finirait." },
+      { text: "Le verbe « aller » se conjugue avec l'auxiliaire « avoir » au passé composé.", correct: "Faux", explication: "Non. « Aller » se conjugue avec « être » au passé composé : « Elle est allée au marché. » Les verbes de mouvement ou d'état se conjuguent généralement avec « être »." },
+      { text: "À l'imparfait, tous les verbes ont la terminaison -ais, -ais, -ait, -ions, -iez, -aient.", correct: "Vrai", explication: "Oui, les terminaisons de l'imparfait sont les mêmes pour tous les verbes, sans exception. C'est l'un des temps les plus réguliers du français." },
+      { text: "Le futur simple et le futur proche expriment exactement la même nuance de temps.", correct: "Faux", explication: "Non. Le futur proche (aller + infinitif) indique une action imminente ou certaine (« Il va partir dans 5 minutes »). Le futur simple peut désigner un moment plus éloigné ou une vérité générale (« Il partira demain »)." },
+      { text: "Au présent de l'indicatif, les verbes en -er du 1er groupe se terminent par -e, -es, -e, -ons, -ez, -ent.", correct: "Vrai", explication: "Oui, c'est la conjugaison régulière des verbes en -er : je parle, tu parles, il parle, nous parlons, vous parlez, ils parlent." },
+      { text: "Les verbes pronominaux se conjuguent toujours avec l'auxiliaire « avoir » au passé composé.", correct: "Faux", explication: "Non. Les verbes pronominaux se conjuguent avec « être » au passé composé : « Elle s'est levée tôt. » Le participe s'accorde généralement avec le sujet." },
+    ];
+    tf2Qs.forEach((q, i) => {
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: tf2ExId, title: q.explication, text: q.text, type: "true_false", options: tfOpts, correctAnswer: q.correct, order: i + 1 } as any);
+    });
+
+    // ─── Cours 3 : Orthographe et accord — Vrai ou Faux ───
+    const tf3Id = randomUUID();
+    this.courses.set(tf3Id, {
+      id: tf3Id,
+      title: "Orthographe et accord — Vrai ou Faux",
+      description: "Affirmations sur les règles d'accord (adjectif, nom, participe passé), les homophones et l'orthographe grammaticale. Vrai ou Faux avec explication.",
+      category: "orthographe",
+      content: "<h2>Vrai ou Faux — Orthographe et accord</h2><p>Ces affirmations portent sur les règles d'accord et d'orthographe grammaticale les plus importantes. Certaines sont des idées reçues — lis bien avant de choisir !</p>",
+      order: 79,
+    } as any);
+
+    const tf3ExId = randomUUID();
+    this.exercises.set(tf3ExId, { id: tf3ExId, courseId: tf3Id, title: "Orthographe — Affirmations vraies ou fausses", description: "Détermine si chaque règle d'orthographe ou d'accord est vraie ou fausse.", type: "true_false", order: 1 } as any);
+    const tf3Qs = [
+      { text: "L'adjectif qualificatif s'accorde en genre et en nombre avec le nom qu'il accompagne.", correct: "Vrai", explication: "Oui. C'est la règle de base : « une belle maison » (fém. sing.), « de belles maisons » (fém. plur.), « un beau jardin » (masc. sing.)." },
+      { text: "On écrit « tout » au féminin « toute » seulement devant un adjectif.", correct: "Faux", explication: "Non. « Tout » s'accorde en genre et en nombre quand il est déterminant (« toute la classe ») ou pronom (« toutes sont arrivées »). Devant un adverbe, il peut rester invariable : « Elle est tout étonnée » (mais il y a des exceptions avec les adjectifs féminins qui commencent par une consonne)." },
+      { text: "Le mot « leur » est invariable quand il est pronom personnel (ex. : « Je leur parle »).", correct: "Vrai", explication: "Exact. Le pronom personnel « leur » (= à eux, à elles) ne prend jamais de -s. Ex. : « Je leur donne un cadeau. » En revanche, le déterminant possessif « leur » s'accorde : « leurs enfants »." },
+      { text: "Dans « c'est », le mot « c' » est un pronom démonstratif.", correct: "Vrai", explication: "Oui. « C' » est la forme élidée de « ce », pronom démonstratif neutre. On peut le remplacer par « cela est » : « C'est beau » = « Cela est beau »." },
+      { text: "On met toujours une majuscule au mot qui suit un point d'interrogation.", correct: "Faux", explication: "Pas toujours. Si la question est intégrée dans une phrase et n'est pas en fin de phrase principale, on peut continuer sans majuscule. Ex. : « La question est : pourquoi fait-il cela ? »" },
+      { text: "L'adjectif « demi » est invariable quand il est placé devant le nom (ex. : une demi-heure).", correct: "Vrai", explication: "Oui. Devant un nom avec un trait d'union, « demi » est invariable : une demi-heure, un demi-litre. Après le nom, il s'accorde en genre : une heure et demie, un kilo et demi." },
+      { text: "Les mots « quelque » et « quel que » s'écrivent toujours de la même façon.", correct: "Faux", explication: "Non. « Quelque » (un seul mot) est un déterminant indéfini (« quelque chose », « quelques jours »). « Quel que » (deux mots) est suivi du verbe être au subjonctif : « Quel que soit ton choix… »" },
+      { text: "Un nom au pluriel se termine toujours par la lettre s.", correct: "Faux", explication: "Non. Certains noms au pluriel se terminent par -x (des yeux, des voix, des chevaux) et d'autres ne changent pas du tout (des nez, des voix). La règle générale est -s, mais il y a des exceptions." },
+    ];
+    tf3Qs.forEach((q, i) => {
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: tf3ExId, title: q.explication, text: q.text, type: "true_false", options: tfOpts, correctAnswer: q.correct, order: i + 1 } as any);
+    });
+
+    // ─── Cours 4 : Ponctuation et syntaxe — Vrai ou Faux ───
+    const tf4Id = randomUUID();
+    this.courses.set(tf4Id, {
+      id: tf4Id,
+      title: "Ponctuation et syntaxe — Vrai ou Faux",
+      description: "Affirmations sur l'usage de la ponctuation, la structure de la phrase et les règles syntaxiques. Vrai ou Faux avec explication.",
+      category: "ponctuation",
+      content: "<h2>Vrai ou Faux — Ponctuation et syntaxe</h2><p>Ces affirmations portent sur les règles de ponctuation et de construction des phrases en français. Certaines sont des idées reçues très fréquentes !</p>",
+      order: 80,
+    } as any);
+
+    const tf4ExId = randomUUID();
+    this.exercises.set(tf4ExId, { id: tf4ExId, courseId: tf4Id, title: "Ponctuation — Affirmations vraies ou fausses", description: "Détermine si chaque affirmation sur la ponctuation ou la syntaxe est vraie ou fausse.", type: "true_false", order: 1 } as any);
+    const tf4Qs = [
+      { text: "On met une virgule obligatoirement avant « et » dans une liste.", correct: "Faux", explication: "Non. Dans une liste, on ne met généralement PAS de virgule avant « et » en français : « J'ai acheté du pain, du lait et des œufs. » La virgule avant « et » est une pratique anglaise (Oxford comma), peu utilisée en français." },
+      { text: "Le point-virgule peut remplacer un point pour relier deux phrases qui ont un lien étroit de sens.", correct: "Vrai", explication: "Oui. Le point-virgule relie deux propositions indépendantes mais liées logiquement, sans utiliser une conjonction. Ex. : « Elle aimait la pluie ; lui préférait le soleil. »" },
+      { text: "Les guillemets français sont \u00AB\u2026\u00BB (chevrons) et non des guillemets anglais \u201C\u2026\u201D.", correct: "Vrai", explication: "Oui. En français québécois et français, les guillemets officiels sont les guillemets en chevrons \u00AB\u2026\u00BB. Les guillemets anglais \u201C\u2026\u201D sont utilisés pour des citations \u00E0 l'int\u00E9rieur d'une citation d\u00E9j\u00E0 guillemett\u00E9e." },
+      { text: "Une phrase peut être correcte en français sans avoir de verbe conjugué.", correct: "Vrai", explication: "Oui. Ce sont les phrases nominales, fréquentes dans les titres, les slogans, les exclamations : « Magnifique paysage ! » / « Entrée interdite. » Elles sont grammaticalement correctes même sans verbe." },
+      { text: "Le point d'exclamation et le point d'interrogation remplacent le point final à la fin d'une phrase.", correct: "Vrai", explication: "Oui. On n'ajoute jamais de point supplémentaire après ! ou ? à la fin d'une phrase. Ces signes incluent déjà la fonction du point : « Où vas-tu ? » et non « Où vas-tu ?. »" },
+      { text: "On peut toujours commencer une phrase avec « car » ou « parce que ».", correct: "Faux", explication: "Non. « Car » et « parce que » sont des conjonctions de subordination qui expriment la cause — ils introduisent normalement une explication rattachée à la proposition principale. Commencer une phrase par « parce que » seule est considéré comme incorrect à l'écrit soutenu." },
+      { text: "Un complément de phrase (CP) peut être déplacé en début de phrase sans changer le sens principal.", correct: "Vrai", explication: "Oui. C'est précisément le test du CP : il peut être déplacé. Ex. : « Elle travaille le soir. » → « Le soir, elle travaille. » Le sens de base reste le même, ce qui confirme la fonction de CP." },
+      { text: "Les deux-points servent uniquement à introduire une liste.", correct: "Faux", explication: "Non. Les deux-points ont plusieurs usages : introduire une liste, une explication, une citation ou une conséquence. Ex. : « Il était fatigué : il s'endormit. » (conséquence) / « Elle dit : 'Viens ici.' » (citation)." },
+    ];
+    tf4Qs.forEach((q, i) => {
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: tf4ExId, title: q.explication, text: q.text, type: "true_false", options: tfOpts, correctAnswer: q.correct, order: i + 1 } as any);
+    });
   }
 
   // ── COURS FRANÇAIS FPT ─────────────────────────────────────────────────────

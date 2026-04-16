@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid, CheckSquare, HelpCircle } from "lucide-react";
 import { ReadAloudButton } from "@/components/accessibility-toolbar";
 
 interface Question {
@@ -917,6 +917,7 @@ export default function Exercise() {
     const isMatch = q.type === "matching";
     const isDictee = q.type === "dictee";
     const isSorting = q.type === "sorting";
+    const isTrueFalse = q.type === "true_false";
     const isReadingQ = (isReadingExercise || isInformatifExercise) && q.text.length > 200;
 
     const questionDisplayText = isReadingQ
@@ -962,6 +963,11 @@ export default function Exercise() {
               <LayoutGrid className="w-3 h-3 inline mr-1" />Classement
             </span>
           )}
+          {isTrueFalse && (
+            <span className="text-xs font-medium bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 px-2 py-0.5 rounded-md border border-teal-200 dark:border-teal-700">
+              <CheckSquare className="w-3 h-3 inline mr-1" />Vrai ou Faux
+            </span>
+          )}
           {!isDictee && (
             <ReadAloudButton
               text={questionDisplayText.replace(/___/g, " quelque chose ")}
@@ -973,7 +979,7 @@ export default function Exercise() {
         </div>
 
         {/* Question prompt */}
-        {!isFill && !isMatch && !isDictee && !isSorting && (
+        {!isFill && !isMatch && !isDictee && !isSorting && !isTrueFalse && (
           <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-lg border-l-4 border-amber-400 mb-4">
             <p className="text-base leading-relaxed whitespace-pre-wrap text-foreground">{questionDisplayText}</p>
           </div>
@@ -1207,6 +1213,86 @@ export default function Exercise() {
                   </div>
                 );
               })()}
+            </div>
+          );
+        })()}
+
+        {/* Vrai ou Faux */}
+        {isTrueFalse && (() => {
+          const isCorrectAfter = submitted ? ans === q.correctAnswer : null;
+          const explication = q.title && !q.title.match(/^Q\d+/) ? q.title : null;
+
+          return (
+            <div className="space-y-4">
+              {/* Affirmation */}
+              <div className="bg-teal-50 dark:bg-teal-900/10 p-4 rounded-lg border-l-4 border-teal-500">
+                <div className="flex items-start gap-2">
+                  <HelpCircle className="w-5 h-5 text-teal-600 dark:text-teal-400 shrink-0 mt-0.5" />
+                  <p className="text-base font-medium leading-relaxed text-foreground">{q.text}</p>
+                </div>
+                {!submitted && (
+                  <p className="text-xs text-muted-foreground mt-2 ml-7">Cette affirmation est-elle vraie ou fausse ?</p>
+                )}
+              </div>
+
+              {/* Vrai / Faux buttons */}
+              <div className="grid grid-cols-2 gap-3">
+                {["Vrai", "Faux"].map((choice) => {
+                  const isSelected = ans === choice;
+                  const isThisCorrect = choice === q.correctAnswer;
+                  let btnClass = "w-full py-5 rounded-lg border-2 font-bold text-lg transition-all ";
+                  if (submitted) {
+                    if (isThisCorrect) {
+                      btnClass += "bg-green-100 dark:bg-green-900/30 border-green-500 text-green-800 dark:text-green-200";
+                    } else if (isSelected && !isThisCorrect) {
+                      btnClass += "bg-red-100 dark:bg-red-900/30 border-red-500 text-red-800 dark:text-red-200";
+                    } else {
+                      btnClass += "bg-muted border-border text-muted-foreground opacity-50";
+                    }
+                  } else {
+                    if (isSelected) {
+                      btnClass += choice === "Vrai"
+                        ? "bg-teal-100 dark:bg-teal-900/40 border-teal-500 text-teal-800 dark:text-teal-200 ring-2 ring-teal-400"
+                        : "bg-rose-100 dark:bg-rose-900/40 border-rose-500 text-rose-800 dark:text-rose-200 ring-2 ring-rose-400";
+                    } else {
+                      btnClass += "bg-background border-border text-foreground hover-elevate";
+                    }
+                  }
+
+                  return (
+                    <button
+                      key={choice}
+                      onClick={() => !submitted && handleAnswerChange(q.id, choice)}
+                      disabled={submitted}
+                      className={btnClass}
+                      data-testid={`button-tf-${choice.toLowerCase()}`}
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        {submitted && isThisCorrect && <CheckCircle className="w-5 h-5" />}
+                        {submitted && isSelected && !isThisCorrect && <XCircle className="w-5 h-5" />}
+                        {choice}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Explication après soumission */}
+              {submitted && explication && (
+                <div className={`rounded-lg p-3 border flex items-start gap-2 ${
+                  isCorrectAfter
+                    ? "bg-green-50 dark:bg-green-900/10 border-green-300 dark:border-green-700"
+                    : "bg-amber-50 dark:bg-amber-900/10 border-amber-300 dark:border-amber-700"
+                }`}>
+                  <FileText className={`w-4 h-4 shrink-0 mt-0.5 ${isCorrectAfter ? "text-green-600" : "text-amber-600"}`} />
+                  <div>
+                    <p className={`text-xs font-bold mb-0.5 ${isCorrectAfter ? "text-green-700 dark:text-green-300" : "text-amber-700 dark:text-amber-300"}`}>
+                      Explication
+                    </p>
+                    <p className="text-sm text-foreground">{explication}</p>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })()}
