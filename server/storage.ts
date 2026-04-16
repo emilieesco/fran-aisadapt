@@ -145,6 +145,7 @@ export class MemStorage implements IStorage {
     this.seedArgumentatifCourses();
     this.seedEcritureGuideeCourses();
     this.seedGrammaireContexteCourses();
+    this.seedDicteesGuideesCourses();
     this.seedFptCourses();
   }
 
@@ -15482,6 +15483,104 @@ Sur de vieilles espérances.
       { order:7, title:"Après que → indicatif", text:"« ___ le chercheur ___ (publier) ses résultats, plusieurs gouvernements ont modifié leur législation. »", options:JSON.stringify(["Bien que... ait publié (subjonctif — ERREUR)","Après que... a publié (indicatif passé composé — 'après que' exige l'indicatif)","Pour que... ait publié (subjonctif — change le sens)","Avant que... publie (subjonctif — change le sens)"]), correctAnswer:"Après que... a publié (indicatif passé composé — 'après que' exige l'indicatif)" },
       { order:8, title:"À moins que → subjonctif", text:"« La situation ne s'améliorera pas ___ les entreprises technologiques ___ (changer) leurs algorithmes. »", options:JSON.stringify(["parce que... changent (indicatif — change le sens)","à moins que... changent (subjonctif — 'à moins que' exige le subjonctif)","depuis que... changent (indicatif — change le sens)","après que... ont changé (indicatif — change le sens)"]), correctAnswer:"à moins que... changent (subjonctif — 'à moins que' exige le subjonctif)" },
     ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: gc132ex1Id, ...q, type:"multiple_choice" } as any); });
+
+  }
+
+  // ── DICTÉES GUIDÉES THÉMATIQUES ──────────────────────────────────────────
+
+  private seedDicteesGuideesCourses() {
+
+    const mkDictee = (courseId: string, order: number, title: string, description: string, text: string) => {
+      const exId = randomUUID();
+      const qId = randomUUID();
+      this.exercises.set(exId, { id: exId, courseId, title, description, type: "dictee", order } as any);
+      this.questions.set(qId, { id: qId, exerciseId: exId, title: "Dictée — Écoute et écris", text: "Clique sur le bouton Écouter pour entendre le texte, puis écris exactement ce que tu as entendu.", type: "dictee", options: null, correctAnswer: text, order: 1 } as any);
+    };
+
+    // ── Cours 133 : Dictées — texte narratif ─────────────────────────────────
+    const d133Id = randomUUID();
+    this.courses.set(d133Id, {
+      id: d133Id,
+      title: "Dictées — le texte narratif",
+      description: "Six dictées progressives tirées de textes narratifs québécois. Chaque passage cible des difficultés orthographiques précises : passé composé, imparfait, accord des participes passés, ponctuation du dialogue et concordance des temps",
+      category: "lecture",
+      content: "<h2>Dictées thématiques — texte narratif</h2><p>Ces dictées sont tirées de courts passages narratifs situant l'action au Québec. Elles ciblent des difficultés spécifiques liées aux temps du récit.</p><div style='background:#f1f5f9;padding:10px;margin:10px 0;border-radius:4px'><strong>Points orthographiques travaillés :</strong><br>• Passé composé et imparfait dans le récit<br>• Accord des participes passés (avec être et avoir)<br>• Ponctuation du dialogue<br>• Accord des adjectifs dans les descriptions<br>• Verbes irréguliers aux temps du passé</div>",
+      order: 133,
+    } as any);
+    mkDictee(d133Id, 1, "La première neige", "Passé composé et imparfait — une matinée d'automne au Saguenay", "Ce matin-là, Émile s'est levé avant l'aube. La nuit avait laissé un mince tapis de neige sur le jardin. Il a enfilé ses bottes en vitesse et s'est précipité dehors pour être le premier à laisser ses traces dans la neige fraîche.");
+    mkDictee(d133Id, 2, "Le marché du samedi", "Accord des participes passés avec avoir et être — une scène au marché Atwater", "Léa et sa mère sont arrivées au marché Atwater dès l'ouverture. Elles ont choisi les légumes qu'elles voulaient, ont goûté quelques fromages que le fromager leur avait proposés, puis se sont assises à la terrasse pour boire un café bien mérité.");
+    mkDictee(d133Id, 3, "Une décision difficile", "Concordance des temps — passé composé, imparfait, plus-que-parfait", "Quand le directeur a annoncé la nouvelle, Marie-Claire n'a pas su quoi répondre. Elle avait travaillé si fort pendant toute l'année scolaire. Une larme a roulé sur sa joue, puis elle a souri : elle avait réussi l'examen qu'elle craignait tant.");
+    mkDictee(d133Id, 4, "La tempête de verglas", "Ponctuation du dialogue et verbes introducteurs au passé", "C'est une catastrophe, a murmuré le père en regardant les arbres couverts de glace. Nous n'avons plus d'électricité depuis hier soir. La mère a répondu calmement : Il faut allumer les bougies et nous regrouper dans la cuisine. Ça va aller.");
+    mkDictee(d133Id, 5, "Le retour des outardes", "Présent de narration et accord des adjectifs dans un texte descriptif-narratif", "Chaque printemps, les outardes reviennent au Québec en formation triangulaire. Leur cri rauque et puissant annonce la fin de l'hiver. Les enfants, fébriles et excités, sortent dans les rues pour les regarder traverser le ciel gris du mois d'avril.");
+    mkDictee(d133Id, 6, "Une nuit à la cabane à sucre", "Subjonctif après pour que et avant que — niveau avancé", "Pour que la sève coule abondamment, il fallait que les nuits restent encore froides. Mathieu s'est levé à trois heures du matin avant que le soleil n'ait eu le temps de réchauffer les troncs. Il a vérifié les tubulures une à une, satisfait de voir la sève couler dans les réservoirs.");
+
+    // ── Cours 134 : Dictées — texte descriptif ───────────────────────────────
+    const d134Id = randomUUID();
+    this.courses.set(d134Id, {
+      id: d134Id,
+      title: "Dictées — le texte descriptif",
+      description: "Six dictées tirées de textes descriptifs sur des lieux, des personnages et des paysages québécois. Accent sur l'accord des adjectifs, la ponctuation des énumérations et les marqueurs de description",
+      category: "lecture",
+      content: "<h2>Dictées thématiques — texte descriptif</h2><p>Ces passages décrivent des lieux emblématiques et des personnages québécois. Ils ciblent les difficultés propres au texte descriptif.</p><div style='background:#f1f5f9;padding:10px;margin:10px 0;border-radius:4px'><strong>Points orthographiques travaillés :</strong><br>• Accord des adjectifs qualificatifs (masc./fém., sing./plur.)<br>• Adjectifs de couleur composés (invariables)<br>• Ponctuation des énumérations et des appositions<br>• Noms propres québécois<br>• Adjectifs en -eux/-euse, -el/-elle, -teur/-trice</div>",
+      order: 134,
+    } as any);
+    mkDictee(d134Id, 1, "Le parc La Fontaine en automne", "Accord des adjectifs de couleur — masc./fém./plur.", "Le parc La Fontaine est magnifique en automne. Les feuilles rouges, orangées et dorées forment un tapis multicolore sur les allées sinueuses. Les promeneurs, silencieux et contemplatifs, s'y retrouvent pour profiter des dernières journées chaudes avant l'hiver.");
+    mkDictee(d134Id, 2, "Portrait de Mme Simard", "Accord des adjectifs qualificatifs dans un portrait — niveau intermédiaire", "Mme Simard est une femme grande et mince, aux cheveux gris coupés courts. Son regard, vif et attentif, ne laisse passer aucune faute sans la corriger gentiment. Elle porte toujours un foulard de soie turquoise et des lunettes rondes cerclées d'acier argenté.");
+    mkDictee(d134Id, 3, "Le fleuve Saint-Laurent", "Adjectifs composés invariables et accord des participes passés en description", "Le fleuve Saint-Laurent, long de près de mille deux cents kilomètres, traverse les paysages les plus variés du Québec. Ses eaux bleu-vert accueillent des baleines bleues, des bélugas et des rorquals communs. Classé patrimoine naturel mondial, il demeure la voie navigable la plus importante du pays.");
+    mkDictee(d134Id, 4, "Le marché Jean-Talon", "Énumération avec ponctuation correcte — virgules et deux-points", "Le marché Jean-Talon offre une profusion de couleurs, de parfums et de saveurs : des tomates juteuses, des courges d'un orange vif, des herbes fraîches soigneusement attachées, des fromages fermiers affinés et des pains artisanaux encore tièdes. C'est l'endroit idéal pour découvrir les produits locaux du Québec.");
+    mkDictee(d134Id, 5, "Le Vieux-Québec sous la neige", "Accord des adjectifs attributs et épithètes dans une description de lieu", "En hiver, le Vieux-Québec prend une allure féerique. Les toits pentus des maisons ancestrales sont couverts d'une neige épaisse et immaculée. Les ruelles étroites, silencieuses et éclairées par des réverbères anciens, ressemblent à un décor sorti tout droit d'un roman du dix-neuvième siècle.");
+    mkDictee(d134Id, 6, "L'érablière en avril", "Subordonnées relatives et accord des participes passés en texte descriptif", "L'érablière que nous avons visitée ce matin était encore couverte de neige fondante. Les érables centenaires, plantés il y a plus de cent ans, tendaient leurs branches dénudées vers un ciel d'un bleu pâle et limpide. Au loin, la cabane à sucre, peinte en rouge et blanc, fumait doucement dans l'air frais du matin.");
+
+    // ── Cours 135 : Dictées — texte explicatif ───────────────────────────────
+    const d135Id = randomUUID();
+    this.courses.set(d135Id, {
+      id: d135Id,
+      title: "Dictées — le texte explicatif",
+      description: "Six dictées tirées de textes explicatifs sur des phénomènes naturels et culturels québécois. Accent sur les marqueurs de cause et de conséquence, les terminaisons verbales au présent et les définitions",
+      category: "lecture",
+      content: "<h2>Dictées thématiques — texte explicatif</h2><p>Ces passages expliquent des phénomènes naturels, scientifiques ou culturels liés au Québec. Ils ciblent les difficultés propres au registre explicatif.</p><div style='background:#f1f5f9;padding:10px;margin:10px 0;border-radius:4px'><strong>Points orthographiques travaillés :</strong><br>• Terminaisons des verbes au présent (3e personne sing. et plur.)<br>• Marqueurs de cause et de conséquence<br>• Définitions avec c'est-à-dire<br>• Noms scientifiques et techniques<br>• Accord des sujets collectifs et des pronoms indéfinis</div>",
+      order: 135,
+    } as any);
+    mkDictee(d135Id, 1, "Pourquoi les feuilles rougissent-elles ?", "Marqueurs de cause et de conséquence au présent de l'indicatif", "En automne, la durée du jour diminue et la température baisse. En raison de ces changements, les arbres réduisent leur production de chlorophylle. C'est pourquoi les pigments jaunes et rouges, qui étaient masqués par le vert de la chlorophylle, deviennent progressivement visibles.");
+    mkDictee(d135Id, 2, "La formation du verglas", "Terminaisons verbales difficiles au présent et marqueurs explicatifs", "Le verglas se forme lorsque des gouttelettes de pluie entrent en contact avec des surfaces dont la température est inférieure à zéro degré. Ces gouttelettes, appelées pluie verglaçante, se solidifient instantanément au contact du sol ou des arbres, créant une couche de glace transparente et extrêmement dangereuse.");
+    mkDictee(d135Id, 3, "Comment fonctionnent les aurores boréales ?", "Subordonnées causales et consécutives — niveau intermédiaire", "Les aurores boréales se produisent parce que des particules chargées, émises par le soleil, entrent en collision avec les molécules de l'atmosphère terrestre. Cette collision libère de l'énergie sous forme de lumière, si bien que le ciel s'illumine de rubans verts, violets et roses aux latitudes polaires.");
+    mkDictee(d135Id, 4, "Le sirop d'érable — un processus en quatre étapes", "Marqueurs de séquence et terminaisons des verbes en -er au présent", "D'abord, les acériculteurs percent une entaille dans le tronc des érables à sucre. Ensuite, la sève s'écoule naturellement dans un réseau de tubulures reliées à un réservoir central. Puis, on chauffe la sève dans de grands évaporateurs pour en réduire la teneur en eau. Finalement, le sirop est filtré et mis en bouteille.");
+    mkDictee(d135Id, 5, "La photosynthèse expliquée", "Définitions avec c'est-à-dire et accord des sujets collectifs", "La photosynthèse est le processus par lequel les plantes transforment la lumière solaire en énergie chimique, c'est-à-dire en sucres qu'elles utilisent pour croître. Pour réaliser cette transformation, les feuilles ont besoin de trois éléments essentiels : la lumière du soleil, l'eau puisée dans le sol et le dioxyde de carbone présent dans l'air.");
+    mkDictee(d135Id, 6, "L'effet de serre et le réchauffement climatique", "Registre scientifique — verbes au présent et marqueurs causaux — niveau avancé", "Certains gaz de l'atmosphère, tels que le dioxyde de carbone et le méthane, retiennent une partie de la chaleur émise par la Terre. Ce phénomène, connu sous le nom d'effet de serre, est naturellement bénéfique. Cependant, depuis la révolution industrielle, les émissions humaines de ces gaz ont considérablement augmenté, si bien que l'effet de serre s'intensifie et entraîne un réchauffement climatique sans précédent.");
+
+    // ── Cours 136 : Dictées — texte argumentatif ─────────────────────────────
+    const d136Id = randomUUID();
+    this.courses.set(d136Id, {
+      id: d136Id,
+      title: "Dictées — le texte argumentatif",
+      description: "Six dictées tirées de textes d'opinion sur des sujets québécois contemporains. Accent sur les marqueurs d'addition, d'opposition et de concession, le subjonctif après bien que et pour que, et les formulations complexes du registre argumentatif",
+      category: "lecture",
+      content: "<h2>Dictées thématiques — texte argumentatif</h2><p>Ces passages sont extraits de textes d'opinion traitant de sujets québécois contemporains. Ils ciblent les constructions syntaxiques et orthographiques propres au registre argumentatif.</p><div style='background:#f1f5f9;padding:10px;margin:10px 0;border-radius:4px'><strong>Points orthographiques travaillés :</strong><br>• Marqueurs d'addition, d'opposition et de concession<br>• Subjonctif après bien que, pour que, avant que, à moins que<br>• Formulations complexes (non seulement... mais aussi)<br>• Accord des adjectifs dans les arguments<br>• Terminaisons verbales dans les constructions hypothétiques</div>",
+      order: 136,
+    } as any);
+    mkDictee(d136Id, 1, "Le transport en commun gratuit — introduction", "Marqueurs de cause et d'opposition — niveau débutant-intermédiaire", "Le transport en commun représente un enjeu environnemental et social majeur. Certes, le maintenir gratuit exigerait des investissements importants. Cependant, les économies réalisées sur les infrastructures routières et les bénéfices environnementaux compenseraient largement ce coût.");
+    mkDictee(d136Id, 2, "Les réseaux sociaux et les adolescents", "Marqueurs d'addition et de renforcement — niveau intermédiaire", "Non seulement les réseaux sociaux perturbent le sommeil des adolescents, mais ils favorisent également la comparaison sociale négative. De plus, les algorithmes conçus pour maximiser l'engagement exploitent les mécanismes de récompense du cerveau, ce qui crée une forme de dépendance difficile à combattre.");
+    mkDictee(d136Id, 3, "L'alimentation végétarienne à l'école", "Subjonctif après pour que et bien que — niveau intermédiaire-avancé", "Pour que les jeunes adoptent de meilleures habitudes alimentaires, il est essentiel que les cafétérias scolaires proposent des options végétariennes équilibrées. Bien que certains parents s'y opposent, les données nutritionnelles montrent clairement qu'une alimentation moins carnée est bénéfique pour la santé à long terme.");
+    mkDictee(d136Id, 4, "L'intelligence artificielle et l'éducation", "Concession avec certes... néanmoins et accord des participes — niveau avancé", "Certes, les outils d'intelligence artificielle peuvent faciliter certaines tâches rédactionnelles. Néanmoins, leur utilisation sans encadrement prive les élèves du processus de réflexion critique qui est au coeur même de l'apprentissage. Il est donc impératif que les enseignants établissent des balises claires avant que ces outils ne soient intégrés massivement dans les classes.");
+    mkDictee(d136Id, 5, "La gratuité des parcs nationaux", "Marqueurs d'addition et appel aux valeurs — niveau intermédiaire", "La gratuité des parcs nationaux québécois permettrait à toutes les familles d'accéder à la nature, peu importe leur revenu. En effet, le plein air est reconnu comme un facteur essentiel de bien-être physique et mental. Par ailleurs, démocratiser l'accès aux parcs favoriserait un sentiment d'appartenance au patrimoine naturel du Québec.");
+    mkDictee(d136Id, 6, "Conclusion argumentative — le travail étudiant", "Marqueurs de conclusion et réaffirmation de la thèse — niveau avancé", "En définitive, les données scientifiques et les témoignages des professionnels de l'éducation convergent vers une même conclusion : le travail à temps partiel intensif nuit à la réussite scolaire des adolescents. Il est donc temps que les décideurs politiques encadrent les heures de travail autorisées pour les élèves du secondaire, afin de protéger leur avenir académique.");
+
+    // ── Cours 137 : Dictées — situations FPT québécoises ─────────────────────
+    const d137Id = randomUUID();
+    this.courses.set(d137Id, {
+      id: d137Id,
+      title: "Dictées — situations de communication FPT",
+      description: "Six dictées sur des situations concrètes de communication écrite en milieu de travail québécois : courriels professionnels, messages, comptes rendus et demandes formelles. Accent sur le registre de langue formel et la ponctuation",
+      category: "francais_fpt",
+      content: "<h2>Dictées thématiques — communication en milieu de travail</h2><p>Ces dictées sont tirées de situations authentiques de communication écrite au Québec : courriel à un employeur, message à un client, texte de demande ou de compte rendu. Elles préparent aux écrits fonctionnels du milieu professionnel.</p><div style='background:#f1f5f9;padding:10px;margin:10px 0;border-radius:4px'><strong>Points orthographiques travaillés :</strong><br>• Formules d'ouverture et de fermeture de courriel<br>• Conditionnel de politesse (je voudrais, pourriez-vous)<br>• Accord des adjectifs dans les formulations formelles<br>• Ponctuation correcte des listes et des deux-points<br>• Majuscules aux titres et aux noms propres</div>",
+      order: 137,
+    } as any);
+    mkDictee(d137Id, 1, "Courriel — demande de congé", "Conditionnel de politesse et formules formelles", "Madame Ouellet, je vous écris afin de solliciter un congé personnel pour le vendredi dix-sept mai. En raison d'une obligation familiale imprévue, je ne serai pas en mesure de me présenter au travail ce jour-là. Je m'assurerai de compléter toutes mes tâches avant mon départ. Merci de l'attention portée à ma demande.");
+    mkDictee(d137Id, 2, "Message à un client — retard de livraison", "Conditionnel et formulations d'excuse formelles", "Nous vous informons que votre commande, initialement prévue pour le mardi vingt mars, a été retardée en raison d'un problème logistique indépendant de notre volonté. Nous nous excusons sincèrement pour les inconvénients causés. Votre commande vous sera livrée au plus tard le vendredi vingt-trois mars.");
+    mkDictee(d137Id, 3, "Léa Tremblay — demande d'information", "Formules de courriel professionnel et ponctuation des adresses", "Bonjour Madame Bergeron, je me permets de vous contacter au sujet de l'offre d'emploi publiée sur votre site le lundi quinze avril. Je serais intéressée à en savoir davantage sur les conditions de travail et les horaires proposés. Pourriez-vous me faire parvenir ces informations à votre convenance ? Cordialement, Léa Tremblay.");
+    mkDictee(d137Id, 4, "Compte rendu d'une réunion", "Accord des participes passés et verbes au passé composé en registre formel", "La réunion du département s'est tenue le mercredi dix avril à neuf heures. Les responsables ont présenté les résultats du trimestre, qui ont dépassé les objectifs fixés en janvier. Deux nouvelles procédures ont été adoptées à l'unanimité. Le prochain bilan sera présenté lors de la réunion du mois de juillet.");
+    mkDictee(d137Id, 5, "Avis de modification de salaire", "Majuscules, chiffres en lettres et conditionnel en texte officiel", "Nous avons le plaisir de vous informer que votre salaire horaire sera révisé à la hausse à compter du premier juillet prochain. Votre nouveau taux de rémunération s'établira à vingt-deux dollars et cinquante cents l'heure, conformément à la convention collective en vigueur. Vous recevrez un avenant à votre contrat de travail d'ici la fin du mois.");
+    mkDictee(d137Id, 6, "Lettre de démission formelle", "Registre très formel — accord des adjectifs et des participes, conditionnel", "Madame la Directrice, c'est avec regret que je vous soumets ma démission du poste de commis-comptable que j'occupe au sein de votre entreprise depuis trois ans. Mon dernier jour de travail sera le vendredi trente et un mai, conformément au délai de préavis prévu dans mon contrat. Je vous remercie pour les opportunités d'apprentissage qui m'ont été offertes. Veuillez agréer, Madame, l'expression de mes salutations distinguées.");
 
   }
 
