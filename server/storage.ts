@@ -147,6 +147,7 @@ export class MemStorage implements IStorage {
     this.seedGrammaireContexteCourses();
     this.seedDicteesGuideesCourses();
     this.seedFptCommunicationCourses();
+    this.seedCvQuebecCourses();
     this.seedFptCourses();
   }
 
@@ -15745,6 +15746,168 @@ Sur de vieilles espérances.
       { order:7, title:"Documents à apporter à une entrevue", text:"La convocation précise d'apporter « deux copies de votre CV et vos pièces d'identité ». Qu'est-ce qu'une pièce d'identité valide au Québec ?", options:JSON.stringify(["Un reçu de dépanneur","Une carte de fidélité d'épicerie","Un permis de conduire ou une carte d'assurance maladie (RAMQ)","Une carte de bibliothèque"]), correctAnswer:"Un permis de conduire ou une carte d'assurance maladie (RAMQ)" },
       { order:8, title:"Confirmation d'embauche — lire les avantages", text:"Ta confirmation d'embauche mentionne : « L'assurance collective sera disponible après votre période de probation de trois mois. » Quand pourras-tu bénéficier de l'assurance collective si tu commences le 5 mai ?", options:JSON.stringify(["Dès le premier jour de travail","À partir du 5 juin","À partir du 5 août (3 mois après le début)","À partir de janvier de l'année suivante"]), correctAnswer:"À partir du 5 août (3 mois après le début)" },
     ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: fc143ex1Id, ...q, type:"multiple_choice" } as any); });
+
+  }
+
+  // ── LE CV QUÉBÉCOIS ───────────────────────────────────────────────────────
+
+  private seedCvQuebecCourses() {
+
+    // ── Cours 144 : Structure du CV québécois ─────────────────────────────────
+    const cv144Id = randomUUID();
+    this.courses.set(cv144Id, {
+      id: cv144Id,
+      title: "Le CV québécois : structure et contenu",
+      description: "Découvre les sections obligatoires et facultatives d'un CV professionnel québécois, leur ordre et leur contenu. Comprends les différences entre le CV québécois et le CV européen. Exercices QCM basés sur un CV réel de Léa Tremblay",
+      category: "francais_fpt",
+      content: `<h2>Le curriculum vitae (CV) québécois</h2>
+<p>Le CV est le premier document que tu envoies à un employeur. Il doit être <strong>clair, concis et bien structuré</strong>. Au Québec, un bon CV fait généralement <strong>1 à 2 pages maximum</strong>.</p>
+
+<h3>Particularités du CV québécois</h3>
+<div style='background:#fee2e2;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>Ce qu'on N'inclut PAS au Québec :</strong><br>
+• Photo (pour éviter la discrimination)<br>
+• Date de naissance, âge ou nationalité<br>
+• État civil (marié, célibataire, etc.)<br>
+• Numéro d'assurance sociale<br>
+• Signature manuscrite
+</div>
+
+<h3>Les sections du CV québécois — dans l'ordre habituel</h3>
+
+<div style='background:#dcfce7;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>1. Coordonnées</strong><br>
+Prénom Nom · Ville et province · Téléphone · Courriel professionnel<br>
+<em>Pas besoin d'adresse complète — ville + province suffit.</em><br>
+<em>Courriel : utiliser prenom.nom@domaine.ca — pas de surnom ni de chiffre inutile</em>
+</div>
+
+<div style='background:#dbeafe;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>2. Profil professionnel (facultatif mais recommandé)</strong><br>
+2 à 3 phrases résumant ton expérience, tes forces et ton objectif de carrière.<br>
+<em>Ex. : « Commis administrative avec deux ans d'expérience en service à la clientèle, reconnue pour son organisation et sa maîtrise de la suite Office. Cherche un poste à temps partiel en administration. »</em>
+</div>
+
+<div style='background:#f3e8ff;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>3. Expérience professionnelle</strong><br>
+• Ordre <strong>chronologique inverse</strong> (poste le plus récent en premier)<br>
+• Pour chaque poste : Titre du poste · Nom de l'entreprise · Ville · Dates (mois/année)<br>
+• 3 à 5 tâches décrites avec des verbes d'action à l'infinitif<br>
+<em>Ex. : « Répondre aux appels de la clientèle · Saisir les données dans le logiciel Sage 50 · Classer les documents administratifs »</em>
+</div>
+
+<div style='background:#fef9c3;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>4. Formation</strong><br>
+• Ordre chronologique inverse (diplôme le plus récent en premier)<br>
+• Pour chaque formation : Nom du diplôme · Nom de l'école · Ville · Année d'obtention (ou « en cours »)<br>
+<em>Ex. : « Diplôme d'études secondaires (DES) · École secondaire Édouard-Montpetit · Montréal · 2024 »</em>
+</div>
+
+<div style='background:#f1f5f9;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>5. Compétences (facultatif)</strong><br>
+Divisées en sous-catégories : Informatique · Langues · Compétences spécifiques<br>
+<em>Ex. : Informatique : Word, Excel, Outlook (niveau intermédiaire) · Sage 50 (débutant)</em><br>
+<em>Langues : Français (langue maternelle) · Anglais (niveau fonctionnel)</em>
+</div>
+
+<div style='background:#ecfdf5;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>6. Bénévolat et activités parascolaires (facultatif)</strong><br>
+Valorisé par les employeurs québécois — montre ton engagement dans la communauté<br>
+<em>Ex. : « Bénévole · Banque alimentaire du Plateau · Montréal · 2022–2024 »</em>
+</div>
+
+<div style='background:#fce7f3;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>7. Références</strong><br>
+• Option A : « Disponibles sur demande » (plus courant)<br>
+• Option B : Mentionner 2 références (nom, titre, téléphone ou courriel)<br>
+<em>Ne jamais mettre un membre de la famille comme référence professionnelle.</em>
+</div>`,
+      order: 144,
+    } as any);
+
+    const cv144ex1Id = randomUUID();
+    this.exercises.set(cv144ex1Id, { id: cv144ex1Id, courseId: cv144Id, title: "Connaître la structure du CV québécois", description: "Questions sur les règles et la structure d'un CV professionnel québécois", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Longueur recommandée", text:"Quelle est la longueur recommandée pour un CV québécois professionnel ?", options:JSON.stringify(["3 à 4 pages pour montrer toute ton expérience","1 à 2 pages maximum","Une seule page obligatoirement","Aussi long que nécessaire, sans limite"]), correctAnswer:"1 à 2 pages maximum" },
+      { order:2, title:"Photo dans le CV", text:"Doit-on inclure une photo dans un CV québécois ?", options:JSON.stringify(["Oui, une photo professionnelle est obligatoire","Oui, mais seulement pour les postes en contact avec le public","Non — la photo est déconseillée pour éviter la discrimination","Oui, si l'employeur le demande explicitement dans l'offre"]), correctAnswer:"Non — la photo est déconseillée pour éviter la discrimination" },
+      { order:3, title:"Ordre des expériences", text:"Dans quelle ordre présente-t-on les expériences professionnelles dans un CV québécois ?", options:JSON.stringify(["Du plus ancien au plus récent (ordre chronologique)","Du plus récent au plus ancien (ordre chronologique inverse)","Par ordre d'importance selon le poste visé","En ordre alphabétique du nom de l'employeur"]), correctAnswer:"Du plus récent au plus ancien (ordre chronologique inverse)" },
+      { order:4, title:"Courriel professionnel", text:"Lequel de ces courriels est le plus approprié dans un CV professionnel québécois ?", options:JSON.stringify(["princesse_du_plateau@hotmail.com","lea.tremblay@gmail.com","lea_la_meilleure_2003@yahoo.fr","leatrem@hotmail.com"]), correctAnswer:"lea.tremblay@gmail.com" },
+      { order:5, title:"Verbes dans la section expérience", text:"Comment formule-t-on les tâches dans la section expérience professionnelle ?", options:JSON.stringify(["À la première personne : « J'ai répondu aux appels... »","Au passé composé : « A répondu aux appels... »","À l'infinitif : « Répondre aux appels de la clientèle »","Au présent : « Répond aux appels de la clientèle »"]), correctAnswer:"À l'infinitif : « Répondre aux appels de la clientèle »" },
+      { order:6, title:"Informations à exclure", text:"Laquelle de ces informations NE doit PAS figurer dans un CV québécois ?", options:JSON.stringify(["Le nom du diplôme obtenu","La ville de résidence","La date de naissance","Le numéro de téléphone"]), correctAnswer:"La date de naissance" },
+      { order:7, title:"Section compétences — langues", text:"Comment indique-t-on correctement le niveau de langue dans la section compétences ?", options:JSON.stringify(["Français : parfait · Anglais : moyen","Français (langue maternelle) · Anglais (niveau fonctionnel)","Je parle français et un peu anglais","Bilingue (français/anglais)"]), correctAnswer:"Français (langue maternelle) · Anglais (niveau fonctionnel)" },
+      { order:8, title:"Références professionnelles", text:"Laquelle de ces pratiques est correcte concernant les références dans un CV québécois ?", options:JSON.stringify(["Toujours inclure le nom et les coordonnées de deux membres de ta famille","Inclure la liste complète de toutes tes références passées","Écrire simplement 'Disponibles sur demande' ou mentionner 2 références professionnelles","Ne jamais mentionner les références — c'est inutile"]), correctAnswer:"Écrire simplement 'Disponibles sur demande' ou mentionner 2 références professionnelles" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: cv144ex1Id, ...q, type:"multiple_choice" } as any); });
+
+    // ── Cours 145 : Rédiger les sections d'un CV ──────────────────────────────
+    const cv145Id = randomUUID();
+    this.courses.set(cv145Id, {
+      id: cv145Id,
+      title: "Rédiger les sections d'un CV professionnel",
+      description: "Entraîne-toi à rédiger chaque section d'un CV québécois : coordonnées, profil professionnel, expériences, formation et compétences. Exercices fill_blank basés sur le profil de Léa Tremblay",
+      category: "francais_fpt",
+      content: "<h2>Rédiger son CV section par section</h2><p>Dans ce cours, tu complètes les sections du CV de Léa Tremblay pour un poste de commis administratif(ve). Applique les règles vues au cours précédent.</p>",
+      order: 145,
+    } as any);
+
+    const cv145ex1Id = randomUUID();
+    this.exercises.set(cv145ex1Id, { id: cv145ex1Id, courseId: cv145Id, title: "Compléter les coordonnées et le profil professionnel", description: "Complète les informations de la section coordonnées et du profil professionnel du CV de Léa Tremblay", type: "fill_blank", order: 1 } as any);
+    [
+      { order:1, title:"Courriel dans les coordonnées", text:"Léa veut inclure son courriel dans son CV. Son nom complet est Léa Tremblay. Quelle adresse est la plus professionnelle ? « Courriel : ___ »", correct:"lea.tremblay@gmail.com|l.tremblay@gmail.com|lea.tremblay@hotmail.com", hint:"Format prénom.nom@domaine — sans surnom ni chiffres inutiles" },
+      { order:2, title:"Ville dans les coordonnées", text:"Léa habite à Montréal, au Québec. Comment inscrit-elle sa localisation dans son CV ? « Localisation : ___ »", correct:"Montréal, Québec|Montréal (Québec)|Montréal, QC", hint:"Ville + province — pas besoin de rue ni de code postal dans un CV québécois" },
+      { order:3, title:"Profil professionnel — verbe d'introduction", text:"Léa rédige son profil professionnel. Complète : « ___ administrative avec deux ans d'expérience en service à la clientèle et en saisie de données dans des environnements de bureau. »", correct:"Commis|Professionnelle", hint:"Commence par le titre du poste visé ou ton titre actuel — c'est la première chose que l'employeur lit" },
+      { order:4, title:"Profil professionnel — forces", text:"Complète la deuxième phrase du profil : « Reconnue pour son sens de l'___, sa rigueur et sa facilité à apprendre de nouveaux logiciels. »", correct:"organisation|organisation, sa rigueur|ordre", hint:"Qualité essentielle dans un poste administratif — capacité à gérer les priorités et les dossiers" },
+      { order:5, title:"Profil professionnel — objectif", text:"Complète la troisième phrase : « Cherche un poste à temps ___ pour mettre ses compétences au service d'une équipe dynamique. »", correct:"partiel|plein|plein en administration", hint:"Type de poste visé — correspond à l'offre de 20 heures par semaine" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: cv145ex1Id, title: q.title, text: q.text, type:"fill_blank", options:null, correctAnswer: q.correct, order: i+1 } as any); });
+
+    const cv145ex2Id = randomUUID();
+    this.exercises.set(cv145ex2Id, { id: cv145ex2Id, courseId: cv145Id, title: "Rédiger l'expérience professionnelle", description: "Complète les entrées d'expérience professionnelle du CV de Léa avec les bons éléments et verbes à l'infinitif", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Ordre des expériences — poste récent", text:"Léa a travaillé chez Provigo (2023–2025) puis chez Dollarama (2021–2023). Quel poste doit-elle inscrire EN PREMIER dans son CV ? « Premier poste listé : ___ »", correct:"Provigo|Caissière chez Provigo|Caissière — Provigo", hint:"Ordre chronologique inverse — le plus récent apparaît toujours en premier" },
+      { order:2, title:"Format des dates d'emploi", text:"Léa a travaillé chez Provigo d'avril 2023 à janvier 2025. Comment inscrit-elle les dates ? « Dates : ___ »", correct:"Avril 2023 – Janvier 2025|04/2023 – 01/2025|2023 – 2025", hint:"Format mois/année ou juste années — jamais de jours exacts dans un CV" },
+      { order:3, title:"Verbe d'action à l'infinitif — tâche 1", text:"Léa encaissait les clients et gérait la caisse. Comment formule-t-elle cette tâche dans son CV ? « ___ les transactions de caisse et gérer le fond de tiroir en fin de journée. »", correct:"Effectuer|Réaliser|Traiter|Gérer", hint:"Verbe d'action à l'infinitif — résume l'action principale de la tâche" },
+      { order:4, title:"Verbe d'action à l'infinitif — tâche 2", text:"Léa répondait aux questions des clients. Comment formule-t-elle cette tâche ? « ___ les questions des clients en magasin et les diriger vers le bon département. »", correct:"Répondre à|Traiter|Répondre aux", hint:"Verbe d'action à l'infinitif approprié pour le service à la clientèle" },
+      { order:5, title:"Verbe d'action à l'infinitif — tâche 3", text:"Léa organisait l'espace de travail et gérait l'inventaire de sa section. Comment formule-t-elle cette tâche ? « ___ les rayons et effectuer les inventaires hebdomadaires de sa section. »", correct:"Réapprovisionner|Organiser|Entretenir", hint:"Verbe d'action à l'infinitif lié à la gestion des stocks et des rayons" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: cv145ex2Id, title: q.title, text: q.text, type:"fill_blank", options:null, correctAnswer: q.correct, order: i+1 } as any); });
+
+    const cv145ex3Id = randomUUID();
+    this.exercises.set(cv145ex3Id, { id: cv145ex3Id, courseId: cv145Id, title: "Remettre les sections du CV dans le bon ordre", description: "Remets les six grandes sections d'un CV québécois dans l'ordre standard recommandé", type: "ordering", order: 3 } as any);
+    [{ order:1, title:"Ordre des sections du CV", text:"Remets ces sections dans l'ordre habituel d'un CV québécois professionnel",
+      options:JSON.stringify(["Bénévolat et activités parascolaires","Compétences (informatique et langues)","Coordonnées (nom, ville, téléphone, courriel)","Formation","Expérience professionnelle","Profil professionnel"]),
+      correctAnswer:JSON.stringify(["Coordonnées (nom, ville, téléphone, courriel)","Profil professionnel","Expérience professionnelle","Formation","Compétences (informatique et langues)","Bénévolat et activités parascolaires"])
+    }].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: cv145ex3Id, ...q, type:"ordering" } as any); });
+
+    // ── Cours 146 : Erreurs à éviter dans un CV ───────────────────────────────
+    const cv146Id = randomUUID();
+    this.courses.set(cv146Id, {
+      id: cv146Id,
+      title: "Erreurs à éviter dans un CV",
+      description: "Identifie les erreurs courantes dans des extraits de CV québécois : fautes d'orthographe, informations inappropriées, mauvais ordre, formulations faibles, registre de langue inadéquat. Exercices Vrai ou Faux et QCM",
+      category: "francais_fpt",
+      content: "<h2>Les erreurs les plus fréquentes dans un CV québécois</h2><p>Un seul CV mal soigné peut éliminer ta candidature avant même l'entrevue. Voici les pièges les plus courants à éviter.</p><div style='background:#fee2e2;padding:12px;margin:10px 0;border-radius:4px'><strong>Erreurs de contenu :</strong><br>• Inclure sa date de naissance, sa photo, son état civil ou sa nationalité<br>• Mettre un courriel non professionnel (ex. : gamer_pro_2006@hotmail.com)<br>• Présenter les expériences du plus ancien au plus récent (mauvais ordre)<br>• Oublier de mentionner une compétence informatique demandée dans l'offre</div><div style='background:#fef9c3;padding:12px;margin:10px 0;border-radius:4px'><strong>Erreurs de formulation :</strong><br>• Utiliser la première personne (« J'ai fait... », « Je suis... »)<br>• Décrire les tâches au passé composé au lieu de l'infinitif<br>• Formulations vagues : « Faire du service » au lieu de « Accueillir la clientèle et traiter les plaintes »<br>• Fautes d'orthographe ou de grammaire</div><div style='background:#f3e8ff;padding:12px;margin:10px 0;border-radius:4px'><strong>Erreurs de mise en page :</strong><br>• CV de 4 pages pour un premier emploi<br>• Polices multiples, couleurs vives, mise en page surchargée<br>• Marges trop larges ou trop étroites<br>• Incohérence dans les dates (formats différents)</div>",
+      order: 146,
+    } as any);
+
+    const cv146ex1Id = randomUUID();
+    this.exercises.set(cv146ex1Id, { id: cv146ex1Id, courseId: cv146Id, title: "Vrai ou Faux — pratiques du CV québécois", description: "Pour chaque affirmation sur la rédaction d'un CV québécois, dis si c'est vrai ou faux", type: "true_false", order: 1 } as any);
+    [
+      { order:1, text:"Il est recommandé d'inclure une photo professionnelle dans un CV québécois pour faire bonne impression.", correct:"Faux", explanation:"Au Québec, la photo est déconseillée dans un CV pour éviter la discrimination. Les employeurs n'attendent pas de photo et certains ignorent automatiquement les CV qui en contiennent." },
+      { order:2, text:"Les tâches dans la section expérience doivent être formulées à l'infinitif (ex. : « Répondre aux appels »).", correct:"Vrai", explanation:"L'infinitif est la norme dans les CV québécois pour décrire les tâches. Il évite les répétitions (pas de 'je') et donne un style direct et professionnel." },
+      { order:3, text:"Il est préférable de lister ses expériences du plus ancien au plus récent pour montrer sa progression.", correct:"Faux", explanation:"On utilise l'ordre chronologique inverse : l'expérience la plus récente apparaît en premier. C'est ce que l'employeur veut voir en premier — ton niveau actuel." },
+      { order:4, text:"Un CV de 3 pages est acceptable pour un étudiant qui postule à son premier emploi à temps partiel.", correct:"Faux", explanation:"Pour un premier emploi ou un poste d'entrée de gamme, un CV d'une page suffit amplement. Un CV de 3 pages pour peu d'expérience donne une impression de remplissage." },
+      { order:5, text:"Il est approprié d'inscrire « Disponibles sur demande » dans la section références.", correct:"Vrai", explanation:"C'est la pratique la plus courante au Québec. Tu n'as pas à fournir les coordonnées de tes références dans ton CV — tu les transmets quand l'employeur les demande." },
+      { order:6, text:"L'adresse courriel lea_la_beste_2005@hotmail.com est acceptable dans un CV professionnel québécois.", correct:"Faux", explanation:"Cette adresse est non professionnelle. Un courriel avec un surnom, des chiffres superflus ou une adresse humoristique nuit à la crédibilité du candidat. Utilise le format prenom.nom@domaine." },
+      { order:7, text:"La section bénévolat est considérée positivement par la majorité des employeurs québécois.", correct:"Vrai", explanation:"Au Québec, l'engagement bénévole est valorisé. Il montre que tu es impliqué dans ta communauté, que tu développes des compétences et que tu as de bonnes valeurs — des atouts recherchés." },
+      { order:8, text:"Il faut toujours écrire son numéro d'assurance sociale dans la section coordonnées du CV.", correct:"Faux", explanation:"Le numéro d'assurance sociale (NAS) est une information confidentielle qui ne doit JAMAIS apparaître dans un CV. Il n'est demandé qu'après l'embauche, pour les documents fiscaux." },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: cv146ex1Id, title: "Vrai ou Faux", text: q.text, type:"true_false", options:JSON.stringify(["Vrai","Faux"]), correctAnswer:q.correct, order:q.order } as any); });
+
+    const cv146ex2Id = randomUUID();
+    this.exercises.set(cv146ex2Id, { id: cv146ex2Id, courseId: cv146Id, title: "Corriger des extraits de CV problématiques", description: "Pour chaque extrait de CV, identifie l'erreur principale et la correction à apporter", type: "multiple_choice", order: 2 } as any);
+    [
+      { order:1, title:"Erreur dans les coordonnées", text:"Mohamed consulte le CV de Léa et voit : « gamer_xl_lea@hotmail.com ». Quelle est le problème principal ?", options:JSON.stringify(["L'adresse n'est pas hébergée sur Gmail","L'adresse courriel est non professionnelle et inappropriée pour un CV","Le nom de domaine hotmail.com est désuet","Il aurait fallu mettre le courriel en majuscules"]), correctAnswer:"L'adresse courriel est non professionnelle et inappropriée pour un CV" },
+      { order:2, title:"Erreur de formulation de tâche", text:"Dans la section expérience, Léa a écrit : « J'ai répondu aux appels des clients et j'ai aidé à classer les dossiers. » Quelle est l'erreur ?", options:JSON.stringify(["Les tâches sont trop spécifiques","Les verbes sont au passé composé avec 'je' — il faut les formuler à l'infinitif","Il n'y a pas assez de tâches listées","Les tâches décrivent deux emplois différents"]), correctAnswer:"Les verbes sont au passé composé avec 'je' — il faut les formuler à l'infinitif" },
+      { order:3, title:"Mauvais ordre des expériences", text:"Le CV de Léa présente d'abord son emploi chez Dollarama (2021–2023) et ensuite son emploi chez Provigo (2023–2025). Quel est le problème ?", options:JSON.stringify(["Elle devrait retirer l'emploi chez Dollarama car c'est trop ancien","Elle devrait regrouper les deux emplois sous une même section","L'ordre est incorrect — le poste le plus récent (Provigo) doit apparaître en premier","Elle devrait supprimer les dates pour ne pas révéler son âge"]), correctAnswer:"L'ordre est incorrect — le poste le plus récent (Provigo) doit apparaître en premier" },
+      { order:4, title:"Information à retirer", text:"Léa a inclus dans ses coordonnées : « Née le 12 mars 2006 · Célibataire · Citoyenne canadienne ». Que doit-elle corriger ?", options:JSON.stringify(["Elle doit retirer uniquement son état civil","Elle doit remplacer ces informations par son quartier de résidence","Elle doit retirer toutes ces informations — date de naissance, état civil et statut légal ne font pas partie d'un CV québécois","Elle doit remplacer 'Citoyenne canadienne' par son numéro d'assurance sociale"]), correctAnswer:"Elle doit retirer toutes ces informations — date de naissance, état civil et statut légal ne font pas partie d'un CV québécois" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: cv146ex2Id, ...q, type:"multiple_choice" } as any); });
 
   }
 
