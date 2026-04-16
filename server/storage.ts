@@ -148,6 +148,7 @@ export class MemStorage implements IStorage {
     this.seedDicteesGuideesCourses();
     this.seedFptCommunicationCourses();
     this.seedCvQuebecCourses();
+    this.seedEntrevueCourses();
     this.seedFptCourses();
   }
 
@@ -15908,6 +15909,181 @@ Valorisé par les employeurs québécois — montre ton engagement dans la commu
       { order:3, title:"Mauvais ordre des expériences", text:"Le CV de Léa présente d'abord son emploi chez Dollarama (2021–2023) et ensuite son emploi chez Provigo (2023–2025). Quel est le problème ?", options:JSON.stringify(["Elle devrait retirer l'emploi chez Dollarama car c'est trop ancien","Elle devrait regrouper les deux emplois sous une même section","L'ordre est incorrect — le poste le plus récent (Provigo) doit apparaître en premier","Elle devrait supprimer les dates pour ne pas révéler son âge"]), correctAnswer:"L'ordre est incorrect — le poste le plus récent (Provigo) doit apparaître en premier" },
       { order:4, title:"Information à retirer", text:"Léa a inclus dans ses coordonnées : « Née le 12 mars 2006 · Célibataire · Citoyenne canadienne ». Que doit-elle corriger ?", options:JSON.stringify(["Elle doit retirer uniquement son état civil","Elle doit remplacer ces informations par son quartier de résidence","Elle doit retirer toutes ces informations — date de naissance, état civil et statut légal ne font pas partie d'un CV québécois","Elle doit remplacer 'Citoyenne canadienne' par son numéro d'assurance sociale"]), correctAnswer:"Elle doit retirer toutes ces informations — date de naissance, état civil et statut légal ne font pas partie d'un CV québécois" },
     ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: cv146ex2Id, ...q, type:"multiple_choice" } as any); });
+
+  }
+
+  // ── PRÉPARATION À L'ENTREVUE D'EMBAUCHE ──────────────────────────────────
+
+  private seedEntrevueCourses() {
+
+    // ── Cours 147 : Questions d'entrevue — choisir la meilleure réponse ──────
+    const ent147Id = randomUUID();
+    this.courses.set(ent147Id, {
+      id: ent147Id,
+      title: "L'entrevue d'embauche : questions et réponses",
+      description: "Prépare-toi aux questions les plus fréquentes des entrevues d'embauche québécoises. Pour chaque question, identifie la réponse la plus professionnelle et efficace. Découvre pourquoi certaines réponses sont meilleures que d'autres",
+      category: "francais_fpt",
+      content: `<h2>L'entrevue d'embauche au Québec</h2>
+<p>L'entrevue est ta chance de convaincre l'employeur que tu es la meilleure personne pour le poste. Une bonne préparation fait toute la différence.</p>
+
+<h3>Avant l'entrevue</h3>
+<div style='background:#dcfce7;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>Prépare-toi en 5 étapes :</strong><br>
+1. <strong>Renseigne-toi sur l'entreprise</strong> — son secteur, ses valeurs, ses produits ou services<br>
+2. <strong>Relis l'offre d'emploi</strong> — identifie les 3 compétences clés demandées<br>
+3. <strong>Prépare tes réponses</strong> aux questions fréquentes (voir ci-dessous)<br>
+4. <strong>Prépare 2 ou 3 questions</strong> à poser à l'employeur en fin d'entrevue<br>
+5. <strong>Prépare ta tenue</strong> — propre, sobre, adaptée au milieu de travail
+</div>
+
+<h3>Les questions les plus fréquentes</h3>
+<div style='background:#dbeafe;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>« Parlez-moi de vous. »</strong><br>
+Réponse en 3 parties : formation → expérience → ce que tu apportes à ce poste<br>
+<em>Durée : 1 à 2 minutes maximum. Reste professionnel — pas de vie personnelle.</em>
+</div>
+<div style='background:#f3e8ff;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>« Quelles sont vos forces ? »</strong><br>
+Cite 2 ou 3 forces <em>en lien avec le poste</em>, chacune appuyée d'un exemple concret.<br>
+<em>Ex. : « Je suis très organisée — dans mon emploi précédent, je gérais les dossiers de 30 clients simultanément. »</em>
+</div>
+<div style='background:#fef9c3;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>« Quelles sont vos faiblesses ? »</strong><br>
+Cite une faiblesse réelle mais <em>que tu travailles activement à corriger</em>.<br>
+<em>Ex. : « J'ai tendance à vouloir tout vérifier deux fois, mais j'ai appris à mieux gérer mon temps pour que ça ne ralentisse pas mon travail. »</em>
+</div>
+<div style='background:#fee2e2;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>« Pourquoi voulez-vous travailler ici ? »</strong><br>
+Montre que tu connais l'entreprise et que tu as une vraie raison — pas juste que tu as besoin d'un emploi.<br>
+<em>Ex. : « J'ai remarqué que votre entreprise est impliquée dans son quartier. Ça correspond à mes valeurs et c'est le type d'environnement où je m'épanouis. »</em>
+</div>
+<div style='background:#ecfdf5;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>« Décrivez une situation difficile et comment vous l'avez gérée. »</strong><br>
+Utilise la méthode <strong>STAR</strong> :<br>
+• <strong>S</strong>ituation — le contexte<br>
+• <strong>T</strong>âche — ce que tu devais faire<br>
+• <strong>A</strong>ction — ce que tu as fait concrètement<br>
+• <strong>R</strong>ésultat — ce qui s'est passé
+</div>
+
+<h3>Questions à poser à l'employeur</h3>
+<div style='background:#f1f5f9;padding:12px;margin:10px 0;border-radius:4px;font-size:0.9em'>
+Bons exemples :<br>
+• « À quoi ressemble une journée typique dans ce poste ? »<br>
+• « Quelles sont les possibilités de formation ou d'avancement ? »<br>
+• « Comment se déroule la période de probation ? »<br><br>
+À éviter lors d'une première entrevue :<br>
+• « Combien vais-je être payé ? » (attends qu'on aborde le sujet)<br>
+• « Est-ce que je peux prendre des vacances en été ? »<br>
+• Questions sur les avantages avant même d'avoir le poste
+</div>`,
+      order: 147,
+    } as any);
+
+    const ent147ex1Id = randomUUID();
+    this.exercises.set(ent147ex1Id, { id: ent147ex1Id, courseId: ent147Id, title: "Choisir la meilleure réponse en entrevue", description: "Pour chaque question d'entrevue, choisis la réponse la plus professionnelle et efficace dans le contexte québécois", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Parlez-moi de vous", text:"L'employeur te demande : « Pouvez-vous vous présenter ? » Quelle réponse est la plus appropriée ?", options:JSON.stringify(["« J'ai 19 ans, j'habite à Montréal avec ma famille, j'aime le cinéma et les jeux vidéo, et je cherche un emploi à temps partiel. »","« Je suis titulaire d'un DES obtenu en 2024 à l'école Édouard-Montpetit. J'ai deux ans d'expérience en service à la clientèle chez Provigo, où j'ai développé mon sens de l'organisation et ma rigueur. Je postule ici parce que je souhaite évoluer vers un poste plus administratif. »","« Je préfère ne pas trop parler de moi — lisez mon CV, tout est là. »","« Je suis une personne très travaillante et fiable. Je suis certaine que vous ne le regretterez pas si vous m'engagez. »"]), correctAnswer:"« Je suis titulaire d'un DES obtenu en 2024 à l'école Édouard-Montpetit. J'ai deux ans d'expérience en service à la clientèle chez Provigo, où j'ai développé mon sens de l'organisation et ma rigueur. Je postule ici parce que je souhaite évoluer vers un poste plus administratif. »" },
+      { order:2, title:"Quelles sont vos forces ?", text:"L'employeur te demande tes forces. Quelle réponse est la meilleure ?", options:JSON.stringify(["« Je suis la meilleure dans tout ce que je fais et j'apprends très vite. »","« Je n'ai pas vraiment réfléchi à ça... Je dirais que je suis gentille et ponctuelle. »","« Mon organisation est ma plus grande force. Dans mon emploi chez Provigo, je gérais simultanément l'inventaire, la caisse et le service aux clients sans jamais perdre de vue mes priorités. »","« Je n'ai pas de faiblesse, donc toutes mes qualités sont des forces. »"]), correctAnswer:"« Mon organisation est ma plus grande force. Dans mon emploi chez Provigo, je gérais simultanément l'inventaire, la caisse et le service aux clients sans jamais perdre de vue mes priorités. »" },
+      { order:3, title:"Quelles sont vos faiblesses ?", text:"L'employeur te demande une faiblesse. Quelle réponse est la plus habile ?", options:JSON.stringify(["« Je n'ai aucune faiblesse — je travaille très fort et je ne fais pas d'erreurs. »","« Je suis parfois trop perfectionniste : je vérifie mon travail plusieurs fois, mais j'ai appris à établir des priorités pour livrer dans les délais tout en maintenant la qualité. »","« Ma plus grande faiblesse, c'est que je n'aime pas les clients difficiles et j'ai du mal à rester calme. »","« Je suis souvent en retard le matin, mais je compense en restant plus longtemps le soir. »"]), correctAnswer:"« Je suis parfois trop perfectionniste : je vérifie mon travail plusieurs fois, mais j'ai appris à établir des priorités pour livrer dans les délais tout en maintenant la qualité. »" },
+      { order:4, title:"Pourquoi voulez-vous travailler ici ?", text:"L'employeur demande pourquoi tu veux travailler pour Groupe Beaumont. Quelle réponse est la meilleure ?", options:JSON.stringify(["« Parce que j'ai besoin d'un emploi et votre affiche était dans la vitrine. »","« J'ai entendu dire que vous payez bien et que les horaires sont flexibles. »","« Votre réputation d'entreprise locale engagée dans le quartier Rosemont m'a attirée. Je souhaite contribuer à une équipe stable et apporter mes compétences administratives à une organisation qui a de vraies valeurs. »","« Je postule partout en ce moment et votre offre était intéressante. »"]), correctAnswer:"« Votre réputation d'entreprise locale engagée dans le quartier Rosemont m'a attirée. Je souhaite contribuer à une équipe stable et apporter mes compétences administratives à une organisation qui a de vraies valeurs. »" },
+      { order:5, title:"Situation difficile — méthode STAR", text:"L'employeur demande : « Décrivez une situation difficile et comment vous l'avez résolue. » Quelle réponse applique correctement la méthode STAR ?", options:JSON.stringify(["« J'ai déjà eu un collègue difficile, mais on a fini par s'entendre. »","« Chez Provigo, un samedi soir de temps des Fêtes (S), je devais gérer seule la caisse avec une longue file (T). J'ai appliqué les procédures d'accélération du service et informé ma superviseure pour obtenir du renfort (A). La file a été résorbée en 15 minutes et aucun client n'a quitté sans être servi (R). »","« Je gère toujours bien les situations difficiles — je reste calme et je fais mon travail. »","« C'est difficile de penser à un exemple précis là maintenant. »"]), correctAnswer:"« Chez Provigo, un samedi soir de temps des Fêtes (S), je devais gérer seule la caisse avec une longue file (T). J'ai appliqué les procédures d'accélération du service et informé ma superviseure pour obtenir du renfort (A). La file a été résorbée en 15 minutes et aucun client n'a quitté sans être servi (R). »" },
+      { order:6, title:"Bonne question à poser à l'employeur", text:"En fin d'entrevue, l'employeur te demande si tu as des questions. Laquelle est la plus appropriée ?", options:JSON.stringify(["« Est-ce que je peux prendre mes vacances d'été en juillet ? »","« Combien vais-je gagner exactement ? »","« À quoi ressemble une journée typique dans ce poste ? »","« Est-ce que vous offrez des avantages comme le stationnement gratuit ? »"]), correctAnswer:"« À quoi ressemble une journée typique dans ce poste ? »" },
+      { order:7, title:"Disponibilités — réponse professionnelle", text:"L'employeur te demande tes disponibilités. Tu es disponible du lundi au vendredi, de 8 h à 17 h. Quelle formulation est la plus claire ?", options:JSON.stringify(["« Je suis disponible quand vous voulez, pas de problème. »","« Je suis disponible du lundi au vendredi, entre 8 h et 17 h. Je suis également ouverte à discuter d'un horaire selon les besoins du poste. »","« Ça dépend des jours — appelez-moi et on s'arrange. »","« Je suis disponible, mais pas les weekends ni les soirs. »"]), correctAnswer:"« Je suis disponible du lundi au vendredi, entre 8 h et 17 h. Je suis également ouverte à discuter d'un horaire selon les besoins du poste. »" },
+      { order:8, title:"Salaire — comment répondre", text:"L'employeur te demande quelles sont tes attentes salariales. Quelle réponse est la plus habile ?", options:JSON.stringify(["« Je veux le maximum possible — je vaux beaucoup. »","« Je n'ai pas vraiment d'attente, c'est vous qui décidez. »","« D'après les affichages similaires, je viserais un taux entre 19 $ et 22 $ l'heure, mais je suis ouverte à discuter selon les responsabilités exactes du poste. »","« Je ne sais pas combien vous payez, donc je ne sais pas quoi dire. »"]), correctAnswer:"« D'après les affichages similaires, je viserais un taux entre 19 $ et 22 $ l'heure, mais je suis ouverte à discuter selon les responsabilités exactes du poste. »" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: ent147ex1Id, ...q, type:"multiple_choice" } as any); });
+
+    // ── Cours 148 : Structurer une réponse — méthode STAR ────────────────────
+    const ent148Id = randomUUID();
+    this.courses.set(ent148Id, {
+      id: ent148Id,
+      title: "Structurer ses réponses en entrevue — la méthode STAR",
+      description: "Maîtrise la méthode STAR pour répondre aux questions comportementales d'entrevue : Situation, Tâche, Action, Résultat. Exerce-toi à remettre les étapes dans le bon ordre et à compléter des réponses STAR complètes basées sur des situations québécoises réelles",
+      category: "francais_fpt",
+      content: `<h2>La méthode STAR en entrevue</h2>
+<p>Les questions comportementales commencent souvent par :</p>
+<ul>
+<li>« Décrivez une situation où vous avez dû... »</li>
+<li>« Donnez-moi un exemple de... »</li>
+<li>« Parlez-moi d'un moment où... »</li>
+</ul>
+<p>Pour y répondre efficacement, utilise la méthode <strong>STAR</strong> :</p>
+
+<div style='background:#dcfce7;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>S — Situation</strong><br>
+Donne le contexte en une ou deux phrases. Où étais-tu ? Quand ? Quelle était la situation ?<br>
+<em>Ex. : « Lors d'un samedi particulièrement achalandé chez Provigo, en décembre... »</em>
+</div>
+<div style='background:#dbeafe;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>T — Tâche</strong><br>
+Explique ce que tu devais faire ou quel était ton rôle dans cette situation.<br>
+<em>Ex. : « Je devais gérer seule la caisse principale tout en aidant les clients qui avaient des questions. »</em>
+</div>
+<div style='background:#f3e8ff;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>A — Action</strong><br>
+C'est la partie la plus importante. Décris précisément ce que TU as fait — les actions concrètes que tu as prises.<br>
+<em>Ex. : « J'ai appliqué les procédures express pour accélérer le traitement, j'ai informé ma superviseure pour qu'elle envoie du renfort, et j'ai gardé un ton calme et souriant avec chaque client. »</em>
+</div>
+<div style='background:#fef9c3;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>R — Résultat</strong><br>
+Termine par le résultat positif — ce qui s'est passé grâce à tes actions. Idéalement avec des chiffres ou des faits.<br>
+<em>Ex. : « La file a été résorbée en moins de 15 minutes. Ma superviseure m'a complimentée pour ma gestion du stress et m'a confié la formation d'une nouvelle collègue le mois suivant. »</em>
+</div>
+
+<h3>Conseils supplémentaires</h3>
+<div style='background:#f1f5f9;padding:12px;margin:10px 0;border-radius:4px;font-size:0.9em'>
+• Prépare 3 à 5 anecdotes STAR avant l'entrevue — tu peux les adapter à différentes questions<br>
+• Reste concis : une réponse STAR dure idéalement entre 1 et 3 minutes<br>
+• Parle toujours au passé (passé composé) pour décrire la situation, la tâche et les actions<br>
+• Évite le « on » — dis « j'ai fait » plutôt que « on a fait »<br>
+• Si tu n'as pas d'expérience de travail, utilise des exemples scolaires, sportifs ou bénévoles
+</div>`,
+      order: 148,
+    } as any);
+
+    const ent148ex1Id = randomUUID();
+    this.exercises.set(ent148ex1Id, { id: ent148ex1Id, courseId: ent148Id, title: "Remettre une réponse STAR dans le bon ordre", description: "Pour chaque question d'entrevue, remets les quatre étapes de la méthode STAR dans l'ordre correct : Situation → Tâche → Action → Résultat", type: "ordering", order: 1 } as any);
+    [
+      { order:1, title:"STAR — gérer un client difficile", text:"Question : « Décrivez une situation où vous avez dû gérer un client difficile. » Remets les quatre étapes de la réponse STAR dans le bon ordre.",
+        options:JSON.stringify([
+          "Résultat : Le client est reparti satisfait avec un échange complet. Ma superviseure m'a félicitée pour ma gestion calme de la situation, et ce client est revenu faire ses achats la semaine suivante.",
+          "Situation : Un soir de semaine chez Provigo, un client s'est présenté à ma caisse avec un produit dont le prix affiché ne correspondait pas au prix facturé.",
+          "Action : J'ai écouté le client sans l'interrompre, je l'ai remercié de me signaler l'écart, puis j'ai appliqué la politique d'exactitude des prix en accordant le produit gratuitement selon les règles en vigueur.",
+          "Tâche : Je devais gérer la situation seule, sans faire attendre les autres clients dans la file et sans escalader inutilement vers ma superviseure."
+        ]),
+        correctAnswer:JSON.stringify([
+          "Situation : Un soir de semaine chez Provigo, un client s'est présenté à ma caisse avec un produit dont le prix affiché ne correspondait pas au prix facturé.",
+          "Tâche : Je devais gérer la situation seule, sans faire attendre les autres clients dans la file et sans escalader inutilement vers ma superviseure.",
+          "Action : J'ai écouté le client sans l'interrompre, je l'ai remercié de me signaler l'écart, puis j'ai appliqué la politique d'exactitude des prix en accordant le produit gratuitement selon les règles en vigueur.",
+          "Résultat : Le client est reparti satisfait avec un échange complet. Ma superviseure m'a félicitée pour ma gestion calme de la situation, et ce client est revenu faire ses achats la semaine suivante."
+        ])
+      },
+      { order:2, title:"STAR — initiative au travail", text:"Question : « Donnez-moi un exemple où vous avez pris une initiative sans qu'on vous le demande. » Remets les étapes STAR dans le bon ordre.",
+        options:JSON.stringify([
+          "Action : J'ai créé un tableau Excel simple listant les tâches récurrentes et les dates d'exécution, que j'ai partagé avec mon équipe et mis à jour chaque semaine.",
+          "Résultat : Le tableau a réduit les oublis de tâches de moitié selon les observations de la superviseure, qui a demandé à toute l'équipe de l'adopter officiellement.",
+          "Tâche : Personne ne m'avait demandé d'intervenir, mais j'ai vu que je pouvais améliorer la situation avec mes connaissances de base en Excel.",
+          "Situation : Lors de mon emploi chez Dollarama, j'ai remarqué que certaines tâches d'inventaire étaient régulièrement oubliées faute d'un suivi clair."
+        ]),
+        correctAnswer:JSON.stringify([
+          "Situation : Lors de mon emploi chez Dollarama, j'ai remarqué que certaines tâches d'inventaire étaient régulièrement oubliées faute d'un suivi clair.",
+          "Tâche : Personne ne m'avait demandé d'intervenir, mais j'ai vu que je pouvais améliorer la situation avec mes connaissances de base en Excel.",
+          "Action : J'ai créé un tableau Excel simple listant les tâches récurrentes et les dates d'exécution, que j'ai partagé avec mon équipe et mis à jour chaque semaine.",
+          "Résultat : Le tableau a réduit les oublis de tâches de moitié selon les observations de la superviseure, qui a demandé à toute l'équipe de l'adopter officiellement."
+        ])
+      },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: ent148ex1Id, ...q, type:"ordering" } as any); });
+
+    const ent148ex2Id = randomUUID();
+    this.exercises.set(ent148ex2Id, { id: ent148ex2Id, courseId: ent148Id, title: "Compléter une réponse STAR", description: "Complète les parties manquantes de ces réponses STAR à des questions d'entrevue types", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"STAR — introduire la situation", text:"Question : « Parlez-moi d'un moment où vous avez dû respecter une échéance serrée. » Complète la partie Situation : « ___ un vendredi après-midi chez Provigo, ma superviseure m'a demandé de compléter l'inventaire complet d'une section avant la fermeture à 21 h. »", correct:"Lors d'un|Un|C'était un|À l'occasion d'un", hint:"Expression pour introduire le contexte temporel d'une anecdote (début de phrase)" },
+      { order:2, title:"STAR — décrire la tâche", text:"Complète la partie Tâche : « Je ___ compter et vérifier plus de deux cents références de produits, noter les écarts d'inventaire et transmettre le rapport à ma superviseure, le tout en moins de deux heures. »", correct:"devais|devais alors|avais à|devais impérativement", hint:"Verbe à l'imparfait indiquant ce que tu avais à accomplir (ta responsabilité dans la situation)" },
+      { order:3, title:"STAR — présenter les actions", text:"Complète la partie Action : « J'ai d'abord ___ la section en zones pour travailler méthodiquement. Ensuite, j'ai utilisé la tablette de saisie pour accélérer la vérification. Finalement, j'ai demandé à ma collègue de me prêter main-forte pendant sa pause. »", correct:"divisé|séparé|découpé|organisé", hint:"Verbe au passé composé indiquant comment tu as organisé l'espace de travail pour être efficace" },
+      { order:4, title:"STAR — formuler le résultat", text:"Complète la partie Résultat : « J'ai terminé l'inventaire ___ 20 h 30, soit trente minutes avant la fermeture. Le rapport ne contenait aucune erreur et ma superviseure m'a confié la gestion des inventaires mensuels dès le mois suivant. »", correct:"à|avant|vers|dès|pour", hint:"Préposition simple indiquant l'heure de fin — te permet de montrer que tu as respecté l'échéance" },
+      { order:5, title:"STAR — exemples sans emploi (bénévolat)", text:"Tu n'as jamais travaillé mais tu as été bénévole. Complète : « Lors de mon bénévolat à la banque alimentaire du Plateau, j'ai ___ la distribution de paniers à plus de cinquante familles chaque samedi matin pendant deux ans. »", correct:"coordonné|organisé|géré|supervisé|assuré", hint:"Verbe d'action au passé composé valorisant ton rôle concret dans l'activité bénévole" },
+      { order:6, title:"STAR — résultat chiffré", text:"Un résultat avec un chiffre est plus convaincant. Complète : « Grâce à ma méthode de travail, le temps de traitement des retours de marchandise a ___ de 20 minutes à moins de 10 minutes par client. »", correct:"été réduit|diminué|baissé|passé", hint:"Verbe montrant l'amélioration mesurable obtenue grâce à tes actions" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: ent148ex2Id, title: q.title, text: q.text, type:"fill_blank", options:null, correctAnswer: q.correct, order: i+1 } as any); });
 
   }
 
