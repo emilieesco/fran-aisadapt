@@ -645,6 +645,7 @@ export default function StudentDashboard() {
                 const matchingCount  = interactiveExercises.filter((ex) => ex.type === "matching").length;
                 const sortingCount   = interactiveExercises.filter((ex) => ex.type === "sorting").length;
                 const trueFalseCount = interactiveExercises.filter((ex) => ex.type === "true_false").length;
+                const orderingCount  = interactiveExercises.filter((ex) => ex.type === "ordering").length;
 
                 const EX_TYPE_META: Record<string, { label: string; color: string; activeColor: string }> = {
                   tous:            { label: "Tous",             color: "bg-muted text-muted-foreground", activeColor: "bg-foreground text-background" },
@@ -653,6 +654,7 @@ export default function StudentDashboard() {
                   matching:        { label: "Association",      color: "bg-muted text-muted-foreground", activeColor: "bg-violet-600 text-white" },
                   sorting:         { label: "Classement",       color: "bg-muted text-muted-foreground", activeColor: "bg-violet-700 text-white" },
                   true_false:      { label: "Vrai ou Faux",     color: "bg-muted text-muted-foreground", activeColor: "bg-teal-600 text-white" },
+                  ordering:        { label: "Mise en ordre",    color: "bg-muted text-muted-foreground", activeColor: "bg-indigo-600 text-white" },
                 };
 
                 const filteredEx = selectedExType === "tous"
@@ -673,18 +675,20 @@ export default function StudentDashboard() {
                   matching:        { label: "Association",      color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300" },
                   sorting:         { label: "Classement",       color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300" },
                   true_false:      { label: "Vrai ou Faux",     color: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300" },
+                  ordering:        { label: "Mise en ordre",    color: "bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300" },
                 };
 
                 return (
                   <>
                     <div className="flex flex-wrap gap-2">
-                      {(["tous", "multiple_choice", "fill_blank", "matching", "sorting", "true_false"] as const).map((t) => {
+                      {(["tous", "multiple_choice", "fill_blank", "matching", "sorting", "true_false", "ordering"] as const).map((t) => {
                         const count = t === "tous" ? interactiveExercises.length
                           : t === "multiple_choice" ? qcmCount
                           : t === "fill_blank" ? fillCount
                           : t === "matching" ? matchingCount
                           : t === "sorting" ? sortingCount
-                          : trueFalseCount;
+                          : t === "true_false" ? trueFalseCount
+                          : orderingCount;
                         const meta = EX_TYPE_META[t];
                         const active = selectedExType === t;
                         return (

@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid, CheckSquare, HelpCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid, CheckSquare, HelpCircle, ArrowUp, ArrowDown, List } from "lucide-react";
 import { ReadAloudButton } from "@/components/accessibility-toolbar";
 
 interface Question {
@@ -63,6 +63,16 @@ function checkSortingAnswer(userAnswer: string, correctAnswer: string): boolean 
     const correct: Record<string, string> = JSON.parse(correctAnswer);
     const user: Record<string, string> = userAnswer ? JSON.parse(userAnswer) : {};
     return Object.keys(correct).every((item) => user[item] === correct[item]);
+  } catch {
+    return false;
+  }
+}
+
+function checkOrderingAnswer(userAnswer: string, correctAnswer: string): boolean {
+  try {
+    const correct: string[] = JSON.parse(correctAnswer);
+    const user: string[] = userAnswer ? JSON.parse(userAnswer) : [];
+    return correct.length === user.length && correct.every((item, i) => item === user[i]);
   } catch {
     return false;
   }
@@ -330,6 +340,10 @@ export default function Exercise() {
   // Sorting-specific state: which item is currently selected (per question)
   const [sortingSelected, setSortingSelected] = useState<Record<string, string | null>>({});
 
+  // Ordering-specific state: current order of items per question
+  const [orderingItems, setOrderingItems] = useState<Record<string, string[]>>({});
+  const orderingInitRef = useRef<Record<string, boolean>>({});
+
   useEffect(() => {
     if (!match || !params?.id) return;
 
@@ -341,6 +355,8 @@ export default function Exercise() {
     setSiblingExercises([]);
     setMatchingLeft(null);
     shuffledRightRef.current = {};
+    setOrderingItems({});
+    orderingInitRef.current = {};
 
     const fetchExercise = async () => {
       try {
@@ -471,6 +487,30 @@ export default function Exercise() {
     setSortingSelected((prev) => ({ ...prev, [qId]: null }));
   };
 
+  // Ordering handlers
+  const getOrderingItemList = (q: Question): string[] => {
+    if (orderingItems[q.id]) return orderingItems[q.id];
+    // Initialize from options (already shuffled in seed data)
+    const opts: string[] = Array.isArray(q.options) ? q.options : (q.options ? JSON.parse(q.options as string) : []);
+    if (!orderingInitRef.current[q.id]) {
+      orderingInitRef.current[q.id] = true;
+      setOrderingItems((prev) => ({ ...prev, [q.id]: opts }));
+      handleAnswerChange(q.id, JSON.stringify(opts));
+    }
+    return opts;
+  };
+
+  const handleOrderingMove = (qId: string, fromIdx: number, toIdx: number) => {
+    if (submitted) return;
+    setOrderingItems((prev) => {
+      const list = [...(prev[qId] || [])];
+      const [moved] = list.splice(fromIdx, 1);
+      list.splice(toIdx, 0, moved);
+      handleAnswerChange(qId, JSON.stringify(list));
+      return { ...prev, [qId]: list };
+    });
+  };
+
   const isQAnswered = (q: Question): boolean => {
     const ans = getQAnswer(q.id);
     if (q.type === "matching") {
@@ -482,6 +522,9 @@ export default function Exercise() {
       const { items } = parseSortingOptions(q.options);
       const placements = getSortingPlacements(q.id);
       return items.length > 0 && items.every((item) => placements[item] !== undefined);
+    }
+    if (q.type === "ordering") {
+      return (orderingItems[q.id] || []).length > 0;
     }
     return ans.trim().length > 0;
   };
@@ -567,6 +610,7 @@ export default function Exercise() {
           if (q.type === "fill_blank") correct = checkFillBlankAnswer(ans, q.correctAnswer);
           else if (q.type === "matching") correct = checkMatchingAnswer(ans, q.correctAnswer);
           else if (q.type === "sorting") correct = checkSortingAnswer(ans, q.correctAnswer);
+          else if (q.type === "ordering") correct = checkOrderingAnswer(ans, q.correctAnswer);
           else if (q.type === "dictee") {
             const cWords = q.correctAnswer.trim().split(/\s+/);
             const uWords = ans.trim().split(/\s+/);
@@ -606,6 +650,7 @@ export default function Exercise() {
         if (q.type === "fill_blank") isCorrect = checkFillBlankAnswer(userAnswer, q.correctAnswer);
         else if (q.type === "matching") isCorrect = checkMatchingAnswer(userAnswer, q.correctAnswer);
         else if (q.type === "sorting") isCorrect = checkSortingAnswer(userAnswer, q.correctAnswer);
+        else if (q.type === "ordering") isCorrect = checkOrderingAnswer(userAnswer, q.correctAnswer);
         else if (q.type === "dictee") {
           const cWords = q.correctAnswer.trim().split(/\s+/);
           const uWords = userAnswer.trim().split(/\s+/);
@@ -918,6 +963,7 @@ export default function Exercise() {
     const isDictee = q.type === "dictee";
     const isSorting = q.type === "sorting";
     const isTrueFalse = q.type === "true_false";
+    const isOrdering = q.type === "ordering";
     const isReadingQ = (isReadingExercise || isInformatifExercise) && q.text.length > 200;
 
     const questionDisplayText = isReadingQ
@@ -968,6 +1014,11 @@ export default function Exercise() {
               <CheckSquare className="w-3 h-3 inline mr-1" />Vrai ou Faux
             </span>
           )}
+          {isOrdering && (
+            <span className="text-xs font-medium bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-md border border-indigo-200 dark:border-indigo-700">
+              <List className="w-3 h-3 inline mr-1" />Mise en ordre
+            </span>
+          )}
           {!isDictee && (
             <ReadAloudButton
               text={questionDisplayText.replace(/___/g, " quelque chose ")}
@@ -979,7 +1030,7 @@ export default function Exercise() {
         </div>
 
         {/* Question prompt */}
-        {!isFill && !isMatch && !isDictee && !isSorting && !isTrueFalse && (
+        {!isFill && !isMatch && !isDictee && !isSorting && !isTrueFalse && !isOrdering && (
           <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-lg border-l-4 border-amber-400 mb-4">
             <p className="text-base leading-relaxed whitespace-pre-wrap text-foreground">{questionDisplayText}</p>
           </div>
@@ -1293,6 +1344,107 @@ export default function Exercise() {
                   </div>
                 </div>
               )}
+            </div>
+          );
+        })()}
+
+        {/* Mise en ordre (ordering) */}
+        {isOrdering && (() => {
+          const items = getOrderingItemList(q);
+          let correct: string[] = [];
+          try { correct = JSON.parse(q.correctAnswer); } catch { /* ok */ }
+
+          return (
+            <div className="space-y-4">
+              {/* Instruction */}
+              <div className="bg-indigo-50 dark:bg-indigo-900/10 p-3 rounded-lg border-l-4 border-indigo-500">
+                <p className="text-sm font-medium text-foreground">{q.text}</p>
+                {!submitted && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Utilise les flèches <ArrowUp className="w-3 h-3 inline" /> <ArrowDown className="w-3 h-3 inline" /> pour remettre les éléments dans le bon ordre.
+                  </p>
+                )}
+              </div>
+
+              {/* Item list */}
+              <div className="space-y-2">
+                {items.map((item, idx) => {
+                  const isCorrectPos = submitted ? (correct[idx] === item) : null;
+                  return (
+                    <div key={item} className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
+                      submitted
+                        ? isCorrectPos
+                          ? "bg-green-50 dark:bg-green-900/20 border-green-400"
+                          : "bg-red-50 dark:bg-red-900/20 border-red-400"
+                        : "bg-background border-border"
+                    }`} data-testid={`ordering-item-${idx}`}>
+                      {/* Position number */}
+                      <span className={`w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold shrink-0 ${
+                        submitted
+                          ? isCorrectPos
+                            ? "bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200"
+                            : "bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200"
+                          : "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300"
+                      }`}>
+                        {idx + 1}
+                      </span>
+
+                      {/* Item text */}
+                      <span className="flex-1 text-sm font-medium text-foreground">{item}</span>
+
+                      {/* Correction indicator */}
+                      {submitted && (
+                        isCorrectPos
+                          ? <CheckCircle className="w-4 h-4 text-green-600 shrink-0" />
+                          : <XCircle className="w-4 h-4 text-red-600 shrink-0" />
+                      )}
+
+                      {/* Move buttons */}
+                      {!submitted && (
+                        <div className="flex flex-col gap-0.5 shrink-0">
+                          <button
+                            onClick={() => idx > 0 && handleOrderingMove(q.id, idx, idx - 1)}
+                            disabled={idx === 0}
+                            className="p-1 rounded hover-elevate disabled:opacity-30 text-muted-foreground"
+                            data-testid={`button-ordering-up-${idx}`}
+                            title="Monter"
+                          >
+                            <ArrowUp className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            onClick={() => idx < items.length - 1 && handleOrderingMove(q.id, idx, idx + 1)}
+                            disabled={idx === items.length - 1}
+                            className="p-1 rounded hover-elevate disabled:opacity-30 text-muted-foreground"
+                            data-testid={`button-ordering-down-${idx}`}
+                            title="Descendre"
+                          >
+                            <ArrowDown className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* After submit: show correct order for wrong positions */}
+              {submitted && (() => {
+                const wrongItems = items.filter((item, idx) => correct[idx] !== item);
+                if (wrongItems.length === 0) return null;
+                return (
+                  <div className="bg-amber-50 dark:bg-amber-900/10 rounded-lg p-3 border border-amber-200 dark:border-amber-700">
+                    <p className="text-xs font-bold text-amber-800 dark:text-amber-200 mb-2">Ordre correct :</p>
+                    <ol className="space-y-1">
+                      {correct.map((item, idx) => (
+                        <li key={item} className="text-xs text-foreground flex gap-2">
+                          <span className="font-bold text-indigo-600 dark:text-indigo-400">{idx + 1}.</span>
+                          <span className={items[idx] === item ? "text-green-700 dark:text-green-400 font-semibold" : ""}>{item}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                );
+              })()}
             </div>
           );
         })()}

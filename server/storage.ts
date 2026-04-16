@@ -139,6 +139,7 @@ export class MemStorage implements IStorage {
     this.initializeSampleData();
     this.seedSortingCourses();
     this.seedTrueFalseCourses();
+    this.seedOrderingCourses();
     this.seedFptCourses();
   }
 
@@ -14380,6 +14381,153 @@ Sur de vieilles espérances.
       const id = randomUUID();
       this.questions.set(id, { id, exerciseId: tf4ExId, title: q.explication, text: q.text, type: "true_false", options: tfOpts, correctAnswer: q.correct, order: i + 1 } as any);
     });
+  }
+
+  // ===== MISE EN ORDRE (ordering) =====
+
+  private seedOrderingCourses() {
+    // Helper: shuffles array with a deterministic seed-like offset so
+    // the visible order is always the same across restarts (not truly random).
+    const shuffle = <T>(arr: T[]): T[] => {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = (i * 7 + 3) % (i + 1); // pseudo-shuffle deterministic
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    };
+
+    // ─── Cours 1 : Schéma narratif — 5 étapes dans l'ordre ───
+    const ord1Id = randomUUID();
+    this.courses.set(ord1Id, {
+      id: ord1Id,
+      title: "Schéma narratif — Remettre les étapes en ordre",
+      description: "Remets les 5 étapes du schéma narratif québécois dans le bon ordre : situation initiale, élément déclencheur, péripéties, dénouement, situation finale.",
+      category: "texte_narratif",
+      content: "<h2>Le schéma narratif</h2><p>Un récit bien structuré suit toujours les mêmes 5 grandes étapes. Savoir les reconnaître t'aidera à mieux comprendre les textes narratifs et à mieux écrire les tiens.</p><ol><li><strong>Situation initiale :</strong> Le contexte, les personnages, le lieu et le temps sont présentés.</li><li><strong>Élément déclencheur :</strong> Un événement vient perturber l'équilibre de la situation initiale.</li><li><strong>Péripéties :</strong> Les actions et aventures qui découlent de l'élément déclencheur.</li><li><strong>Dénouement :</strong> La résolution du problème ou le moment décisif.</li><li><strong>Situation finale :</strong> Le nouvel équilibre : la vie des personnages après les événements.</li></ol>",
+      order: 81,
+    } as any);
+
+    const ord1ExId = randomUUID();
+    this.exercises.set(ord1ExId, { id: ord1ExId, courseId: ord1Id, title: "Étapes du schéma narratif — Mise en ordre", description: "Remets les 5 étapes du schéma narratif dans le bon ordre.", type: "ordering", order: 1 } as any);
+
+    const ord1Correct = [
+      "Situation initiale : présentation des personnages, du lieu et du temps",
+      "Élément déclencheur : un événement perturbe l'équilibre",
+      "Péripéties : les actions et aventures qui se succèdent",
+      "Dénouement : la résolution du problème principal",
+      "Situation finale : le nouvel équilibre après les événements",
+    ];
+    const ord1Shuffled = shuffle(ord1Correct);
+    const qOrd1 = randomUUID();
+    this.questions.set(qOrd1, {
+      id: qOrd1, exerciseId: ord1ExId,
+      title: "Les 5 étapes du schéma narratif",
+      text: "Remets les 5 étapes du schéma narratif dans le bon ordre, du début à la fin du récit.",
+      type: "ordering",
+      options: JSON.stringify(ord1Shuffled),
+      correctAnswer: JSON.stringify(ord1Correct),
+      order: 1,
+    } as any);
+
+    // ─── Cours 2 : Processus de communication écrite ───
+    const ord2Id = randomUUID();
+    this.courses.set(ord2Id, {
+      id: ord2Id,
+      title: "Écrire un texte — Les étapes du processus d'écriture",
+      description: "Remets les étapes du processus d'écriture dans le bon ordre : planifier, rédiger, réviser, corriger, diffuser.",
+      category: "ecriture",
+      content: "<h2>Le processus d'écriture</h2><p>Écrire un bon texte ne se fait pas en une seule étape. Il y a un processus à suivre pour produire un texte de qualité.</p>",
+      order: 82,
+    } as any);
+
+    const ord2ExId = randomUUID();
+    this.exercises.set(ord2ExId, { id: ord2ExId, courseId: ord2Id, title: "Processus d'écriture — Mise en ordre", description: "Remets les étapes du processus d'écriture dans le bon ordre.", type: "ordering", order: 1 } as any);
+
+    const ord2Correct = [
+      "Planifier : choisir un sujet et organiser ses idées",
+      "Rédiger : écrire un premier jet en laissant ses idées s'exprimer",
+      "Réviser le contenu : vérifier que les idées sont claires et bien organisées",
+      "Corriger la langue : vérifier l'orthographe, la grammaire et la ponctuation",
+      "Diffuser : partager ou remettre le texte final",
+    ];
+    const ord2Shuffled = shuffle(ord2Correct);
+    const qOrd2 = randomUUID();
+    this.questions.set(qOrd2, {
+      id: qOrd2, exerciseId: ord2ExId,
+      title: "Les étapes du processus d'écriture",
+      text: "Remets les 5 étapes du processus d'écriture dans le bon ordre, du début à la fin.",
+      type: "ordering",
+      options: JSON.stringify(ord2Shuffled),
+      correctAnswer: JSON.stringify(ord2Correct),
+      order: 1,
+    } as any);
+
+    // ─── Cours 3 : Conjugaison — Du passé au futur ───
+    const ord3Id = randomUUID();
+    this.courses.set(ord3Id, {
+      id: ord3Id,
+      title: "Temps verbaux — Du passé au futur",
+      description: "Remets les principaux temps verbaux dans le bon ordre chronologique : plus-que-parfait, passé composé, imparfait, présent, futur proche, futur simple.",
+      category: "conjugaison",
+      content: "<h2>Les temps verbaux en ordre chronologique</h2><p>Les temps verbaux permettent de situer une action dans le temps. Connais-tu l'ordre chronologique des principaux temps ?</p>",
+      order: 83,
+    } as any);
+
+    const ord3ExId = randomUUID();
+    this.exercises.set(ord3ExId, { id: ord3ExId, courseId: ord3Id, title: "Temps verbaux — Mise en ordre chronologique", description: "Remets les temps verbaux du plus ancien au plus récent ou futur.", type: "ordering", order: 1 } as any);
+
+    const ord3Correct = [
+      "Plus-que-parfait (ex. : j'avais parlé) — le plus loin dans le passé",
+      "Passé composé (ex. : j'ai parlé) — action passée récente ou accomplie",
+      "Imparfait (ex. : je parlais) — action passée en cours ou habitude",
+      "Présent (ex. : je parle) — action en cours maintenant",
+      "Futur proche (ex. : je vais parler) — action imminente ou certaine",
+      "Futur simple (ex. : je parlerai) — action future plus lointaine",
+    ];
+    const ord3Shuffled = shuffle(ord3Correct);
+    const qOrd3 = randomUUID();
+    this.questions.set(qOrd3, {
+      id: qOrd3, exerciseId: ord3ExId,
+      title: "Les temps verbaux du passé au futur",
+      text: "Remets ces temps verbaux dans l'ordre chronologique, du plus loin dans le passé jusqu'au futur.",
+      type: "ordering",
+      options: JSON.stringify(ord3Shuffled),
+      correctAnswer: JSON.stringify(ord3Correct),
+      order: 1,
+    } as any);
+
+    // ─── Cours 4 : Structure d'un paragraphe ───
+    const ord4Id = randomUUID();
+    this.courses.set(ord4Id, {
+      id: ord4Id,
+      title: "Structure d'un paragraphe argumentatif",
+      description: "Remets les parties d'un paragraphe argumentatif dans le bon ordre : idée principale, explication, exemple, conclusion partielle.",
+      category: "ecriture",
+      content: "<h2>Le paragraphe argumentatif</h2><p>Un bon paragraphe argumentatif suit une structure précise pour convaincre le lecteur.</p>",
+      order: 84,
+    } as any);
+
+    const ord4ExId = randomUUID();
+    this.exercises.set(ord4ExId, { id: ord4ExId, courseId: ord4Id, title: "Paragraphe argumentatif — Mise en ordre", description: "Remets les 4 parties d'un paragraphe argumentatif dans le bon ordre.", type: "ordering", order: 1 } as any);
+
+    const ord4Correct = [
+      "Idée principale : l'affirmation centrale du paragraphe",
+      "Explication : développement et justification de l'idée principale",
+      "Exemple : illustration concrète pour appuyer l'explication",
+      "Conclusion partielle : reformulation de l'idée et transition vers la suite",
+    ];
+    const ord4Shuffled = shuffle(ord4Correct);
+    const qOrd4 = randomUUID();
+    this.questions.set(qOrd4, {
+      id: qOrd4, exerciseId: ord4ExId,
+      title: "Les 4 parties d'un paragraphe argumentatif",
+      text: "Remets les 4 parties d'un paragraphe argumentatif dans le bon ordre, du début à la fin.",
+      type: "ordering",
+      options: JSON.stringify(ord4Shuffled),
+      correctAnswer: JSON.stringify(ord4Correct),
+      order: 1,
+    } as any);
   }
 
   // ── COURS FRANÇAIS FPT ─────────────────────────────────────────────────────
