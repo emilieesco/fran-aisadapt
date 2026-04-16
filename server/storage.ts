@@ -14669,6 +14669,168 @@ Sur de vieilles espérances.
       { order:8, title:"Type de texte", text:"Ce texte est un texte descriptif. Quelle caractéristique le prouve le mieux ?", options:JSON.stringify(["Il raconte l'histoire d'un personnage qui visite le Plateau-Mont-Royal","Il présente les caractéristiques d'un quartier en les organisant par aspects","Il explique les causes et les effets du développement urbain montréalais","Il donne l'opinion de l'auteur sur les politiques d'urbanisme de Montréal"]), correctAnswer:"Il présente les caractéristiques d'un quartier en les organisant par aspects" },
     ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: desc90ex1Id, ...q, type: "multiple_choice" } as any); });
 
+    // ── Cours 91 : Portrait de personnage — Mme Simard ───────────────────────
+    const desc91Id = randomUUID();
+    this.courses.set(desc91Id, {
+      id: desc91Id,
+      title: "Lire un portrait : Mme Simard",
+      description: "Lis ce portrait descriptif d'une enseignante québécoise et réponds aux questions sur les procédés, les aspects et l'organisation du texte",
+      category: "lecture_descriptif",
+      content: "<h2>Lire un portrait — texte descriptif</h2><p>Un <strong>portrait</strong> est un type de texte descriptif qui présente les caractéristiques d'une personne : son apparence physique, sa personnalité, ses habitudes et son environnement. Lis attentivement le texte ci-dessous.</p><div style='background:#f8fafc;border:1px solid #e2e8f0;padding:16px;margin:15px 0;border-radius:6px;line-height:1.85'><h3 style='margin-top:0'>Mme Simard, gardienne de mots</h3><p>Dans les couloirs de l'école secondaire Brébeuf, tout le monde reconnaît Mme Simard à son foulard de soie couleur turquoise et à ses lunettes rondes cerclées d'acier. Grande et mince, elle se déplace avec une lenteur délibérée, comme si chaque pas méritait d'être pesé. Son visage, strié de quelques rides discrètes, exprime en permanence une sérénité tranquille.</p><p>Sa personnalité est aussi singulière que son apparence. Mme Simard est une femme de conviction, d'une patience remarquable, capable de répéter la même règle de grammaire dix fois sans jamais perdre son calme. Elle a cependant un humour sec et inattendu qui surgit au moment où on l'attend le moins, provoquant des éclats de rire surpris dans la classe.</p><p>Son bureau reflète parfaitement qui elle est : une montagne de dictionnaires et de grammaires côtoie des plantes succulentes soigneusement alignées, des photos de voyages en noir et blanc, et une tasse de thé qui semble ne jamais se vider. Sur le tableau, des mots rares sont inscrits chaque semaine, défiant les élèves de les utiliser dans leurs travaux.</p><p>En somme, Mme Simard n'est pas seulement une enseignante de français. Elle est, pour ceux qui la côtoient, une véritable gardienne de la langue, une femme qui a fait de sa passion pour les mots un art de vivre.</p></div>",
+      order: 91,
+    } as any);
+    const desc91ex1Id = randomUUID();
+    this.exercises.set(desc91ex1Id, { id: desc91ex1Id, courseId: desc91Id, title: "Questions sur le portrait de Mme Simard", description: "Analyse les aspects, les procédés et l'organisation du portrait de Mme Simard", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Aspects du portrait", text:"Quels aspects du personnage sont décrits dans ce portrait ?", options:JSON.stringify(["Uniquement son apparence physique","Uniquement sa personnalité","Son apparence physique, sa personnalité et son bureau","Son histoire personnelle et ses voyages"]), correctAnswer:"Son apparence physique, sa personnalité et son bureau" },
+      { order:2, title:"Détail de l'apparence", text:"Quel accessoire distinctif permet de reconnaître Mme Simard dans les couloirs ?", options:JSON.stringify(["Un manteau rouge et des bottes de cuir","Un foulard turquoise et des lunettes rondes cerclées d'acier","Un sac à dos et une tasse de café","Un chapeau de paille et des sandales"]), correctAnswer:"Un foulard turquoise et des lunettes rondes cerclées d'acier" },
+      { order:3, title:"Comparaison", text:"Dans « elle se déplace avec une lenteur délibérée, comme si chaque pas méritait d'être pesé », quel procédé est utilisé ?", options:JSON.stringify(["Une métaphore","Une personnification","Une comparaison","Une énumération"]), correctAnswer:"Une comparaison" },
+      { order:4, title:"Marqueur d'opposition", text:"Quel marqueur d'opposition est utilisé pour introduire la nuance sur l'humour de Mme Simard ?", options:JSON.stringify(["En somme","De plus","Cependant","Notamment"]), correctAnswer:"Cependant" },
+      { order:5, title:"Métaphore de la conclusion", text:"Dans la conclusion, Mme Simard est appelée « gardienne de la langue ». Quel procédé est utilisé ?", options:JSON.stringify(["Une comparaison avec 'comme'","Une métaphore — elle est définie comme une gardienne sans mot comparatif","Une énumération de ses qualités","Une personnification de la langue française"]), correctAnswer:"Une métaphore — elle est définie comme une gardienne sans mot comparatif" },
+      { order:6, title:"Marqueur de conclusion", text:"Quel marqueur introduit la conclusion de ce portrait ?", options:JSON.stringify(["De plus","Par ailleurs","Cependant","En somme"]), correctAnswer:"En somme" },
+      { order:7, title:"Le bureau comme aspect", text:"Pourquoi l'auteur décrit-il le bureau de Mme Simard ?", options:JSON.stringify(["Pour informer sur les conditions de travail des enseignants","Parce que le bureau reflète la personnalité et les valeurs du personnage","Pour démontrer que la classe est désordonnée","Pour expliquer les règles de grammaire affichées au tableau"]), correctAnswer:"Parce que le bureau reflète la personnalité et les valeurs du personnage" },
+      { order:8, title:"Type de portrait", text:"Ce portrait présente principalement Mme Simard de façon :", options:JSON.stringify(["Négative — l'auteur la critique subtilement","Neutre — aucun jugement de valeur","Positive et admirative — l'auteur met en valeur ses qualités","Humoristique — le texte se moque d'elle"]), correctAnswer:"Positive et admirative — l'auteur met en valeur ses qualités" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: desc91ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    // ── Cours 92 : Texte descriptif — L'automne au Québec ────────────────────
+    const desc92Id = randomUUID();
+    this.courses.set(desc92Id, {
+      id: desc92Id,
+      title: "Lire un texte descriptif : l'automne au Québec",
+      description: "Analyse ce texte qui décrit le phénomène naturel de l'automne québécois — couleurs, sensations, activités et ambiance — à travers ses procédés et son organisation",
+      category: "lecture_descriptif",
+      content: "<h2>Lire un texte descriptif — phénomène naturel</h2><p>Le texte descriptif peut aussi présenter un <strong>phénomène naturel ou une saison</strong>. Il en montre les caractéristiques visuelles, sonores et sensorielles. Lis le texte suivant avec attention.</p><div style='background:#f8fafc;border:1px solid #e2e8f0;padding:16px;margin:15px 0;border-radius:6px;line-height:1.85'><h3 style='margin-top:0'>L'automne québécois, une flamme éphémère</h3><p>Chaque année, vers la mi-septembre, le Québec s'enflamme. Les forêts de feuillus qui couvrent les Laurentides, les Appalaches et la vallée du Saint-Laurent se transforment en un spectacle de rouge, d'orange, de jaune et d'or que les Québécois appellent affectueusement le « temps des couleurs ».</p><p>Sur le plan visuel, l'automne est d'une générosité éblouissante. Les érables à sucre virent au rouge écarlate, les bouleaux jaunissent comme de vieilles pièces d'or, et les peupliers trembles frissonnent sous un pelage doré. Au sol, les feuilles tombées forment des tapis moelleux qui craquent et froissent sous les pas des promeneurs.</p><p>L'automne québécois se vit aussi avec les autres sens. L'air se charge d'une odeur de terre humide et de champignons sauvages, piquante et douce à la fois. Les nuits rafraîchissent rapidement, apportant une fraîcheur vivifiante qui colle aux joues comme un gant de velours froid. Dans les vergers et les citrouilleries, les arômes de pommes fraîches et de cidre chaud se mêlent en une fragrance irrésistible.</p><p>Enfin, l'automne est une saison de rassemblement. Les familles parcourent les rangs des régions pour cueillir des pommes, courir dans les labyrinthes de maïs ou admirer le feuillage depuis les belvédères du parc du Mont-Tremblant. Les marchés regorgent de courges, de canneberges et de fromages d'ici, pendant que les restaurants proposent des menus aux saveurs réchauffantes : soupe à la citrouille, gigot d'agneau aux herbes et tartes aux pommes croustillantes.</p><p>Bref, l'automne québécois est bien plus qu'une saison : c'est un rendez-vous annuel avec la beauté du monde, éphémère et donc précieux.</p></div>",
+      order: 92,
+    } as any);
+    const desc92ex1Id = randomUUID();
+    this.exercises.set(desc92ex1Id, { id: desc92ex1Id, courseId: desc92Id, title: "Questions sur l'automne québécois", description: "Analyse les procédés, les aspects et les marqueurs de ce texte descriptif sur l'automne au Québec", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Sujet de description", text:"Quel est le sujet de description de ce texte ?", options:JSON.stringify(["La forêt laurentienne en général","L'automne québécois et ses caractéristiques","La cueillette de pommes dans les vergers","Le parc du Mont-Tremblant"]), correctAnswer:"L'automne québécois et ses caractéristiques" },
+      { order:2, title:"Nombre d'aspects", text:"Combien d'aspects distincts le développement présente-t-il ?", options:JSON.stringify(["1 (uniquement les couleurs)","2 (visuels et sonores)","3 (visuel, sensoriel, activités et rassemblement)","4 (couleurs, sons, odeurs, goûts)"]), correctAnswer:"3 (visuel, sensoriel, activités et rassemblement)" },
+      { order:3, title:"Métaphore d'ouverture", text:"Dans « le Québec s'enflamme », quel procédé est utilisé ?", options:JSON.stringify(["Une comparaison","Une métaphore","Une énumération","Une personnification"]), correctAnswer:"Une métaphore" },
+      { order:4, title:"Comparaison dans le texte", text:"Trouvez la comparaison dans le paragraphe sur les sens :", options:JSON.stringify(["« les arômes de pommes fraîches et de cidre chaud »","« une fraîcheur vivifiante qui colle aux joues comme un gant de velours froid »","« les nuits rafraîchissent rapidement »","« l'air se charge d'une odeur de terre humide »"]), correctAnswer:"« une fraîcheur vivifiante qui colle aux joues comme un gant de velours froid »" },
+      { order:5, title:"Sens sollicités", text:"Dans le paragraphe « L'automne québécois se vit aussi avec les autres sens », quels sens sont décrits ?", options:JSON.stringify(["La vue seulement","La vue et l'ouïe","L'odorat et le toucher principalement","Le goût et la vue"]), correctAnswer:"L'odorat et le toucher principalement" },
+      { order:6, title:"Marqueur de conclusion", text:"Quel marqueur introduit la conclusion de ce texte ?", options:JSON.stringify(["En somme","Enfin","Bref","De plus"]), correctAnswer:"Bref" },
+      { order:7, title:"Énumération de couleurs", text:"Dans le premier paragraphe du développement, l'auteur utilise une énumération. Qu'est-ce qui est énuméré ?", options:JSON.stringify(["Des espèces d'arbres (érables, bouleaux, peupliers)","Des couleurs de l'automne : rouge, orange, jaune et or","Des activités automnales (cueillette, randonnée, marchés)","Des régions du Québec (Laurentides, Appalaches, Saint-Laurent)"]), correctAnswer:"Des couleurs de l'automne : rouge, orange, jaune et or" },
+      { order:8, title:"Personnification", text:"Dans la phrase « les peupliers trembles frissonnent sous un pelage doré », quel procédé donne vie aux arbres ?", options:JSON.stringify(["Une comparaison","Une métaphore","Une personnification — frissonnent est une action humaine attribuée aux arbres","Une énumération"]), correctAnswer:"Une personnification — frissonnent est une action humaine attribuée aux arbres" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: desc92ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    // ── Cours 93 : Texte descriptif — Le marché Atwater ──────────────────────
+    const desc93Id = randomUUID();
+    this.courses.set(desc93Id, {
+      id: desc93Id,
+      title: "Lire un texte descriptif : le marché Atwater",
+      description: "Lis ce texte qui décrit le marché Atwater à Montréal et réponds aux questions sur la structure, les procédés descriptifs et l'atmosphère du lieu",
+      category: "lecture_descriptif",
+      content: "<h2>Lire un texte descriptif — lieu québécois</h2><p>Ce texte décrit le marché Atwater, un lieu emblématique de Montréal. Porte attention à l'organisation, aux détails sensoriels et aux procédés descriptifs utilisés.</p><div style='background:#f8fafc;border:1px solid #e2e8f0;padding:16px;margin:15px 0;border-radius:6px;line-height:1.85'><h3 style='margin-top:0'>Le marché Atwater : une cathédrale du goût</h3><p>Dressé au bord du canal de Lachine, dans le quartier Saint-Henri, le marché Atwater est l'un des plus vieux marchés publics de Montréal. Son imposante structure de brique rouge coiffée d'une tour carrée et d'une horloge centenaire lui confère une allure à la fois robuste et élégante, bien éloignée de l'anonymat des grandes surfaces.</p><p>À l'intérieur, les étals se succèdent dans une joyeuse confusion de couleurs et de saveurs. Les boucheries artisanales proposent des viandes découpées à la main, suspendues à des crochets d'acier luisant. Les fromageries débordent de meules rondes, de fromages bleus coulants et de camemberts québécois enrobés de cendre. Les fleuristes, enfin, font rivaliser roses, pivoines et tournesols dans des seaux d'eau fraîche qui miroitent sous les néons.</p><p>Dehors, sur l'esplanade longeant le canal, les maraîchers étalent leurs produits selon les saisons. À l'automne, des pyramides de pommes Cortland et Honeycrisp côtoient des rangées de potirons ventrus, de poireaux géants et de botte de ciboulette. L'odeur de pain grillé et de café filtré s'échappe des comptoirs de rue et se mêle à l'air frais du canal.</p><p>Enfin, le marché Atwater est un lieu de rencontre autant qu'un lieu de commerce. Les habitués se saluent entre les étals, les enfants courent autour des bacs de légumes pendant que les parents discutent recettes avec les producteurs. Cette chaleur humaine, mêlée aux arômes du marché, fait de chaque visite une petite fête des sens.</p><p>En bref, le marché Atwater est bien plus qu'un endroit où l'on fait ses courses : c'est un fragment de vie montréalaise, authentique et savoureux.</p></div>",
+      order: 93,
+    } as any);
+    const desc93ex1Id = randomUUID();
+    this.exercises.set(desc93ex1Id, { id: desc93ex1Id, courseId: desc93Id, title: "Questions sur le marché Atwater", description: "Analyse la structure, les aspects et les procédés de ce texte sur le marché Atwater à Montréal", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Titre et métaphore", text:"Dans le titre « Une cathédrale du goût », quel procédé est utilisé ?", options:JSON.stringify(["Une comparaison avec 'comme'","Une métaphore — le marché est présenté comme une cathédrale sans mot comparatif","Une personnification","Une énumération"]), correctAnswer:"Une métaphore — le marché est présenté comme une mot comparatif" },
+      { order:2, title:"Aspects développés", text:"Quels aspects du marché sont décrits dans le développement ?", options:JSON.stringify(["Son histoire et son architecture seulement","L'intérieur, l'extérieur (esplanade) et l'ambiance humaine","Les prix des produits et les heures d'ouverture","Uniquement les produits alimentaires vendus"]), correctAnswer:"L'intérieur, l'extérieur (esplanade) et l'ambiance humaine" },
+      { order:3, title:"Champ lexical sensoriel", text:"Dans le deuxième paragraphe, quels sens sont principalement sollicités ?", options:JSON.stringify(["L'ouïe et le toucher","La vue et l'odorat surtout","Le goût uniquement","Le toucher et l'odorat"]), correctAnswer:"La vue et l'odorat surtout" },
+      { order:4, title:"Énumération de produits", text:"Dans le paragraphe sur l'esplanade, quelle énumération illustre la richesse des produits automnaux ?", options:JSON.stringify(["roses, pivoines et tournesols","pommes Cortland et Honeycrisp, potirons, poireaux et ciboulette","meules rondes, fromages bleus et camemberts","boucheries, fromageries et fleuristes"]), correctAnswer:"pommes Cortland et Honeycrisp, potirons, poireaux et ciboulette" },
+      { order:5, title:"Marqueur de transition", text:"Quel marqueur introduit le dernier aspect (la dimension humaine du marché) ?", options:JSON.stringify(["De plus","Par ailleurs","Enfin","Cependant"]), correctAnswer:"Enfin" },
+      { order:6, title:"Marqueur de conclusion", text:"Quelle expression introduit la conclusion du texte ?", options:JSON.stringify(["Enfin","En bref","De plus","Cependant"]), correctAnswer:"En bref" },
+      { order:7, title:"Localisation du marché", text:"Dans quel quartier de Montréal se trouve le marché Atwater ?", options:JSON.stringify(["Le Plateau-Mont-Royal","Rosemont–La Petite-Patrie","Saint-Henri, au bord du canal de Lachine","Outremont, près du mont Royal"]), correctAnswer:"Saint-Henri, au bord du canal de Lachine" },
+      { order:8, title:"Fonction de la conclusion", text:"Que fait la conclusion de ce texte descriptif ?", options:JSON.stringify(["Elle ajoute de nouvelles informations sur les heures d'ouverture","Elle résume l'essence du marché avec une image forte","Elle critique les prix élevés du marché","Elle donne un avis personnel négatif sur le lieu"]), correctAnswer:"Elle résume l'essence du marché avec une image forte" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: desc93ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    // ── Cours 94 : Écriture — Compléter un texte descriptif (fill_blank) ─────
+    const desc94Id = randomUUID();
+    this.courses.set(desc94Id, {
+      id: desc94Id,
+      title: "Compléter un texte descriptif",
+      description: "Complète ce texte descriptif sur le parc La Fontaine en choisissant les mots précis qui conviennent : adjectifs, marqueurs de relation et procédés descriptifs",
+      category: "ecriture",
+      content: "<h2>Compléter un texte descriptif</h2><p>Dans cet exercice, tu dois <strong>compléter un texte descriptif</strong> sur le parc La Fontaine à Montréal. Chaque blanc correspond à un mot ou une expression qui renforce la précision, la cohérence ou la richesse descriptive du texte.</p><div style='background:#dbeafe;border-left:4px solid #3b82f6;padding:12px;margin:15px 0;border-radius:4px'><strong>Rappel :</strong> Dans un texte descriptif, chaque mot compte. Un adjectif précis vaut mieux qu'un adjectif vague. Un marqueur de relation bien choisi assure la cohérence entre les aspects.</div><h3>Texte à compléter : Le parc La Fontaine</h3><div style='background:#f8fafc;border:1px solid #e2e8f0;padding:16px;margin:15px 0;border-radius:6px;line-height:1.9'>Niché au cœur du Plateau-Mont-Royal, le parc La Fontaine est l'un des espaces verts les plus ___ de Montréal. Ses deux étangs ___, reliés par un petit pont de bois, reflètent le ciel et les arbres dans une eau ___ et calme. Tout autour, des saules pleureurs ___ leurs longues branches vers la surface de l'eau.<br><br>___, le parc offre une vie culturelle très animée. Le Théâtre de Verdure, installé en plein air, accueille chaque été des spectacles de danse, de musique et de théâtre ___ accessibles à tous gratuitement.<br><br>En hiver, le parc se transforme de façon ___. Les étangs gelés deviennent des patinoires ___ fréquentées par les familles du quartier. Les sentiers, recouverts d'une neige ___, s'animent alors du crissement des patins et des rires des enfants.<br><br>___, le parc La Fontaine est bien plus qu'un simple espace vert : c'est le salon à ciel ouvert des Montréalais.</div>",
+      order: 94,
+    } as any);
+    const desc94ex1Id = randomUUID();
+    this.exercises.set(desc94ex1Id, { id: desc94ex1Id, courseId: desc94Id, title: "Compléter le texte sur le parc La Fontaine", description: "Choisis le mot ou l'expression qui convient le mieux dans chaque blanc du texte descriptif", type: "fill_blank", order: 1 } as any);
+    [
+      { order:1, title:"Adjectif — espace vert", text:"Niché au cœur du Plateau-Mont-Royal, le parc La Fontaine est l'un des espaces verts les plus ___ de Montréal.", correct:"fréquentés|appréciés|prisés|courus", hint:"Adjectif qualificatif au masculin pluriel exprimant la popularité" },
+      { order:2, title:"Adjectif — étangs", text:"Ses deux étangs ___, reliés par un petit pont de bois, reflètent le ciel.", correct:"artificiels|aménagés|verdoyants|ombragés", hint:"Adjectif décrivant les deux étangs (masculin pluriel)" },
+      { order:3, title:"Adjectif — eau", text:"reflètent le ciel et les arbres dans une eau ___ et calme.", correct:"claire|limpide|translucide|douce|cristalline", hint:"Adjectif féminin singulier décrivant la transparence de l'eau" },
+      { order:4, title:"Verbe — saules", text:"Tout autour, des saules pleureurs ___ leurs longues branches vers la surface de l'eau.", correct:"inclinent|penchent|courbent|plongent|tendent", hint:"Verbe à la 3e personne du pluriel (présent) — action des saules vers l'eau" },
+      { order:5, title:"Marqueur d'addition", text:"___, le parc offre une vie culturelle très animée.", correct:"De plus|En outre|Par ailleurs|Également", hint:"Marqueur de relation d'addition pour passer à un nouvel aspect" },
+      { order:6, title:"Adverbe — spectacles", text:"des spectacles de danse, de musique et de théâtre ___ accessibles à tous gratuitement.", correct:"entièrement|totalement|absolument|généralement", hint:"Adverbe qui renforce l'accès gratuit aux spectacles" },
+      { order:7, title:"Adverbe — transformation", text:"En hiver, le parc se transforme de façon ___.", correct:"spectaculaire|remarquable|saisissante|radicale", hint:"Adjectif (utilisé comme adverbe ici) qui qualifie la transformation hivernale" },
+      { order:8, title:"Marqueur de conclusion", text:"___, le parc La Fontaine est bien plus qu'un simple espace vert.", correct:"En somme|Bref|En résumé|Finalement", hint:"Marqueur de synthèse ou de conclusion pour clore le texte" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: desc94ex1Id, title: q.title, text: q.text, type: "fill_blank", options: null, correctAnswer: q.correct, order: i + 1 } as any); });
+
+    // ── Cours 95 : Écriture — Améliorer ses descriptions ─────────────────────
+    const desc95Id = randomUUID();
+    this.courses.set(desc95Id, {
+      id: desc95Id,
+      title: "Améliorer ses descriptions",
+      description: "Apprends à choisir la formulation la plus précise et la plus vivante dans un texte descriptif — compare des phrases et identifie celle qui décrit le mieux",
+      category: "ecriture",
+      content: "<h2>Améliorer ses descriptions</h2><p>Une bonne description ne se contente pas de nommer les choses : elle les <strong>fait voir, entendre, sentir et ressentir</strong>. Dans cet exercice, tu devras choisir la phrase descriptive la plus réussie parmi les options proposées.</p><div style='background:#dbeafe;border-left:4px solid #3b82f6;padding:12px;margin:15px 0;border-radius:4px'><strong>Critères d'une bonne phrase descriptive :</strong><br>• Vocabulaire précis et varié (pas de mots vagues comme « beau », « grand », « intéressant »)<br>• Procédés riches : adjectifs bien choisis, comparaisons, métaphores, énumérations<br>• Sensations concrètes : vue, ouïe, toucher, odorat, goût<br>• Longueur adaptée : assez de détails pour créer une image mentale claire</div>",
+      order: 95,
+    } as any);
+    const desc95ex1Id = randomUUID();
+    this.exercises.set(desc95ex1Id, { id: desc95ex1Id, courseId: desc95Id, title: "Choisir la meilleure formulation descriptive", description: "Pour chaque situation, identifie la phrase descriptive la plus précise et la plus vivante", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Décrire un lever de soleil", text:"Laquelle de ces phrases décrit le mieux un lever de soleil sur le Saint-Laurent ?", options:JSON.stringify(["Il faisait beau ce matin-là.","Le soleil s'est levé sur le fleuve.","Un ruban d'or fondu se déposait lentement sur les eaux grises du Saint-Laurent, teintant de rose les nuages effilochés à l'horizon.","C'était un beau matin ensoleillé sur le fleuve."]), correctAnswer:"Un ruban d'or fondu se déposait lentement sur les eaux grises du Saint-Laurent, teintant de rose les nuages effilochés à l'horizon." },
+      { order:2, title:"Décrire un personnage", text:"Laquelle de ces phrases présente le portrait physique le plus précis ?", options:JSON.stringify(["Il était grand et vieux.","C'était un homme intéressant avec des cheveux blancs.","Ses cheveux blancs, coupés ras sur les tempes, contrastaient avec ses sourcils touffus et noirs comme du charbon.","Il avait l'air d'un vieux monsieur sympa."]), correctAnswer:"Ses cheveux blancs, coupés ras sur les tempes, contrastaient avec ses sourcils touffus et noirs comme du charbon." },
+      { order:3, title:"Décrire une odeur", text:"Laquelle de ces phrases décrit le mieux une odeur ?", options:JSON.stringify(["Ça sentait bon dans la boulangerie.","Une boulangerie se trouvait dans la rue.","Une odeur capiteuse de beurre chaud, de sucre caramélisé et de vanille s'échappait de la boulangerie et envahissait tout le trottoir.","Il y avait des gâteaux."]), correctAnswer:"Une odeur capiteuse de beurre chaud, de sucre caramélisé et de vanille s'échappait de la boulangerie et envahissait tout le trottoir." },
+      { order:4, title:"Décrire un son", text:"Quelle phrase utilise le mieux un vocabulaire auditif précis ?", options:JSON.stringify(["Il y avait du bruit dans la forêt.","La forêt était bruyante.","Le craquement des branches sèches sous les pas, le chant perçant d'une mésange et le murmure du ruisseau cachaient à peine le silence profond de la forêt.","On entendait des oiseaux et des branches."]), correctAnswer:"Le craquement des branches sèches sous les pas, le chant perçant d'une mésange et le murmure du ruisseau cachaient à peine le silence profond de la forêt." },
+      { order:5, title:"Décrire une texture", text:"Laquelle de ces phrases décrit le mieux une sensation tactile ?", options:JSON.stringify(["La roche était froide.","En posant la main sur la paroi de calcaire, elle ressentit une fraîcheur humide et rugueuse, comme une peau d'animal endormi depuis des siècles.","C'était une roche intéressante à toucher.","La roche était vieille et mouillée."]), correctAnswer:"En posant la main sur la paroi de calcaire, elle ressentit une fraîcheur humide et rugueuse, comme une peau d'animal endormi depuis des siècles." },
+      { order:6, title:"Utiliser une comparaison", text:"Laquelle de ces phrases contient une comparaison efficace et originale ?", options:JSON.stringify(["La neige était blanche comme la neige.","La neige était très blanche et froide.","Les flocons tombaient en silence, semblables à de minuscules plumes arrachées à un oiseau invisible.","Il neigeait beaucoup."]), correctAnswer:"Les flocons tombaient en silence, semblables à de minuscules plumes arrachées à un oiseau invisible." },
+      { order:7, title:"Éviter les mots vagues", text:"Laquelle de ces phrases évite le mieux les mots vagues et imprécis ?", options:JSON.stringify(["C'était un beau quartier avec de belles maisons et des gens intéressants.","Le quartier était vieux mais agréable.","Le quartier affichait des façades victoriennes mangées de lierre, des ruelles silencieuses pavées de granit gris et des galeries ornées de bégonias rouges.","Il y avait des vieilles maisons sympas dans le quartier."]), correctAnswer:"Le quartier affichait des façades victoriennes mangées de lierre, des ruelles silencieuses pavées de granit gris et des galeries ornées de bégonias rouges." },
+      { order:8, title:"Personnification réussie", text:"Laquelle de ces phrases utilise une personnification de façon convaincante ?", options:JSON.stringify(["Le vent soufflait fort.","Le vent était violent et désagréable.","Le vent d'octobre fouillait les ruelles avec une impatience rageuse, arrachant les dernières feuilles aux érables épuisés.","Il y avait du vent ce soir-là."]), correctAnswer:"Le vent d'octobre fouillait les ruelles avec une impatience rageuse, arrachant les dernières feuilles aux érables épuisés." },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: desc95ex1Id, ...q, type: "multiple_choice" } as any); });
+
+    // ── Cours 96 : Écriture — Construire un paragraphe descriptif ─────────────
+    const desc96Id = randomUUID();
+    this.courses.set(desc96Id, {
+      id: desc96Id,
+      title: "Construire un paragraphe descriptif",
+      description: "Remets les phrases dans le bon ordre pour construire un paragraphe descriptif cohérent — phrase d'aspect, sous-aspects et marqueurs de relation",
+      category: "ecriture",
+      content: "<h2>Construire un paragraphe descriptif</h2><p>Un bon paragraphe descriptif suit une structure logique :</p><div style='background:#dbeafe;border-left:4px solid #3b82f6;padding:12px;margin:15px 0;border-radius:4px'><strong>Structure d'un paragraphe d'aspect :</strong><br><br><strong>1. Phrase d'aspect :</strong> Présente l'aspect principal du paragraphe (ex. : la végétation du parc).<br><strong>2. Développement des sous-aspects :</strong> Donne les détails qui illustrent cet aspect, avec des procédés descriptifs riches.<br><strong>3. Phrase de clôture :</strong> Résume l'impression ou amorce la transition vers l'aspect suivant.</div><p>Dans les exercices de mise en ordre ci-dessous, replace chaque phrase à sa juste place pour former un paragraphe cohérent et bien structuré.</p>",
+      order: 96,
+    } as any);
+    const desc96ex1Id = randomUUID();
+    this.exercises.set(desc96ex1Id, { id: desc96ex1Id, courseId: desc96Id, title: "Remettre un paragraphe dans l'ordre", description: "Replace les phrases dans le bon ordre pour former un paragraphe descriptif cohérent sur la vieille ville de Québec", type: "ordering", order: 1 } as any);
+    {
+      const shuffled = [
+        "Cette atmosphère médiévale, inégalée en Amérique du Nord, fait de la vieille ville un lieu hors du temps.",
+        "Les ruelles pavées, trop étroites pour les voitures, serpentent entre des bâtisses de pierre grise aux volets colorés.",
+        "Sur le plan architectural, le Vieux-Québec est un musée à ciel ouvert.",
+        "Les toits de cuivre verdi du Château Frontenac dominent l'ensemble comme une couronne royale."
+      ];
+      const correct = [
+        "Sur le plan architectural, le Vieux-Québec est un musée à ciel ouvert.",
+        "Les ruelles pavées, trop étroites pour les voitures, serpentent entre des bâtisses de pierre grise aux volets colorés.",
+        "Les toits de cuivre verdi du Château Frontenac dominent l'ensemble comme une couronne royale.",
+        "Cette atmosphère médiévale, inégalée en Amérique du Nord, fait de la vieille ville un lieu hors du temps."
+      ];
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: desc96ex1Id, order: 1, title: "Paragraphe sur le Vieux-Québec", text: "Remets ces phrases dans l'ordre pour former un paragraphe descriptif cohérent sur l'architecture du Vieux-Québec :", options: JSON.stringify(shuffled), correctAnswer: JSON.stringify(correct), type: "ordering" } as any);
+    }
+    const desc96ex2Id = randomUUID();
+    this.exercises.set(desc96ex2Id, { id: desc96ex2Id, courseId: desc96Id, title: "Construire un paragraphe sur un marché", description: "Replace les phrases pour former un paragraphe descriptif sur un marché public montréalais", type: "ordering", order: 2 } as any);
+    {
+      const shuffled2 = [
+        "Cette cacophonie joyeuse et colorée donne au marché l'énergie d'une vraie fête populaire.",
+        "Les étals débordent de légumes aux couleurs vives : carottes orangées, betteraves pourpres, courges d'un jaune profond.",
+        "Sur le plan de l'animation, le marché public est le cœur battant du quartier.",
+        "Des vendeurs interpellent les passants dans un mélange de français, d'espagnol et de créole."
+      ];
+      const correct2 = [
+        "Sur le plan de l'animation, le marché public est le cœur battant du quartier.",
+        "Les étals débordent de légumes aux couleurs vives : carottes orangées, betteraves pourpres, courges d'un jaune profond.",
+        "Des vendeurs interpellent les passants dans un mélange de français, d'espagnol et de créole.",
+        "Cette cacophonie joyeuse et colorée donne au marché l'énergie d'une vraie fête populaire."
+      ];
+      const id2 = randomUUID();
+      this.questions.set(id2, { id: id2, exerciseId: desc96ex2Id, order: 1, title: "Paragraphe sur un marché public", text: "Remets ces phrases dans l'ordre pour former un paragraphe descriptif cohérent sur l'ambiance d'un marché public :", options: JSON.stringify(shuffled2), correctAnswer: JSON.stringify(correct2), type: "ordering" } as any);
+    }
+
   }
 
   // ── COURS FRANÇAIS FPT ─────────────────────────────────────────────────────
