@@ -1634,52 +1634,45 @@ export default function Exercise() {
           )}
         </header>
 
-        <main className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+        <main className="max-w-xl mx-auto px-4 py-5 space-y-4">
           {deckDone ? (
             /* ── Summary ── */
-            <div className="space-y-4">
-              <Card className="p-8 text-center">
-                <Layers className="w-12 h-12 mx-auto mb-3 text-indigo-500" />
-                <h2 className="text-2xl font-bold text-foreground mb-1">
-                  {fcRetryMode ? "Révision terminée !" : "Paquet terminé !"}
-                </h2>
-                <p className="text-sm text-muted-foreground mb-6">
-                  {fcRetryMode
-                    ? "Tu as revu toutes tes cartes à revoir."
-                    : "Tu as parcouru toutes les cartes du paquet."}
-                </p>
-                <div className="flex gap-4 justify-center mb-6">
-                  <div className="bg-green-50 dark:bg-green-950/40 rounded-md px-6 py-4 text-center">
-                    <p className="text-3xl font-extrabold text-green-600 dark:text-green-400">{knownCount}</p>
-                    <p className="text-xs text-muted-foreground mt-1">Je savais</p>
-                  </div>
-                  <div className="bg-orange-50 dark:bg-orange-950/40 rounded-md px-6 py-4 text-center">
-                    <p className="text-3xl font-extrabold text-orange-600 dark:text-orange-400">{reviewCount}</p>
-                    <p className="text-xs text-muted-foreground mt-1">À revoir</p>
-                  </div>
+            <Card className="p-8 text-center">
+              <Layers className="w-12 h-12 mx-auto mb-3 text-indigo-500" />
+              <h2 className="text-2xl font-bold text-foreground mb-1">
+                {fcRetryMode ? "Révision terminée !" : "Paquet terminé !"}
+              </h2>
+              <p className="text-sm text-muted-foreground mb-6">
+                {fcRetryMode
+                  ? "Tu as revu toutes tes cartes à revoir."
+                  : "Tu as parcouru toutes les cartes du paquet."}
+              </p>
+              <div className="flex gap-4 justify-center mb-6">
+                <div className="bg-green-50 dark:bg-green-950/40 rounded-md px-6 py-4 text-center">
+                  <p className="text-3xl font-extrabold text-green-600 dark:text-green-400">{knownCount}</p>
+                  <p className="text-xs text-muted-foreground mt-1">Je savais</p>
                 </div>
-                {reviewCount > 0 && !fcRetryMode && (
-                  <Button
-                    variant="outline"
-                    onClick={handleFcRetry}
-                    className="w-full mb-3"
-                    data-testid="button-fc-retry"
-                  >
-                    <RotateCcw className="w-4 h-4 mr-2" />
-                    Retravailler les {reviewCount} carte{reviewCount > 1 ? "s" : ""} à revoir
-                  </Button>
-                )}
-                <Button onClick={handleFcFinish} className="w-full" data-testid="button-fc-finish">
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  Terminer et voir les résultats
+                <div className="bg-orange-50 dark:bg-orange-950/40 rounded-md px-6 py-4 text-center">
+                  <p className="text-3xl font-extrabold text-orange-600 dark:text-orange-400">{reviewCount}</p>
+                  <p className="text-xs text-muted-foreground mt-1">À revoir</p>
+                </div>
+              </div>
+              {reviewCount > 0 && !fcRetryMode && (
+                <Button variant="outline" onClick={handleFcRetry} className="w-full mb-3" data-testid="button-fc-retry">
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  Retravailler les {reviewCount} carte{reviewCount > 1 ? "s" : ""} à revoir
                 </Button>
-              </Card>
-            </div>
+              )}
+              <Button onClick={handleFcFinish} className="w-full" data-testid="button-fc-finish">
+                <CheckCircle className="w-4 h-4 mr-2" />
+                Terminer et voir les résultats
+              </Button>
+            </Card>
           ) : (
             /* ── Current card ── */
-            <div className="space-y-5">
+            <div className="space-y-4">
               {/* Dot progress */}
-              <div className="flex justify-center gap-1.5 flex-wrap">
+              <div className="flex justify-center gap-1.5 flex-wrap pt-1">
                 {deck.map((q, i) => {
                   const res = fcResults[q.id];
                   return (
@@ -1687,70 +1680,50 @@ export default function Exercise() {
                       key={q.id}
                       className={`w-2.5 h-2.5 rounded-full transition-colors ${
                         i < fcIndex
-                          ? res === "known"
-                            ? "bg-green-500"
-                            : "bg-orange-400"
-                          : i === fcIndex
-                            ? "bg-indigo-500"
-                            : "bg-secondary"
+                          ? res === "known" ? "bg-green-500" : "bg-orange-400"
+                          : i === fcIndex ? "bg-indigo-500" : "bg-secondary"
                       }`}
                     />
                   );
                 })}
               </div>
 
-              {/* Flip card */}
-              <div style={{ perspective: "1200px" }}>
-                <div
-                  style={{
-                    transformStyle: "preserve-3d",
-                    transition: "transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)",
-                    transform: fcFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    position: "relative",
-                    minHeight: "280px",
-                  }}
-                >
-                  {/* Front */}
-                  <div
-                    style={{ backfaceVisibility: "hidden", position: "absolute", inset: 0 }}
-                    className="rounded-xl border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 p-8 flex flex-col items-center justify-center text-center shadow-sm"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400 dark:text-indigo-500 mb-4">
-                      Recto — Question {fcIndex + 1} sur {deck.length}
-                    </p>
-                    <p className="text-sm text-muted-foreground font-medium mb-3">{currentCard.title}</p>
-                    <p className="text-xl font-semibold text-foreground leading-relaxed whitespace-pre-wrap">{currentCard.text}</p>
-                    <div className="mt-8">
-                      <Button
-                        onClick={() => setFcFlipped(true)}
-                        data-testid="button-fc-flip"
-                        className="gap-2"
-                      >
-                        <FlipIcon className="w-4 h-4" />
-                        Retourner la carte
-                      </Button>
-                    </div>
-                  </div>
+              {/* Card face — fades between recto and verso */}
+              <div
+                className={`rounded-xl border-2 p-6 transition-all duration-300 ${
+                  fcFlipped
+                    ? "border-indigo-300 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-950/40"
+                    : "border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900"
+                }`}
+              >
+                {/* Label */}
+                <p className="text-xs font-semibold uppercase tracking-widest text-center text-indigo-400 dark:text-indigo-500 mb-3">
+                  {fcFlipped ? "Verso — Réponse" : `Recto — Carte ${fcIndex + 1} sur ${deck.length}`}
+                </p>
 
-                  {/* Back */}
-                  <div
-                    style={{
-                      backfaceVisibility: "hidden",
-                      transform: "rotateY(180deg)",
-                      position: "absolute",
-                      inset: 0,
-                    }}
-                    className="rounded-xl border-2 border-indigo-300 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-950/40 p-8 flex flex-col items-center justify-center text-center shadow-sm"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400 dark:text-indigo-500 mb-4">
-                      Verso — Réponse
+                {!fcFlipped ? (
+                  /* ── Recto ── */
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-muted-foreground mb-2">{currentCard.title}</p>
+                    <p className="text-lg font-semibold text-foreground leading-relaxed whitespace-pre-wrap mb-6">
+                      {currentCard.text}
                     </p>
-                    <p className="text-xl font-semibold text-foreground leading-relaxed whitespace-pre-wrap">{currentCard.correctAnswer}</p>
-                    <div className="mt-8 flex gap-3 flex-wrap justify-center">
+                    <Button onClick={() => setFcFlipped(true)} data-testid="button-fc-flip" className="gap-2">
+                      <FlipIcon className="w-4 h-4" />
+                      Retourner la carte
+                    </Button>
+                  </div>
+                ) : (
+                  /* ── Verso ── */
+                  <div>
+                    <p className="text-sm font-medium text-foreground leading-relaxed whitespace-pre-wrap mb-6">
+                      {currentCard.correctAnswer}
+                    </p>
+                    <div className="flex gap-3 flex-wrap justify-center pt-2 border-t border-indigo-200 dark:border-indigo-700">
                       <Button
                         variant="outline"
                         onClick={() => handleFcAssess("review")}
-                        className="gap-2 border-orange-300 dark:border-orange-700 text-orange-700 dark:text-orange-300"
+                        className="gap-2 border-orange-300 dark:border-orange-700 text-orange-700 dark:text-orange-300 flex-1 sm:flex-none"
                         data-testid="button-fc-review"
                       >
                         <RotateCcw className="w-4 h-4" />
@@ -1758,7 +1731,7 @@ export default function Exercise() {
                       </Button>
                       <Button
                         onClick={() => handleFcAssess("known")}
-                        className="gap-2 bg-green-600 hover:bg-green-700 text-white"
+                        className="gap-2 bg-green-600 text-white flex-1 sm:flex-none"
                         data-testid="button-fc-known"
                       >
                         <ThumbsUp className="w-4 h-4" />
@@ -1766,13 +1739,8 @@ export default function Exercise() {
                       </Button>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
-
-              {/* Hint: card description if any */}
-              {exercise.description && (
-                <p className="text-center text-xs text-muted-foreground">{exercise.description}</p>
-              )}
             </div>
           )}
         </main>
