@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle, Mic, Volume2, CheckCircle, Upload, Trash2, Download, MessageSquare, Bell, Send, MessageCircle } from "lucide-react";
+import { BookOpen, Link2, PenLine, PenTool, Play, TrendingUp, LogOut, FileText, Search, X, Calendar, AlertCircle, Mic, Volume2, CheckCircle, Upload, Trash2, Download, MessageSquare, Bell, Send, MessageCircle, Layers } from "lucide-react";
 
 interface Course {
   id: string;
@@ -640,21 +640,23 @@ export default function StudentDashboard() {
               {/* Type filter pills */}
               {(() => {
                 const interactiveExercises = exercises.filter((ex) => ex.type !== "text");
-                const qcmCount       = interactiveExercises.filter((ex) => ex.type === "multiple_choice").length;
-                const fillCount      = interactiveExercises.filter((ex) => ex.type === "fill_blank").length;
-                const matchingCount  = interactiveExercises.filter((ex) => ex.type === "matching").length;
-                const sortingCount   = interactiveExercises.filter((ex) => ex.type === "sorting").length;
-                const trueFalseCount = interactiveExercises.filter((ex) => ex.type === "true_false").length;
-                const orderingCount  = interactiveExercises.filter((ex) => ex.type === "ordering").length;
+                const qcmCount        = interactiveExercises.filter((ex) => ex.type === "multiple_choice").length;
+                const fillCount       = interactiveExercises.filter((ex) => ex.type === "fill_blank").length;
+                const matchingCount   = interactiveExercises.filter((ex) => ex.type === "matching").length;
+                const sortingCount    = interactiveExercises.filter((ex) => ex.type === "sorting").length;
+                const trueFalseCount  = interactiveExercises.filter((ex) => ex.type === "true_false").length;
+                const orderingCount   = interactiveExercises.filter((ex) => ex.type === "ordering").length;
+                const flashcardCount  = interactiveExercises.filter((ex) => ex.type === "flashcard").length;
 
                 const EX_TYPE_META: Record<string, { label: string; color: string; activeColor: string }> = {
-                  tous:            { label: "Tous",             color: "bg-muted text-muted-foreground", activeColor: "bg-foreground text-background" },
-                  multiple_choice: { label: "Choix multiple",   color: "bg-muted text-muted-foreground", activeColor: "bg-blue-600 text-white" },
-                  fill_blank:      { label: "Blancs à remplir", color: "bg-muted text-muted-foreground", activeColor: "bg-emerald-600 text-white" },
-                  matching:        { label: "Association",      color: "bg-muted text-muted-foreground", activeColor: "bg-violet-600 text-white" },
-                  sorting:         { label: "Classement",       color: "bg-muted text-muted-foreground", activeColor: "bg-violet-700 text-white" },
-                  true_false:      { label: "Vrai ou Faux",     color: "bg-muted text-muted-foreground", activeColor: "bg-teal-600 text-white" },
-                  ordering:        { label: "Mise en ordre",    color: "bg-muted text-muted-foreground", activeColor: "bg-indigo-600 text-white" },
+                  tous:            { label: "Tous",               color: "bg-muted text-muted-foreground", activeColor: "bg-foreground text-background" },
+                  multiple_choice: { label: "Choix multiple",     color: "bg-muted text-muted-foreground", activeColor: "bg-blue-600 text-white" },
+                  fill_blank:      { label: "Blancs à remplir",   color: "bg-muted text-muted-foreground", activeColor: "bg-emerald-600 text-white" },
+                  matching:        { label: "Association",        color: "bg-muted text-muted-foreground", activeColor: "bg-violet-600 text-white" },
+                  sorting:         { label: "Classement",         color: "bg-muted text-muted-foreground", activeColor: "bg-violet-700 text-white" },
+                  true_false:      { label: "Vrai ou Faux",       color: "bg-muted text-muted-foreground", activeColor: "bg-teal-600 text-white" },
+                  ordering:        { label: "Mise en ordre",      color: "bg-muted text-muted-foreground", activeColor: "bg-indigo-600 text-white" },
+                  flashcard:       { label: "Cartes à tâches",    color: "bg-muted text-muted-foreground", activeColor: "bg-purple-600 text-white" },
                 };
 
                 const filteredEx = selectedExType === "tous"
@@ -670,25 +672,27 @@ export default function StudentDashboard() {
                 });
 
                 const EX_BADGE: Record<string, { label: string; color: string }> = {
-                  multiple_choice: { label: "QCM",              color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
-                  fill_blank:      { label: "Blancs à remplir", color: "bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300" },
-                  matching:        { label: "Association",      color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300" },
-                  sorting:         { label: "Classement",       color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300" },
-                  true_false:      { label: "Vrai ou Faux",     color: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300" },
-                  ordering:        { label: "Mise en ordre",    color: "bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300" },
+                  multiple_choice: { label: "QCM",               color: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300" },
+                  fill_blank:      { label: "Blancs à remplir",  color: "bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300" },
+                  matching:        { label: "Association",       color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300" },
+                  sorting:         { label: "Classement",        color: "bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300" },
+                  true_false:      { label: "Vrai ou Faux",      color: "bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300" },
+                  ordering:        { label: "Mise en ordre",     color: "bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300" },
+                  flashcard:       { label: "Cartes à tâches",   color: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300" },
                 };
 
                 return (
                   <>
                     <div className="flex flex-wrap gap-2">
-                      {(["tous", "multiple_choice", "fill_blank", "matching", "sorting", "true_false", "ordering"] as const).map((t) => {
+                      {(["tous", "multiple_choice", "fill_blank", "matching", "sorting", "true_false", "ordering", "flashcard"] as const).map((t) => {
                         const count = t === "tous" ? interactiveExercises.length
                           : t === "multiple_choice" ? qcmCount
                           : t === "fill_blank" ? fillCount
                           : t === "matching" ? matchingCount
                           : t === "sorting" ? sortingCount
                           : t === "true_false" ? trueFalseCount
-                          : orderingCount;
+                          : t === "ordering" ? orderingCount
+                          : flashcardCount;
                         const meta = EX_TYPE_META[t];
                         const active = selectedExType === t;
                         return (
@@ -760,10 +764,12 @@ export default function StudentDashboard() {
                                         <PenLine className="w-3 h-3 mr-2" />
                                       ) : exercise.type === "matching" ? (
                                         <Link2 className="w-3 h-3 mr-2" />
+                                      ) : exercise.type === "flashcard" ? (
+                                        <Layers className="w-3 h-3 mr-2" />
                                       ) : (
                                         <Play className="w-3 h-3 mr-2" />
                                       )}
-                                      Démarrer
+                                      {exercise.type === "flashcard" ? "Parcourir les cartes" : "Démarrer"}
                                     </Button>
                                   </Card>
                                 );
