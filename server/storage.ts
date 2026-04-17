@@ -151,6 +151,7 @@ export class MemStorage implements IStorage {
     this.seedEntrevueCourses();
     this.seedRevisionTextesCourses();
     this.seedHomophonesAvancesCourses();
+    this.seedFlashcardCourses();
     this.seedFptCourses();
   }
 
@@ -16390,6 +16391,98 @@ Mot mal choisi, anglicisme, mot inexistant, registre de langue inadapté.<br>
       { order:5, title:"passage intégrant plusieurs homophones", text:"« ___ à Léa, elle travaille ___ depuis que ses collègues ___ ont confié ___ nouvelles responsabilités. »", correct:"Quant|davantage|lui|leurs", hint:"Quant à = en ce qui concerne. davantage = plus (adverbe). lui = pronom invariable. leurs responsabilités = plusieurs responsabilités" },
     ].forEach((q,i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: hp152ex3Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
 
+  }
+
+  // ── CARTES À TÂCHES ───────────────────────────────────────────────────────
+
+  private seedFlashcardCourses() {
+
+    // ── Cours 153 : Classes de mots — cartes à tâches ────────────────────────
+    const fc153Id = randomUUID();
+    this.courses.set(fc153Id, {
+      id: fc153Id,
+      title: "Classes de mots — cartes à tâches",
+      description: "Maîtrise les 10 classes de mots de la grammaire québécoise. Retourne chaque carte pour voir la définition et les exemples. Auto-évalue ta connaissance : Je savais / À revoir",
+      category: "grammaire",
+      content: "<h2>Cartes à tâches — Classes de mots</h2><p>Parcours chaque carte à ton rythme. Lis le recto, essaie de te rappeler la définition, puis retourne la carte pour vérifier. Marque honnêtement ce que tu savais et ce qui reste à revoir.</p><p>Cet exercice couvre les <strong>10 classes de mots</strong> de la nouvelle grammaire québécoise.</p>",
+      order: 153,
+    } as any);
+
+    const fc153ex1Id = randomUUID();
+    this.exercises.set(fc153ex1Id, { id: fc153ex1Id, courseId: fc153Id, title: "Les 10 classes de mots", description: "Retourne chaque carte pour découvrir la définition et un exemple. Dis si tu savais ou si tu as besoin de revoir.", type: "flashcard", order: 1 } as any);
+    [
+      { title:"Le nom (N)", text:"Qu'est-ce qu'un nom ?\nQuelle est sa fonction dans le groupe nominal ?", answer:"Le nom désigne une réalité (personne, animal, chose, lieu, idée). Il est le noyau du groupe nominal (GN).\n\nEx. : la bicyclette, le courage, Montréal, une tempête\n\nNom commun → minuscule. Nom propre → majuscule." },
+      { title:"Le déterminant (Dét)", text:"Qu'est-ce qu'un déterminant ?\nCite trois types de déterminants.", answer:"Le déterminant précède le nom et l'introduit dans le GN. Il s'accorde en genre et en nombre avec le nom.\n\nTypes : article (le, la, les, un, des), possessif (mon, ton, ses…), démonstratif (ce, cette, ces…), numéral (deux, troisième…)\n\nEx. : mes livres, cette maison, trois élèves" },
+      { title:"L'adjectif (Adj)", text:"Qu'est-ce qu'un adjectif ?\nOù peut-il se trouver dans la phrase ?", answer:"L'adjectif exprime une caractéristique du nom. Il s'accorde en genre et en nombre avec le nom qu'il modifie.\n\nPositions :\n• Épithète (dans le GN) : un film passionnant\n• Attribut (après être, sembler…) : Elle semble fatiguée.\n• Mis en apposition : Calme, il répondit." },
+      { title:"Le pronom (Pron)", text:"Qu'est-ce qu'un pronom ?\nCite quatre types de pronoms.", answer:"Le pronom remplace ou représente un nom (ou un groupe nominal) pour éviter la répétition.\n\nTypes : personnel (je, tu, il, nous…), relatif (qui, que, dont…), démonstratif (celui, cela…), indéfini (on, chacun…)\n\nEx. : Léa aime lire. Elle lit chaque soir." },
+      { title:"Le verbe (V)", text:"Qu'est-ce qu'un verbe ?\nQuelle est sa place dans le groupe verbal (GV) ?", answer:"Le verbe exprime une action, un état ou un processus. Il est le noyau du groupe verbal (GV) et peut être conjugué ou à l'infinitif.\n\nEx. : courir, sembler, avoir mangé, être, pleuvoir\n\nLe verbe s'accorde avec son sujet en personne et en nombre." },
+      { title:"L'adverbe (Adv)", text:"Qu'est-ce qu'un adverbe ?\nQue peut-il modifier dans la phrase ?", answer:"L'adverbe est un mot invariable qui modifie un verbe, un adjectif ou un autre adverbe.\n\nCatégories : manière (rapidement, bien), temps (hier, souvent), lieu (ici, là-bas), négation (ne…pas, jamais), quantité (très, trop)\n\nEx. : Il court rapidement. Elle est très intelligente." },
+      { title:"La préposition (Prép)", text:"Qu'est-ce qu'une préposition ?\nCite cinq prépositions courantes.", answer:"La préposition est un mot invariable qui introduit un groupe nominal ou un groupe infinitif pour former un groupe prépositionnel (GPrép).\n\nEx. de prépositions : à, de, pour, avec, sans, par, en, dans, sur, entre\n\nEx. : Elle habite à Québec. Il voyage pour le travail." },
+      { title:"La conjonction (Conj)", text:"Qu'est-ce qu'une conjonction ?\nQuelle est la différence entre conjonction de coordination et de subordination ?", answer:"La conjonction joint deux éléments de même niveau (coordination) ou introduit une subordonnée (subordination).\n\nCoordination : mais, ou, et, donc, or, ni, car (les 7 MOEDNIC)\nSubordination : que, si, parce que, lorsque, bien que…\n\nEx. : Il pleut, donc nous restons. / Elle part parce qu'elle est fatiguée." },
+      { title:"La préposition vs la conjonction", text:"Comment distinguer une préposition d'une conjonction de subordination ?", answer:"La préposition est suivie d'un GN ou d'un infinitif.\nLa conjonction de subordination est suivie d'une phrase subordonnée (sujet + verbe conjugué).\n\nEx. comparatif :\n• avant mon départ (Prép + GN)\n• avant que je parte (Conj + phrase subordonnée)\n• pour finir (Prép + infinitif)\n• pour que tu finisses (Conj + phrase subordonnée)" },
+      { title:"L'interjection (Interj)", text:"Qu'est-ce qu'une interjection ?\nEst-elle variable ou invariable ?", answer:"L'interjection est un mot (ou groupe de mots) invariable qui exprime spontanément une émotion ou réaction. Elle est souvent isolée par la ponctuation.\n\nEx. : Ah ! Zut ! Ouille ! Oh la la ! Hein ? Bravo ! Aïe !\n\nL'interjection est invariable et ne fait pas partie de la structure de la phrase." },
+      { title:"Le participe (Part)", text:"Qu'est-ce qu'un participe ?\nCombien y en a-t-il et comment les distingue-t-on ?", answer:"Il y a deux formes de participe :\n\n• Participe présent : terminaison -ant, invariable\n  Ex. : en courant, une étudiante travaillant fort\n\n• Participe passé : variable (selon l'auxiliaire et le COD)\n  Ex. : avoir mangé → mangé(e)(s) ; être parti → parti(e)(s)\n\nLe participe peut être employé seul, dans un GV, ou comme adjectif." },
+      { title:"Récap : les classes variables", text:"Quelles sont les classes de mots VARIABLES (celles qui s'accordent) ?", answer:"Classes variables (qui changent selon le genre et le nombre) :\n\n1. Le NOM — ex. : un chat / des chats\n2. Le DÉTERMINANT — ex. : le / la / les / un / mon\n3. L'ADJECTIF — ex. : joli / jolie / jolis / jolies\n4. Le PRONOM — certains pronoms varient : il/elle, les/leur\n5. Le VERBE — s'accorde avec le sujet\n6. Le PARTICIPE PASSÉ — peut varier selon l'auxiliaire et le COD\n\nClasses invariables : adverbe, préposition, conjonction, interjection." },
+    ].forEach((q, i) => {
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: fc153ex1Id, title: q.title, text: q.text, type: "flashcard", options: null, correctAnswer: q.answer, order: i + 1 } as any);
+    });
+
+    // ── Cours 154 : Marqueurs de relation — cartes à tâches ──────────────────
+    const fc154Id = randomUUID();
+    this.courses.set(fc154Id, {
+      id: fc154Id,
+      title: "Marqueurs de relation — cartes à tâches",
+      description: "Mémorise les principaux marqueurs de relation par catégorie (addition, opposition, cause, conséquence, temps, illustration...). Retourne la carte pour voir les exemples de marqueurs et un exemple de phrase.",
+      category: "ecriture",
+      content: "<h2>Cartes à tâches — Marqueurs de relation</h2><p>Les marqueurs de relation (ou connecteurs) assurent la cohérence et la progression d'un texte. Chaque carte correspond à une relation logique. Retourne la carte pour découvrir les marqueurs correspondants et un exemple de phrase.</p>",
+      order: 154,
+    } as any);
+
+    const fc154ex1Id = randomUUID();
+    this.exercises.set(fc154ex1Id, { id: fc154ex1Id, courseId: fc154Id, title: "Relations logiques et leurs marqueurs", description: "Pour chaque relation logique affichée au recto, retrouve les marqueurs qui l'expriment. Vérifie ta réponse au verso.", type: "flashcard", order: 1 } as any);
+    [
+      { title:"Addition", text:"Quelle relation logique veut-on exprimer ?\n\n« Le réchauffement climatique affecte les écosystèmes terrestres. ___, il perturbe les courants océaniques et modifie les régimes de précipitations à l'échelle planétaire. »", answer:"Relation : ADDITION — on ajoute une information\n\nMarqueurs :\nde plus, en outre, également, par ailleurs, qui plus est, de surcroît, aussi, en plus, non seulement… mais aussi\n\nEx. : De plus, il perturbe les courants océaniques." },
+      { title:"Opposition (concession)", text:"Quelle relation logique veut-on exprimer ?\n\n« Elle a travaillé toute la nuit. ___, elle a réussi à remettre son travail à temps. »", answer:"Relation : CONCESSION/OPPOSITION — un obstacle surmonté\n\nMarqueurs :\ncependant, toutefois, néanmoins, pourtant, malgré (+ GN), bien que (+ subjonctif), même si, quoique, or\n\nEx. : Cependant, elle a réussi à remettre son travail à temps." },
+      { title:"Cause", text:"Quelle relation logique veut-on exprimer ?\n\n« Les forêts boréales reculent ___ les coupes à blanc répétées et l'exploitation intensive des ressources forestières. »", answer:"Relation : CAUSE — on explique pourquoi\n\nMarqueurs :\nparce que, puisque, étant donné que, car, en raison de (+ GN), à cause de (+ GN), grâce à (+ GN, positif), vu que, attendu que\n\nEx. : Les forêts boréales reculent en raison des coupes à blanc." },
+      { title:"Conséquence", text:"Quelle relation logique veut-on exprimer ?\n\n« Le gouvernement a réduit les budgets de santé. ___, les temps d'attente aux urgences ont considérablement augmenté. »", answer:"Relation : CONSÉQUENCE — on dit ce qui résulte\n\nMarqueurs :\ndonc, ainsi, c'est pourquoi, par conséquent, de ce fait, en conséquence, si bien que, de sorte que, il en résulte que\n\nEx. : Par conséquent, les temps d'attente ont augmenté." },
+      { title:"Temps / chronologie", text:"Quelle relation logique veut-on exprimer ?\n\n« ___ avoir terminé ses études, Léa a obtenu un stage chez Marché Beaumont inc. ___, elle a été embauchée comme assistante-gérante. »", answer:"Relation : TEMPS — on situe dans le temps\n\nMarqueurs :\nd'abord, ensuite, puis, enfin, finalement, auparavant, ultérieurement, simultanément, lorsque, quand, après (que), avant (que), tandis que, pendant que\n\nEx. : Après avoir terminé ses études / Puis, elle a été embauchée." },
+      { title:"Illustration / exemple", text:"Quelle relation logique veut-on exprimer ?\n\n« De nombreux pays ont adopté des politiques environnementales ambitieuses. ___, le Danemark a atteint 50 % d'énergie renouvelable dès 2019. »", answer:"Relation : ILLUSTRATION / EXEMPLE — on concrétise\n\nMarqueurs :\npar exemple, notamment, entre autres, c'est le cas de, comme, tel que, ainsi, à titre d'exemple\n\nEx. : Par exemple, le Danemark a atteint 50 % d'énergie renouvelable." },
+      { title:"But / finalité", text:"Quelle relation logique veut-on exprimer ?\n\n« Les gouvernements investissent dans les transports en commun ___ réduire la congestion et diminuer les émissions de GES. »", answer:"Relation : BUT / FINALITÉ — on indique l'objectif\n\nMarqueurs :\npour (+ infinitif), afin de (+ infinitif), dans le but de (+ infinitif), pour que (+ subjonctif), afin que (+ subjonctif), en vue de\n\nEx. : Les gouvernements investissent dans les transports afin de réduire la congestion." },
+      { title:"Reformulation / explication", text:"Quelle relation logique veut-on exprimer ?\n\n« Le texte argumentatif vise à convaincre le lecteur d'adopter un point de vue. ___, il s'agit d'un écrit dont la finalité première est de modifier la position ou les croyances du destinataire. »", answer:"Relation : REFORMULATION / EXPLICATION — on clarifie\n\nMarqueurs :\nautrement dit, c'est-à-dire, en d'autres termes, soit, en fait, c'est-à-dire que, à savoir\n\nEx. : Autrement dit, il s'agit d'un écrit dont la finalité est de modifier la position du destinataire." },
+      { title:"Conclusion / synthèse", text:"Quelle relation logique veut-on exprimer ?\n\n« ___, le développement du télétravail représente à la fois une opportunité pour les travailleurs et un défi organisationnel pour les entreprises. »", answer:"Relation : CONCLUSION / SYNTHÈSE — on termine\n\nMarqueurs :\nbref, en somme, en conclusion, pour conclure, en définitive, en fin de compte, finalement, ainsi, tout compte fait, pour résumer\n\nEx. : En somme, le télétravail représente à la fois une opportunité et un défi." },
+      { title:"Opposition directe", text:"Quelle relation logique veut-on exprimer ?\n\n« Certains défendent la liberté d'expression sans limite. ___, d'autres estiment que certaines formes de discours doivent être encadrées par la loi. »", answer:"Relation : OPPOSITION DIRECTE — deux idées contraires\n\nMarqueurs :\nmais, au contraire, à l'opposé, en revanche, alors que, tandis que, d'un côté… de l'autre, si d'une part… d'autre part\n\nEx. : En revanche, d'autres estiment que certains discours doivent être encadrés." },
+    ].forEach((q, i) => {
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: fc154ex1Id, title: q.title, text: q.text, type: "flashcard", options: null, correctAnswer: q.answer, order: i + 1 } as any);
+    });
+
+    // ── Cours 155 : Conjugaison — temps verbaux — cartes à tâches ─────────────
+    const fc155Id = randomUUID();
+    this.courses.set(fc155Id, {
+      id: fc155Id,
+      title: "Temps verbaux — cartes à tâches",
+      description: "Mémorise la formation et l'emploi des principaux temps verbaux du français québécois. Pour chaque temps, retourne la carte pour voir comment le former et dans quel contexte l'utiliser.",
+      category: "conjugaison",
+      content: "<h2>Cartes à tâches — Temps verbaux</h2><p>Pour chaque carte, lis la question au recto, essaie de te rappeler la réponse, puis retourne pour vérifier. Les cartes couvrent <strong>8 temps verbaux</strong> essentiels.</p>",
+      order: 155,
+    } as any);
+
+    const fc155ex1Id = randomUUID();
+    this.exercises.set(fc155ex1Id, { id: fc155ex1Id, courseId: fc155Id, title: "Formation et emploi des temps verbaux", description: "Retourne chaque carte pour voir comment former le temps et dans quel contexte l'employer. Inclut les auxiliaires être et avoir.", type: "flashcard", order: 1 } as any);
+    [
+      { title:"Le présent de l'indicatif", text:"Comment forme-t-on le présent de l'indicatif ?\nCite les terminaisons des 3 groupes. Quand l'emploie-t-on ?", answer:"Formation :\n• 1er groupe (-er) : -e, -es, -e, -ons, -ez, -ent\n  Ex. : je chante, tu chantes, il chante, nous chantons\n• 2e groupe (-ir/iss) : -is, -is, -it, -issons, -issez, -issent\n  Ex. : je finis, tu finis, il finit, nous finissons\n• 3e groupe : irrégulier → apprendre par coeur\n  Ex. : je vais, tu vas, il va\n\nEmplois : action en cours, vérité générale, récit au présent historique" },
+      { title:"L'imparfait de l'indicatif", text:"Comment forme-t-on l'imparfait ?\nQuand l'emploie-t-on par rapport au passé composé ?", answer:"Formation : radical de la 1re pers. du pluriel au présent + terminaisons :\n-ais, -ais, -ait, -ions, -iez, -aient\nEx. : nous chant-ons → je chantais, il chantait\nExceptions : être → j'étais\n\nEmplois :\n• Description dans le passé (décor, état, habitude)\n• Action répétée dans le passé\n• Action en cours quand une autre l'interrompt\nEx. : Il pleuvait quand elle est sortie." },
+      { title:"Le passé composé", text:"Comment forme-t-on le passé composé ?\nComment choisir entre avoir et être ?", answer:"Formation : auxiliaire (avoir ou être) au présent + participe passé\n\nAuxiliaire ÊTRE → 14 verbes de mouvement et d'état (aller, venir, partir, arriver, naître, mourir, rester, etc.) + tous les verbes pronominaux → participe passé s'accorde avec le sujet\nEx. : Elle est arrivée. Ils se sont levés.\n\nAuxiliaire AVOIR → tous les autres verbes → participe passé s'accorde avec le CD placé avant\nEx. : Il a mangé la pomme. La pomme qu'il a mangée." },
+      { title:"Le futur simple", text:"Comment forme-t-on le futur simple ?\nCite 5 verbes irréguliers au futur.", answer:"Formation : infinitif + terminaisons : -ai, -as, -a, -ons, -ez, -ont\n• Pour les verbes en -re : on enlève le -e de l'infinitif\nEx. : chanter → je chanterai / prendre → je prendrai\n\nVerbes irréguliers :\n• être → je serai\n• avoir → j'aurai\n• aller → j'irai\n• faire → je ferai\n• venir → je viendrai\n• voir → je verrai\n• savoir → je saurai\n\nEmploi : action à venir, promesse, prédiction" },
+      { title:"Le conditionnel présent", text:"Comment forme-t-on le conditionnel présent ?\nCite ses trois emplois principaux.", answer:"Formation : radical du futur + terminaisons de l'imparfait : -ais, -ais, -ait, -ions, -iez, -aient\nEx. : chanter → je chanterais / être → je serais / faire → je ferais\n\nEmplois :\n1. Hypothèse avec 'si' : Si j'avais le temps, je courrais.\n2. Politesse : Je voudrais un café, s'il vous plaît.\n3. Information incertaine (journalisme) : Il y aurait eu une explosion.\n4. Rêve ou souhait : Je vivrais au bord de la mer." },
+      { title:"Le subjonctif présent", text:"Quand emploie-t-on le subjonctif présent ?\nCite 5 expressions qui déclenchent le subjonctif.", answer:"Formation : radical de la 3e pers. du pluriel au présent + -e, -es, -e, -ions, -iez, -ent\nEx. : ils parlent → que je parle, que tu parles\n\nExpressions déclenchant le subjonctif (doute, volonté, sentiment, obligation, concession) :\n• il faut que : Il faut que tu comprennes.\n• pour que : Je l'explique pour qu'elle comprenne.\n• bien que : Bien qu'il soit fatigué…\n• vouloir que : Elle veut que tu reviennes.\n• il est possible que : Il est possible qu'il pleuve.\n\nVerbes irréguliers : être (que je sois), avoir (que j'aie), aller (que j'aille), faire (que je fasse)" },
+      { title:"L'impératif présent", text:"Comment forme-t-on l'impératif présent ?\nQuelle est la règle du -s pour les verbes en -er ?", answer:"Formation : présent de l'indicatif sans pronom sujet, seulement à 3 formes : 2e pers. sing., 1re pers. pl., 2e pers. pl.\n\nEx. : Parle ! / Parlons ! / Parlez !\nEx. : Finis ! / Finissons ! / Finissez !\n\nRègle du -s :\n• Les verbes en -er (et aller) n'ont pas de -s à la 2e pers. sing. : Parle ! va !\n• EXCEPTION : si suivi de 'y' ou 'en' : Parles-en ! Vas-y !\n\nVerbes irréguliers : être → sois/soyons/soyez ; avoir → aie/ayons/ayez ; savoir → sache/sachons/sachez" },
+      { title:"Le plus-que-parfait", text:"Comment forme-t-on le plus-que-parfait ?\nQuel est son rapport avec le passé composé dans un récit ?", answer:"Formation : auxiliaire (avoir ou être) à l'IMPARFAIT + participe passé\nEx. : j'avais chanté, elle était partie, ils s'étaient levés\n\nEmploi principal : action passée ANTÉRIEURE à une autre action passée\nEx. : Quand elle est arrivée (PC), il avait déjà mangé (PqP).\n      = Il a mangé D'ABORD → elle est arrivée ENSUITE\n\nAutres emplois :\n• Hypothèse dans le passé (avec 'si') : Si j'avais su (PqP), j'aurais agi (cond. passé).\n• Explication d'une situation passée : Il était épuisé car il avait travaillé toute la nuit." },
+    ].forEach((q, i) => {
+      const id = randomUUID();
+      this.questions.set(id, { id, exerciseId: fc155ex1Id, title: q.title, text: q.text, type: "flashcard", options: null, correctAnswer: q.answer, order: i + 1 } as any);
+    });
   }
 
   // ── COURS FRANÇAIS FPT ─────────────────────────────────────────────────────

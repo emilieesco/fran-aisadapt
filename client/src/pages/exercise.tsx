@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid, CheckSquare, HelpCircle, ArrowUp, ArrowDown, List } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid, CheckSquare, HelpCircle, ArrowUp, ArrowDown, List, Layers, RotateCcw as FlipIcon, ThumbsUp, BookMarked } from "lucide-react";
 import { ReadAloudButton } from "@/components/accessibility-toolbar";
 
 interface Question {
@@ -344,6 +344,12 @@ export default function Exercise() {
   const [orderingItems, setOrderingItems] = useState<Record<string, string[]>>({});
   const orderingInitRef = useRef<Record<string, boolean>>({});
 
+  // Flashcard-specific state
+  const [fcIndex, setFcIndex] = useState(0);
+  const [fcFlipped, setFcFlipped] = useState(false);
+  const [fcRetryMode, setFcRetryMode] = useState(false);
+  const [fcResults, setFcResults] = useState<Record<string, "known" | "review">>({});
+
   useEffect(() => {
     if (!match || !params?.id) return;
 
@@ -357,6 +363,10 @@ export default function Exercise() {
     shuffledRightRef.current = {};
     setOrderingItems({});
     orderingInitRef.current = {};
+    setFcIndex(0);
+    setFcFlipped(false);
+    setFcRetryMode(false);
+    setFcResults({});
 
     const fetchExercise = async () => {
       try {
@@ -619,7 +629,8 @@ export default function Exercise() {
               if (normWord(uWords[i] || "") === normWord(cWords[i])) corr++;
             }
             correct = corr / cWords.length >= 0.7;
-          } else correct = ans === q.correctAnswer;
+          } else if (q.type === "flashcard") correct = ans === "known";
+          else correct = ans === q.correctAnswer;
         }
         await fetch("/api/student-responses", {
           method: "POST",
@@ -660,10 +671,12 @@ export default function Exercise() {
           }
           isCorrect = (correct / cWords.length) >= 0.7;
         }
+        else if (q.type === "flashcard") isCorrect = userAnswer === "known";
         else isCorrect = userAnswer === q.correctAnswer;
       }
       return { q, userAnswer, isCorrect, isText };
     });
+    const isFlashcardExercise = questions.length > 0 && questions.every(q => q.type === "flashcard");
 
     const autoGradedResults = results.filter((r) => !r.isText);
     const textResults = results.filter((r) => r.isText);
@@ -830,6 +843,10 @@ export default function Exercise() {
                           </span>
                           {r.isText ? (
                             <Badge variant="secondary" className="text-xs">À corriger</Badge>
+                          ) : r.q.type === "flashcard" ? (
+                            r.isCorrect
+                              ? <Badge className="text-xs bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">Je savais</Badge>
+                              : <Badge className="text-xs bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300">À revoir</Badge>
                           ) : r.isCorrect ? (
                             <Badge className="text-xs bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">Correct</Badge>
                           ) : (
@@ -849,6 +866,11 @@ export default function Exercise() {
                           {r.isText ? (
                             <div className="bg-secondary/50 rounded-md px-3 py-2 text-muted-foreground italic">
                               {r.userAnswer || "(aucune réponse)"}
+                            </div>
+                          ) : r.q.type === "flashcard" ? (
+                            <div className="bg-blue-50 dark:bg-blue-950/30 text-blue-800 dark:text-blue-300 rounded-md px-3 py-1.5">
+                              <span className="font-medium">Verso de la carte : </span>
+                              {r.q.correctAnswer}
                             </div>
                           ) : (
                             <>
@@ -1525,6 +1547,238 @@ export default function Exercise() {
       </Card>
     );
   };
+
+  // ── Flashcard mode ────────────────────────────────────────────────────────
+  const isFlashcardMode = questions.length > 0 && questions.every(q => q.type === "flashcard");
+
+  if (isFlashcardMode) {
+    const deck = fcRetryMode
+      ? questions.filter(q => fcResults[q.id] === "review")
+      : questions;
+    const currentCard = deck[fcIndex] ?? null;
+    const deckDone = !currentCard;
+    const knownCount = Object.values(fcResults).filter(v => v === "known").length;
+    const reviewCount = Object.values(fcResults).filter(v => v === "review").length;
+
+    const handleFcAssess = (result: "known" | "review") => {
+      if (!currentCard) return;
+      const newResults = { ...fcResults, [currentCard.id]: result };
+      setFcResults(newResults);
+      setUserAnswers(prev => ({ ...prev, [currentCard.id]: result }));
+      setFcFlipped(false);
+      setFcIndex(prev => prev + 1);
+    };
+
+    const handleFcRetry = () => {
+      setFcRetryMode(true);
+      setFcIndex(0);
+      setFcFlipped(false);
+    };
+
+    const handleFcFinish = async () => {
+      // Persist all answers and complete
+      const userId = localStorage.getItem("userId");
+      try {
+        for (const q of questions) {
+          const ans = fcResults[q.id] || "review";
+          await fetch("/api/student-responses", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ studentId: userId, questionId: q.id, answer: ans, isCorrect: ans === "known" }),
+            credentials: "include",
+          });
+        }
+        if (userId && exercise?.courseId) {
+          await fetch(`/api/students/${userId}/progress`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ courseId: exercise.courseId }),
+          });
+        }
+      } catch (e) { console.error(e); }
+      setUserAnswers(Object.fromEntries(questions.map(q => [q.id, fcResults[q.id] || "review"])));
+      setCompleted(true);
+    };
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-violet-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        {/* Header */}
+        <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-border sticky top-0 z-50">
+          <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 min-w-0">
+              <Button variant="ghost" size="icon" onClick={() => setLocation("/student-dashboard")} data-testid="button-back">
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-indigo-500 shrink-0" />
+                  <h1 className="text-lg font-bold truncate">{exercise.title}</h1>
+                </div>
+                <p className="text-xs text-muted-foreground">Cartes à tâches</p>
+              </div>
+            </div>
+            {!deckDone && (
+              <div className="shrink-0 text-sm font-medium text-indigo-600 dark:text-indigo-400">
+                {fcIndex + 1} / {deck.length}
+              </div>
+            )}
+          </div>
+          {/* Progress bar */}
+          {!deckDone && (
+            <div className="h-1 bg-secondary">
+              <div
+                className="h-1 bg-indigo-500 transition-all"
+                style={{ width: `${((fcIndex) / deck.length) * 100}%` }}
+              />
+            </div>
+          )}
+        </header>
+
+        <main className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+          {deckDone ? (
+            /* ── Summary ── */
+            <div className="space-y-4">
+              <Card className="p-8 text-center">
+                <Layers className="w-12 h-12 mx-auto mb-3 text-indigo-500" />
+                <h2 className="text-2xl font-bold text-foreground mb-1">
+                  {fcRetryMode ? "Révision terminée !" : "Paquet terminé !"}
+                </h2>
+                <p className="text-sm text-muted-foreground mb-6">
+                  {fcRetryMode
+                    ? "Tu as revu toutes tes cartes à revoir."
+                    : "Tu as parcouru toutes les cartes du paquet."}
+                </p>
+                <div className="flex gap-4 justify-center mb-6">
+                  <div className="bg-green-50 dark:bg-green-950/40 rounded-md px-6 py-4 text-center">
+                    <p className="text-3xl font-extrabold text-green-600 dark:text-green-400">{knownCount}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Je savais</p>
+                  </div>
+                  <div className="bg-orange-50 dark:bg-orange-950/40 rounded-md px-6 py-4 text-center">
+                    <p className="text-3xl font-extrabold text-orange-600 dark:text-orange-400">{reviewCount}</p>
+                    <p className="text-xs text-muted-foreground mt-1">À revoir</p>
+                  </div>
+                </div>
+                {reviewCount > 0 && !fcRetryMode && (
+                  <Button
+                    variant="outline"
+                    onClick={handleFcRetry}
+                    className="w-full mb-3"
+                    data-testid="button-fc-retry"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Retravailler les {reviewCount} carte{reviewCount > 1 ? "s" : ""} à revoir
+                  </Button>
+                )}
+                <Button onClick={handleFcFinish} className="w-full" data-testid="button-fc-finish">
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Terminer et voir les résultats
+                </Button>
+              </Card>
+            </div>
+          ) : (
+            /* ── Current card ── */
+            <div className="space-y-5">
+              {/* Dot progress */}
+              <div className="flex justify-center gap-1.5 flex-wrap">
+                {deck.map((q, i) => {
+                  const res = fcResults[q.id];
+                  return (
+                    <div
+                      key={q.id}
+                      className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                        i < fcIndex
+                          ? res === "known"
+                            ? "bg-green-500"
+                            : "bg-orange-400"
+                          : i === fcIndex
+                            ? "bg-indigo-500"
+                            : "bg-secondary"
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+
+              {/* Flip card */}
+              <div style={{ perspective: "1200px" }}>
+                <div
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transition: "transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)",
+                    transform: fcFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                    position: "relative",
+                    minHeight: "280px",
+                  }}
+                >
+                  {/* Front */}
+                  <div
+                    style={{ backfaceVisibility: "hidden", position: "absolute", inset: 0 }}
+                    className="rounded-xl border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 p-8 flex flex-col items-center justify-center text-center shadow-sm"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400 dark:text-indigo-500 mb-4">
+                      Recto — Question {fcIndex + 1} sur {deck.length}
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium mb-3">{currentCard.title}</p>
+                    <p className="text-xl font-semibold text-foreground leading-relaxed whitespace-pre-wrap">{currentCard.text}</p>
+                    <div className="mt-8">
+                      <Button
+                        onClick={() => setFcFlipped(true)}
+                        data-testid="button-fc-flip"
+                        className="gap-2"
+                      >
+                        <FlipIcon className="w-4 h-4" />
+                        Retourner la carte
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Back */}
+                  <div
+                    style={{
+                      backfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)",
+                      position: "absolute",
+                      inset: 0,
+                    }}
+                    className="rounded-xl border-2 border-indigo-300 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-950/40 p-8 flex flex-col items-center justify-center text-center shadow-sm"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400 dark:text-indigo-500 mb-4">
+                      Verso — Réponse
+                    </p>
+                    <p className="text-xl font-semibold text-foreground leading-relaxed whitespace-pre-wrap">{currentCard.correctAnswer}</p>
+                    <div className="mt-8 flex gap-3 flex-wrap justify-center">
+                      <Button
+                        variant="outline"
+                        onClick={() => handleFcAssess("review")}
+                        className="gap-2 border-orange-300 dark:border-orange-700 text-orange-700 dark:text-orange-300"
+                        data-testid="button-fc-review"
+                      >
+                        <RotateCcw className="w-4 h-4" />
+                        À revoir
+                      </Button>
+                      <Button
+                        onClick={() => handleFcAssess("known")}
+                        className="gap-2 bg-green-600 hover:bg-green-700 text-white"
+                        data-testid="button-fc-known"
+                      >
+                        <ThumbsUp className="w-4 h-4" />
+                        Je savais !
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hint: card description if any */}
+              {exercise.description && (
+                <p className="text-center text-xs text-muted-foreground">{exercise.description}</p>
+              )}
+            </div>
+          )}
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
