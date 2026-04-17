@@ -150,6 +150,7 @@ export class MemStorage implements IStorage {
     this.seedCvQuebecCourses();
     this.seedEntrevueCourses();
     this.seedRevisionTextesCourses();
+    this.seedHomophonesAvancesCourses();
     this.seedFptCourses();
   }
 
@@ -16212,6 +16213,157 @@ Mot mal choisi, anglicisme, mot inexistant, registre de langue inadapté.<br>
       { order:5, title:"Accord du participe passé (texte argumentatif)", text:"« Les mesures que le gouvernement a ___ (adopter) l'an dernier ont porté leurs fruits. »", correct:"adoptées", hint:"Le COD 'les mesures' (féminin pluriel) est placé AVANT le verbe avoir — le participe s'accorde" },
       { order:6, title:"Orthographe — homophones dans un texte argumentatif", text:"« ___ (Bien que / Bien qu') certains croient que les réseaux sociaux sont inoffensifs, les données scientifiques démontrent le contraire. »", correct:"Bien que|Bien qu'", hint:"Devant une consonne ('certains') on garde 'que' sans apostrophe. Devant une voyelle on écrirait 'qu'' — ici c'est 'que' car 'certains' commence par une consonne" },
     ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: rv150ex3Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
+
+  }
+
+  // ── HOMOPHONES AVANCÉS ────────────────────────────────────────────────────
+
+  private seedHomophonesAvancesCourses() {
+
+    // ── Cours 151 : Homophones avancés — règles et identification ────────────
+    const hp151Id = randomUUID();
+    this.courses.set(hp151Id, {
+      id: hp151Id,
+      title: "Homophones avancés — règles et identification",
+      description: "Maîtrise les homophones les plus difficiles : leur/leurs, quand/quant/qu'en, davantage/d'avantage, quelque/quel que, même/mêmes, tout/toute/tous/toutes utilisé comme adverbe. Règles détaillées et exercices QCM et Vrai ou Faux",
+      category: "orthographe",
+      content: `<h2>Homophones avancés</h2>
+<p>Ces homophones sont parmi les plus difficiles du français parce que leur orthographe change selon leur <strong>classe grammaticale</strong>. Il faut toujours analyser la phrase avant d'écrire.</p>
+
+<div style='background:#dcfce7;padding:12px;margin:10px 0;border-radius:4px'>
+<h3 style='margin-top:0'>1. LEUR / LEURS</h3>
+<strong>LEUR (pronom personnel) — toujours invariable</strong><br>
+• Remplace « à eux » ou « à elles » devant un verbe<br>
+• Peut toujours être remplacé par « lui » (sing.) sans changer le sens<br>
+<em>Exemple : « Je leur ai parlé. » → Je lui ai parlé. ✓ → invariable</em><br><br>
+<strong>LEUR (déterminant) — variable : leur / leurs</strong><br>
+• Déterminant possessif, comme « son / sa / ses »<br>
+• Prend un S si le nom qui suit est au pluriel<br>
+<em>Exemple : « Elles ont rangé leurs affaires. » (plusieurs affaires = leurs)</em><br>
+<em>Exemple : « Elles ont mis leur manteau. » (un seul manteau chacune = leur)</em>
+</div>
+
+<div style='background:#dbeafe;padding:12px;margin:10px 0;border-radius:4px'>
+<h3 style='margin-top:0'>2. QUAND / QUANT / QU'EN</h3>
+<strong>QUAND</strong> — conjonction de temps ou adverbe interrogatif<br>
+<em>Remplaçable par « lorsque » ou « à quel moment »</em><br>
+<em>Exemple : « Appelle-moi quand tu arrives. »</em><br><br>
+<strong>QUANT</strong> — toujours suivi de « à », « au », « aux » (locution prépositionnelle)<br>
+<em>Signifie « en ce qui concerne » — remplaçable par « en ce qui concerne »</em><br>
+<em>Exemple : « Quant à moi, je préfère rester ici. »</em><br><br>
+<strong>QU'EN</strong> — que + en (pronom) ou que + en (préposition)<br>
+<em>Remplaçable par « que de cela » ou « que de ça »</em><br>
+<em>Exemple : « Qu'en penses-tu ? » → Que penses-tu de cela ? ✓</em>
+</div>
+
+<div style='background:#f3e8ff;padding:12px;margin:10px 0;border-radius:4px'>
+<h3 style='margin-top:0'>3. DAVANTAGE / D'AVANTAGE(S)</h3>
+<strong>DAVANTAGE</strong> — adverbe (= plus, encore plus) — toujours invariable<br>
+<em>Remplaçable par « plus » : si ça marche, c'est davantage</em><br>
+<em>Exemple : « Elle travaille davantage depuis janvier. » → Elle travaille plus ✓</em><br><br>
+<strong>D'AVANTAGE(S)</strong> — de + avantage(s) (nom commun)<br>
+<em>Avantage = bénéfice, gain. Peut prendre un S si pluriel.</em><br>
+<em>Exemple : « Ce plan offre d'avantages certains. » → de nombreux bénéfices</em><br>
+<em>Astuce : si tu peux remplacer par « d'inconvénients », c'est d'avantage(s)</em>
+</div>
+
+<div style='background:#fef9c3;padding:12px;margin:10px 0;border-radius:4px'>
+<h3 style='margin-top:0'>4. QUELQUE / QUEL QUE</h3>
+<strong>QUELQUE</strong> — déterminant indéfini (= un certain, environ)<br>
+• Devant un nom : peut prendre un S (quelques livres)<br>
+• Dans « quelque … que » : reste invariable devant un adjectif<br>
+<em>Exemple : « Il a attendu quelques minutes. »</em><br>
+<em>Exemple : « Quelque difficile que soit la tâche, il réussira. » (invariable)</em><br><br>
+<strong>QUEL QUE</strong> — deux mots, toujours suivi du subjonctif du verbe être ou d'un verbe<br>
+• S'accorde avec le sujet du verbe qui suit<br>
+<em>Exemple : « Quel que soit le résultat, nous continuerons. »</em><br>
+<em>Exemple : « Quelles que soient les raisons, tu dois venir. »</em>
+</div>
+
+<div style='background:#fee2e2;padding:12px;margin:10px 0;border-radius:4px'>
+<h3 style='margin-top:0'>5. MÊME / MÊMES</h3>
+<strong>MÊME (adverbe) — invariable</strong><br>
+• Signifie « aussi, encore, jusqu'à »<br>
+• Souvent placé après le mot qu'il renforce ou devant un verbe<br>
+<em>Exemple : « Elle a même pleuré. » · « Même les enfants le savent. »</em><br><br>
+<strong>MÊME (déterminant ou pronom) — variable</strong><br>
+• Signifie « identique » ou « en personne » — s'accorde<br>
+<em>Exemple : « Ils portent les mêmes vêtements. » (déterminant, pluriel)</em><br>
+<em>Exemple : « Ce sont les élèves eux-mêmes qui ont décidé. » (pronom, invariable après trait d'union)</em>
+</div>
+
+<div style='background:#ecfdf5;padding:12px;margin:10px 0;border-radius:4px'>
+<h3 style='margin-top:0'>6. TOUT / TOUTE / TOUS / TOUTES</h3>
+<strong>TOUT adverbe — invariable (sauf devant adj. fém. commençant par consonne)</strong><br>
+<em>Exemple : « Elle est tout étonnée. » (devant voyelle → invariable)</em><br>
+<em>Exemple : « Elle est toute petite. » (devant consonne → accord)</em><br><br>
+<strong>TOUT déterminant ou pronom — variable</strong><br>
+<em>Exemple : « Toutes les élèves sont arrivées. » · « Tous ont réussi. »</em>
+</div>`,
+      order: 151,
+    } as any);
+
+    const hp151ex1Id = randomUUID();
+    this.exercises.set(hp151ex1Id, { id: hp151ex1Id, courseId: hp151Id, title: "Choisir le bon homophone — QCM", description: "Pour chaque phrase, choisis l'homophone correct parmi les options proposées", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"leur / leurs — pronom ou déterminant", text:"« Les élèves ont remis ___ travaux à ___ professeure avant de ___ souhaiter une bonne journée. »", options:JSON.stringify(["leurs / leur / leur","leur / leurs / leur","leurs / leurs / leur","leur / leur / leur"]), correctAnswer:"leurs / leur / leur" },
+      { order:2, title:"quand / quant / qu'en", text:"« ___ à moi, je me demande ___ elle partira et ___ pensent ses collègues de ce départ. »", options:JSON.stringify(["Quant / quand / qu'en","Quand / quant / qu'en","Qu'en / quand / quant","Quant / qu'en / quand"]), correctAnswer:"Quant / quand / qu'en" },
+      { order:3, title:"davantage / d'avantage(s)", text:"« Ce nouveau contrat offre ___ considérables et lui permettra de gagner ___ qu'auparavant. »", options:JSON.stringify(["d'avantages / davantage","davantage / d'avantages","d'avantage / davantages","davantages / d'avantage"]), correctAnswer:"d'avantages / davantage" },
+      { order:4, title:"quelque / quel que", text:"« ___ soient les obstacles, elle les surmontera avec ___ patience. »", options:JSON.stringify(["Quels que / quelque","Quel que / quelque","Quelque / quel que","Quelques / quel que"]), correctAnswer:"Quels que / quelque" },
+      { order:5, title:"même — adverbe ou déterminant", text:"« Les ___ erreurs se répètent dans ___ les copies, et certains élèves font ___ les deux à la fois. »", options:JSON.stringify(["mêmes / tous / même","même / tous / mêmes","mêmes / tout / même","même / tout / mêmes"]), correctAnswer:"mêmes / tous / même" },
+      { order:6, title:"tout — accord de l'adverbe", text:"« La petite était ___ contente d'apprendre la nouvelle ; elle est restée ___ étonnée pendant quelques minutes, puis a souri. »", options:JSON.stringify(["toute / tout","tout / toute","toutes / tout","toute / toute"]), correctAnswer:"toute / tout" },
+      { order:7, title:"leur — test de remplacement", text:"Pour trouver si 'leur' prend un S, on peut le remplacer par :", options:JSON.stringify(["'notre' ou 'nos' selon le nombre du nom qui suit","'son / sa / ses' selon le nombre du nom qui suit : si 'ses' marche, leur prend un S","'lui' : si 'lui' marche, c'est le pronom et il est invariable","'en' ou 'y' : si ça marche, c'est le pronom invariable"]), correctAnswer:"'son / sa / ses' selon le nombre du nom qui suit : si 'ses' marche, leur prend un S" },
+      { order:8, title:"quel que — accord", text:"« ___ soient les raisons invoquées, cette décision demeure injuste. »", options:JSON.stringify(["Quel que","Quels que","Quelques","Quelle que"]), correctAnswer:"Quelles que" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: hp151ex1Id, ...q, type:"multiple_choice" } as any); });
+
+    const hp151ex2Id = randomUUID();
+    this.exercises.set(hp151ex2Id, { id: hp151ex2Id, courseId: hp151Id, title: "Vrai ou Faux — l'homophone est-il correctement utilisé ?", description: "Pour chaque phrase, dis si l'homophone souligné est correctement orthographié", type: "true_false", order: 2 } as any);
+    [
+      { order:1, text:"« Les parents ont encouragé leurs enfants à persévérer, et leur ont promis une récompense. »", correct:"Vrai", explanation:"'leurs enfants' : déterminant possessif — plusieurs enfants → leurs ✓. 'leur ont promis' : pronom personnel invariable (= à eux) ✓. Les deux sont corrects." },
+      { order:2, text:"« Quand à toi, tu peux partir quand tu veux. »", correct:"Faux", explanation:"'Quand à toi' est incorrect. 'Quant à toi' est la bonne graphie — locution prépositionnelle signifiant 'en ce qui te concerne'. 'Quand' est réservé au temps ou à l'interrogation." },
+      { order:3, text:"« Ce médicament offre davantages par rapport aux traitements habituels. »", correct:"Faux", explanation:"'davantages' n'existe pas. Il faut soit 'davantage' (adverbe, invariable = plus), soit 'd'avantages' (de + avantage au pluriel). Ici on parle de bénéfices concrets, donc : 'd'avantages'." },
+      { order:4, text:"« Quel que soit le chemin choisi, elle arrivera à ses fins. »", correct:"Vrai", explanation:"'Quel que soit' est correct : deux mots, suivi du subjonctif de 'être', accordé avec 'le chemin' (masculin singulier) ✓." },
+      { order:5, text:"« Les résultats sont tout à fait satisfaisants et même les plus sceptiques ont été convaincus. »", correct:"Vrai", explanation:"'tout à fait' est une locution adverbiale figée ✓. 'même les plus sceptiques' : 'même' est adverbe invariable (sens de 'jusqu'à') ✓. La phrase est correcte." },
+      { order:6, text:"« Elle était toute surprise d'apprendre qu'elle avait obtenu le poste. »", correct:"Vrai", explanation:"'toute surprise' est correct. 'Tout' adverbe s'accorde devant un adjectif féminin commençant par une CONSONNE. 'Surprise' commence par 's' (consonne) → 'toute' ✓." },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: hp151ex2Id, title:"Vrai ou Faux", text:q.text, type:"true_false", options:JSON.stringify(["Vrai","Faux"]), correctAnswer:q.correct, order:q.order } as any); });
+
+    // ── Cours 152 : Homophones avancés — en contexte (fill_blank) ────────────
+    const hp152Id = randomUUID();
+    this.courses.set(hp152Id, {
+      id: hp152Id,
+      title: "Homophones avancés en contexte",
+      description: "Applique les règles des homophones avancés dans des phrases et passages contextualisés québécois. Exercices fill_blank progressifs : d'abord les homophones isolés, puis dans des passages complets",
+      category: "orthographe",
+      content: "<h2>Homophones avancés — mise en pratique</h2><p>Pour chaque blanc, écris l'homophone correct. Rappelle-toi de tester chaque forme : remplace par 'plus' pour davantage, par 'lui' pour leur pronom, par 'lorsque' pour quand, etc.</p>",
+      order: 152,
+    } as any);
+
+    const hp152ex1Id = randomUUID();
+    this.exercises.set(hp152ex1Id, { id: hp152ex1Id, courseId: hp152Id, title: "leur / leurs — phrases isolées", description: "Complète avec 'leur' (invariable) ou 'leurs' (déterminant pluriel) selon le contexte", type: "fill_blank", order: 1 } as any);
+    [
+      { order:1, title:"leur / leurs — 1", text:"« Les parents ont accompagné ___ enfants à l'école et ___ ont souhaité bonne chance avant de partir. »", correct:"leurs|leur", hint:"'leurs enfants' : plusieurs enfants → S. 'leur ont souhaité' : pronom = à eux → invariable" },
+      { order:2, title:"leur / leurs — 2", text:"« Mes voisins ont vendu ___ maison et ont confié ___ chats à ___ fille pendant le déménagement. »", correct:"leur|leurs|leur", hint:"Une maison (singulier) → leur. Plusieurs chats → leurs. Une fille → leur déterminant singulier" },
+      { order:3, title:"leur / leurs — 3", text:"« Les étudiantes ont rendu ___ examens corrigés à ___ enseignante, qui ___ a remis une rétroaction détaillée. »", correct:"leurs|leur|leur", hint:"Plusieurs examens → leurs. Une enseignante → leur. Pronom à elles → leur invariable" },
+      { order:4, title:"leur / leurs — 4", text:"« Les directeurs ont tenu ___ réunion annuelle et ___ ont présenté les résultats de ___ équipes respectives. »", correct:"leur|leur|leurs", hint:"Une réunion → leur. Pronom à eux → leur invariable. Plusieurs équipes → leurs" },
+    ].forEach((q,i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: hp152ex1Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
+
+    const hp152ex2Id = randomUUID();
+    this.exercises.set(hp152ex2Id, { id: hp152ex2Id, courseId: hp152Id, title: "quand / quant / qu'en — phrases isolées", description: "Complète avec quand, quant ou qu'en selon le contexte", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"quand / quant / qu'en — 1", text:"« ___ à la directrice, elle décidera ___ il sera temps de convoquer une nouvelle réunion. »", correct:"Quant|quand", hint:"'Quant à' = en ce qui concerne (suivi de 'à'). 'quand' = lorsque (conjonction de temps)" },
+      { order:2, title:"quand / quant / qu'en — 2", text:"« ___ penses-tu ? Est-ce que ___ tu seras prête, tu m'aviseras ? »", correct:"Qu'en|quand", hint:"'Qu'en penses-tu ?' = que penses-tu de cela ? 'quand tu seras prête' = lorsque tu seras prête" },
+      { order:3, title:"quand / quant / qu'en — 3", text:"« ___ à moi, je ne sais pas ___ elle reviendra, ni ___ penser de toute cette histoire. »", correct:"Quant|quand|qu'en", hint:"Quant à moi = en ce qui me concerne. quand = à quel moment. qu'en penser = que penser de cela" },
+    ].forEach((q,i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: hp152ex2Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
+
+    const hp152ex3Id = randomUUID();
+    this.exercises.set(hp152ex3Id, { id: hp152ex3Id, courseId: hp152Id, title: "davantage / d'avantage(s) — quelque / quel que — même(s) — tout", description: "Complète avec le bon homophone dans des phrases progressivement plus complexes", type: "fill_blank", order: 3 } as any);
+    [
+      { order:1, title:"davantage / d'avantages", text:"« Ce programme offre de nombreux ___ par rapport aux autres, et les participants en profitent ___ chaque année. »", correct:"avantages|davantage", hint:"'de nombreux avantages' = d'avantages (nom). 'en profitent davantage' = de plus en plus (adverbe)" },
+      { order:2, title:"quelque / quel que", text:"« ___ soient tes doutes, prends ___ minutes pour relire tes réponses avant de remettre ton examen. »", correct:"Quels que|quelques", hint:"'Quels que soient tes doutes' = subjonctif de être, accord avec 'doutes' (masc. plur.). 'quelques minutes' = déterminant pluriel" },
+      { order:3, title:"même adverbe ou déterminant", text:"« Les ___ résultats se sont reproduits dans les ___ conditions — ___ les chercheurs les plus sceptiques ont dû l'admettre. »", correct:"mêmes|mêmes|même", hint:"'les mêmes résultats' : déterminant = identiques (variable). 'les mêmes conditions' : idem. 'même les chercheurs' : adverbe = jusqu'à (invariable)" },
+      { order:4, title:"tout adverbe — accord", text:"« La nouvelle recrue était ___ enthousiasmée, ___ heureuse d'avoir été sélectionnée parmi ___ les candidats. »", correct:"tout|toute|tous", hint:"Devant voyelle ('enthousiasmée' commence par une voyelle) → invariable : tout. Devant consonne ('heureuse') → accord féminin : toute. Déterminant pluriel 'tous les candidats'" },
+      { order:5, title:"passage intégrant plusieurs homophones", text:"« ___ à Léa, elle travaille ___ depuis que ses collègues ___ ont confié ___ nouvelles responsabilités. »", correct:"Quant|davantage|lui|leurs", hint:"Quant à = en ce qui concerne. davantage = plus (adverbe). lui = pronom invariable. leurs responsabilités = plusieurs responsabilités" },
+    ].forEach((q,i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: hp152ex3Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
 
   }
 
