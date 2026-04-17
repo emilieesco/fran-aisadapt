@@ -149,6 +149,7 @@ export class MemStorage implements IStorage {
     this.seedFptCommunicationCourses();
     this.seedCvQuebecCourses();
     this.seedEntrevueCourses();
+    this.seedRevisionTextesCourses();
     this.seedFptCourses();
   }
 
@@ -16084,6 +16085,133 @@ Termine par le résultat positif — ce qui s'est passé grâce à tes actions. 
       { order:5, title:"STAR — exemples sans emploi (bénévolat)", text:"Tu n'as jamais travaillé mais tu as été bénévole. Complète : « Lors de mon bénévolat à la banque alimentaire du Plateau, j'ai ___ la distribution de paniers à plus de cinquante familles chaque samedi matin pendant deux ans. »", correct:"coordonné|organisé|géré|supervisé|assuré", hint:"Verbe d'action au passé composé valorisant ton rôle concret dans l'activité bénévole" },
       { order:6, title:"STAR — résultat chiffré", text:"Un résultat avec un chiffre est plus convaincant. Complète : « Grâce à ma méthode de travail, le temps de traitement des retours de marchandise a ___ de 20 minutes à moins de 10 minutes par client. »", correct:"été réduit|diminué|baissé|passé", hint:"Verbe montrant l'amélioration mesurable obtenue grâce à tes actions" },
     ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: ent148ex2Id, title: q.title, text: q.text, type:"fill_blank", options:null, correctAnswer: q.correct, order: i+1 } as any); });
+
+  }
+
+  // ── RÉVISION ET CORRECTION DE TEXTES ─────────────────────────────────────
+
+  private seedRevisionTextesCourses() {
+
+    // ── Cours 149 : Identifier les types d'erreurs ────────────────────────────
+    const rv149Id = randomUUID();
+    this.courses.set(rv149Id, {
+      id: rv149Id,
+      title: "Identifier et classer les erreurs dans un texte",
+      description: "Apprends à reconnaître les cinq grandes catégories d'erreurs : orthographe lexicale, orthographe grammaticale, syntaxe, ponctuation et vocabulaire. Exercices QCM et Vrai ou Faux basés sur des phrases québécoises",
+      category: "ecriture",
+      content: `<h2>Révision de textes — les types d'erreurs</h2>
+<p>Quand tu révises un texte (le tien ou celui d'un autre), tu dois repérer différents <strong>types d'erreurs</strong>. Au Québec, l'épreuve unique du ministère évalue ta capacité à écrire sans erreur ET à corriger un texte.</p>
+
+<h3>Les cinq catégories d'erreurs</h3>
+<div style='background:#fee2e2;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>1. Orthographe lexicale</strong><br>
+La façon dont le mot est écrit, indépendamment de la grammaire.<br>
+<em>Erreur :</em> « Il a <u>appris</u> la nouvelle. » ✓ — « Il a <u>aprit</u> la nouvelle. » ✗<br>
+<em>Erreur :</em> « une <u>adresse</u> » ✓ — « une <u>adresse</u> » (confusion de lettres, accent oublié...)
+</div>
+<div style='background:#dbeafe;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>2. Orthographe grammaticale</strong><br>
+Les accords et les terminaisons verbales — c'est la catégorie la plus vaste.<br>
+Sous-catégories :<br>
+• <strong>Accord du verbe avec son sujet</strong> : « Les élèves <u>arrivent</u>. » (pas « arrive »)<br>
+• <strong>Accord du participe passé avec être</strong> : « Elles sont <u>arrivées</u>. »<br>
+• <strong>Accord du participe passé avec avoir</strong> : « Les cours qu'elle a <u>suivis</u>. »<br>
+• <strong>Accord de l'adjectif</strong> : « Des phrases <u>courtes</u> et <u>claires</u>. »<br>
+• <strong>Accord du déterminant</strong> : « <u>Plusieurs</u> erreurs. »
+</div>
+<div style='background:#f3e8ff;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>3. Syntaxe</strong><br>
+La construction des phrases — structure, ordre des mots, cohérence grammaticale.<br>
+<em>Erreur de syntaxe :</em> « J'ai vu le film que tu m'as parlé. » → il faut « dont tu m'as parlé »<br>
+<em>Erreur de syntaxe :</em> « C'est une belle journée que nous avons profité. » → « dont nous avons profité »<br>
+<em>Phrase incomplète :</em> « Parce que le temps était beau. » (subordonnée sans principale)
+</div>
+<div style='background:#fef9c3;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>4. Ponctuation</strong><br>
+Usage incorrect ou absence de virgule, point, deux-points, guillemets, etc.<br>
+<em>Erreur :</em> Virgule avant « que » conjonctif : « Il sait, que tu es là. » ✗<br>
+<em>Erreur :</em> Oubli de la virgule après un complément de phrase en début de phrase :<br>
+« En arrivant à l'école elle a remarqué... » → « En arrivant à l'école<u>,</u> elle a remarqué... »
+</div>
+<div style='background:#dcfce7;padding:12px;margin:10px 0;border-radius:4px'>
+<strong>5. Vocabulaire et registre</strong><br>
+Mot mal choisi, anglicisme, mot inexistant, registre de langue inadapté.<br>
+<em>Anglicisme :</em> « canceller » → <strong>annuler</strong> · « chèque » → <strong>chèque</strong> (accepté) · « un char » → <strong>une voiture</strong> (oral seulement)<br>
+<em>Mot inexistant :</em> « si qu'il vient » → <strong>s'il vient</strong><br>
+<em>Registre inadapté :</em> « Le gouvernement a comme pitché son budget. » (oral familier dans un texte formel)
+</div>`,
+      order: 149,
+    } as any);
+
+    const rv149ex1Id = randomUUID();
+    this.exercises.set(rv149ex1Id, { id: rv149ex1Id, courseId: rv149Id, title: "Identifier la phrase fautive", description: "Dans chaque groupe de phrases, identifie celle qui contient une erreur et détermine sa catégorie", type: "multiple_choice", order: 1 } as any);
+    [
+      { order:1, title:"Trouver l'erreur d'accord du participe", text:"Laquelle de ces phrases contient une erreur d'accord du participe passé ?", options:JSON.stringify(["Les lettres que j'ai reçues étaient importantes.","Marie et Julie sont arrivées en retard.","Les résultats qu'il a obtenu dépassent nos attentes.","Nous sommes partis de bonne heure."]), correctAnswer:"Les résultats qu'il a obtenu dépassent nos attentes." },
+      { order:2, title:"Trouver l'erreur d'accord de l'adjectif", text:"Laquelle de ces phrases contient une erreur d'accord de l'adjectif ?", options:JSON.stringify(["Ces documents officiels sont incomplets.","Elle porte une robe bleu marine et des souliers noirs.","Les journées sont longues et chaudes en juillet.","Cette décision finale appartient à la directrice."]), correctAnswer:"Elle porte une robe bleu marine et des souliers noirs." },
+      { order:3, title:"Trouver l'erreur de syntaxe", text:"Laquelle de ces phrases contient une erreur de syntaxe ?", options:JSON.stringify(["C'est une situation dont nous avons discuté longuement.","Le livre que tu m'as recommandé était passionnant.","C'est un sujet que je t'ai déjà parlé plusieurs fois.","La décision à laquelle nous sommes arrivés semble la meilleure."]), correctAnswer:"C'est un sujet que je t'ai déjà parlé plusieurs fois." },
+      { order:4, title:"Trouver l'erreur d'accord sujet-verbe", text:"Laquelle de ces phrases contient une erreur d'accord du verbe avec son sujet ?", options:JSON.stringify(["La plupart des élèves ont réussi l'examen.","Chacun des candidats doit apporter ses documents.","Les membres de l'équipe travaillent fort depuis janvier.","La majorité des réponses étaient incorrecte."]), correctAnswer:"La majorité des réponses étaient incorrecte." },
+      { order:5, title:"Trouver l'erreur de ponctuation", text:"Laquelle de ces phrases contient une erreur de ponctuation ?", options:JSON.stringify(["En arrivant au bureau, elle a allumé son ordinateur.","Il savait qu'il allait réussir.","Léa a acheté du pain, du beurre et du lait.","Il sait, que la réunion commence à neuf heures."]), correctAnswer:"Il sait, que la réunion commence à neuf heures." },
+      { order:6, title:"Trouver l'anglicisme", text:"Laquelle de ces phrases contient un anglicisme à corriger ?", options:JSON.stringify(["Elle a annulé son rendez-vous chez le médecin.","Il faut magasiner pour trouver le meilleur prix.","Nous devons canceller la réunion de vendredi.","Ce stationnement est réservé aux employés."]), correctAnswer:"Nous devons canceller la réunion de vendredi." },
+      { order:7, title:"Trouver l'erreur d'orthographe lexicale", text:"Laquelle de ces phrases contient une erreur d'orthographe lexicale (le mot est mal épelé) ?", options:JSON.stringify(["Il a aperçu une erreur dans le document.","La directrice a apporté des changements importants.","Elle a apprit le résultat par courriel hier matin.","Nous avons préparé les documents nécessaires."]), correctAnswer:"Elle a apprit le résultat par courriel hier matin." },
+      { order:8, title:"Classifier le type d'erreur", text:"Dans la phrase « Les élève sont arrivé en retard. », combien d'erreurs y a-t-il et de quel(s) type(s) ?", options:JSON.stringify(["Une seule erreur : orthographe lexicale","Deux erreurs : orthographe grammaticale (accord du nom 'élève' au pluriel ET accord du participe passé 'arrivé')","Une seule erreur : syntaxe","Aucune erreur — la phrase est correcte"]), correctAnswer:"Deux erreurs : orthographe grammaticale (accord du nom 'élève' au pluriel ET accord du participe passé 'arrivé')" },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: rv149ex1Id, ...q, type:"multiple_choice" } as any); });
+
+    const rv149ex2Id = randomUUID();
+    this.exercises.set(rv149ex2Id, { id: rv149ex2Id, courseId: rv149Id, title: "Vrai ou Faux — la correction proposée est-elle bonne ?", description: "Pour chaque phrase fautive suivie d'une correction proposée, dis si la correction est bonne (Vrai) ou s'il y a encore une erreur (Faux)", type: "true_false", order: 2 } as any);
+    [
+      { order:1, text:"Phrase fautive : « Les enfants qu'elle a vu jouaient dans le parc. » — Correction proposée : « Les enfants qu'elle a vus jouaient dans le parc. »", correct:"Vrai", explanation:"La correction est bonne. Le participe passé 'vu' avec avoir s'accorde avec le complément direct 'les enfants' placé avant le verbe. On écrit donc 'vus' (masculin pluriel)." },
+      { order:2, text:"Phrase fautive : « C'est une histoire que je me souviens très bien. » — Correction proposée : « C'est une histoire que je me souviens très bien de. »", correct:"Faux", explanation:"La correction est incorrecte. La bonne correction est : « C'est une histoire dont je me souviens très bien. » Le verbe 'se souvenir' se construit avec 'de', donc il faut le pronom relatif 'dont'." },
+      { order:3, text:"Phrase fautive : « Elle a prit sa décision sans consulter personne. » — Correction proposée : « Elle a pris sa décision sans consulter personne. »", correct:"Vrai", explanation:"La correction est bonne. Le participe passé du verbe 'prendre' est 'pris' (et non 'prit', qui est la forme du passé simple à la 3e personne). La correction est juste." },
+      { order:4, text:"Phrase fautive : « Les données que nous avons analysé montrent une amélioration. » — Correction proposée : « Les données que nous avons analysées montrent une amélioration. »", correct:"Vrai", explanation:"La correction est bonne. Le participe passé 'analysé' s'accorde avec le complément direct 'les données' (féminin pluriel) placé avant le verbe avoir. On écrit donc 'analysées'." },
+      { order:5, text:"Phrase fautive : « En arrivant à l'école elle a remarqué que la porte était ouverte. » — Correction proposée : « En arrivant à l'école, elle a remarqué que, la porte était ouverte. »", correct:"Faux", explanation:"La correction est incorrecte. Il ne faut pas de virgule avant 'que' (conjonctif). La bonne correction est : « En arrivant à l'école, elle a remarqué que la porte était ouverte. » La virgule après 'école' est juste, mais celle avant 'la porte' est une erreur." },
+      { order:6, text:"Phrase fautive : « Plusieurs solution ont été proposée par l'équipe. » — Correction proposée : « Plusieurs solutions ont été proposées par l'équipe. »", correct:"Vrai", explanation:"La correction est bonne. 'Solutions' prend un 's' (pluriel) et le participe passé 'proposées' s'accorde avec 'solutions' (féminin pluriel) dans la construction passive avec 'être'." },
+    ].forEach(q => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: rv149ex2Id, title:"Vrai ou Faux", text: q.text, type:"true_false", options:JSON.stringify(["Vrai","Faux"]), correctAnswer:q.correct, order:q.order } as any); });
+
+    // ── Cours 150 : Corriger un texte à erreurs multiples ─────────────────────
+    const rv150Id = randomUUID();
+    this.courses.set(rv150Id, {
+      id: rv150Id,
+      title: "Corriger un texte : trouver la bonne forme",
+      description: "Quatre passages (narratif, descriptif, explicatif, argumentatif) comportant chacun des erreurs ciblées. Pour chaque blanc, écris la forme correcte du mot ou du groupe de mots. Exercices calqués sur les épreuves de révision du ministère de l'Éducation du Québec",
+      category: "ecriture",
+      content: "<h2>Corriger un texte — mise en pratique</h2><p>Dans ces exercices, un passage t'est présenté avec des mots ou groupes de mots en erreur. Tu dois trouver la forme correcte pour chaque blanc. Lis toujours la phrase complète avant de répondre — le contexte est essentiel pour déterminer l'accord correct.</p>",
+      order: 150,
+    } as any);
+
+    // Exercice 1 — texte narratif
+    const rv150ex1Id = randomUUID();
+    this.exercises.set(rv150ex1Id, { id: rv150ex1Id, courseId: rv150Id, title: "Corriger un texte narratif", description: "Ce passage narratif contient des erreurs d'accord. Trouve la forme correcte pour chaque mot en erreur", type: "fill_blank", order: 1 } as any);
+    [
+      { order:1, title:"Accord du participe passé avec être", text:"« Ce matin-là, Émile et sa sœur sont ___ (partir) à l'aube pour attraper le premier autobus. »", correct:"partis", hint:"Participe passé avec être — accord avec le sujet 'Émile et sa sœur' (masculin pluriel = Émile l'emporte)" },
+      { order:2, title:"Accord du participe passé avec avoir (COD avant)", text:"« Les sandwichs que leur mère avait ___ (préparer) la veille étaient encore frais. »", correct:"préparés", hint:"Le COD 'les sandwichs' est placé AVANT le verbe avoir — le participe s'accorde : masculin pluriel" },
+      { order:3, title:"Accord du verbe avec sujet collectif", text:"« Une foule de voyageurs ___ (attendre) sur le quai, les yeux rivés sur l'écran d'affichage. »", correct:"attendait", hint:"Le noyau du sujet est 'une foule' (singulier) — le verbe s'accorde avec 'foule', non avec 'voyageurs'" },
+      { order:4, title:"Accord de l'adjectif attribut", text:"« Léa et son frère étaient ___ (fatigué) mais ___ (heureux) d'être enfin arrivés à destination. »", correct:"fatigués|heureux", hint:"Adjectifs attributs de 'Léa et son frère' — masculin pluriel (heureux ne change pas au pluriel)" },
+      { order:5, title:"Pronom relatif correct", text:"« C'était le voyage ___ (que/dont/où) ils avaient rêvé depuis des années. »", correct:"dont", hint:"Le verbe 'rêver' se construit avec la préposition 'de' → 'dont' = de + lequel / de + qui" },
+      { order:6, title:"Accord du participe passé employé seul", text:"« ___ (Surpris) par l'annonce du retard, les passagères ont cherché un café pour patienter. »", correct:"Surprises", hint:"Participe passé employé seul — adjectif qui s'accorde avec 'les passagères' (féminin pluriel)" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: rv150ex1Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
+
+    // Exercice 2 — texte descriptif
+    const rv150ex2Id = randomUUID();
+    this.exercises.set(rv150ex2Id, { id: rv150ex2Id, courseId: rv150Id, title: "Corriger un texte descriptif", description: "Ce passage décrit le marché Jean-Talon. Corrige les erreurs d'accord des adjectifs et des participes passés", type: "fill_blank", order: 2 } as any);
+    [
+      { order:1, title:"Accord des adjectifs de couleur", text:"« Les tomates ___ (rouge) voisinent les courges ___ (jaune) et les poivrons ___ (orange) disposés en pyramides soignées. »", correct:"rouges|jaunes|oranges", hint:"Les adjectifs de couleur simples s'accordent normalement en genre et en nombre" },
+      { order:2, title:"Adjectif de couleur composé — invariable", text:"« Les tables sont recouvertes de nappes ___ (bleu ciel) qui contrastent avec les cageots de bois naturel. »", correct:"bleu ciel", hint:"Les adjectifs de couleur formés de deux mots (bleu ciel, vert forêt, rouge sang) sont invariables" },
+      { order:3, title:"Accord de l'adjectif épithète", text:"« Des marchandes ___ (attentionné) et ___ (souriant) accueillent les clients avec chaleur. »", correct:"attentionnées|souriantes", hint:"Adjectifs épithètes de 'marchandes' — féminin pluriel" },
+      { order:4, title:"Accord du participe passé avec avoir, COD après", text:"« Les producteurs ont ___ (apporter) leurs meilleurs légumes directement de leurs fermes laurentiennes. »", correct:"apporté", hint:"Le COD 'leurs meilleurs légumes' est placé APRÈS le verbe avoir — le participe reste invariable" },
+      { order:5, title:"Accord de l'adjectif dans un GN complexe", text:"« Un mélange d'odeurs ___ (puissant) et ___ (enivrant) accueille le visiteur dès l'entrée. »", correct:"puissantes|enivrantes", hint:"'Puissant' et 'enivrant' sont épithètes de 'odeurs' (féminin pluriel) — accord féminin pluriel" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: rv150ex2Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
+
+    // Exercice 3 — texte explicatif + argumentatif
+    const rv150ex3Id = randomUUID();
+    this.exercises.set(rv150ex3Id, { id: rv150ex3Id, courseId: rv150Id, title: "Corriger un texte explicatif et argumentatif", description: "Ces deux courts passages comportent des erreurs de syntaxe, d'accord et de ponctuation. Trouve la forme correcte", type: "fill_blank", order: 3 } as any);
+    [
+      { order:1, title:"Syntaxe — pronom relatif (texte explicatif)", text:"« La photosynthèse est le processus ___ les plantes transforment l'énergie solaire en sucres nutritifs. »", correct:"par lequel|grâce auquel|par lequel", hint:"La préposition 'par' ou 'grâce à' est liée au processus → pronom relatif composé 'par lequel' ou 'grâce auquel'" },
+      { order:2, title:"Accord du verbe — sujet inversé (texte explicatif)", text:"« C'est ainsi que ___ (se produire) les aurores boréales dans les régions arctiques. »", correct:"se produisent", hint:"Le sujet réel est 'les aurores boréales' (pluriel) — le verbe s'accorde avec ce sujet, même s'il est après" },
+      { order:3, title:"Ponctuation — virgule après complément de phrase initial", text:"« Chaque printemps ___ les oies des neiges reviennent par milliers dans la vallée du Saint-Laurent. »", correct:", (virgule)|,", hint:"Un complément de phrase ('Chaque printemps') placé en début de phrase est suivi d'une virgule" },
+      { order:4, title:"Syntaxe — construction du verbe (texte argumentatif)", text:"« C'est un problème ___ toute la société est concernée et ___ nous devons agir collectivement. »", correct:"dont|auquel", hint:"'Être concerné de' → 'dont'. 'Agir sur' / 'face auquel' → 'auquel'. Les deux pronoms relatifs ont des antécédents différents" },
+      { order:5, title:"Accord du participe passé (texte argumentatif)", text:"« Les mesures que le gouvernement a ___ (adopter) l'an dernier ont porté leurs fruits. »", correct:"adoptées", hint:"Le COD 'les mesures' (féminin pluriel) est placé AVANT le verbe avoir — le participe s'accorde" },
+      { order:6, title:"Orthographe — homophones dans un texte argumentatif", text:"« ___ (Bien que / Bien qu') certains croient que les réseaux sociaux sont inoffensifs, les données scientifiques démontrent le contraire. »", correct:"Bien que|Bien qu'", hint:"Devant une consonne ('certains') on garde 'que' sans apostrophe. Devant une voyelle on écrirait 'qu'' — ici c'est 'que' car 'certains' commence par une consonne" },
+    ].forEach((q, i) => { const id = randomUUID(); this.questions.set(id, { id, exerciseId: rv150ex3Id, title:q.title, text:q.text, type:"fill_blank", options:null, correctAnswer:q.correct, order:i+1 } as any); });
 
   }
 
