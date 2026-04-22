@@ -9,7 +9,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid, CheckSquare, HelpCircle, ArrowUp, ArrowDown, List, Layers, RotateCcw as FlipIcon, ThumbsUp, BookMarked } from "lucide-react";
-import { ReadAloudButton } from "@/components/accessibility-toolbar";
+import { ReadAloudButton, WordPredictor } from "@/components/accessibility-toolbar";
 
 interface Question {
   id: string;
@@ -105,9 +105,9 @@ const MATCH_COLORS = [
 
 // Inline fill-blank input
 function FillBlankInput({
-  text, value, onChange, disabled,
+  text, value, onChange, disabled, suggestions = [],
 }: {
-  text: string; value: string; onChange: (v: string) => void; disabled: boolean;
+  text: string; value: string; onChange: (v: string) => void; disabled: boolean; suggestions?: string[];
 }) {
   const parts = text.split("___");
   if (parts.length === 1) {
@@ -122,26 +122,30 @@ function FillBlankInput({
           className="max-w-xs text-base border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
           data-testid="input-fill-blank"
         />
+        <WordPredictor value={value} onChange={onChange} suggestions={suggestions} />
       </div>
     );
   }
   return (
-    <div className="text-lg leading-relaxed text-foreground flex flex-wrap items-center gap-1">
-      {parts.map((part, i) => (
-        <span key={i} className="flex items-center gap-1 flex-wrap">
-          <span>{part}</span>
-          {i < parts.length - 1 && (
-            <Input
-              value={value}
-              onChange={(e) => onChange(e.target.value)}
-              disabled={disabled}
-              placeholder="…"
-              className="inline-block w-36 text-base border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
-              data-testid="input-fill-blank"
-            />
-          )}
-        </span>
-      ))}
+    <div className="space-y-2">
+      <div className="text-lg leading-relaxed text-foreground flex flex-wrap items-center gap-1">
+        {parts.map((part, i) => (
+          <span key={i} className="flex items-center gap-1 flex-wrap">
+            <span>{part}</span>
+            {i < parts.length - 1 && (
+              <Input
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                disabled={disabled}
+                placeholder="…"
+                className="inline-block w-36 text-base border-2 border-amber-300 dark:border-amber-700 focus-visible:ring-amber-400"
+                data-testid="input-fill-blank"
+              />
+            )}
+          </span>
+        ))}
+      </div>
+      <WordPredictor value={value} onChange={onChange} suggestions={suggestions} />
     </div>
   );
 }
@@ -229,12 +233,13 @@ function DicteeInput({
   const [hasPlayed, setHasPlayed] = useState(false);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
-  const speak = (text: string, rate = 0.85) => {
+  const speak = (text: string, rateOverride?: number) => {
     if (!("speechSynthesis" in window)) return;
     window.speechSynthesis.cancel();
+    const a11yRate = parseFloat(localStorage.getItem("a11y-tts-rate") ?? "0.88");
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = "fr-CA";
-    utter.rate = rate;
+    utter.rate = rateOverride !== undefined ? rateOverride : a11yRate;
     utter.onstart = () => setSpeaking(true);
     utter.onend = () => { setSpeaking(false); setHasPlayed(true); };
     utter.onerror = () => setSpeaking(false);
@@ -242,7 +247,7 @@ function DicteeInput({
     window.speechSynthesis.speak(utter);
   };
 
-  const handlePlay = () => speak(correctText, 0.8);
+  const handlePlay = () => speak(correctText);
   const handleSlow = () => speak(correctText, 0.55);
   const handleStop = () => { window.speechSynthesis.cancel(); setSpeaking(false); };
 
@@ -1066,6 +1071,7 @@ export default function Exercise() {
               value={ans}
               onChange={(val) => handleAnswerChange(q.id, val)}
               disabled={submitted}
+              suggestions={q.correctAnswer ? q.correctAnswer.split("|").map((s) => s.trim()).filter(Boolean) : []}
             />
             {q.title && (
               <p className="text-sm text-muted-foreground mt-2 italic">

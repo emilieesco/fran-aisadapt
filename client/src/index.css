@@ -294,3 +294,36 @@
 :root[data-font-size="xl"] {
   font-size: 125%;
 }
+
+/* ── Accessibilité : mode dyslexie ─────────────────────────────── */
+:root[data-dyslexia="1"],
+:root[data-dyslexia="1"] * {
+  font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+:root[data-dyslexia="1"] p,
+:root[data-dyslexia="1"] span,
+:root[data-dyslexia="1"] li,
+:root[data-dyslexia="1"] label,
+:root[data-dyslexia="1"] input,
+:root[data-dyslexia="1"] textarea,
+:root[data-dyslexia="1"] button,
+:root[data-dyslexia="1"] h1,
+:root[data-dyslexia="1"] h2,
+:root[data-dyslexia="1"] h3 {
+  letter-spacing: 0.07em;
+  word-spacing: 0.22em;
+}
+
+/* ── Accessibilité : interlignage ──────────────────────────────── */
+:root[data-line-spacing="large"] p,
+:root[data-line-spacing="large"] li,
+:root[data-line-spacing="large"] label,
+:root[data-line-spacing="large"] span {
+  line-height: 2.0 !important;
+}
+:root[data-line-spacing="xl"] p,
+:root[data-line-spacing="xl"] li,
+:root[data-line-spacing="xl"] label,
+:root[data-line-spacing="xl"] span {
+  line-height: 2.6 !important;
+}
