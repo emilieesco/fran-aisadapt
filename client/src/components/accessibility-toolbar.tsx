@@ -112,29 +112,51 @@ export function WordPredictor({
     return () => window.removeEventListener("a11y-change", handler);
   }, []);
 
-  const visible = predictorActive && value.trim().length >= 2
-    ? suggestions.filter((s) =>
-        s.toLowerCase().startsWith(value.toLowerCase()) &&
-        s.toLowerCase() !== value.toLowerCase()
-      ).slice(0, 5)
-    : [];
+  const trimmed = value.trim().toLowerCase();
 
-  if (visible.length === 0) return null;
+  const visible: string[] = [];
+  if (predictorActive && trimmed.length >= 2) {
+    const seen = new Set<string>();
+    for (const ans of suggestions) {
+      // 1. La réponse complète commence par ce qui est tapé
+      if (ans.toLowerCase().startsWith(trimmed) && ans.toLowerCase() !== trimmed) {
+        if (!seen.has(ans.toLowerCase())) { seen.add(ans.toLowerCase()); visible.push(ans); }
+      }
+      // 2. Un mot individuel dans la réponse commence par ce qui est tapé
+      for (const word of ans.split(/\s+/)) {
+        const wl = word.toLowerCase().replace(/[^a-zàâçéèêëîïôùûüÿœæ0-9'-]/g, "");
+        if (wl.length >= 2 && wl.startsWith(trimmed) && wl !== trimmed) {
+          if (!seen.has(wl)) { seen.add(wl); visible.push(word.replace(/[.,;:!?]$/, "")); }
+        }
+      }
+      if (visible.length >= 6) break;
+    }
+  }
+
+  if (!predictorActive) return null;
 
   return (
-    <div className="flex flex-wrap gap-1.5 mt-2" data-testid="word-predictor">
-      {visible.map((word) => (
-        <button
-          key={word}
-          type="button"
-          onClick={() => onChange(word)}
-          className="px-2.5 py-0.5 rounded-md text-sm bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 border border-amber-300 dark:border-amber-700 hover-elevate"
-          data-testid={`predictor-suggestion-${word}`}
-        >
-          <ChevronRight className="w-3 h-3 inline mr-0.5 opacity-60" />
-          {word}
-        </button>
-      ))}
+    <div className="mt-2 min-h-[1.75rem]" data-testid="word-predictor">
+      {visible.length > 0 ? (
+        <div className="flex flex-wrap gap-1.5">
+          {visible.slice(0, 5).map((word, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => onChange(word)}
+              className="px-2.5 py-0.5 rounded-md text-sm bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200 border border-amber-300 dark:border-amber-700 hover-elevate"
+              data-testid={`predictor-suggestion-${word}`}
+            >
+              <ChevronRight className="w-3 h-3 inline mr-0.5 opacity-60" />
+              {word}
+            </button>
+          ))}
+        </div>
+      ) : (
+        trimmed.length >= 2 && (
+          <p className="text-xs text-muted-foreground italic">Aucune suggestion pour &laquo;&nbsp;{value}&nbsp;&raquo;</p>
+        )
+      )}
     </div>
   );
 }
