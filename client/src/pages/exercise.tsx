@@ -391,7 +391,7 @@ export default function Exercise() {
             ...q,
             options: typeof q.options === "string" ? JSON.parse(q.options) : q.options,
           }));
-          setQuestions(parsedQs);
+          setQuestions(parsedQs.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
         }
 
         if (fetchedExercise?.courseId) {
@@ -1009,7 +1009,7 @@ export default function Exercise() {
     const answered = isQAnswered(q);
 
     return (
-      <Card key={q.id} className={`p-6 transition-all ${answered ? "border-green-300 dark:border-green-700" : ""}`} data-testid={`question-card-${index}`}>
+      <Card key={q.id} className={`p-6 transition-all ${answered ? "border-green-300 dark:border-green-700" : isText ? "border-orange-300 dark:border-orange-700" : ""}`} data-testid={`question-card-${index}`}>
         {/* Question header */}
         <div className="flex items-center gap-2 mb-4 flex-wrap">
           <span className={`text-lg font-bold ${answered ? "text-green-700 dark:text-green-400" : "text-amber-900 dark:text-amber-200"}`}>
@@ -1044,6 +1044,11 @@ export default function Exercise() {
           {isOrdering && (
             <span className="text-xs font-medium bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-md border border-indigo-200 dark:border-indigo-700">
               <List className="w-3 h-3 inline mr-1" />Mise en ordre
+            </span>
+          )}
+          {isText && (
+            <span className="text-xs font-medium bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 px-2 py-0.5 rounded-md border border-orange-200 dark:border-orange-700">
+              <FileText className="w-3 h-3 inline mr-1" />Réponse rédigée
             </span>
           )}
           {!isDictee && (

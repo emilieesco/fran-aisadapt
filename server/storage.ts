@@ -3914,8 +3914,10 @@ export class MemStorage implements IStorage {
       title: "Question 3 — Améliorer une phrase vague",
       text: "La phrase «La maison était belle» est trop vague. Réécris-la en ajoutant au moins 3 détails précis (couleurs, formes, matières, etc.).",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 3,
+      createdAt: null,
     };
     const writQ1: Question = {
       id: randomUUID(),
@@ -3923,8 +3925,10 @@ export class MemStorage implements IStorage {
       title: "Question 4 — Production: Description vivante",
       text: "Écris une description vivante (8-10 phrases) d'un lieu que tu connais bien (ta chambre, le parc, la cour d'école, etc.).\n\nConsignes:\n• Utilise au moins 3 des 5 sens (vue, son, odeur, goût, toucher)\n• Inclus une comparaison (avec «comme») ou une métaphore\n• Utilise des adjectifs précis et expressifs",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 4,
+      createdAt: null,
     };
 
     // ── WRITING EXERCISE 2 : Écrire un dialogue ─────────────────────────────
@@ -3954,8 +3958,10 @@ export class MemStorage implements IStorage {
       title: "Question 3 — Corriger un dialogue",
       text: "Réécris ce dialogue en corrigeant le format (ajoute les tirets, les changements de ligne et un verbe de parole varié):\n\n«Bonjour, dit Marie. Comment vas-tu? dit Jean. Je vais bien, dit Marie.»",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 3,
+      createdAt: null,
     };
     const writQ2: Question = {
       id: randomUUID(),
@@ -3963,8 +3969,10 @@ export class MemStorage implements IStorage {
       title: "Question 4 — Production: Écrire un dialogue",
       text: "Écris un dialogue (10-12 répliques) entre deux amis qui décident quoi faire un samedi pluvieux.\n\nConsignes:\n• Utilise le format français avec les tirets (—)\n• Varie les verbes de parole (dit, répond, s'exclame, demande, soupire…)\n• Montre les émotions des personnages dans leurs paroles",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 4,
+      createdAt: null,
     };
 
     // ── WRITING EXERCISE 3 : Histoire courte ────────────────────────────────
@@ -3999,8 +4007,10 @@ export class MemStorage implements IStorage {
       title: "Question 3 — Planifier selon le schéma narratif",
       text: "Avant d'écrire ton histoire, planifie tes 5 étapes:\n1. Situation initiale: qui? où? quand?\n2. Élément perturbateur: qu'est-ce qui vient briser l'équilibre?\n3. Péripéties: que fait le personnage pour y faire face?\n4. Dénouement: comment le problème se règle-t-il?\n5. Situation finale: comment la vie du personnage a-t-elle changé?\n\nNote chaque étape en 1-2 phrases.",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 3,
+      createdAt: null,
     };
     const writQ3: Question = {
       id: randomUUID(),
@@ -4008,8 +4018,10 @@ export class MemStorage implements IStorage {
       title: "Question 4 — Production: Histoire courte",
       text: "Écris ton histoire courte (15-20 phrases) en suivant le plan que tu as fait à la question 3.\n\nConsignes — respecte les 5 étapes du schéma narratif:\n• Situation initiale: présente ton personnage, son lieu et son quotidien\n• Élément perturbateur: l'événement qui change tout\n• Péripéties: les actions et réactions du personnage\n• Dénouement: comment la situation se règle\n• Situation finale: le nouvel équilibre à la fin",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 4,
+      createdAt: null,
     };
 
     // ── WRITING EXERCISE 4 : Résumer efficacement ───────────────────────────
@@ -4049,8 +4061,10 @@ export class MemStorage implements IStorage {
       title: "Question 3 — Production: Résumer un texte",
       text: "Lis ce texte et résume-le en 4-5 phrases dans tes propres mots:\n\n«Maëlle est une fille de 11 ans qui habite en ville. Elle n'a jamais vu la forêt. Un été, ses parents l'emmènent en camping dans les Laurentides. D'abord, Maëlle a peur des bruits de la nuit et des insectes. Mais peu à peu, elle apprend à identifier les oiseaux, à faire du feu et à naviguer à la boussole. À la fin du voyage, elle pleure en reprenant la route vers la ville. Elle demande à ses parents de revenir l'année suivante.»\n\nRappel: utilise tes propres mots, garde seulement l'essentiel.",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 3,
+      createdAt: null,
     };
 
     // ── WRITING EXERCISE 5 : Connecteurs textuels — QCM ─────────────────────
@@ -4112,8 +4126,10 @@ export class MemStorage implements IStorage {
       title: "Question 1 — Relier des phrases",
       text: "Réécris ces phrases en les reliant avec un connecteur approprié:\n\n«Il pleuvait fort. Les enfants sortirent jouer.\nMarie étudie tous les soirs. Elle a de bonnes notes.\nJe voulais du chocolat. Le magasin était fermé.»\n\nChoisis des connecteurs différents pour chaque paire.",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 1,
+      createdAt: null,
     };
     const writQ5b_b: Question = {
       id: randomUUID(),
@@ -4121,8 +4137,10 @@ export class MemStorage implements IStorage {
       title: "Question 2 — Production guidée",
       text: "Écris un court paragraphe (5-7 phrases) qui décrit ta journée d'hier ou une journée typique à l'école.\n\nConsignes:\n• Utilise au moins 4 connecteurs différents\n• Varie les types: séquence (d'abord/ensuite), cause (parce que/car), opposition (mais/cependant)\n• Souligne ou mets en gras chaque connecteur utilisé",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 2,
+      createdAt: null,
     };
 
     // ── WRITING EXERCISE 6 : Techniques avancées — QCM ──────────────────────
@@ -4179,8 +4197,10 @@ export class MemStorage implements IStorage {
       title: "Question 1 — Transformer «dire» en «montrer»",
       text: "Réécris chacune de ces phrases vagues en «montrant» l'émotion ou l'état par des actions ou des détails concrets:\n\n1. «Elle était fatiguée.»\n2. «Il avait peur.»\n3. «Elle était fière.»",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 1,
+      createdAt: null,
     };
     const writQ6b_b: Question = {
       id: randomUUID(),
@@ -4188,8 +4208,10 @@ export class MemStorage implements IStorage {
       title: "Question 2 — Production: Appliquer les techniques",
       text: "Écris un court passage (8-10 phrases) qui décrit un personnage qui vient d'apprendre une nouvelle surprenante (bonne ou mauvaise).\n\nConsignes:\n• «Montre» ses émotions par des actions — n'utilise pas les mots «heureux», «triste», «surpris» ou «content»\n• Varie tes structures de phrases\n• Crée du suspense avec au moins une courte phrase percutante",
       type: "text",
+      options: null,
       correctAnswer: "réponse libre",
       order: 2,
+      createdAt: null,
     };
 
     this.questions.set(readQ1_1.id, readQ1_1);
