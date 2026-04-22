@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, CheckCircle, XCircle, FileText, BookOpen, ChevronDown, ChevronUp, ArrowRight, RotateCcw, PenLine, Link2, Trophy, TrendingUp, AlertTriangle, RefreshCw, Volume2, VolumeX, RotateCw, Pause, LayoutGrid, CheckSquare, HelpCircle, ArrowUp, ArrowDown, List, Layers, RotateCcw as FlipIcon, ThumbsUp, BookMarked } from "lucide-react";
 import { ReadAloudButton, WordPredictor } from "@/components/accessibility-toolbar";
+import { FRENCH_VOCABULARY } from "@/lib/french-vocabulary";
 
 interface Question {
   id: string;
@@ -433,6 +434,29 @@ export default function Exercise() {
       </div>
     );
   }
+
+  // ── Suggestions pour le prédicteur de mots (fill_blank) ─────────────────────
+  // Combine : réponses correctes de toutes les questions fill_blank + vocabulaire global
+  const fillBlankSuggestions: string[] = (() => {
+    const exerciseAnswers: string[] = [];
+    for (const q of questions) {
+      if (q.type === "fill_blank" && q.correctAnswer) {
+        for (const part of q.correctAnswer.split("|")) {
+          const trimmed = part.trim();
+          if (trimmed) {
+            exerciseAnswers.push(trimmed);
+            for (const word of trimmed.split(/\s+/)) {
+              const clean = word.replace(/[^a-zA-ZÀ-ÿœæ'-]/g, "");
+              if (clean.length >= 2) exerciseAnswers.push(clean);
+            }
+          }
+        }
+      }
+    }
+    // Exercise answers first (more relevant), then vocabulary
+    const combined = [...new Set([...exerciseAnswers, ...FRENCH_VOCABULARY])];
+    return combined;
+  })();
 
   // ── Per-question helpers ─────────────────────────────────────
   const getQAnswer = (qId: string) => userAnswers[qId] || "";
@@ -1076,7 +1100,7 @@ export default function Exercise() {
               value={ans}
               onChange={(val) => handleAnswerChange(q.id, val)}
               disabled={submitted}
-              suggestions={q.correctAnswer ? q.correctAnswer.split("|").map((s) => s.trim()).filter(Boolean) : []}
+              suggestions={fillBlankSuggestions}
             />
             {q.title && (
               <p className="text-sm text-muted-foreground mt-2 italic">
