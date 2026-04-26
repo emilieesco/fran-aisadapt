@@ -3,6 +3,7 @@ import { type Server } from "http";
 import { storage } from "./storage";
 import { insertUserSchema, insertCourseSchema, insertExerciseSchema, insertQuestionSchema, insertResponseSchema } from "@shared/schema";
 import { HISTOIRES } from "@shared/histoires";
+import PDFDocument from "pdfkit";
 
 export async function registerRoutes(app: Express, server: Server): Promise<Server> {
   // ─── Middleware admin ────────────────────────────────────────────────────────
@@ -805,6 +806,197 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       const groups = await storage.getStudentGroups(req.params.studentId);
       res.json(groups);
     } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  // ─── Téléchargement PDF du cahier de lecture ─────────────────────────────
+  app.get('/api/cahier-pdf', async (_req, res) => {
+    const doc = new PDFDocument({
+      size: 'LETTER',
+      margins: { top: 60, bottom: 60, left: 65, right: 65 },
+      info: {
+        Title: 'Cahier de lecture \u2014 Histoires du Qu\u00e9bec',
+        Author: 'Fran\u00e7ais Actif',
+        Subject: 'Cahier de lecture interactif',
+      },
+      bufferPages: true,
+    });
+
+    res.setHeader('Content-Disposition', 'attachment; filename="cahier-lecture-histoires-du-quebec.pdf"');
+    res.setHeader('Content-Type', 'application/pdf');
+    doc.pipe(res);
+
+    const W = doc.page.width - 65 - 65;
+    const typeColors: Record<string, string> = {
+      comprehension: '#2563EB',
+      inference: '#7C3AED',
+      reaction: '#059669',
+      jugement: '#DC2626',
+      grammaire: '#D97706',
+    };
+    const typeLabels: Record<string, string> = {
+      comprehension: 'COMPR\u00c9HENSION',
+      inference: 'INF\u00c9RENCE',
+      reaction: 'R\u00c9ACTION PERSONNELLE',
+      jugement: 'JUGEMENT CRITIQUE',
+      grammaire: 'GRAMMAIRE',
+    };
+
+    // ── PAGE COUVERTURE ────────────────────────────────────────────────────────
+    doc.rect(0, 0, doc.page.width, doc.page.height).fill('#1A3A2A');
+    doc.rect(0, 0, doc.page.width, 8).fill('#4CAF7D');
+    doc.rect(0, doc.page.height - 8, doc.page.width, 8).fill('#4CAF7D');
+
+    doc.fillColor('#ffffff')
+       .font('Helvetica-Bold')
+       .fontSize(11)
+       .text('FRAN\u00c7AIS ACTIF', 65, 55, { width: W, align: 'center' });
+
+    doc.fillColor('#4CAF7D')
+       .font('Helvetica-Bold')
+       .fontSize(36)
+       .text('Cahier de lecture', 65, 120, { width: W, align: 'center' });
+
+    doc.fillColor('#ffffff')
+       .font('Helvetica')
+       .fontSize(18)
+       .text('Histoires du Qu\u00e9bec', 65, 175, { width: W, align: 'center' });
+
+    doc.fillColor('#aed6b8')
+       .font('Helvetica')
+       .fontSize(12)
+       .text('10 histoires originales \u2014 Niveau secondaire', 65, 210, { width: W, align: 'center' });
+
+    // Cartouche
+    const cartY = 290;
+    const cartH = 150;
+    doc.roundedRect(130, cartY, W - 65, cartH, 8).strokeColor('#4CAF7D').lineWidth(1.5).stroke();
+    doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(11).text('IDENTIFICATION DE L\u2019\u00c9L\u00c8VE', 130, cartY + 15, { width: W - 65, align: 'center' });
+
+    const fields = [
+      { label: 'Nom :', y: cartY + 42 },
+      { label: 'Groupe :', y: cartY + 72 },
+      { label: 'Enseignant(e) :', y: cartY + 102 },
+    ];
+    fields.forEach(f => {
+      doc.fillColor('#aed6b8').font('Helvetica-Bold').fontSize(9).text(f.label, 145, f.y);
+      doc.moveTo(215, f.y + 12).lineTo(390, f.y + 12).strokeColor('#4CAF7D').lineWidth(0.8).stroke();
+    });
+
+    // Légende
+    const legY = cartY + cartH + 35;
+    doc.fillColor('#aed6b8').font('Helvetica-Bold').fontSize(9).text('TYPES DE QUESTIONS', 65, legY, { width: W, align: 'center' });
+    const legItems = [
+      { type: 'comprehension', desc: 'Repérer l\u2019information explicite' },
+      { type: 'inference', desc: 'Déduire ce qui est implicite' },
+      { type: 'reaction', desc: 'Réagir personnellement' },
+      { type: 'jugement', desc: 'Évaluer et défendre une position' },
+      { type: 'grammaire', desc: 'Analyser la langue' },
+    ];
+    legItems.forEach((item, i) => {
+      const col = i % 3;
+      const row = Math.floor(i / 3);
+      const lx = 65 + col * (W / 3);
+      const ly = legY + 18 + row * 28;
+      doc.roundedRect(lx, ly, W / 3 - 8, 22, 4).fill(typeColors[item.type]);
+      doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(7).text(typeLabels[item.type], lx + 4, ly + 4, { width: W / 3 - 16 });
+      doc.fillColor('#ffffff').font('Helvetica').fontSize(6).text(item.desc, lx + 4, ly + 13, { width: W / 3 - 16 });
+    });
+
+    doc.fillColor('#aed6b8').font('Helvetica').fontSize(8)
+       .text('Pour chaque bloc, lis les questions et développe ta réponse en phrases complètes en t\u2019appuyant sur le texte.', 65, doc.page.height - 90, { width: W, align: 'center' });
+
+    // ── HISTOIRES ──────────────────────────────────────────────────────────────
+    for (const h of HISTOIRES) {
+      doc.addPage();
+
+      // En-tête histoire
+      doc.rect(65, 60, W, 70).fill('#1A3A2A');
+      doc.fillColor('#4CAF7D').font('Helvetica-Bold').fontSize(9)
+         .text(`HISTOIRE ${h.id} / 10`, 75, 70, { width: W - 20 });
+      doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(20)
+         .text(h.titre, 75, 84, { width: W - 20 });
+      doc.fillColor('#aed6b8').font('Helvetica').fontSize(9)
+         .text(h.sousTitre, 75, 109, { width: W - 20 });
+
+      doc.moveDown(0.5);
+      let y = 148;
+
+      // Texte de l'histoire
+      doc.fillColor('#1A3A2A').font('Helvetica-Bold').fontSize(9)
+         .text('TEXTE', 65, y);
+      doc.moveTo(65, y + 13).lineTo(65 + W, y + 13).strokeColor('#4CAF7D').lineWidth(1).stroke();
+      y += 20;
+
+      for (const para of h.texte) {
+        const paraH = doc.heightOfString(para, { width: W, fontSize: 10, font: 'Helvetica', lineGap: 3 });
+        if (y + paraH > doc.page.height - 80) {
+          doc.addPage();
+          y = 60;
+        }
+        doc.fillColor('#222222').font('Helvetica').fontSize(10).lineGap(3)
+           .text(para, 65, y, { width: W, align: 'justify' });
+        y = doc.y + 10;
+      }
+
+      // Questions
+      y += 10;
+      if (y + 40 > doc.page.height - 80) { doc.addPage(); y = 60; }
+
+      doc.fillColor('#1A3A2A').font('Helvetica-Bold').fontSize(9)
+         .text(`QUESTIONS \u2014 ${h.titre.toUpperCase()}`, 65, y);
+      doc.moveTo(65, y + 13).lineTo(65 + W, y + 13).strokeColor('#4CAF7D').lineWidth(1).stroke();
+      y += 22;
+
+      for (const bloc of h.questions) {
+        const color = typeColors[bloc.type];
+        const typeLbl = typeLabels[bloc.type];
+
+        // Calcul hauteur minimale du bloc
+        const blocMinH = 40 + bloc.questions.length * 90;
+        if (y + 60 > doc.page.height - 80) { doc.addPage(); y = 60; }
+
+        // Badge type
+        doc.roundedRect(65, y, 120, 16, 3).fill(color);
+        doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(7).text(typeLbl, 69, y + 4, { width: 112 });
+
+        // Label bloc
+        doc.fillColor('#333333').font('Helvetica-Bold').fontSize(9)
+           .text(bloc.label, 65, y + 22, { width: W });
+        y += 38;
+
+        // Chaque question avec lignes de réponse
+        for (let qi = 0; qi < bloc.questions.length; qi++) {
+          const q = bloc.questions[qi];
+          const qLabel = `${String.fromCharCode(65 + qi)}. `;
+          const qH = doc.heightOfString(qLabel + q, { width: W - 16, fontSize: 9.5 }) + 4;
+          if (y + qH + 60 > doc.page.height - 80) { doc.addPage(); y = 60; }
+
+          // Question
+          doc.rect(65, y, 6, qH + 4).fill(color);
+          doc.fillColor('#444444').font('Helvetica-Bold').fontSize(8).text(qLabel, 76, y + 2, { continued: true })
+             .font('Helvetica').fontSize(9).text(q, { width: W - 16 });
+          y = doc.y + 6;
+
+          // Lignes de réponse (4 lignes)
+          for (let li = 0; li < 4; li++) {
+            doc.moveTo(76, y + li * 16).lineTo(65 + W, y + li * 16).strokeColor('#cccccc').lineWidth(0.5).stroke();
+          }
+          y += 4 * 16 + 10;
+        }
+        y += 8;
+      }
+    }
+
+    // ── Numéros de pages ───────────────────────────────────────────────────────
+    const totalPages = doc.bufferedPageRange().count;
+    for (let i = 0; i < totalPages; i++) {
+      doc.switchToPage(i);
+      if (i === 0) continue;
+      doc.fillColor('#aaaaaa').font('Helvetica').fontSize(8)
+         .text(`${i} / ${totalPages - 1}`, 65, doc.page.height - 40, { width: W, align: 'center' });
+    }
+
+    doc.end();
   });
 
   // ─── Téléchargement direct du cahier de lecture ───────────────────────────
