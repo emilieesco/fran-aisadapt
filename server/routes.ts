@@ -880,27 +880,29 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     // Bande vert pâle fine sous l'image (pas de boucle — évite les pages vides)
     doc.rect(0, imgH, PW, 5).fill(GOLD);
 
-    // Zone inférieure blanche
+    // Zone inférieure — fond vert foncé pour que le titre blanc soit lisible
     const zoneY = imgH + 5;
+    doc.rect(0, zoneY, PW, PH - zoneY).fill(NAVY);
 
     // Pastille collection
     doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
        .text('FRAN\u00c7AIS ACTIF \u2014 COLLECTION LECTURE', ML, zoneY + 14, { width: W, align: 'center' });
 
-    // Grand titre
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(30)
+    // Grand titre en BLANC sur fond vert foncé
+    doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(30)
        .text('Cahier de lecture', ML, zoneY + 28, { width: W, align: 'center' });
 
-    doc.fillColor(MID).font('Helvetica').fontSize(15)
+    doc.fillColor(CREAM).font('Helvetica').fontSize(15)
        .text('Histoires du Qu\u00e9bec', ML, zoneY + 64, { width: W, align: 'center' });
 
-    doc.fillColor(LIGHT).font('Helvetica').fontSize(9)
+    doc.fillColor(GOLD).font('Helvetica').fontSize(9)
        .text('10 histoires originales  \u2022  Niveau secondaire  \u2022  Exercices interactifs', ML, zoneY + 84, { width: W, align: 'center' });
 
     // Cartouche identification — fond vert très pâle
     const cartX = ML + 20; const cartW = W - 40; const cartY2 = zoneY + 104; const cartH2 = 96;
     doc.roundedRect(cartX, cartY2, cartW, cartH2, 6).fillAndStroke(CREAM, GOLD);
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8)
+    // Titre cartouche en blanc sur fond vert foncé
+    doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(8)
        .text('IDENTIFICATION DE L\u2019\u00c9L\u00c8VE', cartX, cartY2 + 10, { width: cartW, align: 'center' });
 
     const idFields = [
@@ -908,7 +910,7 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       { label: 'Groupe / classe', name: 'id_groupe', fy: cartY2 + 56 },
     ];
     idFields.forEach(f => {
-      doc.fillColor(MID).font('Helvetica').fontSize(8).text(f.label + ' :', cartX + 10, f.fy + 3);
+      doc.fillColor(CREAM).font('Helvetica').fontSize(8).text(f.label + ' :', cartX + 10, f.fy + 3);
       doc.formText(f.name, cartX + 115, f.fy, cartW - 125, 18, {
         multiline: false,
         backgroundColor: '#FFFFFF',
@@ -920,7 +922,7 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
 
     // Légende types de questions
     const legY2 = cartY2 + cartH2 + 12;
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(7)
+    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(7)
        .text('TYPES DE QUESTIONS', ML, legY2, { width: W, align: 'center' });
 
     const legItems2 = ['comprehension','inference','reaction','jugement','grammaire'];
@@ -936,8 +938,10 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     });
 
     // Pied de couverture
-    doc.fillColor(LIGHT).font('Helvetica').fontSize(6.5)
-       .text('Pour chaque bloc, ouvre le menu déroulant, choisis ta question et écris ta réponse dans la zone de texte. Tu peux sauvegarder le PDF rempli.', ML, PH - MB - 16, { width: W, align: 'center' });
+    doc.fillColor(GOLD).font('Helvetica').fontSize(6.5)
+       .text('Pour chaque bloc, ouvre le menu déroulant, choisis ta question et écris ta réponse dans la zone de texte. Tu peux sauvegarder le PDF rempli.', ML, PH - MB - 28, { width: W, align: 'center' });
+    doc.fillColor(CREAM).font('Helvetica').fontSize(6.5)
+       .text('Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.', ML, PH - MB - 14, { width: W, align: 'center' });
 
     // ── HISTOIRES ──────────────────────────────────────────────────────────────
     let fieldIdx = 0;
@@ -1044,12 +1048,25 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       const savedBottom = doc.page.margins.bottom;
       doc.page.margins.bottom = 0;
 
-      doc.fillColor(LIGHT).font('Helvetica').fontSize(7.5)
+      // Ligne de séparation
+      doc.moveTo(ML, PH - 38).lineTo(ML + W, PH - 38).strokeColor('#D0D0D0').lineWidth(0.4).stroke();
+
+      // Numéro de page (gauche)
+      doc.fillColor(LIGHT).font('Helvetica').fontSize(7)
          .text(
            `Page ${i} / ${range.count - 1}`,
            ML,
            PH - 28,
-           { width: W, align: 'center', lineBreak: false }
+           { width: W / 2, align: 'left', lineBreak: false }
+         );
+
+      // Propriété (droite)
+      doc.fillColor(LIGHT).font('Helvetica').fontSize(7)
+         .text(
+           'Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.',
+           ML + W / 2,
+           PH - 28,
+           { width: W / 2, align: 'right', lineBreak: false }
          );
 
       doc.page.margins.bottom = savedBottom;
