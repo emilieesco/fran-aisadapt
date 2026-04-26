@@ -1034,12 +1034,25 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     }
 
     // ── Numérotation des pages ─────────────────────────────────────────────────
-    const totalPages = doc.bufferedPageRange().count;
-    for (let i = 0; i < totalPages; i++) {
+    // On neutralise la marge basse avant de dessiner les numéros de page pour éviter
+    // que PDFKit ne crée des pages supplémentaires (le texte à y > PH-MB déclenche un addPage)
+    const range = doc.bufferedPageRange();
+    for (let i = range.start; i < range.start + range.count; i++) {
       doc.switchToPage(i);
-      if (i === 0) continue;
+      if (i === range.start) continue; // sauter la couverture
+
+      const savedBottom = doc.page.margins.bottom;
+      doc.page.margins.bottom = 0;
+
       doc.fillColor(LIGHT).font('Helvetica').fontSize(7.5)
-         .text(`Page ${i} / ${totalPages - 1}`, ML, PH - MB + 18, { width: W, align: 'center' });
+         .text(
+           `Page ${i} / ${range.count - 1}`,
+           ML,
+           PH - 28,
+           { width: W, align: 'center', lineBreak: false }
+         );
+
+      doc.page.margins.bottom = savedBottom;
     }
 
     doc.end();
