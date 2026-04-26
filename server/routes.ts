@@ -810,7 +810,7 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
 
   // ─── Téléchargement PDF du cahier de lecture ─────────────────────────────
   app.get('/api/cahier-pdf', async (_req, res) => {
-    const ILLUS_PATH = '/home/runner/workspace/attached_assets/u6899119312_digital_textured_cartoon_illustration_in_the_styl_5b5f7c74-e8b9-4331-959e-96ce7e0b1e08_2_1764043247801.png';
+    const ILLUS_PATH = '/home/runner/workspace/attached_assets/u6899119312_digital_textured_cartoon_illustration_in_the_styl__1777164459656.png';
     const fs = await import('fs');
     const illustrationExists = fs.existsSync(ILLUS_PATH);
 
@@ -836,12 +836,12 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     const ML = 60; const MR = 60; const MT = 55; const MB = 55;
     const W = PW - ML - MR;
 
-    const NAVY  = '#12203A';
-    const GOLD  = '#C9952A';
-    const CREAM = '#F5F0E8';
-    const DARK  = '#1C1C1E';
-    const MID   = '#555555';
-    const LIGHT = '#888888';
+    const NAVY  = '#2D5A3D';
+    const GOLD  = '#5A8F5A';
+    const CREAM = '#F0F7F0';
+    const DARK  = '#1C2E1C';
+    const MID   = '#4A6B4A';
+    const LIGHT = '#7A9B7A';
 
     const typeColors: Record<string, string> = {
       comprehension: '#2563EB',
@@ -866,51 +866,49 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     };
 
     // ── PAGE COUVERTURE ────────────────────────────────────────────────────────
-    // Fond entier
-    doc.rect(0, 0, PW, PH).fill(NAVY);
+    // Fond blanc crème
+    doc.rect(0, 0, PW, PH).fill('#FFFFFF');
 
-    // Illustration florale en haut (60 % de la hauteur)
-    const imgH = Math.round(PH * 0.58);
+    // Illustration florale en haut (55 % de la hauteur)
+    const imgH = Math.round(PH * 0.55);
     if (illustrationExists) {
       try {
         doc.image(ILLUS_PATH, 0, 0, { width: PW, height: imgH, cover: [PW, imgH] });
       } catch (_) { /* si l'image ne charge pas on continue */ }
     }
-    // Dégradé sombre sur le bas de l'image pour lisibilité du titre
-    const gradStart = imgH - 90;
-    for (let i = 0; i < 90; i++) {
-      const alpha = i / 90;
-      const r = Math.round(18 * alpha);
-      const g = Math.round(32 * alpha);
-      const b = Math.round(58 * alpha);
-      doc.rect(0, gradStart + i, PW, 2).fill(`rgb(${r},${g},${b})`);
+
+    // Dégradé blanc sous l'image (fondu vers blanc)
+    const gradStart = imgH - 60;
+    for (let i = 0; i < 60; i++) {
+      const alpha = Math.round((i / 60) * 255);
+      doc.rect(0, gradStart + i, PW, 2).fill(`rgb(255,255,255)`).opacity(i / 60);
     }
+    doc.opacity(1);
 
-    // Bande dorée fine sous l'image
-    doc.rect(0, imgH, PW, 4).fill(GOLD);
+    // Bande vert pâle fine sous l'image
+    doc.rect(0, imgH, PW, 5).fill(GOLD);
 
-    // Zone inférieure (fond marine) : titre + cartouche + légende
-    const zoneY = imgH + 4;
-    const zoneH = PH - zoneY;
+    // Zone inférieure blanche
+    const zoneY = imgH + 5;
 
     // Pastille collection
     doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
-       .text('FRAN\u00c7AIS ACTIF \u2014 COLLECTION LECTURE', ML, zoneY + 16, { width: W, align: 'center' });
+       .text('FRAN\u00c7AIS ACTIF \u2014 COLLECTION LECTURE', ML, zoneY + 14, { width: W, align: 'center' });
 
     // Grand titre
-    doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(28)
-       .text('Cahier de lecture', ML, zoneY + 30, { width: W, align: 'center' });
+    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(30)
+       .text('Cahier de lecture', ML, zoneY + 28, { width: W, align: 'center' });
 
-    doc.fillColor(CREAM).font('Helvetica').fontSize(14)
+    doc.fillColor(MID).font('Helvetica').fontSize(15)
        .text('Histoires du Qu\u00e9bec', ML, zoneY + 64, { width: W, align: 'center' });
 
-    doc.fillColor(GOLD).font('Helvetica').fontSize(9)
+    doc.fillColor(LIGHT).font('Helvetica').fontSize(9)
        .text('10 histoires originales  \u2022  Niveau secondaire  \u2022  Exercices interactifs', ML, zoneY + 84, { width: W, align: 'center' });
 
-    // Cartouche identification (fond légèrement plus clair)
-    const cartX = ML + 30; const cartW = W - 60; const cartY2 = zoneY + 106; const cartH2 = 100;
-    doc.roundedRect(cartX, cartY2, cartW, cartH2, 6).fillAndStroke('#1B2F52', GOLD);
-    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
+    // Cartouche identification — fond vert très pâle
+    const cartX = ML + 20; const cartW = W - 40; const cartY2 = zoneY + 104; const cartH2 = 96;
+    doc.roundedRect(cartX, cartY2, cartW, cartH2, 6).fillAndStroke(CREAM, GOLD);
+    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8)
        .text('IDENTIFICATION DE L\u2019\u00c9L\u00c8VE', cartX, cartY2 + 10, { width: cartW, align: 'center' });
 
     const idFields = [
@@ -918,19 +916,19 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       { label: 'Groupe / classe', name: 'id_groupe', fy: cartY2 + 56 },
     ];
     idFields.forEach(f => {
-      doc.fillColor(CREAM).font('Helvetica').fontSize(8).text(f.label + ' :', cartX + 10, f.fy + 2);
-      doc.formText(f.name, cartX + 110, f.fy, cartW - 120, 18, {
+      doc.fillColor(MID).font('Helvetica').fontSize(8).text(f.label + ' :', cartX + 10, f.fy + 3);
+      doc.formText(f.name, cartX + 115, f.fy, cartW - 125, 18, {
         multiline: false,
-        backgroundColor: '#243650',
+        backgroundColor: '#FFFFFF',
         borderColor: GOLD,
-        color: '#FFFFFF',
+        color: DARK,
         fontSize: 9,
       });
     });
 
     // Légende types de questions
-    const legY2 = cartY2 + cartH2 + 14;
-    doc.fillColor(CREAM).font('Helvetica-Bold').fontSize(7)
+    const legY2 = cartY2 + cartH2 + 12;
+    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(7)
        .text('TYPES DE QUESTIONS', ML, legY2, { width: W, align: 'center' });
 
     const legItems2 = ['comprehension','inference','reaction','jugement','grammaire'];
@@ -957,14 +955,14 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       doc.addPage();
 
       // ── En-tête histoire ──
-      doc.rect(0, 0, PW, MT + 62).fill(NAVY);
-      doc.rect(0, MT + 62, PW, 3).fill(GOLD);
+      doc.rect(0, 0, PW, MT + 62).fill(CREAM);
+      doc.rect(0, MT + 62, PW, 2).fill(GOLD);
 
       doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
          .text(`HISTOIRE ${h.id} / 10`, ML, MT, { width: W });
-      doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(22)
+      doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(22)
          .text(h.titre, ML, MT + 14, { width: W });
-      doc.fillColor(CREAM).font('Helvetica').fontSize(9)
+      doc.fillColor(MID).font('Helvetica').fontSize(9)
          .text(h.sousTitre, ML, MT + 42, { width: W });
 
       let y = MT + 75;
@@ -1020,8 +1018,8 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
           select: selectOpts,
           color: DARK,
           fontSize: 8,
-          backgroundColor: '#F0EDE6',
-          borderColor: '#CCCCCC',
+          backgroundColor: CREAM,
+          borderColor: GOLD,
         });
         y += 26;
 
@@ -1037,8 +1035,8 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
           multiline: true,
           color: DARK,
           fontSize: 9.5,
-          backgroundColor: '#FAFAF8',
-          borderColor: '#CCCCCC',
+          backgroundColor: '#FAFFFE',
+          borderColor: GOLD,
         });
         y += answerH + 16;
         fieldIdx++;
