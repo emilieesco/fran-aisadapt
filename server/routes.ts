@@ -877,15 +877,7 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       } catch (_) { /* si l'image ne charge pas on continue */ }
     }
 
-    // Dégradé blanc sous l'image (fondu vers blanc)
-    const gradStart = imgH - 60;
-    for (let i = 0; i < 60; i++) {
-      const alpha = Math.round((i / 60) * 255);
-      doc.rect(0, gradStart + i, PW, 2).fill(`rgb(255,255,255)`).opacity(i / 60);
-    }
-    doc.opacity(1);
-
-    // Bande vert pâle fine sous l'image
+    // Bande vert pâle fine sous l'image (pas de boucle — évite les pages vides)
     doc.rect(0, imgH, PW, 5).fill(GOLD);
 
     // Zone inférieure blanche
@@ -954,36 +946,35 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     for (const h of HISTOIRES) {
       doc.addPage();
 
-      // ── En-tête histoire ──
-      doc.rect(0, 0, PW, MT + 62).fill(CREAM);
-      doc.rect(0, MT + 62, PW, 2).fill(GOLD);
+      // ── En-tête histoire : fond vert foncé, texte blanc ──
+      doc.rect(0, 0, PW, MT + 64).fill(NAVY);
+      doc.rect(0, MT + 64, PW, 3).fill(GOLD);
 
       doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
          .text(`HISTOIRE ${h.id} / 10`, ML, MT, { width: W });
-      doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(22)
+      doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(22)
          .text(h.titre, ML, MT + 14, { width: W });
-      doc.fillColor(MID).font('Helvetica').fontSize(9)
+      doc.fillColor(CREAM).font('Helvetica').fontSize(9)
          .text(h.sousTitre, ML, MT + 42, { width: W });
 
       let y = MT + 75;
 
-      // ── Section Texte ──
+      // ── Section Texte — flux naturel, PDFKit gère les sauts de page ──
       doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8.5)
          .text('TEXTE', ML, y);
       doc.moveTo(ML, y + 12).lineTo(ML + W, y + 12).strokeColor(GOLD).lineWidth(0.8).stroke();
-      y += 20;
 
-      for (const para of h.texte) {
-        doc.font('Helvetica').fontSize(10);
-        const paraH = doc.heightOfString(para, { width: W, lineGap: 2.5 });
-        if (y + paraH > USABLE_BOTTOM - 10) { doc.addPage(); y = MT; }
-        doc.fillColor(DARK).lineGap(2.5).text(para, ML, y, { width: W, align: 'justify' });
-        y = doc.y + 9;
+      doc.fillColor(DARK).font('Helvetica').fontSize(10).lineGap(2);
+      for (let pi = 0; pi < h.texte.length; pi++) {
+        // Chaque paragraphe est positionné à doc.y courant (ou y+20 pour le premier)
+        const startY = pi === 0 ? y + 20 : doc.y + 8;
+        doc.text(h.texte[pi], ML, startY, { width: W, align: 'justify' });
+        // PDFKit gère automatiquement les sauts de page si le texte déborde
       }
+      y = doc.y + 14;
 
       // ── Section Questions ──
-      y += 8;
-      if (y + 50 > USABLE_BOTTOM) { doc.addPage(); y = MT; }
+      if (y + 60 > USABLE_BOTTOM) { doc.addPage(); y = MT; }
 
       doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8.5)
          .text(`QUESTIONS \u2014 ${h.titre}`, ML, y);
@@ -993,18 +984,20 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       for (const bloc of h.questions) {
         const color = typeColors[bloc.type];
 
-        // Un bloc complet nécessite ~155 px minimum → nouvelle page si besoin
-        if (y + 155 > USABLE_BOTTOM) { doc.addPage(); y = MT; }
+        // Hauteur totale d'un bloc : bande(26) + consigne(14) + combo(26) + label(12) + réponse(82) + marge(10) = 170 px
+        // → Une seule vérification au début, pas de double saut de page
+        const BLOC_H = 170;
+        if (y + BLOC_H > USABLE_BOTTOM) { doc.addPage(); y = MT; }
 
         // ── Bande colorée : type + label ──
         doc.rect(ML, y, W, 22).fill(color);
         doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(7.5)
-           .text(typeLabels[bloc.type], ML + 6, y + 3, { width: 130 });
+           .text(typeLabels[bloc.type], ML + 6, y + 4, { width: 130 });
         doc.fillColor('#ffffff').font('Helvetica').fontSize(7)
-           .text(bloc.label, ML + 145, y + 4, { width: W - 150 });
+           .text(bloc.label, ML + 148, y + 5, { width: W - 155 });
         y += 26;
 
-        // ── Instructions ──
+        // ── Consigne ──
         doc.fillColor(MID).font('Helvetica').fontSize(8)
            .text('Choisis la question qui t\u2019inspire dans le menu déroulant :', ML, y);
         y += 14;
@@ -1028,17 +1021,14 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
            .text('Ta réponse (écris en phrases complètes) :', ML, y);
         y += 12;
 
-        const answerH = 80;
-        if (y + answerH + 12 > USABLE_BOTTOM) { doc.addPage(); y = MT; }
-
-        doc.formText(`rep_${fieldIdx}`, ML, y, W, answerH, {
+        doc.formText(`rep_${fieldIdx}`, ML, y, W, 80, {
           multiline: true,
           color: DARK,
           fontSize: 9.5,
           backgroundColor: '#FAFFFE',
           borderColor: GOLD,
         });
-        y += answerH + 16;
+        y += 92;
         fieldIdx++;
       }
     }
