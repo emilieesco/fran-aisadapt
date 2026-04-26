@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { type Server } from "http";
 import { storage } from "./storage";
 import { insertUserSchema, insertCourseSchema, insertExerciseSchema, insertQuestionSchema, insertResponseSchema } from "@shared/schema";
+import { HISTOIRES } from "@shared/histoires";
 
 export async function registerRoutes(app: Express, server: Server): Promise<Server> {
   // ─── Middleware admin ────────────────────────────────────────────────────────
@@ -804,6 +805,163 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
       const groups = await storage.getStudentGroups(req.params.studentId);
       res.json(groups);
     } catch (err) { res.status(500).send('Erreur serveur'); }
+  });
+
+  // ─── Téléchargement direct du cahier de lecture ───────────────────────────
+  app.get('/api/cahier-download', (_req, res) => {
+    const esc = (s: string) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const badges: Record<string,string> = { comprehension:'badge-c', inference:'badge-i', reaction:'badge-r', jugement:'badge-j', grammaire:'badge-g' };
+    const blocs:  Record<string,string> = { comprehension:'bloc-c',  inference:'bloc-i',  reaction:'bloc-r',  jugement:'bloc-j',  grammaire:'bloc-g'  };
+    const labels: Record<string,string> = { comprehension:'Compréhension', inference:'Inférence', reaction:'Réaction personnelle', jugement:'Jugement critique', grammaire:'Grammaire' };
+
+    const storiesHTML = HISTOIRES.map(h => {
+      const [first, ...rest] = h.texte;
+      const texteHTML = [
+        `<p><span class="dropcap">${first.charAt(0)}</span>${esc(first.slice(1))}</p>`,
+        ...rest.map(p => `<p>${esc(p)}</p>`)
+      ].join('\n');
+      const qHTML = h.questions.map((bloc, bi) => {
+        const uid = `h${h.id}b${bi}`;
+        const opts = bloc.questions.map((q, qi) => `<option value="${esc(q)}">${String.fromCharCode(65+qi)}. ${esc(q)}</option>`).join('');
+        return `<div class="bloc ${blocs[bloc.type]}">
+  <span class="badge ${badges[bloc.type]}">${labels[bloc.type]}</span>
+  <div class="bloc-label">${esc(bloc.label)}</div>
+  <label class="field-label" for="${uid}-sel">Choisis ta question :</label>
+  <select id="${uid}-sel" onchange="var d=document.getElementById('${uid}-qshow');d.textContent=this.value;d.style.display=this.value?'block':'none';">
+    <option value="">— Sélectionne une question —</option>${opts}
+  </select>
+  <div id="${uid}-qshow" class="selected-q" style="display:none"></div>
+  <label class="field-label" for="${uid}-rep">Ta réponse :</label>
+  <textarea id="${uid}-rep" rows="7" placeholder="Écris ta réponse ici en phrases complètes\u2026" oninput="document.getElementById('${uid}-cnt').textContent=this.value.length+'\u00a0car.'"></textarea>
+  <div id="${uid}-cnt" class="charcount">0\u00a0car.</div>
+</div>`;
+      }).join('\n');
+      return `<div class="story" id="histoire-${h.id}">
+  <div class="story-header">
+    <div class="story-num">Histoire ${h.id}\u00a0/\u00a010</div>
+    <div class="story-title">${esc(h.titre)}</div>
+    <div class="story-sub">${esc(h.sousTitre)}</div>
+  </div>
+  <div class="story-text">${texteHTML}</div>
+  <div class="questions">
+    <div class="q-section-title">Questions \u2014 ${esc(h.titre)}</div>
+    ${qHTML}
+  </div>
+</div>`;
+    }).join('\n');
+
+    const navLinks = HISTOIRES.map(h => `<a href="#histoire-${h.id}">H${h.id} — ${esc(h.titre)}</a>`).join('\n  ');
+
+    const html = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cahier de lecture — Histoires du Québec</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,'Times New Roman',serif;font-size:11.5pt;color:#1a1a1a;background:#f5f7f2;line-height:1.7}
+.cover{min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(160deg,#1a3d1a 0%,#2d6a2d 40%,#1a3d1a 100%);position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(255,255,255,.07) 0%,transparent 60%),radial-gradient(ellipse at 75% 65%,rgba(255,220,100,.06) 0%,transparent 55%)}
+.cover-top{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px 40px;text-align:center}
+.cover-chip{display:inline-block;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;font-size:9.5pt;letter-spacing:.18em;text-transform:uppercase;padding:5px 18px;border-radius:30px;margin-bottom:22px;font-family:Arial,sans-serif}
+.cover-title{font-size:46pt;font-weight:bold;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.4);line-height:1.1;margin-bottom:10px}
+.cover-title .gold{color:#f6c843}
+.cover-sub{font-size:13.5pt;color:rgba(255,255,255,.85);font-style:italic;text-shadow:0 1px 10px rgba(0,0,0,.4);margin-bottom:30px}
+.cover-deco{display:flex;align-items:center;gap:14px}.cover-deco-line{height:1px;width:70px;background:rgba(255,255,255,.35)}.cover-deco-dot{width:9px;height:9px;border-radius:50%;background:#f6c843;opacity:.8}
+.cover-bottom{position:relative;z-index:2;background:rgba(245,247,242,.97);padding:36px 48px 44px}
+.cartouche{max-width:700px;margin:0 auto;border:2px solid #6aad6a;border-radius:10px;background:#fff;padding:28px 36px}
+.cartouche-title{text-align:center;font-size:9pt;font-weight:bold;letter-spacing:.15em;text-transform:uppercase;color:#2d7a2d;margin-bottom:20px;font-family:Arial,sans-serif}
+.field-row{display:flex;align-items:flex-end;gap:14px;margin-bottom:16px}
+.field-row label{font-size:10pt;color:#444;min-width:140px;white-space:nowrap;font-family:Arial,sans-serif}
+.field-input{flex:1;border:none;border-bottom:1.5px solid #6aad6a;font-size:10.5pt;font-family:inherit;outline:none;background:transparent;padding:2px 4px;color:#1a1a1a}
+.field-input:focus{border-bottom-color:#2d7a2d}
+.legend{max-width:700px;margin:22px auto 0;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.leg{border-radius:6px;border-width:1.5px;border-style:solid;padding:9px 10px;font-size:8.5pt}
+.leg strong{display:block;font-size:8pt;margin-bottom:3px;font-family:Arial,sans-serif}
+.leg-c{background:#eff6ff;border-color:#93c5fd;color:#1e40af}.leg-i{background:#f5f3ff;border-color:#c4b5fd;color:#5b21b6}
+.leg-r{background:#ecfdf5;border-color:#6ee7b7;color:#065f46}.leg-j{background:#fef2f2;border-color:#fca5a5;color:#991b1b}
+.leg-g{background:#fffbeb;border-color:#fcd34d;color:#78350f}
+.consigne{max-width:700px;margin:16px auto 0;border-left:3.5px solid #6aad6a;padding:8px 16px;font-size:9.5pt;color:#555;font-style:italic;line-height:1.75}
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(245,247,242,.97);backdrop-filter:blur(6px);border-bottom:1px solid #d4e8d4;padding:10px 24px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.nav-bar a{font-size:8pt;color:#2d6a2d;text-decoration:none;padding:3px 10px;border:1px solid #6aad6a;border-radius:20px;background:#fff;font-family:Arial,sans-serif;white-space:nowrap}
+.nav-bar a:hover{background:#ecfdf5}
+.nav-label{font-size:8.5pt;color:#555;font-family:Arial,sans-serif;margin-right:4px;font-weight:bold;white-space:nowrap}
+.story{max-width:820px;margin:48px auto;background:#fff;border:1px solid #d4e8d4;border-radius:8px;overflow:hidden;page-break-before:always}
+.story-header{background:linear-gradient(135deg,#2d6a2d,#e07b18);padding:22px 28px}
+.story-num{display:inline-block;background:rgba(255,255,255,.2);color:#fff;font-size:8.5pt;font-weight:bold;padding:2px 12px;border-radius:20px;margin-bottom:8px;font-family:Arial,sans-serif}
+.story-title{font-size:17pt;font-weight:bold;color:#fff;margin-bottom:4px}
+.story-sub{font-size:9.5pt;color:rgba(255,255,255,.85);font-style:italic}
+.story-text{padding:22px 28px;border-bottom:1px solid #e5f0e5;line-height:2}
+.story-text p{margin-bottom:16px;font-size:11pt;text-align:justify}
+.dropcap{float:left;font-size:38pt;font-weight:bold;color:#2d6a2d;line-height:.8;margin-right:5px;margin-top:5px}
+.questions{padding:18px 28px 32px}
+.q-section-title{font-size:11.5pt;font-weight:bold;color:#1a3a1a;border-top:1.5px solid #d4e8d4;padding-top:14px;margin-bottom:16px}
+.bloc{border-radius:6px;padding:14px 16px;margin-bottom:14px;border-width:2px;border-style:solid}
+.bloc-c{background:#eff6ff;border-color:#93c5fd}.bloc-i{background:#f5f3ff;border-color:#c4b5fd}
+.bloc-r{background:#ecfdf5;border-color:#6ee7b7}.bloc-j{background:#fef2f2;border-color:#fca5a5}
+.bloc-g{background:#fffbeb;border-color:#fcd34d}
+.badge{font-size:7.5pt;font-weight:bold;padding:2px 9px;border-radius:4px;border-width:1px;border-style:solid;display:inline-block;margin-bottom:8px;font-family:Arial,sans-serif}
+.badge-c{background:#dbeafe;border-color:#93c5fd;color:#1e40af}.badge-i{background:#ede9fe;border-color:#c4b5fd;color:#5b21b6}
+.badge-r{background:#d1fae5;border-color:#6ee7b7;color:#065f46}.badge-j{background:#fee2e2;border-color:#fca5a5;color:#991b1b}
+.badge-g{background:#fef3c7;border-color:#fcd34d;color:#78350f}
+.bloc-label{font-size:9.5pt;font-weight:600;color:#374151;margin-bottom:10px;font-family:Arial,sans-serif}
+.field-label{display:block;font-size:8.5pt;color:#666;font-weight:600;margin-bottom:4px;font-family:Arial,sans-serif}
+select{width:100%;font-size:10pt;padding:7px 10px;border:1.5px solid #d1d5db;border-radius:5px;background:#fff;margin-bottom:10px;font-family:Georgia,serif;cursor:pointer}
+select:focus{outline:none;border-color:#6aad6a}
+.selected-q{font-style:italic;font-size:9.5pt;background:rgba(255,255,255,.75);border:1px solid #e5e7eb;border-radius:5px;padding:7px 10px;margin-bottom:10px;min-height:30px;color:#333}
+textarea{width:100%;font-size:10.5pt;padding:8px 10px;border:1.5px solid #d1d5db;border-radius:5px;resize:vertical;font-family:Georgia,serif;min-height:115px;background:#fff;line-height:1.9}
+textarea:focus{outline:none;border-color:#6aad6a}
+.charcount{text-align:right;font-size:8pt;color:#9ca3af;margin-top:4px;font-family:Arial,sans-serif}
+@media print{
+  body{background:#fff}
+  .nav-bar{display:none}
+  .cover{page-break-after:always}
+  .story{border:1px solid #bbb;border-radius:0;margin:0;page-break-before:always}
+  select,textarea,.field-input{border-color:#999!important;background:#fff!important}
+  textarea{min-height:100px!important}
+  @page{margin:1.8cm;size:A4}
+}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-chip">Cahier de lecture</div>
+    <div class="cover-title">Histoires du<br><span class="gold">Québec</span></div>
+    <div class="cover-sub">Dix récits pour explorer, comprendre et réagir</div>
+    <div class="cover-deco"><div class="cover-deco-line"></div><div class="cover-deco-dot"></div><div class="cover-deco-line"></div></div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cartouche">
+      <div class="cartouche-title">Informations de l'élève</div>
+      <div class="field-row"><label>Nom et prénom :</label><input type="text" class="field-input" placeholder="________________________________"></div>
+      <div class="field-row"><label>Groupe / classe :</label><input type="text" class="field-input" placeholder="________________"></div>
+      <div class="field-row"><label>Enseignant(e) :</label><input type="text" class="field-input" placeholder="________________________________"></div>
+      <div class="field-row"><label>Année scolaire :</label><input type="text" class="field-input" placeholder="__________"></div>
+    </div>
+    <div class="legend">
+      <div class="leg leg-c"><strong>Compréhension</strong>Repérer l'information explicite</div>
+      <div class="leg leg-i"><strong>Inférence</strong>Déduire ce qui est implicite</div>
+      <div class="leg leg-r"><strong>Réaction</strong>Réagir personnellement</div>
+      <div class="leg leg-j"><strong>Jugement critique</strong>Évaluer et défendre une position</div>
+      <div class="leg leg-g"><strong>Grammaire</strong>Analyser la langue et les procédés</div>
+    </div>
+    <div class="consigne">Pour chaque bloc de questions, choisis la question qui t'inspire dans le menu déroulant, puis développe ta réponse en phrases complètes. Appuie-toi toujours sur des éléments précis du texte.</div>
+  </div>
+</div>
+<div class="nav-bar">
+  <span class="nav-label">Aller à :</span>
+  ${navLinks}
+</div>
+${storiesHTML}
+</body>
+</html>`;
+
+    res.setHeader('Content-Disposition', 'attachment; filename="cahier-lecture-histoires-du-quebec.html"');
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(html);
   });
 
   return server;

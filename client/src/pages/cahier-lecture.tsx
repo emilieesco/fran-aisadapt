@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Printer, Download, BookOpen, ChevronDown } from "lucide-react";
-import { HISTOIRES, type QuestionBloc } from "@/data/histoires";
+import { HISTOIRES, type QuestionBloc } from "@shared/histoires";
 
 // ── Couleurs par type de question ─────────────────────────────────────────────
 const TYPE_META: Record<QuestionBloc["type"], { label: string; bg: string; border: string; text: string; badge: string }> = {

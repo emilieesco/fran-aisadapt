@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Download, Check, ArrowLeft } from "lucide-react";
-import { HISTOIRES, type QuestionBloc } from "@/data/histoires";
+import { HISTOIRES, type QuestionBloc } from "@shared/histoires";
 import fleurs from "@assets/u6899119312_digital_textured_cartoon_illustration_in_the_styl__1777161514454.png";
 
 // ── Génération du HTML autonome complet ──────────────────────────────────────
