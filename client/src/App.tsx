@@ -16,6 +16,7 @@ import ReadingNarrative from "@/pages/reading-narrative";
 import AdminDashboard from "@/pages/admin-dashboard";
 import StudentReport from "@/pages/student-report";
 import CahierLecture from "@/pages/cahier-lecture";
+import CahierLectureCouverture from "@/pages/cahier-lecture-couverture";
 import NotFound from "@/pages/not-found";
 import { AccessibilityWidget } from "@/components/accessibility-toolbar";
 
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/admin-dashboard" component={AdminDashboard} />
       <Route path="/teacher/student-report/:studentId" component={StudentReport} />
       <Route path="/cahier-lecture" component={CahierLecture} />
+      <Route path="/cahier-lecture-couverture" component={CahierLectureCouverture} />
       <Route component={NotFound} />
     </Switch>
   );
