@@ -896,7 +896,7 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
        .text('Histoires du Qu\u00e9bec', ML, zoneY + 64, { width: W, align: 'center' });
 
     doc.fillColor(GOLD).font('Helvetica').fontSize(9)
-       .text('10 histoires originales  \u2022  Niveau secondaire  \u2022  Exercices interactifs', ML, zoneY + 84, { width: W, align: 'center' });
+       .text('10 histoires originales  \u2022  Adaptation scolaire et sociale  \u2022  Exercices interactifs', ML, zoneY + 84, { width: W, align: 'center' });
 
     // Cartouche identification — fond vert très pâle
     const cartX = ML + 20; const cartW = W - 40; const cartY2 = zoneY + 104; const cartH2 = 96;
