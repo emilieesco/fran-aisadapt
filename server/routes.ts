@@ -3,6 +3,7 @@ import { type Server } from "http";
 import { storage } from "./storage";
 import { insertUserSchema, insertCourseSchema, insertExerciseSchema, insertQuestionSchema, insertResponseSchema } from "@shared/schema";
 import { HISTOIRES } from "@shared/histoires";
+import { histoiresTravail } from "@shared/histoires-travail";
 import PDFDocument from "pdfkit";
 
 export async function registerRoutes(app: Express, server: Server): Promise<Server> {
@@ -1230,6 +1231,238 @@ ${storiesHTML}
     res.setHeader('Content-Disposition', 'attachment; filename="cahier-lecture-histoires-du-quebec.html"');
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.send(html);
+  });
+
+  // ─── Cahier PDF — Monde du travail ───────────────────────────────────────
+  app.get('/api/cahier-travail-pdf', async (_req, res) => {
+    const ILLUS_PATH = '/home/runner/workspace/attached_assets/u6899119312_digital_textured_cartoon_illustration_in_the_styl__1777164459656.png';
+    const fs = await import('fs');
+    const illustrationExists = fs.existsSync(ILLUS_PATH);
+
+    const doc = new PDFDocument({
+      size: 'LETTER',
+      margins: { top: 55, bottom: 55, left: 60, right: 60 },
+      info: {
+        Title: 'Cahier du monde du travail',
+        Author: 'Fran\u00e7ais Actif',
+        Subject: 'Cahier interactif — Emploi, s\u00e9curit\u00e9, comp\u00e9tences',
+      },
+      bufferPages: true,
+    });
+    doc.initForm();
+
+    res.setHeader('Content-Disposition', 'attachment; filename="cahier-monde-du-travail.pdf"');
+    res.setHeader('Content-Type', 'application/pdf');
+    doc.pipe(res);
+
+    const PW = doc.page.width;
+    const PH = doc.page.height;
+    const ML = 60; const MR = 60; const MT = 55; const MB = 55;
+    const W = PW - ML - MR;
+    const USABLE_BOTTOM = PH - MB;
+
+    // Palette — tons bleu ardoise / vert forêt pour distinguer du premier cahier
+    const NAVY  = '#1E3A5F';
+    const GOLD  = '#3A7CA5';
+    const CREAM = '#EFF6FB';
+    const DARK  = '#0D1B2A';
+    const MID   = '#2E5F82';
+    const LIGHT = '#6A9BBE';
+
+    const typeColors: Record<string, string> = {
+      comprehension: '#2563EB',
+      inference:     '#7C3AED',
+      reaction:      '#059669',
+      jugement:      '#DC2626',
+      grammaire:     '#D97706',
+    };
+    const typeLabels: Record<string, string> = {
+      comprehension: 'COMPR\u00c9HENSION',
+      inference:     'INF\u00c9RENCE',
+      reaction:      'R\u00c9ACTION PERSONNELLE',
+      jugement:      'JUGEMENT CRITIQUE',
+      grammaire:     'GRAMMAIRE',
+    };
+    const typeDescs: Record<string, string> = {
+      comprehension: 'Rep\u00e9rer l\u2019information explicite',
+      inference:     'D\u00e9duire ce qui est implicite',
+      reaction:      'R\u00e9agir personnellement au texte',
+      jugement:      '\u00c9valuer et d\u00e9fendre une position',
+      grammaire:     'Analyser la langue et les proc\u00e9d\u00e9s',
+    };
+
+    // ── PAGE COUVERTURE ────────────────────────────────────────────────────────
+    doc.rect(0, 0, PW, PH).fill('#FFFFFF');
+
+    const imgH = Math.round(PH * 0.55);
+    if (illustrationExists) {
+      try {
+        doc.image(ILLUS_PATH, 0, 0, { width: PW, height: imgH, cover: [PW, imgH] });
+      } catch (_) { /* image absente — on continue */ }
+    }
+
+    doc.rect(0, imgH, PW, 5).fill(GOLD);
+
+    const zoneY = imgH + 5;
+    doc.rect(0, zoneY, PW, PH - zoneY).fill(NAVY);
+
+    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
+       .text('FRAN\u00c7AIS ACTIF \u2014 COLLECTION COMP\u00c9TENCES DE VIE', ML, zoneY + 14, { width: W, align: 'center' });
+
+    doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(28)
+       .text('Cahier du monde du travail', ML, zoneY + 30, { width: W, align: 'center' });
+
+    doc.fillColor(CREAM).font('Helvetica').fontSize(13)
+       .text('Emploi, s\u00e9curit\u00e9, comp\u00e9tences et formation', ML, zoneY + 66, { width: W, align: 'center' });
+
+    doc.fillColor(GOLD).font('Helvetica').fontSize(9)
+       .text('10 histoires originales  \u2022  Adaptation scolaire et sociale  \u2022  Exercices interactifs', ML, zoneY + 88, { width: W, align: 'center' });
+
+    // Cartouche identification
+    const cartX = ML + 20; const cartW = W - 40; const cartY2 = zoneY + 108; const cartH2 = 96;
+    doc.roundedRect(cartX, cartY2, cartW, cartH2, 6).fillAndStroke(CREAM, GOLD);
+    doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(8)
+       .text('IDENTIFICATION DE L\u2019\u00c9L\u00c8VE', cartX, cartY2 + 10, { width: cartW, align: 'center' });
+
+    const idFields = [
+      { label: 'Nom et pr\u00e9nom', name: 'tidnom', fy: cartY2 + 28 },
+      { label: 'Groupe / classe', name: 'tidgroupe', fy: cartY2 + 56 },
+    ];
+    idFields.forEach(f => {
+      doc.fillColor(CREAM).font('Helvetica').fontSize(8).text(f.label + ' :', cartX + 10, f.fy + 3);
+      doc.formText(f.name, cartX + 115, f.fy, cartW - 125, 18, {
+        multiline: false,
+        backgroundColor: '#FFFFFF',
+        borderColor: GOLD,
+        color: DARK,
+        fontSize: 9,
+      });
+    });
+
+    // Légende
+    const legY2 = cartY2 + cartH2 + 12;
+    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(7)
+       .text('TYPES DE QUESTIONS', ML, legY2, { width: W, align: 'center' });
+    const legItems2 = ['comprehension','inference','reaction','jugement','grammaire'];
+    const itemW2 = (W - 8) / 5;
+    legItems2.forEach((type, i) => {
+      const lx = ML + i * (itemW2 + 2);
+      const ly = legY2 + 12;
+      doc.roundedRect(lx, ly, itemW2, 20, 3).fill(typeColors[type]);
+      doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(5.5)
+         .text(typeLabels[type], lx + 2, ly + 3, { width: itemW2 - 4, align: 'center' });
+      doc.fillColor('#ffffff').font('Helvetica').fontSize(4.8)
+         .text(typeDescs[type], lx + 2, ly + 11, { width: itemW2 - 4, align: 'center' });
+    });
+
+    doc.fillColor(GOLD).font('Helvetica').fontSize(6.5)
+       .text('Pour chaque bloc, ouvre le menu d\u00e9roulant, choisis ta question et \u00e9cris ta r\u00e9ponse dans la zone de texte.', ML, PH - MB - 28, { width: W, align: 'center' });
+    doc.fillColor(CREAM).font('Helvetica').fontSize(6.5)
+       .text('Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.', ML, PH - MB - 14, { width: W, align: 'center' });
+
+    // ── HISTOIRES ──────────────────────────────────────────────────────────────
+    let fieldIdx = 0;
+
+    for (const h of histoiresTravail) {
+      doc.addPage();
+
+      // En-tête histoire
+      doc.rect(0, 0, PW, MT + 64).fill(NAVY);
+      doc.rect(0, MT + 64, PW, 3).fill(GOLD);
+
+      doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
+         .text(`HISTOIRE ${h.id} / 10`, ML, MT, { width: W });
+      doc.fillColor('#FFFFFF').font('Helvetica-Bold').fontSize(22)
+         .text(h.titre, ML, MT + 14, { width: W });
+      doc.fillColor(CREAM).font('Helvetica').fontSize(9)
+         .text(h.sousTitre, ML, MT + 42, { width: W });
+
+      let y = MT + 75;
+
+      // Texte — PDFKit gère les sauts de page automatiquement
+      doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8.5).text('TEXTE', ML, y);
+      doc.moveTo(ML, y + 12).lineTo(ML + W, y + 12).strokeColor(GOLD).lineWidth(0.8).stroke();
+
+      doc.fillColor(DARK).font('Helvetica').fontSize(10).lineGap(2);
+      for (let pi = 0; pi < h.paragraphes.length; pi++) {
+        const startY = pi === 0 ? y + 20 : doc.y + 8;
+        doc.text(h.paragraphes[pi], ML, startY, { width: W, align: 'justify' });
+      }
+      y = doc.y + 14;
+
+      // Questions
+      if (y + 60 > USABLE_BOTTOM) { doc.addPage(); y = MT; }
+
+      doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8.5)
+         .text(`QUESTIONS \u2014 ${h.titre}`, ML, y);
+      doc.moveTo(ML, y + 12).lineTo(ML + W, y + 12).strokeColor(GOLD).lineWidth(0.8).stroke();
+      y += 22;
+
+      for (const bloc of h.questions.blocs) {
+        const color = typeColors[bloc.type];
+        const BLOC_H = 170;
+        if (y + BLOC_H > USABLE_BOTTOM) { doc.addPage(); y = MT; }
+
+        // Bande colorée
+        doc.rect(ML, y, W, 22).fill(color);
+        doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(7.5)
+           .text(typeLabels[bloc.type], ML + 6, y + 4, { width: 130 });
+        doc.fillColor('#ffffff').font('Helvetica').fontSize(7)
+           .text(bloc.consigne, ML + 148, y + 5, { width: W - 155 });
+        y += 26;
+
+        // Consigne
+        doc.fillColor(MID).font('Helvetica').fontSize(8)
+           .text('Choisis la question qui t\u2019inspire dans le menu d\u00e9roulant :', ML, y);
+        y += 14;
+
+        // Menu déroulant
+        const selectOpts = [
+          '\u2014 S\u00e9lectionne une question \u2014',
+          ...bloc.choix.map((q, qi) => `${String.fromCharCode(65 + qi)}. ${q}`),
+        ];
+        doc.formCombo(`tcombo_${fieldIdx}`, ML, y, W, 20, {
+          select: selectOpts,
+          color: DARK,
+          fontSize: 8,
+          backgroundColor: CREAM,
+          borderColor: GOLD,
+        });
+        y += 26;
+
+        // Zone de réponse
+        doc.fillColor(MID).font('Helvetica').fontSize(8)
+           .text('Ta r\u00e9ponse (écris en phrases compl\u00e8tes) :', ML, y);
+        y += 12;
+
+        doc.formText(`trep_${fieldIdx}`, ML, y, W, 80, {
+          multiline: true,
+          color: DARK,
+          fontSize: 9.5,
+          backgroundColor: '#F5FBFF',
+          borderColor: GOLD,
+        });
+        y += 92;
+        fieldIdx++;
+      }
+    }
+
+    // ── Numérotation + propriété ───────────────────────────────────────────────
+    const tRange = doc.bufferedPageRange();
+    for (let i = tRange.start; i < tRange.start + tRange.count; i++) {
+      doc.switchToPage(i);
+      if (i === tRange.start) continue;
+      const savedBottom = doc.page.margins.bottom;
+      doc.page.margins.bottom = 0;
+      doc.moveTo(ML, PH - 38).lineTo(ML + W, PH - 38).strokeColor('#D0D0D0').lineWidth(0.4).stroke();
+      doc.fillColor(LIGHT).font('Helvetica').fontSize(7)
+         .text(`Page ${i} / ${tRange.count - 1}`, ML, PH - 28, { width: W / 2, align: 'left', lineBreak: false });
+      doc.fillColor(LIGHT).font('Helvetica').fontSize(7)
+         .text('Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.', ML + W / 2, PH - 28, { width: W / 2, align: 'right', lineBreak: false });
+      doc.page.margins.bottom = savedBottom;
+    }
+
+    doc.end();
   });
 
   return server;
