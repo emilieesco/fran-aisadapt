@@ -919,8 +919,8 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     // Accroche pédagogique
     doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(12)
        .text('\u00c0 propos de ce cahier', ML + 20, bodyY + 26, { width: W - 20 });
-    doc.fillColor('#444444').font('Helvetica').fontSize(9).lineGap(3)
-       .text('Ce cahier interactif contient 10 histoires originales qu\u00e9b\u00e9coises. Pour chaque histoire, tu trouveras des blocs de questions vari\u00e9es avec un menu d\u00e9roulant et une zone de r\u00e9ponse. Remplis le cahier directement dans ton lecteur PDF et sauvegarde-le.', ML + 20, bodyY + 44, { width: W - 20 });
+    doc.fillColor('#444444').font('Helvetica').fontSize(9)
+       .text('Ce cahier interactif contient 10 histoires originales qu\u00e9b\u00e9coises. Pour chaque histoire, tu trouveras des blocs de questions vari\u00e9es avec un menu d\u00e9roulant et une zone de r\u00e9ponse. Remplis le cahier directement dans ton lecteur PDF et sauvegarde-le.', ML + 20, bodyY + 44, { width: W - 20, lineGap: 2 });
 
     // Séparateur
     doc.moveTo(ML + 8, bodyY + 88).lineTo(ML + 8 + W - 16, bodyY + 88).strokeColor('#DDDDDD').lineWidth(0.6).stroke();
@@ -967,12 +967,13 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
          .text(typeDescs[type], lx + 2, ly + 13, { width: itemW2 - 4, align: 'center' });
     });
 
-    // Pied de page couverture
-    doc.rect(0, PH - 38, PW, 38).fill(NAVY);
+    // Pied de page couverture — dans la zone normale (sous la légende, dans les marges)
+    const footerY = legY2 + 54;
+    doc.rect(0, footerY - 6, PW, PH - footerY + 6).fill(NAVY);
     doc.fillColor(GOLD).font('Helvetica').fontSize(7)
-       .text('Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.', ML, PH - 26, { width: W / 2 });
+       .text('Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.', ML, footerY + 4, { width: W / 2, lineBreak: false });
     doc.fillColor(CREAM).font('Helvetica').fontSize(7)
-       .text('Fran\u00e7ais Actif \u2014 Adaptation scolaire et sociale', ML + W / 2, PH - 26, { width: W / 2, align: 'right' });
+       .text('Fran\u00e7ais Actif \u2014 Adaptation scolaire et sociale', ML + W / 2, footerY + 4, { width: W / 2, align: 'right', lineBreak: false });
 
     // ── HISTOIRES ──────────────────────────────────────────────────────────────
     let fieldIdx = 0;
@@ -1366,8 +1367,8 @@ ${storiesHTML}
 
     doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(12)
        .text('\u00c0 propos de ce cahier', ML + 20, bodyY + 26, { width: W - 20 });
-    doc.fillColor('#444444').font('Helvetica').fontSize(9).lineGap(3)
-       .text('Ce cahier interactif contient 10 histoires originales sur le monde du travail qu\u00e9b\u00e9cois. Pour chaque histoire, tu trouveras des blocs de questions vari\u00e9es avec un menu d\u00e9roulant et une zone de r\u00e9ponse. Remplis le cahier directement dans ton lecteur PDF et sauvegarde-le.', ML + 20, bodyY + 44, { width: W - 20 });
+    doc.fillColor('#444444').font('Helvetica').fontSize(9)
+       .text('Ce cahier interactif contient 10 histoires originales sur le monde du travail qu\u00e9b\u00e9cois. Pour chaque histoire, tu trouveras des blocs de questions vari\u00e9es avec un menu d\u00e9roulant et une zone de r\u00e9ponse. Remplis le cahier directement dans ton lecteur PDF et sauvegarde-le.', ML + 20, bodyY + 44, { width: W - 20, lineGap: 2 });
 
     doc.moveTo(ML + 8, bodyY + 88).lineTo(ML + 8 + W - 16, bodyY + 88).strokeColor('#DDDDDD').lineWidth(0.6).stroke();
 
@@ -1412,12 +1413,13 @@ ${storiesHTML}
          .text(typeDescs[type], lx + 2, ly + 13, { width: itemW2 - 4, align: 'center' });
     });
 
-    // Pied de page
-    doc.rect(0, PH - 38, PW, 38).fill(NAVY);
+    // Pied de page — dans la zone normale (sous la légende, dans les marges)
+    const footerY2 = legY2 + 54;
+    doc.rect(0, footerY2 - 6, PW, PH - footerY2 + 6).fill(NAVY);
     doc.fillColor(GOLD).font('Helvetica').fontSize(7)
-       .text('Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.', ML, PH - 26, { width: W / 2 });
+       .text('Propri\u00e9t\u00e9 Le mat\u00e9riel p\u00e9dagogique de Milie.', ML, footerY2 + 4, { width: W / 2, lineBreak: false });
     doc.fillColor(CREAM).font('Helvetica').fontSize(7)
-       .text('Fran\u00e7ais Actif \u2014 Adaptation scolaire et sociale', ML + W / 2, PH - 26, { width: W / 2, align: 'right' });
+       .text('Fran\u00e7ais Actif \u2014 Adaptation scolaire et sociale', ML + W / 2, footerY2 + 4, { width: W / 2, align: 'right', lineBreak: false });
 
     // ── HISTOIRES ──────────────────────────────────────────────────────────────
     let fieldIdx = 0;
