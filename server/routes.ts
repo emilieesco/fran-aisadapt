@@ -881,9 +881,8 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     doc.rect(8, headerH, PW - 8, 4).fill(GOLD);
 
     // Texte COLLECTION — lettrage espacé
-    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8).characterSpacing(2)
+    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
        .text('FRAN\u00c7AIS ACTIF \u2014 COLLECTION LECTURE', ML + 8, 52, { width: W - 8, align: 'left' });
-    doc.characterSpacing(0);
 
     // Ligne fine sous le label collection
     doc.moveTo(ML + 8, 66).lineTo(ML + 8 + 120, 66).strokeColor(GOLD).lineWidth(1).stroke();
@@ -930,9 +929,8 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
     const cartX = ML + 8; const cartW = W - 16; const cartY2 = bodyY + 100; const cartH2 = 98;
     doc.rect(cartX, cartY2, cartW, cartH2).fill('#F4F7FB');
     doc.rect(cartX, cartY2, 3, cartH2).fill(GOLD);
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8).characterSpacing(1)
+    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8)
        .text('IDENTIFICATION DE L\u2019\u00c9L\u00c8VE', cartX + 12, cartY2 + 12, { width: cartW - 16 });
-    doc.characterSpacing(0);
 
     const idFields = [
       { label: 'Nom et pr\u00e9nom', name: 'id_nom', fy: cartY2 + 30 },
@@ -954,9 +952,8 @@ export async function registerRoutes(app: Express, server: Server): Promise<Serv
 
     // Légende types de questions
     const legY2 = cartY2 + cartH2 + 22;
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8).characterSpacing(1)
+    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8)
        .text('TYPES DE QUESTIONS', ML + 8, legY2, { width: W - 16 });
-    doc.characterSpacing(0);
 
     const legItems2 = ['comprehension','inference','reaction','jugement','grammaire'];
     const itemW2 = (W - 16 - 4) / 5;
@@ -1336,9 +1333,8 @@ ${storiesHTML}
     doc.rect(8, headerH, PW - 8, 4).fill(GOLD);
 
     // Collection
-    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8).characterSpacing(2)
+    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
        .text('FRAN\u00c7AIS ACTIF \u2014 COLLECTION COMP\u00c9TENCES DE VIE', ML + 8, 52, { width: W - 8, align: 'left' });
-    doc.characterSpacing(0);
     doc.moveTo(ML + 8, 66).lineTo(ML + 8 + 140, 66).strokeColor(GOLD).lineWidth(1).stroke();
 
     // Grand titre
@@ -1379,9 +1375,8 @@ ${storiesHTML}
     const cartX = ML + 8; const cartW = W - 16; const cartY2 = bodyY + 100; const cartH2 = 98;
     doc.rect(cartX, cartY2, cartW, cartH2).fill('#F4F7FB');
     doc.rect(cartX, cartY2, 3, cartH2).fill(GOLD);
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8).characterSpacing(1)
+    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8)
        .text('IDENTIFICATION DE L\u2019\u00c9L\u00c8VE', cartX + 12, cartY2 + 12, { width: cartW - 16 });
-    doc.characterSpacing(0);
 
     const idFields = [
       { label: 'Nom et pr\u00e9nom', name: 'tidnom', fy: cartY2 + 30 },
@@ -1402,9 +1397,8 @@ ${storiesHTML}
 
     // Légende
     const legY2 = cartY2 + cartH2 + 22;
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8).characterSpacing(1)
+    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(8)
        .text('TYPES DE QUESTIONS', ML + 8, legY2, { width: W - 16 });
-    doc.characterSpacing(0);
 
     const legItems2 = ['comprehension','inference','reaction','jugement','grammaire'];
     const itemW2 = (W - 16 - 4) / 5;
