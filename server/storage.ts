@@ -178,8 +178,19 @@ export class MemStorage implements IStorage {
       role: "student",
     };
 
+    const adminId = randomUUID();
+    const admin: User = {
+      id: adminId,
+      username: "admin",
+      password: "admin123",
+      firstName: "Administrateur",
+      lastName: "",
+      role: "admin",
+    };
+
     this.users.set(teacherId, teacher);
     this.users.set(studentId, student);
+    this.users.set(adminId, admin);
 
     // Create sample courses
 
